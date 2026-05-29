@@ -46,6 +46,21 @@ tasks:
     cmds:
       - npm run agents
 
+  stage-write:
+    desc: "Stage Markdown reports in write_staging output folder"
+    cmds:
+      - npm run stage-write
+
+  approve-write:
+    desc: "Approve and execute safe write into Obsidian vault briefs folder"
+    cmds:
+      - npm run approve-write
+
+  write-log:
+    desc: "Print approved write logs history"
+    cmds:
+      - npm run write-log
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

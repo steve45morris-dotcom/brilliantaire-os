@@ -17,6 +17,20 @@ The **Obsidian Read-Only Gateway** connects `brilliantaire-os` to local Obsidian
 
 ---
 
+## 🔒 Phase 3B: Approved Obsidian Write Gateway
+
+The **Approved Obsidian Write Gateway** provides a safe, highly-controlled mechanism to write staging summaries, snapshots, and operational briefs back to the Obsidian vault under a dedicated `brilliantaire-briefs/` subdirectory.
+
+### 🛡️ Safe Write Policy & Staging Verification
+1. **No Automatic Sync:** Full automatic bi-directional sync is strictly prohibited to prevent data loss or infinite loops.
+2. **Explicit Staging Loop:** Files must first be generated and verified locally in the `outputs/write_staging/` folder.
+3. **Approval Handshake:** No write is executed to the Obsidian vault until `npm run approve-write` is run explicitly.
+4. **Collision Isolation (No Overwrites):** If a target file already exists in the Obsidian directory, the write script appends a unique UNIX timestamp suffix to prevent overriding existing notes.
+5. **Obsidian Folder Isolation:** The gateway is restricted to writing ONLY to the `brilliantaire-briefs/` subfolder (which has dedicated folders: `daily/`, `next-actions/`, `decisions/`, `projects/`, and `logs/`).
+6. **Rollback & Logs:** Every write generates timestamped records in both the repository's `outputs/write_logs/` and the vault's `brilliantaire-briefs/logs/`. If a rollback is needed, files can be restored from the staging folder or local repository backups.
+
+---
+
 ## 🛠️ CLI Task Runner commands
 
 Manage and execute operations using the following `task` commands:
@@ -32,6 +46,9 @@ Manage and execute operations using the following `task` commands:
 | `task sync-status` | `npm run sync-status` | Sync parsed Obsidian snapshot into repository status files |
 | `task daily-brief` | `npm run daily-brief` | Generate a daily operating brief markdown report |
 | `task agents` | `npm run agents` | Print a clean summary of the active Agent Council |
+| `task stage-write` | `npm run stage-write` | Stage markdown files into `write_staging` |
+| `task approve-write` | `npm run approve-write` | Write staged files to safe Obsidian directory |
+| `task write-log` | `npm run write-log` | Display write history timeline and warnings |
 
 ---
 

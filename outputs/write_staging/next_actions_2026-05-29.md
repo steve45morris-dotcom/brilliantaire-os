@@ -1,3 +1,12 @@
+---
+source: brilliantaire-os
+phase: Phase 3B
+status: staged
+created: 2026-05-29T16:36:59.980Z
+target: Obsidian safe write folder
+requires_approval: true
+---
+
 # 🎯 Next Actions
 
 ## Do Now

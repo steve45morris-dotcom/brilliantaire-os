@@ -23,3 +23,6 @@ export const OBSIDIAN_CANDIDATE_PATHS = [
 export const OBSIDIAN_INGEST_OUTPUT = path.join(OUTPUT_ROOT, 'obsidian_ingest');
 export const DAILY_BRIEF_OUTPUT = path.join(OUTPUT_ROOT, 'daily_briefs');
 export const BACKUPS_ROOT = path.join(OUTPUT_ROOT, 'backups');
+export const OBSIDIAN_SAFE_WRITE_FOLDER_NAME = 'brilliantaire-briefs';
+export const WRITE_STAGING_OUTPUT = path.join(OUTPUT_ROOT, 'write_staging');
+export const WRITE_LOG_OUTPUT = path.join(OUTPUT_ROOT, 'write_logs');

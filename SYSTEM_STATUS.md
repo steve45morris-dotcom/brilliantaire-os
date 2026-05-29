@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 3B: Productivity Agent Layer
+- **Current Phase:** Phase 3B: Approved Obsidian Write Gateway
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -15,9 +15,10 @@
 - **Daily Operating Brief compiler:** Compiles multi-source briefs to markdown outputs.
 - **Ranked Next Action Checklist:** Status-grouped tasks scheduler.
 - **Productivity Agent Layer:** Council of 7 configured roles with metrics and file bindings.
+- **Approved Obsidian Write Gateway:** Safe, staged, approval-gated write gateway into designated Obsidian subdirectories.
 
 ## 📭 Missing Capabilities
-- **Obsidian Write-Back Gateway:** Bi-directional note updates and brief syncing back to the vault.
+- **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
 - **Vocal Command Pipeline:** Speech-to-text trigger mapping.
 
 ## ⚠️ Current Risks

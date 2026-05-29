@@ -15,7 +15,10 @@
     "ingest": "tsx scripts/ingest-obsidian.ts",
     "sync-status": "tsx scripts/sync-status.ts",
     "daily-brief": "tsx scripts/daily-brief.ts",
-    "agents": "tsx scripts/agents.ts"
+    "agents": "tsx scripts/agents.ts",
+    "stage-write": "tsx scripts/stage-obsidian-write.ts",
+    "approve-write": "tsx scripts/approve-obsidian-write.ts",
+    "write-log": "tsx scripts/write-log.ts"
   },
   "keywords": [
     "antigravity",
