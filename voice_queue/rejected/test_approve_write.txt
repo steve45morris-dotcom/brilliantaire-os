@@ -1,0 +1,7 @@
+Original Phrase: approve write
+
+Normalized: approve write
+Status: Blocked
+Reason: Blocked: Manual confirmation required
+Guidance: To execute this command, please run manually:
+  npm run command -- "approve-write"

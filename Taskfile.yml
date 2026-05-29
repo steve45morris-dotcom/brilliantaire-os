@@ -81,6 +81,16 @@ tasks:
     cmds:
       - npm run campaign-help
 
+  voice-queue:
+    desc: "Process text-based voice commands queue safely"
+    cmds:
+      - npm run voice-queue
+
+  voice-help:
+    desc: "Print voice commands mapping table registry"
+    cmds:
+      - npm run voice-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

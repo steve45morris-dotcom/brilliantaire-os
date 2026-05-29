@@ -1,0 +1,6 @@
+Original Phrase: show daily brief
+
+Normalized: show daily brief
+Status: Processed
+Router Command: npm run command -- "daily-brief"
+Exit Code: 0

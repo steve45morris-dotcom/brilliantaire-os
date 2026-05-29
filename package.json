@@ -22,7 +22,9 @@
     "command": "tsx scripts/command.ts",
     "command-help": "tsx scripts/command-help.ts",
     "campaign": "tsx scripts/campaign.ts",
-    "campaign-help": "tsx scripts/campaign-help.ts"
+    "campaign-help": "tsx scripts/campaign-help.ts",
+    "voice-queue": "tsx scripts/voice-queue.ts",
+    "voice-help": "tsx scripts/voice-help.ts"
   },
   "keywords": [
     "antigravity",

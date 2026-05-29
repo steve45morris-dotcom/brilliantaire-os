@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 4A: Campaign Template Engine
+- **Current Phase:** Phase 4B: Voice Command Queue
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -18,6 +18,7 @@
 - **Approved Obsidian Write Gateway:** Safe, staged, approval-gated write gateway into designated Obsidian subdirectories.
 - **Safe Command Router:** Confirmation-locked and exact-name gated execution environment for CLI scripts.
 - **Campaign Template Engine:** Compiles structured marketing calendars, prompts, briefs, and execution checklists locally.
+- **Voice Command Queue:** Safely parses, validates, and dispatches normalized voice phrases to Command Router scripts via an inbox directory.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

@@ -222,3 +222,47 @@
 
 ---
 
+## [2026-05-29T17:21:27.871Z] Command Attempt: "daily-brief"
+- **Matched Command:** `daily-brief`
+- **Alias Used:** `false`
+- **Owning Agent:** `Action Router`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T17:21:42.145Z] Command Attempt: "voice-help"
+- **Matched Command:** `voice-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T17:21:51.455Z] Command Attempt: "voice"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:22:03.852Z] Command Attempt: "voice-queue"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

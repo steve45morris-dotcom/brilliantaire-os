@@ -24,7 +24,12 @@
 - [x] Generate Sporty execution checklist
 - [x] Generate Sporty street script
 - [x] Review campaign outputs
-- [ ] Prepare VibeVoice bridge only after campaign engine passes
+- [ ] Build voice command queue
+- [ ] Test low-risk voice command
+- [ ] Test unknown voice phrase rejection
+- [ ] Test medium-risk confirmation block
+- [ ] Test high-risk confirmation block
+- [ ] Prepare live VibeVoice bridge only after queue tests pass
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

@@ -153,5 +153,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'voice-help',
+    aliases: ['voice commands', 'voice-list'],
+    description: 'Print registry of all allowed voice command phrases',
+    npmScript: 'voice-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'voice-queue',
+    aliases: ['voice'],
+    description: 'Process text-based voice command queue inbox files safely (Medium Risk)',
+    npmScript: 'voice-queue',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

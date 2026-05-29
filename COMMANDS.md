@@ -38,6 +38,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `build` | `compile` | Build Operator | Low | No | Compiles TypeScript workspace. |
 | `campaign-help` | `campaign commands`, `campaigns-help` | Creative Revenue Strategist | Low | No | Prints list of available campaign engine tasks. |
 | `campaign` | `campaigns` | Creative Revenue Strategist | Medium | Yes | Runs campaign assets compiler (brief, calendar, prompts, checks). |
+| `voice-help` | `voice commands`, `voice-list` | Workflow Auditor | Low | No | Prints registry of all allowed voice command phrases. |
+| `voice-queue` | `voice` | Build Operator | Medium | Yes | Processes text-based voice command queue inbox files safely. |
 
 ---
 

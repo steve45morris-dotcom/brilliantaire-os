@@ -2,7 +2,7 @@
 
 ## 🛠️ System Status
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 3A: Knowledge Ingestion & Obsidian Read-Only Gateway
+- **Current Phase:** Phase 4B: Voice Command Queue
 - **Status:** Operational
 
 ## 📂 Active Projects
@@ -16,9 +16,9 @@
 - **Visual Identity System** (Active) - Purpose: Cyberpunk styling and premium frontend design patterns
 
 ## 🔥 Top 5 Priorities
-🔥 **Icyflamze** - Next Action: Refine lyric flow & voice bridge integration
-🔥 **Tree Groove Records** - Next Action: Align master release schedule
-🔥 **Brilliantier OS** - Next Action: Scaffold operational intelligence layer
+🔥 **Icyflamze** - Next Action: Refine lyric flow & integrate campaign brief prompts
+🔥 **Tree Groove Records** - Next Action: Align release schedule with 3-week campaign calendars
+🔥 **Brilliantier OS** - Next Action: Manage active agent execution
 🔥 **Sporty No Go Take My Soul Rollout** - Next Action: Draft distribution & visual forge prompts
 🔥 **Visual Identity System** - Next Action: Catalog theme color tokens (HSL)
 
@@ -30,9 +30,9 @@
 ## ⚠️ Blockers & Risks
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
-- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))
-- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))
+- ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 
 ## 💸 Money-Making Opportunities
 - **ProfBetGeng Analytics Optimization:** Execute betting odds analysis scripts to identify high-signal opportunities.
@@ -55,6 +55,6 @@
   2. Create self-audit command
   3. Create project brief command
   4. Create next-action generator
-  5. Implement VNP integration in scripts to log script runs
-  6. Add strict validation commands in Taskfile
-  7. Compile Obsidian Ingest JSON logs for active workspace
+  5. Run and maintain productivity agent council (`AGENTS.md`)
+  6. Connect agents telemetry log loops
+  7. Test staged write
