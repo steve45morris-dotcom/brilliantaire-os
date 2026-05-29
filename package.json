@@ -11,7 +11,10 @@
     "test": "vitest run",
     "audit": "tsx scripts/audit.ts",
     "brief": "tsx scripts/brief.ts",
-    "next": "tsx scripts/next.ts"
+    "next": "tsx scripts/next.ts",
+    "ingest": "tsx scripts/ingest-obsidian.ts",
+    "sync-status": "tsx scripts/sync-status.ts",
+    "daily-brief": "tsx scripts/daily-brief.ts"
   },
   "keywords": [
     "antigravity",

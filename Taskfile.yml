@@ -26,6 +26,21 @@ tasks:
     cmds:
       - npm run next
 
+  ingest:
+    desc: "Ingest local Obsidian vaults in read-only mode"
+    cmds:
+      - npm run ingest
+
+  sync-status:
+    desc: "Sync local statuses and append Obsidian intelligence snapshot"
+    cmds:
+      - npm run sync-status
+
+  daily-brief:
+    desc: "Generate daily operational operating brief"
+    cmds:
+      - npm run daily-brief
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

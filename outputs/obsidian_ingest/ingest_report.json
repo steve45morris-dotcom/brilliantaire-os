@@ -1,0 +1,4949 @@
+{
+  "timestamp": "2026-05-29T16:27:57.272Z",
+  "vaultsScanned": [
+    "/Users/alexanderanthony/AlexanderOSVault"
+  ],
+  "filesScannedCount": 170,
+  "statistics": {
+    "todos": 3,
+    "nexts": 119,
+    "decisions": 57,
+    "blockeds": 13
+  },
+  "files": [
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Mission Control.md",
+      "title": "Mission Control",
+      "lastModified": "2026-05-27T19:45:32.276Z",
+      "tags": [],
+      "headings": [
+        "# Mission Control",
+        "## Operating Rule",
+        "## Release Focus",
+        "## System Hygiene",
+        "## Runtime Truth",
+        "## Active Missions",
+        "## Command Loop",
+        "## Core Panels",
+        "## Kill Criteria"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next.",
+          "| Layer | Status | Evidence | Next Check |",
+          "| Mission | Status | Bottleneck | Next Action | Signal |",
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green |",
+          "| [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green |",
+          "3. Execute the smallest useful next step.",
+          "- A project with no clear next action gets archived."
+        ],
+        "decision": [
+          "- [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]]",
+          "- [[Decisions Dashboard]]"
+        ],
+        "blocked": [
+          "This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next."
+        ],
+        "icyflamze": [
+          "- [[02 Projects/Icyflamze Creative OS/Active Release Tracker|Active Release Tracker]]",
+          "- [[02 Projects/Icyflamze Creative OS/Fan Growth Tracker|Fan Growth Tracker]]",
+          "- [[02 Projects/Icyflamze Creative OS/Monetization Tracker|Monetization Tracker]]",
+          "- [[02 Projects/Icyflamze Creative OS/Canonical Project Paths|Canonical Project Paths]]",
+          "| [[02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State|Who Is Icyflamze Release]] | clean | none | Review release assets and update Active Release Tracker. | green |",
+          "| [[02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State|Icyflamze Creative OS]] | ready-to-push | none | Push local commits or decide why they should stay local. | blue |"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green |"
+        ],
+        "antigravity": [
+          "- Execution layer: Antigravity CLI only after runtime verification.",
+          "| [[02 Projects/Antigravity CLI/Antigravity CLI - Current State|Antigravity CLI]] | clean | none | Review project assets and update the linked tracker. | green |"
+        ]
+      },
+      "relevanceScore": 25.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md",
+      "title": "Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.",
+      "lastModified": "2026-05-29T16:03:33.684Z",
+      "tags": [],
+      "headings": [
+        "# Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.",
+        "## Task 1: Define ICYFLAMZE / Brilliantaire identity and system model",
+        "## Task 2: Build and validate the first Brilliantaire OS scaffold",
+        "## Task 3: Prepare the project for Antigravity CLI takeover"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion.",
+          "- The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild.",
+          "- The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "- The user proposed the brand title “Icyflamze The Brilliantaire” -> the brand should use that exact myth/title structure, not a generic artist bio."
+        ],
+        "treeGroove": [
+          "- The assistant reframed the identity as “creative technologist,” “multimedia strategist,” and “cultural systems builder,” then split the system into Core, Labs, Media, Strategy, Tree Groove Records, Academy, and Ventures.",
+          "- The brand architecture that emerged is: ICYFLAMZE (main name) + The Brilliantaire (myth/title) + sub-brands like Labs / Media / Strategy / Tree Groove Records / Academy / Ventures.",
+          "- Found that the existing global Antigravity rule pointed to an older Tree Groove path and already enforced a design-system-first policy for UI work."
+        ],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.",
+          "Rollout context: The user described ICYFLAMZE as a personal/career system rooted in music, system-building, computer-geek creativity, and a new brand title (“The Brilliantaire”). The assistant repeatedly refined the identity into a creative technologist / cultural systems builder, built a local Brilliantaire OS scaffold under `/Users/alexanderanthony/codex-workspace/projects/brilliantaire-os`, then the user said the result still looked too premature/cheap and asked to move the project to Antigravity CLI for a more capable build.",
+          "## Task 3: Prepare the project for Antigravity CLI takeover",
+          "- The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild.",
+          "- Checked the local Antigravity CLI (`agy`) and its help surface.",
+          "- Inspected existing global Antigravity config files, including `/Users/alexanderanthony/.antigravityrules` and `/Users/alexanderanthony/.agents/agents.md`.",
+          "- Found that the existing global Antigravity rule pointed to an older Tree Groove path and already enforced a design-system-first policy for UI work.",
+          "- Confirmed Antigravity CLI could read the project context by running a `agy --print` readiness check; the output acknowledged the Brilliantaire OS handoff and design alignment.",
+          "- The user’s complaint about the UI quality became the trigger for handing the project off to Antigravity and documenting that the current UI is only scaffold.",
+          "- Antigravity CLI binary is `agy` at `/Users/alexanderanthony/.local/bin/agy`.",
+          "- Antigravity one-shot confirmation output: “I intend to confirm readiness for the Brilliantaire OS handoff... I build before burning.”"
+        ]
+      },
+      "relevanceScore": 19.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md",
+      "title": "First Principles Project Operating Plan - 2026-04-28",
+      "lastModified": "2026-04-28T16:50:37.039Z",
+      "tags": [],
+      "headings": [
+        "# First Principles Project Operating Plan - 2026-04-28",
+        "## Operating Lens",
+        "## Core Decision",
+        "## Project Ranking",
+        "## Kill Rules",
+        "## 30-Day Execution Sequence",
+        "## Obsidian Utilization Model",
+        "## Immediate Commands",
+        "## Non-Negotiable"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- If a project has no next action, archive it.",
+          "- If a dashboard does not answer \"what matters next?\", remove it from Mission Control."
+        ],
+        "decision": [
+          "## Core Decision",
+          "| Tier | Project | Decision | Reason |",
+          "| 2 | The One System | Maintain as control layer | It governs memory, agents, workflows, and decisions |",
+          "- If an agent produces output that does not change a decision, task, test, or shipped artifact, demote it.",
+          "- Decisions record commitments and prevent reopening settled direction."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "Current answer: ProfBetGeng.",
+          "| 1 | ProfBetGeng | Attack now | It is the clearest executable product with business value |",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py triage ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-plan ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py session ProfBetGeng"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 18
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md",
+      "title": "Raw Memories",
+      "lastModified": "2026-05-29T16:03:33.686Z",
+      "tags": [],
+      "headings": [
+        "# Raw Memories",
+        "## Thread `019e6a7c-cc36-71b2-9040-b9ee88fd7263`",
+        "### Task 1: Define Brilliantaire identity and system model",
+        "### Task 2: Build the first Brilliantaire OS scaffold and validate it",
+        "### Task 3: Prepare and verify Antigravity CLI takeover",
+        "## Thread `019e6af1-460a-7031-90c8-9b3fb5035ca4`",
+        "### Task 1: install recommended frontend/landing-page repos and tools"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- the user approved the build phase with \"Okay Approved Next Phase\" and later \"Okay Lets Go\" -> when approved, they expect concrete build work, not further conceptual discussion.",
+          "- the user later asked what can be done moving forward -> a concrete next-step command and rebuild plan is useful rather than more abstract discussion.",
+          "- `open-react-template` needs network access during build because it fetches Google Fonts; without it, `next/font` fails.",
+          "- `open-react-template` initially failed to build in a sandboxed/no-network run because `next/font` couldn't fetch Inter from Google Fonts; rerun with network access."
+        ],
+        "decision": [],
+        "blocked": [
+          "- `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself."
+        ],
+        "icyflamze": [],
+        "treeGroove": [
+          "- The brand architecture settled on ICYFLAMZE + The Brilliantaire, with sub-brands such as Labs, Media, Strategy, Tree Groove Records, Academy, and Ventures.",
+          "- The global rules originally referenced an older Tree Groove path; future work should be aware that this environment already contains older global agent rules and design mandates."
+        ],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "### Task 3: Prepare and verify Antigravity CLI takeover",
+          "task: hand the project to Antigravity CLI with project-local instructions, a design system, and a global routing update",
+          "- the user explicitly asked to move the project to Antigravity CLI because it has more tools -> future work should use Antigravity when the user wants a more capable build phase.",
+          "- Antigravity CLI is installed as `agy` at `/Users/alexanderanthony/.local/bin/agy`.",
+          "- The global Antigravity rule file was updated at `/Users/alexanderanthony/.antigravityrules` to point UI work for Brilliantaire/ICYFLAMZE to the new design system and the active project path.",
+          "- A dry Antigravity readiness check succeeded and returned: \"I intend to confirm readiness for the Brilliantaire OS handoff... I build before burning.\"",
+          "- Antigravity launch command:"
+        ]
+      },
+      "relevanceScore": 17
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md",
+      "title": "Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff",
+      "lastModified": "2026-05-29T16:06:32.397Z",
+      "tags": [],
+      "headings": [
+        "# Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff",
+        "## Task 1: define ICYFLAMZE / Brilliantaire as a system-first creative-technology OS, success",
+        "### rollout_summary_files",
+        "### keywords",
+        "## Task 2: build and validate the first Brilliantaire OS scaffold, success as scaffold only",
+        "### rollout_summary_files",
+        "### keywords",
+        "## Task 3: prepare Brilliantaire OS for Antigravity CLI takeover, success",
+        "### rollout_summary_files",
+        "### keywords",
+        "## User preferences",
+        "## Reusable knowledge",
+        "## Failures and how to do differently",
+        "# Task Group: /Users/alexanderanthony local frontend-builder installation and verification",
+        "## Task 1: install recommended frontend and landing-page repos into a dedicated local workspace, partial",
+        "### rollout_summary_files",
+        "### keywords",
+        "## User preferences",
+        "## Reusable knowledge",
+        "## Failures and how to do differently"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- when the user approved with \"Okay Approved Next Phase\" and \"Okay Lets Go\" -> move into concrete build work instead of staying in concept discussion [Task 2]",
+          "- when the user said \"I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that\" -> use Antigravity as the preferred next builder when the user wants a larger Brilliantaire rebuild [Task 3]",
+          "- Symptom: Brilliantaire preview or build behavior is unstable after a restart. Likely cause: leftover temporary dev-server state. Fix: check for stale Next processes, confirm PID `29632` is gone after restart, and remove any temporary `turbopack: { root: process.cwd() }` change from `web/next.config.ts` if it still exists [ad-hoc note]",
+          "- `open-react-template` is a Next.js/Tailwind starter whose build may require network access because `next/font` fetches Google Fonts [Task 1]",
+          "- Symptom: a Next.js starter fails on `next/font` or Google Fonts during build. Likely cause: the verification run had restricted network access. Fix: rerun where font downloads are allowed before assuming the repo is broken [Task 1]"
+        ],
+        "decision": [],
+        "blocked": [
+          "- `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1]"
+        ],
+        "icyflamze": [],
+        "treeGroove": [
+          "- The brand architecture that emerged is ICYFLAMZE + The Brilliantaire, with sub-brands such as Labs, Media, Strategy, Tree Groove Records, Academy, and Ventures [Task 1]"
+        ],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff",
+          "## Task 3: prepare Brilliantaire OS for Antigravity CLI takeover, success",
+          "- Antigravity CLI, agy, AGENTS.md, ANTIGRAVITY_HANDOFF.md, start_antigravity.sh, .antigravityrules, awesome-design-md, Brilliantaire Dispatch",
+          "- when the user said \"I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that\" -> use Antigravity as the preferred next builder when the user wants a larger Brilliantaire rebuild [Task 3]",
+          "- Antigravity CLI is installed as `agy` at `/Users/alexanderanthony/.local/bin/agy`; project handoff files live in `AGENTS.md`, `ANTIGRAVITY_HANDOFF.md`, and `scripts/start_antigravity.sh`, and the global routing file is `/Users/alexanderanthony/.antigravityrules` [Task 3]",
+          "- Symptom: Antigravity readiness checks fail with `--print` usage errors. Cause: the command was invoked without the required prompt argument. Fix: use `agy --add-dir <dir> --print \"prompt text\"` or switch to `agy -i` for an interactive rebuild session [Task 3]"
+        ]
+      },
+      "relevanceScore": 16.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/ProfBetGeng - Current State.md",
+      "title": "Start backend",
+      "lastModified": "2026-05-27T19:45:29.587Z",
+      "tags": [],
+      "headings": [
+        "# ProfBetGeng - Current State",
+        "## Goal",
+        "## Milestone Status",
+        "## Current Repo State",
+        "## Push Status",
+        "## Next Priorities",
+        "## Useful Commands",
+        "# Start backend",
+        "# Run all tests",
+        "# Frontend build",
+        "# Push",
+        "## Session Log",
+        "## Latest Env Cleanup",
+        "## Automated Status",
+        "## main...steve/main",
+        "### Diff Stat",
+        "## Latest Cleanup Plan",
+        "## Latest Automated Triage",
+        "## Next Actions"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Priorities",
+          "Next action: Pick the next milestone or archive if no action remains.",
+          "## Next Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# ProfBetGeng - Current State",
+          "Build and stabilize the ProfBetGeng application/system. Core function: convert",
+          "Note: the HTTPS `origin` remote for `iflamze45/ProfBetGeng_Claud001` still requires fresh GitHub authentication if that remote must be used.",
+          "cd ~/Projects/ProfBetGeng_Claud001",
+          "- Session M3: [[02 Projects/ProfBetGeng/Session Reports/2026-04-26-session-report-m3]]",
+          "- Session M2: [[02 Projects/ProfBetGeng/Session Reports/2026-04-26-session-report]]",
+          "- Run: [[02 Projects/ProfBetGeng/Env Cleanup Runs/2026-04-26-1156-env-cleanup-apply]]",
+          "Repo: `/Users/alexanderanthony/Backend Services/apis/ProfBetGeng_Claud001`",
+          "- Plan: [[02 Projects/ProfBetGeng/Cleanup Plans/2026-04-28-0950-cleanup-plan]]",
+          "- Report: [[02 Projects/ProfBetGeng/Triage Reports/2026-04-28-0949-repo-triage]]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 14.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Home.md",
+      "title": "Alexander OS",
+      "lastModified": "2026-05-27T19:45:23.219Z",
+      "tags": [],
+      "headings": [
+        "# Alexander OS",
+        "## Daily Operating Loop",
+        "## Core Dashboards",
+        "## Active Projects",
+        "## Rules",
+        "## Automation"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "3. Review open blockers and next actions."
+        ],
+        "decision": [
+          "This vault is the operating layer for projects, Claude sessions, workflows, decisions, and research.",
+          "6. Record decisions in [[Decision Log]].",
+          "- [[Decision Log]]",
+          "- [[Decisions Dashboard]]"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "- [[02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State|Icyflamze Creative OS]]",
+          "- [[02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State|Who Is Icyflamze Release]]"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]]",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py session ProfBetGeng"
+        ],
+        "antigravity": [
+          "- [[02 Projects/Antigravity CLI/Antigravity CLI - Current State|Antigravity CLI]]"
+        ]
+      },
+      "relevanceScore": 14.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md",
+      "title": "Project Status Dashboard",
+      "lastModified": "2026-05-27T19:45:30.894Z",
+      "tags": [],
+      "headings": [
+        "# Project Status Dashboard",
+        "## Blocked / Missing",
+        "## Dirty / Needs Triage",
+        "## Ready To Push",
+        "## Clean"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| Project | Priority | Branch | Blocker | Next Action |",
+          "| Project | Priority | Branch | Blocker | Next Action |",
+          "| Project | Priority | Branch | Blocker | Next Action |",
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | high | main | none | Pick the next milestone or archive if no action remains. |",
+          "| [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | medium | checkpoint/ui-vite-migration | none | Pick the next milestone or archive if no action remains. |"
+        ],
+        "decision": [],
+        "blocked": [
+          "## Blocked / Missing"
+        ],
+        "icyflamze": [
+          "| [[02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State|Icyflamze Creative OS]] | medium | main | none | Push local commits or decide why they should stay local. |",
+          "| [[02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State|Who Is Icyflamze Release]] | high | non-git | none | Review release assets and update Active Release Tracker. |"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | high | main | none | Pick the next milestone or archive if no action remains. |"
+        ],
+        "antigravity": [
+          "| [[02 Projects/Antigravity CLI/Antigravity CLI - Current State|Antigravity CLI]] | high | non-git | none | Review project assets and update the linked tracker. |"
+        ]
+      },
+      "relevanceScore": 13.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Projects Dashboard.md",
+      "title": "Projects Dashboard",
+      "lastModified": "2026-05-27T19:45:30.893Z",
+      "tags": [],
+      "headings": [
+        "# Projects Dashboard",
+        "## Live Project State",
+        "## Review Cadence",
+        "## Project Note Standard"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| Project | Status | Priority | Branch | Modified | Untracked | Blocker | Next Action |",
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | high | main | 0 | 0 | none | Pick the next milestone or archive if no action remains. |",
+          "| [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | medium | checkpoint/ui-vite-migration | 0 | 0 | none | Pick the next milestone or archive if no action remains. |",
+          "- Daily: update active project next actions.",
+          "- Next 3 actions"
+        ],
+        "decision": [
+          "- Weekly: archive stale projects and consolidate decisions."
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "| [[02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State|Icyflamze Creative OS]] | ready-to-push | medium | main | 0 | 0 | none | Push local commits or decide why they should stay local. |",
+          "| [[02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State|Who Is Icyflamze Release]] | clean | high | non-git | 0 | 0 | none | Review release assets and update Active Release Tracker. |"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | high | main | 0 | 0 | none | Pick the next milestone or archive if no action remains. |"
+        ],
+        "antigravity": [
+          "| [[02 Projects/Antigravity CLI/Antigravity CLI - Current State|Antigravity CLI]] | clean | high | non-git | 0 | 0 | none | Review project assets and update the linked tracker. |"
+        ]
+      },
+      "relevanceScore": 13.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Automation Guide.md",
+      "title": "Automation Guide",
+      "lastModified": "2026-04-26T18:55:46.178Z",
+      "tags": [],
+      "headings": [
+        "# Automation Guide",
+        "## Refresh Everything",
+        "## Refresh Project Status Only",
+        "## Integrate Claude / Codex / GPT Memory Sources",
+        "## Generate Operating Metrics",
+        "## Read-Only Repo Triage",
+        "## Read-Only Cleanup Plan",
+        "## Guarded Cleanup Executor",
+        "## Remaining Work Plan",
+        "## Redacted Secrets / Config Review",
+        "## Guarded Env Cleanup",
+        "## Create A Session Update",
+        "## Add A New Tracked Project"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "After disposable cleanup, generate the next commit/review plan:"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py triage ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-plan ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-suggest ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-exec ProfBetGeng",
+          "02 Projects/ProfBetGeng/approved-cleanup.json",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-exec ProfBetGeng --apply",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py remaining-plan ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py secrets-review ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py env-cleanup ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py env-cleanup ProfBetGeng --apply",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py session ProfBetGeng"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 12.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Decisions Dashboard.md",
+      "title": "Decisions Dashboard",
+      "lastModified": "2026-04-26T17:25:08.733Z",
+      "tags": [],
+      "headings": [
+        "# Decisions Dashboard",
+        "## Decision Notes",
+        "## Open Decision Tasks"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "# Decisions Dashboard",
+          "## Decision Notes",
+          "FROM \"05 Decisions\"",
+          "WHERE type = \"decision\"",
+          "## Open Decision Tasks",
+          "path includes 05 Decisions"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 12
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-22.md",
+      "title": "2026-05-22",
+      "lastModified": "2026-05-23T03:48:39.313Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-22",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "- **Icyflamze Creative OS**:"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- **ProfBetGeng**:",
+          "- [[04 Claude/Session Updates/2026-05-22-ProfBetGeng-session|Claude Session — Profbetgeng]]"
+        ],
+        "antigravity": [
+          "- **Antigravity CLI**: (No active commits today)",
+          "- [[04 Claude/Session Updates/2026-05-22-Antigravity-CLI-session|Claude Session — Antigravity-Cli]]"
+        ]
+      },
+      "relevanceScore": 11.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-26.md",
+      "title": "2026-05-26",
+      "lastModified": "2026-05-26T18:54:46.747Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-26",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "- Primary target: `Who_Is_Icyflamze` final video and promo teasers.",
+          "- Treat the `Who_Is_Icyflamze` final export and promo assets as the highest-leverage active music asset.",
+          "- [ ] Review `TreeGrooveProjects/Who_Is_Icyflamze/Final/who_is_icyflamze_music_video.mp4` end to end."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "- Runtime rule: use Mission Control as source of truth; Antigravity CLI verified with `agy --print` returning `ANTIGRAVITY_OK`."
+        ]
+      },
+      "relevanceScore": 10.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-23.md",
+      "title": "2026-05-23",
+      "lastModified": "2026-05-23T10:58:40.664Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-23",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "- **Icyflamze Creative OS**: (No active commits today)"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- **ProfBetGeng**: (No active commits today)"
+        ],
+        "antigravity": [
+          "- **Antigravity CLI**: (No active commits today)"
+        ]
+      },
+      "relevanceScore": 9.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/system_check_report.md",
+      "title": "🌌 Sovereign Stack: System Check & Diagnostics Report",
+      "lastModified": "2026-05-21T15:53:24.942Z",
+      "tags": [],
+      "headings": [
+        "# 🌌 Sovereign Stack: System Check & Diagnostics Report",
+        "## 🖥️ 1. Frontend Applications & Compilers",
+        "### 🛡️ Sentinel OS (`sentinel-os`)",
+        "### 🎨 Icyflamze AI Studio (`icyflamze-ai-studio`)",
+        "## 🗺️ 3. Strategic Roadmap & Milestone Tracking",
+        "### 💎 Phase 9: Feedback Loop & Client Sovereign Hub `[95% COMPLETE]`",
+        "### 🌎 Phase 10: Planetary Neural Mesh & Recursive Evolution `[INITIATING]`"
+      ],
+      "matchedLines": {
+        "todo": [
+          "ZKP Cross-Node Protocol           :todo,    2026-05-25, 2026-06-05",
+          "Mesh Topology Canvas              :todo,    2026-06-05, 2026-06-15",
+          "@system-architect Integration     :todo,    2026-06-15, 2026-06-25"
+        ],
+        "next": [
+          "*   **Framework:** Next.js 16.2.4 | React 19.2.4 | Turbopack",
+          "*   **Framework:** Next.js 16.1.6 | React 19.2.3 | Turbopack"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "### 🎨 Icyflamze AI Studio (`icyflamze-ai-studio`)",
+          "title Roadmap Ascension: Icyflamze Creative OS"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 9.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Canonical Project Paths.md",
+      "title": "Canonical Project Paths",
+      "lastModified": "2026-05-26T18:53:02.879Z",
+      "tags": [],
+      "headings": [
+        "# Canonical Project Paths",
+        "## Active Operating Paths",
+        "## Archive / Delay Candidates",
+        "## Operating Rule"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "| Purpose | Path | Decision |",
+          "| Path | Reason | Decision |"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "| Human source of truth | `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/Icyflamze Creative OS` | KEEP |",
+          "| Current release assets | `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze` | KEEP |",
+          "| Icyflamze Creative OS repo | `/Users/alexanderanthony/Landing Page Sites/icyflamze/icyflamze-creative-os-clean` | KEEP, but not the current release asset source |",
+          "If a task concerns the active music release, start in `TreeGrooveProjects/Who_Is_Icyflamze`."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 8
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Decision Log.md",
+      "title": "Decision Log",
+      "lastModified": "2026-04-26T17:20:33.608Z",
+      "tags": [],
+      "headings": [
+        "# Decision Log",
+        "## Template",
+        "## YYYY-MM-DD - Decision Title"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "# Decision Log",
+          "Record durable decisions here. Keep entries short and link to project/session notes.",
+          "## YYYY-MM-DD - Decision Title",
+          "Decision:"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 8
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State.md",
+      "title": "Who Is Icyflamze Release - Current State",
+      "lastModified": "2026-05-27T19:45:30.140Z",
+      "tags": [],
+      "headings": [
+        "# Who Is Icyflamze Release - Current State",
+        "## Purpose",
+        "## Source Assets",
+        "## Operating Links",
+        "## Automated Status",
+        "### Diff Stat"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Next action: Review release assets and update Active Release Tracker."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "# Who Is Icyflamze Release - Current State",
+          "Track the active release asset package for `Who Is Icyflamze` without turning it into another app or dashboard.",
+          "- Final video: `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Final/who_is_icyflamze_music_video.mp4`",
+          "- Teasers: `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Promo/teaser_1.mp4`, `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Promo/teaser_2.mp4`",
+          "- Cover/poster: `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Promo/cover_art.png`, `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Promo/poster_1.png`",
+          "Repo: `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze`"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 7.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Current State.md",
+      "title": "ProfBetGeng — Legacy Current State",
+      "lastModified": "2026-05-22T16:41:52.062Z",
+      "tags": [],
+      "headings": [
+        "# ProfBetGeng — Legacy Current State",
+        "## Goal",
+        "## Current Status",
+        "## Key Feedback / Rules",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Latest Session Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# ProfBetGeng — Legacy Current State",
+          "Deprecated note. Use [[ProfBetGeng - Current State]] for the live state.",
+          "- The live repo is tracked in `ProfBetGeng - Current State.md`.",
+          "1. Open [[ProfBetGeng - Current State]].",
+          "cd /Users/alexanderanthony/Backend Services/apis/ProfBetGeng_Claud001",
+          "Superseded by [[02 Projects/ProfBetGeng/ProfBetGeng - Current State]]."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 7.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/00 Inbox/Codex Obsidian Bridge.md",
+      "title": "Codex Obsidian Bridge",
+      "lastModified": "2026-05-22T14:45:29.832Z",
+      "tags": [],
+      "headings": [
+        "# Codex Obsidian Bridge",
+        "## Commands",
+        "## Capability",
+        "## Loops"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "codex-obsidian handoff \"TheOneSystem\" --objective \"Next objective\" --state \"Known state\"",
+          "- Session loop: start/end session notes with objective, summary, verification, and next actions."
+        ],
+        "decision": [
+          "codex-obsidian decision \"Local Obsidian REST API\" \"Use localhost-only HTTP with private bearer token\"",
+          "- Decision loop: create durable decision records in `05 Decisions`."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 7
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Antigravity CLI/Antigravity CLI - Current State.md",
+      "title": "🌌 Antigravity CLI — Sovereign Intelligence Node",
+      "lastModified": "2026-05-27T19:45:30.512Z",
+      "tags": [],
+      "headings": [
+        "# 🌌 Antigravity CLI — Sovereign Intelligence Node",
+        "## ⚡ Integration State",
+        "## Automated Status",
+        "### Diff Stat",
+        "## Latest Automated Triage",
+        "## Next Actions"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Next action: Review project assets and update the linked tracker.",
+          "## Next Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# 🌌 Antigravity CLI — Sovereign Intelligence Node",
+          "> This is the central repository state and operational dashboard for the **Antigravity CLI** agent node. It bridges the local developer shell with the creative mind-palace of the `Alexander OS` Obsidian Vault.",
+          "- **[x] Symlink Brain Folder**: Mounted at `04 Claude/Antigravity Brain` for real-time vault indexing.",
+          "- Report: [[02 Projects/Antigravity CLI/Triage Reports/2026-05-22-0959-repo-triage]]"
+        ]
+      },
+      "relevanceScore": 7
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/b9b3975c-aeb9-422b-b5a7-cea1a8b35254/implementation_plan.md",
+      "title": "Implementation Plan - Rebuilding Brilliantaire OS",
+      "lastModified": "2026-05-27T20:14:25.121Z",
+      "tags": [],
+      "headings": [
+        "# Implementation Plan - Rebuilding Brilliantaire OS",
+        "## User Review Required",
+        "## Proposed Changes",
+        "### [NEW] Public Landing Page",
+        "#### [NEW] [page.tsx](file:///Users/alexanderanthony/codex-workspace/projects/brilliantaire-os/web/src/app/page.tsx)",
+        "### [NEW] Server Integrations (Data Layer)",
+        "#### [NEW] [actions.ts](file:///Users/alexanderanthony/codex-workspace/projects/brilliantaire-os/web/src/app/actions.ts)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Rebuild Brilliantaire OS from a static scaffold into a high-fidelity, premium creative technology command system under a new `web/` subdirectory using Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
+          "> - **Local Data Sync**: The Next.js server components will read directly from the live files in `data/` and `brain/` using Node.js filesystem APIs. This creates a real-time bridge with the user's Obsidian Vault.",
+          "> - **Interactive Commands**: The dashboard will include functional forms (like adding ideas or changing project status) that write directly back to `data/projects.json` via Next.js Server Actions.",
+          "- Next.js Server Actions to read, write, and update `data/projects.json`, `data/weekly.json`, and `data/modules.json` dynamically on the local disk."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [
+          "- **Interactive Module Map**: A visually stunning grid representing the 7 Worlds (Core, Labs, Media, Strategy, Tree Groove, Academy, Ventures) showing descriptions, outputs, and statuses."
+        ],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 7
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/99 Archive/Supernova Inactive Surfaces - 2026-05-26.md",
+      "title": "Supernova Inactive Surfaces - 2026-05-26",
+      "lastModified": "2026-05-26T19:03:53.410Z",
+      "tags": [],
+      "headings": [
+        "# Supernova Inactive Surfaces - 2026-05-26",
+        "## Runtime Evidence",
+        "## KEEP",
+        "## ARCHIVE",
+        "## REMOVE",
+        "## DELAY",
+        "## DEPENDENCY CHECK",
+        "## Active Operating Stack After Pass",
+        "## Required Approval Before Physical Cleanup",
+        "## Rule"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "| `/Users/alexanderanthony/Downloads/supernova_*` packs | Download/import artifacts | ARCHIVE or remove after backup decision |"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "| `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/Icyflamze Creative OS/Active Release Tracker.md` | Current release execution tracker | KEEP active |",
+          "| `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/Icyflamze Creative OS/Fan Growth Tracker.md` | Fan growth measurement | KEEP active |",
+          "| `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/Icyflamze Creative OS/Monetization Tracker.md` | Revenue/offer measurement | KEEP active |",
+          "2. Icyflamze release/fan/monetization trackers."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "3. Antigravity CLI for execution when invoked and verified."
+        ]
+      },
+      "relevanceScore": 7
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-27.md",
+      "title": "2026-05-27",
+      "lastModified": "2026-05-27T19:43:19.162Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-27",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md",
+      "title": "memory_summary",
+      "lastModified": "2026-05-29T16:07:13.841Z",
+      "tags": [],
+      "headings": [
+        "## User Profile",
+        "## User preferences",
+        "## General Tips",
+        "## What's in Memory",
+        "### /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os",
+        "#### 2026-05-27",
+        "### /Users/alexanderanthony",
+        "#### 2026-05-27",
+        "### Older Memory Topics"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- Repeated approvals like \"Okay Approved Next Phase\", \"Okay Lets Go\", or similar mean keep executing the next concrete layer instead of returning to concept discussion."
+        ],
+        "decision": [],
+        "blocked": [
+          "- learnings: Treat install requests as execution work, `astroship` built cleanly, `open-react-template` may need network for Google Fonts, `chai-builder-sdk` is blocked by upstream `TS6133`, and Onlook stalled around Bun extraction for `gpt-tokenizer`."
+        ],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "- When the user asks to move a larger Brilliantaire rebuild into Antigravity because it \"has more tools\", treat that as a handoff/build-environment switch, not just a documentation request.",
+          "- Brilliantaire OS brand framing, premium rebuild direction, and Antigravity handoff: ICYFLAMZE, The Brilliantaire, Obsidian brain, premium UI, ANTIGRAVITY_HANDOFF.md, Brilliantaire Dispatch, file URL preview",
+          "- desc: Search here first for Brilliantaire identity framing, the rejected scaffold, Antigravity takeover paths, or the current static-preview workflow in `cwd=/Users/alexanderanthony/codex-workspace/projects/brilliantaire-os`."
+        ]
+      },
+      "relevanceScore": 6.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T19-37-37-wvuk-frontend_builder_installs_and_verification.md",
+      "title": "Installed a local frontend/landing-page builder workspace and verified what actually runs",
+      "lastModified": "2026-05-29T16:03:33.685Z",
+      "tags": [],
+      "headings": [
+        "# Installed a local frontend/landing-page builder workspace and verified what actually runs",
+        "## Task 1: install recommended frontend/landing-page repos and tools"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- Ran builds/tests on the lighter templates: `astroship` built successfully; `open-react-template` initially failed in the sandbox because Next tried to fetch Google Fonts, then passed when rerun with network access; `chai-builder-sdk` installed dependencies but its build failed on an upstream TypeScript unused-variable error in `src/pages/panels/ai-panel/ai-panel-other-lang.tsx`.",
+          "- `open-react-template` build failed first because `next/font` tried to fetch Google Fonts in a network-restricted run; rerunning with network access fixed it.",
+          "- `open-react-template` is a Next.js/Tailwind starter whose build may require network access because it fetches Google Fonts."
+        ],
+        "decision": [],
+        "blocked": [
+          "- `chai-builder-sdk` build is blocked by an existing TS error (`'abortController' is declared but its value is never read`) rather than the install itself."
+        ],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Daily Note Template.md",
+      "title": "{{date}}",
+      "lastModified": "2026-05-22T15:06:15.930Z",
+      "tags": [],
+      "headings": [
+        "# {{date}}",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Claude Memory Hub.md",
+      "title": "Claude Memory Hub",
+      "lastModified": "2026-05-04T21:42:45.127Z",
+      "tags": [
+        "claude"
+      ],
+      "headings": [
+        "# Claude Memory Hub",
+        "## Projects",
+        "## Feedback & Rules",
+        "## Active Blockers",
+        "## Graph View Tips"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [
+          "- [[project_pbg_langfuse|PBG Langfuse]] — Observability wired; blocked on Anthropic credits",
+          "- [[project_u004_migration|U004 Migration]] — SQLite→Supabase; 90% ready; blocked on DB password"
+        ],
+        "icyflamze": [
+          "- [[project_icyflamze_site|Icyflamze Site]] — Artist portfolio; The Brilliantier (Jul 22 2026)"
+        ],
+        "treeGroove": [],
+        "brilliantier": [
+          "- [[project_icyflamze_site|Icyflamze Site]] — Artist portfolio; The Brilliantier (Jul 22 2026)"
+        ],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Operating Metrics.md",
+      "title": "Operating Metrics",
+      "lastModified": "2026-05-27T19:45:32.842Z",
+      "tags": [],
+      "headings": [
+        "# Operating Metrics",
+        "## Scoreboard",
+        "## Dirty Projects",
+        "## Recent Session Updates",
+        "## Operating Interpretation"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "| Vault decision notes | 3 |"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "TheOneSystem, Who Is Icyflamze Release, Antigravity CLI"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- [[04 Claude/Session Updates/2026-05-22-ProfBetGeng-session]]"
+        ],
+        "antigravity": [
+          "TheOneSystem, Who Is Icyflamze Release, Antigravity CLI",
+          "- [[04 Claude/Session Updates/2026-05-22-Antigravity-CLI-session]]"
+        ]
+      },
+      "relevanceScore": 6
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-04-26.md",
+      "title": "2026-04-26",
+      "lastModified": "2026-04-26T23:04:49.091Z",
+      "tags": [],
+      "headings": [
+        "# 2026-04-26",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng: feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI fix: wire frontend components to live backend API fix: wire frontend components to live backend API fix: wire frontend components to live backend API",
+          "- Claude Code: ProfBetGeng, TheOneSystem, VibeVoice [13:55]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-04-27.md",
+      "title": "2026-04-27",
+      "lastModified": "2026-04-28T03:00:16.859Z",
+      "tags": [],
+      "headings": [
+        "# 2026-04-27",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng: feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI",
+          "- Claude Code: ProfBetGeng, TheOneSystem, VibeVoice [04:00]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-04-28.md",
+      "title": "2026-04-28",
+      "lastModified": "2026-04-29T03:00:16.679Z",
+      "tags": [],
+      "headings": [
+        "# 2026-04-28",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng: feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI feat(frontend): wire live data pipeline to terminal UI",
+          "- Claude Code: ProfBetGeng, TheOneSystem, VibeVoice [00:00]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-04-29.md",
+      "title": "2026-04-29",
+      "lastModified": "2026-04-30T01:34:44.703Z",
+      "tags": [],
+      "headings": [
+        "# 2026-04-29",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng: feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels feat(ui): activate sidebar modules and connect panels",
+          "- Claude Code: ProfBetGeng, TheOneSystem, VibeVoice [03:10]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-01.md",
+      "title": "2026-05-01",
+      "lastModified": "2026-05-01T11:47:01.059Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-01",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng: active active active active active active active active active active active active active active active active active active active active active active active active active active active no recent commits",
+          "- Claude Code: ProfBetGeng, TheOneSystem, VibeVoice [01:51]"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Plans/2026-04-26-1131-cleanup-plan.md",
+      "title": "Cleanup Plan - ProfBetGeng - 2026-04-26-1131",
+      "lastModified": "2026-04-26T18:31:59.277Z",
+      "tags": [],
+      "headings": [
+        "# Cleanup Plan - ProfBetGeng - 2026-04-26-1131",
+        "## Source",
+        "## Branch Status",
+        "## main...origin/main [ahead 4]",
+        "## Phase 0 - Safety Gate",
+        "### Secrets / Config Risks",
+        "## Phase 1 - Ignore/Delete Candidates",
+        "## Phase 2 - Commit Groups",
+        "### Commit A - Documentation / Architecture",
+        "### Commit B - Backend Application",
+        "### Commit C - Backend Tests / Verification",
+        "### Commit D - Frontend Application",
+        "### Commit E - Deployment / AppDeploy",
+        "## Phase 3 - Special Review",
+        "### Deletions",
+        "### Needs Review",
+        "## Verification Commands",
+        "## Next Automation Step",
+        "## Approval Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Step"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Cleanup Plan - ProfBetGeng - 2026-04-26-1131",
+          "- Latest triage: [[02 Projects/ProfBetGeng/Triage Reports/2026-04-26-1129-repo-triage]]",
+          "docs: update ProfBetGeng architecture and operating notes",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Plans/2026-04-28-0949-cleanup-plan.md",
+      "title": "Cleanup Plan - ProfBetGeng - 2026-04-28-0949",
+      "lastModified": "2026-04-28T16:49:53.234Z",
+      "tags": [],
+      "headings": [
+        "# Cleanup Plan - ProfBetGeng - 2026-04-28-0949",
+        "## Source",
+        "## Branch Status",
+        "## main...origin/main [ahead 13]",
+        "## Phase 0 - Safety Gate",
+        "### Secrets / Config Risks",
+        "## Phase 1 - Ignore/Delete Candidates",
+        "## Phase 2 - Commit Groups",
+        "### Commit A - Documentation / Architecture",
+        "### Commit B - Backend Application",
+        "### Commit C - Backend Tests / Verification",
+        "### Commit D - Frontend Application",
+        "### Commit E - Deployment / AppDeploy",
+        "## Phase 3 - Special Review",
+        "### Deletions",
+        "### Needs Review",
+        "## Verification Commands",
+        "## Next Automation Step",
+        "## Approval Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Step"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Cleanup Plan - ProfBetGeng - 2026-04-28-0949",
+          "- Latest triage: [[02 Projects/ProfBetGeng/Triage Reports/2026-04-26-1129-repo-triage]]",
+          "docs: update ProfBetGeng architecture and operating notes",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Plans/2026-04-28-0950-cleanup-plan.md",
+      "title": "Cleanup Plan - ProfBetGeng - 2026-04-28-0950",
+      "lastModified": "2026-04-28T16:50:43.451Z",
+      "tags": [],
+      "headings": [
+        "# Cleanup Plan - ProfBetGeng - 2026-04-28-0950",
+        "## Source",
+        "## Branch Status",
+        "## main...origin/main [ahead 13]",
+        "## Phase 0 - Safety Gate",
+        "### Secrets / Config Risks",
+        "## Phase 1 - Ignore/Delete Candidates",
+        "## Phase 2 - Commit Groups",
+        "### Commit A - Documentation / Architecture",
+        "### Commit B - Backend Application",
+        "### Commit C - Backend Tests / Verification",
+        "### Commit D - Frontend Application",
+        "### Commit E - Deployment / AppDeploy",
+        "## Phase 3 - Special Review",
+        "### Deletions",
+        "### Needs Review",
+        "## Verification Commands",
+        "## Next Automation Step",
+        "## Approval Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Step"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Cleanup Plan - ProfBetGeng - 2026-04-28-0950",
+          "- Latest triage: [[02 Projects/ProfBetGeng/Triage Reports/2026-04-28-0949-repo-triage]]",
+          "docs: update ProfBetGeng architecture and operating notes",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/03 Workflows/Alexander Memory Loop.md",
+      "title": "Alexander Memory Loop",
+      "lastModified": "2026-05-22T14:45:42.716Z",
+      "tags": [],
+      "headings": [
+        "# Alexander Memory Loop",
+        "## Purpose",
+        "## Current Capabilities",
+        "## Core Commands",
+        "## Operating Rule"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "codex-obsidian handoff \"TheOneSystem\" --objective \"Next objective\" --state \"Known state\""
+        ],
+        "decision": [
+          "- Decision loop: create decision records.",
+          "codex-obsidian decision \"Local Obsidian REST API\" \"Use localhost-only HTTP with private bearer token\""
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Bottleneck Dashboard.md",
+      "title": "Bottleneck Dashboard",
+      "lastModified": "2026-04-26T18:11:28.773Z",
+      "tags": [],
+      "headings": [
+        "# Bottleneck Dashboard",
+        "## Current Bottlenecks",
+        "## Manual Bottleneck Table",
+        "## Bottleneck Rule"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Use this to decide what to attack next. Do not let this become a task dump.",
+          "| Project | Constraint | Cost Of Not Fixing | Next Action | Owner | Deadline |",
+          "The next action must be specific enough that an agent can execute it."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "| ProfBetGeng | Dirty repo | New work compounds chaos | Triage working tree | Claude/Codex | |"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Weekly Review.md",
+      "title": "Weekly Review",
+      "lastModified": "2026-04-26T18:11:28.831Z",
+      "tags": [],
+      "headings": [
+        "# Weekly Review",
+        "## Review Questions",
+        "## Metrics",
+        "## This Week",
+        "### Wins",
+        "### Blockers",
+        "### Decisions",
+        "### Workflows Improved",
+        "### Postmortems Needed",
+        "### Kill List",
+        "### Next Week Focus"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "### Next Week Focus"
+        ],
+        "decision": [
+          "- Which decision was wrong?",
+          "### Decisions"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 5.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Suggested Cleanup Approval.md",
+      "title": "Suggested Cleanup Approval - ProfBetGeng",
+      "lastModified": "2026-04-26T18:38:45.429Z",
+      "tags": [],
+      "headings": [
+        "# Suggested Cleanup Approval - ProfBetGeng",
+        "## Suggested .gitignore Patterns",
+        "## Suggested Delete Paths",
+        "## Excluded From Suggestions",
+        "## Approval Step"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Suggested Cleanup Approval - ProfBetGeng",
+          "Suggested JSON: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/suggested-cleanup-approval.json`",
+          "Approval JSON: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/approved-cleanup.json`",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-exec ProfBetGeng",
+          "python3 ~/AlexanderOSVault/scripts/os_vault.py cleanup-exec ProfBetGeng --apply"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/agent_upgrades_catalog.md",
+      "title": "🌌 Sovereign Agent Upgrades Catalog — GitHub Scout Report",
+      "lastModified": "2026-05-22T15:47:06.668Z",
+      "tags": [],
+      "headings": [
+        "# 🌌 Sovereign Agent Upgrades Catalog — GitHub Scout Report",
+        "## ⚡ Top 5 Sovereign Stack Upgrades",
+        "### 1. The Universal Tool Engine: Model Context Protocol (MCP) Servers",
+        "### 2. The Type-Safe Brain: Pydantic AI",
+        "### 3. The Dynamic Vault Memory: Mem0 (The Memory Layer for AI)",
+        "### 4. The Standardized Context Harvester: llms.txt & llms-full.txt Generators",
+        "### 5. Obsidian RAG Bridge: Smart Connections"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "- Allows agents to dynamically query related notes, perform semantic searches across daily logs, and reference relevant decisions automatically without cluttering the chat context window."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "This report catalogs high-leverage GitHub repositories discovered and triaged for **Sovereign Agent Upgrades**. These repositories provide tool engines, structured logic frameworks, semantic memory architectures, and automated context indexing designed to integrate with your existing **Sovereign Stack** (`Alexander OS` + Codex + Antigravity).",
+          "- These servers instantly equip your Antigravity and Codex agents with robust tools to query local databases, scrape web pages, interact with Slack, search GitHub, or pull live financial indicators.",
+          "- Your `Sovereign Scout` can run these generators locally over complex projects to compile clear skill blueprints for the Antigravity library."
+        ]
+      },
+      "relevanceScore": 5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Memory Display.md",
+      "title": "Memory Display",
+      "lastModified": "2026-05-27T19:45:22.592Z",
+      "tags": [],
+      "headings": [
+        "# Memory Display",
+        "## Today",
+        "## System Counts",
+        "## Active Project Memory",
+        "## Source Indexes",
+        "## Live Queries",
+        "### Projects",
+        "### Workflows",
+        "### Open Tasks",
+        "## How To Use This"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "| [[Icyflamze Creative OS - Current State]] | ready-to-push | medium |  |",
+          "| [[Who Is Icyflamze Release - Current State]] | clean | high |  |"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "| [[ProfBetGeng - Current State]] | clean | high |  |"
+        ],
+        "antigravity": [
+          "| [[Antigravity CLI - Current State]] | clean | high |  |",
+          "| [[Antigravity-Brain Index]] | 20 |"
+        ]
+      },
+      "relevanceScore": 5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-18.md",
+      "title": "2026-05-18",
+      "lastModified": "2026-05-18T16:50:06.350Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-18",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng:"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 4.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-20.md",
+      "title": "2026-05-20",
+      "lastModified": "2026-05-20T15:38:08.946Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-20",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- ProfBetGeng:"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 4.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Remaining Work Plans/2026-04-26-1147-remaining-work-plan.md",
+      "title": "Remaining Work Plan - ProfBetGeng - 2026-04-26-1147",
+      "lastModified": "2026-04-26T18:47:30.532Z",
+      "tags": [],
+      "headings": [
+        "# Remaining Work Plan - ProfBetGeng - 2026-04-26-1147",
+        "## Summary",
+        "## Branch Status",
+        "## main...origin/main [ahead 4]",
+        "## Recommended Execution Order",
+        "## Batch 0 - Secrets / Config Risk",
+        "## Batch 1 - Deletions To Confirm",
+        "## Batch 2 - Backend Application",
+        "## Batch 3 - Frontend Application",
+        "## Batch 4 - Tests / Verification",
+        "## Batch 5 - Documentation / Planning",
+        "## Batch 6 - Deployment",
+        "## Batch 7 - Needs Manual Review",
+        "## Next Automation Options"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Options"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Remaining Work Plan - ProfBetGeng - 2026-04-26-1147",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001/frontend"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 4.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/TheOneSystem - Current State.md",
+      "title": "TheOneSystem - Current State",
+      "lastModified": "2026-05-27T19:45:29.778Z",
+      "tags": [],
+      "headings": [
+        "# TheOneSystem - Current State",
+        "## Goal",
+        "## Current Status",
+        "## Open Problems",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Latest Session Summary",
+        "## Automated Status",
+        "## main",
+        "### Diff Stat",
+        "## Latest Automated Triage",
+        "## Latest Cleanup Plan"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions",
+          "1. Move to the next active mission in Mission Control.",
+          "Next action: Triage local changes before new feature work."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Session Reports/2026-04-26-session-report-m3.md",
+      "title": "Session Report — M3 — 2026-04-26",
+      "lastModified": "2026-04-26T20:40:00.212Z",
+      "tags": [],
+      "headings": [
+        "# Session Report — M3 — 2026-04-26",
+        "## Commits Made This Session",
+        "## M3 Work Done",
+        "### Phase 1 — Fix main.py (blocker)",
+        "### Phase 2 — Supabase Tables",
+        "### Phase 3 — Wire Real Services",
+        "### Phase 4 — E2E Smoke Test (all passing)",
+        "## Milestone Status",
+        "## Open Items"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [
+          "Branch is 9 commits ahead of origin/main. Push blocked by stale GitHub credential (steve45morris-dotcom vs iflamze45) — needs PAT re-auth.",
+          "- Push to origin — blocked by GitHub credential mismatch (iflamze45 vs steve45morris-dotcom)"
+        ],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/security_guardrails_worker.md",
+      "title": "Security Guardrails Worker",
+      "lastModified": "2026-02-23T14:58:51.964Z",
+      "tags": [],
+      "headings": [
+        "# Security Guardrails Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "\"security_decision\": \"ALLOW|BLOCK|REQUIRE_APPROVAL\",",
+          "\"reasoning\": \"Reasoning for the decision\","
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/3e5584d6-bbcb-4ace-a2e9-84aa8f5e77f5/implementation_plan.md",
+      "title": "Implementation Plan - Skill Promotion, Service Boot & Task 2.2 Inception",
+      "lastModified": "2026-05-27T18:48:34.927Z",
+      "tags": [],
+      "headings": [
+        "# Implementation Plan - Skill Promotion, Service Boot & Task 2.2 Inception",
+        "## User Review Required",
+        "## Open Questions",
+        "## Proposed Changes",
+        "### Skill Promotion",
+        "#### [MODIFY] [sovereign_scout.py](file:///Users/alexanderanthony/.agents/sovereign_scout.py)",
+        "#### [MODIFY] [supernova.db](file:///Users/alexanderanthony/supernova.db)",
+        "### Task 2.2 Inception",
+        "#### [NEW] [BLUEPRINT_AUTOMATED_LAUNCH.md](file:///Users/alexanderanthony/Sovereign_Intelligence/Blueprints/BLUEPRINT_AUTOMATED_LAUNCH.md)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "> - We will update the `decision_state` of looker and stripe repo signals to `PROCEED` in `/Users/alexanderanthony/supernova.db`.",
+          "- Update `decision_state` to `PROCEED` for `gemini-cli-extensions/looker` and `stripe/ai`."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/2026-05-22-Alexander-Memory-Loop-Name.md",
+      "title": "Alexander Memory Loop Name",
+      "lastModified": "2026-05-22T14:32:40.904Z",
+      "tags": [],
+      "headings": [
+        "# Alexander Memory Loop Name",
+        "## Decision",
+        "## Context",
+        "## Rollback Condition"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "## Decision",
+          "The system now bridges Codex execution, Obsidian REST automation, sessions, decisions, handoffs, and dashboards."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/2026-05-26-Supernova-Runtime-Compression.md",
+      "title": "Supernova Runtime Compression",
+      "lastModified": "2026-05-26T18:53:23.327Z",
+      "tags": [],
+      "headings": [
+        "# Supernova Runtime Compression",
+        "## Decision",
+        "## Keep",
+        "## Merge",
+        "## Archive",
+        "## Delay",
+        "## Active Agent Cap",
+        "## Rationale"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "## Decision"
+        ],
+        "blocked": [],
+        "icyflamze": [
+          "The system should help Icyflamze release music, grow fans, and create income. Any system that does not support those outcomes directly is secondary."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "- Antigravity CLI as execution layer only after runtime verification."
+        ]
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Decision Template.md",
+      "title": "Decision - Title",
+      "lastModified": "2026-04-26T17:25:08.785Z",
+      "tags": [],
+      "headings": [
+        "# Decision - Title",
+        "## Decision",
+        "## Reason",
+        "## Impact",
+        "## Follow-Up",
+        "## Links"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "# Decision - Title",
+          "## Decision"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Antigravity CLI/Triage Reports/2026-05-22-0958-repo-triage.md",
+      "title": "Repo Triage - Antigravity CLI - 2026-05-22-0958",
+      "lastModified": "2026-05-22T16:58:23.463Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - Antigravity CLI - 2026-05-22-0958",
+        "## Summary",
+        "## Branch Status",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### needs review",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# Repo Triage - Antigravity CLI - 2026-05-22-0958",
+          "Use the repo triage report at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/Antigravity CLI/Triage Reports/2026-05-22-0958-repo-triage.md. Do not edit files until I confirm the cleanup plan. Propose exact commit groups, ignore/delete candidates, and verification commands for /Users/alexanderanthony/.gemini/antigravity-cli."
+        ]
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Antigravity CLI/Triage Reports/2026-05-22-0959-repo-triage.md",
+      "title": "Repo Triage - Antigravity CLI - 2026-05-22-0959",
+      "lastModified": "2026-05-22T16:59:32.425Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - Antigravity CLI - 2026-05-22-0959",
+        "## Summary",
+        "## Branch Status",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### needs review",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# Repo Triage - Antigravity CLI - 2026-05-22-0959",
+          "Use the repo triage report at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/Antigravity CLI/Triage Reports/2026-05-22-0959-repo-triage.md. Do not edit files until I confirm the cleanup plan. Propose exact commit groups, ignore/delete candidates, and verification commands for /Users/alexanderanthony/.gemini/antigravity-cli."
+        ]
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State.md",
+      "title": "Icyflamze Creative OS - Current State",
+      "lastModified": "2026-05-27T19:45:30.139Z",
+      "tags": [],
+      "headings": [
+        "# Icyflamze Creative OS - Current State",
+        "## Operating Focus",
+        "## Current Execution Rule",
+        "## Automated Status",
+        "## main...origin/main [ahead 1]",
+        "### Diff Stat"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Next action: Push local commits or decide why they should stay local."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "# Icyflamze Creative OS - Current State",
+          "For music-release work, start with `TreeGrooveProjects/Who_Is_Icyflamze`, not the app repo. The app repo is currently only the code surface and is ahead by one local commit."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Secrets Reviews/2026-04-26-1150-secrets-review.md",
+      "title": "Secrets / Config Review - ProfBetGeng - 2026-04-26-1150",
+      "lastModified": "2026-04-26T18:50:19.606Z",
+      "tags": [],
+      "headings": [
+        "# Secrets / Config Review - ProfBetGeng - 2026-04-26-1150",
+        "## Summary",
+        "## Candidate Files",
+        "### `backend/.env`",
+        "### `frontend/src/hooks/useApiKey.js`",
+        "## Required Handling",
+        "## Proposed Safe Follow-Up",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Secrets / Config Review - ProfBetGeng - 2026-04-26-1150",
+          "Use the redacted secrets review at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/Secrets Reviews/2026-04-26-1150-secrets-review.md. Do not print secret values. Propose a safe .env.example and git tracking cleanup plan for /Users/alexanderanthony/Projects/ProfBetGeng_Claud001."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Secrets Reviews/2026-04-26-1151-secrets-review.md",
+      "title": "Secrets / Config Review - ProfBetGeng - 2026-04-26-1151",
+      "lastModified": "2026-04-26T18:51:16.730Z",
+      "tags": [],
+      "headings": [
+        "# Secrets / Config Review - ProfBetGeng - 2026-04-26-1151",
+        "## Summary",
+        "## Candidate Files",
+        "### `backend/.env`",
+        "### `frontend/src/hooks/useApiKey.js`",
+        "## Required Handling",
+        "## Proposed Safe Follow-Up",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Secrets / Config Review - ProfBetGeng - 2026-04-26-1151",
+          "Use the redacted secrets review at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/Secrets Reviews/2026-04-26-1151-secrets-review.md. Do not print secret values. Propose a safe .env.example and git tracking cleanup plan for /Users/alexanderanthony/Projects/ProfBetGeng_Claud001."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Triage Reports/2026-04-26-1129-repo-triage.md",
+      "title": "Repo Triage - ProfBetGeng - 2026-04-26-1129",
+      "lastModified": "2026-04-26T18:29:15.461Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - ProfBetGeng - 2026-04-26-1129",
+        "## Summary",
+        "## Branch Status",
+        "## main...origin/main [ahead 4]",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### backend/application",
+        "### deployment",
+        "### documentation/planning",
+        "### frontend/application",
+        "### generated/dependency artifact",
+        "### generated/status artifact",
+        "### needs review",
+        "### secrets/config risk",
+        "### tests/verification",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Repo Triage - ProfBetGeng - 2026-04-26-1129",
+          "Use the repo triage report at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/Triage Reports/2026-04-26-1129-repo-triage.md. Do not edit files until I confirm the cleanup plan. Propose exact commit groups, ignore/delete candidates, and verification commands for /Users/alexanderanthony/Projects/ProfBetGeng_Claud001."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Triage Reports/2026-04-28-0949-repo-triage.md",
+      "title": "Repo Triage - ProfBetGeng - 2026-04-28-0949",
+      "lastModified": "2026-04-28T16:49:53.298Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - ProfBetGeng - 2026-04-28-0949",
+        "## Summary",
+        "## Branch Status",
+        "## main...origin/main [ahead 13]",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Repo Triage - ProfBetGeng - 2026-04-28-0949",
+          "Use the repo triage report at /Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/Triage Reports/2026-04-28-0949-repo-triage.md. Do not edit files until I confirm the cleanup plan. Propose exact commit groups, ignore/delete candidates, and verification commands for /Users/alexanderanthony/Projects/ProfBetGeng_Claud001."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/Cleanup Plans/2026-05-22-0848-cleanup-plan.md",
+      "title": "Cleanup Plan - TheOneSystem - 2026-05-22-0848",
+      "lastModified": "2026-05-22T15:48:03.144Z",
+      "tags": [],
+      "headings": [
+        "# Cleanup Plan - TheOneSystem - 2026-05-22-0848",
+        "## Source",
+        "## Branch Status",
+        "## main",
+        "## Phase 0 - Safety Gate",
+        "### Secrets / Config Risks",
+        "## Phase 1 - Ignore/Delete Candidates",
+        "## Phase 2 - Commit Groups",
+        "### Commit A - Documentation / Architecture",
+        "### Commit B - Backend Application",
+        "### Commit C - Backend Tests / Verification",
+        "### Commit D - Frontend Application",
+        "### Commit E - Deployment / AppDeploy",
+        "## Phase 3 - Special Review",
+        "### Deletions",
+        "### Needs Review",
+        "## Verification Commands",
+        "## Next Automation Step",
+        "## Approval Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Step"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "docs: update ProfBetGeng architecture and operating notes",
+          "cd /Users/alexanderanthony/Projects/ProfBetGeng_Claud001"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Active Release Tracker.md",
+      "title": "Active Release Tracker",
+      "lastModified": "2026-05-26T18:53:02.450Z",
+      "tags": [],
+      "headings": [
+        "# Active Release Tracker",
+        "## Current Release",
+        "## Release Checklist",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "| Release | Who Is Icyflamze |",
+          "| Primary asset | `/Users/alexanderanthony/TreeGrooveProjects/Who_Is_Icyflamze/Final/who_is_icyflamze_music_video.mp4` |"
+        ],
+        "treeGroove": [
+          "| Label | Tree Groove Records |"
+        ],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Video Use/Video Use - Current State.md",
+      "title": "Video Use - Current State",
+      "lastModified": "2026-05-27T19:45:30.317Z",
+      "tags": [],
+      "headings": [
+        "# Video Use - Current State",
+        "## Goal",
+        "## Current Status",
+        "## Blocker",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Latest Session Summary",
+        "## Automated Status",
+        "## main...origin/main [ahead 1]",
+        "### Diff Stat"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions",
+          "Next action: Push local commits or decide why they should stay local."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/03 Workflows/Music Video Pipeline Workflow.md",
+      "title": "Music Video Pipeline Workflow",
+      "lastModified": "2026-04-28T16:49:08.311Z",
+      "tags": [],
+      "headings": [
+        "# Music Video Pipeline Workflow",
+        "## Purpose",
+        "## Pipeline",
+        "## Current Status",
+        "## Next Action"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| Component | Status | Next Action |",
+          "## Next Action"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/echo_responder.md",
+      "title": "echo_responder",
+      "lastModified": "2026-02-23T06:08:55.008Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [
+          "- If risk_level HIGH, output no response text and emit ECHO_RISK_BLOCKED."
+        ],
+        "icyflamze": [
+          "Generate replies in Icyflamze voice for inbound interactions."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/mssn_orchestrator.md",
+      "title": "MSSN-Orchestrator (Mission Control)",
+      "lastModified": "2026-02-24T17:31:05.885Z",
+      "tags": [],
+      "headings": [
+        "# MSSN-Orchestrator (Mission Control)",
+        "## Outputs (must)",
+        "## Shared Infrastructure",
+        "## Lane A — Software Production",
+        "## Lane B — Automation / Workflow Engineering",
+        "## Lane C — Content Production",
+        "## Agent Mapping Protocol"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "- Release approval decision"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "When routing tasks, explicitly map the required worker to one of the registered Antigravity agents (e.g., assigning Mercedes Rollout Architect as the Distribution Worker for Lane C)."
+        ]
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/implementation_plan.md",
+      "title": "Implementation Plan — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server",
+      "lastModified": "2026-05-23T12:35:14.458Z",
+      "tags": [],
+      "headings": [
+        "# Implementation Plan — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server",
+        "## User Review Required",
+        "## Verification Plan",
+        "### Automated Build Verification",
+        "### Manual Verification"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Implementation Plan — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server",
+          "This blueprint outlines the execution plan for **Milestone F: Wiring ProfBetGeng (PBG) UI Views**. We will bridge the mock primitives in the frontend React application with the live FastAPI backend server (running on port `8000`), utilizing the standard bypass header to fetch authentic sports betting, portfolio, and arbitrage conversion telemetry.",
+          "> The live ProfBetGeng FastAPI server runs on `http://127.0.0.1:8000`. To access these endpoints locally without requiring a valid Supabase-backed production token, the frontend client will automatically append the authorized bypass header:"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/extensions/ad_hoc/notes/20260529-brilliantaire-static-html-preview-workflow.md",
+      "title": "20260529-brilliantaire-static-html-preview-workflow",
+      "lastModified": "2026-05-29T10:32:01.035Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- A runaway Next dev server previously exhausted process creation. Known stuck PID at the time was `29632`; after restart this should be gone.",
+          "- Check `web/next.config.ts` and remove any temporary `turbopack: { root: process.cwd() }` change if present."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem UI/TheOneSystem UI - Current State.md",
+      "title": "TheOneSystem UI - Current State",
+      "lastModified": "2026-05-27T19:45:29.959Z",
+      "tags": [],
+      "headings": [
+        "# TheOneSystem UI - Current State",
+        "## Automated Status",
+        "## checkpoint/ui-vite-migration",
+        "### Diff Stat",
+        "## Latest Automated Triage"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Next action: Pick the next milestone or archive if no action remains."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "Last commit: `7c220bc 2026-05-26 feat: integrate ProfBetGeng API queries into YieldForge dashboard view`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/alexander_os_mcp_blueprint.md",
+      "title": "Blueprint — Alexander OS MCP Gateway",
+      "lastModified": "2026-05-22T17:12:18.429Z",
+      "tags": [],
+      "headings": [
+        "# Blueprint — Alexander OS MCP Gateway",
+        "## 🛠️ Exposeable Tools Registry",
+        "### 1. `list_active_projects()`",
+        "### 2. `get_project_card(project_name: str)`",
+        "### 3. `append_project_task(project_name: str, task_description: str)`",
+        "### 4. `trigger_vault_sync()`",
+        "## 🚀 Claude Desktop & Cursor Integration",
+        "### Claude Desktop Config (`~/Library/Application Support/Claude/claude_desktop_config.json`)",
+        "### Cursor Settings"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "* **Functionality**: Safely opens the project note, locates the `## Next Actions` or `- [ ]` checklist section, appends a new uncompleted task, and saves the file."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "* `project_name` (string, required): The target project name (e.g., `ProfBetGeng` or `TheOneSystem`)."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Runs/2026-04-26-1136-cleanup-dry-run.md",
+      "title": "Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1136",
+      "lastModified": "2026-04-26T18:36:41.986Z",
+      "tags": [],
+      "headings": [
+        "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1136",
+        "## Actions",
+        "## .gitignore Patterns To Add",
+        "## Approved Delete Paths",
+        "## Safety Rules Enforced"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1136",
+          "Approval file: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/approved-cleanup.json`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Runs/2026-04-26-1139-cleanup-dry-run.md",
+      "title": "Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1139",
+      "lastModified": "2026-04-26T18:39:31.261Z",
+      "tags": [],
+      "headings": [
+        "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1139",
+        "## Actions",
+        "## .gitignore Patterns To Add",
+        "## Approved Delete Paths",
+        "## Safety Rules Enforced"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1139",
+          "Approval file: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/approved-cleanup.json`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Runs/2026-04-26-1141-cleanup-dry-run.md",
+      "title": "Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1141",
+      "lastModified": "2026-04-26T18:41:40.578Z",
+      "tags": [],
+      "headings": [
+        "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1141",
+        "## Actions",
+        "## .gitignore Patterns To Add",
+        "## Approved Delete Paths",
+        "## Safety Rules Enforced"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Guarded Cleanup Dry Run - ProfBetGeng - 2026-04-26-1141",
+          "Approval file: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/approved-cleanup.json`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Cleanup Runs/2026-04-26-1142-cleanup-apply.md",
+      "title": "Guarded Cleanup Apply - ProfBetGeng - 2026-04-26-1142",
+      "lastModified": "2026-04-26T18:42:11.408Z",
+      "tags": [],
+      "headings": [
+        "# Guarded Cleanup Apply - ProfBetGeng - 2026-04-26-1142",
+        "## Actions",
+        "## .gitignore Patterns To Add",
+        "## Approved Delete Paths",
+        "## Safety Rules Enforced"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Guarded Cleanup Apply - ProfBetGeng - 2026-04-26-1142",
+          "Approval file: `/Users/alexanderanthony/Documents/Alexander OS/02 Projects/ProfBetGeng/approved-cleanup.json`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/security_sentinel.md",
+      "title": "security_sentinel",
+      "lastModified": "2026-02-23T05:39:03.385Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [
+          "{\"status\":\"BLOCKED\",\"failure_code\":\"SEC_SECRET_IN_CHAT\"}"
+        ],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/4f45adeb-6c18-4548-bc8a-aae6ab44056a/task.md",
+      "title": "Task Checklist: Sentinel OS Phases 4-6 Sovereign Commands Expansion",
+      "lastModified": "2026-05-23T15:15:44.229Z",
+      "tags": [],
+      "headings": [
+        "# Task Checklist: Sentinel OS Phases 4-6 Sovereign Commands Expansion"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [
+          "- `[ ]` Connect severity filters (SECURE, WARNING, BLOCKED) to visual path glow highlight states"
+        ],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/task.md",
+      "title": "Task List — The One System",
+      "lastModified": "2026-05-23T15:18:07.304Z",
+      "tags": [],
+      "headings": [
+        "# Task List — The One System",
+        "## Completed Milestones",
+        "### Milestone A: Triage and Harden ProfBetGeng",
+        "### Milestone B: Visual Cockpit Integration (Outstanding Primitives)",
+        "### Milestone C: Multi-Agent Council & FastMCP Tool Orchestration",
+        "### Milestone D: Visual Memory Canvas Generation (Obsidian Mind Palace)",
+        "### Milestone E: Audio Ingest Resilience & Scribe Fallback",
+        "### Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "### Milestone A: Triage and Harden ProfBetGeng",
+          "### Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/walkthrough.md",
+      "title": "Walkthrough — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server Complete",
+      "lastModified": "2026-05-23T15:18:16.574Z",
+      "tags": [],
+      "headings": [
+        "# Walkthrough — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server Complete",
+        "## ⚡ Build & Bundle Verification"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Walkthrough — Milestone F: Wire ProfBetGeng UI Views to Live FastAPI Server Complete",
+          "This walkthrough documents the successful integration and deployment of **Milestone F: Wiring ProfBetGeng (PBG) UI Views** inside `the-one-system-ui`. We have bridged the mock primitives in the frontend React application with the live FastAPI backend server (running on port `8000`), ensuring 100% type-safety and a clean production compilation."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Claude Command Center.md",
+      "title": "Claude Command Center",
+      "lastModified": "2026-04-26T17:20:33.557Z",
+      "tags": [],
+      "headings": [
+        "# Claude Command Center",
+        "## Main Paths",
+        "## High-Value Commands",
+        "## Session Discipline"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "- Add durable decisions to [[Decision Log]]."
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Postmortems.md",
+      "title": "Postmortem - Title",
+      "lastModified": "2026-04-26T18:11:29.023Z",
+      "tags": [],
+      "headings": [
+        "# Postmortems",
+        "## Postmortem Index",
+        "## Template",
+        "# Postmortem - Title",
+        "## What Happened",
+        "## Impact",
+        "## Root Cause",
+        "## What Worked",
+        "## What Failed",
+        "## Prevention"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "FROM \"05 Decisions\""
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Workflow Library.md",
+      "title": "Workflow Library",
+      "lastModified": "2026-04-26T17:25:19.192Z",
+      "tags": [],
+      "headings": [
+        "# Workflow Library",
+        "## Claude Global Workflows",
+        "## Project Workflows",
+        "### ProfBetGeng",
+        "### TheOneSystem",
+        "## Workflow Capture Template"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "### ProfBetGeng",
+          "Source: `~/Projects/ProfBetGeng_Claud001/.agent/workflows`"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 2
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Monetization Tracker.md",
+      "title": "Monetization Tracker",
+      "lastModified": "2026-05-26T18:53:02.737Z",
+      "tags": [],
+      "headings": [
+        "# Monetization Tracker",
+        "## Nigerian Reality Filter"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| Date | Offer | Price | Payment Link | Clicks | Buyers | Revenue | Next Action |"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/Cleanup Plans/2026-05-22-0850-cleanup-plan.md",
+      "title": "Cleanup Plan - TheOneSystem - 2026-05-22-0850",
+      "lastModified": "2026-05-22T15:50:01.498Z",
+      "tags": [],
+      "headings": [
+        "# Cleanup Plan - TheOneSystem - 2026-05-22-0850",
+        "## Source",
+        "## Branch Status",
+        "## main",
+        "## Phase 0 - Safety Gate",
+        "### Secrets / Config Risks",
+        "## Phase 1 - Ignore/Delete Candidates",
+        "## Phase 2 - Commit Groups",
+        "### Commit A - Documentation / Architecture",
+        "### Commit B - Backend Application",
+        "### Commit C - Backend Tests / Verification",
+        "### Commit D - Frontend Application",
+        "### Commit E - Deployment / AppDeploy",
+        "## Phase 3 - Special Review",
+        "### Deletions",
+        "### Needs Review",
+        "## Verification Commands",
+        "# Run project-specific tests/build checks after reviewing the cleanup groups.",
+        "## Next Automation Step",
+        "## Approval Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Automation Step"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/Current State.md",
+      "title": "TheOneSystem — Legacy Current State",
+      "lastModified": "2026-05-22T16:40:54.221Z",
+      "tags": [],
+      "headings": [
+        "# TheOneSystem — Legacy Current State",
+        "## Goal",
+        "## Current Status",
+        "## Key Feedback / Rules",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Latest Session Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/Triage Reports/2026-05-22-0748-repo-triage.md",
+      "title": "Repo Triage - TheOneSystem - 2026-05-22-0748",
+      "lastModified": "2026-05-22T14:48:13.945Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - TheOneSystem - 2026-05-22-0748",
+        "## Summary",
+        "## Branch Status",
+        "## main",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### documentation/planning",
+        "### needs review",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/Triage Reports/2026-05-22-0749-repo-triage.md",
+      "title": "Repo Triage - TheOneSystem - 2026-05-22-0749",
+      "lastModified": "2026-05-22T14:49:34.815Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - TheOneSystem - 2026-05-22-0749",
+        "## Summary",
+        "## Branch Status",
+        "## main",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### documentation/planning",
+        "### needs review",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem UI/Triage Reports/2026-05-20-0840-repo-triage.md",
+      "title": "Repo Triage - TheOneSystem UI - 2026-05-20-0840",
+      "lastModified": "2026-05-20T15:40:43.623Z",
+      "tags": [],
+      "headings": [
+        "# Repo Triage - TheOneSystem UI - 2026-05-20-0840",
+        "## Summary",
+        "## Branch Status",
+        "## checkpoint/ui-vite-migration",
+        "## Diff Stat",
+        "## Cached Diff Stat",
+        "## Recommended Order",
+        "## Buckets",
+        "### backend/application",
+        "### documentation/planning",
+        "### frontend/application",
+        "### needs review",
+        "### secrets/config risk",
+        "## Next Agent Prompt"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Agent Prompt"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/VibeVoice/VibeVoice - Current State.md",
+      "title": "VibeVoice - Current State",
+      "lastModified": "2026-05-27T19:45:30.511Z",
+      "tags": [],
+      "headings": [
+        "# VibeVoice - Current State",
+        "## Automated Status",
+        "## main...origin/main [ahead 1]",
+        "### Diff Stat"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Next action: Push local commits or decide why they should stay local."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Video Use/Current State.md",
+      "title": "Video Use — Legacy Current State",
+      "lastModified": "2026-05-22T16:41:08.324Z",
+      "tags": [],
+      "headings": [
+        "# Video Use — Legacy Current State",
+        "## Goal",
+        "## Current Status",
+        "## Key Feedback / Rules",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Latest Session Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/failed_task_documentation.md",
+      "title": "Failed Task Documentation Workflow",
+      "lastModified": "2026-02-25T00:56:52.483Z",
+      "tags": [],
+      "headings": [
+        "# Failed Task Documentation Workflow"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "4. If applicable, briefly list any available alternatives or next steps discovered during the failure on the same line or right below it."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/hypothesis_tester.md",
+      "title": "hypothesis_tester",
+      "lastModified": "2026-02-23T06:09:00.756Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "\"recommended_next_test\": \"\","
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/librarian_daily_sweep.md",
+      "title": "Librarian Daily Sweep",
+      "lastModified": "2026-04-11T14:19:13.701Z",
+      "tags": [],
+      "headings": [
+        "# Librarian Daily Sweep",
+        "## Workflow Steps"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "- **Condition:** If a new skill is detected, push it to the next step. If no new skills are found, terminate the workflow cleanly."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/qa_gate_worker.md",
+      "title": "QA Gate Worker",
+      "lastModified": "2026-02-23T14:58:49.422Z",
+      "tags": [],
+      "headings": [
+        "# QA Gate Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Verify deliverables before allowing the Orchestrator to progress to the next phase in the assigned lane."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/4f45adeb-6c18-4548-bc8a-aae6ab44056a/next_phases_spec.md",
+      "title": "Sentinel OS Design Specification: Phases 4, 5, and 6 (Sovereign Expansion)",
+      "lastModified": "2026-05-23T11:21:07.962Z",
+      "tags": [],
+      "headings": [
+        "# Sentinel OS Design Specification: Phases 4, 5, and 6 (Sovereign Expansion)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "This document outlines the next three advanced architectural phases designed to transition the **Sentinel OS** Command Center into a fully sovereign, bi-directional, local developer environment."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/880459d4-94bf-4eae-95c9-1c9e7022d232/implementation_plan.md",
+      "title": "Implementation Plan: Brilliantaire OS Rebuild",
+      "lastModified": "2026-05-29T15:05:28.517Z",
+      "tags": [
+        "070B0A",
+        "ECEAE2",
+        "D6AE55",
+        "E05C46",
+        "21C55E",
+        "3E8BFF"
+      ],
+      "headings": [
+        "# Implementation Plan: Brilliantaire OS Rebuild",
+        "## 🌌 Aesthetic Stance: Cyberpunk-Editorial Hybrid",
+        "### 🎨 Color & Tone Specification",
+        "### ✍️ Typography Hierarchy",
+        "## 📈 Quality Assurance Matrix (DFII Scoring)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| **Implementation Feasibility** | 5 / 5 | Single-page Next.js outputs using static build output |"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/b9b3975c-aeb9-422b-b5a7-cea1a8b35254/walkthrough.md",
+      "title": "Rebuild Walkthrough: Brilliantaire OS v2.1",
+      "lastModified": "2026-05-27T21:12:45.273Z",
+      "tags": [],
+      "headings": [
+        "# Rebuild Walkthrough: Brilliantaire OS v2.1",
+        "## Verification & Execution",
+        "### Build Verification",
+        "### How to Run Locally"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "▲ Next.js 16.2.6 (Turbopack)"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Claude Session Update Template.md",
+      "title": "Claude Session Update - Project - YYYY-MM-DD",
+      "lastModified": "2026-04-26T17:25:08.366Z",
+      "tags": [],
+      "headings": [
+        "# Claude Session Update - Project - YYYY-MM-DD",
+        "## Objective",
+        "## What Changed",
+        "## Verification",
+        "## Blockers",
+        "## Files / Areas Touched",
+        "## Next Action"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Action"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Project Current State Template.md",
+      "title": "Project Name - Current State",
+      "lastModified": "2026-04-26T17:25:08.252Z",
+      "tags": [],
+      "headings": [
+        "# Project Name - Current State",
+        "## Goal",
+        "## Current Status",
+        "## Repo / Worktree State",
+        "## Open Problems",
+        "## Next 3 Actions",
+        "## Useful Commands",
+        "## Important Files",
+        "## Latest Session Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next 3 Actions"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Fan Growth Tracker.md",
+      "title": "Fan Growth Tracker",
+      "lastModified": "2026-05-26T18:53:02.595Z",
+      "tags": [],
+      "headings": [
+        "# Fan Growth Tracker",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "| 2026-05-26 | WhatsApp / short-form | Who Is Icyflamze teaser | Watch, reply, share, or join list |  |  |  |  | Planned |"
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Env Cleanup Runs/2026-04-26-1156-env-cleanup-apply.md",
+      "title": "Env Cleanup Apply - ProfBetGeng - 2026-04-26-1156",
+      "lastModified": "2026-04-26T18:56:39.134Z",
+      "tags": [],
+      "headings": [
+        "# Env Cleanup Apply - ProfBetGeng - 2026-04-26-1156",
+        "## Actions",
+        "## Inputs",
+        "## Example Keys",
+        "## Safety Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Env Cleanup Apply - ProfBetGeng - 2026-04-26-1156"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Env Cleanup Runs/2026-04-26-1156-env-cleanup-dry-run.md",
+      "title": "Env Cleanup Dry Run - ProfBetGeng - 2026-04-26-1156",
+      "lastModified": "2026-04-26T18:56:04.413Z",
+      "tags": [],
+      "headings": [
+        "# Env Cleanup Dry Run - ProfBetGeng - 2026-04-26-1156",
+        "## Actions",
+        "## Inputs",
+        "## Example Keys",
+        "## Safety Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Env Cleanup Dry Run - ProfBetGeng - 2026-04-26-1156"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/Session Reports/2026-04-26-session-report.md",
+      "title": "Session Report - ProfBetGeng - 2026-04-26",
+      "lastModified": "2026-04-26T19:34:17.904Z",
+      "tags": [],
+      "headings": [
+        "# Session Report - ProfBetGeng - 2026-04-26",
+        "## Commits Made",
+        "## What Was Done",
+        "### Backend (Batch 2)",
+        "### Test Quarantine (Batch 4)",
+        "### Frontend (Batch 3)",
+        "### Docs / Gitignore (Batch 5 + 6 + 7)",
+        "## Open Items",
+        "## Repo State at End of Session"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "# Session Report - ProfBetGeng - 2026-04-26"
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/03 Workflows/Agent Automation Workflow.md",
+      "title": "Agent Automation Workflow",
+      "lastModified": "2026-04-28T16:49:08.080Z",
+      "tags": [],
+      "headings": [
+        "# Agent Automation Workflow",
+        "## Purpose",
+        "## Operating Loop",
+        "## Active Blockers",
+        "## Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "4. Execute against the current priority pipeline first: ProfBetGeng."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/03 Workflows/Content Factory Workflow.md",
+      "title": "Content Factory Workflow",
+      "lastModified": "2026-04-28T16:49:08.193Z",
+      "tags": [],
+      "headings": [
+        "# Content Factory Workflow",
+        "## Purpose",
+        "## Production Stages",
+        "## Quality Gate",
+        "## Current Status"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [
+          "Turn creative direction into a repeatable production pipeline for music, visual identity, short-form content, and narrative assets. This workflow stays paused until ProfBetGeng clears its current Milestone 2 blocker."
+        ],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/persona_integrity_guardian.md",
+      "title": "persona_integrity_guardian",
+      "lastModified": "2026-02-23T06:02:15.488Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "Ensure all outputs align with Icyflamze persona, voice rules, and audience lens."
+        ],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/promptus_maximus.md",
+      "title": "promptus_maximus",
+      "lastModified": "2026-02-23T05:37:39.814Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "- target_platform (ChatGPT, Gemini, Antigravity, Sora, Synthesia)"
+        ]
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/super_agent_orchestrator.md",
+      "title": "super_agent_orchestrator",
+      "lastModified": "2026-02-23T18:55:55.246Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "1. If the user asks for a prompt, template, system block, instruction block, Gemini block, Antigravity prompt, workflow definition, agent prompt:"
+        ]
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Antigravity Link Success.md",
+      "title": "Antigravity Linked Successfully",
+      "lastModified": "2026-05-21T16:33:12.850Z",
+      "tags": [],
+      "headings": [
+        "# Antigravity Linked Successfully"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "# Antigravity Linked Successfully"
+        ]
+      },
+      "relevanceScore": 1
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/00 Inbox/Alexander Memory Loop REST Test.md",
+      "title": "Alexander Memory Loop REST Test",
+      "lastModified": "2026-05-22T14:32:12.397Z",
+      "tags": [],
+      "headings": [
+        "# Alexander Memory Loop REST Test"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/00 Inbox/Codex Capture 2026-05-21.md",
+      "title": "Bridge Verification",
+      "lastModified": "2026-05-21T16:31:09.921Z",
+      "tags": [],
+      "headings": [
+        "# Bridge Verification",
+        "## Bridge Verification"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-04-30.md",
+      "title": "2026-04-30",
+      "lastModified": "2026-04-30T23:54:38.962Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/archive_worker.md",
+      "title": "Archive Worker",
+      "lastModified": "2026-02-23T15:00:53.782Z",
+      "tags": [],
+      "headings": [
+        "# Archive Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/artifact_builder.md",
+      "title": "artifact_builder",
+      "lastModified": "2026-02-23T05:39:00.386Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/auto_save_system_updates.md",
+      "title": "Auto-Save System Updates Workflow",
+      "lastModified": "2026-02-25T01:03:04.539Z",
+      "tags": [],
+      "headings": [
+        "# Auto-Save System Updates Workflow"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/beatforge_composer.md",
+      "title": "beatforge_composer",
+      "lastModified": "2026-02-23T06:08:48.237Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/creative_worker.md",
+      "title": "Creative Worker",
+      "lastModified": "2026-02-23T15:03:13.420Z",
+      "tags": [],
+      "headings": [
+        "# Creative Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/distribution_worker.md",
+      "title": "Distribution Worker",
+      "lastModified": "2026-02-23T15:03:21.308Z",
+      "tags": [],
+      "headings": [
+        "# Distribution Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/event_igniter.md",
+      "title": "event_igniter",
+      "lastModified": "2026-02-23T06:08:57.907Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/human_approval_gate.md",
+      "title": "human_approval_gate",
+      "lastModified": "2026-02-23T06:09:05.572Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/implementation_worker.md",
+      "title": "Implementation Worker",
+      "lastModified": "2026-02-23T15:00:45.858Z",
+      "tags": [],
+      "headings": [
+        "# Implementation Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/intake_classifier.md",
+      "title": "intake_classifier",
+      "lastModified": "2026-02-23T05:38:53.825Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/integration_worker.md",
+      "title": "Integration Worker",
+      "lastModified": "2026-02-23T15:02:33.713Z",
+      "tags": [],
+      "headings": [
+        "# Integration Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/mercedes_execution_arm.md",
+      "title": "mercedes_execution_arm",
+      "lastModified": "2026-02-23T06:18:20.043Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/mission_control.md",
+      "title": "mission_control",
+      "lastModified": "2026-02-23T13:35:50.039Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/modular_inventor.md",
+      "title": "modular_inventor",
+      "lastModified": "2026-02-23T06:09:04.136Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/narrative_weaver.md",
+      "title": "narrative_weaver",
+      "lastModified": "2026-02-23T06:08:51.513Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/observability.md",
+      "title": "observability",
+      "lastModified": "2026-02-23T05:39:01.965Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/offer_architect.md",
+      "title": "offer_architect",
+      "lastModified": "2026-02-23T06:02:20.561Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/pbg_division_controller.md",
+      "title": "pbg_division_controller",
+      "lastModified": "2026-02-23T06:18:21.413Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/priority_scheduler.md",
+      "title": "priority_scheduler",
+      "lastModified": "2026-02-23T05:38:55.373Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/qa_gatekeeper.md",
+      "title": "qa_gatekeeper",
+      "lastModified": "2026-02-23T05:38:56.910Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/refinement_worker.md",
+      "title": "Refinement Worker",
+      "lastModified": "2026-02-23T15:03:18.169Z",
+      "tags": [],
+      "headings": [
+        "# Refinement Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/release_ops_manager.md",
+      "title": "release_ops_manager",
+      "lastModified": "2026-02-23T06:02:12.042Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/release_worker.md",
+      "title": "Release Worker",
+      "lastModified": "2026-02-23T15:00:51.406Z",
+      "tags": [],
+      "headings": [
+        "# Release Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/reposcout_agent.md",
+      "title": "RepoScout Agent",
+      "lastModified": "2026-02-23T13:39:25.057Z",
+      "tags": [],
+      "headings": [
+        "# RepoScout Agent",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules",
+        "## Failure Codes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/research_worker.md",
+      "title": "Research Worker",
+      "lastModified": "2026-02-23T15:02:25.024Z",
+      "tags": [],
+      "headings": [
+        "# Research Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/revenue_tracker.md",
+      "title": "revenue_tracker",
+      "lastModified": "2026-02-23T06:02:22.163Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/rollback_manager.md",
+      "title": "rollback_manager",
+      "lastModified": "2026-02-23T05:39:04.788Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/scene_cutter.md",
+      "title": "scene_cutter",
+      "lastModified": "2026-02-23T06:02:18.034Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/stability_audit_agent.md",
+      "title": "Stability Audit Agent",
+      "lastModified": "2026-02-23T18:55:09.666Z",
+      "tags": [],
+      "headings": [
+        "# Stability Audit Agent",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules",
+        "### Phase 1 – Stability Audit",
+        "### Phase 2 – Routing Collision Audit (Enhanced)",
+        "### Phase 3 – Live Simulation Test",
+        "## Failure Codes (Updated)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/verification_worker.md",
+      "title": "Verification Worker",
+      "lastModified": "2026-02-23T15:02:31.217Z",
+      "tags": [],
+      "headings": [
+        "# Verification Worker",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/version_governor.md",
+      "title": "version_governor",
+      "lastModified": "2026-02-23T05:38:58.676Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/workflow_builder.md",
+      "title": "Workflow Builder",
+      "lastModified": "2026-02-23T15:02:27.019Z",
+      "tags": [],
+      "headings": [
+        "# Workflow Builder",
+        "## Purpose",
+        "## Inputs",
+        "## Output JSON",
+        "## Rules"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/2cd069e5-abf7-469f-9ed6-a6d73ebdec47/implementation_plan.md",
+      "title": "Skill Agent Global Build Implementation Plan",
+      "lastModified": "2026-05-29T10:34:22.017Z",
+      "tags": [],
+      "headings": [
+        "# Skill Agent Global Build Implementation Plan",
+        "## User Review Required",
+        "## Proposed Changes",
+        "### Core Scripts",
+        "#### [NEW] [skill_agent.py](file:///Users/alexanderanthony/scripts/skill_agent.py)",
+        "#### [MODIFY] [task.md](file:///Users/alexanderanthony/.gemini/antigravity-cli/brain/2cd069e5-abf7-469f-9ed6-a6d73ebdec47/task.md)",
+        "## Verification Plan",
+        "### Automated Verification"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/2cd069e5-abf7-469f-9ed6-a6d73ebdec47/task.md",
+      "title": "System Update Task Checklist",
+      "lastModified": "2026-05-29T09:56:27.377Z",
+      "tags": [],
+      "headings": [
+        "# System Update Task Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/2cd069e5-abf7-469f-9ed6-a6d73ebdec47/walkthrough.md",
+      "title": "System Update Walkthrough",
+      "lastModified": "2026-05-29T09:56:33.221Z",
+      "tags": [],
+      "headings": [
+        "# System Update Walkthrough",
+        "## Actions Executed",
+        "## Validation Results"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/3e5584d6-bbcb-4ace-a2e9-84aa8f5e77f5/task.md",
+      "title": "Daily Execution Checklist",
+      "lastModified": "2026-05-27T19:10:18.088Z",
+      "tags": [],
+      "headings": [
+        "# Daily Execution Checklist"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/3e5584d6-bbcb-4ace-a2e9-84aa8f5e77f5/walkthrough.md",
+      "title": "Walkthrough - Skill Promotion, Stack Boot & Task 2.2 Blueprint Complete",
+      "lastModified": "2026-05-27T19:10:24.341Z",
+      "tags": [],
+      "headings": [
+        "# Walkthrough - Skill Promotion, Stack Boot & Task 2.2 Blueprint Complete",
+        "## Overview of Completed Actions"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/4f45adeb-6c18-4548-bc8a-aae6ab44056a/implementation_plan.md",
+      "title": "Technical Implementation Plan: Advanced Live Telemetry, Command Deck Controls, and Visual Collision Matrices",
+      "lastModified": "2026-05-23T10:14:47.797Z",
+      "tags": [],
+      "headings": [
+        "# Technical Implementation Plan: Advanced Live Telemetry, Command Deck Controls, and Visual Collision Matrices",
+        "## Proposed Changes",
+        "### Sentinel OS Standing Landing Page Overhaul",
+        "#### [MODIFY] [sentinel-os-artifact.html](file:///Users/alexanderanthony/Landing%20Page%20Sites/supernova/sentinel-os/sentinel-os-artifact.html)",
+        "##### 1. Overview Tab & Sidebar Telemetry Updates (Phase 1)",
+        "##### 2. CIP Governance & Audit Command Terminal (Phase 2)",
+        "##### 3. Sovereign Nodes Collision Explorer (Phase 3)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/4f45adeb-6c18-4548-bc8a-aae6ab44056a/walkthrough.md",
+      "title": "Sentinel OS Advanced Redesign Walkthrough: Technical Command Overhaul",
+      "lastModified": "2026-05-23T10:25:41.733Z",
+      "tags": [
+        "drop-zone",
+        "blast-radius-slider",
+        "cli-input",
+        "cli-output",
+        "node-astra"
+      ],
+      "headings": [
+        "# Sentinel OS Advanced Redesign Walkthrough: Technical Command Overhaul",
+        "## ✦ System Verification",
+        "### E2E Interactive Test Results",
+        "### Updated Live Dashboard Snapshot"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/6eed78fa-d51c-446a-8c13-f7c195676c88/docker_integration_plan.md",
+      "title": "Docker Integration Blueprint",
+      "lastModified": "2026-05-23T09:49:28.715Z",
+      "tags": [],
+      "headings": [
+        "# Docker Integration Blueprint",
+        "## Visual Diagram",
+        "## 1. Central Services Orchestrator (`docker-compose.yml`)",
+        "# 1. High-Performance database simulating local Supabase/PostgreSQL ledger",
+        "# 2. Redis Caching layer for high-speed queue handling (CrewAI, Task Queue)",
+        "# 3. Transcribing Worker serving OpenAI Whisper models over CPU",
+        "# 4. FastAPI Application Container supporting live hot-reloading",
+        "## 3. The Unified Shell CLI Utility (`sov`)",
+        "# sovereign-control: Unified Docker Workspace Runner for CLI ease-of-use",
+        "# 'I build before burning.'"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/6eed78fa-d51c-446a-8c13-f7c195676c88/implementation_plan.md",
+      "title": "Implementation Plan - Whisper Transcribing Pipeline",
+      "lastModified": "2026-05-23T10:30:02.355Z",
+      "tags": [],
+      "headings": [
+        "# Implementation Plan - Whisper Transcribing Pipeline",
+        "## Proposed Changes",
+        "### `whisper-pipeline` Service",
+        "#### [NEW] [pyproject.toml](file:///Users/alexanderanthony/Projects/whisper-pipeline/pyproject.toml)",
+        "#### [NEW] [schemas.py](file:///Users/alexanderanthony/Projects/whisper-pipeline/schemas.py)",
+        "#### [NEW] [main.py](file:///Users/alexanderanthony/Projects/whisper-pipeline/main.py)",
+        "#### [NEW] [test_main.py](file:///Users/alexanderanthony/Projects/whisper-pipeline/test_main.py)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/6eed78fa-d51c-446a-8c13-f7c195676c88/task.md",
+      "title": "Task Checklist - Whisper Transcribing Pipeline",
+      "lastModified": "2026-05-23T11:28:17.397Z",
+      "tags": [],
+      "headings": [
+        "# Task Checklist - Whisper Transcribing Pipeline"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/6eed78fa-d51c-446a-8c13-f7c195676c88/walkthrough.md",
+      "title": "Workspace & Whisper Pipeline Walkthrough",
+      "lastModified": "2026-05-23T11:29:10.188Z",
+      "tags": [],
+      "headings": [
+        "# Workspace & Whisper Pipeline Walkthrough",
+        "## 2. Deployed Docker Orchestration Architecture",
+        "### Unified Command Syntax (`sov`)",
+        "## 4. Technical Highlights & Rationale"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/b9b3975c-aeb9-422b-b5a7-cea1a8b35254/task.md",
+      "title": "Task Checklist: Brilliantaire OS Rebuild",
+      "lastModified": "2026-05-27T21:18:00.894Z",
+      "tags": [],
+      "headings": [
+        "# Task Checklist: Brilliantaire OS Rebuild"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/.system_generated/steps/1207/content.md",
+      "title": "content",
+      "lastModified": "2026-05-22T18:26:18.399Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/.system_generated/steps/1215/content.md",
+      "title": "content",
+      "lastModified": "2026-05-22T18:27:03.232Z",
+      "tags": [],
+      "headings": [],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/e8251497-d5d2-4bfc-8617-dc75c7c66d9f/sovereign_stack_blueprint.md",
+      "title": "🌌 Sovereign Stack Integration Blueprint — Alexander OS",
+      "lastModified": "2026-05-22T15:04:09.979Z",
+      "tags": [],
+      "headings": [
+        "# 🌌 Sovereign Stack Integration Blueprint — Alexander OS",
+        "## 🔍 The Gaps (What is Unwired?)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/extensions/ad_hoc/instructions.md",
+      "title": "Ad-hoc notes",
+      "lastModified": "2026-05-14T15:51:37.569Z",
+      "tags": [],
+      "headings": [
+        "# Ad-hoc notes",
+        "## Instructions",
+        "## Warning"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/report-preferences.md",
+      "title": "Report Preferences",
+      "lastModified": "2026-04-13T19:59:16.640Z",
+      "tags": [],
+      "headings": [
+        "# Report Preferences"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/workspace-isolation.md",
+      "title": "Codex Workspace Isolation",
+      "lastModified": "2026-04-13T20:07:16.533Z",
+      "tags": [],
+      "headings": [
+        "# Codex Workspace Isolation"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Postmortem Template.md",
+      "title": "Postmortem - Title",
+      "lastModified": "2026-04-26T18:11:29.144Z",
+      "tags": [],
+      "headings": [
+        "# Postmortem - Title",
+        "## What Happened",
+        "## Impact",
+        "## Root Cause",
+        "## What Worked",
+        "## What Failed",
+        "## Prevention"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/07 Templates/Workflow Template.md",
+      "title": "Workflow Name",
+      "lastModified": "2026-04-26T17:25:08.476Z",
+      "tags": [],
+      "headings": [
+        "# Workflow Name",
+        "## Purpose",
+        "## Inputs",
+        "## Steps",
+        "## Outputs",
+        "## Verification",
+        "## Failure Modes",
+        "## Links"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Agent Roster.md",
+      "title": "Agent Roster",
+      "lastModified": "2026-04-26T18:11:28.893Z",
+      "tags": [],
+      "headings": [
+        "# Agent Roster",
+        "## Core Agents",
+        "## Local Agent Sources",
+        "## Assignment Rule"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Claude Sessions Dashboard.md",
+      "title": "Claude Sessions Dashboard",
+      "lastModified": "2026-04-26T17:25:08.634Z",
+      "tags": [],
+      "headings": [
+        "# Claude Sessions Dashboard",
+        "## Recent Session Updates",
+        "## Sessions By Project",
+        "## Session Follow-Up Tasks"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Collision Guardian.md",
+      "title": "🛡️ Collision Guardian Dashboard",
+      "lastModified": "2026-05-22T15:13:31.792Z",
+      "tags": [
+        "00F0FF",
+        "000000",
+        "FF007F",
+        "FFFFFF",
+        "39FF14",
+        "FFFF00"
+      ],
+      "headings": [
+        "# 🛡️ Collision Guardian Dashboard",
+        "## 🔒 Directory Integrity Constraints",
+        "## ⚙️ Manual Diagnostic Check"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Open Tasks Dashboard.md",
+      "title": "Open Tasks Dashboard",
+      "lastModified": "2026-04-26T17:25:08.522Z",
+      "tags": [],
+      "headings": [
+        "# Open Tasks Dashboard",
+        "## Due Or Scheduled",
+        "## All Open Tasks",
+        "## Project Tasks",
+        "## Claude Session Follow-Ups"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Research Index.md",
+      "title": "Research Index",
+      "lastModified": "2026-04-26T17:20:33.656Z",
+      "tags": [],
+      "headings": [
+        "# Research Index",
+        "## Queued",
+        "## Completed",
+        "## Sources To Revisit"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Workflow Backlog.md",
+      "title": "Workflow Backlog",
+      "lastModified": "2026-04-26T18:11:28.955Z",
+      "tags": [],
+      "headings": [
+        "# Workflow Backlog",
+        "## Candidate Workflows",
+        "## Rules",
+        "## Open Workflow Tasks"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/Workflow Status Dashboard.md",
+      "title": "Workflow Status Dashboard",
+      "lastModified": "2026-04-26T17:25:08.682Z",
+      "tags": [],
+      "headings": [
+        "# Workflow Status Dashboard",
+        "## Workflow Inventory",
+        "## Needs Review"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    }
+  ]
+}
