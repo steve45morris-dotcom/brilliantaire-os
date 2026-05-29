@@ -14,7 +14,8 @@
     "next": "tsx scripts/next.ts",
     "ingest": "tsx scripts/ingest-obsidian.ts",
     "sync-status": "tsx scripts/sync-status.ts",
-    "daily-brief": "tsx scripts/daily-brief.ts"
+    "daily-brief": "tsx scripts/daily-brief.ts",
+    "agents": "tsx scripts/agents.ts"
   },
   "keywords": [
     "antigravity",

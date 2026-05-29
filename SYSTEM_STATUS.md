@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 3A: Knowledge Ingestion & Obsidian Read-Only Gateway
+- **Current Phase:** Phase 3B: Productivity Agent Layer
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -14,6 +14,7 @@
 - **Self-Audit Automation:** Verified core files and local skill structures.
 - **Daily Operating Brief compiler:** Compiles multi-source briefs to markdown outputs.
 - **Ranked Next Action Checklist:** Status-grouped tasks scheduler.
+- **Productivity Agent Layer:** Council of 7 configured roles with metrics and file bindings.
 
 ## 📭 Missing Capabilities
 - **Obsidian Write-Back Gateway:** Bi-directional note updates and brief syncing back to the vault.
@@ -24,7 +25,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 3B:** Bi-directional Write Gateway & Command Pipeline.
+- **Phase 4:** Autonomous Campaign Execution & Vocal Command Bridge.
 
 ## Obsidian Intelligence Snapshot
 

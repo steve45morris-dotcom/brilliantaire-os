@@ -1,10 +1,12 @@
 # 🎯 Next Actions
 
 ## Do Now
-- [ ] Add operational intelligence scripts (audit, brief, next)
-- [ ] Create self-audit command
-- [ ] Create project brief command
-- [ ] Create next-action generator
+- [x] Add operational intelligence scripts (audit, brief, next)
+- [x] Create self-audit command
+- [x] Create project brief command
+- [x] Create next-action generator
+- [ ] Run and maintain productivity agent council (`AGENTS.md`)
+- [ ] Connect agents telemetry log loops
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

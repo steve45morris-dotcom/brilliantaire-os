@@ -41,6 +41,11 @@ tasks:
     cmds:
       - npm run daily-brief
 
+  agents:
+    desc: "Print active productivity agents"
+    cmds:
+      - npm run agents
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

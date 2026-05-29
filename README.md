@@ -31,6 +31,22 @@ Manage and execute operations using the following `task` commands:
 | `task ingest` | `npm run ingest` | Recursively scan candidate Obsidian paths for key tags and signals |
 | `task sync-status` | `npm run sync-status` | Sync parsed Obsidian snapshot into repository status files |
 | `task daily-brief` | `npm run daily-brief` | Generate a daily operating brief markdown report |
+| `task agents` | `npm run agents` | Print a clean summary of the active Agent Council |
+
+---
+
+## 🤖 Productivity Agent Layer
+
+Brilliantaire OS operates with a lean council of **7 conceptual agents** to segment duties, monitor boundaries, and maintain high-fidelity execution:
+1. **OS Architect** — Core blueprints, roadmaps, and validation integrity.
+2. **Workflow Auditor** — Space verification, duplication detection, and security sanity checks.
+3. **Action Router** — Priority scheduler and status action item sorting.
+4. **Knowledge Librarian** — Ingestion compiler and snapshots syncing manager.
+5. **Prompt Engineer** — Standard instructions design and model templates compiler.
+6. **Build Operator** — Builds compiler, typescript checks, and CLI executors.
+7. **Creative Revenue Strategist** — Marketing launches, rollout briefs, and revenue tracker logic.
+
+All roles are documented and mapped to specific owned files in [AGENTS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/AGENTS.md).
 
 ---
 
@@ -48,5 +64,5 @@ All telemetry and compiler runs output to the local `outputs/` directory:
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 3B: Bi-directional Write Gateway & Command Pipeline**
-  * Introduce safe write capabilities back to specific designated folders in Obsidian vaults (e.g. `/brilliantaire-briefs/`) and establish voice command orchestration loops.
+* **Phase 4: Autonomous Campaign Execution & Vocal Command Bridge**
+  * Integrate direct vocal trigger pipelines matching VibeVoice commands and execute automated social media rollout campaigns.
