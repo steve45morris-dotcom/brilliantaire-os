@@ -9,11 +9,13 @@ function printHelp() {
   console.log("  calendar <campaign>       Generate a 3-week multi-platform content calendar");
   console.log("  prompt-pack <campaign>    Generate pre-configured generative prompts");
   console.log("  checklist <campaign>      Generate a campaign execution readiness checklist");
+  console.log("  street-script <campaign>  Generate a Lagos street challenge host interview script");
   console.log("  create                    Generate a blank campaign scaffolding file");
   console.log("\nExample runs:");
   console.log("  npm run campaign -- \"list\"");
   console.log("  npm run campaign -- \"brief sporty\"");
   console.log("  npm run campaign -- \"calendar sporty\"");
+  console.log("  npm run campaign -- \"street-script sporty\"");
   console.log("=========================================");
 }
 

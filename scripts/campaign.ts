@@ -200,6 +200,40 @@ function handleChecklist(campaignKey: string) {
   console.log(`✅ Campaign Checklist generated: outputs/campaigns/checklists/${path.basename(finalPath)}`);
 }
 
+function handleStreetScript(campaignKey: string) {
+  if (campaignKey !== 'sporty') {
+    console.error("❌ Unknown campaign. Only 'sporty' is currently configured.");
+    process.exit(1);
+  }
+
+  const templatePath = path.join(REPO_ROOT, 'templates', 'street-interview-template.md');
+  if (!fs.existsSync(templatePath)) {
+    console.error("❌ Street interview template not found.");
+    process.exit(1);
+  }
+
+  let template = fs.readFileSync(templatePath, 'utf-8');
+
+  // Fill template details with Lagos Street Challenge information
+  template = template
+    .replace(/\{\{CAMPAIGN_NAME\}\}/g, 'Sporty No Go Take My Soul Lagos Street Challenge')
+    .replace(/\{\{HOST_OPENING\}\}/g, 'Host: "Yo! We are live on the streets of Lagos, checking who has the ultimate Brilliantier mindset. Mr. 2 Lighter visual signature active. You build before you burn."')
+    .replace(/\{\{QUESTION_SET\}\}/g, '1. Who tell you say creative hustle easy?\n2. How you dey survive when the pressure dey hot?\n3. Wetin be the Mr. 2 Lighter mindset to you?\n4. What does it mean to build before you burn?\n5. When the hustle pays off, what is the smartest move?')
+    .replace(/\{\{PARTICIPANT_PROMPT\}\}/g, 'Participant answers in raw, pressure-educated street slang, showcasing resilience and smart strategic thinking.')
+    .replace(/\{\{HOOK_CALL_AND_RESPONSE\}\}/g, 'Host: "Sporty no go do what?"\nWinner: "Take my soul!"')
+    .replace(/\{\{REWARD_MOMENT\}\}/g, 'Host: "Correct! That is 5 out of 5! You just won ₦50,000 cash!"')
+    .replace(/\{\{BRILLIANTIER_INDUCTION_LINE\}\}/g, 'Host: "You are now a Brilliantier. A Brilliantier knows when to cash out."')
+    .replace(/\{\{WEBSITE_COUPON_MENTION\}\}/g, 'Host: "Go to sporty.brilliantaire.com to redeem your early-access visual merchandise discount coupon code!"')
+    .replace(/\{\{CLOSING_CTA\}\}/g, 'Host: "Tree Groove Records, Icyflamze. Pre-save the single, get your merch. We build before burning."');
+
+  const dateStr = getFormattedDate();
+  const destDir = path.join(REPO_ROOT, 'outputs', 'campaigns', 'scripts');
+  const finalPath = getSafeWritePath(destDir, `sporty_no_go_take_my_soul_street_script_${dateStr}`, '.md');
+
+  fs.writeFileSync(finalPath, template);
+  console.log(`✅ Street Script generated: outputs/campaigns/scripts/${path.basename(finalPath)}`);
+}
+
 function handleCreate() {
   const templatePath = path.join(REPO_ROOT, 'templates', 'campaign-template.md');
   if (!fs.existsSync(templatePath)) {
@@ -243,6 +277,9 @@ function run() {
       break;
     case 'checklist':
       handleChecklist(target);
+      break;
+    case 'street-script':
+      handleStreetScript(target);
       break;
     case 'create':
       handleCreate();

@@ -51,6 +51,8 @@ Manage and execute operations using the following `task` commands:
 | `task write-log` | `npm run write-log` | Display write history timeline and warnings |
 | `task command` | `npm run command -- <CLI_ARGS>` | Execute pre-approved CLI script via the safe command router |
 | `task command-help` | `npm run command-help` | Print registry of all allowed command router configurations |
+| `task campaign` | `npm run campaign -- <CLI_ARGS>` | Run campaign template actions safely |
+| `task campaign-help` | `npm run campaign-help` | Print campaign CLI help |
 
 ---
 
@@ -103,7 +105,7 @@ The **Safe Command Router** provides a safe execution boundary that translates u
 
 ## 📣 Phase 4A: Campaign Template Engine
 
-The **Campaign Template Engine** compiles structured campaign assets for Tree Groove Records and Icyflamze brands. It operates entirely locally, creating content calendars, execution checklists, prompt logs, and briefs without calling external social APIs.
+The **Campaign Template Engine** compiles structured campaign assets for Tree Groove Records and Icyflamze brands. It operates entirely locally, creating content calendars, execution checklists, prompt logs, Lagos street challenge scripts, and briefs without calling external social APIs.
 
 ### 💻 Command Examples
 * View campaign commands help:
@@ -117,6 +119,10 @@ The **Campaign Template Engine** compiles structured campaign assets for Tree Gr
 * Generate launch checklist for the "Sporty" release (via the safe router):
   ```bash
   npm run command -- "campaign checklist sporty"
+  ```
+* Generate Lagos street challenge host interview script (via the safe router):
+  ```bash
+  npm run command -- "campaign street-script sporty"
   ```
 
 ---
@@ -136,6 +142,7 @@ All telemetry and compiler runs output to the local `outputs/` directory:
   * `outputs/campaigns/content_calendars/` - 3-week multi-platform daily posting grids.
   * `outputs/campaigns/prompt_packs/` - AI generation prompt packs (Sora, Veo, Claude).
   * `outputs/campaigns/checklists/` - Staged checklist steps.
+  * `outputs/campaigns/scripts/` - Lagos street interview script markdown files.
 
 ---
 

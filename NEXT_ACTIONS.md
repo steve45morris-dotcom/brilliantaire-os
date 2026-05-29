@@ -22,6 +22,7 @@
 - [x] Generate Sporty 3-week calendar
 - [x] Generate Sporty prompt pack
 - [x] Generate Sporty execution checklist
+- [x] Generate Sporty street script
 - [x] Review campaign outputs
 - [ ] Prepare VibeVoice bridge only after campaign engine passes
 
