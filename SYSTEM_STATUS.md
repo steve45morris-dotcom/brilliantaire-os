@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 4C: Voice Confirmation Layer
+- **Current Phase:** Phase 5A: VibeVoice Transcript Producer
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -20,17 +20,19 @@
 - **Campaign Template Engine:** Compiles structured marketing calendars, prompts, briefs, and execution checklists locally.
 - **Voice Command Queue:** Safely parses, validates, and dispatches normalized voice phrases to Command Router scripts via an inbox directory.
 - **Voice Confirmation Layer:** Enforces manual review and release via voice-confirm and voice-deny gates for higher-risk pending commands.
+- **VibeVoice Transcript Producer:** Decoupled plain text voice command bridge staging with empty/length checks and local backup archiving.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
-- **Vocal Command Pipeline:** Speech-to-text trigger mapping.
+- **VibeVoice Live Microphone Bridge:** Real-time audio streaming bridge.
 
 ## ⚠️ Current Risks
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 4:** Autonomous Campaign Execution & Vocal Command Bridge.
+- **Phase 5B: Live Microphone ASR Bridge**
+
 
 ## Obsidian Intelligence Snapshot
 

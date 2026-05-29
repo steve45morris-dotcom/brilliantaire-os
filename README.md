@@ -189,9 +189,38 @@ All telemetry and compiler runs output to the local `outputs/` and `voice_queue/
   * `voice_queue/confirmed/` - Executed and confirmed voice phrase transcripts.
   * `voice_queue/denied/` - Discarded and denied voice commands transcripts.
   * `outputs/voice_confirmation_logs/` - Release and denial audit trail logs.
+* **VibeVoice Ingestion Outputs:**
+  * `voice_input/transcripts/` - Local backup archive of successfully ingested raw text transcripts.
+  * `outputs/vibevoice_logs/vibevoice_log_YYYY-MM-DD.md` - Ingest log tracking staged and rejected files.
+
+---
+
+## 🎙️ Phase 5A: VibeVoice Transcript Producer
+
+The **VibeVoice Transcript Producer** serves as the ingestion bridge that stages plain text voice transcripts into the safe pipeline without triggering live actions directly from audio inputs.
+
+### 🛡️ Safety & Ingestion Rules
+1. **Zero Direct Execution:** Transcripts cannot invoke scripts or run commands directly.
+2. **Inbox Decoupling:** Transcripts are written exclusively to `voice_input/manual/` and staged to `voice_queue/inbox/` with a `vibevoice_` prefix.
+3. **Length and Format Checks:** Inputs must be plain text (.txt), strictly shorter than 500 characters, and non-empty.
+
+### 💻 Command Examples
+* View VibeVoice safety menu:
+  ```bash
+  npm run command -- "vibevoice-help"
+  ```
+* Ingest and stage manual transcripts (requires exact command name):
+  ```bash
+  npm run command -- "vibevoice-transcript"
+  ```
+* Prepare test transcripts in the manual staging folder:
+  ```bash
+  npm run command -- "vibevoice-test"
+  ```
 
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 5: Autonomous Vocal Command daemon (VibeVoice Bridge)**
+* **Phase 5B: Live Microphone ASR Bridge (VibeVoice Bridge)**
   * Establish the hands-free audio scanner daemon script that streams local microphone inputs, processes Whisper speech-to-text transcripts, and writes command scripts to the queue secure inbox.
+

@@ -106,6 +106,21 @@ tasks:
     cmds:
       - npm run voice-deny -- {{.CLI_ARGS}}
 
+  vibevoice-help:
+    desc: "Print VibeVoice transcript bridge safety menus"
+    cmds:
+      - npm run vibevoice-help
+
+  vibevoice-transcript:
+    desc: "Scan and ingest manual transcripts into queue inbox"
+    cmds:
+      - npm run vibevoice-transcript
+
+  vibevoice-test:
+    desc: "Generate sample test files under manual voice input"
+    cmds:
+      - npm run vibevoice-test
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

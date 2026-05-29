@@ -208,5 +208,38 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'vibevoice-help',
+    aliases: ['vibe help', 'voice bridge help'],
+    description: 'Print VibeVoice transcript bridge safety menus',
+    npmScript: 'vibevoice-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'vibevoice-transcript',
+    aliases: ['transcribe voice', 'voice transcript'],
+    description: 'Scan and ingest manual transcripts into queue inbox',
+    npmScript: 'vibevoice-transcript',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'vibevoice-test',
+    aliases: ['voice test'],
+    description: 'Generate sample test files under manual voice input',
+    npmScript: 'vibevoice-test',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
   }
 ];

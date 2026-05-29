@@ -1,0 +1,13 @@
+{
+  "pendingId": "vibevoice_2026-05-29_110045",
+  "sourceFile": "vibevoice_2026-05-29_110045.txt",
+  "rawPhrase": "create sporty street script",
+  "normalizedPhrase": "create sporty street script",
+  "matchedPhrase": "create sporty street script",
+  "routerCommand": "campaign street-script sporty",
+  "owningAgent": "Creative Revenue Strategist",
+  "riskLevel": "medium",
+  "confirmationRequired": true,
+  "createdAt": "2026-05-29T18:01:04.989Z",
+  "status": "pending_confirmation"
+}

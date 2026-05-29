@@ -34,7 +34,14 @@
 - [x] Test confirmation without --confirm blocks
 - [x] Test confirmation with --confirm executes through router
 - [x] Test denial flow
-- [ ] Prepare live VibeVoice bridge only after confirmation layer passes
+- [x] Build VibeVoice Transcript Producer
+- [x] Test manual transcript handoff
+- [x] Test low-risk transcript execution through queue
+- [x] Test medium-risk transcript pending confirmation
+- [x] Test unknown transcript rejection
+- [ ] Prepare live microphone capture only after transcript producer passes
+
+
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

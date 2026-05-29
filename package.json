@@ -27,7 +27,10 @@
     "voice-help": "tsx scripts/voice-help.ts",
     "voice-pending": "tsx scripts/voice-pending.ts",
     "voice-confirm": "tsx scripts/voice-confirm.ts",
-    "voice-deny": "tsx scripts/voice-deny.ts"
+    "voice-deny": "tsx scripts/voice-deny.ts",
+    "vibevoice-help": "tsx scripts/vibevoice-help.ts",
+    "vibevoice-transcript": "tsx scripts/vibevoice-transcript.ts",
+    "vibevoice-test": "tsx scripts/vibevoice-test.ts"
   },
   "keywords": [
     "antigravity",

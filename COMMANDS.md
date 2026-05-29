@@ -43,6 +43,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-pending` | `pending voice`, `voice review` | Workflow Auditor | Low | No | Lists voice commands currently pending confirmation. |
 | `voice-confirm` | `confirm voice` | Build Operator | High | Yes | Approves and executes a pending voice command. |
 | `voice-deny` | `deny voice` | Workflow Auditor | Medium | Yes | Denies and discards a pending voice command. |
+| `vibevoice-help` | `vibe help`, `voice bridge help` | Build Operator | Low | No | Prints VibeVoice transcript bridge safety menus. |
+| `vibevoice-transcript` | `transcribe voice`, `voice transcript` | Build Operator | Medium | Yes | Scan and ingest manual transcripts into queue inbox. |
+| `vibevoice-test` | `voice test` | Workflow Auditor | Low | No | Generate sample test files under manual voice input. |
 
 ---
 

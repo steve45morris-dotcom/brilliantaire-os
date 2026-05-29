@@ -321,3 +321,47 @@
 
 ---
 
+## [2026-05-29T18:01:07.744Z] Command Attempt: "daily-brief"
+- **Matched Command:** `daily-brief`
+- **Alias Used:** `false`
+- **Owning Agent:** `Action Router`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:01:21.409Z] Command Attempt: "vibevoice-help"
+- **Matched Command:** `vibevoice-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:01:37.216Z] Command Attempt: "vibevoice-transcript"
+- **Matched Command:** `vibevoice-transcript`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:01:45.168Z] Command Attempt: "transcribe voice"
+- **Matched Command:** `vibevoice-transcript`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
