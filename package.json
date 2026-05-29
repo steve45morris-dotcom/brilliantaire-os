@@ -43,7 +43,9 @@
     "mesh-telemetry-help": "tsx scripts/mesh-telemetry-help.ts",
     "dashboard:export": "tsx scripts/export-dashboard-data.ts",
     "dashboard:dev": "cd dashboard && npm run dev",
-    "dashboard:build": "cd dashboard && npm run build"
+    "dashboard:build": "cd dashboard && npm run build",
+    "automation-help": "tsx scripts/automation-help.ts",
+    "automation-runner": "tsx scripts/automation-runner.ts"
   },
   "keywords": [
     "antigravity",

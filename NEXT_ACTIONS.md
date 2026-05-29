@@ -63,12 +63,18 @@
 - [x] Generate Sporty campaign telemetry
 - [x] Review missing log families
 - [x] Prepare lightweight dashboard only after telemetry passes
-- [ ] Build lightweight local dashboard
-- [ ] Export dashboard data
-- [ ] Build dashboard
-- [ ] Review dashboard cards
-- [ ] Confirm dashboard is read-only
-- [ ] Prepare automation only after dashboard passes
+- [x] Build lightweight local dashboard
+- [x] Export dashboard data
+- [x] Build dashboard
+- [x] Review dashboard cards
+- [x] Confirm dashboard is read-only
+- [x] Prepare automation only after dashboard passes
+- [ ] Build local automation runner
+- [ ] Test daily-check routine
+- [ ] Test campaign-check routine
+- [ ] Test voice-check routine
+- [ ] Verify automation logs
+- [ ] Prepare scheduled automation only after local runner passes
 
 
 

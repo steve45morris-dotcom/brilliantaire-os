@@ -530,3 +530,245 @@
 
 ---
 
+## [2026-05-29T21:45:04.261Z] Command Attempt: "audit"
+- **Matched Command:** `audit`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:05.828Z] Command Attempt: "brief"
+- **Matched Command:** `brief`
+- **Alias Used:** `false`
+- **Owning Agent:** `OS Architect`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:07.386Z] Command Attempt: "next"
+- **Matched Command:** `next`
+- **Alias Used:** `false`
+- **Owning Agent:** `Action Router`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:09.092Z] Command Attempt: "mesh-telemetry snapshot"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:10.644Z] Command Attempt: "mesh-telemetry report"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:12.219Z] Command Attempt: "dashboard-export"
+- **Matched Command:** `dashboard-export`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:45:31.551Z] Command Attempt: "campaign-simulate status sporty"
+- **Matched Command:** `campaign-simulate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T21:47:00.598Z] Command Attempt: "campaign-simulate status sporty"
+- **Matched Command:** `campaign-simulate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:02.306Z] Command Attempt: "mesh-telemetry campaign sporty"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:04.219Z] Command Attempt: "dashboard-export"
+- **Matched Command:** `dashboard-export`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:22.793Z] Command Attempt: "voice-pending"
+- **Matched Command:** `voice-pending`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:24.541Z] Command Attempt: "mesh-telemetry report"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:26.491Z] Command Attempt: "dashboard-export"
+- **Matched Command:** `dashboard-export`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:39.386Z] Command Attempt: "automation-help"
+- **Matched Command:** `automation-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:47:58.919Z] Command Attempt: "audit"
+- **Matched Command:** `audit`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:01.247Z] Command Attempt: "brief"
+- **Matched Command:** `brief`
+- **Alias Used:** `false`
+- **Owning Agent:** `OS Architect`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:03.218Z] Command Attempt: "next"
+- **Matched Command:** `next`
+- **Alias Used:** `false`
+- **Owning Agent:** `Action Router`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:05.348Z] Command Attempt: "mesh-telemetry snapshot"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:07.328Z] Command Attempt: "mesh-telemetry report"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:09.064Z] Command Attempt: "dashboard-export"
+- **Matched Command:** `dashboard-export`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:09.216Z] Command Attempt: "automation-runner daily-check"
+- **Matched Command:** `automation-runner`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:48:35.660Z] Command Attempt: "run automation daily-check"
+- **Matched Command:** `automation-runner`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

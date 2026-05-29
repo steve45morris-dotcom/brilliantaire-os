@@ -373,5 +373,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'automation-help',
+    aliases: ['automation list', 'routine help'],
+    description: 'Print registry of pre-approved local automation routines',
+    npmScript: 'automation-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'automation-runner',
+    aliases: ['run automation', 'routine'],
+    description: 'Execute a pre-approved local automation routine (Medium Risk)',
+    npmScript: 'automation-runner',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

@@ -58,6 +58,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `mesh-telemetry` | `telemetry`, `mesh` | Workflow Auditor | Medium | Yes | Run system mesh telemetry logging (snapshot, report, campaign sporty, status). |
 | `dashboard-export` | `export dashboard`, `dashboard data` | Workflow Auditor | Low | No | Export system status and telemetry metrics to JSON. |
 | `dashboard-build` | `build dashboard` | Build Operator | Low | No | Compile the static Vite dashboard production bundle. |
+| `automation-help` | `automation list`, `routine help` | Workflow Auditor | Low | No | Print registry of pre-approved local automation routines. |
+| `automation-runner` | `run automation`, `routine` | Build Operator | Medium | Yes | Execute a pre-approved local automation routine. |
 
 ---
 

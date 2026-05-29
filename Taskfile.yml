@@ -181,9 +181,15 @@ tasks:
     cmds:
       - npm run dashboard:build
 
+  automation-help:
+    desc: "Print all registered automation routines"
+    cmds:
+      - npm run automation-help
 
-
-
+  automation-runner:
+    desc: "Execute a pre-approved local automation routine"
+    cmds:
+      - npm run automation-runner -- {{.CLI_ARGS}}
 
   validate:
     desc: "Lint and run workspace checks"

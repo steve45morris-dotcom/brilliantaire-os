@@ -379,6 +379,27 @@ The **Lightweight Local Dashboard** compiles static status lists and telemetry l
 
 ---
 
+## 🤖 Phase 8A: Local Automation Runner
+
+The **Local Automation Runner** executes pre-approved maintenance routines (e.g., `daily-check`, `campaign-check`, `voice-check`) in a controlled, sequential manner.
+
+### 🛡️ Safety & Execution Rules
+1. **Command Router Mandate:** Every command is executed by routing through the Safe Command Router (`npm run command -- "<cmd>"`). Direct script invocation is prohibited.
+2. **Fail-Fast Mechanics:** The runner halts execution immediately on the first command failure to prevent cascading errors. Succeeding tasks are skipped.
+3. **No External Scheduling:** The runner works strictly offline and does not establish external crons or post data online.
+
+### 💻 Command Examples
+* Print list of available routines (via safe router):
+  ```bash
+  npm run command -- "automation-help"
+  ```
+* Execute daily sanity checks sequence (via safe router, exact name required):
+  ```bash
+  npm run command -- "automation-runner daily-check"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 8A: Autonomous Post-Release Verification**
-  - Implement automated sanity loops checking production artifacts after campaigns launch.```
+* **Phase 8B: Controlled Background Automation**
+  - Design a safe daemon or background worker wrapper executing local automation runner tasks on a strict, non-networked cron interval.```

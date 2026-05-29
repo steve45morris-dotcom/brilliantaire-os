@@ -483,7 +483,7 @@ function printStatus() {
 
 function main() {
   const args = process.argv.slice(2);
-  const command = args[0];
+  const command = args.join(' ');
 
   if (!command || command === 'help') {
     console.log("Usage: npm run mesh-telemetry -- [command]");
