@@ -8,10 +8,11 @@ function printHelp() {
   // Define column widths for terminal table formatting
   const colWidths = {
     command: 15,
-    aliases: 20,
+    aliases: 18,
     owningAgent: 22,
-    risk: 10,
-    enabled: 8
+    risk: 8,
+    enabled: 6,
+    exactName: 10
   };
 
   const pad = (str: string, width: number) => {
@@ -25,9 +26,10 @@ function printHelp() {
     pad('Aliases', colWidths.aliases) + ' | ' +
     pad('Owning Agent', colWidths.owningAgent) + ' | ' +
     pad('Risk', colWidths.risk) + ' | ' +
-    pad('Enabled', colWidths.enabled)
+    pad('Active', colWidths.enabled) + ' | ' +
+    pad('Exact Name', colWidths.exactName)
   );
-  console.log('-'.repeat(colWidths.command + colWidths.aliases + colWidths.owningAgent + colWidths.risk + colWidths.enabled + 12));
+  console.log('-'.repeat(colWidths.command + colWidths.aliases + colWidths.owningAgent + colWidths.risk + colWidths.enabled + colWidths.exactName + 15));
 
   for (const cmd of COMMAND_REGISTRY) {
     console.log(
@@ -35,7 +37,8 @@ function printHelp() {
       pad(cmd.aliases.join(', '), colWidths.aliases) + ' | ' +
       pad(cmd.owningAgent, colWidths.owningAgent) + ' | ' +
       pad(cmd.riskLevel.toUpperCase(), colWidths.risk) + ' | ' +
-      pad(cmd.enabled ? 'YES' : 'NO', colWidths.enabled)
+      pad(cmd.enabled ? 'YES' : 'NO', colWidths.enabled) + ' | ' +
+      pad(cmd.requiresExactName ? 'REQUIRED' : 'ANY', colWidths.exactName)
     );
     console.log(`   └─ Description: ${cmd.description}\n`);
   }

@@ -7,14 +7,17 @@
 - [x] Create next-action generator
 - [x] Run and maintain productivity agent council (`AGENTS.md`)
 - [ ] Connect agents telemetry log loops
-- [ ] Test staged write
-- [ ] Approve first safe Obsidian write
-- [ ] Review written files inside brilliantaire-briefs
-- [ ] Prepare command pipeline after safe write is verified
-- [x] Build command router
+- [x] Test staged write
+- [x] Approve first safe Obsidian write
+- [x] Review written files inside brilliantaire-briefs
+- [x] Prepare command pipeline after safe write is verified
+- [x] Build safe command router
 - [ ] Test command aliases
 - [ ] Test medium-risk command restrictions
-- [ ] Prepare future VibeVoice bridge only after command router passes
+- [ ] Test unknown command rejection
+- [ ] Test medium-risk alias blocking
+- [ ] Test high-risk confirmation requirement
+- [ ] Prepare VibeVoice bridge only after command router passes
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

@@ -13,39 +13,47 @@ The **Command Router** serves as the single safe entry point to execute scripts 
 ## 2. Safe Execution Policy
 
 To ensure complete control and system safety, the router enforces the following security boundaries:
-* **No Arbitrary Shell Command execution:** The router does not use `child_process.exec` or shell expansion. It strictly maps string inputs to exact arguments in `child_process.spawn` executing pre-compiled Node scripts.
+* **No Arbitrary Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn` with `shell: false`. No `eval` or shell injection vectors exist.
 * **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
 * **Audit Logging:** Every command execution, whether successful, failed, or blocked, is logged with metadata to `outputs/command_logs/command_log_YYYY-MM-DD.md`.
-* **Medium-Risk Alias Restriction:** Medium-risk commands (e.g. `ingest` or `sync-status`) cannot be run via aliases. They must be typed exactly to ensure explicit developer intent.
+* **Exact-Name Rules:** Medium-risk or High-risk commands containing `requiresExactName: true` cannot be run via aliases. They must be typed exactly to ensure explicit developer intent.
+* **High-Risk Confirmation Rule:** Commands with `riskLevel: 'high'` require the explicit addition of the `--confirm` flag (e.g. `npm run command -- "approve-write" --confirm`). Without the flag, execution is blocked.
 
 ---
 
 ## 3. Allowed Commands Registry
 
-| Command | Aliases | Owning Agent | Risk Level | Description |
-|---|---|---|---|---|
-| `audit` | `check`, `verify` | Workflow Auditor | Low | Runs workspace structural checks and verification checks. |
-| `brief` | `report`, `summary` | OS Architect | Low | Compiles and prints active projects, priorities, and actions. |
-| `next` | `actions`, `next-actions` | Action Router | Low | Lists grouped action checklists. |
-| `agents` | `council`, `roster` | OS Architect | Low | Shows active council properties. |
-| `ingest` | `scan-notes`, `obsidian` | Knowledge Librarian | Medium | Recursively scans Obsidian vault notes (Read-Only). |
-| `daily-brief` | `daily`, `today` | Action Router | Low | Compiles daily briefs markdown file outputs. |
-| `sync-status` | `sync` | Knowledge Librarian | Medium | Backs up status pages and syncs Obsidian snapshots. |
-| `build` | `compile` | Build Operator | Low | Compiles TypeScript workspace. |
+| Command | Aliases | Owning Agent | Risk Level | Exact Name Required | Description |
+|---|---|---|---|---|---|
+| `audit` | `check`, `verify` | Workflow Auditor | Low | No | Runs workspace structural checks and verification checks. |
+| `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
+| `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
+| `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |
+| `ingest` | `scan-notes`, `obsidian` | Knowledge Librarian | Medium | Yes | Recursively scans Obsidian vault notes (Read-Only). |
+| `daily-brief` | `daily`, `today` | Action Router | Low | No | Compiles daily briefs markdown file outputs. |
+| `sync-status` | `sync` | Knowledge Librarian | Medium | Yes | Backs up status pages and syncs Obsidian snapshots. |
+| `stage-write` | `stage`, `prepare-write` | Knowledge Librarian | Medium | Yes | Stages markdown briefs for approval. |
+| `approve-write` | `approve`, `write-to-vault` | Knowledge Librarian | High | Yes | Safely writes staged files into designated Obsidian subdirectories. |
+| `write-log` | `logs`, `write-history` | Workflow Auditor | Low | No | Reads and prints recent approved write history. |
+| `build` | `compile` | Build Operator | Low | No | Compiles TypeScript workspace. |
 
 ---
 
 ## 4. Execution Examples
 
-* Run local brief summary:
+* Run operational brief summary (accepts aliases):
   ```bash
   npm run command -- "brief"
   # or using alias:
   npm run command -- "report"
   ```
-* Run medium-risk scanner (requires exact command name):
+* Run medium-risk scanner (requires exact command name, alias blocked):
   ```bash
   npm run command -- "ingest"
+  ```
+* Execute high-risk vault write (requires exact name and confirmation flag):
+  ```bash
+  npm run command -- "approve-write" --confirm
   ```
 
 ---

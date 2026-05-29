@@ -49,6 +49,8 @@ Manage and execute operations using the following `task` commands:
 | `task stage-write` | `npm run stage-write` | Stage markdown files into `write_staging` |
 | `task approve-write` | `npm run approve-write` | Write staged files to safe Obsidian directory |
 | `task write-log` | `npm run write-log` | Display write history timeline and warnings |
+| `task command` | `npm run command -- <CLI_ARGS>` | Execute pre-approved CLI script via the safe command router |
+| `task command-help` | `npm run command-help` | Print registry of all allowed command router configurations |
 
 ---
 
@@ -67,23 +69,28 @@ All roles are documented and mapped to specific owned files in [AGENTS.md](file:
 
 ---
 
-## 🛠️ Phase 3C: Command Router
+## 🛠️ Phase 3D: Safe Command Router
 
-The **Command Router** provides a safe execution boundary that translates user inputs into strictly whitelisted commands without exposing the workspace to arbitrary shell execution.
+The **Safe Command Router** provides a safe execution boundary that translates user inputs into strictly whitelisted commands without exposing the workspace to arbitrary shell execution.
 
 ### 🛡️ Safety & Execution Rules
-1. **Zero Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn`.
-2. **Medium-Risk Aliases Lock:** Aliases for medium-risk actions (`ingest`, `sync-status`) are blocked. Users must explicitly specify the command name.
-3. **Execution History Logging:** All command results, raw inputs, and execution statuses are appended to markdown logs inside `outputs/command_logs/`.
+1. **Zero Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn` with `shell: false`. No `eval` or shell injection vectors exist.
+2. **Exact-Name Enforcement:** Pre-approved commands with `requiresExactName: true` (e.g. `ingest`, `sync-status`, `stage-write`, `approve-write`) block aliases. They must be typed exactly.
+3. **High-Risk Confirmation Block:** High-risk commands (e.g. `approve-write`) require the `--confirm` flag to run. Without it, execution is safely blocked.
+4. **Execution History Logging:** All command results, raw inputs, and execution statuses are appended to markdown logs inside `outputs/command_logs/`.
 
 ### 💻 Command Examples
 * Run operational brief summary (accepts aliases):
   ```bash
   npm run command -- "report"
   ```
-* Run medium-risk scanner (alias blocked, name required):
+* Run medium-risk scanner (requires exact command name, alias blocked):
   ```bash
   npm run command -- "ingest"
+  ```
+* Run high-risk approved write (requires exact name and confirmation flag):
+  ```bash
+  npm run command -- "approve-write" --confirm
   ```
 * View all registered router commands:
   ```bash

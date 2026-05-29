@@ -20,6 +20,7 @@ function writeCommandLog(
   rawInput: string,
   matchedCmd: CommandDefinition | null,
   aliasUsed: boolean,
+  confirmed: boolean,
   status: string,
   exitCode: number
 ) {
@@ -31,12 +32,13 @@ function writeCommandLog(
   const logFile = path.join(logDir, `command_log_${getFormattedDate()}.md`);
   const timestamp = new Date().toISOString();
 
-  let entry = `## [${timestamp}] Command: "${rawInput}"\n`;
+  let entry = `## [${timestamp}] Command Attempt: "${rawInput}"\n`;
   if (matchedCmd) {
     entry += `- **Matched Command:** \`${matchedCmd.name}\`\n`;
     entry += `- **Alias Used:** \`${aliasUsed}\`\n`;
     entry += `- **Owning Agent:** \`${matchedCmd.owningAgent}\`\n`;
     entry += `- **Risk Level:** \`${matchedCmd.riskLevel}\`\n`;
+    entry += `- **Confirmed:** \`${confirmed}\`\n`;
   } else {
     entry += `- **Matched Command:** \`None (Unknown Command)\`\n`;
   }
@@ -50,19 +52,30 @@ function writeCommandLog(
 function printAllowedCommands() {
   console.log("\n📋 Allowed commands are:");
   COMMAND_REGISTRY.forEach(c => {
-    console.log(`  - ${c.name} (Aliases: ${c.aliases.join(', ')})`);
+    console.log(`  - ${c.name} (Aliases: ${c.aliases.join(', ')}) [Risk: ${c.riskLevel.toUpperCase()}]`);
   });
 }
 
 function runCommand() {
   const args = process.argv.slice(2);
   const rawInput = args.join(' ');
-  const normalized = rawInput.toLowerCase().trim().replace(/\s+/g, ' ');
+
+  let hasConfirm = false;
+  const filteredArgs = args.map(arg => {
+    let cleaned = arg;
+    if (cleaned.includes('--confirm')) {
+      hasConfirm = true;
+      cleaned = cleaned.replace('--confirm', '');
+    }
+    return cleaned.trim();
+  }).filter(Boolean);
+
+  const normalized = filteredArgs.join(' ').toLowerCase().trim().replace(/\s+/g, ' ');
 
   if (!normalized) {
     console.error("❌ No command provided.");
     printAllowedCommands();
-    writeCommandLog('', null, false, 'Error: Empty input', 1);
+    writeCommandLog('', null, false, false, 'Error: Empty input', 1);
     process.exit(1);
   }
 
@@ -87,48 +100,55 @@ function runCommand() {
   if (!matchedCmd) {
     console.error(`❌ Unknown command: "${rawInput}"`);
     printAllowedCommands();
-    writeCommandLog(rawInput, null, false, 'Error: Unknown Command', 1);
+    writeCommandLog(rawInput, null, false, false, 'Error: Unknown Command', 1);
     process.exit(1);
   }
 
   // 2. Disabled Command
   if (!matchedCmd.enabled) {
     console.error(`❌ Command "${matchedCmd.name}" is currently disabled.`);
-    writeCommandLog(rawInput, matchedCmd, aliasUsed, 'Error: Command Disabled', 1);
+    writeCommandLog(rawInput, matchedCmd, aliasUsed, hasConfirm, 'Error: Command Disabled', 1);
     process.exit(1);
   }
 
-  // 3. Medium-risk check (Requires exact name, not alias)
-  if (matchedCmd.riskLevel === 'medium') {
-    console.log(`⚠️  Warning: "${matchedCmd.name}" is a MEDIUM-risk command (updates repository statuses / scans files).`);
-    if (aliasUsed) {
-      console.error(`❌ Blocked: Aliases are not allowed for medium-risk commands.`);
-      console.log(`💡 Guidance: To run this command, please type the command name exactly:`);
-      console.log(`   npm run command -- "${matchedCmd.name}"`);
-      writeCommandLog(rawInput, matchedCmd, aliasUsed, 'Blocked: Alias used on Medium Risk', 1);
-      process.exit(1);
-    }
+  // 3. Exact Name check
+  if (matchedCmd.requiresExactName && aliasUsed) {
+    console.error(`❌ Blocked: Command "${matchedCmd.name}" requires its exact name, aliases are forbidden.`);
+    console.log(`💡 Guidance: To execute this command, you must type it exactly:`);
+    console.log(`   npm run command -- "${matchedCmd.name}"`);
+    writeCommandLog(rawInput, matchedCmd, aliasUsed, hasConfirm, 'Blocked: Alias Used for Exact Name', 1);
+    process.exit(1);
   }
 
-  console.log(`📡 [${matchedCmd.owningAgent}] Executing: npm run ${matchedCmd.npmScript}...`);
+  // 4. High-risk confirmation check
+  if (matchedCmd.riskLevel === 'high' && !hasConfirm) {
+    console.error(`⚠️  Warning: "${matchedCmd.name}" is a HIGH-risk command (performs write actions on Vault directories).`);
+    console.error(`❌ Blocked: High-risk commands require explicit confirmation.`);
+    console.log(`💡 Guidance: To run this command, you must append the --confirm flag:`);
+    console.log(`   npm run command -- "${matchedCmd.name}" --confirm`);
+    writeCommandLog(rawInput, matchedCmd, aliasUsed, false, 'Blocked: Missing Confirmation Flag', 1);
+    process.exit(1);
+  }
 
-  // Execute npm script using child_process.spawn (No arbitrary shell)
-  // On MacOS, npm is executed directly as a shell wrapper script or binary
+  console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
+
+  // Execute using child_process.spawn with shell: false
   const child = spawn('npm', ['run', matchedCmd.npmScript], {
     cwd: REPO_ROOT,
-    stdio: 'inherit'
+    stdio: 'inherit',
+    shell: false
   });
 
   child.on('close', (code) => {
     const exitCode = code ?? 0;
     const status = exitCode === 0 ? 'Success' : 'Failed';
-    writeCommandLog(rawInput, matchedCmd!, aliasUsed, status, exitCode);
+    writeCommandLog(rawInput, matchedCmd!, aliasUsed, hasConfirm, status, exitCode);
     process.exit(exitCode);
   });
 
   child.on('error', (err) => {
     console.error(`❌ Execution error: ${err.message}`);
-    writeCommandLog(rawInput, matchedCmd!, aliasUsed, 'Execution Error', 1);
+    writeCommandLog(rawInput, matchedCmd!, aliasUsed, hasConfirm, 'Execution Error', 1);
     process.exit(1);
   });
 }

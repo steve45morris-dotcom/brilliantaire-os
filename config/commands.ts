@@ -7,6 +7,7 @@ export interface CommandDefinition {
   riskLevel: 'low' | 'medium' | 'high';
   outputType: string;
   enabled: boolean;
+  requiresExactName: boolean;
 }
 
 export const COMMAND_REGISTRY: CommandDefinition[] = [
@@ -18,7 +19,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Workflow Auditor',
     riskLevel: 'low',
     outputType: 'console',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'brief',
@@ -28,7 +30,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'OS Architect',
     riskLevel: 'low',
     outputType: 'console',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'next',
@@ -38,7 +41,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Action Router',
     riskLevel: 'low',
     outputType: 'console',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'agents',
@@ -48,7 +52,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'OS Architect',
     riskLevel: 'low',
     outputType: 'console',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'ingest',
@@ -58,7 +63,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',
-    enabled: true
+    enabled: true,
+    requiresExactName: true
   },
   {
     name: 'daily-brief',
@@ -68,7 +74,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Action Router',
     riskLevel: 'low',
     outputType: 'files',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'sync-status',
@@ -78,7 +85,41 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',
-    enabled: true
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stage-write',
+    aliases: ['stage', 'prepare-write'],
+    description: 'Stage markdown status reports to outputs/write_staging/',
+    npmScript: 'stage-write',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'approve-write',
+    aliases: ['approve', 'write-to-vault'],
+    description: 'Approve and execute safe write back into the active Obsidian vault (High Risk)',
+    npmScript: 'approve-write',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'write-log',
+    aliases: ['logs', 'write-history'],
+    description: 'Read and display recent write history timeline logs',
+    npmScript: 'write-log',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'build',
@@ -88,6 +129,7 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Build Operator',
     riskLevel: 'low',
     outputType: 'console',
-    enabled: true
+    enabled: true,
+    requiresExactName: false
   }
 ];
