@@ -59,7 +59,7 @@
     "The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))"
   ],
   "commandSummary": {
-    "totalCommands": 68,
+    "totalCommands": 89,
     "successfulCommands": 0,
     "blockedCommands": 0,
     "totalVoiceCommands": 0,
@@ -86,9 +86,9 @@
     "missingFilesCount": 0,
     "missingFilesList": []
   },
-  "latestSnapshotPath": "outputs/mesh_telemetry/snapshots/system_snapshot_2026-05-29_144805.md",
-  "latestTelemetryReportPath": "outputs/mesh_telemetry/reports/mesh_telemetry_report_2026-05-29_144807.md",
-  "latestSportyReportPath": "outputs/mesh_telemetry/reports/sporty_mesh_telemetry_2026-05-29_144702.md",
+  "latestSnapshotPath": "outputs/mesh_telemetry/snapshots/system_snapshot_2026-05-29_150237.md",
+  "latestTelemetryReportPath": "outputs/mesh_telemetry/reports/mesh_telemetry_report_2026-05-29_150239.md",
+  "latestSportyReportPath": "outputs/mesh_telemetry/reports/sporty_mesh_telemetry_2026-05-29_150155.md",
   "missingSignals": [],
-  "exportedAt": "2026-05-29T21:48:09.032Z"
+  "exportedAt": "2026-05-29T22:02:40.922Z"
 }

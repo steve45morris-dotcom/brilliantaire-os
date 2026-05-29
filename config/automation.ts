@@ -5,6 +5,7 @@ export interface AutomationRoutine {
   owningAgent: string;
   riskLevel: 'low' | 'medium' | 'high';
   enabled: boolean;
+  stopOnFailure: boolean;
 }
 
 export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
@@ -21,7 +22,8 @@ export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
     ],
     owningAgent: 'Workflow Auditor',
     riskLevel: 'low',
-    enabled: true
+    enabled: true,
+    stopOnFailure: true
   },
   {
     name: 'campaign-check',
@@ -31,9 +33,10 @@ export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
       'mesh-telemetry campaign sporty',
       'dashboard-export'
     ],
-    owningAgent: 'Workflow Auditor',
+    owningAgent: 'Creative Revenue Strategist',
     riskLevel: 'low',
-    enabled: true
+    enabled: true,
+    stopOnFailure: true
   },
   {
     name: 'voice-check',
@@ -45,6 +48,7 @@ export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
     ],
     owningAgent: 'Workflow Auditor',
     riskLevel: 'low',
-    enabled: true
+    enabled: true,
+    stopOnFailure: true
   }
 ];

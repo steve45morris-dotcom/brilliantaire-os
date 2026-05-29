@@ -23,6 +23,7 @@ function printAutomationHelp() {
     console.log(`     Owning Agent: ${r.owningAgent}`);
     console.log(`     Risk Level:   ${r.riskLevel.toUpperCase()}`);
     console.log(`     Status:       ${r.enabled ? '🟢 ENABLED' : '🔴 DISABLED'}`);
+    console.log(`     Command Count: ${r.commands.length}`);
     console.log(`     Commands:     ${r.commands.map(c => `\`${c}\``).join(', ')}`);
     console.log("");
   });

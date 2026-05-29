@@ -95,7 +95,9 @@ async function runRoutine(routine: AutomationRoutine) {
       passedCount++;
     } else {
       failedCount++;
-      hasCriticalFailure = true; // Stop on critical failure as required
+      if (routine.stopOnFailure) {
+        hasCriticalFailure = true;
+      }
     }
 
     const entry = runTemplate

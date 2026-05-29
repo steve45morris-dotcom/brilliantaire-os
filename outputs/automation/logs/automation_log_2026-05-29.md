@@ -112,3 +112,111 @@
 
 ---
 
+## [2026-05-29T22:01:28.007Z] Routine: daily-check | Command: "audit"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:29.680Z] Routine: daily-check | Command: "brief"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:31.261Z] Routine: daily-check | Command: "next"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:32.837Z] Routine: daily-check | Command: "mesh-telemetry snapshot"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:34.427Z] Routine: daily-check | Command: "mesh-telemetry report"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:36.026Z] Routine: daily-check | Command: "dashboard-export"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:52.157Z] Routine: campaign-check | Command: "campaign-simulate status sporty"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:53.765Z] Routine: campaign-check | Command: "mesh-telemetry campaign sporty"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:01:55.341Z] Routine: campaign-check | Command: "dashboard-export"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:06.422Z] Routine: voice-check | Command: "voice-pending"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:07.992Z] Routine: voice-check | Command: "mesh-telemetry report"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:09.569Z] Routine: voice-check | Command: "dashboard-export"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:31.471Z] Routine: daily-check | Command: "audit"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:33.113Z] Routine: daily-check | Command: "brief"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:34.679Z] Routine: daily-check | Command: "next"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:36.243Z] Routine: daily-check | Command: "mesh-telemetry snapshot"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:37.819Z] Routine: daily-check | Command: "mesh-telemetry report"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
+## [2026-05-29T22:02:39.394Z] Routine: daily-check | Command: "dashboard-export"
+- Result: `Success`
+- Exit Code: `0`
+
+---
+
