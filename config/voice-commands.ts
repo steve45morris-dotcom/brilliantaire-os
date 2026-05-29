@@ -98,5 +98,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'medium',
     requiresConfirmation: true,
     enabled: true
+  },
+  {
+    phrase: 'create sporty street script',
+    normalizedCommand: 'create sporty street script',
+    routerCommand: 'campaign street-script sporty',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    requiresConfirmation: true,
+    enabled: true
+  },
+  {
+    phrase: 'create sporty checklist',
+    normalizedCommand: 'create sporty checklist',
+    routerCommand: 'campaign checklist sporty',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    requiresConfirmation: true,
+    enabled: true
   }
 ];

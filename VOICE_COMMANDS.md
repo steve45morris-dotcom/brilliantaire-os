@@ -39,13 +39,15 @@ The active voice phrases are defined in [config/voice-commands.ts](file:///Users
 | `approve write` | `approve write` | `approve-write` | Knowledge Librarian | High | Yes |
 | `create sporty brief` | `create sporty brief` | `campaign brief sporty` | Creative Revenue Strategist | Medium | Yes |
 | `create sporty calendar` | `create sporty calendar` | `campaign calendar sporty` | Creative Revenue Strategist | Medium | Yes |
+| `create sporty street script` | `create sporty street script` | `campaign street-script sporty` | Creative Revenue Strategist | Medium | Yes |
+| `create sporty checklist` | `create sporty checklist` | `campaign checklist sporty` | Creative Revenue Strategist | Medium | Yes |
 
 ---
 
 ## 4. Safety & Confirmation Rules
 
 * **Risk Level Limits:** Only **LOW** risk commands that do not require confirmation can run automatically via queue execution.
-* **Confirmation Gate:** Any command flagged with `requiresConfirmation: true` is blocked from automatic run. The processing script will reject it, move the command file to `voice_queue/rejected/`, and output the exact command needed to run it manually.
+* **Confirmation Gate:** Any command flagged with `requiresConfirmation: true` is blocked from automatic run. The processing script will hold it, move the command file to `voice_queue/pending_confirmation/`, and output the exact command needed to run it manually.
 * **Normalization Logic:** Punctuation is stripped, whitespaces are trimmed, characters are lowercased, and duplicate spaces are collapsed to ensure robust matching.
 
 ---

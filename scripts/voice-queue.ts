@@ -22,6 +22,7 @@ function writeVoiceLog(
   normalizedPhrase: string,
   matchedPhrase: string,
   routerCommand: string,
+  owningAgent: string,
   riskLevel: string,
   confirmRequired: boolean,
   status: string,
@@ -40,6 +41,7 @@ function writeVoiceLog(
   entry += `- **Normalized Phrase:** \`${normalizedPhrase}\`\n`;
   entry += `- **Matched Phrase:** \`${matchedPhrase || 'None'}\`\n`;
   entry += `- **Router Command:** \`${routerCommand || 'None'}\`\n`;
+  entry += `- **Owning Agent:** \`${owningAgent || 'None'}\`\n`;
   entry += `- **Risk Level:** \`${riskLevel || 'None'}\`\n`;
   entry += `- **Confirmation Required:** \`${confirmRequired}\`\n`;
   entry += `- **Result Status:** \`${status}\`\n`;
@@ -82,10 +84,11 @@ async function processQueue() {
   const inboxDir = path.join(baseDir, 'inbox');
   const processedDir = path.join(baseDir, 'processed');
   const rejectedDir = path.join(baseDir, 'rejected');
+  const pendingDir = path.join(baseDir, 'pending_confirmation');
   const logsDir = path.join(baseDir, 'logs');
 
   // Ensure directories exist
-  [baseDir, inboxDir, processedDir, rejectedDir, logsDir].forEach(d => {
+  [baseDir, inboxDir, processedDir, rejectedDir, pendingDir, logsDir].forEach(d => {
     if (!fs.existsSync(d)) {
       fs.mkdirSync(d, { recursive: true });
     }
@@ -126,7 +129,7 @@ async function processQueue() {
         `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Rejected\nReason: ${reason}\n`
       );
       fs.unlinkSync(filePath);
-      writeVoiceLog(file, rawContent.trim(), normalized, '', '', '', false, `Rejected: ${reason}`, 1);
+      writeVoiceLog(file, rawContent.trim(), normalized, '', '', '', '', false, `Rejected: ${reason}`, 1);
       continue;
     }
 
@@ -145,6 +148,7 @@ async function processQueue() {
         normalized,
         match.phrase,
         match.routerCommand,
+        match.owningAgent,
         match.riskLevel,
         match.requiresConfirmation,
         `Rejected: ${reason}`,
@@ -157,9 +161,9 @@ async function processQueue() {
       console.warn(`⚠️  Blocked: Voice phrase "${match.phrase}" requires manual confirmation due to ${match.riskLevel.toUpperCase()} risk.`);
       const reason = 'Blocked: Manual confirmation required';
       const guidance = `To execute this command, please run manually:\n  npm run command -- "${match.routerCommand}"`;
-      const rejectedPath = path.join(rejectedDir, file);
+      const pendingPath = path.join(pendingDir, file);
       fs.writeFileSync(
-        rejectedPath,
+        pendingPath,
         `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Blocked\nReason: ${reason}\nGuidance: ${guidance}\n`
       );
       fs.unlinkSync(filePath);
@@ -169,6 +173,7 @@ async function processQueue() {
         normalized,
         match.phrase,
         match.routerCommand,
+        match.owningAgent,
         match.riskLevel,
         match.requiresConfirmation,
         reason,
@@ -194,6 +199,7 @@ async function processQueue() {
       normalized,
       match.phrase,
       match.routerCommand,
+      match.owningAgent,
       match.riskLevel,
       match.requiresConfirmation,
       status,

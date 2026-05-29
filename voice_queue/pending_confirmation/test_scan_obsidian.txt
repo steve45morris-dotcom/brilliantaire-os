@@ -1,0 +1,7 @@
+Original Phrase: scan obsidian
+
+Normalized: scan obsidian
+Status: Blocked
+Reason: Blocked: Manual confirmation required
+Guidance: To execute this command, please run manually:
+  npm run command -- "ingest"
