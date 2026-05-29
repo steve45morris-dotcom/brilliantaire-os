@@ -196,6 +196,10 @@ All telemetry and compiler runs output to the local `outputs/` and `voice_queue/
   * `voice_input/live_sessions/` - Archive folders storing successfully imported live ASR transcripts.
   * `voice_input/live_logs/rejected/` - Direct storage of validation rejected files.
   * `outputs/live_asr_logs/live_asr_log_YYYY-MM-DD.md` - Chronological import audit logs.
+* **Campaign Scheduler Outputs:**
+  * `outputs/campaigns/schedules/` - Staged 21-day timeline schedules.
+  * `outputs/campaigns/posting_queue/` - Daily posting queue scripts.
+  * `outputs/campaigns/execution_logs/` - Verification posting sheets.
 
 ---
 
@@ -253,8 +257,38 @@ The **Live Microphone ASR Bridge** is the ingestion adapter for live ASR output 
 
 ---
 
+## 📅 Phase 6A: Campaign Scheduler Draft Engine
+
+The **Campaign Scheduler Draft Engine** converts compiled campaign templates and briefs into local platform timelines, daily queues, and manual execution tracking sheets.
+
+### 🛡️ Safety & Operations Rules
+1. **Zero Live Publishing:** Strictly offline local compilation. No connection is made to platform API keys.
+2. **Decoupled Processing:** Output scripts stage posting queues for human review.
+3. **Safety Locks:** Built-in safeguards check file conflicts and preserve state via timestamp suffixing.
+
+### 💻 Command Examples
+* View Campaign Scheduler help menu:
+  ```bash
+  npm run command -- "campaign-scheduler-help"
+  ```
+* Compile 21-day Sporty rollout timeline (requires exact command name):
+  ```bash
+  npm run command -- "campaign-scheduler create sporty"
+  ```
+* Generate daily posting queue (requires exact command name):
+  ```bash
+  npm run command -- "campaign-scheduler queue sporty"
+  ```
+* Check current campaign schedule statuses:
+  ```bash
+  npm run command -- "campaign-scheduler status sporty"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 6A: Campaign Automation & Mesh Telemetry**
-  * Transition from static asset compilation to safe scheduling and telemetry checks across social media mock hubs.
+* **Phase 6B: Campaign Simulation & Mesh Validation**
+  * Execute offline simulation loops to check posting queue consistency, calculate timing blocks, and validate CTA metadata integrity.
+
 
 

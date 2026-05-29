@@ -50,6 +50,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `live-asr-import` | `import voice`, `import asr` | Build Operator | Medium | Yes | Import raw live transcripts from voice_input/live into manual staging. |
 | `live-asr-test` | `asr test`, `microphone test` | Workflow Auditor | Low | No | Generate mock ASR transcript inputs under voice_input/live. |
 | `live-asr-record` | `record voice`, `microphone record` | Build Operator | Medium | Yes | Microphone recording interface info and staging parameters. |
+| `campaign-scheduler-help` | `scheduler help`, `posting help` | Creative Revenue Strategist | Low | No | Print campaign scheduler available tasks and parameters. |
+| `campaign-scheduler` | `scheduler`, `posting queue` | Creative Revenue Strategist | Medium | Yes | Run campaign scheduler draft tasks (create, queue, log, status). |
 
 ---
 

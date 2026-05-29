@@ -34,7 +34,9 @@
     "live-asr-help": "tsx scripts/live-asr-help.ts",
     "live-asr-record": "tsx scripts/live-asr-record.ts",
     "live-asr-import": "tsx scripts/live-asr-import.ts",
-    "live-asr-test": "tsx scripts/live-asr-test.ts"
+    "live-asr-test": "tsx scripts/live-asr-test.ts",
+    "campaign-scheduler": "tsx scripts/campaign-scheduler.ts",
+    "campaign-scheduler-help": "tsx scripts/campaign-scheduler-help.ts"
   },
   "keywords": [
     "antigravity",

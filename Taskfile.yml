@@ -141,6 +141,17 @@ tasks:
     cmds:
       - npm run live-asr-test
 
+  campaign-scheduler-help:
+    desc: "Print campaign scheduler available tasks and parameters"
+    cmds:
+      - npm run campaign-scheduler-help
+
+  campaign-scheduler:
+    desc: "Run campaign scheduler draft tasks (create, queue, log, status)"
+    cmds:
+      - npm run campaign-scheduler -- {{.CLI_ARGS}}
+
+
 
   validate:
     desc: "Lint and run workspace checks"

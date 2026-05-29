@@ -285,5 +285,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'campaign-scheduler-help',
+    aliases: ['scheduler help', 'posting help'],
+    description: 'Print campaign scheduler available tasks and parameters',
+    npmScript: 'campaign-scheduler-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'campaign-scheduler',
+    aliases: ['scheduler', 'posting queue'],
+    description: 'Run campaign scheduler draft tasks (create, queue, log, status)',
+    npmScript: 'campaign-scheduler',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

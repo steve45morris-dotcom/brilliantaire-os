@@ -44,7 +44,15 @@
 - [x] Test low-risk transcript execution through full chain
 - [x] Test medium-risk transcript pending confirmation
 - [x] Test unknown transcript rejection
-- [ ] Prepare optional live recorder only after import bridge passes
+- [x] Prepare optional live recorder only after import bridge passes
+- [x] Build campaign scheduler draft engine
+- [x] Generate Sporty 21-day schedule
+- [x] Generate Sporty posting queue
+- [x] Generate Sporty execution log
+- [x] Review schedule outputs
+- [ ] Prepare mesh telemetry after scheduler passes
+
+
 
 
 

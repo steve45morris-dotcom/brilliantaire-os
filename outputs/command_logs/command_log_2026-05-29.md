@@ -409,3 +409,36 @@
 
 ---
 
+## [2026-05-29T19:23:06.353Z] Command Attempt: "campaign-scheduler-help"
+- **Matched Command:** `campaign-scheduler-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T19:23:23.233Z] Command Attempt: "campaign-scheduler"
+- **Matched Command:** `campaign-scheduler`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T20:33:20.640Z] Command Attempt: "scheduler"
+- **Matched Command:** `campaign-scheduler`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
