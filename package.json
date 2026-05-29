@@ -8,7 +8,10 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "audit": "tsx scripts/audit.ts",
+    "brief": "tsx scripts/brief.ts",
+    "next": "tsx scripts/next.ts"
   },
   "keywords": [
     "antigravity",
@@ -19,6 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.0",
+    "tsx": "^4.22.3",
     "typescript": "^5.3.3",
     "vitest": "^1.2.0"
   }

@@ -11,6 +11,21 @@ tasks:
     cmds:
       - npm run build
 
+  audit:
+    desc: "Run self-audit checks"
+    cmds:
+      - npm run audit
+
+  brief:
+    desc: "Generate operational brief"
+    cmds:
+      - npm run brief
+
+  next:
+    desc: "Print ranked next actions"
+    cmds:
+      - npm run next
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
