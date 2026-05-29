@@ -354,11 +354,31 @@ The **Safe Mesh Telemetry Logger** aggregates command history, voice confirmatio
 
 ---
 
+## 📊 Phase 7B: Lightweight Local Dashboard
+
+The **Lightweight Local Dashboard** compiles static status lists and telemetry logs into a read-only Vite React TypeScript client application.
+
+### 🛡️ Safety & Dashboard Rules
+1. **Strictly Read-Only:** The dashboard operates 100% on statically exported JSON logs. No execution controls or database mutations exist in the UI.
+2. **Offline Boundaries:** Runs entirely locally; does not invoke external metrics APIs.
+3. **Double Isolation:** All command tasks are triggered strictly via CLI command router steps.
+
+### 💻 Command Examples
+* Export current telemetry variables to JSON (via safe router):
+  ```bash
+  npm run command -- "dashboard-export"
+  ```
+* Compile Vite static production bundle (via safe router):
+  ```bash
+  npm run command -- "dashboard-build"
+  ```
+* Spin up local Vite preview/development server:
+  ```bash
+  npm run dashboard:dev
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 7B: Lightweight Local Dashboard**
-  * Establish a safe local web interface built on top of the static reports generated under `outputs/mesh_telemetry/` to visualize campaign readiness and execution logs.
-
-
-
-
-
+* **Phase 8A: Autonomous Post-Release Verification**
+  - Implement automated sanity loops checking production artifacts after campaigns launch.```

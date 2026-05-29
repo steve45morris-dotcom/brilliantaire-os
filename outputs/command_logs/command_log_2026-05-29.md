@@ -508,3 +508,25 @@
 
 ---
 
+## [2026-05-29T21:30:35.134Z] Command Attempt: "dashboard-export"
+- **Matched Command:** `dashboard-export`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:30:56.710Z] Command Attempt: "dashboard-build"
+- **Matched Command:** `dashboard-build`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

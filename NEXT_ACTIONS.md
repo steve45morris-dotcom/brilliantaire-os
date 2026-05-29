@@ -57,12 +57,18 @@
 - [x] Review readiness score
 - [x] Fix missing campaign fields if needed
 - [x] Prepare mesh telemetry logger after validation passes
-- [ ] Build safe mesh telemetry logger
-- [ ] Generate system snapshot
-- [ ] Generate unified telemetry report
-- [ ] Generate Sporty campaign telemetry
-- [ ] Review missing log families
-- [ ] Prepare lightweight dashboard only after telemetry passes
+- [x] Build safe mesh telemetry logger
+- [x] Generate system snapshot
+- [x] Generate unified telemetry report
+- [x] Generate Sporty campaign telemetry
+- [x] Review missing log families
+- [x] Prepare lightweight dashboard only after telemetry passes
+- [ ] Build lightweight local dashboard
+- [ ] Export dashboard data
+- [ ] Build dashboard
+- [ ] Review dashboard cards
+- [ ] Confirm dashboard is read-only
+- [ ] Prepare automation only after dashboard passes
 
 
 

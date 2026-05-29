@@ -56,6 +56,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `campaign-simulate` | `simulate campaign`, `validate campaign` | Workflow Auditor | Medium | Yes | Run campaign simulation audits (sporty, validate sporty, status sporty). |
 | `mesh-telemetry-help` | `telemetry help`, `mesh help` | Workflow Auditor | Low | No | Print mesh telemetry available tasks and parameters. |
 | `mesh-telemetry` | `telemetry`, `mesh` | Workflow Auditor | Medium | Yes | Run system mesh telemetry logging (snapshot, report, campaign sporty, status). |
+| `dashboard-export` | `export dashboard`, `dashboard data` | Workflow Auditor | Low | No | Export system status and telemetry metrics to JSON. |
+| `dashboard-build` | `build dashboard` | Build Operator | Low | No | Compile the static Vite dashboard production bundle. |
 
 ---
 

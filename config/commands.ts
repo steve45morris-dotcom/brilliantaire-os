@@ -351,5 +351,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'dashboard-export',
+    aliases: ['export dashboard', 'dashboard data'],
+    description: 'Export system statuses and log metrics to public/dashboard-data.json',
+    npmScript: 'dashboard:export',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'dashboard-build',
+    aliases: ['build dashboard'],
+    description: 'Compile the Vite dashboard production build',
+    npmScript: 'dashboard:build',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
   }
 ];

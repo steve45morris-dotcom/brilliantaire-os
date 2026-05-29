@@ -171,6 +171,16 @@ tasks:
     cmds:
       - npm run mesh-telemetry -- {{.CLI_ARGS}}
 
+  dashboard-export:
+    desc: "Export system statuses and telemetry metrics to dashboard JSON"
+    cmds:
+      - npm run dashboard:export
+
+  dashboard-build:
+    desc: "Compile the Vite dashboard production build"
+    cmds:
+      - npm run dashboard:build
+
 
 
 

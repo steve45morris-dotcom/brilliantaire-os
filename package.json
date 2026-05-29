@@ -40,7 +40,10 @@
     "campaign-simulate": "tsx scripts/campaign-simulate.ts",
     "campaign-simulate-help": "tsx scripts/campaign-simulate-help.ts",
     "mesh-telemetry": "tsx scripts/mesh-telemetry.ts",
-    "mesh-telemetry-help": "tsx scripts/mesh-telemetry-help.ts"
+    "mesh-telemetry-help": "tsx scripts/mesh-telemetry-help.ts",
+    "dashboard:export": "tsx scripts/export-dashboard-data.ts",
+    "dashboard:dev": "cd dashboard && npm run dev",
+    "dashboard:build": "cd dashboard && npm run build"
   },
   "keywords": [
     "antigravity",
