@@ -1,0 +1,32 @@
+version: '3'
+
+tasks:
+  init:
+    desc: "Install dependencies"
+    cmds:
+      - npm install
+
+  build:
+    desc: "Compile TypeScript sources"
+    cmds:
+      - npm run build
+
+  validate:
+    desc: "Lint and run workspace checks"
+    cmds:
+      - npm run lint
+
+  test:
+    desc: "Run test suite"
+    cmds:
+      - npm run test
+
+  voice:intent:
+    desc: "Announce tactical intent via Voice Narrative Protocol"
+    cmds:
+      - bash /Users/alexanderanthony/.agents/voice_narrative.sh "{{.MSG}}"
+
+  voice:done:
+    desc: "Announce completion via Voice Narrative Protocol"
+    cmds:
+      - bash -c 'source /Users/alexanderanthony/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
