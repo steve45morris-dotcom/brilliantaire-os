@@ -54,6 +54,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `campaign-scheduler` | `scheduler`, `posting queue` | Creative Revenue Strategist | Medium | Yes | Run campaign scheduler draft tasks (create, queue, log, status). |
 | `campaign-simulate-help` | `simulation help`, `campaign validation help` | Workflow Auditor | Low | No | Print campaign simulation available tasks and parameters. |
 | `campaign-simulate` | `simulate campaign`, `validate campaign` | Workflow Auditor | Medium | Yes | Run campaign simulation audits (sporty, validate sporty, status sporty). |
+| `mesh-telemetry-help` | `telemetry help`, `mesh help` | Workflow Auditor | Low | No | Print mesh telemetry available tasks and parameters. |
+| `mesh-telemetry` | `telemetry`, `mesh` | Workflow Auditor | Medium | Yes | Run system mesh telemetry logging (snapshot, report, campaign sporty, status). |
 
 ---
 

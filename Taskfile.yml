@@ -161,6 +161,17 @@ tasks:
     cmds:
       - npm run campaign-simulate -- {{.CLI_ARGS}}
 
+  mesh-telemetry-help:
+    desc: "Print mesh telemetry available tasks and parameters"
+    cmds:
+      - npm run mesh-telemetry-help
+
+  mesh-telemetry:
+    desc: "Run system mesh telemetry logging (snapshot, report, campaign sporty, status)"
+    cmds:
+      - npm run mesh-telemetry -- {{.CLI_ARGS}}
+
+
 
 
 

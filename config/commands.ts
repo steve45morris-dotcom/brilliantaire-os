@@ -329,5 +329,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'mesh-telemetry-help',
+    aliases: ['telemetry help', 'mesh help'],
+    description: 'Print mesh telemetry available tasks and parameters',
+    npmScript: 'mesh-telemetry-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'mesh-telemetry',
+    aliases: ['telemetry', 'mesh'],
+    description: 'Run system mesh telemetry logging (snapshot, report, campaign sporty, status)',
+    npmScript: 'mesh-telemetry',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

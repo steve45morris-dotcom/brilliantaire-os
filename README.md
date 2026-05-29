@@ -203,6 +203,9 @@ All telemetry and compiler runs output to the local `outputs/` and `voice_queue/
 * **Campaign Simulation & Validation Outputs:**
   * `outputs/campaigns/simulations/` - Campaign simulation reports.
   * `outputs/campaigns/validation_reports/` - Validation audit reports.
+* **Mesh Telemetry Outputs:**
+  * `outputs/mesh_telemetry/snapshots/` - System configuration snapshots.
+  * `outputs/mesh_telemetry/reports/` - Unified system telemetry reports and campaign specific metric sheets.
 
 ---
 
@@ -318,9 +321,43 @@ The **Campaign Simulation & Mesh Validation Engine** runs auditing checks agains
 
 ---
 
+## 📊 Phase 7A: Safe Mesh Telemetry Logger
+
+The **Safe Mesh Telemetry Logger** aggregates command history, voice confirmations, simulation audits, and approved write counts into unified telemetry logs.
+
+### 🛡️ Safety & Telemetry Rules
+1. **Completely Local:** Never uploads or broadcasts logs over networks.
+2. **Read-Only Operations:** Performs audit operations non-destructively.
+3. **Verification locks:** Preserves historical telemetry reports using timestamp suffix protections.
+
+### 💻 Command Examples
+* View Telemetry help menu:
+  ```bash
+  npm run command -- "mesh-telemetry-help"
+  ```
+* Compile current system capabilities snapshot (requires exact command name):
+  ```bash
+  npm run command -- "mesh-telemetry snapshot"
+  ```
+* Generate unified system telemetry metrics (requires exact command name):
+  ```bash
+  npm run command -- "mesh-telemetry report"
+  ```
+* Generate campaign specific metrics for the Sporty Single (requires exact command name):
+  ```bash
+  npm run command -- "mesh-telemetry campaign sporty"
+  ```
+* Check latest telemetry statuses:
+  ```bash
+  npm run command -- "mesh-telemetry status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 7A: Safe Mesh Telemetry Logger**
-  * Establish local simulation listeners that log mock campaign execution telemetry and verify asset storage path constraints.
+* **Phase 7B: Lightweight Local Dashboard**
+  * Establish a safe local web interface built on top of the static reports generated under `outputs/mesh_telemetry/` to visualize campaign readiness and execution logs.
+
 
 
 

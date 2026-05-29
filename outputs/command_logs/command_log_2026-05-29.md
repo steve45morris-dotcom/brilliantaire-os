@@ -475,3 +475,36 @@
 
 ---
 
+## [2026-05-29T21:17:57.513Z] Command Attempt: "mesh-telemetry-help"
+- **Matched Command:** `mesh-telemetry-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:18:06.117Z] Command Attempt: "mesh-telemetry"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T21:18:12.180Z] Command Attempt: "telemetry"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `true`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

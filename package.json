@@ -38,7 +38,9 @@
     "campaign-scheduler": "tsx scripts/campaign-scheduler.ts",
     "campaign-scheduler-help": "tsx scripts/campaign-scheduler-help.ts",
     "campaign-simulate": "tsx scripts/campaign-simulate.ts",
-    "campaign-simulate-help": "tsx scripts/campaign-simulate-help.ts"
+    "campaign-simulate-help": "tsx scripts/campaign-simulate-help.ts",
+    "mesh-telemetry": "tsx scripts/mesh-telemetry.ts",
+    "mesh-telemetry-help": "tsx scripts/mesh-telemetry-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -56,7 +56,13 @@
 - [x] Run Sporty validation report
 - [x] Review readiness score
 - [x] Fix missing campaign fields if needed
-- [ ] Prepare mesh telemetry logger after validation passes
+- [x] Prepare mesh telemetry logger after validation passes
+- [ ] Build safe mesh telemetry logger
+- [ ] Generate system snapshot
+- [ ] Generate unified telemetry report
+- [ ] Generate Sporty campaign telemetry
+- [ ] Review missing log families
+- [ ] Prepare lightweight dashboard only after telemetry passes
 
 
 
