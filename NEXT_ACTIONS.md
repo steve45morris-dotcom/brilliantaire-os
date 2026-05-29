@@ -39,7 +39,14 @@
 - [x] Test low-risk transcript execution through queue
 - [x] Test medium-risk transcript pending confirmation
 - [x] Test unknown transcript rejection
-- [ ] Prepare live microphone capture only after transcript producer passes
+- [x] Build Live Microphone ASR Bridge
+- [x] Test live ASR transcript import
+- [x] Test low-risk transcript execution through full chain
+- [x] Test medium-risk transcript pending confirmation
+- [x] Test unknown transcript rejection
+- [ ] Prepare optional live recorder only after import bridge passes
+
+
 
 
 

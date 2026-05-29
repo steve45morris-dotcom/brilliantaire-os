@@ -22,3 +22,27 @@
 
 ---
 
+## [2026-05-29T18:24:18.637Z] VibeVoice Transcript Ingested: "live_create_sporty_street_script.txt"
+- **Staged Command File:** `vibevoice_2026-05-29_112418.txt`
+- **Raw Phrase:** `create sporty street script`
+- **Length:** `27` characters
+- **Status:** `Staged`
+
+---
+
+## [2026-05-29T18:24:18.642Z] VibeVoice Transcript Ingested: "live_show_daily_brief.txt"
+- **Staged Command File:** `vibevoice_2026-05-29_112418_1.txt`
+- **Raw Phrase:** `show daily brief`
+- **Length:** `16` characters
+- **Status:** `Staged`
+
+---
+
+## [2026-05-29T18:24:18.646Z] VibeVoice Transcript Ingested: "live_unknown_delete.txt"
+- **Staged Command File:** `vibevoice_2026-05-29_112418_2.txt`
+- **Raw Phrase:** `delete everything now`
+- **Length:** `21` characters
+- **Status:** `Staged`
+
+---
+

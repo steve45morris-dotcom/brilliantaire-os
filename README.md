@@ -192,6 +192,10 @@ All telemetry and compiler runs output to the local `outputs/` and `voice_queue/
 * **VibeVoice Ingestion Outputs:**
   * `voice_input/transcripts/` - Local backup archive of successfully ingested raw text transcripts.
   * `outputs/vibevoice_logs/vibevoice_log_YYYY-MM-DD.md` - Ingest log tracking staged and rejected files.
+* **Live ASR Bridge Outputs:**
+  * `voice_input/live_sessions/` - Archive folders storing successfully imported live ASR transcripts.
+  * `voice_input/live_logs/rejected/` - Direct storage of validation rejected files.
+  * `outputs/live_asr_logs/live_asr_log_YYYY-MM-DD.md` - Chronological import audit logs.
 
 ---
 
@@ -220,7 +224,37 @@ The **VibeVoice Transcript Producer** serves as the ingestion bridge that stages
 
 ---
 
+## 🎙️ Phase 5B: Live Microphone ASR Bridge
+
+The **Live Microphone ASR Bridge** is the ingestion adapter for live ASR output text, enforcing validation checks before moving them into the VibeVoice queue pipeline.
+
+### 🛡️ Safety & Flow Rules
+1. **No Microphone Direct execution:** Audio feeds do not execute OS commands directly.
+2. **Decoupled Imports:** Imports transcript `.txt` files from `voice_input/live/` into `voice_input/manual/` for review.
+3. **Strict Validation:** Empty or overly long inputs (> 500 characters) are rejected and stored under `voice_input/live_logs/rejected/`.
+
+### 💻 Command Examples
+* View Live ASR safety guide:
+  ```bash
+  npm run command -- "live-asr-help"
+  ```
+* Import valid transcripts from live directory (requires exact command name):
+  ```bash
+  npm run command -- "live-asr-import"
+  ```
+* Prepare test transcripts under live folder:
+  ```bash
+  npm run command -- "live-asr-test"
+  ```
+* Check recording device interface info (requires exact command name):
+  ```bash
+  npm run command -- "live-asr-record"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 5B: Live Microphone ASR Bridge (VibeVoice Bridge)**
-  * Establish the hands-free audio scanner daemon script that streams local microphone inputs, processes Whisper speech-to-text transcripts, and writes command scripts to the queue secure inbox.
+* **Phase 6A: Campaign Automation & Mesh Telemetry**
+  * Transition from static asset compilation to safe scheduling and telemetry checks across social media mock hubs.
+
 

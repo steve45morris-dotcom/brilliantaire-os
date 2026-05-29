@@ -2,7 +2,7 @@
 
 ## 🛠️ System Status
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 5A: VibeVoice Transcript Producer
+- **Current Phase:** Phase 5B: Live Microphone ASR Bridge
 - **Status:** Operational
 
 ## 📂 Active Projects

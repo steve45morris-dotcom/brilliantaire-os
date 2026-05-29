@@ -121,6 +121,27 @@ tasks:
     cmds:
       - npm run vibevoice-test
 
+  live-asr-help:
+    desc: "Print Live ASR safety menus and command flow"
+    cmds:
+      - npm run live-asr-help
+
+  live-asr-record:
+    desc: "Microphone recording interface info and staging parameters"
+    cmds:
+      - npm run live-asr-record
+
+  live-asr-import:
+    desc: "Import raw live transcripts from voice_input/live into manual staging"
+    cmds:
+      - npm run live-asr-import
+
+  live-asr-test:
+    desc: "Generate mock ASR transcript inputs under voice_input/live"
+    cmds:
+      - npm run live-asr-test
+
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

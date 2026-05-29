@@ -46,6 +46,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `vibevoice-help` | `vibe help`, `voice bridge help` | Build Operator | Low | No | Prints VibeVoice transcript bridge safety menus. |
 | `vibevoice-transcript` | `transcribe voice`, `voice transcript` | Build Operator | Medium | Yes | Scan and ingest manual transcripts into queue inbox. |
 | `vibevoice-test` | `voice test` | Workflow Auditor | Low | No | Generate sample test files under manual voice input. |
+| `live-asr-help` | `asr help`, `microphone help` | Build Operator | Low | No | Print Live ASR safety menus and command flow. |
+| `live-asr-import` | `import voice`, `import asr` | Build Operator | Medium | Yes | Import raw live transcripts from voice_input/live into manual staging. |
+| `live-asr-test` | `asr test`, `microphone test` | Workflow Auditor | Low | No | Generate mock ASR transcript inputs under voice_input/live. |
+| `live-asr-record` | `record voice`, `microphone record` | Build Operator | Medium | Yes | Microphone recording interface info and staging parameters. |
 
 ---
 

@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 5A: VibeVoice Transcript Producer
+- **Current Phase:** Phase 5B: Live Microphone ASR Bridge
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -21,17 +21,19 @@
 - **Voice Command Queue:** Safely parses, validates, and dispatches normalized voice phrases to Command Router scripts via an inbox directory.
 - **Voice Confirmation Layer:** Enforces manual review and release via voice-confirm and voice-deny gates for higher-risk pending commands.
 - **VibeVoice Transcript Producer:** Decoupled plain text voice command bridge staging with empty/length checks and local backup archiving.
+- **Live Microphone ASR Bridge:** Import, validate, and parse raw live voice transcripts safely into manual staging buffers.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
-- **VibeVoice Live Microphone Bridge:** Real-time audio streaming bridge.
+- **Live Microphone Audio Streamer:** Safe real-time stream capturing background daemon.
 
 ## ⚠️ Current Risks
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 5B: Live Microphone ASR Bridge**
+- **Phase 6A: Campaign Automation & Mesh Telemetry**
+
 
 
 ## Obsidian Intelligence Snapshot

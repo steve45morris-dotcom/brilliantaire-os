@@ -241,5 +241,49 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'live-asr-help',
+    aliases: ['asr help', 'microphone help'],
+    description: 'Print Live ASR safety menus and command flow',
+    npmScript: 'live-asr-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'live-asr-import',
+    aliases: ['import voice', 'import asr'],
+    description: 'Import raw live transcripts from voice_input/live into manual staging',
+    npmScript: 'live-asr-import',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'live-asr-test',
+    aliases: ['asr test', 'microphone test'],
+    description: 'Generate mock ASR transcript inputs under voice_input/live',
+    npmScript: 'live-asr-test',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'live-asr-record',
+    aliases: ['record voice', 'microphone record'],
+    description: 'Microphone recording interface info and staging parameters',
+    npmScript: 'live-asr-record',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
   }
 ];

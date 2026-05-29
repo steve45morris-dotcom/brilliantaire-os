@@ -30,7 +30,11 @@
     "voice-deny": "tsx scripts/voice-deny.ts",
     "vibevoice-help": "tsx scripts/vibevoice-help.ts",
     "vibevoice-transcript": "tsx scripts/vibevoice-transcript.ts",
-    "vibevoice-test": "tsx scripts/vibevoice-test.ts"
+    "vibevoice-test": "tsx scripts/vibevoice-test.ts",
+    "live-asr-help": "tsx scripts/live-asr-help.ts",
+    "live-asr-record": "tsx scripts/live-asr-record.ts",
+    "live-asr-import": "tsx scripts/live-asr-import.ts",
+    "live-asr-test": "tsx scripts/live-asr-test.ts"
   },
   "keywords": [
     "antigravity",

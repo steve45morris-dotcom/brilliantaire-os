@@ -365,3 +365,47 @@
 
 ---
 
+## [2026-05-29T18:24:38.058Z] Command Attempt: "daily-brief"
+- **Matched Command:** `daily-brief`
+- **Alias Used:** `false`
+- **Owning Agent:** `Action Router`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:24:55.836Z] Command Attempt: "live-asr-help"
+- **Matched Command:** `live-asr-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:25:02.031Z] Command Attempt: "live-asr-import"
+- **Matched Command:** `live-asr-import`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T18:25:12.849Z] Command Attempt: "import voice"
+- **Matched Command:** `live-asr-import`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
