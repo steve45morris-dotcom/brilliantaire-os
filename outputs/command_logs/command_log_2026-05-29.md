@@ -149,3 +149,65 @@
 
 ---
 
+## [2026-05-29T17:08:21.749Z] Command Attempt: "campaign"
+- **Matched Command:** `campaign`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:08:25.481Z] Command Attempt: "campaigns"
+- **Matched Command:** `campaign`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:08:39.208Z] Command Attempt: "campaign brief sporty"
+- **Matched Command:** `None (Unknown Command)`
+- **Result Status:** `Error: Unknown Command`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:08:55.349Z] Command Attempt: "campaign brief sporty"
+- **Matched Command:** `campaign`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:09:16.460Z] Command Attempt: "campaign brief sporty"
+- **Matched Command:** `campaign`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T17:09:22.404Z] Command Attempt: "campaign-help"
+- **Matched Command:** `campaign-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

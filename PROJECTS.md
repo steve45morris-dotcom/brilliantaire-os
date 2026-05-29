@@ -2,8 +2,8 @@
 
 | Project Name | Purpose | Status | Priority | Next Action | Related Tools | Notes |
 |---|---|---|---|---|---|---|
-| **Icyflamze** | Creative persona and brand narrative strategy | Active | High | Refine lyric flow & voice bridge integration | VibeVoice, Oracle | Mr. 2 Lighter identity stack baseline |
-| **Tree Groove Records** | Independent label operations and music distribution pipeline | Active | High | Align master release schedule | Remotion, WebAudits | Digital release orchestration focus |
+| **Icyflamze** | Creative persona and brand narrative strategy | Active | High | Refine lyric flow & integrate campaign brief prompts | VibeVoice, Oracle | Mr. 2 Lighter identity stack baseline |
+| **Tree Groove Records** | Independent label operations and music distribution pipeline | Active | High | Align release schedule with 3-week campaign calendars | Remotion, WebAudits | Digital release orchestration focus |
 | **Brilliantier OS** | Local tactical executor with strict CIP rules | Building | Critical | Manage active agent execution | Taskfile, tsx | Self-aware OS core building phase |
 | **Antigravity Lab** | Development lab and CLI testing sandbox | Active | Medium | Test local plugin boundaries | Antigravity CLI | Testing ground for agent mesh scripts |
 | **ProfBetGeng** | High-signal sports betting analytics and pricing engine | Active | Medium | Optimize betting odds tracking scripts | Looker, Python REST | Analytics-heavy backend layer |

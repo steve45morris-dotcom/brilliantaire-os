@@ -131,5 +131,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'campaign-help',
+    aliases: ['campaign commands', 'campaigns-help'],
+    description: 'Print registry of available campaign template engine tasks',
+    npmScript: 'campaign-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'campaign',
+    aliases: ['campaigns'],
+    description: 'Execute campaign templates generation workflows (Medium Risk)',
+    npmScript: 'campaign',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

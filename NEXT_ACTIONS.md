@@ -12,12 +12,18 @@
 - [x] Review written files inside brilliantaire-briefs
 - [x] Prepare command pipeline after safe write is verified
 - [x] Build safe command router
-- [ ] Test command aliases
-- [ ] Test medium-risk command restrictions
-- [ ] Test unknown command rejection
-- [ ] Test medium-risk alias blocking
-- [ ] Test high-risk confirmation requirement
-- [ ] Prepare VibeVoice bridge only after command router passes
+- [x] Test command aliases
+- [x] Test medium-risk command restrictions
+- [x] Test unknown command rejection
+- [x] Test medium-risk alias blocking
+- [x] Test high-risk confirmation requirement
+- [x] Build campaign template engine
+- [x] Generate Sporty campaign brief
+- [x] Generate Sporty 3-week calendar
+- [x] Generate Sporty prompt pack
+- [x] Generate Sporty execution checklist
+- [x] Review campaign outputs
+- [ ] Prepare VibeVoice bridge only after campaign engine passes
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

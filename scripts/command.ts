@@ -57,7 +57,10 @@ function printAllowedCommands() {
 }
 
 function runCommand() {
-  const args = process.argv.slice(2);
+  let args = process.argv.slice(2);
+  if (args.length === 1 && args[0].includes(' ')) {
+    args = args[0].split(/\s+/);
+  }
   const rawInput = args.join(' ');
 
   let hasConfirm = false;
@@ -82,16 +85,20 @@ function runCommand() {
   // Look for match
   let matchedCmd: CommandDefinition | null = null;
   let aliasUsed = false;
+  let cmdMatchedStr = '';
 
   for (const cmd of COMMAND_REGISTRY) {
-    if (cmd.name === normalized) {
+    if (normalized === cmd.name || normalized.startsWith(cmd.name + ' ')) {
       matchedCmd = cmd;
       aliasUsed = false;
+      cmdMatchedStr = cmd.name;
       break;
     }
-    if (cmd.aliases.includes(normalized)) {
+    const matchingAlias = cmd.aliases.find(alias => normalized === alias || normalized.startsWith(alias + ' '));
+    if (matchingAlias) {
       matchedCmd = cmd;
       aliasUsed = true;
+      cmdMatchedStr = matchingAlias;
       break;
     }
   }
@@ -130,10 +137,18 @@ function runCommand() {
     process.exit(1);
   }
 
+  const wordCount = cmdMatchedStr.split(/\s+/).length;
+  const extraArgs = filteredArgs.slice(wordCount);
+
   console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
 
+  const spawnArgs = ['run', matchedCmd.npmScript];
+  if (extraArgs.length > 0) {
+    spawnArgs.push('--', ...extraArgs);
+  }
+
   // Execute using child_process.spawn with shell: false
-  const child = spawn('npm', ['run', matchedCmd.npmScript], {
+  const child = spawn('npm', spawnArgs, {
     cwd: REPO_ROOT,
     stdio: 'inherit',
     shell: false

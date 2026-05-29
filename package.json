@@ -20,7 +20,9 @@
     "approve-write": "tsx scripts/approve-obsidian-write.ts",
     "write-log": "tsx scripts/write-log.ts",
     "command": "tsx scripts/command.ts",
-    "command-help": "tsx scripts/command-help.ts"
+    "command-help": "tsx scripts/command-help.ts",
+    "campaign": "tsx scripts/campaign.ts",
+    "campaign-help": "tsx scripts/campaign-help.ts"
   },
   "keywords": [
     "antigravity",

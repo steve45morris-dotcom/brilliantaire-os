@@ -101,6 +101,26 @@ The **Safe Command Router** provides a safe execution boundary that translates u
 
 ---
 
+## 📣 Phase 4A: Campaign Template Engine
+
+The **Campaign Template Engine** compiles structured campaign assets for Tree Groove Records and Icyflamze brands. It operates entirely locally, creating content calendars, execution checklists, prompt logs, and briefs without calling external social APIs.
+
+### 💻 Command Examples
+* View campaign commands help:
+  ```bash
+  npm run campaign-help
+  ```
+* List registered rollout campaigns:
+  ```bash
+  npm run campaign -- "list"
+  ```
+* Generate launch checklist for the "Sporty" release (via the safe router):
+  ```bash
+  npm run command -- "campaign checklist sporty"
+  ```
+
+---
+
 ## 📂 Expected Outputs
 
 All telemetry and compiler runs output to the local `outputs/` directory:
@@ -111,9 +131,14 @@ All telemetry and compiler runs output to the local `outputs/` directory:
   * `outputs/daily_briefs/daily_brief_YYYY-MM-DD.md` - Unified Operating report containing active priorities, tech build details, money-making opportunities, and upcoming moves.
 * **Backups:**
   * `outputs/backups/*.bak` - Secure snapshot backups of repository markdown files before any status synchronization runs.
+* **Campaign Telemetry Outputs:**
+  * `outputs/campaigns/briefs/` - Standard campaign briefs markdown files.
+  * `outputs/campaigns/content_calendars/` - 3-week multi-platform daily posting grids.
+  * `outputs/campaigns/prompt_packs/` - AI generation prompt packs (Sora, Veo, Claude).
+  * `outputs/campaigns/checklists/` - Staged checklist steps.
 
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 4: Autonomous Campaign Execution & Vocal Command Bridge**
-  * Integrate direct vocal trigger pipelines matching VibeVoice commands and execute automated social media rollout campaigns.
+* **Phase 4B: Vocal Command Bridge**
+  * Integrate the hands-free VibeVoice vocal parser matching spoken audio signals to Command Router inputs.

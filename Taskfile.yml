@@ -71,6 +71,16 @@ tasks:
     cmds:
       - npm run command-help
 
+  campaign:
+    desc: "Run campaign template actions safely"
+    cmds:
+      - npm run campaign -- {{.CLI_ARGS}}
+
+  campaign-help:
+    desc: "Print campaign CLI help"
+    cmds:
+      - npm run campaign-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

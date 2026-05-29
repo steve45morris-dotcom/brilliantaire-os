@@ -36,6 +36,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `approve-write` | `approve`, `write-to-vault` | Knowledge Librarian | High | Yes | Safely writes staged files into designated Obsidian subdirectories. |
 | `write-log` | `logs`, `write-history` | Workflow Auditor | Low | No | Reads and prints recent approved write history. |
 | `build` | `compile` | Build Operator | Low | No | Compiles TypeScript workspace. |
+| `campaign-help` | `campaign commands`, `campaigns-help` | Creative Revenue Strategist | Low | No | Prints list of available campaign engine tasks. |
+| `campaign` | `campaigns` | Creative Revenue Strategist | Medium | Yes | Runs campaign assets compiler (brief, calendar, prompts, checks). |
 
 ---
 
@@ -55,6 +57,12 @@ To ensure complete control and system safety, the router enforces the following 
   ```bash
   npm run command -- "approve-write" --confirm
   ```
+* Compile Sporty campaign briefs (medium risk, requires exact name):
+  ```bash
+  npm run command -- "campaign brief sporty"
+  ```
+
+*Note: The campaign template engine runs strictly locally. It does not publish, connect to external social media APIs, or trigger automated posts.*
 
 ---
 
