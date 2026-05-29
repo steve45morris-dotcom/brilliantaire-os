@@ -166,8 +166,10 @@ async function processQueue() {
       fs.writeFileSync(pendingPath, rawContent);
 
       // Create JSON sidecar metadata file
-      const sidecarPath = path.join(pendingDir, file.replace(/\.txt$/, '.json'));
+      const pendingId = file.replace(/\.txt$/, '');
+      const sidecarPath = path.join(pendingDir, `${pendingId}.json`);
       const metadata = {
+        pendingId,
         sourceFile: file,
         rawPhrase: rawContent.trim(),
         normalizedPhrase: normalized,
@@ -176,7 +178,7 @@ async function processQueue() {
         owningAgent: match.owningAgent,
         riskLevel: match.riskLevel,
         confirmationRequired: match.requiresConfirmation,
-        createdTimestamp: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
         status: 'pending_confirmation'
       };
       fs.writeFileSync(sidecarPath, JSON.stringify(metadata, null, 2));

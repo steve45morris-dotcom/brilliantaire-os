@@ -150,3 +150,42 @@
 
 ---
 
+## [2026-05-29T17:49:39.990Z] Voice Processing: "test_approve_write_confirm.txt"
+- **Raw Phrase:** `approve write`
+- **Normalized Phrase:** `approve write`
+- **Matched Phrase:** `approve write`
+- **Router Command:** `approve-write`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `high`
+- **Confirmation Required:** `true`
+- **Result Status:** `Blocked: Manual confirmation required`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:49:39.997Z] Voice Processing: "test_create_sporty_brief_confirm.txt"
+- **Raw Phrase:** `create sporty brief`
+- **Normalized Phrase:** `create sporty brief`
+- **Matched Phrase:** `create sporty brief`
+- **Router Command:** `campaign brief sporty`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmation Required:** `true`
+- **Result Status:** `Blocked: Manual confirmation required`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-29T17:49:40.000Z] Voice Processing: "test_scan_obsidian_confirm.txt"
+- **Raw Phrase:** `scan obsidian`
+- **Normalized Phrase:** `scan obsidian`
+- **Matched Phrase:** `scan obsidian`
+- **Router Command:** `ingest`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmation Required:** `true`
+- **Result Status:** `Blocked: Manual confirmation required`
+- **Exit Code:** `1`
+
+---
+

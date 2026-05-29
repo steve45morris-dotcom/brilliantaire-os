@@ -48,7 +48,7 @@ function listPending() {
       const commandCol = meta.routerCommand.padEnd(28);
       const agentCol = meta.owningAgent.padEnd(28);
       const riskCol = meta.riskLevel.toUpperCase().padEnd(6);
-      const timestampCol = meta.createdTimestamp;
+      const timestampCol = meta.createdAt;
 
       console.log(`| ${idCol} | ${phraseCol} | ${commandCol} | ${agentCol} | ${riskCol} | ${timestampCol} |`);
     } catch (e) {

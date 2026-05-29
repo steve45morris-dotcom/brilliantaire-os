@@ -1,4 +1,5 @@
 {
+  "pendingId": "test_approve_write_confirm",
   "sourceFile": "test_approve_write_confirm.txt",
   "rawPhrase": "approve write",
   "normalizedPhrase": "approve write",
@@ -7,6 +8,6 @@
   "owningAgent": "Knowledge Librarian",
   "riskLevel": "high",
   "confirmationRequired": true,
-  "createdTimestamp": "2026-05-29T17:37:55.175Z",
+  "createdAt": "2026-05-29T17:49:39.985Z",
   "status": "pending_confirmation"
 }
