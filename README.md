@@ -200,6 +200,9 @@ All telemetry and compiler runs output to the local `outputs/` and `voice_queue/
   * `outputs/campaigns/schedules/` - Staged 21-day timeline schedules.
   * `outputs/campaigns/posting_queue/` - Daily posting queue scripts.
   * `outputs/campaigns/execution_logs/` - Verification posting sheets.
+* **Campaign Simulation & Validation Outputs:**
+  * `outputs/campaigns/simulations/` - Campaign simulation reports.
+  * `outputs/campaigns/validation_reports/` - Validation audit reports.
 
 ---
 
@@ -286,9 +289,39 @@ The **Campaign Scheduler Draft Engine** converts compiled campaign templates and
 
 ---
 
+## 📊 Phase 6B: Campaign Simulation & Mesh Validation
+
+The **Campaign Simulation & Mesh Validation Engine** runs auditing checks against draft campaign files. It calculates platform coverage, CTA integrity, and asset readiness scores before executing tasks.
+
+### 🛡️ Safety & Auditing Rules
+1. **Zero API Integration:** The simulator is completely offline.
+2. **Strict Score Grading:** Readiness is rated on 6 criteria (each 0 to 100), determining readiness level.
+3. **Quarantine checks:** Reports structural checklist failures without modifying original assets.
+
+### 💻 Command Examples
+* View Campaign Simulator help menu:
+  ```bash
+  npm run command -- "campaign-simulate-help"
+  ```
+* Run full Sporty campaign simulation (requires exact command name):
+  ```bash
+  npm run command -- "campaign-simulate sporty"
+  ```
+* Run Sporty checklist validation audits (requires exact command name):
+  ```bash
+  npm run command -- "campaign-simulate validate sporty"
+  ```
+* Print latest simulation validation statuses:
+  ```bash
+  npm run command -- "campaign-simulate status sporty"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 6B: Campaign Simulation & Mesh Validation**
-  * Execute offline simulation loops to check posting queue consistency, calculate timing blocks, and validate CTA metadata integrity.
+* **Phase 7A: Safe Mesh Telemetry Logger**
+  * Establish local simulation listeners that log mock campaign execution telemetry and verify asset storage path constraints.
+
 
 
 

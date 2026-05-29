@@ -52,6 +52,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `live-asr-record` | `record voice`, `microphone record` | Build Operator | Medium | Yes | Microphone recording interface info and staging parameters. |
 | `campaign-scheduler-help` | `scheduler help`, `posting help` | Creative Revenue Strategist | Low | No | Print campaign scheduler available tasks and parameters. |
 | `campaign-scheduler` | `scheduler`, `posting queue` | Creative Revenue Strategist | Medium | Yes | Run campaign scheduler draft tasks (create, queue, log, status). |
+| `campaign-simulate-help` | `simulation help`, `campaign validation help` | Workflow Auditor | Low | No | Print campaign simulation available tasks and parameters. |
+| `campaign-simulate` | `simulate campaign`, `validate campaign` | Workflow Auditor | Medium | Yes | Run campaign simulation audits (sporty, validate sporty, status sporty). |
 
 ---
 

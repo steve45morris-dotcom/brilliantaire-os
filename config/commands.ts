@@ -307,5 +307,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'campaign-simulate-help',
+    aliases: ['simulation help', 'campaign validation help'],
+    description: 'Print campaign simulation available tasks and parameters',
+    npmScript: 'campaign-simulate-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'campaign-simulate',
+    aliases: ['simulate campaign', 'validate campaign'],
+    description: 'Run campaign simulation audits (sporty, validate sporty, status sporty)',
+    npmScript: 'campaign-simulate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

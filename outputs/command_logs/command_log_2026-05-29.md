@@ -442,3 +442,36 @@
 
 ---
 
+## [2026-05-29T20:58:32.452Z] Command Attempt: "campaign-simulate-help"
+- **Matched Command:** `campaign-simulate-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T20:58:39.595Z] Command Attempt: "campaign-simulate"
+- **Matched Command:** `campaign-simulate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T20:58:46.602Z] Command Attempt: "simulate campaign"
+- **Matched Command:** `campaign-simulate`
+- **Alias Used:** `true`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

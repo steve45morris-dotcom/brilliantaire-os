@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 6A: Campaign Scheduler Draft Engine
+- **Current Phase:** Phase 6B: Campaign Simulation & Mesh Validation
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -23,6 +23,7 @@
 - **VibeVoice Transcript Producer:** Decoupled plain text voice command bridge staging with empty/length checks and local backup archiving.
 - **Live Microphone ASR Bridge:** Import, validate, and parse raw live voice transcripts safely into manual staging buffers.
 - **Campaign Scheduler Draft Engine:** Build 21-day timeline schedules, generate platform daily posting queues, and produce execution logs without external network triggers.
+- **Campaign Simulation & Mesh Validation:** Run offline score audits, validate platform structures, CTA codes, and asset designations.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
@@ -33,7 +34,8 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 6B: Campaign Simulation & Mesh Validation**
+- **Phase 7A: Safe Mesh Telemetry Logger**
+
 
 
 

@@ -151,6 +151,17 @@ tasks:
     cmds:
       - npm run campaign-scheduler -- {{.CLI_ARGS}}
 
+  campaign-simulate-help:
+    desc: "Print campaign simulation available tasks and parameters"
+    cmds:
+      - npm run campaign-simulate-help
+
+  campaign-simulate:
+    desc: "Run campaign simulation audits (sporty, validate sporty, status sporty)"
+    cmds:
+      - npm run campaign-simulate -- {{.CLI_ARGS}}
+
+
 
 
   validate:
