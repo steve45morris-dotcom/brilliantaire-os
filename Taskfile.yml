@@ -61,6 +61,16 @@ tasks:
     cmds:
       - npm run write-log
 
+  command:
+    desc: "Execute a registered CLI command safely"
+    cmds:
+      - npm run command -- {{.CLI_ARGS}}
+
+  command-help:
+    desc: "Print all registered CLI commands"
+    cmds:
+      - npm run command-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

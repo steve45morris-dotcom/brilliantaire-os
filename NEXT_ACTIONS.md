@@ -5,12 +5,16 @@
 - [x] Create self-audit command
 - [x] Create project brief command
 - [x] Create next-action generator
-- [ ] Run and maintain productivity agent council (`AGENTS.md`)
+- [x] Run and maintain productivity agent council (`AGENTS.md`)
 - [ ] Connect agents telemetry log loops
 - [ ] Test staged write
 - [ ] Approve first safe Obsidian write
 - [ ] Review written files inside brilliantaire-briefs
 - [ ] Prepare command pipeline after safe write is verified
+- [x] Build command router
+- [ ] Test command aliases
+- [ ] Test medium-risk command restrictions
+- [ ] Prepare future VibeVoice bridge only after command router passes
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 3B: Approved Obsidian Write Gateway
+- **Current Phase:** Phase 3C: Command Router
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -16,6 +16,7 @@
 - **Ranked Next Action Checklist:** Status-grouped tasks scheduler.
 - **Productivity Agent Layer:** Council of 7 configured roles with metrics and file bindings.
 - **Approved Obsidian Write Gateway:** Safe, staged, approval-gated write gateway into designated Obsidian subdirectories.
+- **Command Router:** Single execution point that translates normalized inputs to strict npm scripts without shell executions.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

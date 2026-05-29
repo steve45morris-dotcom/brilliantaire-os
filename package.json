@@ -18,7 +18,9 @@
     "agents": "tsx scripts/agents.ts",
     "stage-write": "tsx scripts/stage-obsidian-write.ts",
     "approve-write": "tsx scripts/approve-obsidian-write.ts",
-    "write-log": "tsx scripts/write-log.ts"
+    "write-log": "tsx scripts/write-log.ts",
+    "command": "tsx scripts/command.ts",
+    "command-help": "tsx scripts/command-help.ts"
   },
   "keywords": [
     "antigravity",

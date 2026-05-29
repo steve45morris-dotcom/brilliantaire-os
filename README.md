@@ -67,6 +67,33 @@ All roles are documented and mapped to specific owned files in [AGENTS.md](file:
 
 ---
 
+## 🛠️ Phase 3C: Command Router
+
+The **Command Router** provides a safe execution boundary that translates user inputs into strictly whitelisted commands without exposing the workspace to arbitrary shell execution.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn`.
+2. **Medium-Risk Aliases Lock:** Aliases for medium-risk actions (`ingest`, `sync-status`) are blocked. Users must explicitly specify the command name.
+3. **Execution History Logging:** All command results, raw inputs, and execution statuses are appended to markdown logs inside `outputs/command_logs/`.
+
+### 💻 Command Examples
+* Run operational brief summary (accepts aliases):
+  ```bash
+  npm run command -- "report"
+  ```
+* Run medium-risk scanner (alias blocked, name required):
+  ```bash
+  npm run command -- "ingest"
+  ```
+* View all registered router commands:
+  ```bash
+  npm run command-help
+  ```
+
+*Note: This clean command abstraction prepares the system for the hands-free VibeVoice bridge integration.*
+
+---
+
 ## 📂 Expected Outputs
 
 All telemetry and compiler runs output to the local `outputs/` directory:

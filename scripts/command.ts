@@ -1,0 +1,136 @@
+import { spawn } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { COMMAND_REGISTRY, CommandDefinition } from '../config/commands.js';
+import { REPO_ROOT } from '../config/paths.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+function getFormattedDate(): string {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function writeCommandLog(
+  rawInput: string,
+  matchedCmd: CommandDefinition | null,
+  aliasUsed: boolean,
+  status: string,
+  exitCode: number
+) {
+  const logDir = path.join(REPO_ROOT, 'outputs', 'command_logs');
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir, { recursive: true });
+  }
+
+  const logFile = path.join(logDir, `command_log_${getFormattedDate()}.md`);
+  const timestamp = new Date().toISOString();
+
+  let entry = `## [${timestamp}] Command: "${rawInput}"\n`;
+  if (matchedCmd) {
+    entry += `- **Matched Command:** \`${matchedCmd.name}\`\n`;
+    entry += `- **Alias Used:** \`${aliasUsed}\`\n`;
+    entry += `- **Owning Agent:** \`${matchedCmd.owningAgent}\`\n`;
+    entry += `- **Risk Level:** \`${matchedCmd.riskLevel}\`\n`;
+  } else {
+    entry += `- **Matched Command:** \`None (Unknown Command)\`\n`;
+  }
+  entry += `- **Result Status:** \`${status}\`\n`;
+  entry += `- **Exit Code:** \`${exitCode}\`\n`;
+  entry += `\n---\n\n`;
+
+  fs.appendFileSync(logFile, entry);
+}
+
+function printAllowedCommands() {
+  console.log("\n📋 Allowed commands are:");
+  COMMAND_REGISTRY.forEach(c => {
+    console.log(`  - ${c.name} (Aliases: ${c.aliases.join(', ')})`);
+  });
+}
+
+function runCommand() {
+  const args = process.argv.slice(2);
+  const rawInput = args.join(' ');
+  const normalized = rawInput.toLowerCase().trim().replace(/\s+/g, ' ');
+
+  if (!normalized) {
+    console.error("❌ No command provided.");
+    printAllowedCommands();
+    writeCommandLog('', null, false, 'Error: Empty input', 1);
+    process.exit(1);
+  }
+
+  // Look for match
+  let matchedCmd: CommandDefinition | null = null;
+  let aliasUsed = false;
+
+  for (const cmd of COMMAND_REGISTRY) {
+    if (cmd.name === normalized) {
+      matchedCmd = cmd;
+      aliasUsed = false;
+      break;
+    }
+    if (cmd.aliases.includes(normalized)) {
+      matchedCmd = cmd;
+      aliasUsed = true;
+      break;
+    }
+  }
+
+  // 1. Unknown Command
+  if (!matchedCmd) {
+    console.error(`❌ Unknown command: "${rawInput}"`);
+    printAllowedCommands();
+    writeCommandLog(rawInput, null, false, 'Error: Unknown Command', 1);
+    process.exit(1);
+  }
+
+  // 2. Disabled Command
+  if (!matchedCmd.enabled) {
+    console.error(`❌ Command "${matchedCmd.name}" is currently disabled.`);
+    writeCommandLog(rawInput, matchedCmd, aliasUsed, 'Error: Command Disabled', 1);
+    process.exit(1);
+  }
+
+  // 3. Medium-risk check (Requires exact name, not alias)
+  if (matchedCmd.riskLevel === 'medium') {
+    console.log(`⚠️  Warning: "${matchedCmd.name}" is a MEDIUM-risk command (updates repository statuses / scans files).`);
+    if (aliasUsed) {
+      console.error(`❌ Blocked: Aliases are not allowed for medium-risk commands.`);
+      console.log(`💡 Guidance: To run this command, please type the command name exactly:`);
+      console.log(`   npm run command -- "${matchedCmd.name}"`);
+      writeCommandLog(rawInput, matchedCmd, aliasUsed, 'Blocked: Alias used on Medium Risk', 1);
+      process.exit(1);
+    }
+  }
+
+  console.log(`📡 [${matchedCmd.owningAgent}] Executing: npm run ${matchedCmd.npmScript}...`);
+
+  // Execute npm script using child_process.spawn (No arbitrary shell)
+  // On MacOS, npm is executed directly as a shell wrapper script or binary
+  const child = spawn('npm', ['run', matchedCmd.npmScript], {
+    cwd: REPO_ROOT,
+    stdio: 'inherit'
+  });
+
+  child.on('close', (code) => {
+    const exitCode = code ?? 0;
+    const status = exitCode === 0 ? 'Success' : 'Failed';
+    writeCommandLog(rawInput, matchedCmd!, aliasUsed, status, exitCode);
+    process.exit(exitCode);
+  });
+
+  child.on('error', (err) => {
+    console.error(`❌ Execution error: ${err.message}`);
+    writeCommandLog(rawInput, matchedCmd!, aliasUsed, 'Execution Error', 1);
+    process.exit(1);
+  });
+}
+
+runCommand();
