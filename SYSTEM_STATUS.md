@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 4B: Voice Command Queue
+- **Current Phase:** Phase 4C: Voice Confirmation Layer
 - **Last Verified:** 2026-05-29
 - **Build Status:** passing
 
@@ -19,6 +19,7 @@
 - **Safe Command Router:** Confirmation-locked and exact-name gated execution environment for CLI scripts.
 - **Campaign Template Engine:** Compiles structured marketing calendars, prompts, briefs, and execution checklists locally.
 - **Voice Command Queue:** Safely parses, validates, and dispatches normalized voice phrases to Command Router scripts via an inbox directory.
+- **Voice Confirmation Layer:** Enforces manual review and release via voice-confirm and voice-deny gates for higher-risk pending commands.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

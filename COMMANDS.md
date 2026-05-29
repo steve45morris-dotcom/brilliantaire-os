@@ -40,6 +40,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `campaign` | `campaigns` | Creative Revenue Strategist | Medium | Yes | Runs campaign assets compiler (brief, calendar, prompts, checks). |
 | `voice-help` | `voice commands`, `voice-list` | Workflow Auditor | Low | No | Prints registry of all allowed voice command phrases. |
 | `voice-queue` | `voice` | Build Operator | Medium | Yes | Processes text-based voice command queue inbox files safely. |
+| `voice-pending` | `pending voice`, `voice review` | Workflow Auditor | Low | No | Lists voice commands currently pending confirmation. |
+| `voice-confirm` | `confirm voice` | Build Operator | High | Yes | Approves and executes a pending voice command. |
+| `voice-deny` | `deny voice` | Workflow Auditor | Medium | Yes | Denies and discards a pending voice command. |
 
 ---
 

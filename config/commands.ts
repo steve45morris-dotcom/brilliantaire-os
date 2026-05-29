@@ -175,5 +175,38 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'voice-pending',
+    aliases: ['pending voice', 'voice review'],
+    description: 'List voice commands pending confirmation review',
+    npmScript: 'voice-pending',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'voice-confirm',
+    aliases: ['confirm voice'],
+    description: 'Approve and execute a pending voice command (High Risk)',
+    npmScript: 'voice-confirm',
+    owningAgent: 'Build Operator',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-deny',
+    aliases: ['deny voice'],
+    description: 'Deny and discard a pending voice command (Medium Risk)',
+    npmScript: 'voice-deny',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

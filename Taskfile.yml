@@ -91,6 +91,21 @@ tasks:
     cmds:
       - npm run voice-help
 
+  voice-pending:
+    desc: "List voice commands pending confirmation review"
+    cmds:
+      - npm run voice-pending
+
+  voice-confirm:
+    desc: "Approve and execute a pending voice command"
+    cmds:
+      - npm run voice-confirm -- {{.CLI_ARGS}}
+
+  voice-deny:
+    desc: "Deny and discard a pending voice command"
+    cmds:
+      - npm run voice-deny -- {{.CLI_ARGS}}
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

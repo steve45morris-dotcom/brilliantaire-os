@@ -1,0 +1,14 @@
+{
+  "sourceFile": "test_create_sporty_brief_confirm.txt",
+  "rawPhrase": "create sporty brief",
+  "normalizedPhrase": "create sporty brief",
+  "matchedPhrase": "create sporty brief",
+  "routerCommand": "campaign brief sporty",
+  "owningAgent": "Creative Revenue Strategist",
+  "riskLevel": "medium",
+  "confirmationRequired": true,
+  "createdTimestamp": "2026-05-29T17:37:55.179Z",
+  "status": "confirmed",
+  "executedTimestamp": "2026-05-29T17:38:39.856Z",
+  "executionExitCode": 0
+}

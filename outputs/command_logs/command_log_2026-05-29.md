@@ -277,3 +277,36 @@
 
 ---
 
+## [2026-05-29T17:38:39.816Z] Command Attempt: "campaign brief sporty"
+- **Matched Command:** `campaign`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T17:39:16.762Z] Command Attempt: "voice-pending"
+- **Matched Command:** `voice-pending`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-29T17:39:24.070Z] Command Attempt: "voice-confirm"
+- **Matched Command:** `voice-confirm`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `high`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Missing Confirmation Flag`
+- **Exit Code:** `1`
+
+---
+

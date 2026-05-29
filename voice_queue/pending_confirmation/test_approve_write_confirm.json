@@ -1,0 +1,12 @@
+{
+  "sourceFile": "test_approve_write_confirm.txt",
+  "rawPhrase": "approve write",
+  "normalizedPhrase": "approve write",
+  "matchedPhrase": "approve write",
+  "routerCommand": "approve-write",
+  "owningAgent": "Knowledge Librarian",
+  "riskLevel": "high",
+  "confirmationRequired": true,
+  "createdTimestamp": "2026-05-29T17:37:55.175Z",
+  "status": "pending_confirmation"
+}

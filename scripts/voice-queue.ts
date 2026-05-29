@@ -160,12 +160,27 @@ async function processQueue() {
     if (match.requiresConfirmation) {
       console.warn(`⚠️  Blocked: Voice phrase "${match.phrase}" requires manual confirmation due to ${match.riskLevel.toUpperCase()} risk.`);
       const reason = 'Blocked: Manual confirmation required';
-      const guidance = `To execute this command, please run manually:\n  npm run command -- "${match.routerCommand}"`;
       const pendingPath = path.join(pendingDir, file);
-      fs.writeFileSync(
-        pendingPath,
-        `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Blocked\nReason: ${reason}\nGuidance: ${guidance}\n`
-      );
+      
+      // Move .txt transcript file
+      fs.writeFileSync(pendingPath, rawContent);
+
+      // Create JSON sidecar metadata file
+      const sidecarPath = path.join(pendingDir, file.replace(/\.txt$/, '.json'));
+      const metadata = {
+        sourceFile: file,
+        rawPhrase: rawContent.trim(),
+        normalizedPhrase: normalized,
+        matchedPhrase: match.phrase,
+        routerCommand: match.routerCommand,
+        owningAgent: match.owningAgent,
+        riskLevel: match.riskLevel,
+        confirmationRequired: match.requiresConfirmation,
+        createdTimestamp: new Date().toISOString(),
+        status: 'pending_confirmation'
+      };
+      fs.writeFileSync(sidecarPath, JSON.stringify(metadata, null, 2));
+
       fs.unlinkSync(filePath);
       writeVoiceLog(
         file,

@@ -24,12 +24,17 @@
 - [x] Generate Sporty execution checklist
 - [x] Generate Sporty street script
 - [x] Review campaign outputs
-- [ ] Build voice command queue
-- [ ] Test low-risk voice command
-- [ ] Test unknown voice phrase rejection
-- [ ] Test medium-risk confirmation block
-- [ ] Test high-risk confirmation block
-- [ ] Prepare live VibeVoice bridge only after queue tests pass
+- [x] Build voice command queue
+- [x] Test low-risk voice command
+- [x] Test unknown voice phrase rejection
+- [x] Test medium-risk confirmation block
+- [x] Test high-risk confirmation block
+- [x] Build voice confirmation layer
+- [x] Test pending command listing
+- [x] Test confirmation without --confirm blocks
+- [x] Test confirmation with --confirm executes through router
+- [x] Test denial flow
+- [ ] Prepare live VibeVoice bridge only after confirmation layer passes
 
 ## Do Next
 - [ ] Implement VNP integration in scripts to log script runs

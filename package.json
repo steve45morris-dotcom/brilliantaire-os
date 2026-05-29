@@ -24,7 +24,10 @@
     "campaign": "tsx scripts/campaign.ts",
     "campaign-help": "tsx scripts/campaign-help.ts",
     "voice-queue": "tsx scripts/voice-queue.ts",
-    "voice-help": "tsx scripts/voice-help.ts"
+    "voice-help": "tsx scripts/voice-help.ts",
+    "voice-pending": "tsx scripts/voice-pending.ts",
+    "voice-confirm": "tsx scripts/voice-confirm.ts",
+    "voice-deny": "tsx scripts/voice-deny.ts"
   },
   "keywords": [
     "antigravity",

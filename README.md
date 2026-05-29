@@ -53,6 +53,11 @@ Manage and execute operations using the following `task` commands:
 | `task command-help` | `npm run command-help` | Print registry of all allowed command router configurations |
 | `task campaign` | `npm run campaign -- <CLI_ARGS>` | Run campaign template actions safely |
 | `task campaign-help` | `npm run campaign-help` | Print campaign CLI help |
+| `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
+| `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
+| `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
+| `task voice-confirm` | `npm run voice-confirm -- <CLI_ARGS>` | Approve and execute a pending voice command |
+| `task voice-deny` | `npm run voice-deny -- <CLI_ARGS>` | Deny and discard a pending voice command |
 
 ---
 
@@ -127,9 +132,45 @@ The **Campaign Template Engine** compiles structured campaign assets for Tree Gr
 
 ---
 
+## 🎙️ Phase 4B: Voice Command Queue
+
+The **Voice Command Queue** provides a secure buffer separating speech-to-text transcription from active command execution. Normalized commands are stored as static transcripts in `voice_queue/inbox/` and processed sequentially against a mapped voice mapping registry.
+
+### 💻 Command Examples
+* View mapped voice phrases table:
+  ```bash
+  npm run command -- "voice-help"
+  ```
+* Execute queue scanning manually (medium risk, exact name required):
+  ```bash
+  npm run command -- "voice-queue"
+  ```
+
+---
+
+## 🔒 Phase 4C: Voice Confirmation Layer
+
+The **Voice Confirmation Layer** introduces a manual "Review-and-Release" confirmation workflow. Mapped voice actions flagged with medium-risk or high-risk are held in `voice_queue/pending_confirmation/` as metadata sidecar JSON and transcript files. Developers must explicitly release or reject them.
+
+### 💻 Command Examples
+* List all commands pending manual confirmation:
+  ```bash
+  npm run command -- "voice-pending"
+  ```
+* Release and execute a pending command (requires exact name and confirmation flag):
+  ```bash
+  npm run command -- "voice-confirm <pending-id> --confirm"
+  ```
+* Reject and discard a pending command:
+  ```bash
+  npm run command -- "voice-deny <pending-id> --reason 'not required'"
+  ```
+
+---
+
 ## 📂 Expected Outputs
 
-All telemetry and compiler runs output to the local `outputs/` directory:
+All telemetry and compiler runs output to the local `outputs/` and `voice_queue/` directories:
 * **Obsidian Ingestion Reports:**
   * `outputs/obsidian_ingest/ingest_report.json` - Complete parsed file nodes and score metrics.
   * `outputs/obsidian_ingest/ingest_report.md` - Rendered Markdown summary of the top 10 relevant notes.
@@ -143,9 +184,14 @@ All telemetry and compiler runs output to the local `outputs/` directory:
   * `outputs/campaigns/prompt_packs/` - AI generation prompt packs (Sora, Veo, Claude).
   * `outputs/campaigns/checklists/` - Staged checklist steps.
   * `outputs/campaigns/scripts/` - Lagos street interview script markdown files.
+* **Voice Confirmation Outputs:**
+  * `voice_queue/pending_confirmation/` - Mapped voice commands held for manual review.
+  * `voice_queue/confirmed/` - Executed and confirmed voice phrase transcripts.
+  * `voice_queue/denied/` - Discarded and denied voice commands transcripts.
+  * `outputs/voice_confirmation_logs/` - Release and denial audit trail logs.
 
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 4B: Vocal Command Bridge**
-  * Integrate the hands-free VibeVoice vocal parser matching spoken audio signals to Command Router inputs.
+* **Phase 5: Autonomous Vocal Command daemon (VibeVoice Bridge)**
+  * Establish the hands-free audio scanner daemon script that streams local microphone inputs, processes Whisper speech-to-text transcripts, and writes command scripts to the queue secure inbox.

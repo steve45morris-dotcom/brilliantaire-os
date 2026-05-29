@@ -1,0 +1,14 @@
+{
+  "sourceFile": "test_scan_obsidian_confirm.txt",
+  "rawPhrase": "scan obsidian",
+  "normalizedPhrase": "scan obsidian",
+  "matchedPhrase": "scan obsidian",
+  "routerCommand": "ingest",
+  "owningAgent": "Knowledge Librarian",
+  "riskLevel": "medium",
+  "confirmationRequired": true,
+  "createdTimestamp": "2026-05-29T17:37:55.181Z",
+  "status": "denied",
+  "deniedTimestamp": "2026-05-29T17:38:52.828Z",
+  "denialReason": "not needed"
+}
