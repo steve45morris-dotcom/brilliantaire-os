@@ -485,6 +485,37 @@ The **Platform Verification Gates** read, check, and score generated copy-paste 
   npm run command -- "platform-verify status sporty"
   ```
 
+## 📋 Phase 9C: Manual Release Checklist
+
+The **Manual Release Checklist** layer aggregates verified platform packages, verification scores, and assets list into manual posting checklists and step-by-step runbooks.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual-Only Boundary:** The OS has zero connection to third-party social media APIs. No automated posting, uploading, or scheduling of live posts is supported.
+2. **Offline Running:** Checks local verified assets and writes checklist runbooks locally in `outputs/manual_release/`.
+3. **No Overwrite without Suffix:** Prevents file collision by appending timestamp suffixes if checklists or runbooks already exist for the current date.
+
+### 💻 Command Examples
+* View manual release safety manuals:
+  ```bash
+  npm run command -- "manual-release-help"
+  ```
+* Generate manual release checklist (via safe router):
+  ```bash
+  npm run command -- "manual-release sporty checklist"
+  ```
+* Generate step-by-step posting runbook (via safe router):
+  ```bash
+  npm run command -- "manual-release sporty runbook"
+  ```
+* Display manual release diagnostics (via safe router):
+  ```bash
+  npm run command -- "manual-release sporty status"
+  ```
+* Compile checklist and runbook and print status at once:
+  ```bash
+  npm run command -- "manual-release sporty all"
+  ```
+
 ---
 
 ## 🚀 Next Phase Recommendation

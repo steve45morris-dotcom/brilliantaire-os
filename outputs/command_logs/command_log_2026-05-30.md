@@ -174,3 +174,36 @@
 
 ---
 
+## [2026-05-30T17:30:28.495Z] Command Attempt: "manual-release-help"
+- **Matched Command:** `manual-release-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T17:30:32.938Z] Command Attempt: "manual-release sporty checklist"
+- **Matched Command:** `manual-release`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T17:30:35.881Z] Command Attempt: "manual posting"
+- **Matched Command:** `manual-release`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

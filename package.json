@@ -53,7 +53,9 @@
     "platform-adapter": "tsx scripts/platform-adapter.ts",
     "platform-adapter-help": "tsx scripts/platform-adapter-help.ts",
     "platform-verify": "tsx scripts/platform-verify.ts",
-    "platform-verify-help": "tsx scripts/platform-verify-help.ts"
+    "platform-verify-help": "tsx scripts/platform-verify-help.ts",
+    "manual-release": "tsx scripts/manual-release.ts",
+    "manual-release-help": "tsx scripts/manual-release-help.ts"
   },
   "keywords": [
     "antigravity",

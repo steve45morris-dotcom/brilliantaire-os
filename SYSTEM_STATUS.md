@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 9B: Decoupled Platform Verification Gates
+- **Current Phase:** Phase 9C: Manual Release Checklist
 - **Last Verified:** 2026-05-30
 - **Build Status:** passing
 
@@ -30,6 +30,7 @@
 - **Controlled Background Automation:** Execute and dry run scheduled local routines sequentially via safe cron/launchd integration wrappers.
 - **Platform Output Adapters:** Generate local copy-paste posting packages for YouTube, TikTok, Instagram, Facebook, WhatsApp, and Obsidian.
 - **Platform Verification Gates:** Inspect, validate, and score platform output packages offline to confirm manual copy-paste readiness.
+- **Manual Release Checklist:** Compiles verified posting packages into structured checklists, step-by-step posting runbooks, and manual release readiness briefings.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

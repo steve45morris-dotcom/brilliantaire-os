@@ -483,5 +483,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'manual-release-help',
+    aliases: ['release help', 'manual posting help'],
+    description: 'Print manual release safety manuals',
+    npmScript: 'manual-release-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'manual-release',
+    aliases: ['release', 'manual posting'],
+    description: 'Generate manual release checklists and runbooks (Medium Risk)',
+    npmScript: 'manual-release',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

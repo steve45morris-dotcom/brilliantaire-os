@@ -101,13 +101,11 @@
 - [x] Verify Sporty Obsidian package
 - [x] Generate platform verification summary
 - [x] Review manual posting readiness
-
-
-
-
-
-
-
+- [x] Build manual release checklist
+- [x] Generate Sporty manual release checklist
+- [x] Generate Sporty release runbook
+- [x] Check manual release readiness
+- [ ] Prepare distribution metrics after manual release checklist passes
 
 
 ## Do Next

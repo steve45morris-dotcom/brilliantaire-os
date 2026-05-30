@@ -231,6 +231,17 @@ tasks:
     cmds:
       - npm run platform-verify -- {{.CLI_ARGS}}
 
+  manual-release-help:
+    desc: "Print manual release safety manuals"
+    cmds:
+      - npm run manual-release-help
+
+  manual-release:
+    desc: "Generate manual release checklists and runbooks"
+    cmds:
+      - npm run manual-release -- {{.CLI_ARGS}}
+
+
 
   validate:
     desc: "Lint and run workspace checks"

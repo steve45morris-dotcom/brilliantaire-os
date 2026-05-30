@@ -68,6 +68,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `platform-adapter` | `platform package`, `posting package` | Creative Revenue Strategist | Medium | Yes | Generate manual platform posting packages. |
 | `platform-verify-help` | `platform verification help`, `verify package help` | Workflow Auditor | Low | No | Print platform verification gates safety manuals. |
 | `platform-verify` | `verify platform`, `verify package` | Workflow Auditor | Medium | Yes | Verify generated platform packages. |
+| `manual-release-help` | `release help`, `manual posting help` | Creative Revenue Strategist | Low | No | Print manual release safety manuals. |
+| `manual-release` | `release`, `manual posting` | Creative Revenue Strategist | Medium | Yes | Generate manual release checklists and runbooks. |
 
 ---
 
