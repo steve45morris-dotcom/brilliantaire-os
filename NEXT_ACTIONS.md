@@ -75,7 +75,14 @@
 - [x] Test campaign-check routine
 - [x] Test voice-check routine
 - [x] Verify automation logs
-- [ ] Prepare scheduled automation only after local runner passes
+- [x] Prepare scheduled automation only after local runner passes
+- [ ] Build controlled background automation
+- [ ] Test background help
+- [ ] Test dry-run schedule
+- [ ] Test blocked run without --confirm
+- [ ] Test blocked run when global automation disabled
+- [ ] Test background status
+- [ ] Prepare launchd or cron adapter only after background automation passes
 
 
 

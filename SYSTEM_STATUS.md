@@ -1,8 +1,8 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 8A: Local Automation Runner
-- **Last Verified:** 2026-05-29
+- **Current Phase:** Phase 8B: Controlled Background Automation
+- **Last Verified:** 2026-05-30
 - **Build Status:** passing
 
 ## 🔋 Active Capabilities
@@ -27,6 +27,7 @@
 - **Safe Mesh Telemetry Logger:** Aggregate historical execution statistics, voice command releases, validation scores, and Obsidian writes into unified snapshots.
 - **Lightweight Local Dashboard:** Render local telemetry snapshot data through a read-only Vite React TypeScript single-page application dashboard.
 - **Local Automation Runner:** Controlled execution of approved maintenance routines through the Safe Command Router gateway with complete logs and summaries.
+- **Controlled Background Automation:** Execute and dry run scheduled local routines sequentially via safe cron/launchd integration wrappers.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
@@ -37,7 +38,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 8B: Controlled Background Automation**
+- **Phase 9A: Platform Ingestion Adapters**
 
 
 

@@ -45,7 +45,11 @@
     "dashboard:dev": "cd dashboard && npm run dev",
     "dashboard:build": "cd dashboard && npm run build",
     "automation-help": "tsx scripts/automation-help.ts",
-    "automation-runner": "tsx scripts/automation-runner.ts"
+    "automation-runner": "tsx scripts/automation-runner.ts",
+    "background-help": "tsx scripts/background-help.ts",
+    "background-dry-run": "tsx scripts/background-dry-run.ts",
+    "background-run": "tsx scripts/background-run.ts",
+    "background-status": "tsx scripts/background-status.ts"
   },
   "keywords": [
     "antigravity",

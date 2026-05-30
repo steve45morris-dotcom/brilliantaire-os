@@ -191,6 +191,27 @@ tasks:
     cmds:
       - npm run automation-runner -- {{.CLI_ARGS}}
 
+  background-help:
+    desc: "Print background schedules safety manuals"
+    cmds:
+      - npm run background-help
+
+  background-dry-run:
+    desc: "Simulate background routine execution"
+    cmds:
+      - npm run background-dry-run -- {{.CLI_ARGS}}
+
+  background-run:
+    desc: "Execute background routine task (requires confirm flag)"
+    cmds:
+      - npm run background-run -- {{.CLI_ARGS}}
+
+  background-status:
+    desc: "Check diagnostics background schedules state matrix"
+    cmds:
+      - npm run background-status
+
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

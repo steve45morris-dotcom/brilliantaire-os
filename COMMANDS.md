@@ -60,6 +60,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `dashboard-build` | `build dashboard` | Build Operator | Low | No | Compile the static Vite dashboard production bundle. |
 | `automation-help` | `automation list`, `routine help` | Workflow Auditor | Low | No | Print registry of pre-approved local automation routines. |
 | `automation-runner` | `run automation`, `routine` | Build Operator | Medium | Yes | Execute a pre-approved local automation routine. |
+| `background-help` | `background automation help`, `background help` | Workflow Auditor | Low | No | Print background schedules safety manuals. |
+| `background-dry-run` | `background test`, `schedule dry run` | Workflow Auditor | Low | No | Simulate background routine execution. |
+| `background-status` | `background status`, `schedule status` | Workflow Auditor | Low | No | Check background schedule diagnostics. |
+| `background-run` | `run background`, `schedule run` | Build Operator | High | Yes | Execute a pre-approved background schedule routine. |
 
 ---
 

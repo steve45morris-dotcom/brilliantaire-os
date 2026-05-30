@@ -400,6 +400,35 @@ The **Local Automation Runner** executes pre-approved maintenance routines (e.g.
 
 ---
 
+## 🛰️ Phase 8B: Controlled Background Automation
+
+The **Controlled Background Automation** layer schedules approved local routines (e.g., `daily-check`, `campaign-check`, `voice-check`) via system schedulers (cron, launchd plist) without bypassing Safe Command Router validation boundaries.
+
+### 🛡️ Safety & Execution Rules
+1. **Double-Lock Safety:** Global execution toggle `ENABLE_BACKGROUND_AUTOMATION` and individual schedule toggles must be explicitly set to `true` to allow live runs. Default is disabled.
+2. **Mandatory Confirmation Flag:** Running live schedules requires the explicit addition of the `--confirm` parameter.
+3. **Strict Ingest Scans:** Runs fully local and offline. Direct connection to external APIs, automated social posting, and destructive scripts are disabled.
+
+### 💻 Command Examples
+* View background automation safety manuals:
+  ```bash
+  npm run command -- "background-help"
+  ```
+* Test simulation dry run for a schedule:
+  ```bash
+  npm run command -- "background-dry-run morning-daily-check"
+  ```
+* Execute live schedule routine (requires confirm flag, config must be enabled):
+  ```bash
+  npm run command -- "background-run morning-daily-check" --confirm
+  ```
+* Check configuration diagnostic status matrix:
+  ```bash
+  npm run command -- "background-status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 8B: Controlled Background Automation**
-  - Design a safe daemon or background worker wrapper executing local automation runner tasks on a strict, non-networked cron interval.```
+* **Phase 9A: Platform Ingestion Adapters**
+  - Construct local content adapters preparing structured platform outputs (YouTube, TikTok, Obsidian) for manual copy-paste distribution.```

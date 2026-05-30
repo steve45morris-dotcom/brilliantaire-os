@@ -395,5 +395,49 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'background-help',
+    aliases: ['background automation help', 'background help'],
+    description: 'Print registry of pre-approved controlled background automation schedules',
+    npmScript: 'background-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'background-dry-run',
+    aliases: ['background test', 'schedule dry run'],
+    description: 'Simulate the execution of a background automation schedule',
+    npmScript: 'background-dry-run',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'background-status',
+    aliases: ['background status', 'schedule status'],
+    description: 'Check active configurations and diagnostic statuses of background schedules',
+    npmScript: 'background-status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'background-run',
+    aliases: ['run background', 'schedule run'],
+    description: 'Execute a pre-approved background schedule routine (High Risk)',
+    npmScript: 'background-run',
+    owningAgent: 'Build Operator',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
