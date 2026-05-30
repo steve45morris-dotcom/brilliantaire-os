@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 9C: Manual Release Checklist
+- **Current Phase:** Phase 15: The Universal Mesh
 - **Last Verified:** 2026-05-30
 - **Build Status:** passing
 
@@ -31,6 +31,9 @@
 - **Platform Output Adapters:** Generate local copy-paste posting packages for YouTube, TikTok, Instagram, Facebook, WhatsApp, and Obsidian.
 - **Platform Verification Gates:** Inspect, validate, and score platform output packages offline to confirm manual copy-paste readiness.
 - **Manual Release Checklist:** Compiles verified posting packages into structured checklists, step-by-step posting runbooks, and manual release readiness briefings.
+- **Edge-Link Protocol (Phase 15):** Standardized protocol to onboard mobile, IoT, and desktop edge devices dynamically into database node storage.
+- **Cross-OS Invoke Gateway (Phase 15):** Standalone API endpoint with challenge verification to execute secure tasks dispatched from external operating systems.
+- **Compute Auction Market Oracle (Phase 15):** Live bidding market oracle matching BUY/SELL compute capacity across local caching registries.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
