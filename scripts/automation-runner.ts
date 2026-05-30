@@ -150,9 +150,10 @@ async function main() {
   const dd = String(startTime.getDate()).padStart(2, '0');
   const hh = String(startTime.getHours()).padStart(2, '0');
   const min = String(startTime.getMinutes()).padStart(2, '0');
+  const ss = String(startTime.getSeconds()).padStart(2, '0');
 
   const logPath = path.join(logDir, `automation_log_${yyyy}-${mm}-${dd}.md`);
-  const runPath = path.join(runDir, `automation_run_${yyyy}-${mm}-${dd}_${hh}${min}.md`);
+  const runPath = path.join(runDir, `automation_run_${yyyy}-${mm}-${dd}_${hh}${min}${ss}.md`);
 
   // Log file: append or write
   let dailyLogContent = "";

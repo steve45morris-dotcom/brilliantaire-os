@@ -38,6 +38,78 @@ export const COMMAND_POLICY: Record<string, CommandEntry> = {
     requires_exact_name: true,
     enabled: true
   },
+  "automation-metrics": {
+    key: "automation-metrics",
+    label: "Automation Metrics Telemetry Report",
+    aliases: [],
+    npmScript: "automation-metrics",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--metrics"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
+  "automation-health": {
+    key: "automation-health",
+    label: "Automation Health Operational Overview",
+    aliases: [],
+    npmScript: "automation-health",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--health"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
+  "automation-history": {
+    key: "automation-history",
+    label: "Automation Execution Runs History",
+    aliases: [],
+    npmScript: "automation-history",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--history"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
+  "automation-effectiveness": {
+    key: "automation-effectiveness",
+    label: "Automation Effectiveness Evaluation",
+    aliases: [],
+    npmScript: "automation-effectiveness",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--effectiveness"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
+  "automation-scoreboard": {
+    key: "automation-scoreboard",
+    label: "Automation Performance Scoreboard",
+    aliases: [],
+    npmScript: "automation-scoreboard",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--scoreboard"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
+  "automation-telemetry-gen": {
+    key: "automation-telemetry-gen",
+    label: "Generate Operational Telemetry Reports to Files",
+    aliases: [],
+    npmScript: "automation-telemetry-gen",
+    command: "npx",
+    args: ["tsx", "scripts/telemetry_layer.ts", "--generate"],
+    owningAgent: "Workflow Auditor",
+    risk: "low",
+    requires_exact_name: false,
+    enabled: true
+  },
   "audit": {
     key: "audit",
     label: "System configuration validation and audit check",

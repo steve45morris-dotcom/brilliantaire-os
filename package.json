@@ -10,7 +10,13 @@
     "audit": "eslint",
     "command": "tsx scripts/command-router.ts",
     "automation-help": "tsx scripts/automation-help.ts",
-    "automation-runner": "tsx scripts/automation-runner.ts"
+    "automation-runner": "tsx scripts/automation-runner.ts",
+    "automation-metrics": "tsx scripts/telemetry_layer.ts --metrics",
+    "automation-health": "tsx scripts/telemetry_layer.ts --health",
+    "automation-history": "tsx scripts/telemetry_layer.ts --history",
+    "automation-effectiveness": "tsx scripts/telemetry_layer.ts --effectiveness",
+    "automation-scoreboard": "tsx scripts/telemetry_layer.ts --scoreboard",
+    "automation-telemetry-gen": "tsx scripts/telemetry_layer.ts --generate"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",
