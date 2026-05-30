@@ -1,15 +1,53 @@
+---
+import '../styles/global.css';
+---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- SEO Meta Tags -->
+		<title>Brilliantaire OS | Local-First Creative Automation Control Plane</title>
+		<meta name="description" content="Sovereign developer tooling under the One System mesh protocol. Local command routing, Obsidian write-gate approvals, and background automation loops." />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://brilliantaire.os" />
+		<meta property="og:title" content="Brilliantaire OS — Local-First Creative Automation" />
+		<meta property="og:description" content="Sovereign developer tooling under the One System mesh protocol. Local command routing, Obsidian write-gate approvals, and background automation loops." />
+		<meta property="og:image" content="/cyberpunk-dashboard.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://brilliantaire.os" />
+		<meta property="twitter:title" content="Brilliantaire OS — Local-First Creative Automation" />
+		<meta property="twitter:description" content="Sovereign developer tooling under the One System mesh protocol. Local command routing, Obsidian write-gate approvals, and background automation loops." />
+		<meta property="twitter:image" content="/cyberpunk-dashboard.png" />
 	</head>
-	<body>
+	<body class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground min-h-screen flex flex-col">
 		<slot />
+
+		<script>
+			import Lenis from 'lenis';
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			// Register ScrollTrigger plugin
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Initialize Lenis smooth scroll
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true
+			});
+
+			// Sync ScrollTrigger with Lenis
+			lenis.on('scroll', ScrollTrigger.update);
+		</script>
 	</body>
 </html>
 
