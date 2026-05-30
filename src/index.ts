@@ -1,3 +1,5 @@
+import process from "node:process";
+
 /**
  * Brilliantaire OS Core Entrypoint
  * "I build before burning."
