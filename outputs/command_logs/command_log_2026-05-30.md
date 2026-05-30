@@ -42,3 +42,58 @@
 
 ---
 
+## [2026-05-30T14:23:21.896Z] Command Attempt: "platform-adapter-help"
+- **Matched Command:** `platform-adapter-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T14:23:28.382Z] Command Attempt: "platform-adapter sporty youtube"
+- **Matched Command:** `platform-adapter`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-30T14:25:14.827Z] Command Attempt: "platform-adapter sporty youtube"
+- **Matched Command:** `platform-adapter`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T14:25:19.889Z] Command Attempt: "platform package"
+- **Matched Command:** `platform-adapter`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-30T14:25:25.838Z] Command Attempt: "platform-adapter"
+- **Matched Command:** `platform-adapter`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+

@@ -211,6 +211,16 @@ tasks:
     cmds:
       - npm run background-status
 
+  platform-adapter-help:
+    desc: "Print platform output adapters safety manuals"
+    cmds:
+      - npm run platform-adapter-help
+
+  platform-adapter:
+    desc: "Generate manual platform posting packages"
+    cmds:
+      - npm run platform-adapter -- {{.CLI_ARGS}}
+
 
   validate:
     desc: "Lint and run workspace checks"

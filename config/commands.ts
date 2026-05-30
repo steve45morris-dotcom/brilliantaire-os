@@ -439,5 +439,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'platform-adapter-help',
+    aliases: ['platform help', 'posting package help'],
+    description: 'Print platform output adapters safety manuals',
+    npmScript: 'platform-adapter-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'platform-adapter',
+    aliases: ['platform package', 'posting package'],
+    description: 'Generate manual platform posting packages (Medium Risk)',
+    npmScript: 'platform-adapter',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

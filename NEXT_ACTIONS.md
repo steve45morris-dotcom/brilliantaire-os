@@ -76,13 +76,22 @@
 - [x] Test voice-check routine
 - [x] Verify automation logs
 - [x] Prepare scheduled automation only after local runner passes
-- [ ] Build controlled background automation
-- [ ] Test background help
-- [ ] Test dry-run schedule
-- [ ] Test blocked run without --confirm
-- [ ] Test blocked run when global automation disabled
-- [ ] Test background status
-- [ ] Prepare launchd or cron adapter only after background automation passes
+- [x] Build controlled background automation
+- [x] Test background help
+- [x] Test dry-run schedule
+- [x] Test blocked run without --confirm
+- [x] Test blocked run when global automation disabled
+- [x] Test background status
+- [x] Prepare launchd or cron adapter only after background automation passes
+- [ ] Build platform output adapters
+- [ ] Generate Sporty YouTube package
+- [ ] Generate Sporty TikTok package
+- [ ] Generate Sporty Instagram package
+- [ ] Generate Sporty Facebook package
+- [ ] Generate Sporty WhatsApp package
+- [ ] Generate Sporty Obsidian package
+- [ ] Review platform packages manually
+- [ ] Prepare release verification only after platform packages pass
 
 
 

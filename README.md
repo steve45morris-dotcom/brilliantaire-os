@@ -429,6 +429,36 @@ The **Controlled Background Automation** layer schedules approved local routines
 
 ---
 
+## 📤 Phase 9A: Platform Output Adapters
+
+The **Platform Output Adapters** prepare structured, local Markdown packages for manual copy-paste posting across various channels (YouTube, TikTok, Instagram, Facebook, WhatsApp) and Obsidian.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual-Only Action:** Does not connect to external platform APIs. Does not auto-post, upload files, or schedule external jobs.
+2. **Offline Local Generation:** All files are stored under `outputs/platform_adapters/` as clean markdown.
+3. **No Overwrites without Suffix:** Prevents accidental data loss by appending a precise timestamp suffix to output filenames if the base target file already exists.
+
+### 💻 Command Examples
+* View platform adapter safety manuals:
+  ```bash
+  npm run command -- "platform-adapter-help"
+  ```
+* Generate specific platform package (YouTube, TikTok, Instagram, Facebook, WhatsApp, Obsidian):
+  ```bash
+  npm run command -- "platform-adapter sporty youtube"
+  ```
+* Generate all platform packages in one execution:
+  ```bash
+  npm run command -- "platform-adapter sporty all"
+  ```
+* Check generated packages presence and latest paths:
+  ```bash
+  npm run command -- "platform-adapter status sporty"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 9A: Platform Ingestion Adapters**
-  - Construct local content adapters preparing structured platform outputs (YouTube, TikTok, Obsidian) for manual copy-paste distribution.```
+* **Phase 9B: Decoupled Platform Verification Gates**
+  - Establish a lightweight local visual dashboard interface for direct clipboard actions and copy-paste verification audits.
+
