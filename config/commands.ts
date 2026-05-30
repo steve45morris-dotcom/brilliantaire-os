@@ -461,5 +461,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'platform-verify-help',
+    aliases: ['platform verification help', 'verify package help'],
+    description: 'Print platform verification gates safety manuals',
+    npmScript: 'platform-verify-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'platform-verify',
+    aliases: ['verify platform', 'verify package'],
+    description: 'Verify generated platform packages (Medium Risk)',
+    npmScript: 'platform-verify',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

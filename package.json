@@ -51,7 +51,9 @@
     "background-run": "tsx scripts/background-run.ts",
     "background-status": "tsx scripts/background-status.ts",
     "platform-adapter": "tsx scripts/platform-adapter.ts",
-    "platform-adapter-help": "tsx scripts/platform-adapter-help.ts"
+    "platform-adapter-help": "tsx scripts/platform-adapter-help.ts",
+    "platform-verify": "tsx scripts/platform-verify.ts",
+    "platform-verify-help": "tsx scripts/platform-verify-help.ts"
   },
   "keywords": [
     "antigravity",

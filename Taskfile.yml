@@ -221,6 +221,16 @@ tasks:
     cmds:
       - npm run platform-adapter -- {{.CLI_ARGS}}
 
+  platform-verify-help:
+    desc: "Print platform verification gates safety manuals"
+    cmds:
+      - npm run platform-verify-help
+
+  platform-verify:
+    desc: "Verify generated platform packages"
+    cmds:
+      - npm run platform-verify -- {{.CLI_ARGS}}
+
 
   validate:
     desc: "Lint and run workspace checks"

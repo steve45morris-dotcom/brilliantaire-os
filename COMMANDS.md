@@ -66,6 +66,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `background-run` | `run background`, `schedule run` | Build Operator | High | Yes | Execute a pre-approved background schedule routine. |
 | `platform-adapter-help` | `platform help`, `posting package help` | Creative Revenue Strategist | Low | No | Print platform output adapters safety manuals. |
 | `platform-adapter` | `platform package`, `posting package` | Creative Revenue Strategist | Medium | Yes | Generate manual platform posting packages. |
+| `platform-verify-help` | `platform verification help`, `verify package help` | Workflow Auditor | Low | No | Print platform verification gates safety manuals. |
+| `platform-verify` | `verify platform`, `verify package` | Workflow Auditor | Medium | Yes | Verify generated platform packages. |
 
 ---
 

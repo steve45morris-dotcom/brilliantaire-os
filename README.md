@@ -458,7 +458,37 @@ The **Platform Output Adapters** prepare structured, local Markdown packages for
 
 ---
 
+## 🔍 Phase 9B: Decoupled Platform Verification Gates
+
+The **Platform Verification Gates** read, check, and score generated copy-paste packages against whitelisted campaign variables and metadata structures.
+
+### 🛡️ Safety & Execution Rules
+1. **Offline Integrity:** All checks are conducted fully locally and offline, ensuring no platform credentials or tokens are ever utilized.
+2. **Read-Only Inspection:** Scripts do not modify the original package outputs to preserve manual alignment history.
+3. **No Overwrites without Suffix:** Verification reports are saved under `outputs/platform_verification/reports/` and append a timestamp suffix if a report for the current day already exists.
+
+### 💻 Command Examples
+* View platform verification safety manuals:
+  ```bash
+  npm run command -- "platform-verify-help"
+  ```
+* Verify a specific platform package (YouTube, TikTok, Instagram, Facebook, WhatsApp, Obsidian):
+  ```bash
+  npm run command -- "platform-verify sporty youtube"
+  ```
+* Verify all packages and generate a unified summary:
+  ```bash
+  npm run command -- "platform-verify sporty all"
+  ```
+* Check verification status matrix:
+  ```bash
+  npm run command -- "platform-verify status sporty"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 9B: Decoupled Platform Verification Gates**
-  - Establish a lightweight local visual dashboard interface for direct clipboard actions and copy-paste verification audits.
+* **Phase 10A: Platform Distribution Metrics and Archiving**
+  - Construct local content trackers to archive successful manual copy-pastes and map release telemetry analytics.
+
 

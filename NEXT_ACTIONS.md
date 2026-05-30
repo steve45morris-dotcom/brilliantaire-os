@@ -83,15 +83,24 @@
 - [x] Test blocked run when global automation disabled
 - [x] Test background status
 - [x] Prepare launchd or cron adapter only after background automation passes
-- [ ] Build platform output adapters
-- [ ] Generate Sporty YouTube package
-- [ ] Generate Sporty TikTok package
-- [ ] Generate Sporty Instagram package
-- [ ] Generate Sporty Facebook package
-- [ ] Generate Sporty WhatsApp package
-- [ ] Generate Sporty Obsidian package
-- [ ] Review platform packages manually
-- [ ] Prepare release verification only after platform packages pass
+- [x] Build platform output adapters
+- [x] Generate Sporty YouTube package
+- [x] Generate Sporty TikTok package
+- [x] Generate Sporty Instagram package
+- [x] Generate Sporty Facebook package
+- [x] Generate Sporty WhatsApp package
+- [x] Generate Sporty Obsidian package
+- [x] Review platform packages manually
+- [x] Prepare release verification only after platform packages pass
+- [x] Build platform verification gates
+- [x] Verify Sporty YouTube package
+- [x] Verify Sporty TikTok package
+- [x] Verify Sporty Instagram package
+- [x] Verify Sporty Facebook package
+- [x] Verify Sporty WhatsApp package
+- [x] Verify Sporty Obsidian package
+- [x] Generate platform verification summary
+- [x] Review manual posting readiness
 
 
 

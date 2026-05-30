@@ -82,24 +82,55 @@ function runCommand() {
     process.exit(1);
   }
 
-  // Look for match
   let matchedCmd: CommandDefinition | null = null;
   let aliasUsed = false;
   let cmdMatchedStr = '';
 
+  // 1. Check exact name match
   for (const cmd of COMMAND_REGISTRY) {
-    if (normalized === cmd.name || normalized.startsWith(cmd.name + ' ')) {
+    if (normalized === cmd.name) {
       matchedCmd = cmd;
       aliasUsed = false;
       cmdMatchedStr = cmd.name;
       break;
     }
-    const matchingAlias = cmd.aliases.find(alias => normalized === alias || normalized.startsWith(alias + ' '));
-    if (matchingAlias) {
-      matchedCmd = cmd;
-      aliasUsed = true;
-      cmdMatchedStr = matchingAlias;
-      break;
+  }
+
+  // 2. Check exact alias match
+  if (!matchedCmd) {
+    for (const cmd of COMMAND_REGISTRY) {
+      const matchingAlias = cmd.aliases.find(alias => normalized === alias);
+      if (matchingAlias) {
+        matchedCmd = cmd;
+        aliasUsed = true;
+        cmdMatchedStr = matchingAlias;
+        break;
+      }
+    }
+  }
+
+  // 3. Check prefix name match
+  if (!matchedCmd) {
+    for (const cmd of COMMAND_REGISTRY) {
+      if (normalized.startsWith(cmd.name + ' ')) {
+        matchedCmd = cmd;
+        aliasUsed = false;
+        cmdMatchedStr = cmd.name;
+        break;
+      }
+    }
+  }
+
+  // 4. Check prefix alias match
+  if (!matchedCmd) {
+    for (const cmd of COMMAND_REGISTRY) {
+      const matchingAlias = cmd.aliases.find(alias => normalized.startsWith(alias + ' '));
+      if (matchingAlias) {
+        matchedCmd = cmd;
+        aliasUsed = true;
+        cmdMatchedStr = matchingAlias;
+        break;
+      }
     }
   }
 
