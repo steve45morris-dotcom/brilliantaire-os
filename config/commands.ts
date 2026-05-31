@@ -901,6 +901,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'narrator-tts-renderer-help',
+    aliases: ['tts renderer help', 'narrator tts renderer help'],
+    description: 'Print help commands for the narrator tts renderer controller',
+    npmScript: 'narrator-tts-renderer-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-tts-renderer',
+    aliases: ['narrator tts renderer', 'tts renderer'],
+    description: 'Dry-run and compile approved text-to-speech requests to offline audio',
+    npmScript: 'narrator-tts-renderer',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

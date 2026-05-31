@@ -328,3 +328,36 @@
 
 ---
 
+## [2026-05-31T15:19:21.224Z] Command Attempt: "notebooklm-mcp-completion-review-help"
+- **Matched Command:** `notebooklm-mcp-completion-review-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:21:36.222Z] Command Attempt: "notebooklm-mcp-completion-review env-check"
+- **Matched Command:** `notebooklm-mcp-completion-review`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:22:17.256Z] Command Attempt: "notebook completion"
+- **Matched Command:** `notebooklm-mcp-completion-review`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

@@ -106,6 +106,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-sync` | `narrator voice`, `sync narrator voice` | Knowledge Librarian | Low | No | Compile voice-ready packets and stage manual VNP voice queue entries. |
 | `narrator-tts-queue-help` | `tts queue help`, `narrator tts help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts queue controller. |
 | `narrator-tts-queue` | `narrator tts`, `tts queue` | Knowledge Librarian | Medium | Yes | Stage and manage local offline text-to-speech rendering requests. |
+| `narrator-tts-renderer-help` | `tts renderer help`, `narrator tts renderer help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts renderer controller. |
+| `narrator-tts-renderer` | `narrator tts renderer`, `tts renderer` | Knowledge Librarian | Medium | Yes | Dry-run and compile approved text-to-speech requests to offline audio. |
 
 ---
 

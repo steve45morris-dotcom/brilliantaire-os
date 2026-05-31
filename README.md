@@ -1085,10 +1085,45 @@ The **Local TTS Render Queue** stages approved voice packets into text-to-speech
 
 ---
 
+## 🎙️ Phase N5B: Local TTS Audio Renderer
+
+The **Local TTS Audio Renderer** converts approved text-to-speech rendering requests into offline audio files using a local speech synthesis engine (Piper) safely.
+
+### 🛡️ Safety & Execution Rules
+1. **Approved Request Gate:** Only renders requests in `approved/` folder. Blocks pending or rejected request IDs.
+2. **Local-Only Rendering:** All synthesis runs offline using local binaries. External API queries are blocked.
+3. **No Direct Audio Playback:** Rendered wave files are stored silently inside `rendered_audio/`. No audio devices are opened.
+4. **Exact-Name Routing Gate:** Operations require exact command name matching (`narrator-tts-renderer`) to prevent accidental execution.
+
+### 💻 Command Examples
+* View tts renderer help commands menu:
+  ```bash
+  npm run command -- "narrator-tts-renderer-help"
+  ```
+* Print tts renderer status report:
+  ```bash
+  npm run command -- "narrator-tts-renderer status"
+  ```
+* Simulate rendering of approved request (dry-run):
+  ```bash
+  npm run command -- "narrator-tts-renderer dry-run <REQUEST_ID>"
+  ```
+* Render approved request text to audio (requires exact name router gate):
+  ```bash
+  npm run command -- "narrator-tts-renderer render <REQUEST_ID>"
+  ```
+* Render all approved requests in batch (requires exact name router gate):
+  ```bash
+  npm run command -- "narrator-tts-renderer render-all-approved"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 * **Phase 11K: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N5B: Local TTS Audio Renderer**
-  - Integrate safe, offline local text-to-speech synthesis (e.g. Kokoro or Piper Python adapters) to compile approved text requests into audio files without external network connections.
+* **Phase N5C: Local ASR Command Listener**
+  - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
+
 
 

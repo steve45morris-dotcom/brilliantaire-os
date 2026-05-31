@@ -92,7 +92,9 @@
     "narrator-voice-sync": "tsx scripts/narrator-voice-sync.ts",
     "narrator-voice-sync-help": "tsx scripts/narrator-voice-sync-help.ts",
     "narrator-tts-queue": "tsx scripts/narrator-tts-queue.ts",
-    "narrator-tts-queue-help": "tsx scripts/narrator-tts-queue-help.ts"
+    "narrator-tts-queue-help": "tsx scripts/narrator-tts-queue-help.ts",
+    "narrator-tts-renderer": "tsx scripts/narrator-tts-renderer.ts",
+    "narrator-tts-renderer-help": "tsx scripts/narrator-tts-renderer-help.ts"
   },
   "keywords": [
     "antigravity",

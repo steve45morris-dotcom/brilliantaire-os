@@ -434,6 +434,16 @@ tasks:
     cmds:
       - npm run narrator-tts-queue-help
 
+  narrator-tts-renderer:
+    desc: "Dry-run and compile approved text-to-speech requests to offline audio"
+    cmds:
+      - npm run narrator-tts-renderer -- {{.CLI_ARGS}}
+
+  narrator-tts-renderer-help:
+    desc: "Print help commands for the narrator tts renderer controller"
+    cmds:
+      - npm run narrator-tts-renderer-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
