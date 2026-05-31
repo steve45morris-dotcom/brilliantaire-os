@@ -264,6 +264,7 @@
 - [x] Review live adapter report
 
 ## Do Next
+<<<<<<< HEAD
 - [x] Build Live Response Intelligence Processor
 - [x] Process latest NotebookLM response
 - [x] Generate citation map
@@ -281,6 +282,16 @@
 - [ ] Inspect latest graph
 - [ ] Review high-risk weak claims
 - [ ] Prepare vector index only after graph review
+=======
+- [ ] Build Live Response Intelligence Processor
+- [ ] Process latest NotebookLM response
+- [ ] Generate citation map
+- [ ] Generate weak claims report
+- [ ] Generate workflow cards
+- [ ] Generate OS module suggestions
+- [ ] Generate Obsidian staged note
+- [ ] Review Grounded Narrator indexing boundary
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

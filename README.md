@@ -938,11 +938,19 @@ The **MCP Setup Fix Cycle** provides a repeatable local check and correction loo
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle tasks"
   ```
+<<<<<<< HEAD
 * Compare current readiness score against previous readiness and review scores:
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle compare"
   ```
 * Generate sequential manual runbook for next pass:
+=======
+* Generate readiness comparison report:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle compare"
+  ```
+* Compile next-pass rerun sequence runbook:
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle next-pass"
   ```
@@ -1480,8 +1488,60 @@ The **Grounded Intelligence Index Graph** compiles and links all response intell
 
 ---
 
+## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
+
+The **NotebookLM MCP Live Adapter Integration** establishes a safe, offline-gated live query preparation, query execution, and manual answers staging runbooks.
+
+### 🛡️ Safety & Execution Rules
+1. **Restricted Execution:** No active network queries or server connections are run automatically.
+2. **Offline Fallback:** If live adapter is not authorized, falls back to manual answers files.
+
+### 💻 Command Examples
+* View live adapter help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-live-help"
+  ```
+* View live adapter status:
+  ```bash
+  npm run command -- "notebooklm-mcp-live status"
+  ```
+
+---
+
+## 🧭 Phase 11N: Live Response Intelligence Processor
+
+The **Live Response Intelligence Processor** is a safe, local, offline layer designed to ingest normalized NotebookLM response markdown files and convert them into structured, actionable intelligence cards, maps, suggestions, and staged notes.
+
+### 🛡️ Safety & Execution Rules
+1. **Response-Only Processing:** This script only reads local, pre-saved response files.
+2. **No Direct Obsidian Writes:** Staged markdown notes are written under `outputs/notebooklm_bridge/response_intelligence/` for manual review first.
+3. **No External APIs:** The processor must never make external API calls.
+
+### 💻 Command Examples
+* View response intelligence help menu:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence-help"
+  ```
+* Run all processors sequentially:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence full"
+  ```
+* Print processor file path status summaries:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
+<<<<<<< HEAD
 * **Phase 11P: Grounded Narrator Integration**
   - Integrate the compiled Grounded Intelligence Index Graph with the AI Narrator engine, mapping node relationships and citation structures directly into speech narration outputs.
 * **Phase 11Q: Vector Search Database Preparation**
   - Prepare local vector database indexing pipelines to index verified nodes for semantic search and retrieval once manual review is complete.
+=======
+* **Phase 11P: Live Response Intelligence Index Graph**
+  - Construct a structured local index graph linking staged response briefs, citations, and OS suggestion files for direct knowledge retrieval.
+* **Phase N5D: Local ASR Command Listener**
+  - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca

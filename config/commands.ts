@@ -859,6 +859,7 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+<<<<<<< HEAD
     name: 'grounded-index-help',
     aliases: ['graph help', 'grounded help'],
     description: 'Print help menu for grounded intelligence graph index',
@@ -881,6 +882,8 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+=======
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

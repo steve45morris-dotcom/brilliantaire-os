@@ -1,7 +1,11 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
+<<<<<<< HEAD
 - **Current Phase:** Phase 11O: Grounded Intelligence Index Graph — COMPLETE
+=======
+- **Current Phase:** Phase 11K: MCP Setup Fix Cycle — COMPLETE
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -59,7 +63,10 @@
 - **Local MCP Setup Verification Loop (Phase 11L):** Repeatable local validation chain execution, dynamic readiness score evaluator, and final setup eligibility decision compiler.
 - **NotebookLM MCP Live Adapter Integration (Phase 11M):** Restricted read-only live query adapter scaffolding, readiness test gate auditor, and manual execution instructions fallback writer.
 - **Live Response Intelligence Processor (Phase 11N):** Safe response intelligence processor that parses normalized NotebookLM responses and converts them into structured insight indexes, citation maps, weak claims reports, workflow cards, OS module suggestions, and Obsidian-staged notes.
+<<<<<<< HEAD
 - **Grounded Intelligence Index Graph (Phase 11O):** Safe local offline index compiler that reads response intelligence files and compiles them into grounded JSON graphs, Markdown graphs, and statistics reports, with console status and preview inspect support.
+=======
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.

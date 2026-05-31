@@ -401,6 +401,7 @@ tasks:
     desc: "Run NotebookLM Response Intelligence Processor tasks safely"
     cmds:
       - npm run notebooklm-response-intelligence -- {{.CLI_ARGS}}
+<<<<<<< HEAD
 
   grounded-index-help:
     desc: "Print Grounded Intelligence Index Graph safety manuals"
@@ -411,6 +412,8 @@ tasks:
     desc: "Run Grounded Intelligence Index Graph tasks safely"
     cmds:
       - npm run grounded-index -- {{.CLI_ARGS}}
+=======
+>>>>>>> 7c70cc14694fec000509227eee936983776b6fca
 
   scheduler:
     desc: "Execute scheduler CLI operations"
