@@ -364,7 +364,108 @@
 
         <!-- ================= PAGE 1: OVERVIEW ================= -->
         <div id="tab-overview" class="tab-section active space-y-8">
-          
+
+          <!-- ================= AI MISSION NARRATOR BRIEFING ================= -->
+          <div class="hud-panel p-6 rounded-xl border border-brand-border/60 bg-gradient-to-br from-brand-void/80 to-brand-bg/50 backdrop-blur-md relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-cyan"></div>
+            <div class="absolute -inset-px bg-gradient-to-br from-brand-cyan/5 via-brand-purple/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+            <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-5 relative z-10">
+              <div class="flex items-center gap-2.5">
+                <div class="relative flex h-3 w-3">
+                  <span id="narrator-status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+                  <span id="narrator-status-dot" class="relative inline-flex rounded-full h-3 w-3"></span>
+                </div>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono uppercase flex items-center gap-1.5">
+                  <i data-lucide="compass" class="h-4.5 w-4.5 text-brand-cyan animate-spin-slow"></i>
+                  Mission Narrator Briefing Layer
+                </h2>
+              </div>
+              <div class="flex items-center gap-3">
+                <span id="narrator-mood" class="text-[9px] font-mono px-2 py-0.5 border border-brand-border rounded bg-brand-void text-slate-400 uppercase tracking-widest">NOMINAL</span>
+                <span class="text-[8px] font-mono text-slate-500 uppercase tracking-widest" id="narrator-timestamp">CONNECTING...</span>
+              </div>
+            </div>
+
+            <div class="mb-6 relative z-10">
+              <h1 id="narrator-headline" class="text-lg md:text-xl font-bold tracking-tight text-brand-cyan font-mono leading-snug animate-pulse-slow">
+                Loading live operating system narration...
+              </h1>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3 mb-6 relative z-10">
+              <div class="p-4 bg-brand-void/40 border border-brand-border/30 rounded-lg relative overflow-hidden group/item">
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500 block mb-2 border-b border-brand-border/20 pb-1 flex items-center gap-1.5">
+                  <i data-lucide="check-circle-2" class="h-3.5 w-3.5 text-brand-cyan"></i> What We Did
+                </span>
+                <p id="narrator-did" class="text-[11px] leading-relaxed text-slate-300 font-mono">Loading data...</p>
+              </div>
+
+              <div class="p-4 bg-brand-void/40 border border-brand-border/30 rounded-lg relative overflow-hidden group/item">
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500 block mb-2 border-b border-brand-border/20 pb-1 flex items-center gap-1.5">
+                  <i data-lucide="cpu" class="h-3.5 w-3.5 text-brand-cyan"></i> What It Is
+                </span>
+                <p id="narrator-is" class="text-[11px] leading-relaxed text-slate-300 font-mono">Loading data...</p>
+              </div>
+
+              <div class="p-4 bg-brand-void/40 border border-brand-border/30 rounded-lg relative overflow-hidden group/item">
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500 block mb-2 border-b border-brand-border/20 pb-1 flex items-center gap-1.5">
+                  <i data-lucide="arrow-right-circle" class="h-3.5 w-3.5 text-brand-cyan"></i> What's Left
+                </span>
+                <p id="narrator-left" class="text-[11px] leading-relaxed text-slate-300 font-mono">Loading data...</p>
+              </div>
+            </div>
+
+            <!-- Metadata line for safety mode, generated time, and sources -->
+            <div id="narrator-metadata-container" class="mt-4 pt-3 border-t border-brand-border/20 flex flex-wrap items-center justify-between gap-4 text-[9px] font-mono text-slate-500 relative z-10">
+              <div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
+                <div class="flex items-center gap-1">
+                  <span>SAFETY:</span>
+                  <span id="narrator-safety" class="text-brand-emerald font-bold uppercase tracking-wider bg-brand-emerald/10 px-1.5 py-0.5 rounded border border-brand-emerald/20">—</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span>GENERATED:</span>
+                  <span id="narrator-generated-at" class="text-slate-400">—</span>
+                </div>
+              </div>
+              <div id="narrator-sources-container" class="flex items-center gap-1.5 max-w-full overflow-hidden">
+                <span class="shrink-0">SOURCES USED:</span>
+                <div id="narrator-sources-list" class="flex flex-wrap gap-1 items-center">
+                  <!-- dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-brand-border/30 pt-4 relative z-10 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-mono text-slate-400">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-500 uppercase text-[9px] font-black">Tenants:</span>
+                  <span id="narrator-metric-tenants" class="text-white font-bold">—</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-500 uppercase text-[9px] font-black">Mesh Nodes:</span>
+                  <span id="narrator-metric-nodes" class="text-brand-cyan font-bold">—</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-500 uppercase text-[9px] font-black">MRR:</span>
+                  <span id="narrator-metric-mrr" class="text-brand-purple font-bold">—</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-500 uppercase text-[9px] font-black">Consensus:</span>
+                  <span id="narrator-metric-consensus" class="text-brand-emerald font-bold">—</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-500 uppercase text-[9px] font-black">Last Action:</span>
+                  <span id="narrator-metric-action" class="text-white font-bold truncate max-w-[150px]">—</span>
+                </div>
+              </div>
+              <button onclick="refreshNarratorCard()" class="flex h-8 items-center justify-center gap-2 rounded border border-brand-cyan/40 bg-brand-cyan/5 text-brand-cyan hover:bg-brand-cyan/15 px-3 font-mono text-[9px] font-bold uppercase tracking-wider cursor-pointer transition">
+                <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i>
+                <span>Sync Brief</span>
+              </button>
+            </div>
+          </div>
+
           <!-- Dashboard Hardening: Metrics Grid with SVG live mini lines -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-brand-border bg-brand-void/40 backdrop-blur-md divide-y md:divide-y-0 md:divide-x divide-brand-border">
             
@@ -2354,6 +2455,129 @@ ${data.output || 'No output returned'}`;
       }, 900);
     }
 
+    async function refreshNarratorCard() {
+      try {
+        const response = await fetch('./outputs/narrator_card.json');
+        if (!response.ok) throw new Error('Failed to fetch narrator card data');
+        const data = await response.json();
+        
+        // Update elements
+        document.getElementById('narrator-headline').innerText = data.headline || 'No headline';
+        document.getElementById('narrator-did').innerText = data.what_we_did || 'No data';
+        document.getElementById('narrator-is').innerText = data.what_it_is || 'No data';
+        document.getElementById('narrator-left').innerText = data.whats_left || 'No data';
+        
+        // Mood and timestamp
+        document.getElementById('narrator-mood').innerText = data.mood || 'NOMINAL';
+        const ts = data.timestamp ? new Date(data.timestamp).toLocaleTimeString() : 'UNKNOWN';
+        document.getElementById('narrator-timestamp').innerText = `LATEST SYNC: ${ts}`;
+        
+        // Status color mapping
+        const color = data.status_color || 'green';
+        const statusPing = document.getElementById('narrator-status-ping');
+        const statusDot = document.getElementById('narrator-status-dot');
+        
+        statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75';
+        statusDot.className = 'relative inline-flex rounded-full h-3 w-3';
+        
+        if (color === 'red') {
+          statusPing.classList.add('bg-brand-red');
+          statusDot.classList.add('bg-brand-red');
+        } else if (color === 'amber' || color === 'yellow') {
+          statusPing.classList.add('bg-brand-gold');
+          statusDot.classList.add('bg-brand-gold');
+        } else if (color === 'blue') {
+          statusPing.classList.add('bg-brand-cyan');
+          statusDot.classList.add('bg-brand-cyan');
+        } else if (color === 'purple') {
+          statusPing.classList.add('bg-brand-purple');
+          statusDot.classList.add('bg-brand-purple');
+        } else {
+          statusPing.classList.add('bg-brand-emerald');
+          statusDot.classList.add('bg-brand-emerald');
+        }
+        
+        // Metrics
+        const metrics = data.key_metrics || {};
+        document.getElementById('narrator-metric-tenants').innerText = metrics.active_tenants ?? 'unknown';
+        document.getElementById('narrator-metric-nodes').innerText = metrics.mesh_nodes_live ?? 'unknown';
+        document.getElementById('narrator-metric-mrr').innerText = metrics.mrr_usd ? `$${metrics.mrr_usd}` : 'unknown';
+        document.getElementById('narrator-metric-consensus').innerText = metrics.consensus_status ?? 'unknown';
+        document.getElementById('narrator-metric-action').innerText = metrics.last_action ?? 'unknown';
+        document.getElementById('narrator-metric-action').title = metrics.last_action ?? '';
+
+        // Safety mode
+        const safetyEl = document.getElementById('narrator-safety');
+        if (safetyEl) {
+          safetyEl.innerText = data.safety_mode || '—';
+          if (data.safety_mode === 'output_only') {
+            safetyEl.className = 'text-brand-emerald font-bold uppercase tracking-wider bg-brand-emerald/10 px-1.5 py-0.5 rounded border border-brand-emerald/20';
+          } else {
+            safetyEl.className = 'text-brand-gold font-bold uppercase tracking-wider bg-brand-gold/10 px-1.5 py-0.5 rounded border border-brand-gold/20';
+          }
+        }
+        
+        // Generated at
+        const generatedAtEl = document.getElementById('narrator-generated-at');
+        if (generatedAtEl) {
+          generatedAtEl.innerText = data.generated_at ? new Date(data.generated_at).toLocaleString() : '—';
+        }
+        
+        // Sources used
+        const sourcesListEl = document.getElementById('narrator-sources-list');
+        if (sourcesListEl) {
+          sourcesListEl.innerHTML = '';
+          const sources = data.sources_used || [];
+          if (sources.length === 0) {
+            sourcesListEl.innerHTML = '<span class="text-slate-600">none</span>';
+          } else {
+            sources.forEach(src => {
+              const badge = document.createElement('span');
+              badge.className = 'px-1.5 py-0.5 border border-brand-border bg-brand-void/80 rounded text-slate-400 font-mono text-[8px]';
+              badge.innerText = src;
+              sourcesListEl.appendChild(badge);
+            });
+          }
+        }
+        
+        if (window.lucide) lucide.createIcons();
+      } catch (err) {
+        console.error('Narrator Sync Error:', err);
+
+        // Fallback state UI updates
+        document.getElementById('narrator-headline').innerText = 'Narrator Sync Offline: Failed to fetch latest operating brief';
+        document.getElementById('narrator-did').innerText = 'The AI Narrator is currently unable to load the latest system telemetry snapshot. Ensure the narrator watch task or python process is running.';
+        document.getElementById('narrator-is').innerText = 'Brilliantaire OS is designed with offline-first local fallback layers, allowing normal system operations to continue during telemetry service interruptions.';
+        document.getElementById('narrator-left').innerText = 'Check the local logs at outputs/narrator/logs/ and restart the narrator daemon if needed.';
+        
+        document.getElementById('narrator-mood').innerText = 'OFFLINE';
+        document.getElementById('narrator-timestamp').innerText = 'LATEST SYNC: FAILED';
+        
+        const statusPing = document.getElementById('narrator-status-ping');
+        const statusDot = document.getElementById('narrator-status-dot');
+        if (statusPing && statusDot) {
+          statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-brand-gold';
+          statusDot.className = 'relative inline-flex rounded-full h-3 w-3 bg-brand-gold';
+        }
+        
+        const safetyEl = document.getElementById('narrator-safety');
+        if (safetyEl) {
+          safetyEl.innerText = 'OFFLINE_FALLBACK';
+          safetyEl.className = 'text-brand-gold font-bold uppercase tracking-wider bg-brand-gold/10 px-1.5 py-0.5 rounded border border-brand-gold/20';
+        }
+        
+        const generatedAtEl = document.getElementById('narrator-generated-at');
+        if (generatedAtEl) {
+          generatedAtEl.innerText = '—';
+        }
+        
+        const sourcesListEl = document.getElementById('narrator-sources-list');
+        if (sourcesListEl) {
+          sourcesListEl.innerHTML = '<span class="text-slate-600">none</span>';
+        }
+      }
+    }
+
     // ==========================================
     // INITIALIZATION & TIMERS
     // ==========================================
@@ -2366,9 +2590,11 @@ ${data.output || 'No output returned'}`;
       init3DTiltEffects();
       initVoiceWaveform();
       initCLITerminal();
+      refreshNarratorCard();
       
       setInterval(fetchLiveTelemetry, 3000);
       setInterval(fetchLiveLogs, 4000);
+      setInterval(refreshNarratorCard, 8000);
     });
   </script>
 </body>

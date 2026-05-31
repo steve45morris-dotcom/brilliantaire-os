@@ -637,6 +637,62 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'list-schedules',
+    aliases: ['schedules', 'list schedules'],
+    description: 'List registered background schedules',
+    npmScript: 'list-schedules',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'scheduler-health',
+    aliases: ['scheduler health', 'health status'],
+    description: 'Print background scheduler health status analytics',
+    npmScript: 'scheduler-health',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'scheduler-report',
+    aliases: ['scheduler report', 'compile report'],
+    description: 'Generate daily and weekly scheduler performance reports',
+    npmScript: 'scheduler-report',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-sources',
+    aliases: ['narrator source scan', 'narrator scan'],
+    description: 'Scan approved sources and generate narrator source snapshot',
+    npmScript: 'narrator-sources',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-validate',
+    aliases: ['validate narrator', 'narrator check'],
+    description: 'Validate narrator_card.json output structure and safety',
+    npmScript: 'narrator-validate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
   }
 ];
+
 

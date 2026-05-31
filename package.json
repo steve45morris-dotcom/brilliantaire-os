@@ -67,7 +67,13 @@
     "notebooklm-mcp-execute": "tsx scripts/notebooklm-mcp-execute.ts",
     "notebooklm-mcp-execute-help": "tsx scripts/notebooklm-mcp-execute-help.ts",
     "notebooklm-mcp-auth": "tsx scripts/notebooklm-mcp-auth.ts",
-    "notebooklm-mcp-auth-help": "tsx scripts/notebooklm-mcp-auth-help.ts"
+    "notebooklm-mcp-auth-help": "tsx scripts/notebooklm-mcp-auth-help.ts",
+    "scheduler": "tsx scripts/scheduler.ts",
+    "list-schedules": "tsx scripts/scheduler.ts list",
+    "scheduler-health": "tsx scripts/scheduler.ts health",
+    "scheduler-report": "tsx scripts/scheduler.ts report",
+    "narrator-sources": "tsx scripts/narrator-sources.ts",
+    "narrator-validate": "tsx scripts/narrator-validate.ts"
   },
   "keywords": [
     "antigravity",

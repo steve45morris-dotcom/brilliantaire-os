@@ -727,6 +727,38 @@ The **NotebookLM MCP Live Authorization Validation** layer provides a strict, of
 
 ---
 
+## 🧭 Phase N1: AI Narrator Safety and Source Binding
+
+The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
+
+### 🛡️ Safety & Grounding Rules
+1. **Zero Command Execution:** The Narrator does not run commands, call shells, or approve system state modifications.
+2. **Output-Only Restrictions:** The Narrator operates strictly in `output_only` mode, meaning it cannot modify any system files except its designated output brief files.
+3. **Approved Sources Boundary:** The Narrator can only read files matching the explicit whitelist in `config/narrator-sources.ts`.
+4. **Validation Enforced:** Every dashboard narrative card must pass the `narrator-validate` integrity constraints.
+
+### 💻 Command Examples
+* Scan approved sources and compile snapshot (via safe router):
+  ```bash
+  npm run command -- "narrator-sources"
+  ```
+* Run the validation script on the generated brief (via safe router):
+  ```bash
+  npm run command -- "narrator-validate"
+  ```
+* Run narrator manual check (dry run):
+  ```bash
+  python tools/ai_narrator.py --dry-run
+  ```
+* Run narrator watch daemon (as a background process):
+  ```bash
+  task narrator-watch
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 * **Phase 11F: NotebookLM MCP Adapter Live Integration**
   - Establish live, restricted read-only query adapter operations once safety gates are signed off.
+* **Phase N2: Live Dashboard Narration Feed**
+  - Integrate real-time WebSocket or event-driven state triggers for instantaneous dashboard narrative sync.

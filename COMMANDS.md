@@ -82,6 +82,11 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-execute` | `notebook execute`, `mcp execute` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Adapter Dry-Run simulations. |
 | `notebooklm-mcp-auth-help` | `notebook auth help`, `mcp auth help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Live Authorization Validation. |
 | `notebooklm-mcp-auth` | `notebook auth`, `mcp auth` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Live Authorization Validation checks. |
+| `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
+| `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
+| `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
+| `narrator-sources` | `narrator source scan`, `narrator scan` | Knowledge Librarian | Low | No | Scan approved sources and generate narrator source snapshot. |
+| `narrator-validate` | `validate narrator`, `narrator check` | Workflow Auditor | Low | No | Validate narrator_card.json output structure and safety. |
 
 ---
 

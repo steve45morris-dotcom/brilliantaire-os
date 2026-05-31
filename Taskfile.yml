@@ -301,9 +301,38 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-auth -- {{.CLI_ARGS}}
 
+  scheduler:
+    desc: "Execute scheduler CLI operations"
+    cmds:
+      - npm run scheduler -- {{.CLI_ARGS}}
+
+  list-schedules:
+    desc: "List registered background schedules"
+    cmds:
+      - npm run list-schedules
+
+  scheduler-health:
+    desc: "Print background scheduler health analytics"
+    cmds:
+      - npm run scheduler-health
+
+  scheduler-report:
+    desc: "Generate daily and weekly scheduler performance reports"
+    cmds:
+      - npm run scheduler-report
 
 
 
+
+  narrator-sources:
+    desc: "Scan approved files and generate narrator source snapshot"
+    cmds:
+      - npm run narrator-sources
+
+  narrator-validate:
+    desc: "Validate narrator_card.json output"
+    cmds:
+      - npm run narrator-validate
   narrator-watch:
     desc: "Run the AI Narrator in watch mode as a background daemon"
     cmds:
