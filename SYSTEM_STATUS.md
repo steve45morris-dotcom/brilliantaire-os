@@ -43,6 +43,7 @@
 - **Zero-Knowledge System Audits (Phase 21):** Perform cryptographic SHA-256 block chain integrity checks over the database logs.
 - **Phase 8B (Bootstrap & Status Sync):** Local startup bootstrap script (`sentinel_boot.sh`) integrated with macOS LaunchAgent daemon (`com.sentinel.boot.plist`), publishing live system health briefings to `Home.md`.
 - **Phase 21 (Reconciliation Ledger & Webhooks):** Local payment reconciliation ledger (`stripe_ledger.ts`) and mock webhook ingest endpoint (`/api/webhooks/stripe`) writing transaction states to `stripe_ledger.md` and feeding live telemetry components.
+- **AI Narrator Briefing Layer:** Gemini-powered AI Narrator (`tools/ai_narrator.py`) integrated into the dashboard overview card and Obsidian briefings vault (`brilliantaire-briefs/latest_task_explain.md`) with watch daemon capability (`narrator-watch`).
 - **Knowledge Harvest Engine (Phase 11):** Local YouTube learning note ingest, NotebookLM source pack compiling, and OS workflow ideas generator.
 - **NotebookLM MCP Sidecar Bridge (Phase 22):** Local connector bridge to compile query packets, ingest manual answers safely, stage Obsidian exports, and extract workflow automation ideas.
 - **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
