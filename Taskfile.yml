@@ -451,6 +451,16 @@ tasks:
     cmds:
       - npm run tts-queue-validator -- {{.CLI_ARGS}}
 
+  tts-synthesizer-help:
+    desc: "Print Offline TTS Synthesizer safety manuals"
+    cmds:
+      - npm run tts-synthesizer-help
+
+  tts-synthesizer:
+    desc: "Run Offline TTS Synthesizer tasks safely"
+    cmds:
+      - npm run tts-synthesizer -- {{.CLI_ARGS}}
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -638,6 +648,16 @@ tasks:
     desc: "Print help commands for the local voice session recorder"
     cmds:
       - npm run narrator-voice-session-recorder-help
+
+  narrator-voice-asr-orchestrator:
+    desc: "Stage, transcribe, and approve voice sessions through the ASR pipeline"
+    cmds:
+      - npm run narrator-voice-asr-orchestrator -- {{.CLI_ARGS}}
+
+  narrator-voice-asr-orchestrator-help:
+    desc: "Print help commands for the voice session to ASR orchestrator"
+    cmds:
+      - npm run narrator-voice-asr-orchestrator-help
 
 
 

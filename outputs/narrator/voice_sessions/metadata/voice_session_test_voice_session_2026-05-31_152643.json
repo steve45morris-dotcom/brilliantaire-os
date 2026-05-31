@@ -1,0 +1,14 @@
+{
+  "id": "voice_session_test_voice_session_2026-05-31_152643",
+  "name": "test_voice_session",
+  "audioPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings/voice_session_test_voice_session_2026-05-31_152643.wav",
+  "metadataPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/metadata/voice_session_test_voice_session_2026-05-31_152643.json",
+  "recordedAt": "2026-05-31T22:26:43.049Z",
+  "durationSeconds": 34,
+  "fileSizeBytes": 2883584,
+  "status": "staged_for_asr",
+  "stagedForAsr": true,
+  "stagedAt": "2026-05-31T22:40:46.653Z",
+  "rejected": false,
+  "archived": false
+}

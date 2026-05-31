@@ -101,7 +101,7 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-local-secrets-help` | `notebook secrets help`, `mcp secrets help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Secrets Staging Guide. |
 | `notebooklm-mcp-local-secrets` | `notebook secrets`, `mcp secrets` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Secrets Staging Guide checks. |
 | `notebooklm-mcp-live-help` | `notebook live help`, `mcp live help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Live Adapter Integration. |
-| `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | High | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
+| `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
 | `notebooklm-response-intelligence-help` | `response intelligence help`, `notebook intelligence help` | Knowledge Librarian | Low | No | Print commands for NotebookLM response intelligence processor. |
 | `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
 | `grounded-index-help` | `graph help`, `grounded help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
@@ -112,6 +112,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `tts-brief-composer` | `tts composer`, `narrator script` | Knowledge Librarian | Medium | Yes | Read narrator briefs and compile scripts or packets safely offline. |
 | `tts-queue-validator-help` | `tts validation help`, `audio queue help` | Build Operator | Low | No | Print help menu for offline TTS queue validator. |
 | `tts-queue-validator` | `tts validator`, `audio queue` | Build Operator | Medium | Yes | Verify staged script assets and check TTS generation parameters. |
+| `tts-synthesizer-help` | `tts synth help`, `audio synth help` | Build Operator | Low | No | Print help menu for offline local TTS audio synthesizer scaffold. |
+| `tts-synthesizer` | `tts synth`, `audio synth` | Build Operator | Medium | Yes | Dry-run validate and scaffold Piper offline local TTS audio generation settings. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -147,6 +149,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-loop-dashboard` | `voice loop dashboard`, `narrator voice loop dashboard`, `voice loop` | Knowledge Librarian | Medium | Yes | Interactive dashboard and confirmation UI for ASR and Voice Bridge pipelines. |
 | `narrator-voice-session-recorder-help` | `voice session recorder help`, `narrator voice session recorder help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice session recorder. |
 | `narrator-voice-session-recorder` | `voice session recorder`, `narrator voice session recorder` | Knowledge Librarian | Medium | Yes | Local offline voice session recorder status, start, stop, and stage commands. |
+| `narrator-voice-asr-orchestrator-help` | `voice asr orchestrator help`, `narrator voice asr orchestrator help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice ASR orchestrator. |
+| `narrator-voice-asr-orchestrator` | `voice asr orchestrator`, `narrator voice asr orchestrator` | Knowledge Librarian | Medium | Yes | Local offline voice session to ASR queue dispatch and approval orchestrator. |
 
 
 ---

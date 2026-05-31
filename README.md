@@ -1844,10 +1844,46 @@ The **Offline TTS Queue Validator** checks generated text-to-speech scripts, que
 
 ---
 
+## 🧭 Phase 11S: Offline Local TTS Audio Synthesizer Scaffold
+
+The **Offline Local TTS Audio Synthesizer Scaffold** prepares Piper-style local speech synthesis configurations, checks for local voice model binaries manual placements, compiles manifest maps, and simulates offline voice compilation command previews via dry-runs without generating sound files.
+
+### 🛡️ Safety & Execution Rules
+1. **Scaffold-Only Mode:** Active boundaries verify engine settings, model presence, and parameter reports. It does not spawn actual Piper compilers.
+2. **No Audio Generation:** Sound rendering processes are locked. No `.wav` files are created.
+3. **No Automatic Model Downloads:** Voice models cannot be retrieved automatically from remote hubs over HTTP/HTTPS.
+4. **No External APIs:** Speech synthesis queries to cloud APIs are bypassed completely to prevent runtime state leakage.
+
+### 💻 Command Examples
+* View synthesizer help menu:
+  ```bash
+  npm run command -- "tts-synthesizer-help"
+  ```
+* Compile engine parameter configurations:
+  ```bash
+  npm run command -- "tts-synthesizer config-report"
+  ```
+* Inspect manual voice model ONNX placements:
+  ```bash
+  npm run command -- "tts-synthesizer model-check"
+  ```
+* Run offline synthesis dry-run simulation:
+  ```bash
+  npm run command -- "tts-synthesizer dry-run"
+  ```
+* Generate expected audio manifest:
+  ```bash
+  npm run command -- "tts-synthesizer manifest"
+  ```
+* Check synthesis capabilities status:
+  ```bash
+  npm run command -- "tts-synthesizer status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11S: Offline TTS Audio Synthesis**
-  - Synthesize checked scripts using safe, local offline speech engines (e.g. Piper) once the manual review queue, TTS brief composer, and queue validator process passes.
-* **Phase 11T: Vector Search Database Ingestion**
-  - Prepare vector database pipelines to index node metadata for semantic query retrieval.
+* **Phase 11T: Local Voice Session Recorder**
+  - Construct a local offline voice session recorder that records microphone inputs, stores raw voice clips, and logs sessions safely for speech recognition audits.
 
 

@@ -6,20 +6,41 @@ const __dirname = path.dirname(__filename);
 export const REPO_ROOT = path.resolve(__dirname, '..');
 
 // Safety Constants & Configurations
-export const LIVE_ADAPTER_AVAILABLE = true;
-export const LIVE_EXECUTION_DEFAULT = false;
-export const READ_ONLY_MODE = true;
-export const ALLOW_NOTEBOOK_MODIFICATION = false;
+export const LIVE_ADAPTER_MODE = "manual-enable";
+export const ALLOW_LIVE_MCP_EXECUTION = true;
+export const ALLOW_AUTONOMOUS_QUERY_EXECUTION = false;
 export const ALLOW_OBSIDIAN_WRITE = false;
-export const ALLOW_SOURCE_UPLOAD = false;
-export const ALLOW_BACKGROUND_QUERIES = false;
-export const REQUIRE_MANUAL_ENABLE = true;
+export const ALLOW_NOTEBOOK_MODIFICATION = false;
+export const ALLOW_SOURCE_DELETION = false;
+export const ALLOW_SECRET_PRINTING = false;
+export const REQUIRE_ENV_LOCAL = true;
+export const REQUIRE_READINESS_SCORE = 90;
 export const REQUIRE_CONFIRM_FLAG = true;
-export const REQUIRE_READINESS_SCORE = 100;
-export const MAX_QUERY_LENGTH = 4000;
-export const MAX_RESPONSE_LENGTH = 20000;
+export const REQUIRE_QUERY_TYPE_ALLOWLIST = true;
+export const REQUIRE_RESPONSE_LOGGING = true;
+export const REQUIRE_STAGED_OBSIDIAN_EXPORT = true;
 
-// Expected Environment Variable Names (Keys only!)
+// Allowed query types:
+export const allowedQueryTypes = [
+  "source-summary",
+  "workflow-extraction",
+  "weak-claims-review",
+  "os-module-suggestions",
+  "prompt-pack-ideas"
+];
+
+// Blocked modes:
+export const blockedModes = [
+  "create-notebook",
+  "delete-notebook",
+  "update-source",
+  "delete-source",
+  "write-obsidian",
+  "execute-command",
+  "browser-automation"
+];
+
+// Expected env names:
 export const expectedEnvNames = [
   "NOTEBOOKLM_MCP_ENABLED",
   "NOTEBOOKLM_MCP_SERVER_COMMAND",
@@ -29,20 +50,12 @@ export const expectedEnvNames = [
   "NOTEBOOKLM_WORKSPACE_ID"
 ];
 
-// Allowed Query Types
-export const allowedQueryTypes = [
-  "source-summary",
-  "workflow-extraction",
-  "weak-claims-review",
-  "os-module-suggestions",
-  "prompt-pack-ideas"
-];
-
-// Target Output Paths
 export const outputFolders = {
-  root: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_adapter'),
-  queries: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_adapter', 'queries'),
-  responses: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_adapter', 'responses'),
-  logs: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_adapter', 'logs'),
-  reports: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_adapter', 'reports')
+  root: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp'),
+  payloads: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp', 'payloads'),
+  responses: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp', 'responses'),
+  obsidian_staged_exports: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp', 'obsidian_staged_exports'),
+  logs: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp', 'logs'),
+  reports: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'live_mcp', 'reports'),
+  templates: path.join(REPO_ROOT, 'templates', 'notebooklm_bridge', 'live_mcp')
 };

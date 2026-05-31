@@ -1,96 +1,56 @@
-# 🛰️ NotebookLM MCP Live Adapter Integration Guide (Phase 11L)
+# 🛰️ NotebookLM MCP Live Adapter Integration
 
-This document specifies the restricted read-only live integration adapter for **NotebookLM MCP**, enforcing safety boundaries, query staging, readiness gating, and response capturing.
+This document outlines the purpose, safety boundaries, manual gates, allowed query types, and rollback mechanisms for the restricted read-only live query adapter (Phase 11M).
+
+---
 
 ## 🎯 Purpose
-The **Live Adapter** enables controlled read-only query dispatch and manual response ingestion to interact safely with NotebookLM.
+The **Live MCP Query Adapter** enables pre-configured read-only queries to run against the NotebookLM MCP server. It bridges the gap between local static staging and remote workspace data harvesting, under strict local safety gates.
 
 ---
 
-## 🛡️ Safety & Execution Rules
+## 🛡️ Core Safety Gating Rules
 
-1. **Read-Only Lock:** The adapter operates in strictly read-only mode (`READ_ONLY_MODE = true`).
-2. **No Notebook Modification:** Creating, modifying, deleting, or mutating NotebookLM notebooks or sources is strictly forbidden.
-3. **No Obsidian Writes:** Query outputs and imported answers reside exclusively inside the local git-ignored outputs directory. They are never written directly to Obsidian.
-4. **No Background Query Loops:** All queries must be manually prepared, staged, and executed with operator consent. Automatic background query loops are disabled.
-5. **No Secret Printing:** Real connection strings, API tokens, or keys must never be logged or outputted.
-6. **Command Confirmation Gate:** Live executions require the exact CLI router command and the explicit addition of the `--confirm` flag.
+### 1. Manual-Enable Rule
+Live adapter execution is completely inactive by default and requires `NOTEBOOKLM_MCP_ENABLED=true` inside `.env.local` plus manual execution routing.
 
----
+### 2. Read-Only Query Boundary
+The adapter only dispatches queries and never mutates NotebookLM workspaces. 
 
-## 💻 CLI Commands
+### 3. Allowed Query Types
+Only the following query types are pre-approved in the allowlist:
+- `source-summary`
+- `workflow-extraction`
+- `weak-claims-review`
+- `os-module-suggestions`
+- `prompt-pack-ideas`
 
-The live adapter is executed through the safe command router:
+### 4. Blocked Operations
+The following functions are strictly prohibited and hard-blocked:
+- Notebook creation or deletion (`create-notebook`, `delete-notebook`)
+- Source upload, update, or deletion (`update-source`, `delete-source`)
+- Direct writes to Obsidian vault files (`write-obsidian`)
+- Launching arbitrary subprocesses (`execute-command`)
+- Browser automation/scraping routines (`browser-automation`)
 
-### 1. View Help Guide
-```bash
-npm run command -- "notebooklm-mcp-live-help"
-```
+### 5. Secrets Redaction Rule
+Private credentials must never be printed to logs, console, reports, or checked into version control.
 
-### 2. Check Status
-Summarizes current availability, configurations, env variables presence, and readiness scores.
-```bash
-npm run command -- "notebooklm-mcp-live status"
-```
+### 6. Obsidian Staging Rule
+All responses fetched from NotebookLM are stored locally under the outputs directory. Generating an Obsidian export only stages the note under `outputs/notebooklm_bridge/live_mcp/obsidian_staged_exports/` and never writes directly into the Obsidian vault.
 
-### 3. Stage Live Query
-Reads dry-run payloads and prepares a formatted, staged live query:
-```bash
-npm run command -- "notebooklm-mcp-live prepare-live-query source-summary"
-npm run command -- "notebooklm-mcp-live prepare-live-query workflow-extraction"
-```
-Staged files are saved under:
-`outputs/notebooklm_bridge/live_adapter/queries/`
-
-### 4. Compile Live Readiness Report
-Audits secrets readiness score, detection confidence, and environment keys:
-```bash
-npm run command -- "notebooklm-mcp-live test-readiness"
-```
-Saves report under:
-`outputs/notebooklm_bridge/live_adapter/reports/notebooklm_live_adapter_readiness_YYYY-MM-DD.md`
-
-### 5. Run Live Query (High Risk Confirmation)
-Guarded execution. Requires `--confirm` flag, readiness score of 100%, and env enabled flags:
-```bash
-npm run command -- "notebooklm-mcp-live run-live-query source-summary" --confirm
-```
-
-#### 🛡️ Safe Fallback Mechanism
-If the precise MCP client-invocation schema/connection contract is unknown or live execution constraints are not met, the script will:
-1. Block execution safely.
-2. Log the execution as a blocked run report.
-3. Generate a manual execution instruction report containing the exact steps, command, and parameters the operator needs to run the query manually.
-
-### 6. Import Manual Response
-Imports a manually captured response file from NotebookLM, performing length checks and safety sanitization:
-```bash
-npm run command -- "notebooklm-mcp-live import-response <path_to_response_file>"
-```
-Saves imported and normalized records under:
-`outputs/notebooklm_bridge/live_adapter/responses/`
-
-### 7. Compile Live Adapter Report
-Compiles query staging counts, response metrics, and safety flags status:
-```bash
-npm run command -- "notebooklm-mcp-live report"
-```
-Saves report under:
-`outputs/notebooklm_bridge/live_adapter/reports/notebooklm_live_adapter_report_YYYY-MM-DD.md`
+### 7. Response Logging
+Every execution (whether blocked, run, or manually imported) appends a log entry to `outputs/notebooklm_bridge/live_mcp/logs/live_query_log_YYYY-MM-DD.md`.
 
 ---
 
-## 🧭 Flow Diagrams
+## ⚡ Fallback Behavior
+If the live WebSocket connection or client-command cannot execute safely:
+1. Do not simulate success or mock output.
+2. Mark query status as `blocked_manual_execution_required`.
+3. Generate detailed manual execution instructions in the reports folder for the operator to copy-paste.
 
-### Live Query Staging & Manual Import Flow
-```mermaid
-graph TD
-    A[Staged Dry-Run Payload] --> B[prepare-live-query Command]
-    B --> C[Stage query in queries/ folder]
-    C --> D[Operator reviews query parameters]
-    D --> E[run-live-query with --confirm]
-    E --> F[Generate local manual instructions fallback]
-    F --> G[Run query manually outside workspace]
-    G --> H[import-response Command]
-    H --> I[Normalized staged response capture]
-```
+---
+
+## ↩️ Rollback Plan
+To deactivate the live adapter at any point, set `NOTEBOOKLM_MCP_ENABLED=false` in `.env.local` or run `npm run notebooklm-mcp-uninstall` to disable hooks.

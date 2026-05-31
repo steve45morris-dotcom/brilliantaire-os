@@ -14,6 +14,15 @@ import {
   CONFIRMATION_REQUIRED as REC_CONF_REQ
 } from '../config/narrator-voice-session-recorder.config.js';
 
+import {
+  ORCH_ASR_INPUT_DIR,
+  ORCH_ASR_TRANSCRIPTS_DIR,
+  ORCH_ASR_STAGED_DIR,
+  ORCH_ASR_APPROVED_DIR,
+  DUPLICATE_DISPATCH_PROTECTION
+} from '../config/narrator-voice-asr-orchestrator.config.js';
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.dirname(__dirname);
@@ -296,11 +305,45 @@ function main() {
   };
 
   let latestSession = 'None';
+  let latestSessionStatus = 'unknown';
+  let asrDispatchStatus = 'Pending';
+  let transcriptionStatus = 'Pending';
+  let stagedCommandStatus = 'Pending';
+  let asrApprovalStatus = 'Pending';
+  let bridgeReadiness = 'Not Ready';
+  let executionStatus = 'Not Executed';
+
   if (fs.existsSync(REC_METADATA_DIR)) {
     const metaFiles = fs.readdirSync(REC_METADATA_DIR).filter(f => f.endsWith('.json')).sort();
     if (metaFiles.length > 0) {
       latestSession = metaFiles[metaFiles.length - 1].replace('.json', '');
     }
+  }
+
+  if (latestSession !== 'None') {
+    const sessionJson = path.join(REC_METADATA_DIR, `${latestSession}.json`);
+    if (fs.existsSync(sessionJson)) {
+      try {
+        const meta = JSON.parse(fs.readFileSync(sessionJson, 'utf-8'));
+        latestSessionStatus = meta.status;
+      } catch (e) {}
+    }
+
+    const hasInputCopy = fs.existsSync(path.join(ORCH_ASR_INPUT_DIR, `${latestSession}.wav`));
+    const hasTranscript = fs.existsSync(path.join(ORCH_ASR_TRANSCRIPTS_DIR, `asr_transcript_${latestSession}.md`));
+    const hasStaged = fs.existsSync(path.join(ORCH_ASR_STAGED_DIR, `asr_command_packet_${latestSession}.md`));
+    const hasApproved = fs.existsSync(path.join(ORCH_ASR_APPROVED_DIR, `asr_command_packet_${latestSession}.md`));
+    const hasRejected = fs.existsSync(path.join(process.cwd(), `outputs/narrator/asr/rejected/asr_command_packet_${latestSession}.md`));
+    const hasReady = fs.existsSync(path.join(process.cwd(), `outputs/narrator/voice_bridge/ready/asr_command_packet_${latestSession}.md`));
+    const hasExecuted = fs.existsSync(path.join(process.cwd(), `outputs/narrator/voice_bridge/executed/asr_command_packet_${latestSession}.md`));
+
+    if (hasInputCopy) asrDispatchStatus = 'Staged';
+    if (hasTranscript) transcriptionStatus = 'Transcribed';
+    if (hasStaged) stagedCommandStatus = 'Staged';
+    if (hasApproved) asrApprovalStatus = 'Approved';
+    else if (hasRejected) asrApprovalStatus = 'Rejected';
+    if (hasReady) bridgeReadiness = 'Ready';
+    if (hasExecuted) executionStatus = 'Executed';
   }
 
   let latestRecorderLog = 'No events recorded.';
@@ -349,6 +392,14 @@ function main() {
     recorder: {
       backendStatus: recBackend,
       latestSession,
+      latestSessionStatus,
+      asrDispatchStatus,
+      transcriptionStatus,
+      stagedCommandStatus,
+      asrApprovalStatus,
+      bridgeReadiness,
+      executionStatus,
+      duplicateDispatchProtection: DUPLICATE_DISPATCH_PROTECTION,
       sessionCount: countRecorderFiles(REC_METADATA_DIR),
       stagedForAsrCount: fs.existsSync(REC_ASR_INPUT_DIR) ? fs.readdirSync(REC_ASR_INPUT_DIR).length : 0,
       rejectedCount: countRecorderFiles(REC_REJECTED_DIR),

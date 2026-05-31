@@ -270,6 +270,16 @@
 - [x] Complete local setup manually (local env staging completed)
 
 ## Do Next
+- [ ] Build Live MCP Query Adapter With Manual Enable (Phase 11M)
+- [ ] Prepare source-summary live payload
+- [ ] Prepare workflow-extraction live payload
+- [ ] Run safety report before execution
+- [ ] Execute source-summary only if --confirm and live eligibility pass
+- [ ] Generate staged Obsidian export from live response
+- [ ] Review live safety report
+- [ ] Decide whether expanded live query types are allowed
+
+## Do Next
 - [x] Build Git Asset Guard
 - [x] Run Git asset audit
 - [x] Run pre-push safety check
@@ -338,11 +348,18 @@
 
 ## Do Next
 - [x] Phase 11R: Build Offline TTS Queue Validator
-- [ ] Phase 11R: Validate TTS queue packet
-- [ ] Phase 11R: Generate TTS eligibility checklist
-- [ ] Phase 11R: Generate TTS risk report
-- [ ] Phase 11R: Review blockers
-- [ ] Phase 11R: Prepare offline TTS synthesis only after validator passes
+- [x] Phase 11R: Validate TTS queue packet
+- [x] Phase 11R: Generate TTS eligibility checklist
+- [x] Phase 11R: Generate TTS risk report
+- [x] Phase 11R: Review blockers
+- [x] Phase 11R: Prepare offline TTS synthesis only after validator passes
+- [ ] Phase 11S: Build Offline TTS Synthesizer Scaffold
+- [ ] Phase 11S: Generate TTS engine config report
+- [ ] Phase 11S: Run model readiness check
+- [ ] Phase 11S: Run synthesis dry-run
+- [ ] Phase 11S: Generate audio output manifest
+- [ ] Phase 11S: Confirm no audio generation occurs
+- [ ] Phase 11S: Prepare real offline synthesis only after model files are placed manually
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

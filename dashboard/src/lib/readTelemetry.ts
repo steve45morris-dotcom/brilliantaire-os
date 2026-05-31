@@ -39,6 +39,14 @@ export interface RecorderSafetyFlags {
 export interface VoiceRecorderData {
   backendStatus: string;
   latestSession: string;
+  latestSessionStatus: string;
+  asrDispatchStatus: string;
+  transcriptionStatus: string;
+  stagedCommandStatus: string;
+  asrApprovalStatus: string;
+  bridgeReadiness: string;
+  executionStatus: string;
+  duplicateDispatchProtection: boolean;
   sessionCount: number;
   stagedForAsrCount: number;
   rejectedCount: number;

@@ -1043,3 +1043,80 @@
 
 ---
 
+## [2026-05-31T22:28:42.077Z] Command Attempt: "voice session recorder status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T22:29:57.868Z] Command Attempt: "narrator-voice-session-recorder status"
+- **Matched Command:** `narrator-voice-session-recorder`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:40:00.107Z] Command Attempt: "voice asr orchestrator status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T22:40:41.652Z] Command Attempt: "narrator-voice-asr-orchestrator status"
+- **Matched Command:** `narrator-voice-asr-orchestrator`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:42:15.318Z] Command Attempt: "tts-synthesizer-help"
+- **Matched Command:** `tts-synthesizer-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:43:27.259Z] Command Attempt: "tts-synthesizer dry-run"
+- **Matched Command:** `tts-synthesizer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:43:59.438Z] Command Attempt: "audio synth"
+- **Matched Command:** `tts-synthesizer`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

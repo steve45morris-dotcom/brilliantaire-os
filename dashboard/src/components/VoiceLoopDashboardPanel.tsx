@@ -10,6 +10,14 @@ interface RecorderSafetyFlags {
 interface VoiceRecorderData {
   backendStatus: string;
   latestSession: string;
+  latestSessionStatus: string;
+  asrDispatchStatus: string;
+  transcriptionStatus: string;
+  stagedCommandStatus: string;
+  asrApprovalStatus: string;
+  bridgeReadiness: string;
+  executionStatus: string;
+  duplicateDispatchProtection: boolean;
   sessionCount: number;
   stagedForAsrCount: number;
   rejectedCount: number;
@@ -171,6 +179,47 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
             </div>
           </div>
 
+          {/* Latest Session Pipeline Progress */}
+          {recorder.latestSession !== 'None' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', borderTop: '1px dotted #1e293b', paddingTop: '8px', fontSize: '11px', marginTop: '6px' }}>
+              <span style={{ color: '#00ffcc', fontWeight: 'bold' }}>LATEST SESSION PIPELINE STATE</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Session ID:</span>
+                <span style={{ color: '#ffffff', fontWeight: 'bold', wordBreak: 'break-all' }}>{recorder.latestSession}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Session Status:</span>
+                <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{recorder.latestSessionStatus}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>ASR Dispatch:</span>
+                <span style={{ color: recorder.asrDispatchStatus === 'Staged' ? '#39ff14' : '#64748b' }}>{recorder.asrDispatchStatus}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Transcription:</span>
+                <span style={{ color: recorder.transcriptionStatus === 'Transcribed' ? '#39ff14' : '#64748b' }}>{recorder.transcriptionStatus}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Staged Command:</span>
+                <span style={{ color: recorder.stagedCommandStatus === 'Staged' ? '#39ff14' : '#64748b' }}>{recorder.stagedCommandStatus}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>ASR Approval:</span>
+                <span style={{ color: recorder.asrApprovalStatus === 'Approved' ? '#39ff14' : recorder.asrApprovalStatus === 'Rejected' ? '#ff073a' : '#64748b' }}>
+                  {recorder.asrApprovalStatus}
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Bridge Readiness:</span>
+                <span style={{ color: recorder.bridgeReadiness === 'Ready' ? '#00ffcc' : '#64748b' }}>{recorder.bridgeReadiness}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#94a3b8' }}>Execution State:</span>
+                <span style={{ color: recorder.executionStatus === 'Executed' ? '#39ff14' : '#64748b' }}>{recorder.executionStatus}</span>
+              </div>
+            </div>
+          )}
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '12px', marginTop: '6px' }}>
             <span style={{ color: '#ff007f', fontSize: '11px', fontWeight: 'bold' }}>RECORDER SAFETY FLAGS</span>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -195,6 +244,12 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
               <span style={{ color: '#94a3b8' }}>Confirmation Gate:</span>
               <span style={{ color: recorder.safetyFlags.confirmationRequired ? '#39ff14' : '#ff073a' }}>
                 {recorder.safetyFlags.confirmationRequired ? 'ENFORCED' : 'BYPASSABLE'}
+              </span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Duplicate Dispatch Lock:</span>
+              <span style={{ color: recorder.duplicateDispatchProtection ? '#39ff14' : '#ff073a' }}>
+                {recorder.duplicateDispatchProtection ? 'ENFORCED' : 'BYPASSABLE'}
               </span>
             </div>
           </div>
