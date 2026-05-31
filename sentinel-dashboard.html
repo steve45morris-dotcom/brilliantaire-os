@@ -2457,15 +2457,34 @@ ${data.output || 'No output returned'}`;
 
     async function refreshNarratorCard() {
       try {
-        const response = await fetch('./outputs/narrator_card.json');
-        if (!response.ok) throw new Error('Failed to fetch narrator card data');
+        let response;
+        let isLiveFeed = false;
+        try {
+          response = await fetch('./outputs/narrator/live_feed/narrator_live_feed.json');
+          if (response.ok) {
+            isLiveFeed = true;
+          } else {
+            response = await fetch('./outputs/narrator_card.json');
+          }
+        } catch (e) {
+          response = await fetch('./outputs/narrator_card.json');
+        }
+
+        if (!response.ok) throw new Error('Failed to fetch narrator data');
         const data = await response.json();
         
         // Update elements
         document.getElementById('narrator-headline').innerText = data.headline || 'No headline';
-        document.getElementById('narrator-did').innerText = data.what_we_did || 'No data';
-        document.getElementById('narrator-is').innerText = data.what_it_is || 'No data';
-        document.getElementById('narrator-left').innerText = data.whats_left || 'No data';
+        
+        if (isLiveFeed) {
+          document.getElementById('narrator-did').innerText = data.compact_summary || 'No summary';
+          document.getElementById('narrator-is').innerText = 'Telemetry Mode: Local Read-Only Feed. Watcher daemon monitors configuration updates dynamically.';
+          document.getElementById('narrator-left').innerText = `Latest Operator Brief: ${data.latest_operator_brief || 'none'}\nLatest Snapshot: ${data.latest_source_snapshot || 'none'}`;
+        } else {
+          document.getElementById('narrator-did').innerText = data.what_we_did || 'No data';
+          document.getElementById('narrator-is').innerText = data.what_it_is || 'No data';
+          document.getElementById('narrator-left').innerText = data.whats_left || 'No data';
+        }
         
         // Mood and timestamp
         document.getElementById('narrator-mood').innerText = data.mood || 'NOMINAL';

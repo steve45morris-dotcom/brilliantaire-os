@@ -783,8 +783,46 @@ The **Narrator Brief Composer** is a decoupled local templating and generation l
 
 ---
 
+## 📡 Phase N3: Live Dashboard Narration Feed
+
+The **Live Dashboard Narration Feed** is a read-only telemetry consolidation layer that aggregates generated briefs and operating system variables into a single, lightweight status feed JSON.
+
+### 🛡️ Safety & Read-Only Rules
+1. **Zero Command Invocation:** The dashboard contains no inputs or buttons capable of executing commands.
+2. **Read-Only Storage:** No HTTP POST routes or write gateways are exposed to the browser dashboard.
+3. **Watcher Isolation:** The watch daemon checks modifications locally without spawning child processes.
+4. **WebSocket Blocked:** WebSocket real-time protocols are disabled (`ENABLE_WEBSOCKET = false`) in favor of secure local interval polling.
+
+### 💻 Command Examples
+* View live feed commands menu:
+  ```bash
+  npm run command -- "narrator-live-feed-help"
+  ```
+* Generate unified live feed JSON:
+  ```bash
+  npm run command -- "narrator-live-feed generate"
+  ```
+* Log telemetry synchronization events:
+  ```bash
+  npm run command -- "narrator-live-feed event"
+  ```
+* Verify configuration values and safety gates:
+  ```bash
+  npm run command -- "narrator-live-feed status"
+  ```
+* Check files modification and trigger conditional update:
+  ```bash
+  npm run command -- "narrator-live-feed watch-once"
+  ```
+* Run local read-only observation watcher daemon (requires exact name):
+  ```bash
+  npm run command -- "narrator-feed-watch"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
+* **Phase N4: WebSocket and Live Stream Narration Integration**
+  - Enable WebSocket transport protocol and live telemetry updates streaming from background watch loops.
 * **Phase 11F: NotebookLM MCP Adapter Live Integration**
   - Establish live, restricted read-only query adapter operations once safety gates are signed off.
-* **Phase N3: Live Dashboard Narration Feed**
-  - Integrate real-time WebSocket or event-driven state triggers for instantaneous dashboard narrative sync.
