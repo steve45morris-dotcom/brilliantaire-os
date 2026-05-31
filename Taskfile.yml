@@ -261,6 +261,16 @@ tasks:
     cmds:
       - npm run knowledge-harvest -- {{.CLI_ARGS}}
 
+  notebooklm-bridge-help:
+    desc: "Print NotebookLM MCP Sidecar Bridge safety manuals"
+    cmds:
+      - npm run notebooklm-bridge-help
+
+  notebooklm-bridge:
+    desc: "Run NotebookLM MCP Sidecar Bridge tasks safely"
+    cmds:
+      - npm run notebooklm-bridge -- {{.CLI_ARGS}}
+
 
 
 

@@ -549,6 +549,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'notebooklm-bridge-help',
+    aliases: ['notebook help', 'notebooklm help'],
+    description: 'Print commands for NotebookLM MCP Sidecar Bridge',
+    npmScript: 'notebooklm-bridge-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-bridge',
+    aliases: ['notebooklm', 'notebook bridge'],
+    description: 'Execute NotebookLM MCP Sidecar Bridge tasks (Medium Risk)',
+    npmScript: 'notebooklm-bridge',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

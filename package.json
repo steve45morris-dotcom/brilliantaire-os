@@ -59,7 +59,9 @@
     "distribution-metrics": "tsx scripts/distribution-metrics.ts",
     "distribution-metrics-help": "tsx scripts/distribution-metrics-help.ts",
     "knowledge-harvest": "tsx scripts/knowledge-harvest.ts",
-    "knowledge-harvest-help": "tsx scripts/knowledge-harvest-help.ts"
+    "knowledge-harvest-help": "tsx scripts/knowledge-harvest-help.ts",
+    "notebooklm-bridge": "tsx scripts/notebooklm-bridge.ts",
+    "notebooklm-bridge-help": "tsx scripts/notebooklm-bridge-help.ts"
   },
   "keywords": [
     "antigravity",
