@@ -416,6 +416,26 @@
               </div>
             </div>
 
+            <!-- Metadata line for safety mode, generated time, and sources -->
+            <div id="narrator-metadata-container" class="mt-4 pt-3 border-t border-brand-border/20 flex flex-wrap items-center justify-between gap-4 text-[9px] font-mono text-slate-500 relative z-10">
+              <div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
+                <div class="flex items-center gap-1">
+                  <span>SAFETY:</span>
+                  <span id="narrator-safety" class="text-brand-emerald font-bold uppercase tracking-wider bg-brand-emerald/10 px-1.5 py-0.5 rounded border border-brand-emerald/20">—</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span>GENERATED:</span>
+                  <span id="narrator-generated-at" class="text-slate-400">—</span>
+                </div>
+              </div>
+              <div id="narrator-sources-container" class="flex items-center gap-1.5 max-w-full overflow-hidden">
+                <span class="shrink-0">SOURCES USED:</span>
+                <div id="narrator-sources-list" class="flex flex-wrap gap-1 items-center">
+                  <!-- dynamically populated -->
+                </div>
+              </div>
+            </div>
+
             <div class="border-t border-brand-border/30 pt-4 relative z-10 flex flex-wrap items-center justify-between gap-4">
               <div class="flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-mono text-slate-400">
                 <div class="flex items-center gap-1.5">
@@ -2463,9 +2483,15 @@ ${data.output || 'No output returned'}`;
         if (color === 'red') {
           statusPing.classList.add('bg-brand-red');
           statusDot.classList.add('bg-brand-red');
-        } else if (color === 'yellow') {
+        } else if (color === 'amber' || color === 'yellow') {
           statusPing.classList.add('bg-brand-gold');
           statusDot.classList.add('bg-brand-gold');
+        } else if (color === 'blue') {
+          statusPing.classList.add('bg-brand-cyan');
+          statusDot.classList.add('bg-brand-cyan');
+        } else if (color === 'purple') {
+          statusPing.classList.add('bg-brand-purple');
+          statusDot.classList.add('bg-brand-purple');
         } else {
           statusPing.classList.add('bg-brand-emerald');
           statusDot.classList.add('bg-brand-emerald');
@@ -2479,10 +2505,76 @@ ${data.output || 'No output returned'}`;
         document.getElementById('narrator-metric-consensus').innerText = metrics.consensus_status ?? 'unknown';
         document.getElementById('narrator-metric-action').innerText = metrics.last_action ?? 'unknown';
         document.getElementById('narrator-metric-action').title = metrics.last_action ?? '';
+
+        // Safety mode
+        const safetyEl = document.getElementById('narrator-safety');
+        if (safetyEl) {
+          safetyEl.innerText = data.safety_mode || '—';
+          if (data.safety_mode === 'output_only') {
+            safetyEl.className = 'text-brand-emerald font-bold uppercase tracking-wider bg-brand-emerald/10 px-1.5 py-0.5 rounded border border-brand-emerald/20';
+          } else {
+            safetyEl.className = 'text-brand-gold font-bold uppercase tracking-wider bg-brand-gold/10 px-1.5 py-0.5 rounded border border-brand-gold/20';
+          }
+        }
+        
+        // Generated at
+        const generatedAtEl = document.getElementById('narrator-generated-at');
+        if (generatedAtEl) {
+          generatedAtEl.innerText = data.generated_at ? new Date(data.generated_at).toLocaleString() : '—';
+        }
+        
+        // Sources used
+        const sourcesListEl = document.getElementById('narrator-sources-list');
+        if (sourcesListEl) {
+          sourcesListEl.innerHTML = '';
+          const sources = data.sources_used || [];
+          if (sources.length === 0) {
+            sourcesListEl.innerHTML = '<span class="text-slate-600">none</span>';
+          } else {
+            sources.forEach(src => {
+              const badge = document.createElement('span');
+              badge.className = 'px-1.5 py-0.5 border border-brand-border bg-brand-void/80 rounded text-slate-400 font-mono text-[8px]';
+              badge.innerText = src;
+              sourcesListEl.appendChild(badge);
+            });
+          }
+        }
         
         if (window.lucide) lucide.createIcons();
       } catch (err) {
         console.error('Narrator Sync Error:', err);
+
+        // Fallback state UI updates
+        document.getElementById('narrator-headline').innerText = 'Narrator Sync Offline: Failed to fetch latest operating brief';
+        document.getElementById('narrator-did').innerText = 'The AI Narrator is currently unable to load the latest system telemetry snapshot. Ensure the narrator watch task or python process is running.';
+        document.getElementById('narrator-is').innerText = 'Brilliantaire OS is designed with offline-first local fallback layers, allowing normal system operations to continue during telemetry service interruptions.';
+        document.getElementById('narrator-left').innerText = 'Check the local logs at outputs/narrator/logs/ and restart the narrator daemon if needed.';
+        
+        document.getElementById('narrator-mood').innerText = 'OFFLINE';
+        document.getElementById('narrator-timestamp').innerText = 'LATEST SYNC: FAILED';
+        
+        const statusPing = document.getElementById('narrator-status-ping');
+        const statusDot = document.getElementById('narrator-status-dot');
+        if (statusPing && statusDot) {
+          statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-brand-gold';
+          statusDot.className = 'relative inline-flex rounded-full h-3 w-3 bg-brand-gold';
+        }
+        
+        const safetyEl = document.getElementById('narrator-safety');
+        if (safetyEl) {
+          safetyEl.innerText = 'OFFLINE_FALLBACK';
+          safetyEl.className = 'text-brand-gold font-bold uppercase tracking-wider bg-brand-gold/10 px-1.5 py-0.5 rounded border border-brand-gold/20';
+        }
+        
+        const generatedAtEl = document.getElementById('narrator-generated-at');
+        if (generatedAtEl) {
+          generatedAtEl.innerText = '—';
+        }
+        
+        const sourcesListEl = document.getElementById('narrator-sources-list');
+        if (sourcesListEl) {
+          sourcesListEl.innerHTML = '<span class="text-slate-600">none</span>';
+        }
       }
     }
 

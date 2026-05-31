@@ -116,6 +116,14 @@
 - [x] Generate Sporty distribution report
 - [x] Generate Sporty archive index
 - [x] Review manual metrics after posting
+- [x] Phase N1: Upgrade AI Narrator to read approved local snapshots
+- [x] Phase N1: Enforce output-only safety flags and restrict narrator capabilities
+- [x] Phase N1: Create config/narrator-sources.ts approved whitelist
+- [x] Phase N1: Create templates and scripts for narrator sources compilation
+- [x] Phase N1: Implement outputs/narrator_card.json TS verification schema
+- [x] Phase N1: Register narrator-sources, narrator-validate, and narrator-watch in Taskfile
+- [x] Phase N1: Integrate sources_used, generated_at, and safety_mode badges into local dashboard
+- [x] Phase N1: Implement robust local offline fallback for dashboard narrative sync
 
 
 

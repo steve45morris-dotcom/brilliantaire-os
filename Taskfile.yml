@@ -314,6 +314,15 @@ tasks:
 
 
 
+  narrator-sources:
+    desc: "Scan approved files and generate narrator source snapshot"
+    cmds:
+      - npm run narrator-sources
+
+  narrator-validate:
+    desc: "Validate narrator_card.json output"
+    cmds:
+      - npm run narrator-validate
   narrator-watch:
     desc: "Run the AI Narrator in watch mode as a background daemon"
     cmds:
