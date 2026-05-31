@@ -856,3 +856,36 @@
 
 ---
 
+## [2026-05-31T21:43:44.065Z] Command Attempt: "tts-brief-composer-help"
+- **Matched Command:** `tts-brief-composer-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:44:49.120Z] Command Attempt: "tts-brief-composer short"
+- **Matched Command:** `tts-brief-composer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:45:19.101Z] Command Attempt: "narrator script"
+- **Matched Command:** `tts-brief-composer`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

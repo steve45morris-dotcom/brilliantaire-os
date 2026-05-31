@@ -311,13 +311,13 @@
 
 ## Do Next
 - [x] Phase 11Q: Build Offline TTS Brief Composer
-- [ ] Phase 11Q: Generate short TTS script
-- [ ] Phase 11Q: Generate medium TTS script
-- [ ] Phase 11Q: Generate long TTS script
-- [ ] Phase 11Q: Generate TTS queue packet
-- [ ] Phase 11Q: Generate voice direction sheet
-- [ ] Phase 11Q: Review scripts before audio generation
-- [ ] Phase 11Q: Prepare TTS generation only after manual script review
+- [x] Phase 11Q: Generate short TTS script
+- [x] Phase 11Q: Generate medium TTS script
+- [x] Phase 11Q: Generate long TTS script
+- [x] Phase 11Q: Generate TTS queue packet
+- [x] Phase 11Q: Generate voice direction sheet
+- [x] Phase 11Q: Review scripts before audio generation
+- [x] Phase 11Q: Prepare TTS generation only after manual script review
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
