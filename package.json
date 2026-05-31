@@ -88,11 +88,8 @@
     "notebooklm-mcp-live-help": "tsx scripts/notebooklm-mcp-live-help.ts",
     "notebooklm-response-intelligence": "tsx scripts/notebooklm-response-intelligence.ts",
     "notebooklm-response-intelligence-help": "tsx scripts/notebooklm-response-intelligence-help.ts",
-<<<<<<< HEAD
     "grounded-index": "tsx scripts/grounded-intelligence-index.ts",
     "grounded-index-help": "tsx scripts/grounded-intelligence-index-help.ts",
-=======
->>>>>>> 7c70cc14694fec000509227eee936983776b6fca
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",

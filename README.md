@@ -938,19 +938,11 @@ The **MCP Setup Fix Cycle** provides a repeatable local check and correction loo
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle tasks"
   ```
-<<<<<<< HEAD
 * Compare current readiness score against previous readiness and review scores:
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle compare"
   ```
 * Generate sequential manual runbook for next pass:
-=======
-* Generate readiness comparison report:
-  ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle compare"
-  ```
-* Compile next-pass rerun sequence runbook:
->>>>>>> 7c70cc14694fec000509227eee936983776b6fca
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle next-pass"
   ```
@@ -1534,14 +1526,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 ---
 
 ## 🚀 Next Phase Recommendation
-<<<<<<< HEAD
 * **Phase 11P: Grounded Narrator Integration**
   - Integrate the compiled Grounded Intelligence Index Graph with the AI Narrator engine, mapping node relationships and citation structures directly into speech narration outputs.
 * **Phase 11Q: Vector Search Database Preparation**
   - Prepare local vector database indexing pipelines to index verified nodes for semantic search and retrieval once manual review is complete.
-=======
-* **Phase 11P: Live Response Intelligence Index Graph**
-  - Construct a structured local index graph linking staged response briefs, citations, and OS suggestion files for direct knowledge retrieval.
-* **Phase N5D: Local ASR Command Listener**
-  - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
->>>>>>> 7c70cc14694fec000509227eee936983776b6fca
