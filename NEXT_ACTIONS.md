@@ -6,7 +6,7 @@
 - [x] Create project brief command
 - [x] Create next-action generator
 - [x] Run and maintain productivity agent council (`AGENTS.md`)
-- [ ] Connect agents telemetry log loops
+- [x] Connect agents telemetry log loops
 - [x] Test staged write
 - [x] Approve first safe Obsidian write
 - [x] Review written files inside brilliantaire-briefs
@@ -106,22 +106,22 @@
 - [x] Generate Sporty release runbook
 - [x] Check manual release readiness
 - [x] Prepare distribution metrics after manual release checklist passes
-- [ ] Build manual distribution metrics
-- [ ] Generate Sporty YouTube metric entry
-- [ ] Generate Sporty TikTok metric entry
-- [ ] Generate Sporty Instagram metric entry
-- [ ] Generate Sporty Facebook metric entry
-- [ ] Generate Sporty WhatsApp metric entry
-- [ ] Generate Sporty Obsidian metric entry
-- [ ] Generate Sporty distribution report
-- [ ] Generate Sporty archive index
-- [ ] Review manual metrics after posting
+- [x] Build manual distribution metrics
+- [x] Generate Sporty YouTube metric entry
+- [x] Generate Sporty TikTok metric entry
+- [x] Generate Sporty Instagram metric entry
+- [x] Generate Sporty Facebook metric entry
+- [x] Generate Sporty WhatsApp metric entry
+- [x] Generate Sporty Obsidian metric entry
+- [x] Generate Sporty distribution report
+- [x] Generate Sporty archive index
+- [x] Review manual metrics after posting
 
 
 
 ## Do Next
-- [ ] Implement VNP integration in scripts to log script runs
-- [ ] Add strict validation commands in Taskfile
+- [x] Implement VNP integration in scripts to log script runs
+- [x] Add strict validation commands in Taskfile
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
