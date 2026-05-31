@@ -73,7 +73,9 @@
     "scheduler-health": "tsx scripts/scheduler.ts health",
     "scheduler-report": "tsx scripts/scheduler.ts report",
     "narrator-sources": "tsx scripts/narrator-sources.ts",
-    "narrator-validate": "tsx scripts/narrator-validate.ts"
+    "narrator-validate": "tsx scripts/narrator-validate.ts",
+    "narrator-brief": "tsx scripts/narrator-brief.ts",
+    "narrator-brief-help": "tsx scripts/narrator-brief-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -87,6 +87,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
 | `narrator-sources` | `narrator source scan`, `narrator scan` | Knowledge Librarian | Low | No | Scan approved sources and generate narrator source snapshot. |
 | `narrator-validate` | `validate narrator`, `narrator check` | Workflow Auditor | Low | No | Validate narrator_card.json output structure and safety. |
+| `narrator-brief-help` | `narrator brief help`, `brief composer help` | Knowledge Librarian | Low | No | Print help commands for the narrator brief composer. |
+| `narrator-brief` | `narrator brief`, `compose narrator` | Knowledge Librarian | Low | No | Compile target-specific operational briefs from system telemetry. |
 
 ---
 

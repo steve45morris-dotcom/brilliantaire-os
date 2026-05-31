@@ -750,9 +750,35 @@ The **AI Narrator** is a grounded observer layer that reads approved system stat
   ```bash
   python tools/ai_narrator.py --dry-run
   ```
-* Run narrator watch daemon (as a background process):
+## 🧭 Phase N2: Narrator Brief Composer
+
+The **Narrator Brief Composer** is a decoupled local templating and generation layer that reads system status inputs and generated narrator cards to produce target-specific operational briefs without executing commands or writing directly to active Obsidian vault directories.
+
+### 🛡️ Safety & Decooupled Rules
+1. **Zero Command Execution:** Strictly read-only script. It never executes CLI subprocesses or alters system configurations.
+2. **No Direct Obsidian Writes:** Stage-gated files are written exclusively to `outputs/narrator/` directory and must be authorized via the safe write gateway before vault import.
+3. **No WebSockets or Live Streams:** Intentionally batch-driven under `output_only` safety mode. State streaming is deferred to Phase N3.
+4. **Collision Isolation:** Every generated brief includes a precise YYYY-MM-DD_HHMM timestamp suffix to avoid overwriting previously staged files.
+
+### 💻 Command Examples
+* Print the available commands menu:
   ```bash
-  task narrator-watch
+  npm run command -- "narrator-brief-help"
+  ```
+* Compile all four brief types at once:
+  ```bash
+  npm run command -- "narrator-brief all"
+  ```
+* Generate specific briefs (operator, dashboard, voice, or obsidian):
+  ```bash
+  npm run command -- "narrator-brief operator"
+  npm run command -- "narrator-brief dashboard"
+  npm run command -- "narrator-brief voice"
+  npm run command -- "narrator-brief obsidian"
+  ```
+* Print execution status and verify missing inputs:
+  ```bash
+  npm run command -- "narrator-brief status"
   ```
 
 ---
@@ -760,5 +786,5 @@ The **AI Narrator** is a grounded observer layer that reads approved system stat
 ## 🚀 Next Phase Recommendation
 * **Phase 11F: NotebookLM MCP Adapter Live Integration**
   - Establish live, restricted read-only query adapter operations once safety gates are signed off.
-* **Phase N2: Live Dashboard Narration Feed**
+* **Phase N3: Live Dashboard Narration Feed**
   - Integrate real-time WebSocket or event-driven state triggers for instantaneous dashboard narrative sync.

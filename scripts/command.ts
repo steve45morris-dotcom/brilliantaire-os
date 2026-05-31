@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { COMMAND_REGISTRY, CommandDefinition } from '../config/commands.js';
 import { REPO_ROOT } from '../config/paths.js';
-import { announcePhrase } from './vnp.js';
+import { announcePhrase, announceIntent, announceCompletion } from './vnp.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -205,7 +205,8 @@ async function runCommand() {
     spawnArgs.push('--', ...extraArgs);
   }
 
-  // Execute using child_process.spawn with shell: false
+  await announceIntent(`Executing pre-approved script: ${matchedCmd.name}`);
+
   const exitCode = await new Promise<number>((resolve) => {
     const child = spawn('npm', spawnArgs, {
       cwd: REPO_ROOT,
@@ -243,6 +244,9 @@ async function runCommand() {
       // DATA VALIDATION / SUCCESS: Fire phrase 6
       await announcePhrase("Signal clean. The streets don't lie, neither does the data.");
     }
+    await announceCompletion(`Command ${matchedCmd!.name} finished successfully`, '12');
+  } else {
+    await announceCompletion(`Command ${matchedCmd!.name} failed with exit code ${exitCode}`, '0');
   }
 
   process.exit(exitCode);

@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N1: Narrator Safety and Source Binding — COMPLETE
+- **Current Phase:** Phase N2: Narrator Brief Composer — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -49,6 +49,7 @@
 - **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
 - **NotebookLM MCP Adapter Dry-Run Execution (Phase 11D):** Offline query payload compiler, simulation reports generation, and execution logs tracker.
 - **NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.
+- **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

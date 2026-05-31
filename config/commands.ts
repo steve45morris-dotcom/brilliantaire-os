@@ -692,6 +692,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'narrator-brief-help',
+    aliases: ['narrator brief help', 'brief composer help'],
+    description: 'Print help commands for the narrator brief composer',
+    npmScript: 'narrator-brief-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-brief',
+    aliases: ['narrator brief', 'compose narrator'],
+    description: 'Compile target-specific operational briefs from system telemetry',
+    npmScript: 'narrator-brief',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
   }
 ];
 
