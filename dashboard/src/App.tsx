@@ -4,6 +4,7 @@ import { SystemStatusCard } from './components/SystemStatusCard.jsx';
 import { CampaignReadinessCard } from './components/CampaignReadinessCard.jsx';
 import { CommandActivityCard } from './components/CommandActivityCard.jsx';
 import { VoiceActivityCard } from './components/VoiceActivityCard.jsx';
+import { VoiceLoopDashboardPanel } from './components/VoiceLoopDashboardPanel.jsx';
 import { NextActionsCard } from './components/NextActionsCard.jsx';
 import { TelemetryFilesCard } from './components/TelemetryFilesCard.jsx';
 
@@ -171,6 +172,8 @@ export const App: React.FC = () => {
           approvedConfirmations={data.voiceSummary.approvedConfirmations}
           deniedConfirmations={data.voiceSummary.deniedConfirmations}
         />
+
+        <VoiceLoopDashboardPanel {...data.voiceLoop} />
 
         <NextActionsCard
           nextActions={data.nextActions}

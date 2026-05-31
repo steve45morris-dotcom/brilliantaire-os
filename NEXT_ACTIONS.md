@@ -163,7 +163,8 @@
 - [x] Phase N5E: Test prepare and bridge-queue-status workflows
 - [x] Phase N5E: Test manual execution of approved commands
 - [x] Phase N5E: Test exact-name command routing and safety blocks
-- [ ] Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI
+- [x] Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI
+- [ ] Phase N5G: Build Local Voice Session Recorder
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -261,6 +262,13 @@
 - [x] Rerun readiness gate after local setup
 
 ## Do Next
+- [x] Build Local MCP Setup Verification Loop
+- [x] Run safe validation chain
+- [x] Generate final eligibility report
+- [x] Confirm whether Phase 11M is allowed
+- [x] Complete local setup manually if still blocked
+
+## Do Next
 - [x] Build Git Asset Guard
 - [x] Run Git asset audit
 - [x] Run pre-push safety check
@@ -326,6 +334,14 @@
 - [x] Phase 11Q: Generate voice direction sheet
 - [x] Phase 11Q: Review scripts before audio generation
 - [x] Phase 11Q: Prepare TTS generation only after manual script review
+
+## Do Next
+- [x] Phase 11R: Build Offline TTS Queue Validator
+- [ ] Phase 11R: Validate TTS queue packet
+- [ ] Phase 11R: Generate TTS eligibility checklist
+- [ ] Phase 11R: Generate TTS risk report
+- [ ] Phase 11R: Review blockers
+- [ ] Phase 11R: Prepare offline TTS synthesis only after validator passes
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

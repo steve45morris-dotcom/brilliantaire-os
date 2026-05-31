@@ -1,65 +1,54 @@
-# NOTEBOOKLM MCP VERIFICATION LOOP SPECIFICATION
+# 🏁 Local MCP Setup Verification Loop
 
-## 🌌 Overview & Mandate
-To maintain a safe local verification loop for the NotebookLM Model Context Protocol (MCP) sidecar adapter without external dependencies, credentials leaks, or premature live command executions.
-
-This phase follows **Phase 11K: MCP Setup Fix Cycle** to let the operator manually define credentials locally outside version control, execute a diagnostic chain of safe checks, and evaluate overall eligibility.
-
-## 🛡️ Key Governance Policies
-
-### 1. Local-Only Verification Rule
-All environment variables and authorization JSON structures must live strictly in `.env.local` or the user config folder. They **MUST NEVER** be committed to public repository files. The verification loop checks file presence safely, but is strictly prohibited from parsing or displaying private credential values.
-
-### 2. No Live Execution Rule
-Under no circumstances should live NotebookLM MCP queries be executed during this phase. The global toggle `ALLOW_LIVE_MCP_EXECUTION` must remain configured as `false` in the readiness gate config files.
+This document outlines the purpose, safety rules, and command specifications for the NotebookLM MCP setup verification loop (Phase 11L).
 
 ---
 
-## ⛓️ Command Chain Sequence
-The verification loop executes the complete chain of diagnostic check targets in sequence via `npm run`:
-
-1. `npm run notebooklm-mcp-auth -- "scan"` — Scans local files outside the repository for active GID profiles.
-2. `npm run notebooklm-mcp-auth -- "status"` — Prints authorization profile checks summary.
-3. `npm run notebooklm-mcp-harden -- "readiness-recheck"` — Scans codebase for plain-text secrets leaks.
-4. `npm run notebooklm-mcp-readiness-gate -- "scan"` — Primary readiness validator checks.
-5. `npm run notebooklm-mcp-readiness-gate -- "decision"` — Readiness gate score generator.
-6. `npm run notebooklm-mcp-completion-review -- "env-check"` — Environment presence assertions.
-7. `npm run notebooklm-mcp-completion-review -- "review"` — Completion review report compiler.
-8. `npm run notebooklm-mcp-completion-review -- "eligibility"` — Evaluates threshold conditions.
-9. `npm run notebooklm-mcp-completion-review -- "status"` — High-level telemetry output.
-10. `npm run notebooklm-mcp-fix-cycle -- "decision-summary"` — Fix cycle decision summary update.
+## 🎯 Purpose
+The **Local MCP Setup Verification Loop** serves as the final gating mechanism for NotebookLM integration. It runs all previously built validation scripts in sequence to ensure that the environment configuration (`.env.local`), security policies, and config files are completely aligned without manual discrepancy.
 
 ---
 
-## 🧠 Final Eligibility Decision Rules
-The eligibility parser evaluates the latest workspace checks to output the final eligibility status:
-* **Eligible Conditions:**
-  - Readiness Score $\ge 90\%$ (i.e. all required environment keys mapped locally).
-  - Safety Lock Active (`ALLOW_LIVE_MCP_EXECUTION` is `false`).
-* **Transition Decision:**
-  - **Yes:** Setup is eligible for Phase 11M Live MCP Query Adapter With Manual Enable.
-  - **No:** Setup is not eligible. Operator must complete missing local variables setup and rerun check.
+## 🧭 Why This Phase Follows the Fix Cycle
+The **Fix Cycle (Phase 11K)** resolves identified blockers (such as missing local parameters). The **Verification Loop (Phase 11L)** then validates the workspace *after* these local fixes are applied, ensuring that the local environment has reached 100% readiness before moving to code generation.
 
 ---
 
-## 🛠️ CLI Interface Operations
+## 🛡️ Safety & Execution Rules
+1. **Local-Only Verification:** The verification chain runs diagnostic tests locally. It never updates or pushes real secrets to git.
+2. **No Live Execution:** No live query adapters are scaffolded, and no NotebookLM live queries are executed. `ALLOW_LIVE_MCP_EXECUTION` must remain set to `false`.
+3. **No External Connections:** No OAuth triggers, external API calls, or browser windows may be opened.
 
-Execute help guide:
-```bash
-npm run notebooklm-mcp-verify-loop-help
-```
+---
 
-Run command chain:
-```bash
-npm run notebooklm-mcp-verify-loop -- "chain"
-```
+## 💻 Verification Command Chain
+The loop command `npm run notebooklm-mcp-verify-loop -- "chain"` executes the following scripts sequentially:
+1. `npm run notebooklm-mcp-auth -- "scan"` (Security credential checks)
+2. `npm run notebooklm-mcp-auth -- "status"` (Auth configuration check)
+3. `npm run notebooklm-mcp-harden -- "readiness-recheck"` (Hardening checks)
+4. `npm run notebooklm-mcp-readiness-gate -- "scan"` (Gating checks)
+5. `npm run notebooklm-mcp-readiness-gate -- "decision"` (Decisions check)
+6. `npm run notebooklm-mcp-completion-review -- "env-check"` (Env checking)
+7. `npm run notebooklm-mcp-completion-review -- "review"` (Completion checklist)
+8. `npm run notebooklm-mcp-completion-review -- "eligibility"` (Eligibility verification)
+9. `npm run notebooklm-mcp-completion-review -- "status"` (Review status check)
+10. `npm run notebooklm-mcp-fix-cycle -- "decision-summary"` (Decision summaries checks)
 
-Compile final eligibility check report:
+---
+
+## ⚖️ Final Eligibility Decision
+By running:
 ```bash
 npm run notebooklm-mcp-verify-loop -- "final-check"
 ```
+The system reads all generated reports and evaluates:
+- If **Readiness Score >= 90%** and **Live Eligible is Yes**:
+  - **Decision:** Eligible for Phase 11M Live MCP Query Adapter With Manual Enable.
+- Else:
+  - **Decision:** Not eligible.
+  - **Next Action:** Complete local-only setup and rerun verification loop.
 
-Read latest verification loop status:
-```bash
-npm run notebooklm-mcp-verify-loop -- "status"
-```
+---
+
+## 🚀 When Phase 11M Can Begin
+Phase 11M (Live MCP Query Adapter) can only begin when the final eligibility report declares the system as **ELIGIBLE** and the readiness score is successfully verified as $\ge 90\%$.

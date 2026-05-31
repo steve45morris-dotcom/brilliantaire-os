@@ -8,3 +8,10 @@
 - [2026-05-31T21:42:35.624Z] **COMPILE_QUEUE_PACKET**: TTS queue packet compiled successfully. Saved to: grounded_tts_queue_packet_2026-05-31.md
 - [2026-05-31T21:43:05.300Z] **COMPILE_VOICE_DIRECTION**: Voice direction spec compiled successfully. Saved to: grounded_tts_voice_direction_2026-05-31.md
 - [2026-05-31T21:44:40.333Z] **COMPILE_SHORT_SCRIPT**: Short script compiled successfully. Words: 58. Saved to: grounded_tts_short_script_2026-05-31_1780263880.md
+- [2026-05-31T22:05:35.522Z] **COMPILE_SHORT_SCRIPT**: Short script compiled successfully. Words: 58. Saved to: grounded_tts_short_script_2026-05-31_1780265135.md
+- [2026-05-31T22:05:53.162Z] **COMPILE_MEDIUM_SCRIPT**: Medium script compiled successfully. Words: 88. Saved to: grounded_tts_medium_script_2026-05-31_1780265153.md
+- [2026-05-31T22:06:09.985Z] **COMPILE_LONG_SCRIPT**: Long script compiled successfully. Words: 159. Saved to: grounded_tts_long_script_2026-05-31_1780265169.md
+- [2026-05-31T22:06:19.139Z] **COMPILE_ALL**: All script variants compiled: short, medium, and long scripts compiled successfully.
+- [2026-05-31T22:06:28.009Z] **COMPILE_QUEUE_PACKET**: TTS queue packet compiled successfully. Saved to: grounded_tts_queue_packet_2026-05-31_1780265188.md
+- [2026-05-31T22:06:46.181Z] **COMPILE_VOICE_DIRECTION**: Voice direction spec compiled successfully. Saved to: grounded_tts_voice_direction_2026-05-31_1780265206.md
+- [2026-05-31T22:17:06.735Z] **COMPILE_SHORT_SCRIPT**: Short script compiled successfully. Words: 58. Saved to: grounded_tts_short_script_2026-05-31_1780265826.md

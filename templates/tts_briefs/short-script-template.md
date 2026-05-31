@@ -14,7 +14,7 @@
 ### Core Insights
 {{CORE_POINTS}}
 
-### Source Citation & Notes
+### Source Citation and Notes
 {{SOURCE_NOTE}}
 
 ### Closing Line

@@ -1,5 +1,5 @@
 {
-  "currentPhase": "Phase N2: Narrator Brief Composer — COMPLETE",
+  "currentPhase": "Phase 11R: Offline TTS Queue Validator — COMPLETE",
   "activeCapabilities": [
     "**Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).",
     "**Build Pipeline:** Structured task runner via `Taskfile.yml`.",
@@ -43,7 +43,33 @@
     "**NotebookLM MCP Sidecar Bridge (Phase 22):** Local connector bridge to compile query packets, ingest manual answers safely, stage Obsidian exports, and extract workflow automation ideas.",
     "**NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.",
     "**NotebookLM MCP Adapter Dry-Run Execution (Phase 11D):** Offline query payload compiler, simulation reports generation, and execution logs tracker.",
-    "**Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes."
+    "**NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.",
+    "**NotebookLM MCP Connector Hardening (Phase 11F):** Staged credentials env template, MCP JSON configs generation, local credentials hygiene scan, and hardening readiness recheck.",
+    "**NotebookLM MCP Manual Setup Instructions (Phase 11G):** Staged configuration setup checklists, manual copy runbooks, validation rerun guides, and safety deactivation rollback plans.",
+    "**MCP Setup Review and Readiness Gate (Phase 11H):** Local credentials scan gates, live integration eligibility matrices, outstanding blockers lists, and manual setup review reports.",
+    "**MCP Local Setup Correction Pack (Phase 11I):** Offline blocker corrections compiler, environment key maps, config checklists, push recovery guides, and readiness rerun guides.",
+    "**Manual MCP Setup Completion Review (Phase 11J):** Offline checking of local credentials, manual setup reviews, live eligibility determinations, and manual operator sign-off checklists.",
+    "**MCP Setup Fix Cycle (Phase 11K):** Repeatable local check and correction loop to generate fix task lists, readiness comparison reports, and next-pass runbooks, tracking status metrics directly to the console.",
+    "**NotebookLM MCP Local Secrets Staging Guide (Phase 11L):** Local-only environment configurations staging, .env.local setup guides, secret checklists, gitignore safety audits, and readiness rerun runbooks.",
+    "**Local MCP Setup Verification Loop (Phase 11L):** Repeatable local validation chain execution, dynamic readiness score evaluator, and final setup eligibility decision compiler.",
+    "**NotebookLM MCP Live Adapter Integration (Phase 11M):** Restricted read-only live query adapter scaffolding, readiness test gate auditor, and manual execution instructions fallback writer.",
+    "**Live Response Intelligence Processor (Phase 11N):** Safe response intelligence processor that parses normalized NotebookLM responses and converts them into structured insight indexes, citation maps, weak claims reports, workflow cards, OS module suggestions, and Obsidian-staged notes.",
+    "**Grounded Intelligence Index Graph (Phase 11O):** Safe local offline index compiler that reads response intelligence files and compiles them into grounded JSON graphs, Markdown graphs, and statistics reports, with console status and preview inspect support.",
+    "**Grounded Narrator Review Queue (Phase 11P):** Local review queue script compiler that filters grounded index graph nodes against citations, compiles narration candidates, stages narrator-ready briefs, and flags excluded weak claims reports under safe offline constraints.",
+    "**Offline TTS Brief Composer (Phase 11Q):** Safe offline script builder that compiles citation-backed, manual-reviewed narrator briefs into TTS-ready script variants, audio queue packets, and voice directions without executing local TTS engines or calling external APIs.",
+    "**Offline TTS Queue Validator (Phase 11R):** Local verification scans checking syntax constraints, word limits, unsafe character injections, empty template placeholders, and metadata alignments on scripts, queue packets, and voice directions before TTS audio compilation.",
+    "**Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.",
+    "**Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.",
+    "**Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.",
+    "**Local TTS Render Queue (Phase N5A):** Safe local offline staging queue (`scripts/narrator-tts-queue.ts`) compiling approved voice packets into structured rendering requests, supporting manual approval and rejection workflows without calling external TTS APIs or auto-playing audio.",
+    "**Local TTS Audio Renderer (Phase N5B):** Safe local offline audio renderer (`scripts/narrator-tts-renderer.ts`) compiling approved request markdown text into local wave/mp3 voice scripts via Piper, verifying approved states and logging error/success reports.",
+    "**Local TTS Model & Cache Manager (Phase N5C):** Secure offline registration, SHA256 checksum verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.",
+    "**Local ASR Command Listener (Phase N5D):** Safe offline speech-to-text transcriber (`scripts/narrator-asr-listener.ts`) converting staged audio input into verified markdown transcripts and VNP command packets requiring manual verification.",
+    "**Local ASR Backend & Model Manager (Phase N5D.1):** Secure offline registration, SHA256 verification, and integrity auditing of local Whisper binaries and GGML models.",
+    "**Voice Command Approval Bridge (Phase N5E):** Manual approval, verification, staging, and dispatch of ASR command packets directly to whitelisted commands in the exact-name command router, with complete process auditing.",
+    "**Voice Loop Dashboard & Human Confirmation UI (Phase N5F):** Safe offline visibility panel (`scripts/narrator-voice-loop-dashboard.ts`) mapping ASR and Bridge pipeline packet depths, safety checks, audit trail outputs, and manual confirmation dispatcher delegation triggers.",
+    "**Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.",
+    "**Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings."
   ],
   "activeProjects": [
     "Icyflamze",
@@ -57,13 +83,20 @@
     "Visual Identity System"
   ],
   "nextActions": [
-    "Build NotebookLM MCP Dry-Run Execution",
-    "Prepare source-summary query payload",
-    "Prepare workflow-extraction query payload",
-    "Run source-summary dry-run",
-    "Run workflow-extraction dry-run",
-    "Review dry-run reports",
-    "Decide whether live MCP query execution should be enabled later",
+    "Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI",
+    "Complete manual local setup outside repo",
+    "Rerun readiness gate after manual correction",
+    "Build Local MCP Setup Verification Loop",
+    "Run safe validation chain",
+    "Generate final eligibility report",
+    "Confirm whether Phase 11M is allowed",
+    "Complete local setup manually if still blocked",
+    "Prepare vector index only after graph review",
+    "Phase 11R: Validate TTS queue packet",
+    "Phase 11R: Generate TTS eligibility checklist",
+    "Phase 11R: Generate TTS risk report",
+    "Phase 11R: Review blockers",
+    "Phase 11R: Prepare offline TTS synthesis only after validator passes",
     "Prepare Obsidian sync layer later",
     "Build automated release pipeline integration for Tree Groove Records",
     "Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification",
@@ -103,6 +136,29 @@
     "approvedConfirmations": 2,
     "deniedConfirmations": 2
   },
+  "voiceLoop": {
+    "asrBackend": "registered-whisper-cli",
+    "ttsRenderer": "piper (en)",
+    "voiceBridgeStatus": "Active",
+    "queueCounts": {
+      "approvedAsr": 1,
+      "ready": 0,
+      "executed": 1,
+      "rejected": 0
+    },
+    "latestTranscript": "System operational brief for 5/31/2026. Telemetry parsing verified. Generate live feed.",
+    "latestApprovedPacket": "asr_command_packet_2026-05-31_0801.md",
+    "latestExecutedPacket": "asr_command_packet_2026-05-31_0801.md",
+    "blockedPacketCount": 0,
+    "lastAuditEvent": "voice_bridge_run_2026-05-31_0801_2026-05-31_144157.md",
+    "safetyFlags": {
+      "liveMicEnabled": false,
+      "autoExecute": false,
+      "cloudAsrEnabled": false,
+      "exactNameRouterActive": true,
+      "rawShellExecutionBlocked": true
+    }
+  },
   "campaignReadiness": {
     "campaignName": "Sporty No Go Take My Soul",
     "readinessScore": "100% - Ready for manual execution (85 - 100)",
@@ -115,5 +171,5 @@
   "latestTelemetryReportPath": "outputs/mesh_telemetry/reports/mesh_telemetry_report_2026-05-31.md",
   "latestSportyReportPath": "outputs/mesh_telemetry/reports/sporty_mesh_telemetry_2026-05-31.md",
   "missingSignals": [],
-  "exportedAt": "2026-05-31T12:12:22.079Z"
+  "exportedAt": "2026-05-31T22:11:56.885Z"
 }

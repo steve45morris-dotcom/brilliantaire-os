@@ -889,3 +889,124 @@
 
 ---
 
+## [2026-05-31T21:57:08.335Z] Command Attempt: "git-hook-help"
+- **Matched Command:** `git-hook-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:57:59.540Z] Command Attempt: "git-hook-status"
+- **Matched Command:** `git-hook-status`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:58:37.644Z] Command Attempt: "git-hook-install"
+- **Matched Command:** `git-hook-install`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:59:03.212Z] Command Attempt: "install hook"
+- **Matched Command:** `git-hook-install`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T22:05:23.742Z] Command Attempt: "voice loop dashboard status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T22:06:00.583Z] Command Attempt: "narrator-voice-loop-dashboard status"
+- **Matched Command:** `narrator-voice-loop-dashboard`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:10:33.910Z] Command Attempt: "notebooklm-mcp-verify-loop-help"
+- **Matched Command:** `notebooklm-mcp-verify-loop-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:11:15.618Z] Command Attempt: "voice loop dashboard status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T22:11:42.754Z] Command Attempt: "narrator-voice-loop-dashboard status"
+- **Matched Command:** `narrator-voice-loop-dashboard`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:14:05.859Z] Command Attempt: "notebooklm-mcp-verify-loop chain"
+- **Matched Command:** `notebooklm-mcp-verify-loop`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:14:38.937Z] Command Attempt: "notebook verify"
+- **Matched Command:** `notebooklm-mcp-verify-loop`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

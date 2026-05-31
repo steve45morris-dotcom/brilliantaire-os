@@ -29,6 +29,30 @@ export interface CampaignReadiness {
   missingFilesList: string[];
 }
 
+export interface VoiceLoopData {
+  asrBackend: string;
+  ttsRenderer: string;
+  voiceBridgeStatus: string;
+  queueCounts: {
+    approvedAsr: number;
+    ready: number;
+    executed: number;
+    rejected: number;
+  };
+  latestTranscript: string;
+  latestApprovedPacket: string;
+  latestExecutedPacket: string;
+  blockedPacketCount: number;
+  lastAuditEvent: string;
+  safetyFlags: {
+    liveMicEnabled: boolean;
+    autoExecute: boolean;
+    cloudAsrEnabled: boolean;
+    exactNameRouterActive: boolean;
+    rawShellExecutionBlocked: boolean;
+  };
+}
+
 export interface DashboardData {
   currentPhase: string;
   activeCapabilities: string[];
@@ -36,6 +60,7 @@ export interface DashboardData {
   nextActions: string[];
   commandSummary: CommandSummary;
   voiceSummary: VoiceSummary;
+  voiceLoop: VoiceLoopData;
   campaignReadiness: CampaignReadiness;
   latestSnapshotPath: string;
   latestTelemetryReportPath: string;

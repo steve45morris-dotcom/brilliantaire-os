@@ -236,6 +236,71 @@ function main() {
   const campaignReadiness = parseSportyMetrics(latestSporty);
   const missingSignals = parseSnapshotMissingSignals(latestSnapshot);
 
+  // Voice Loop Directory Scanning for dashboard export
+  const asrApprovedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'asr', 'approved');
+  const asrTranscriptsDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'asr', 'transcripts');
+  const bridgeReadyDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'ready');
+  const bridgeExecutedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'executed');
+  const bridgeRejectedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'rejected');
+  const bridgeLogDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'logs');
+
+  const countFiles = (dir: string) => {
+    if (!fs.existsSync(dir)) return 0;
+    return fs.readdirSync(dir).filter(f => f.endsWith('.md')).length;
+  };
+
+  let latestTranscript = '';
+  if (fs.existsSync(asrTranscriptsDir)) {
+    const tFiles = fs.readdirSync(asrTranscriptsDir).filter(f => f.endsWith('.md')).sort();
+    if (tFiles.length > 0) {
+      const content = fs.readFileSync(path.join(asrTranscriptsDir, tFiles[tFiles.length - 1]), 'utf-8');
+      const textMatch = content.match(/```text\s*([\s\S]*?)\s*```/i);
+      if (textMatch) latestTranscript = textMatch[1].trim();
+    }
+  }
+
+  let latestApprovedPacket = '';
+  if (fs.existsSync(asrApprovedDir)) {
+    const apFiles = fs.readdirSync(asrApprovedDir).filter(f => f.endsWith('.md')).sort();
+    if (apFiles.length > 0) latestApprovedPacket = apFiles[apFiles.length - 1];
+  }
+
+  let latestExecutedPacket = '';
+  if (fs.existsSync(bridgeExecutedDir)) {
+    const exFiles = fs.readdirSync(bridgeExecutedDir).filter(f => f.endsWith('.md')).sort();
+    if (exFiles.length > 0) latestExecutedPacket = exFiles[exFiles.length - 1];
+  }
+
+  let lastAuditEvent = '';
+  if (fs.existsSync(bridgeLogDir)) {
+    const logFiles = fs.readdirSync(bridgeLogDir).filter(f => f.endsWith('.md')).sort();
+    if (logFiles.length > 0) lastAuditEvent = logFiles[logFiles.length - 1];
+  }
+
+  const voiceLoop = {
+    asrBackend: 'registered-whisper-cli',
+    ttsRenderer: 'piper (en)',
+    voiceBridgeStatus: 'Active',
+    queueCounts: {
+      approvedAsr: countFiles(asrApprovedDir),
+      ready: countFiles(bridgeReadyDir),
+      executed: countFiles(bridgeExecutedDir),
+      rejected: countFiles(bridgeRejectedDir)
+    },
+    latestTranscript,
+    latestApprovedPacket,
+    latestExecutedPacket,
+    blockedPacketCount: countFiles(bridgeRejectedDir),
+    lastAuditEvent,
+    safetyFlags: {
+      liveMicEnabled: false,
+      autoExecute: false,
+      cloudAsrEnabled: false,
+      exactNameRouterActive: true,
+      rawShellExecutionBlocked: true
+    }
+  };
+
   const data = {
     currentPhase,
     activeCapabilities,
@@ -249,6 +314,7 @@ function main() {
       approvedConfirmations: commandSummary.voiceApprovedConfirmations,
       deniedConfirmations: commandSummary.voiceDeniedConfirmations
     },
+    voiceLoop,
     campaignReadiness,
     latestSnapshotPath: latestSnapshot ? path.relative(REPO_ROOT, latestSnapshot) : '',
     latestTelemetryReportPath: latestReport ? path.relative(REPO_ROOT, latestReport) : '',

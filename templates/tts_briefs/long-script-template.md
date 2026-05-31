@@ -11,7 +11,7 @@
 ### Opening Line
 {{OPENING_LINE}}
 
-### Narrative Arc & Summary
+### Narrative Arc and Summary
 {{NARRATIVE_ARC}}
 
 ### Core Insights Details
@@ -23,7 +23,7 @@
 ### Risk Notes
 {{RISK_NOTES}}
 
-### Source Citations & Notes
+### Source Citations and Notes
 {{SOURCE_NOTES}}
 
 ### Closing Line

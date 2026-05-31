@@ -1,14 +1,7 @@
-# NotebookLM MCP Setup Final Eligibility Report
+# 🛡️ NotebookLM MCP Final Eligibility Decision: {{DATE}}
 
-* **Date:** {{DATE}}
-* **Readiness Score:** {{READINESS_SCORE}}
-* **Live Eligible:** {{LIVE_ELIGIBLE}}
-
-## 🧠 Decision
-{{DECISION}}
-
-## 📝 Reason
-{{REASON}}
-
-## 🚀 Next Phase
-{{NEXT_PHASE}}
+- **Readiness Score:** {{READINESS_SCORE}}%
+- **Live Eligible:** {{LIVE_ELIGIBLE}}
+- **Decision:** {{DECISION}}
+- **Reason:** {{REASON}}
+- **Next Phase:** {{NEXT_PHASE}}

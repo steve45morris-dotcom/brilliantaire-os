@@ -17,7 +17,7 @@
 ### Practical Interpretation
 {{PRACTICAL_INTERPRETATION}}
 
-### Source Citations & Notes
+### Source Citations and Notes
 {{SOURCE_NOTES}}
 
 ### Closing Line

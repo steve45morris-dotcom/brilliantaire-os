@@ -1,16 +1,15 @@
-# NotebookLM MCP Setup Verification Chain Runbook
+# 🔗 NotebookLM MCP Verification Chain Report: {{DATE}}
 
-* **Date:** {{DATE}}
-* **Readiness Score:** {{READINESS_SCORE}}
-* **Live Eligible:** {{LIVE_ELIGIBLE}}
+- **Readiness Score:** {{READINESS_SCORE}}
+- **Live Eligible:** {{LIVE_ELIGIBLE}}
 
-## ⛓️ Verification Chain Steps
+## 📋 Verification Chain Step Details
 | Step | Command | Purpose | Result | Notes |
-|------|---------|---------|--------|-------|
+|---|---|---|---|---|
 {{VERIFICATION_CHAIN_ROWS}}
 
-## 🚨 Active Blockers
+## ⚠️ Active Blockers
 {{BLOCKERS}}
 
-## ➡️ Next Action
+## 🎯 Next Recommended Action
 {{NEXT_ACTION}}

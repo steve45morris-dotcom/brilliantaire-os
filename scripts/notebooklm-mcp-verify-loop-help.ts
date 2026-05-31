@@ -1,22 +1,28 @@
-// scripts/notebooklm-mcp-verify-loop-help.ts
-// Prints help guidelines and usage instructions for the Local MCP Setup Verification Loop.
-
-function printHelp() {
-  console.log("=========================================");
-  console.log("🔄 NOTEBOOKLM MCP VERIFICATION LOOP HELP");
-  console.log("=========================================");
-  console.log("\nUsage: npm run notebooklm-mcp-verify-loop -- <command>");
-  console.log("\nAvailable commands:");
-  console.log("  help               Print this help guide");
-  console.log("  chain              Run setup readiness checks via npm scripts and write verification chain report");
-  console.log("  final-check        Assess setup gate readiness and determine eligibility for Phase 11M");
-  console.log("  status             Show details on the latest generated reports, readiness score, and eligibility");
-  console.log("\nExample runs:");
-  console.log("  npm run notebooklm-mcp-verify-loop -- \"help\"");
-  console.log("  npm run notebooklm-mcp-verify-loop -- \"chain\"");
-  console.log("  npm run notebooklm-mcp-verify-loop -- \"final-check\"");
-  console.log("  npm run notebooklm-mcp-verify-loop -- \"status\"");
-  console.log("=========================================");
+export function printHelp(): void {
+  console.log('========================================================================');
+  console.log('🏁 NOTEBOOKLM MCP SETUP VERIFICATION LOOP CONTROLLER');
+  console.log('========================================================================');
+  console.log('Purpose:');
+  console.log('  Reruns all existing safe setup verification scripts to evaluate local');
+  console.log('  environment alignment (such as .env.local parameters and gitignore rules)');
+  console.log('  and compile a final integration readiness score and eligibility decision.');
+  console.log('');
+  console.log('⚠️  SAFE CONTROLLERS ONLY:');
+  console.log('  - NEVER prints raw secret values or writes credentials to version control.');
+  console.log('  - NEVER initiates live MCP query executions or external API connections.');
+  console.log('');
+  console.log('💻 Available Loop Actions:');
+  console.log('  - npm run notebooklm-mcp-verify-loop-help');
+  console.log('    Print this policy and execution help menu.');
+  console.log('  - npm run notebooklm-mcp-verify-loop -- "chain"');
+  console.log('    Executes the suite of safe setup check scripts and logs a chain report.');
+  console.log('  - npm run notebooklm-mcp-verify-loop -- "final-check"');
+  console.log('    Reads check reports and compiles final Phase 11M adapter eligibility.');
+  console.log('  - npm run notebooklm-mcp-verify-loop -- "status"');
+  console.log('    Prints current readiness metrics, active blockers, and eligibility.');
+  console.log('========================================================================');
 }
 
-printHelp();
+if (process.argv[1] && (process.argv[1].endsWith('notebooklm-mcp-verify-loop-help.ts') || process.argv[1].endsWith('notebooklm-mcp-verify-loop-help.js') || process.argv[1].includes('notebooklm-mcp-verify-loop-help'))) {
+  printHelp();
+}

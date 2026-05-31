@@ -1,20 +1,17 @@
-# NotebookLM MCP Verification Loop Report
+# 🏁 NotebookLM MCP Verification Loop Report: {{DATE}}
 
-* **Date:** {{DATE}}
-* **Readiness Score:** {{READINESS_SCORE}}
-* **Live Eligible:** {{LIVE_ELIGIBLE}}
+- **Timestamp:** {{TIMESTAMP}}
+- **Readiness Score:** {{READINESS_SCORE}}%
+- **Live Eligible:** {{LIVE_ELIGIBLE}}
 
-## 📋 Commands Executed
+## 📋 Run Statistics
+- **Commands Run:**
 {{COMMANDS_RUN}}
+- **Passed:** {{PASSED_COUNT}}
+- **Failed:** {{FAILED_COUNT}}
 
-## 🟢 Passed Steps
-{{PASSED_STEPS}}
-
-## 🔴 Failed Steps
-{{FAILED_STEPS}}
-
-## 🚨 Blockers
+## ⚠️ Outstanding Blockers
 {{BLOCKERS}}
 
-## ➡️ Next Action
+## 🎯 Next Recommended Action
 {{NEXT_ACTION}}
