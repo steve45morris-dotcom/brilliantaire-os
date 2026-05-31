@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from "lucide-react";
+import { playClick, playFocus, playSuccess } from "@/lib/sounds";
 
 interface MicroProduct {
   id: string;
@@ -68,6 +69,7 @@ export function SovereigntyPanel() {
 
   async function handleDeployProduct(e: React.FormEvent) {
     e.preventDefault();
+    playClick();
     if (!deployName.trim()) {
       alert("Micro-product name is required");
       return;
@@ -83,6 +85,7 @@ export function SovereigntyPanel() {
       });
       const json = await res.json();
       if (json.ok) {
+        playSuccess();
         setSuccess(`Micro-product '${deployName}' compiled and deployed successfully!`);
         setDeployName("");
         await loadProducts();
@@ -98,6 +101,7 @@ export function SovereigntyPanel() {
 
   async function handleBridgeSettlement(e: React.FormEvent) {
     e.preventDefault();
+    playClick();
     setSettleLoading(true);
     setSettleReceipt(null);
     setError("");
@@ -115,6 +119,7 @@ export function SovereigntyPanel() {
       });
       const json = await res.json();
       if (json.ok) {
+        playSuccess();
         setSettleReceipt(json.receipt);
         setSuccess(`Bridge swap processed: reconciled $${settleAmount} to decentralized ledger.`);
       } else {
@@ -128,6 +133,7 @@ export function SovereigntyPanel() {
   }
 
   async function handleRunZKAudit() {
+    playClick();
     setZkLoading(true);
     setZkResult(null);
     setError("");
@@ -136,6 +142,7 @@ export function SovereigntyPanel() {
       const res = await fetch("/api/mesh/zk-audit", { method: "POST" });
       const json = await res.json();
       if (json.ok) {
+        playSuccess();
         setZkResult(json.result);
         setSuccess("Zero-Knowledge audit sweep completed. Integrity proof pass!");
       } else {
@@ -159,7 +166,13 @@ export function SovereigntyPanel() {
       <div className="glass-panel border border-cyan-500/30 bg-[#040811]/45 p-6 rounded-2xl relative overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)]">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent animate-pulse" />
         
-        <div className="border-b border-slate-850 pb-4 mb-4 flex items-center justify-between">
+        {/* Subtle mesh/ledger background blueprint */}
+        <div 
+          className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen bg-[url('/images/mesh_grid.png')] bg-cover bg-center" 
+          style={{ pointerEvents: 'none' }}
+        />
+        
+        <div className="border-b border-slate-850 pb-4 mb-4 flex items-center justify-between relative z-10">
           <div>
             <h3 className="text-sm font-black uppercase tracking-wider text-cyan-400 flex items-center gap-2">
               <FolderPlus className="h-4 w-4" />
@@ -168,7 +181,7 @@ export function SovereigntyPanel() {
             <p className="text-xs text-slate-400 mt-1">Compile and deploy standalone agent pages and monetization landing pages dynamically.</p>
           </div>
           <button 
-            onClick={loadProducts}
+            onClick={() => { playClick(); loadProducts(); }}
             disabled={loadingProducts}
             className="text-slate-500 hover:text-cyan-400 transition disabled:opacity-40 cursor-pointer"
           >
@@ -177,17 +190,17 @@ export function SovereigntyPanel() {
         </div>
 
         {error && (
-          <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 text-xs font-semibold text-rose-450 glow-text-danger mb-4">
+          <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 text-xs font-semibold text-rose-450 glow-text-danger mb-4 relative z-10">
             {error}
           </div>
         )}
         {success && (
-          <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 text-xs font-semibold text-teal-400 glow-text-cyan mb-4">
+          <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-3 text-xs font-semibold text-teal-400 glow-text-cyan mb-4 relative z-10">
             {success}
           </div>
         )}
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 relative z-10">
           {/* Spawn form */}
           <form onSubmit={handleDeployProduct} className="border border-slate-850 bg-black/40 p-4 rounded-xl flex flex-col justify-between">
             <div className="space-y-4">
@@ -199,6 +212,7 @@ export function SovereigntyPanel() {
                   type="text"
                   value={deployName}
                   onChange={(e) => setDeployName(e.target.value)}
+                  onFocus={playFocus}
                   placeholder="e.g. music-licensing"
                   className="w-full h-9 px-3 bg-black border border-slate-800 rounded text-xs font-semibold text-white focus:outline-none focus:border-cyan-400/50"
                 />
@@ -209,6 +223,7 @@ export function SovereigntyPanel() {
                 <select
                   value={deployTemplate}
                   onChange={(e) => setDeployTemplate(e.target.value)}
+                  onFocus={playFocus}
                   className="w-full h-9 px-2 bg-black border border-slate-800 rounded text-xs font-semibold text-slate-300 focus:outline-none focus:border-cyan-400/50 cursor-pointer"
                 >
                   <option value="Astro SaaS Starter">Astro SaaS Starter</option>
@@ -281,7 +296,13 @@ export function SovereigntyPanel() {
         <div className="md:col-span-2 border border-purple-500/30 bg-[#040811]/45 p-6 rounded-2xl relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.15)]">
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent animate-pulse" />
           
-          <div className="border-b border-slate-850 pb-4 mb-4 flex items-center justify-between">
+          {/* Subtle ledger node background blueprint */}
+          <div 
+            className="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen bg-[url('/images/ledger_node.png')] bg-cover bg-center" 
+            style={{ pointerEvents: 'none' }}
+          />
+          
+          <div className="border-b border-slate-850 pb-4 mb-4 flex items-center justify-between relative z-10">
             <div>
               <h3 className="text-sm font-black uppercase tracking-wider text-purple-400 flex items-center gap-2">
                 <Coins className="h-4 w-4 text-purple-400" />
@@ -291,12 +312,13 @@ export function SovereigntyPanel() {
             </div>
           </div>
 
-          <form onSubmit={handleBridgeSettlement} className="grid sm:grid-cols-2 gap-4 items-end">
+          <form onSubmit={handleBridgeSettlement} className="grid sm:grid-cols-2 gap-4 items-end relative z-10">
             <div>
               <label className="text-[9px] font-black uppercase tracking-wider text-slate-500 block mb-1.5">Select Client</label>
               <select
                 value={selectedClient}
                 onChange={(e) => setSelectedClient(e.target.value)}
+                onFocus={playFocus}
                 className="w-full h-9 px-2 bg-black border border-slate-850 rounded text-xs font-semibold text-slate-300 focus:outline-none focus:border-purple-500/50 cursor-pointer"
               >
                 {clients.map(c => (
@@ -311,6 +333,7 @@ export function SovereigntyPanel() {
                 type="number"
                 value={settleAmount}
                 onChange={(e) => setSettleAmount(e.target.value)}
+                onFocus={playFocus}
                 className="w-full h-9 px-3 bg-black border border-slate-850 rounded text-xs font-semibold text-white focus:outline-none focus:border-purple-500/50 font-mono"
               />
             </div>
@@ -320,6 +343,7 @@ export function SovereigntyPanel() {
               <select
                 value={sourceBridge}
                 onChange={(e) => setSourceBridge(e.target.value)}
+                onFocus={playFocus}
                 className="w-full h-9 px-2 bg-black border border-slate-850 rounded text-xs font-semibold text-slate-300 focus:outline-none focus:border-purple-500/50 cursor-pointer"
               >
                 <option value="Stripe Financial Rails">Stripe Financial Rails</option>
@@ -333,6 +357,7 @@ export function SovereigntyPanel() {
               <select
                 value={destBridge}
                 onChange={(e) => setDestBridge(e.target.value)}
+                onFocus={playFocus}
                 className="w-full h-9 px-2 bg-black border border-slate-850 rounded text-xs font-semibold text-slate-300 focus:outline-none focus:border-purple-500/50 cursor-pointer"
               >
                 <option value="SOV Token (ERC-20)">SOV Token (ERC-20)</option>
@@ -359,7 +384,7 @@ export function SovereigntyPanel() {
           </form>
 
           {settleReceipt && (
-            <div className="mt-4 p-4 border border-slate-850 bg-black/60 rounded-xl animate-fade-in text-[10px] font-mono text-slate-300 space-y-1.5">
+            <div className="mt-4 p-4 border border-slate-850 bg-black/60 rounded-xl animate-fade-in text-[10px] font-mono text-slate-300 space-y-1.5 relative z-10">
               <div className="flex justify-between border-b border-slate-900 pb-1.5 mb-1.5">
                 <span className="text-slate-500 font-bold uppercase text-[9px]">Receipt Token</span>
                 <span className="text-emerald-400 font-black">{settleReceipt.status}</span>
@@ -384,7 +409,13 @@ export function SovereigntyPanel() {
         <div className="border border-emerald-500/30 bg-[#040811]/45 p-6 rounded-2xl relative overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.15)] flex flex-col justify-between">
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-pulse" />
           
-          <div>
+          {/* Subtle ledger node background blueprint */}
+          <div 
+            className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen bg-[url('/images/ledger_node.png')] bg-cover bg-center" 
+            style={{ pointerEvents: 'none' }}
+          />
+          
+          <div className="relative z-10">
             <div className="border-b border-slate-850 pb-4 mb-4 flex items-center justify-between">
               <div>
                 <h3 className="text-sm font-black uppercase tracking-wider text-emerald-400 flex items-center gap-2">
@@ -400,7 +431,7 @@ export function SovereigntyPanel() {
             </p>
           </div>
 
-          <div>
+          <div className="relative z-10">
             {zkResult && (
               <div className="p-3 border border-emerald-500/20 bg-emerald-500/5 rounded-xl text-[10px] font-mono mb-4 space-y-1 animate-fade-in">
                 <div className="flex justify-between">
