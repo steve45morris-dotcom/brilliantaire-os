@@ -141,13 +141,21 @@
 - [x] Generate capability report
 - [x] Decide whether MCP adapter should be activated
 - [x] Prepare NotebookLM MCP Query Adapter only after detection passes
-- [ ] Build NotebookLM MCP Dry-Run Execution
-- [ ] Prepare source-summary query payload
-- [ ] Prepare workflow-extraction query payload
-- [ ] Run source-summary dry-run
-- [ ] Run workflow-extraction dry-run
-- [ ] Review dry-run reports
-- [ ] Decide whether live MCP query execution should be enabled later
+- [x] Build NotebookLM MCP Dry-Run Execution
+- [x] Prepare source-summary query payload
+- [x] Prepare workflow-extraction query payload
+- [x] Run source-summary dry-run
+- [x] Run workflow-extraction dry-run
+- [x] Review dry-run reports
+- [x] Decide whether live MCP query execution should be enabled later
+
+## Do Next
+- [ ] Build NotebookLM MCP Auth Validation
+- [ ] Run auth readiness scan
+- [ ] Generate scope review
+- [ ] Generate activation checklist
+- [ ] Review blockers
+- [ ] Decide whether MCP live query adapter can be prepared
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

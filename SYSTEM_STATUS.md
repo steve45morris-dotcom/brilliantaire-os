@@ -47,6 +47,7 @@
 - **NotebookLM MCP Sidecar Bridge (Phase 22):** Local connector bridge to compile query packets, ingest manual answers safely, stage Obsidian exports, and extract workflow automation ideas.
 - **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
 - **NotebookLM MCP Adapter Dry-Run Execution (Phase 11D):** Offline query payload compiler, simulation reports generation, and execution logs tracker.
+- **NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

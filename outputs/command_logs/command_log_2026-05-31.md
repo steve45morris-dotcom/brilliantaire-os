@@ -97,3 +97,36 @@
 
 ---
 
+## [2026-05-31T12:06:56.406Z] Command Attempt: "notebooklm-mcp-auth-help"
+- **Matched Command:** `notebooklm-mcp-auth-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T12:08:06.602Z] Command Attempt: "notebooklm-mcp-auth scan"
+- **Matched Command:** `notebooklm-mcp-auth`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T12:08:26.460Z] Command Attempt: "notebook auth"
+- **Matched Command:** `notebooklm-mcp-auth`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

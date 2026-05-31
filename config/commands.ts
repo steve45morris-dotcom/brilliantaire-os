@@ -615,6 +615,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'notebooklm-mcp-auth-help',
+    aliases: ['notebook auth help', 'mcp auth help'],
+    description: 'Print commands for NotebookLM MCP Live Authorization Validation',
+    npmScript: 'notebooklm-mcp-auth-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-auth',
+    aliases: ['notebook auth', 'mcp auth'],
+    description: 'Execute NotebookLM MCP Live Authorization Validation checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-auth',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

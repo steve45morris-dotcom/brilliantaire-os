@@ -65,7 +65,9 @@
     "notebooklm-mcp-detect": "tsx scripts/notebooklm-mcp-detect.ts",
     "notebooklm-mcp-detect-help": "tsx scripts/notebooklm-mcp-detect-help.ts",
     "notebooklm-mcp-execute": "tsx scripts/notebooklm-mcp-execute.ts",
-    "notebooklm-mcp-execute-help": "tsx scripts/notebooklm-mcp-execute-help.ts"
+    "notebooklm-mcp-execute-help": "tsx scripts/notebooklm-mcp-execute-help.ts",
+    "notebooklm-mcp-auth": "tsx scripts/notebooklm-mcp-auth.ts",
+    "notebooklm-mcp-auth-help": "tsx scripts/notebooklm-mcp-auth-help.ts"
   },
   "keywords": [
     "antigravity",

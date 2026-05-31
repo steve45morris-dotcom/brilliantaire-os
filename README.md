@@ -694,6 +694,39 @@ The **NotebookLM MCP Adapter Dry-Run Execution** layer acts as a safe translatio
 
 ---
 
+## 🔐 Phase 11E: NotebookLM MCP Live Authorization Validation
+
+The **NotebookLM MCP Live Authorization Validation** layer provides a strict, offline validation protocol. It scans config profiles for expected environment variable names (e.g. `GOOGLE_APPLICATION_CREDENTIALS`, `NOTEBOOKLM_WORKSPACE_ID`) and generates readiness checklists without printing secret values or executing network requests.
+
+### 🛡️ Safety & Execution Rules
+1. **Validation-Only:** No active OAuth logins, browser automation, or direct queries to NotebookLM.
+2. **No Secret Exposure:** Variable values are never outputted or printed; matching entries are marked as `[REDACTED]` or `[PRESENT]`.
+3. **Least Privilege Review:** Analyzes permission scopes to recommend read-only setups and avoid risky write privileges.
+
+### 💻 Command Examples
+* View validation help:
+  ```bash
+  npm run command -- "notebooklm-mcp-auth-help"
+  ```
+* Run environment variables validation scan:
+  ```bash
+  npm run command -- "notebooklm-mcp-auth scan"
+  ```
+* Review permissions scope matrix:
+  ```bash
+  npm run command -- "notebooklm-mcp-auth scope-review"
+  ```
+* Generate activation safety checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-auth activation-checklist"
+  ```
+* Print overall authorization status:
+  ```bash
+  npm run command -- "notebooklm-mcp-auth status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11E: NotebookLM MCP Live Authorization Validation**
-  - Integrate secure challenge-handshake validation and verify API key scopes prior to live connections.
+* **Phase 11F: NotebookLM MCP Adapter Live Integration**
+  - Establish live, restricted read-only query adapter operations once safety gates are signed off.
