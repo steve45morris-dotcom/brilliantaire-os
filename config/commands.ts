@@ -771,6 +771,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-fix-cycle-help',
+    aliases: ['notebook fix help', 'mcp fix help'],
+    description: 'Print commands for NotebookLM MCP Setup Fix Cycle',
+    npmScript: 'notebooklm-mcp-fix-cycle-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-fix-cycle',
+    aliases: ['notebook fix', 'mcp fix'],
+    description: 'Execute NotebookLM MCP Setup Fix Cycle checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-fix-cycle',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

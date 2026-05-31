@@ -921,7 +921,47 @@ The **Manual MCP Setup Completion Review** layer performs local checking of oper
 
 ---
 
-## 🧭 Phase 11K: NotebookLM MCP Local Secrets Staging Guide
+## 🧭 Phase 11K: MCP Setup Fix Cycle
+
+The **MCP Setup Fix Cycle** provides a repeatable local check and correction loop to resolve missing environmental variables and incorrect settings, enabling verified path alignment before activating live adapters.
+
+### 🛡️ Safety & Execution Rules
+1. **Offline Verification:** No API queries, browser popups, or external OAuth procedures are triggered.
+2. **Local Staging:** Checklists and decisions are written strictly to local folders, avoiding repository code files or Obsidian direct writes.
+
+### 💻 Command Examples
+* View fix cycle help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle-help"
+  ```
+* Generate missing environment variables checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle missing-env"
+  ```
+* Generate local configuration checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle local-config"
+  ```
+* Compile verification rerun sequence runbook:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle rerun-sequence"
+  ```
+* Generate fix cycle decision summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle decision-summary"
+  ```
+* Run all checks and compile all checklists:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle all"
+  ```
+* Print status summary directly to console:
+  ```bash
+  npm run command -- "notebooklm-mcp-fix-cycle status"
+  ```
+
+---
+
+## 🧭 Phase 11L: NotebookLM MCP Local Secrets Staging Guide
 
 The **NotebookLM MCP Local Secrets Staging Guide** establishes a safe, local-only configuration staging and verification checklist to prepare for future activation without committing credentials or triggering live API calls.
 
@@ -1204,7 +1244,7 @@ The **Local TTS Model & Cache Manager** handles secure, offline registration, ve
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11L: NotebookLM MCP Live Adapter Integration**
+* **Phase 11M: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
 * **Phase N5D: Local ASR Command Listener**
   - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.

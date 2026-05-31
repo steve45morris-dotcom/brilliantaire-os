@@ -234,6 +234,16 @@
 - [x] Decide whether live MCP adapter is eligible
 
 ## Do Next
+- [x] Build MCP Setup Fix Cycle
+- [x] Generate missing env checklist
+- [x] Generate local config checklist
+- [x] Generate rerun sequence
+- [x] Generate decision summary
+- [ ] Complete local MCP setup outside repo
+- [ ] Rerun readiness after local fixes
+
+
+## Do Next
 - [x] Build NotebookLM MCP Local Secrets Staging Guide
 - [x] Create placeholder env templates
 - [x] Run redaction check
