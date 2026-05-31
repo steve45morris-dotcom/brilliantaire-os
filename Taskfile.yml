@@ -323,6 +323,17 @@ tasks:
     desc: "Validate narrator_card.json output"
     cmds:
       - npm run narrator-validate
+
+  narrator-brief:
+    desc: "Compile target-specific operational briefs from system telemetry"
+    cmds:
+      - npm run narrator-brief -- {{.CLI_ARGS}}
+
+  narrator-brief-help:
+    desc: "Print help commands for the narrator brief composer"
+    cmds:
+      - npm run narrator-brief-help
+
   narrator-watch:
     desc: "Run the AI Narrator in watch mode as a background daemon"
     cmds:
