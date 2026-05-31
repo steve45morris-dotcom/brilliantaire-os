@@ -433,3 +433,29 @@ tasks:
     desc: "Announce completion via Voice Narrative Protocol"
     cmds:
       - bash -c 'source /Users/alexanderanthony/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
+
+  sentinel:safety:
+    desc: "Run Sentinel safety gate configuration checks"
+    cmds:
+      - npm run sentinel:safety
+
+  sentinel:tunnel-log:
+    desc: "Record and audit public tunnel sessions"
+    cmds:
+      - npm run sentinel:tunnel-log -- {{.CLI_ARGS}}
+
+  sentinel:voice-risk:
+    desc: "Generate the Voice Command Risk Registry"
+    cmds:
+      - npm run sentinel:voice-risk
+
+  sentinel:knowledge-router:
+    desc: "Stage incoming knowledge sources and check routing constraints"
+    cmds:
+      - npm run sentinel:knowledge-router
+
+  sentinel:safety-report:
+    desc: "Compile safety status reports into unified summary"
+    cmds:
+      - npm run sentinel:safety-report
+

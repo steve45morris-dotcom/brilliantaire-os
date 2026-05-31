@@ -1,12 +1,12 @@
 # 📂 Obsidian Ingestion Report
 
-- **Date of Ingest:** 5/30/2026, 4:55:06 PM
+- **Date of Ingest:** 5/31/2026, 5:20:15 AM
 - **Vaults Scanned:**
   - `/Users/alexanderanthony/AlexanderOSVault`
-- **Total Files Scanned:** 187
+- **Total Files Scanned:** 194
 - **Total Signals Detected:**
-  - Actions (TODO/NEXT): 208
-  - Decisions: 94
+  - Actions (TODO/NEXT): 212
+  - Decisions: 95
   - Blockers: 43
 
 ## 🚀 Top 10 Relevant Files

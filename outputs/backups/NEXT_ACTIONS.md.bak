@@ -1,21 +1,215 @@
 # 🎯 Next Actions
 
 ## Do Now
-- [ ] Add operational intelligence scripts (audit, brief, next)
-- [ ] Create self-audit command
-- [ ] Create project brief command
-- [ ] Create next-action generator
+- [x] Add operational intelligence scripts (audit, brief, next)
+- [x] Create self-audit command
+- [x] Create project brief command
+- [x] Create next-action generator
+- [x] Run and maintain productivity agent council (`AGENTS.md`)
+- [x] Connect agents telemetry log loops
+- [x] Test staged write
+- [x] Approve first safe Obsidian write
+- [x] Review written files inside brilliantaire-briefs
+- [x] Prepare command pipeline after safe write is verified
+- [x] Build safe command router
+- [x] Test command aliases
+- [x] Test medium-risk command restrictions
+- [x] Test unknown command rejection
+- [x] Test medium-risk alias blocking
+- [x] Test high-risk confirmation requirement
+- [x] Build campaign template engine
+- [x] Generate Sporty campaign brief
+- [x] Generate Sporty 3-week calendar
+- [x] Generate Sporty prompt pack
+- [x] Generate Sporty execution checklist
+- [x] Generate Sporty street script
+- [x] Review campaign outputs
+- [x] Build voice command queue
+- [x] Test low-risk voice command
+- [x] Test unknown voice phrase rejection
+- [x] Test medium-risk confirmation block
+- [x] Test high-risk confirmation block
+- [x] Build voice confirmation layer
+- [x] Test pending command listing
+- [x] Test confirmation without --confirm blocks
+- [x] Test confirmation with --confirm executes through router
+- [x] Test denial flow
+- [x] Build VibeVoice Transcript Producer
+- [x] Test manual transcript handoff
+- [x] Test low-risk transcript execution through queue
+- [x] Test medium-risk transcript pending confirmation
+- [x] Test unknown transcript rejection
+- [x] Build Live Microphone ASR Bridge
+- [x] Test live ASR transcript import
+- [x] Test low-risk transcript execution through full chain
+- [x] Test medium-risk transcript pending confirmation
+- [x] Test unknown transcript rejection
+- [x] Prepare optional live recorder only after import bridge passes
+- [x] Build campaign scheduler draft engine
+- [x] Generate Sporty 21-day schedule
+- [x] Generate Sporty posting queue
+- [x] Generate Sporty execution log
+- [x] Review schedule outputs
+- [x] Prepare mesh telemetry after scheduler passes
+- [x] Build campaign simulation validator
+- [x] Run Sporty campaign simulation
+- [x] Run Sporty validation report
+- [x] Review readiness score
+- [x] Fix missing campaign fields if needed
+- [x] Prepare mesh telemetry logger after validation passes
+- [x] Build safe mesh telemetry logger
+- [x] Generate system snapshot
+- [x] Generate unified telemetry report
+- [x] Generate Sporty campaign telemetry
+- [x] Review missing log families
+- [x] Prepare lightweight dashboard only after telemetry passes
+- [x] Build lightweight local dashboard
+- [x] Export dashboard data
+- [x] Build dashboard
+- [x] Review dashboard cards
+- [x] Confirm dashboard is read-only
+- [x] Prepare automation only after dashboard passes
+- [x] Integrate cybernetic background particle mesh with 45 active canvas nodes and responsive mouse/theme-sync interaction
+- [x] Build local automation runner
+- [x] Test daily-check routine
+- [x] Test campaign-check routine
+- [x] Test voice-check routine
+- [x] Verify automation logs
+- [x] Prepare scheduled automation only after local runner passes
+- [x] Build controlled background automation
+- [x] Test background help
+- [x] Test dry-run schedule
+- [x] Test blocked run without --confirm
+- [x] Test blocked run when global automation disabled
+- [x] Test background status
+- [x] Prepare launchd or cron adapter only after background automation passes
+- [x] Build platform output adapters
+- [x] Generate Sporty YouTube package
+- [x] Generate Sporty TikTok package
+- [x] Generate Sporty Instagram package
+- [x] Generate Sporty Facebook package
+- [x] Generate Sporty WhatsApp package
+- [x] Generate Sporty Obsidian package
+- [x] Review platform packages manually
+- [x] Prepare release verification only after platform packages pass
+- [x] Build platform verification gates
+- [x] Verify Sporty YouTube package
+- [x] Verify Sporty TikTok package
+- [x] Verify Sporty Instagram package
+- [x] Verify Sporty Facebook package
+- [x] Verify Sporty WhatsApp package
+- [x] Verify Sporty Obsidian package
+- [x] Generate platform verification summary
+- [x] Review manual posting readiness
+- [x] Build manual release checklist
+- [x] Generate Sporty manual release checklist
+- [x] Generate Sporty release runbook
+- [x] Check manual release readiness
+- [x] Prepare distribution metrics after manual release checklist passes
+- [x] Build manual distribution metrics
+- [x] Generate Sporty YouTube metric entry
+- [x] Generate Sporty TikTok metric entry
+- [x] Generate Sporty Instagram metric entry
+- [x] Generate Sporty Facebook metric entry
+- [x] Generate Sporty WhatsApp metric entry
+- [x] Generate Sporty Obsidian metric entry
+- [x] Generate Sporty distribution report
+- [x] Generate Sporty archive index
+- [x] Review manual metrics after posting
+- [x] Phase N1: Upgrade AI Narrator to read approved local snapshots
+- [x] Phase N1: Enforce output-only safety flags and restrict narrator capabilities
+- [x] Phase N1: Create config/narrator-sources.ts approved whitelist
+- [x] Phase N1: Create templates and scripts for narrator sources compilation
+- [x] Phase N1: Implement outputs/narrator_card.json TS verification schema
+- [x] Phase N1: Register narrator-sources, narrator-validate, and narrator-watch in Taskfile
+- [x] Phase N1: Integrate sources_used, generated_at, and safety_mode badges into local dashboard
+- [x] Phase N1: Implement robust local offline fallback for dashboard narrative sync
+- [x] Phase N2: Build Narrator Brief Composer
+- [x] Phase N2: Generate operator brief
+- [x] Phase N2: Generate dashboard narration feed
+- [x] Phase N2: Generate voice narration script
+- [x] Phase N2: Generate Obsidian staged narrator brief
+- [x] Phase N2: Validate narrator brief status
+- [x] Phase N2: Prepare live dashboard feed only after brief composer passes
+
+
+## Do Now
+- [x] Build Knowledge Harvest Engine v1
+- [x] Test manual YouTube URL intake
+- [x] Test local transcript intake
+- [x] Generate NotebookLM source pack
+- [x] Generate OS workflow ideas
+- [x] Review first creator source: Julian Goldie
+- [x] Build NotebookLM MCP Sidecar Bridge
+- [x] Generate first NotebookLM query packet
+- [x] Add first manual NotebookLM answer
+- [x] Generate Obsidian staged export
+- [x] Generate workflow ideas
+- [x] Generate NotebookLM source pack
+- [x] Prepare future MCP adapter after manual bridge passes
 
 ## Do Next
-- [ ] Implement VNP integration in scripts to log script runs
-- [ ] Add strict validation commands in Taskfile
+- [x] Build NotebookLM MCP Adapter Detection
+- [x] Scan for local MCP connector configuration
+- [x] Generate detection report
+- [x] Generate capability report
+- [x] Decide whether MCP adapter should be activated
+- [x] Prepare NotebookLM MCP Query Adapter only after detection passes
+- [ ] Build NotebookLM MCP Dry-Run Execution
+- [ ] Prepare source-summary query payload
+- [ ] Prepare workflow-extraction query payload
+- [ ] Run source-summary dry-run
+- [ ] Run workflow-extraction dry-run
+- [ ] Review dry-run reports
+- [ ] Decide whether live MCP query execution should be enabled later
+- [x] Implement VNP integration in scripts to log script runs
+- [x] Add strict validation commands in Taskfile
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
 - [ ] Build automated release pipeline integration for Tree Groove Records
+- [ ] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
+- [ ] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
+- [ ] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
+- [ ] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
 
 ## Pause
 - [ ] Local web interface (focusing on pure CLI operations first)
 
 ## Archive
 - [ ] Legacy bash scripts replaced by typescript runners
+
+## Obsidian Intelligence Snapshot
+
+- **Last Ingest:** 5/31/2026, 5:09:14 AM
+- **Vaults Scanned:**
+  - `/Users/alexanderanthony/AlexanderOSVault`
+- **Top Relevant Files:**
+  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
+- **Extracted Next Actions:**
+  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- **Extracted Blockers:**
+  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- **Extracted Decisions:**
+  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
