@@ -163,3 +163,36 @@
 
 ---
 
+## [2026-05-31T13:09:06.175Z] Command Attempt: "notebooklm-mcp-harden-help"
+- **Matched Command:** `notebooklm-mcp-harden-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:10:27.771Z] Command Attempt: "notebooklm-mcp-harden create-env-template"
+- **Matched Command:** `notebooklm-mcp-harden`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:10:52.834Z] Command Attempt: "notebook harden"
+- **Matched Command:** `notebooklm-mcp-harden`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

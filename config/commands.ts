@@ -639,6 +639,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-harden-help',
+    aliases: ['notebook hardening help', 'mcp hardening help'],
+    description: 'Print commands for NotebookLM MCP Connector Hardening',
+    npmScript: 'notebooklm-mcp-harden-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-harden',
+    aliases: ['notebook harden', 'mcp harden'],
+    description: 'Execute NotebookLM MCP Connector Hardening checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-harden',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

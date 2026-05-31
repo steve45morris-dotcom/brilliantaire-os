@@ -164,12 +164,18 @@
 - [x] Decide whether live MCP query execution should be enabled later
 
 ## Do Next
-- [ ] Build NotebookLM MCP Auth Validation
-- [ ] Run auth readiness scan
-- [ ] Generate scope review
-- [ ] Generate activation checklist
-- [ ] Review blockers
-- [ ] Decide whether MCP live query adapter can be prepared
+- [x] Build NotebookLM MCP Auth Validation
+- [x] Run auth readiness scan
+- [x] Generate scope review
+- [x] Generate activation checklist
+- [x] Review blockers
+- [x] Decide whether MCP live query adapter can be prepared
+- [ ] Build NotebookLM MCP Connector Hardening
+- [ ] Generate staged env template
+- [ ] Generate staged MCP config template
+- [ ] Run secret hygiene scan
+- [ ] Run readiness recheck
+- [ ] Decide whether real config can be added manually outside repo
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

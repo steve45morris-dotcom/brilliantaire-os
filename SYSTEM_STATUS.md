@@ -49,6 +49,7 @@
 - **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
 - **NotebookLM MCP Adapter Dry-Run Execution (Phase 11D):** Offline query payload compiler, simulation reports generation, and execution logs tracker.
 - **NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.
+- **NotebookLM MCP Connector Hardening (Phase 11F):** Staged credentials env template, MCP JSON configs generation, local credentials hygiene scan, and hardening readiness recheck.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 
 ## 📭 Missing Capabilities

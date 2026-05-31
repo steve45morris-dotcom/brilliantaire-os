@@ -727,6 +727,43 @@ The **NotebookLM MCP Live Authorization Validation** layer provides a strict, of
 
 ---
 
+## 🧭 Phase 11F: NotebookLM MCP Connector Hardening
+
+The **NotebookLM MCP Connector Hardening** layer creates safe environment templates, staged config files, and credential scanning utilities to harden the connector interface before deployment.
+
+### 🛡️ Safety & Execution Rules
+1. **Hardening-Only:** All files, templates, and configurations are staging objects; no real secrets are generated or committed.
+2. **No Direct Overwrite:** Live Claude or Cursor configuration structures are never modified automatically; configs must be manually copied.
+3. **Secret Hygiene Sweep:** Code base is scanned recursively, skipping compiled/untracked artifacts, ensuring no credentials leak.
+
+### 💻 Command Examples
+* View hardening help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden-help"
+  ```
+* Generate staged environment template:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden create-env-template"
+  ```
+* Generate staged MCP configuration JSON:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden create-mcp-template"
+  ```
+* Run secret hygiene scanner:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden secret-hygiene"
+  ```
+* Run readiness recheck report:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden readiness-recheck"
+  ```
+* Print overall configuration status summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-harden status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -784,7 +821,7 @@ The **Narrator Brief Composer** is a decoupled local templating and generation l
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11F: NotebookLM MCP Adapter Live Integration**
-  - Establish live, restricted read-only query adapter operations once safety gates are signed off.
+* **Phase 11G: NotebookLM MCP Live Adapter Integration**
+  - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
 * **Phase N3: Live Dashboard Narration Feed**
   - Integrate real-time WebSocket or event-driven state triggers for instantaneous dashboard narrative sync.

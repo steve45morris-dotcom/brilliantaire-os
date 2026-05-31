@@ -301,6 +301,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-auth -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-harden-help:
+    desc: "Print NotebookLM MCP Connector Hardening safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-harden-help
+
+  notebooklm-mcp-harden:
+    desc: "Run NotebookLM MCP Connector Hardening checks safely"
+    cmds:
+      - npm run notebooklm-mcp-harden -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:
