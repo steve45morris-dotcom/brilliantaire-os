@@ -359,6 +359,21 @@ tasks:
     cmds:
       - python3 tools/ai_narrator.py --watch
 
+  narrator-live-feed:
+    desc: "Compile and aggregate read-only live dashboard feeds and event logs"
+    cmds:
+      - npm run narrator-live-feed -- {{.CLI_ARGS}}
+
+  narrator-live-feed-help:
+    desc: "Print help commands for the live feed controller"
+    cmds:
+      - npm run narrator-live-feed-help
+
+  narrator-feed-watch:
+    desc: "Run the local read-only file watcher daemon for narrator feed updates"
+    cmds:
+      - npm run narrator-feed-watch
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

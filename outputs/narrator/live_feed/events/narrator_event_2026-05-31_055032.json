@@ -1,0 +1,10 @@
+{
+  "event_type": "NARRATION_UPDATE",
+  "created_at": "2026-05-31T12:50:32.085Z",
+  "source_card": "narrator_card.json",
+  "source_dashboard_feed": "dashboard_narration_feed_2026-05-31_0549.md",
+  "status_color": "green",
+  "mood": "advancing",
+  "message": "System narration updated: Sporty campaign is ready; new knowledge workflows are emerging.",
+  "safety_mode": "output_only"
+}

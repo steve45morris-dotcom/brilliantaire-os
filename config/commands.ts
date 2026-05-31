@@ -736,6 +736,39 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'narrator-live-feed-help',
+    aliases: ['live narrator help', 'narrator feed help'],
+    description: 'Print help commands for the narrator live feed controller',
+    npmScript: 'narrator-live-feed-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-live-feed',
+    aliases: ['narrator feed', 'live narrator'],
+    description: 'Compile and check read-only live dashboard feeds and event logs',
+    npmScript: 'narrator-live-feed',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-feed-watch',
+    aliases: ['watch narrator', 'narrator watcher'],
+    description: 'Run the local read-only file watcher daemon for narrator feed updates',
+    npmScript: 'narrator-feed-watch',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

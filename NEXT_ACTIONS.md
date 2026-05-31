@@ -131,6 +131,13 @@
 - [x] Phase N2: Generate Obsidian staged narrator brief
 - [x] Phase N2: Validate narrator brief status
 - [x] Phase N2: Prepare live dashboard feed only after brief composer passes
+- [x] Phase N3: Build live dashboard narration feed
+- [x] Phase N3: Generate narrator live feed JSON
+- [x] Phase N3: Generate narrator event file
+- [x] Phase N3: Test live feed status
+- [x] Phase N3: Test watch-once update detection
+- [x] Phase N3: Confirm dashboard reads live feed
+- [x] Phase N3: Prepare WebSocket adapter only after read-only feed passes
 
 
 ## Do Now
@@ -195,7 +202,7 @@
 
 ## Obsidian Intelligence Snapshot
 
-- **Last Ingest:** 5/31/2026, 5:09:14 AM
+- **Last Ingest:** 5/31/2026, 5:20:15 AM
 - **Vaults Scanned:**
   - `/Users/alexanderanthony/AlexanderOSVault`
 - **Top Relevant Files:**

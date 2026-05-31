@@ -91,6 +91,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-validate` | `validate narrator`, `narrator check` | Workflow Auditor | Low | No | Validate narrator_card.json output structure and safety. |
 | `narrator-brief-help` | `narrator brief help`, `brief composer help` | Knowledge Librarian | Low | No | Print help commands for the narrator brief composer. |
 | `narrator-brief` | `narrator brief`, `compose narrator` | Knowledge Librarian | Low | No | Compile target-specific operational briefs from system telemetry. |
+| `narrator-live-feed-help` | `live narrator help`, `narrator feed help` | Knowledge Librarian | Low | No | Print help commands for narrator live feed controller. |
+| `narrator-live-feed` | `narrator feed`, `live narrator` | Knowledge Librarian | Low | No | Compile and aggregate read-only live dashboard feeds and event logs. |
+| `narrator-feed-watch` | `watch narrator`, `narrator watcher` | Workflow Auditor | Medium | Yes | Run the local read-only file watcher daemon for narrator feed updates. |
 
 ---
 

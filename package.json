@@ -77,7 +77,10 @@
     "narrator-sources": "tsx scripts/narrator-sources.ts",
     "narrator-validate": "tsx scripts/narrator-validate.ts",
     "narrator-brief": "tsx scripts/narrator-brief.ts",
-    "narrator-brief-help": "tsx scripts/narrator-brief-help.ts"
+    "narrator-brief-help": "tsx scripts/narrator-brief-help.ts",
+    "narrator-live-feed": "tsx scripts/narrator-live-feed.ts",
+    "narrator-live-feed-help": "tsx scripts/narrator-live-feed-help.ts",
+    "narrator-feed-watch": "tsx scripts/narrator-feed-watch.ts"
   },
   "keywords": [
     "antigravity",
