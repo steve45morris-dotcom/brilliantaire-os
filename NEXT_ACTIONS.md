@@ -126,6 +126,13 @@
 - [ ] Generate NotebookLM source pack
 - [ ] Generate OS workflow ideas
 - [ ] Review first creator source: Julian Goldie
+- [ ] Build NotebookLM MCP Sidecar Bridge
+- [ ] Generate first NotebookLM query packet
+- [ ] Add first manual NotebookLM answer
+- [ ] Generate Obsidian staged export
+- [ ] Generate workflow ideas
+- [ ] Generate NotebookLM source pack
+- [ ] Prepare future MCP adapter after manual bridge passes
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

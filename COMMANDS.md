@@ -74,6 +74,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `distribution-metrics` | `metrics`, `distribution` | Creative Revenue Strategist | Medium | Yes | Generate manual distribution metrics entry files, reports, and indexes. |
 | `knowledge-harvest-help` | `learning help`, `harvest help` | Knowledge Librarian | Low | No | Print commands for Knowledge Harvest Engine. |
 | `knowledge-harvest` | `learn`, `harvest` | Knowledge Librarian | Medium | Yes | Run Knowledge Harvest Engine manual URL or transcript commands. |
+| `notebooklm-bridge-help` | `notebook help`, `notebooklm help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Sidecar Bridge. |
+| `notebooklm-bridge` | `notebooklm`, `notebook bridge` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Sidecar Bridge tasks safely. |
 
 ---
 

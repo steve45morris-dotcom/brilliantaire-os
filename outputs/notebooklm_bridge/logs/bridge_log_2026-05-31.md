@@ -1,0 +1,14 @@
+- [2026-05-31T10:30:06.025Z] **CREATE_QUERY**: Created query packet: notebooklm_query_ai_automation_2026-05-31.md
+- [2026-05-31T10:30:17.987Z] **ADD_ANSWER**: Imported answer. Raw: raw_notebooklm_sample_answer.md, Record: answer_record_notebooklm_sample_answer.md
+- [2026-05-31T10:30:30.475Z] **EXPORT_OBSIDIAN**: Staged Obsidian export generated: notebooklm_obsidian_export_2026-05-31.md
+- [2026-05-31T10:30:37.054Z] **WORKFLOW_IDEAS**: NotebookLM workflow ideas generated: notebooklm_workflow_ideas_2026-05-31.md
+- [2026-05-31T10:30:58.360Z] **SOURCE_PACK**: Staged source pack guide created: notebooklm_bridge_source_pack_2026-05-31.md
+- [2026-05-31T10:31:14.861Z] **CREATE_QUERY**: Created query packet: notebooklm_query_ai_automation_2026-05-31_1780223474.md
+- [2026-05-31T10:31:15.576Z] **STATUS**: Status checked: Queries=2, Answers=1, Exports=1, Ideas=1
+- [2026-05-31T10:31:20.402Z] **ADD_ANSWER**: Imported answer. Raw: raw_notebooklm_sample_answer_1780223480.md, Record: answer_record_notebooklm_sample_answer_1780223480.md
+- [2026-05-31T10:31:28.056Z] **EXPORT_OBSIDIAN**: Staged Obsidian export generated: notebooklm_obsidian_export_2026-05-31_1780223488.md
+- [2026-05-31T10:31:34.665Z] **WORKFLOW_IDEAS**: NotebookLM workflow ideas generated: notebooklm_workflow_ideas_2026-05-31_1780223494.md
+- [2026-05-31T10:31:52.278Z] **SOURCE_PACK**: Staged source pack guide created: notebooklm_bridge_source_pack_2026-05-31_1780223512.md
+- [2026-05-31T10:31:58.336Z] **STATUS**: Status checked: Queries=2, Answers=2, Exports=2, Ideas=2
+- [2026-05-31T10:32:08.253Z] **CREATE_QUERY**: Created query packet: notebooklm_query_ai_automation_2026-05-31_1780223528.md
+- [2026-05-31T10:32:30.068Z] **CREATE_QUERY**: Created query packet: notebooklm_query_ai_automation_2026-05-31_1780223550.md
