@@ -1,0 +1,5 @@
+- [2026-05-31T11:31:04.512Z] **SCAN**: Scan finished. Reports written to notebooklm_mcp_detection_2026-05-31.md. Confidence score: 75%.
+- [2026-05-31T11:31:20.455Z] **STATUS**: Status checked. reportExists=true, connectorFound=false, score=0
+- [2026-05-31T11:31:41.379Z] **STATUS**: Status checked. reportExists=true, connectorFound=true, score=75
+- [2026-05-31T11:31:55.746Z] **CAPABILITY_REPORT**: Capability report written to notebooklm_mcp_capabilities_2026-05-31.md.
+- [2026-05-31T11:32:55.185Z] **SCAN**: Scan finished. Reports written to notebooklm_mcp_detection_2026-05-31_1780227175.md. Confidence score: 75%.

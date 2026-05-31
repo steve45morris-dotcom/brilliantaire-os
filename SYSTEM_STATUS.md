@@ -45,6 +45,7 @@
 - **Phase 21 (Reconciliation Ledger & Webhooks):** Local payment reconciliation ledger (`stripe_ledger.ts`) and mock webhook ingest endpoint (`/api/webhooks/stripe`) writing transaction states to `stripe_ledger.md` and feeding live telemetry components.
 - **Knowledge Harvest Engine (Phase 11):** Local YouTube learning note ingest, NotebookLM source pack compiling, and OS workflow ideas generator.
 - **NotebookLM MCP Sidecar Bridge (Phase 22):** Local connector bridge to compile query packets, ingest manual answers safely, stage Obsidian exports, and extract workflow automation ideas.
+- **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

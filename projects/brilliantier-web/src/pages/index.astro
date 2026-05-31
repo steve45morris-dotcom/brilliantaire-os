@@ -1,0 +1,340 @@
+---
+import MetricsPreview from '../components/MetricsPreview';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="brand" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Brilliantier OS - Phase 22: Post-Singularity Omnipresence Interface" />
+    <title>Brilliantier OS</title>
+  </head>
+  <body class="bg-base-100 font-mono text-base-content overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex flex-col justify-between overflow-hidden">
+      <!-- Pulse grid background -->
+      <div class="absolute inset-0 mesh-grid mesh-pulse -z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-base-100/50 to-base-100 -z-10"></div>
+
+      <!-- Top bar -->
+      <nav class="flex items-center justify-between px-6 py-6 max-w-7xl w-full mx-auto">
+        <span class="font-display font-black text-xl tracking-wider text-white">
+          BRILLIANTIER<span class="text-primary">.</span>
+        </span>
+        <span class="text-xs font-mono border border-primary/30 px-3 py-1 rounded-full bg-primary/5 text-primary tracking-widest uppercase">
+          Phase 22 Active
+        </span>
+      </nav>
+
+      <!-- Main hero content -->
+      <div class="flex-1 flex flex-col items-center justify-center px-4 text-center max-w-4xl mx-auto w-full">
+        <h1 class="font-display font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-white mb-6 hero-animate">
+          Brilliantier<span class="text-primary">.</span>
+        </h1>
+        <p class="text-lg sm:text-2xl text-gray-400 font-mono tracking-wide max-w-2xl mb-10 leading-relaxed hero-animate">
+          Built from the block. Engineered for the world.
+        </p>
+        <div class="hero-animate">
+          <a 
+            href="#features" 
+            class="group relative inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-display font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(109,40,217,0.4)] active:scale-95"
+          >
+            <span class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+            <span class="relative z-10">Enter the Mesh</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom status bar -->
+      <div class="border-t border-white/5 bg-black/40 backdrop-blur-md py-4 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-500 uppercase tracking-widest font-mono">
+          <span>System Status: Fully Autonomous</span>
+          <span>Core Inferences Running: Solar Green Aligned</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-24 relative overflow-hidden bg-base-100">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20">
+          <h2 class="font-display font-black text-4xl sm:text-5xl text-white mb-4 tracking-tight">
+            Sovereign Architecture
+          </h2>
+          <p class="text-gray-400 font-mono max-w-xl mx-auto text-sm sm:text-base">
+            Engineered for high-leverage execution. Decoupled, sandboxed, and resilient.
+          </p>
+        </div>
+
+        <div class="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v3.75a3 3 0 0 1-3 3m-13.5 0a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h13.5a3 3 0 0 0 3-3V17.25a3 3 0 0 0-3-3M12 9v1.5m0-1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Sovereign Infrastructure</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Isolated sandboxed skill runtimes matching precise architectural rules. Built for strict execution.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Live Platform Intelligence</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Silent SQLite aggregation pipelines connecting to major external networks. Zero-overhead metric extraction.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Zero-Knowledge Identity</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Cryptographic node confirmation and identity verification. Access permissions are local and fully sovereign.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94-3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Mesh Topology Mapping</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Live visualization of active network nodes and cross-system processes. Complete situational awareness.
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Voice Narrative Protocol</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Audible system logs and verified transaction speech. The mainframe speaks intent and status.
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="feature-card border border-white/10 bg-black/30 p-8 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:bg-black/50 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h7.5v7.5H7.5v-7.5Z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3">Post-Singularity OS</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Solar-optimized inference allocation and multi-grid subagent spawners. The next state of computation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE SECTION (GSAP Pinned Horizontal Scroll) -->
+    <section class="horizontal-scroll-wrapper relative h-[300vh] bg-black">
+      <div class="sticky-container sticky top-0 flex h-screen w-full items-center overflow-hidden">
+        <div class="timeline-track flex w-[400vw] h-full items-center">
+          
+          <!-- Slide 1 -->
+          <div class="slide w-screen flex-shrink-0 flex flex-col justify-center px-12 md:px-24 max-w-4xl mx-auto">
+            <span class="text-primary font-mono text-xs uppercase tracking-widest mb-2">Phase 1</span>
+            <h3 class="font-display font-black text-5xl md:text-7xl text-white mb-6">Foundation</h3>
+            <p class="text-gray-400 font-mono text-base md:text-lg leading-relaxed max-w-2xl">
+              Establishing isolated sandbox environments, secure filesystems, and core command routers. Standardizing capabilities locally.
+            </p>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide w-screen flex-shrink-0 flex flex-col justify-center px-12 md:px-24 max-w-4xl mx-auto">
+            <span class="text-primary font-mono text-xs uppercase tracking-widest mb-2">Phase 10</span>
+            <h3 class="font-display font-black text-5xl md:text-7xl text-white mb-6">Live Pipeline</h3>
+            <p class="text-gray-400 font-mono text-base md:text-lg leading-relaxed max-w-2xl">
+              Constructing a multi-channel metric sync log. Aggregating audience, engagement, and reach metrics to SQLite silently.
+            </p>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide w-screen flex-shrink-0 flex flex-col justify-center px-12 md:px-24 max-w-4xl mx-auto">
+            <span class="text-primary font-mono text-xs uppercase tracking-widest mb-2">Phase 21</span>
+            <h3 class="font-display font-black text-5xl md:text-7xl text-white mb-6">Settlement</h3>
+            <p class="text-gray-400 font-mono text-base md:text-lg leading-relaxed max-w-2xl">
+              Deploying multi-grid inference routers and solar-aligned compute allocation. Managing ledger reconciliations.
+            </p>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide w-screen flex-shrink-0 flex flex-col justify-center px-12 md:px-24 max-w-4xl mx-auto">
+            <span class="text-primary font-mono text-xs uppercase tracking-widest mb-2">Phase 22</span>
+            <h3 class="font-display font-black text-5xl md:text-7xl text-white mb-6">Omnipresence</h3>
+            <p class="text-gray-400 font-mono text-base md:text-lg leading-relaxed max-w-2xl">
+              The Sovereign expansion. Connecting edge networks, scaling live narration logs, and establishing public interfaces.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS SECTION -->
+    <section class="py-24 bg-base-200">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-primary font-mono text-xs uppercase tracking-widest mb-2 block">Live Telemetry</span>
+          <h2 class="font-display font-black text-4xl sm:text-5xl text-white mb-4 tracking-tight">
+            Mesh Ingest Preview
+          </h2>
+          <p class="text-gray-400 font-mono max-w-xl mx-auto text-sm sm:text-base">
+            Live metric indices parsed across YouTube, TikTok, Instagram, Facebook, WhatsApp, and Obsidian.
+          </p>
+        </div>
+
+        <MetricsPreview client:visible />
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="py-32 bg-base-100 relative overflow-hidden">
+      <!-- Ambient light -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -z-10"></div>
+      
+      <div class="max-w-4xl mx-auto text-center px-6">
+        <h2 class="font-display font-black text-4xl sm:text-6xl text-white mb-6 tracking-tight">
+          Work With The Sovereign
+        </h2>
+        <p class="text-gray-400 font-mono text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+          Initialize connection paths and coordinate node access. The mesh is open for engineering partnerships.
+        </p>
+        <a 
+          href="mailto:alexander@brilliantier.com" 
+          class="relative inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-display font-bold rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95 hover:bg-gray-100"
+        >
+          <span>Connect Node</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/5 py-12 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-black text-lg text-white tracking-wider">
+            BRILLIANTIER<span class="text-primary">.</span>
+          </span>
+          <span class="text-xs text-gray-500 font-mono">
+            Brilliantier OS — Phase 22: Post-Singularity Omnipresence
+          </span>
+        </div>
+        <div class="flex gap-4">
+          <!-- Social Link 1 (GitHub) -->
+          <a href="https://github.com/icyflamze" target="_blank" rel="noopener noreferrer" class="p-2 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-white hover:border-primary/50 hover:bg-primary/5 transition-all">
+            <span class="sr-only">GitHub</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <!-- Social Link 2 (Twitter) -->
+          <a href="https://twitter.com/icyflamze" target="_blank" rel="noopener noreferrer" class="p-2 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-white hover:border-primary/50 hover:bg-primary/5 transition-all">
+            <span class="sr-only">Twitter</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.71v.05a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 18.43" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GSAP / Lenis Client Logic -->
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      // 1. Initialize Lenis Smooth Scroll
+      const lenis = new Lenis({
+        autoRaf: true,
+      });
+
+      // 2. Initialize GSAP ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+
+      // 3. Hero entrance animations
+      gsap.from('.hero-animate', {
+        opacity: 0,
+        y: 40,
+        stagger: 0.2,
+        duration: 1.2,
+        ease: 'power4.out',
+      });
+
+      // 4. Feature cards stagger fade-in
+      const cards = document.querySelectorAll('.feature-card');
+      if (cards.length > 0) {
+        gsap.from(cards, {
+          opacity: 0,
+          y: 60,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.features-grid',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
+      }
+
+      // 5. Horizontal scroll timeline
+      const track = document.querySelector('.timeline-track');
+      const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+      if (track && wrapper) {
+        // Calculate scroll translation distance
+        const getScrollAmount = () => {
+          return -(track.scrollWidth - window.innerWidth);
+        };
+
+        gsap.to(track, {
+          x: getScrollAmount,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: wrapper,
+            start: 'top top',
+            end: () => '+=' + (track.scrollWidth - window.innerWidth),
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

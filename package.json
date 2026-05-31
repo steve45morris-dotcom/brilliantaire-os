@@ -61,7 +61,9 @@
     "knowledge-harvest": "tsx scripts/knowledge-harvest.ts",
     "knowledge-harvest-help": "tsx scripts/knowledge-harvest-help.ts",
     "notebooklm-bridge": "tsx scripts/notebooklm-bridge.ts",
-    "notebooklm-bridge-help": "tsx scripts/notebooklm-bridge-help.ts"
+    "notebooklm-bridge-help": "tsx scripts/notebooklm-bridge-help.ts",
+    "notebooklm-mcp-detect": "tsx scripts/notebooklm-mcp-detect.ts",
+    "notebooklm-mcp-detect-help": "tsx scripts/notebooklm-mcp-detect-help.ts"
   },
   "keywords": [
     "antigravity",

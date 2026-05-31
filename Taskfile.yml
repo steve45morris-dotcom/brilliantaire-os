@@ -271,6 +271,16 @@ tasks:
     cmds:
       - npm run notebooklm-bridge -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-detect-help:
+    desc: "Print NotebookLM MCP Adapter Detection safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-detect-help
+
+  notebooklm-mcp-detect:
+    desc: "Run NotebookLM MCP Adapter Detection checks safely"
+    cmds:
+      - npm run notebooklm-mcp-detect -- {{.CLI_ARGS}}
+
 
 
 

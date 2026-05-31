@@ -119,20 +119,28 @@
 
 
 
+## Do Now
+- [x] Build Knowledge Harvest Engine v1
+- [x] Test manual YouTube URL intake
+- [x] Test local transcript intake
+- [x] Generate NotebookLM source pack
+- [x] Generate OS workflow ideas
+- [x] Review first creator source: Julian Goldie
+- [x] Build NotebookLM MCP Sidecar Bridge
+- [x] Generate first NotebookLM query packet
+- [x] Add first manual NotebookLM answer
+- [x] Generate Obsidian staged export
+- [x] Generate workflow ideas
+- [x] Generate NotebookLM source pack
+- [x] Prepare future MCP adapter after manual bridge passes
+
 ## Do Next
-- [ ] Build Knowledge Harvest Engine v1
-- [ ] Test manual YouTube URL intake
-- [ ] Test local transcript intake
-- [ ] Generate NotebookLM source pack
-- [ ] Generate OS workflow ideas
-- [ ] Review first creator source: Julian Goldie
-- [ ] Build NotebookLM MCP Sidecar Bridge
-- [ ] Generate first NotebookLM query packet
-- [ ] Add first manual NotebookLM answer
-- [ ] Generate Obsidian staged export
-- [ ] Generate workflow ideas
-- [ ] Generate NotebookLM source pack
-- [ ] Prepare future MCP adapter after manual bridge passes
+- [ ] Build NotebookLM MCP Adapter Detection
+- [ ] Scan for local MCP connector configuration
+- [ ] Generate detection report
+- [ ] Generate capability report
+- [ ] Decide whether MCP adapter should be activated
+- [ ] Prepare NotebookLM MCP Query Adapter only after detection passes
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

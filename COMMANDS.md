@@ -76,6 +76,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `knowledge-harvest` | `learn`, `harvest` | Knowledge Librarian | Medium | Yes | Run Knowledge Harvest Engine manual URL or transcript commands. |
 | `notebooklm-bridge-help` | `notebook help`, `notebooklm help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Sidecar Bridge. |
 | `notebooklm-bridge` | `notebooklm`, `notebook bridge` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Sidecar Bridge tasks safely. |
+| `notebooklm-mcp-detect-help` | `notebook mcp help`, `mcp notebook help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Adapter Detection. |
+| `notebooklm-mcp-detect` | `notebook mcp detect`, `notebooklm mcp` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Adapter Detection scans. |
 
 ---
 

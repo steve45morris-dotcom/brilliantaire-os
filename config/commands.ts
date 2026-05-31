@@ -571,6 +571,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'notebooklm-mcp-detect-help',
+    aliases: ['notebook mcp help', 'mcp notebook help'],
+    description: 'Print commands for NotebookLM MCP Adapter Detection',
+    npmScript: 'notebooklm-mcp-detect-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-detect',
+    aliases: ['notebook mcp detect', 'notebooklm mcp'],
+    description: 'Execute NotebookLM MCP Adapter Detection scans (Medium Risk)',
+    npmScript: 'notebooklm-mcp-detect',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

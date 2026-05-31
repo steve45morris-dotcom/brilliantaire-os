@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { COMMAND_REGISTRY, CommandDefinition } from '../config/commands.js';
 import { REPO_ROOT } from '../config/paths.js';
+import { announcePhrase } from './vnp.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,7 +57,10 @@ function printAllowedCommands() {
   });
 }
 
-function runCommand() {
+async function runCommand() {
+  // BOOT AND SESSION START: Fire phrase 4
+  await announcePhrase("Area Boy standing on the mainframe.");
+
   let args = process.argv.slice(2);
   if (args.length === 1 && args[0].includes(' ')) {
     args = args[0].split(/\s+/);
@@ -79,6 +83,7 @@ function runCommand() {
     console.error("❌ No command provided.");
     printAllowedCommands();
     writeCommandLog('', null, false, false, 'Error: Empty input', 1);
+    await announcePhrase("The perimeter is clean. Nothing moves without clearance.");
     process.exit(1);
   }
 
@@ -139,6 +144,7 @@ function runCommand() {
     console.error(`❌ Unknown command: "${rawInput}"`);
     printAllowedCommands();
     writeCommandLog(rawInput, null, false, false, 'Error: Unknown Command', 1);
+    await announcePhrase("The perimeter is clean. Nothing moves without clearance.");
     process.exit(1);
   }
 
@@ -146,6 +152,7 @@ function runCommand() {
   if (!matchedCmd.enabled) {
     console.error(`❌ Command "${matchedCmd.name}" is currently disabled.`);
     writeCommandLog(rawInput, matchedCmd, aliasUsed, hasConfirm, 'Error: Command Disabled', 1);
+    await announcePhrase("The perimeter is clean. Nothing moves without clearance.");
     process.exit(1);
   }
 
@@ -155,6 +162,7 @@ function runCommand() {
     console.log(`💡 Guidance: To execute this command, you must type it exactly:`);
     console.log(`   npm run command -- "${matchedCmd.name}"`);
     writeCommandLog(rawInput, matchedCmd, aliasUsed, hasConfirm, 'Blocked: Alias Used for Exact Name', 1);
+    await announcePhrase("The perimeter is clean. Nothing moves without clearance.");
     process.exit(1);
   }
 
@@ -165,6 +173,7 @@ function runCommand() {
     console.log(`💡 Guidance: To run this command, you must append the --confirm flag:`);
     console.log(`   npm run command -- "${matchedCmd.name}" --confirm`);
     writeCommandLog(rawInput, matchedCmd, aliasUsed, false, 'Blocked: Missing Confirmation Flag', 1);
+    await announcePhrase("The perimeter is clean. Nothing moves without clearance.");
     process.exit(1);
   }
 
@@ -173,30 +182,74 @@ function runCommand() {
 
   console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
 
+  // ROUTER INITIALIZED: Fire phrase 23
+  await announcePhrase("Street map loaded. Routing without permission.");
+
+  const isWriteCommand = ['approve-write', 'stage-write', 'sync-status', 'ingest', 'campaign', 'campaign-scheduler', 'mesh-telemetry', 'dashboard-export', 'platform-adapter', 'manual-release'].includes(matchedCmd.name);
+  const isBuildCommand = ['build', 'dashboard-build'].includes(matchedCmd.name);
+  const isDaemonCommand = ['background-run', 'voice-queue'].includes(matchedCmd.name);
+
+  if (isWriteCommand) {
+    // FILE WRITE, DB COMMIT, GIT PUSH: Fire phrase 3
+    await announcePhrase("I build before burning. Commit the block.");
+  } else if (isBuildCommand) {
+    // BUILD AND COMPILATION START: Fire phrase 1
+    await announcePhrase("The grid lines are drawn, the lighters are up.");
+  } else if (isDaemonCommand) {
+    // DAEMON START: Fire phrase 9
+    await announcePhrase("Ghost in the mesh. Watching all nodes breathe.");
+  }
+
   const spawnArgs = ['run', matchedCmd.npmScript];
   if (extraArgs.length > 0) {
     spawnArgs.push('--', ...extraArgs);
   }
 
   // Execute using child_process.spawn with shell: false
-  const child = spawn('npm', spawnArgs, {
-    cwd: REPO_ROOT,
-    stdio: 'inherit',
-    shell: false
+  const exitCode = await new Promise<number>((resolve) => {
+    const child = spawn('npm', spawnArgs, {
+      cwd: REPO_ROOT,
+      stdio: 'inherit',
+      shell: false
+    });
+
+    child.on('close', (code) => {
+      resolve(code ?? 0);
+    });
+
+    child.on('error', (err) => {
+      console.error(`❌ Execution error: ${err.message}`);
+      resolve(1);
+    });
   });
 
-  child.on('close', (code) => {
-    const exitCode = code ?? 0;
-    const status = exitCode === 0 ? 'Success' : 'Failed';
-    writeCommandLog(rawInput, matchedCmd!, aliasUsed, hasConfirm, status, exitCode);
-    process.exit(exitCode);
-  });
+  const status = exitCode === 0 ? 'Success' : 'Failed';
+  writeCommandLog(rawInput, matchedCmd!, aliasUsed, hasConfirm, status, exitCode);
 
-  child.on('error', (err) => {
-    console.error(`❌ Execution error: ${err.message}`);
-    writeCommandLog(rawInput, matchedCmd!, aliasUsed, hasConfirm, 'Execution Error', 1);
-    process.exit(1);
-  });
+  if (exitCode === 0) {
+    if (isWriteCommand) {
+      // FILE WRITE SUCCESS: Fire phrase 12
+      await announcePhrase("Every byte written is a block claimed.");
+    } else if (isBuildCommand) {
+      // LONG BUILD OR HEAVY COMPUTATION COMPLETING: Fire phrase 8
+      await announcePhrase("Pressure cooked this. Now it ships.");
+    } else if (['audit', 'lint', 'platform-verify'].includes(matchedCmd.name)) {
+      // SECURITY AUDIT, LINT: Fire phrase 2
+      await announcePhrase("No street collisions. Quorum verified.");
+    } else if (matchedCmd.name === 'manual-release') {
+      // FINAL PACKAGE RELEASE: Fire phrase 5
+      await announcePhrase("Brilliantier cashout complete. Release the package.");
+    } else {
+      // DATA VALIDATION / SUCCESS: Fire phrase 6
+      await announcePhrase("Signal clean. The streets don't lie, neither does the data.");
+    }
+  }
+
+  process.exit(exitCode);
 }
 
-runCommand();
+runCommand().catch((err) => {
+  console.error(`Fatal runtime error: ${err}`);
+  process.exit(1);
+});
+

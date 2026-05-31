@@ -1,0 +1,66 @@
+## [2026-05-31T08:18:23.030Z] Command Attempt: "mesh-telemetry --confirm"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `true`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T08:19:00.291Z] Command Attempt: "mesh-telemetry snapshot --confirm"
+- **Matched Command:** `mesh-telemetry`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `true`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T08:22:31.151Z] Command Attempt: "audit"
+- **Matched Command:** `audit`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T11:32:19.089Z] Command Attempt: "notebooklm-mcp-detect-help"
+- **Matched Command:** `notebooklm-mcp-detect-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T11:33:07.901Z] Command Attempt: "notebooklm-mcp-detect scan"
+- **Matched Command:** `notebooklm-mcp-detect`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T11:33:22.305Z] Command Attempt: "notebooklm mcp"
+- **Matched Command:** `notebooklm-mcp-detect`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

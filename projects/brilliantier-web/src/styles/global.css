@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, brand;
+}
+
+@plugin "daisyui/theme" {
+  name: "brand";
+  default: false;
+  prefersdark: false;
+  color-scheme: "dark";
+
+  --color-primary: #6D28D9;
+  --color-secondary: #DB2877;
+  --color-accent: #F59E0B;
+  
+  --color-base-100: #0a0512;
+  --color-base-200: #120921;
+  --color-base-300: #1b0e30;
+  --color-base-content: #f3f4f6;
+}
+
+.mesh-grid {
+  background-image: 
+    linear-gradient(rgba(109, 40, 217, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109, 40, 217, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.mesh-pulse {
+  animation: grid-pulse 10s ease-in-out infinite;
+  transform-origin: center center;
+}

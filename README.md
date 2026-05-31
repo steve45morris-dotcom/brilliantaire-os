@@ -635,9 +635,36 @@ The **NotebookLM MCP Sidecar Bridge** provides a decoupled research staging envi
 
 ---
 
+## 🔍 Phase 11C: NotebookLM MCP Adapter Detection
+
+The **NotebookLM MCP Adapter Detection** layer checks whether a NotebookLM MCP connector is installed, configured, and reachable on the local system. It only inspects local configuration paths (e.g. `.mcp.json`, `~/.cursor/mcp.json`, `package.json` scripts) and generates local markdown reports, enforcing strict boundaries against query execution or external API calls.
+
+### 🛡️ Safety & Execution Rules
+1. **Detection-Only:** Inspects local configuration states without modifying files or initiating external calls.
+2. **No-Query Rule:** Does not execute actual NotebookLM research queries.
+3. **No External APIs:** No network socket requests or browser automation.
+4. **Offline Reports:** Staged reports are generated under `outputs/notebooklm_bridge/mcp_detection/reports/` with timestamp suffixes to prevent overwrites.
+
+### 💻 Command Examples
+* View detection help:
+  ```bash
+  npm run command -- "notebooklm-mcp-detect-help"
+  ```
+* Scan local configurations:
+  ```bash
+  npm run command -- "notebooklm-mcp-detect scan"
+  ```
+* Print detection status:
+  ```bash
+  npm run command -- "notebooklm-mcp-detect status"
+  ```
+* Generate capabilities and risks report:
+  ```bash
+  npm run command -- "notebooklm-mcp-detect capability-report"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 12A: Autonomous MCP Hook**
-  - Integrate automatic file streaming through the local NotebookLM MCP socket bridge.
-
-
-
+* **Phase 11D: NotebookLM MCP Adapter Execution**
+  - Execute dry-run and simulated research integrations under approved safety gates.
