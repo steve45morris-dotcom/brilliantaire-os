@@ -235,12 +235,11 @@
 
 ## Do Next
 - [x] Build MCP Setup Fix Cycle
-- [x] Generate missing env checklist
-- [x] Generate local config checklist
-- [x] Generate rerun sequence
-- [x] Generate decision summary
-- [ ] Complete local MCP setup outside repo
-- [ ] Rerun readiness after local fixes
+- [x] Generate MCP fix task list
+- [x] Generate readiness comparison report
+- [x] Generate next-pass report
+- [ ] Complete local env/config setup outside repo
+- [ ] Rerun readiness gate after local setup
 
 
 ## Do Next
@@ -261,6 +260,15 @@
 - [x] Test manual response import
 - [x] Review live adapter report
 
+## Do Next
+- [ ] Build Live Response Intelligence Processor
+- [ ] Process latest NotebookLM response
+- [ ] Generate citation map
+- [ ] Generate weak claims report
+- [ ] Generate workflow cards
+- [ ] Generate OS module suggestions
+- [ ] Generate Obsidian staged note
+- [ ] Review Grounded Narrator indexing boundary
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

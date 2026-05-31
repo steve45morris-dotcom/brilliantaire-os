@@ -382,6 +382,15 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-live -- {{.CLI_ARGS}}
 
+  notebooklm-response-intelligence-help:
+    desc: "Print NotebookLM Response Intelligence Processor safety manuals"
+    cmds:
+      - npm run notebooklm-response-intelligence-help
+
+  notebooklm-response-intelligence:
+    desc: "Run NotebookLM Response Intelligence Processor tasks safely"
+    cmds:
+      - npm run notebooklm-response-intelligence -- {{.CLI_ARGS}}
 
   scheduler:
     desc: "Execute scheduler CLI operations"

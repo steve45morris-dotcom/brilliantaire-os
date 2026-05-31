@@ -1,0 +1,12 @@
+- [2026-05-31T17:20:02.971Z] **PROCESS_LATEST**: Insight index generated: notebooklm_insight_index_2026-05-31.md from source: notebooklm_normalized_response_notebooklm_live_response_sample_2026-05-31.md
+- [2026-05-31T17:20:43.867Z] **CITATION_MAP**: Citation map generated: notebooklm_citation_map_2026-05-31.md
+- [2026-05-31T17:21:04.561Z] **WEAK_CLAIMS**: Weak claims report generated: notebooklm_weak_claims_2026-05-31.md
+- [2026-05-31T17:21:24.766Z] **WORKFLOW_CARDS**: Workflow cards generated: notebooklm_workflow_cards_2026-05-31.md
+- [2026-05-31T17:22:05.976Z] **OS_MODULES**: OS module suggestions generated: notebooklm_os_module_suggestions_2026-05-31.md
+- [2026-05-31T17:22:26.222Z] **OBSIDIAN_NOTE**: Staged Obsidian note generated: notebooklm_staged_obsidian_note_2026-05-31.md
+- [2026-05-31T17:24:33.125Z] **PROCESS_LATEST**: Insight index generated: notebooklm_insight_index_2026-05-31_1780248273.md from source: notebooklm_normalized_response_notebooklm_live_response_sample_2026-05-31.md
+- [2026-05-31T17:24:57.142Z] **CITATION_MAP**: Citation map generated: notebooklm_citation_map_2026-05-31_1780248297.md
+- [2026-05-31T17:25:20.300Z] **WEAK_CLAIMS**: Weak claims report generated: notebooklm_weak_claims_2026-05-31_1780248320.md
+- [2026-05-31T17:25:42.865Z] **WORKFLOW_CARDS**: Workflow cards generated: notebooklm_workflow_cards_2026-05-31_1780248342.md
+- [2026-05-31T17:26:14.232Z] **OS_MODULES**: OS module suggestions generated: notebooklm_os_module_suggestions_2026-05-31_1780248374.md
+- [2026-05-31T17:26:43.374Z] **OBSIDIAN_NOTE**: Staged Obsidian note generated: notebooklm_staged_obsidian_note_2026-05-31_1780248403.md

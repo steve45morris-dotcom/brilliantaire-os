@@ -98,6 +98,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-secrets` | `notebook secrets`, `mcp secrets` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Secrets Staging Guide checks. |
 | `notebooklm-mcp-live-help` | `notebook live help`, `mcp live help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Live Adapter Integration. |
 | `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | High | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
+| `notebooklm-response-intelligence-help` | `response intelligence help`, `notebook intelligence help` | Knowledge Librarian | Low | No | Print commands for NotebookLM response intelligence processor. |
+| `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |

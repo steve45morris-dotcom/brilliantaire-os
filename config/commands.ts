@@ -815,6 +815,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-response-intelligence-help',
+    aliases: ['response intelligence help', 'notebook intelligence help'],
+    description: 'Print help menu for NotebookLM response intelligence processor',
+    npmScript: 'notebooklm-response-intelligence-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-response-intelligence',
+    aliases: ['response intelligence', 'notebook intelligence'],
+    description: 'Process NotebookLM responses into structured intelligence files',
+    npmScript: 'notebooklm-response-intelligence',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

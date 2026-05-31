@@ -84,6 +84,8 @@
     "notebooklm-mcp-secrets-help": "tsx scripts/notebooklm-mcp-secrets-help.ts",
     "notebooklm-mcp-live": "tsx scripts/notebooklm-mcp-live.ts",
     "notebooklm-mcp-live-help": "tsx scripts/notebooklm-mcp-live-help.ts",
+    "notebooklm-response-intelligence": "tsx scripts/notebooklm-response-intelligence.ts",
+    "notebooklm-response-intelligence-help": "tsx scripts/notebooklm-response-intelligence-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",

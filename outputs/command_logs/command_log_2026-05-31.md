@@ -493,3 +493,36 @@
 
 ---
 
+## [2026-05-31T17:23:16.798Z] Command Attempt: "notebooklm-response-intelligence-help"
+- **Matched Command:** `notebooklm-response-intelligence-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:27:00.318Z] Command Attempt: "notebooklm-response-intelligence full"
+- **Matched Command:** `notebooklm-response-intelligence`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:27:36.478Z] Command Attempt: "notebook intelligence"
+- **Matched Command:** `notebooklm-response-intelligence`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

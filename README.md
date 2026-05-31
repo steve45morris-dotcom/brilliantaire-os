@@ -934,25 +934,17 @@ The **MCP Setup Fix Cycle** provides a repeatable local check and correction loo
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle-help"
   ```
-* Generate missing environment variables checklist:
+* Generate fix tasks checklist:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle missing-env"
+  npm run command -- "notebooklm-mcp-fix-cycle tasks"
   ```
-* Generate local configuration checklist:
+* Generate readiness comparison report:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle local-config"
+  npm run command -- "notebooklm-mcp-fix-cycle compare"
   ```
-* Compile verification rerun sequence runbook:
+* Compile next-pass rerun sequence runbook:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle rerun-sequence"
-  ```
-* Generate fix cycle decision summary:
-  ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle decision-summary"
-  ```
-* Run all checks and compile all checklists:
-  ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle all"
+  npm run command -- "notebooklm-mcp-fix-cycle next-pass"
   ```
 * Print status summary directly to console:
   ```bash
@@ -1286,8 +1278,53 @@ The **Local TTS Model & Cache Manager** handles secure, offline registration, ve
 
 ---
 
+## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
+
+The **NotebookLM MCP Live Adapter Integration** establishes a safe, offline-gated live query preparation, query execution, and manual answers staging runbooks.
+
+### 🛡️ Safety & Execution Rules
+1. **Restricted Execution:** No active network queries or server connections are run automatically.
+2. **Offline Fallback:** If live adapter is not authorized, falls back to manual answers files.
+
+### 💻 Command Examples
+* View live adapter help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-live-help"
+  ```
+* View live adapter status:
+  ```bash
+  npm run command -- "notebooklm-mcp-live status"
+  ```
+
+---
+
+## 🧭 Phase 11N: Live Response Intelligence Processor
+
+The **Live Response Intelligence Processor** is a safe, local, offline layer designed to ingest normalized NotebookLM response markdown files and convert them into structured, actionable intelligence cards, maps, suggestions, and staged notes.
+
+### 🛡️ Safety & Execution Rules
+1. **Response-Only Processing:** This script only reads local, pre-saved response files.
+2. **No Direct Obsidian Writes:** Staged markdown notes are written under `outputs/notebooklm_bridge/response_intelligence/` for manual review first.
+3. **No External APIs:** The processor must never make external API calls.
+
+### 💻 Command Examples
+* View response intelligence help menu:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence-help"
+  ```
+* Run all processors sequentially:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence full"
+  ```
+* Print processor file path status summaries:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11M: NotebookLM MCP Live Adapter Integration**
-  - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
+* **Phase 11P: Live Response Intelligence Index Graph**
+  - Construct a structured local index graph linking staged response briefs, citations, and OS suggestion files for direct knowledge retrieval.
 * **Phase N5D: Local ASR Command Listener**
   - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
