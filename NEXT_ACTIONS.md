@@ -269,7 +269,15 @@
 - [x] Untrack forbidden legacy audio assets (Phase R3)
 - [x] Verify gitignore exclusion rules
 - [x] Regulate pre-push check status to READY
-- [ ] Maintain Git Asset Guard policy checks in future runs
+- [x] Maintain Git Asset Guard policy checks in future runs
+
+## Do Next
+- [x] Build Pre-Push Hook Installer (Phase R4)
+- [x] Install local pre-push hook
+- [x] Check hook status
+- [x] Run git-prepush-check manually
+- [x] Confirm push protection is active
+- [x] Return to Phase 11L after hook passes
 
 ## Do Next
 - [x] Build NotebookLM MCP Live Adapter

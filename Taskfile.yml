@@ -441,6 +441,16 @@ tasks:
     cmds:
       - npm run tts-brief-composer -- {{.CLI_ARGS}}
 
+  tts-queue-validator-help:
+    desc: "Print Offline TTS Queue Validator safety manuals"
+    cmds:
+      - npm run tts-queue-validator-help
+
+  tts-queue-validator:
+    desc: "Run Offline TTS Queue Validator tasks safely"
+    cmds:
+      - npm run tts-queue-validator -- {{.CLI_ARGS}}
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -455,6 +465,26 @@ tasks:
     desc: "Run prepush TypeScript compiler compile, static systems audit, and Git Asset safety checks"
     cmds:
       - npm run git-prepush-check
+
+  git-hook-help:
+    desc: "Print Git Hook Installer policy manual"
+    cmds:
+      - npm run git-hook-help
+
+  git-hook-install:
+    desc: "Install local Git pre-push hook"
+    cmds:
+      - npm run git-hook-install
+
+  git-hook-status:
+    desc: "Audit local Git pre-push hook configuration status"
+    cmds:
+      - npm run git-hook-status
+
+  git-hook-uninstall:
+    desc: "Disable local Git pre-push hook"
+    cmds:
+      - npm run git-hook-uninstall
 
   scheduler:
     desc: "Execute scheduler CLI operations"
@@ -588,6 +618,16 @@ tasks:
     desc: "Print help commands for the narrator voice command approval bridge"
     cmds:
       - npm run narrator-voice-bridge-help
+
+  narrator-voice-loop-dashboard:
+    desc: "Stage, validate, prepare, and execute approved voice loop packets via dashboard"
+    cmds:
+      - npm run narrator-voice-loop-dashboard -- {{.CLI_ARGS}}
+
+  narrator-voice-loop-dashboard-help:
+    desc: "Print help commands for the voice loop dashboard and confirmation UI"
+    cmds:
+      - npm run narrator-voice-loop-dashboard-help
 
 
 

@@ -110,9 +110,15 @@ To ensure complete control and system safety, the router enforces the following 
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
 | `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |
 | `tts-brief-composer` | `tts composer`, `narrator script` | Knowledge Librarian | Medium | Yes | Read narrator briefs and compile scripts or packets safely offline. |
+| `tts-queue-validator-help` | `tts validation help`, `audio queue help` | Build Operator | Low | No | Print help menu for offline TTS queue validator. |
+| `tts-queue-validator` | `tts validator`, `audio queue` | Build Operator | Medium | Yes | Verify staged script assets and check TTS generation parameters. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
+| `git-hook-help` | `hook help`, `prepush hook help` | Build Operator | Low | No | Print help menu and policies for Git hooks. |
+| `git-hook-status` | `hook status`, `prepush hook status` | Build Operator | Low | No | Audit local Git pre-push hook configuration status. |
+| `git-hook-install` | `install hook`, `install prepush hook` | Build Operator | Medium | Yes | Install local Git pre-push hook. |
+| `git-hook-uninstall` | `uninstall hook`, `disable prepush hook` | Build Operator | Medium | Yes | Disable local Git pre-push hook. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
@@ -137,6 +143,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-asr-backend` | `narrator asr backend`, `asr backend` | Knowledge Librarian | Medium | Yes | Register and verify local ASR binaries and models offline. |
 | `narrator-voice-bridge-help` | `voice bridge help`, `narrator voice bridge help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice command approval bridge. |
 | `narrator-voice-bridge` | `voice bridge`, `narrator voice bridge`, `narrator bridge` | Knowledge Librarian | Medium | Yes | Manual approval, validation, staging, and execution bridge for ASR command packets. |
+| `narrator-voice-loop-dashboard-help` | `voice loop dashboard help`, `narrator voice loop dashboard help` | Knowledge Librarian | Low | No | Print help command menu for the voice loop dashboard and confirmation UI. |
+| `narrator-voice-loop-dashboard` | `voice loop dashboard`, `narrator voice loop dashboard`, `voice loop` | Knowledge Librarian | Medium | Yes | Interactive dashboard and confirmation UI for ASR and Voice Bridge pipelines. |
 
 
 ---

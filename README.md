@@ -1497,6 +1497,69 @@ The **Voice Command Approval Bridge** acts as an offline manual gate that valida
 
 ---
 
+## 🧭 Phase N5F: Voice Loop Dashboard & Human Confirmation UI
+
+The **Voice Loop Dashboard & Human Confirmation UI** provides central operators with status, overview, recent packets details, safety parameter validation audits, and manual run delegation triggers for local voice loop packets.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Checkpoint:** The dashboard functions only as a manual checkpoint. Always-on voice loop automation or live recording streams are blocked.
+2. **Action Delegation:** For safety and modular checks, confirmation dispatches (prepare, execute, reject) are delegated back to the Voice Command Approval Bridge CLI.
+3. **Audit Trails:** Every dispatcher trigger and delegation status updates are recorded in logs under `outputs/narrator/voice_loop_dashboard/logs/`.
+
+### 💻 Command Examples
+* View dashboard help menu:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard-help"
+  ```
+* Show dashboard health and counts:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard status"
+  ```
+* Print voice loop pipeline overview (Mermaid schema):
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard overview"
+  ```
+* List recent voice loop packets:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard packets"
+  ```
+* Inspect packet execution detail:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard packet-detail <PACKET_ID>"
+  ```
+* List packets waiting for operator confirm:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard pending-confirmations"
+  ```
+* Run safety parameters configuration audit:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard safety-status"
+  ```
+* Print stdout/stderr logs of the latest run execution:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard latest-audit"
+  ```
+* Export markdown telemetry report:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard export-summary"
+  ```
+* Delegate validation and staging to voice bridge:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard confirm-prepare <PACKET_ID>"
+  ```
+* Delegate execution dispatch to voice bridge:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard confirm-execute <PACKET_ID>"
+  ```
+* Delegate blocking rejection to voice bridge:
+  ```bash
+  npm run command -- "narrator-voice-loop-dashboard reject-packet <PACKET_ID>"
+  ```
+
+---
+
+---
+
 ---
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
@@ -1719,9 +1782,72 @@ The **Offline TTS Brief Composer** compiles citation-backed, manual-reviewed nar
 
 ---
 
+## 🧭 Phase R4: Pre-Push Hook Installer
+
+The **Pre-Push Hook Installer** establishes a local Git hook that intercepts push operations and runs compiler checks, integrity audits, and asset guards sequentially before pushing, ensuring remote origin remains clean and compiling.
+
+### 🛡️ Safety & Execution Rules
+1. **Local-Only Hook:** Only the installer and templates are tracked. The live hook `.git/hooks/pre-push` remains local-only.
+2. **Safe Backup Handling:** Existing hooks are backed up to prevent configuration loss.
+3. **Disable-Safe Architecture:** The hook can be easily disabled/uninstalled without deleting backup configurations.
+
+### 💻 Command Examples
+* View hook helper menu and commands:
+  ```bash
+  npm run command -- "git-hook-help"
+  ```
+* Install pre-push safety hook locally:
+  ```bash
+  npm run command -- "git-hook-install"
+  ```
+* Inspect pre-push hook configuration status:
+  ```bash
+  npm run command -- "git-hook-status"
+  ```
+* Uninstall and disable pre-push safety hook:
+  ```bash
+  npm run command -- "git-hook-uninstall"
+  ```
+
+---
+
+## 🧭 Phase 11R: Offline TTS Queue Validator
+
+The **Offline TTS Queue Validator** checks generated text-to-speech scripts, queue packets, and voice directions before any audio synthesis is allowed. It acts as an offline safety filter.
+
+### 🛡️ Safety & Execution Rules
+1. **Validation-Only Mode:** Inspects files and logs metrics. It does not execute TTS models or construct audio files.
+2. **No Audio Generation:** No audio compilation or synthesis is triggered.
+3. **No External APIs:** Direct network connections, cloud synthesis calls, or remote voice databases are completely bypassed.
+
+### 💻 Command Examples
+* View validator help menu:
+  ```bash
+  npm run command -- "tts-queue-validator-help"
+  ```
+* Run syntax and limits validation:
+  ```bash
+  npm run command -- "tts-queue-validator validate"
+  ```
+* Compile eligibility checklist:
+  ```bash
+  npm run command -- "tts-queue-validator checklist"
+  ```
+* Compile security risk report:
+  ```bash
+  npm run command -- "tts-queue-validator risk-report"
+  ```
+* View status metrics:
+  ```bash
+  npm run command -- "tts-queue-validator status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11R: Offline TTS Audio Synthesis**
-  - Synthesize checked briefs using safe, local offline speech engines (e.g. Piper) once the manual review queue and TTS brief composer script process passes.
-* **Phase 11S: Vector Search Database Ingestion**
+* **Phase 11S: Offline TTS Audio Synthesis**
+  - Synthesize checked scripts using safe, local offline speech engines (e.g. Piper) once the manual review queue, TTS brief composer, and queue validator process passes.
+* **Phase 11T: Vector Search Database Ingestion**
   - Prepare vector database pipelines to index node metadata for semantic query retrieval.
+
 

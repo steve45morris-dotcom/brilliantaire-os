@@ -1,0 +1,15 @@
+#!/bin/sh
+# Brilliantaire OS Pre-Push Safety Gate Hook
+
+echo "📡 Brilliantaire OS pre-push safety check running..."
+
+# Run the pre-push check sequence
+npm run git-prepush-check
+
+if [ $? -ne 0 ]; then
+  echo "❌ PUSH BLOCKED: Pre-push safety checks failed. Resolve the issues highlighted in outputs/git_audits/reports/ before pushing."
+  exit 1
+else
+  echo "✅ PUSH ALLOWED: Pre-push safety checks passed successfully. Updating origin remote..."
+  exit 0
+fi

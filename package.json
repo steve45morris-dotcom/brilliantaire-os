@@ -96,6 +96,8 @@
     "grounded-narrator-review-help": "tsx scripts/grounded-narrator-review-help.ts",
     "tts-brief-composer": "tsx scripts/tts-brief-composer.ts",
     "tts-brief-composer-help": "tsx scripts/tts-brief-composer-help.ts",
+    "tts-queue-validator": "tsx scripts/tts-queue-validator.ts",
+    "tts-queue-validator-help": "tsx scripts/tts-queue-validator-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -121,9 +123,15 @@
     "narrator-asr-backend-help": "tsx scripts/narrator-asr-backend-help.ts",
     "narrator-voice-bridge": "tsx scripts/narrator-voice-bridge.ts",
     "narrator-voice-bridge-help": "tsx scripts/narrator-voice-bridge-help.ts",
+    "narrator-voice-loop-dashboard": "tsx scripts/narrator-voice-loop-dashboard.ts",
+    "narrator-voice-loop-dashboard-help": "tsx scripts/narrator-voice-loop-dashboard-help.ts",
     "git-asset-help": "tsx scripts/git-asset-help.ts",
     "git-asset-audit": "tsx scripts/git-asset-audit.ts",
-    "git-prepush-check": "tsx scripts/git-prepush-check.ts"
+    "git-prepush-check": "tsx scripts/git-prepush-check.ts",
+    "git-hook-help": "tsx scripts/git-hook-help.ts",
+    "git-hook-install": "tsx scripts/git-hook-install.ts",
+    "git-hook-status": "tsx scripts/git-hook-status.ts",
+    "git-hook-uninstall": "tsx scripts/git-hook-uninstall.ts"
   },
   "keywords": [
     "antigravity",

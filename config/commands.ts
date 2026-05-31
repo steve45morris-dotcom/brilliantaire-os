@@ -947,6 +947,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'tts-queue-validator-help',
+    aliases: ['tts validation help', 'audio queue help'],
+    description: 'Print help menu for offline TTS queue validator',
+    npmScript: 'tts-queue-validator-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'tts-queue-validator',
+    aliases: ['tts validator', 'audio queue'],
+    description: 'Verify staged script assets and check TTS generation parameters',
+    npmScript: 'tts-queue-validator',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'git-asset-help',
     aliases: ['git asset help', 'repo asset help'],
     description: 'Print help menu and policies for Git Asset Guard',
@@ -978,6 +1000,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'git-hook-help',
+    aliases: ['hook help', 'prepush hook help'],
+    description: 'Print help menu and policies for Git hooks',
+    npmScript: 'git-hook-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'git-hook-status',
+    aliases: ['hook status', 'prepush hook status'],
+    description: 'Audit local Git pre-push hook configuration status',
+    npmScript: 'git-hook-status',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'git-hook-install',
+    aliases: ['install hook', 'install prepush hook'],
+    description: 'Install local Git pre-push hook',
+    npmScript: 'git-hook-install',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'git-hook-uninstall',
+    aliases: ['uninstall hook', 'disable prepush hook'],
+    description: 'Disable local Git pre-push hook',
+    npmScript: 'git-hook-uninstall',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
   },
   {
     name: 'list-schedules',
@@ -1237,6 +1303,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['voice bridge', 'narrator voice bridge', 'narrator bridge'],
     description: 'Manual approval, validation, staging, and execution bridge for ASR command packets',
     npmScript: 'narrator-voice-bridge',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'narrator-voice-loop-dashboard-help',
+    aliases: ['voice loop dashboard help', 'narrator voice loop dashboard help'],
+    description: 'Print help command menu for the voice loop dashboard and confirmation UI',
+    npmScript: 'narrator-voice-loop-dashboard-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-voice-loop-dashboard',
+    aliases: ['voice loop dashboard', 'narrator voice loop dashboard', 'voice loop'],
+    description: 'Interactive dashboard and confirmation UI for ASR and Voice Bridge pipelines',
+    npmScript: 'narrator-voice-loop-dashboard',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',
