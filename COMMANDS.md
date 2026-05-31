@@ -88,6 +88,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-setup-guide` | `notebook setup`, `mcp setup` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Manual Setup Instructions checks. |
 | `notebooklm-mcp-readiness-gate-help` | `notebook readiness help`, `mcp readiness help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Setup Review and Readiness Gate. |
 | `notebooklm-mcp-readiness-gate` | `notebook readiness`, `mcp readiness` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Review and Readiness Gate checks. |
+| `notebooklm-mcp-correction-pack-help` | `notebook correction help`, `mcp correction help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Setup Correction Pack. |
+| `notebooklm-mcp-correction-pack` | `notebook correction`, `mcp correction` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Setup Correction Pack checks. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |

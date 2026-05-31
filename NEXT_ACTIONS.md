@@ -199,11 +199,21 @@
 - [x] Add strict validation commands in Taskfile
 
 ## Do Next
-- [ ] Build MCP Setup Review and Readiness Gate
-- [ ] Run readiness gate scan
-- [ ] Generate live integration decision report
-- [ ] Generate blocker report
-- [ ] Review whether live adapter is eligible
+- [x] Build MCP Setup Review and Readiness Gate
+- [x] Run readiness gate scan
+- [x] Generate live integration decision report
+- [x] Generate blocker report
+- [x] Review whether live adapter is eligible
+
+## Do Next
+- [ ] Build MCP Local Setup Correction Pack
+- [ ] Generate blocker correction report
+- [ ] Generate env key map
+- [ ] Generate local config checklist
+- [ ] Generate git push recovery runbook
+- [ ] Generate readiness rerun runbook
+- [ ] Complete manual local setup outside repo
+- [ ] Rerun readiness gate after manual correction
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

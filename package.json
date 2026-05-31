@@ -74,6 +74,8 @@
     "notebooklm-mcp-setup-guide-help": "tsx scripts/notebooklm-mcp-setup-guide-help.ts",
     "notebooklm-mcp-readiness-gate": "tsx scripts/notebooklm-mcp-readiness-gate.ts",
     "notebooklm-mcp-readiness-gate-help": "tsx scripts/notebooklm-mcp-readiness-gate-help.ts",
+    "notebooklm-mcp-correction-pack": "tsx scripts/notebooklm-mcp-correction-pack.ts",
+    "notebooklm-mcp-correction-pack-help": "tsx scripts/notebooklm-mcp-correction-pack-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",

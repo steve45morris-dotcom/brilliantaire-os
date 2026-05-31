@@ -840,6 +840,51 @@ The **MCP Setup Review and Readiness Gate** layer evaluates local environment va
 
 ---
 
+## 🧭 Phase 11I: MCP Local Setup Correction Pack
+
+The **MCP Local Setup Correction Pack** converts readiness gate blockers into explicit manual configuration corrections to perform outside the repository.
+
+### 🛡️ Safety & Execution Rules
+1. **Safety Controls Compliance:** Zero plain-text credentials are ever written into version control tracked files.
+2. **Local-Only Boundary:** Config files and environment variables maps reside strictly in `.env.local` or `.mcp.local.json`.
+3. **No Force Push:** Recovery workflows resolve git push failures safely rather than force-pushing.
+
+### 💻 Command Examples
+* View correction pack help instructions:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack-help"
+  ```
+* Generate blocker corrections report:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack blockers"
+  ```
+* Generate environment key map:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack env-map"
+  ```
+* Generate local config checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack local-config"
+  ```
+* Generate Git push recovery runbook:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack git-push-recovery"
+  ```
+* Generate readiness rerun runbook:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack readiness-rerun"
+  ```
+* Generate all correction pack documents:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack all"
+  ```
+* Print overall correction status summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-correction-pack status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -968,7 +1013,7 @@ The **Voice Narration Sync** layer converts compiled voice scripts and live feed
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11I: NotebookLM MCP Live Adapter Integration**
+* **Phase 11J: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
 * **Phase N5: Live Voice Bridge Integration**
   - Integrate safe local TTS rendering engines and WebSocket audio streams once manual staging and review gates are fully operational.

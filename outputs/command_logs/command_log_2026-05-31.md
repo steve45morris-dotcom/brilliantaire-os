@@ -284,3 +284,36 @@
 
 ---
 
+## [2026-05-31T14:29:14.595Z] Command Attempt: "notebooklm-mcp-correction-pack-help"
+- **Matched Command:** `notebooklm-mcp-correction-pack-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T14:30:33.621Z] Command Attempt: "notebooklm-mcp-correction-pack blockers"
+- **Matched Command:** `notebooklm-mcp-correction-pack`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T14:31:18.105Z] Command Attempt: "notebook correction"
+- **Matched Command:** `notebooklm-mcp-correction-pack`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

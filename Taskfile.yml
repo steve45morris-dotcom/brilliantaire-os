@@ -331,6 +331,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-readiness-gate -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-correction-pack-help:
+    desc: "Print NotebookLM MCP Local Setup Correction Pack safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-correction-pack-help
+
+  notebooklm-mcp-correction-pack:
+    desc: "Run NotebookLM MCP Local Setup Correction Pack checks safely"
+    cmds:
+      - npm run notebooklm-mcp-correction-pack -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:
