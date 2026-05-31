@@ -7,7 +7,8 @@ import { SystemShell } from "@/components/SystemShell";
 import { MeshTopology } from "@/components/MeshTopology";
 import { AstraScoutPanel } from "@/components/AstraScoutPanel";
 import { EdgeLinkPanel } from "@/components/EdgeLinkPanel";
-import { Users, Globe, Compass, Network } from "lucide-react";
+import { InfiniteNetworkPanel } from "@/components/InfiniteNetworkPanel";
+import { Users, Globe, Compass, Network, Cpu } from "lucide-react";
 
 const agents = [
   ["Commander", "Human final GO / STOP authority", "Human controlled", "commander"],
@@ -19,7 +20,7 @@ const agents = [
 ] as const;
 
 export default function AgentsPage() {
-  const [tab, setTab] = useState<"roles" | "mesh" | "astra" | "edge">("roles");
+  const [tab, setTab] = useState<"roles" | "mesh" | "astra" | "edge" | "network">("roles");
 
   return (
     <SystemShell
@@ -31,7 +32,9 @@ export default function AgentsPage() {
           ? "Planetary node consensus and mesh topology tracker."
           : tab === "astra"
           ? "Active target market licensing opportunities and lead generation parsing."
-          : "Onboard mobile, desktop, and embedded IoT hardware clients directly into the compute mesh."
+          : tab === "edge"
+          ? "Onboard mobile, desktop, and embedded IoT hardware clients directly into the compute mesh."
+          : "Autonomous subagent synthesis, GPU multi-grid inference routing, and solar grid optimization."
       }
     >
       <div className="grid gap-6">
@@ -82,6 +85,17 @@ export default function AgentsPage() {
             <Network className="h-4 w-4" />
             <span>Edge Link</span>
           </button>
+          <button
+            onClick={() => setTab("network")}
+            className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
+              tab === "network"
+                ? "border-cyan-400 text-cyan-200 glow-text-cyan font-black"
+                : "border-transparent text-slate-500 hover:text-slate-300 font-bold"
+            }`}
+          >
+            <Cpu className="h-4 w-4" />
+            <span>Infinite Network</span>
+          </button>
         </div>
 
         {tab === "roles" && (
@@ -110,6 +124,12 @@ export default function AgentsPage() {
         {tab === "edge" && (
           <div className="animate-fade-in">
             <EdgeLinkPanel />
+          </div>
+        )}
+
+        {tab === "network" && (
+          <div className="animate-fade-in">
+            <InfiniteNetworkPanel />
           </div>
         )}
 

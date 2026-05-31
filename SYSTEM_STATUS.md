@@ -35,6 +35,9 @@
 - **Edge-Link Protocol (Phase 15):** Standardized protocol to onboard mobile, IoT, and desktop edge devices dynamically into database node storage.
 - **Cross-OS Invoke Gateway (Phase 15):** Standalone API endpoint with challenge verification to execute secure tasks dispatched from external operating systems.
 - **Compute Auction Market Oracle (Phase 15):** Live bidding market oracle matching BUY/SELL compute capacity across local caching registries.
+- **Multi-Grid Inference Routing (Phase 21):** Route cognitive workloads dynamically across regional GPU node clusters based on latency variance.
+- **Dynamic Subagent Spawner (Phase 21):** Recursively create sandboxed micro-agents designed for targeted local tasks.
+- **Sovereign Solar Grid optimization (Phase 21):** Shifting compute task allocations to regions running on excess green energy.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
