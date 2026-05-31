@@ -291,6 +291,26 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-execute -- {{.CLI_ARGS}}
 
+  scheduler:
+    desc: "Execute scheduler CLI operations"
+    cmds:
+      - npm run scheduler -- {{.CLI_ARGS}}
+
+  list-schedules:
+    desc: "List registered background schedules"
+    cmds:
+      - npm run list-schedules
+
+  scheduler-health:
+    desc: "Print background scheduler health analytics"
+    cmds:
+      - npm run scheduler-health
+
+  scheduler-report:
+    desc: "Generate daily and weekly scheduler performance reports"
+    cmds:
+      - npm run scheduler-report
+
 
 
 
