@@ -72,6 +72,8 @@
     "notebooklm-mcp-harden-help": "tsx scripts/notebooklm-mcp-harden-help.ts",
     "notebooklm-mcp-setup-guide": "tsx scripts/notebooklm-mcp-setup-guide.ts",
     "notebooklm-mcp-setup-guide-help": "tsx scripts/notebooklm-mcp-setup-guide-help.ts",
+    "notebooklm-mcp-readiness-gate": "tsx scripts/notebooklm-mcp-readiness-gate.ts",
+    "notebooklm-mcp-readiness-gate-help": "tsx scripts/notebooklm-mcp-readiness-gate-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -82,7 +84,9 @@
     "narrator-brief-help": "tsx scripts/narrator-brief-help.ts",
     "narrator-live-feed": "tsx scripts/narrator-live-feed.ts",
     "narrator-live-feed-help": "tsx scripts/narrator-live-feed-help.ts",
-    "narrator-feed-watch": "tsx scripts/narrator-feed-watch.ts"
+    "narrator-feed-watch": "tsx scripts/narrator-feed-watch.ts",
+    "narrator-voice-sync": "tsx scripts/narrator-voice-sync.ts",
+    "narrator-voice-sync-help": "tsx scripts/narrator-voice-sync-help.ts"
   },
   "keywords": [
     "antigravity",

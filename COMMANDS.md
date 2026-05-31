@@ -86,6 +86,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-harden` | `notebook harden`, `mcp harden` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Connector Hardening checks. |
 | `notebooklm-mcp-setup-guide-help` | `notebook setup help`, `mcp setup help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Manual Setup Instructions. |
 | `notebooklm-mcp-setup-guide` | `notebook setup`, `mcp setup` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Manual Setup Instructions checks. |
+| `notebooklm-mcp-readiness-gate-help` | `notebook readiness help`, `mcp readiness help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Setup Review and Readiness Gate. |
+| `notebooklm-mcp-readiness-gate` | `notebook readiness`, `mcp readiness` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Review and Readiness Gate checks. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
@@ -96,6 +98,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-live-feed-help` | `live narrator help`, `narrator feed help` | Knowledge Librarian | Low | No | Print help commands for narrator live feed controller. |
 | `narrator-live-feed` | `narrator feed`, `live narrator` | Knowledge Librarian | Low | No | Compile and aggregate read-only live dashboard feeds and event logs. |
 | `narrator-feed-watch` | `watch narrator`, `narrator watcher` | Workflow Auditor | Medium | Yes | Run the local read-only file watcher daemon for narrator feed updates. |
+| `narrator-voice-sync-help` | `narrator voice help`, `voice sync help` | Knowledge Librarian | Low | No | Print help commands for the narrator voice sync controller. |
+| `narrator-voice-sync` | `narrator voice`, `sync narrator voice` | Knowledge Librarian | Low | No | Compile voice-ready packets and stage manual VNP voice queue entries. |
 
 ---
 

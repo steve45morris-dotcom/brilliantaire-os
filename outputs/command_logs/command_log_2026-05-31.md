@@ -229,3 +229,36 @@
 
 ---
 
+## [2026-05-31T13:47:14.795Z] Command Attempt: "notebooklm-mcp-readiness-gate-help"
+- **Matched Command:** `notebooklm-mcp-readiness-gate-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:48:21.473Z] Command Attempt: "notebooklm-mcp-readiness-gate scan"
+- **Matched Command:** `notebooklm-mcp-readiness-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:48:57.901Z] Command Attempt: "notebook readiness"
+- **Matched Command:** `notebooklm-mcp-readiness-gate`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

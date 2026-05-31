@@ -683,6 +683,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-readiness-gate-help',
+    aliases: ['notebook readiness help', 'mcp readiness help'],
+    description: 'Print commands for NotebookLM MCP Setup Review and Readiness Gate',
+    npmScript: 'notebooklm-mcp-readiness-gate-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-readiness-gate',
+    aliases: ['notebook readiness', 'mcp readiness'],
+    description: 'Execute NotebookLM MCP Setup Review and Readiness Gate checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-readiness-gate',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',
@@ -791,6 +813,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'console',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'narrator-voice-sync-help',
+    aliases: ['narrator voice help', 'voice sync help'],
+    description: 'Print help commands for the narrator voice sync controller',
+    npmScript: 'narrator-voice-sync-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-voice-sync',
+    aliases: ['narrator voice', 'sync narrator voice'],
+    description: 'Compile voice-ready packets and stage manual VNP voice queue entries',
+    npmScript: 'narrator-voice-sync',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
   }
 ];
 

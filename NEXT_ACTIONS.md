@@ -138,6 +138,11 @@
 - [x] Phase N3: Test watch-once update detection
 - [x] Phase N3: Confirm dashboard reads live feed
 - [x] Phase N3: Prepare WebSocket adapter only after read-only feed passes
+- [x] Phase N4: Build voice narration sync
+- [x] Phase N4: Generate narrator voice packet
+- [x] Phase N4: Generate VNP queue file
+- [x] Phase N4: Verify voice sync status
+- [ ] Phase N5: Prepare WebSocket live stream only after voice sync passes
 
 
 ## Do Now
@@ -183,15 +188,22 @@
 - [x] Run secret hygiene scan
 - [x] Run readiness recheck
 - [x] Decide whether real config can be added manually outside repo
-- [ ] Build NotebookLM MCP Manual Setup Instructions
-- [ ] Generate manual setup runbook
-- [ ] Generate .env.local instructions
-- [ ] Generate MCP config copy guide
-- [ ] Generate readiness rerun guide
-- [ ] Generate rollback guide
-- [ ] Review local setup steps before live adapter integration
+- [x] Build NotebookLM MCP Manual Setup Instructions
+- [x] Generate manual setup runbook
+- [x] Generate .env.local instructions
+- [x] Generate MCP config copy guide
+- [x] Generate readiness rerun guide
+- [x] Generate rollback guide
+- [x] Review local setup steps before live adapter integration
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
+
+## Do Next
+- [ ] Build MCP Setup Review and Readiness Gate
+- [ ] Run readiness gate scan
+- [ ] Generate live integration decision report
+- [ ] Generate blocker report
+- [ ] Review whether live adapter is eligible
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

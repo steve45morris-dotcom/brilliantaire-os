@@ -808,6 +808,38 @@ The **NotebookLM MCP Manual Setup Instructions** layer provides step-by-step set
 
 ---
 
+## 🧭 Phase 11H: MCP Setup Review and Readiness Gate
+
+The **MCP Setup Review and Readiness Gate** layer evaluates local environment variable configurations, sidecar config mappings, and provides active blockers lists and integration eligibility decisions.
+
+### 🛡️ Safety & Execution Rules
+1. **Verification-Only:** Strictly offline evaluation; no live connection queries or external APIs are accessed.
+2. **Eligibility Score Check:** Enforces a minimum setup score of 90% and zero active blockers before live integration eligibility is approved.
+
+### 💻 Command Examples
+* View readiness gate help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-readiness-gate-help"
+  ```
+* Run environment scans:
+  ```bash
+  npm run command -- "notebooklm-mcp-readiness-gate scan"
+  ```
+* Compile live integration decision:
+  ```bash
+  npm run command -- "notebooklm-mcp-readiness-gate decision"
+  ```
+* Compile current blockers matrix:
+  ```bash
+  npm run command -- "notebooklm-mcp-readiness-gate blockers"
+  ```
+* Print overall status review and status summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-readiness-gate status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -902,8 +934,42 @@ The **Live Dashboard Narration Feed** is a read-only telemetry consolidation lay
 
 ---
 
+## 🎙️ Phase N4: Voice Narration Sync
+
+The **Voice Narration Sync** layer converts compiled voice scripts and live feed metrics into structured, voice-ready packets and Voice Narrative Protocol (VNP) queue files safely staged for review.
+
+### 🛡️ Safety & Execution Rules
+1. **Output-Only Compiler:** Only compiles static markdown files to `outputs/narrator/voice_sync/`. No audio synthesis is triggered, and no TTS APIs are contacted.
+2. **Zero Command Execution:** Does not run subcommands, system commands, or external network requests.
+3. **No Auto-Playback:** Files are flagged for manual review and staged strictly offline.
+
+### 💻 Command Examples
+* View voice sync commands menu:
+  ```bash
+  npm run command -- "narrator-voice-sync-help"
+  ```
+* Generate voice packet file:
+  ```bash
+  npm run command -- "narrator-voice-sync packet"
+  ```
+* Stage manual VNP queue file:
+  ```bash
+  npm run command -- "narrator-voice-sync queue"
+  ```
+* Print voice sync status report:
+  ```bash
+  npm run command -- "narrator-voice-sync status"
+  ```
+* Compile packet and queue, then print status:
+  ```bash
+  npm run command -- "narrator-voice-sync all"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11H: NotebookLM MCP Live Adapter Integration**
+* **Phase 11I: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N4: WebSocket and Live Stream Narration Integration**
-  - Enable WebSocket transport protocol and live telemetry updates streaming from background watch loops.
+* **Phase N5: Live Voice Bridge Integration**
+  - Integrate safe local TTS rendering engines and WebSocket audio streams once manual staging and review gates are fully operational.
+

@@ -321,6 +321,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-setup-guide -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-readiness-gate-help:
+    desc: "Print NotebookLM MCP Readiness Gate safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-readiness-gate-help
+
+  notebooklm-mcp-readiness-gate:
+    desc: "Run NotebookLM MCP Readiness Gate checks safely"
+    cmds:
+      - npm run notebooklm-mcp-readiness-gate -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:
@@ -383,6 +393,16 @@ tasks:
     desc: "Run the local read-only file watcher daemon for narrator feed updates"
     cmds:
       - npm run narrator-feed-watch
+
+  narrator-voice-sync:
+    desc: "Compile voice-ready packets and stage manual VNP voice queue entries"
+    cmds:
+      - npm run narrator-voice-sync -- {{.CLI_ARGS}}
+
+  narrator-voice-sync-help:
+    desc: "Print help commands for the narrator voice sync controller"
+    cmds:
+      - npm run narrator-voice-sync-help
 
   validate:
     desc: "Lint and run workspace checks"

@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N3: Live Dashboard Narration Feed — COMPLETE
+- **Current Phase:** Phase N4: Voice Narration Sync — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -51,8 +51,10 @@
 - **NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.
 - **NotebookLM MCP Connector Hardening (Phase 11F):** Staged credentials env template, MCP JSON configs generation, local credentials hygiene scan, and hardening readiness recheck.
 - **NotebookLM MCP Manual Setup Instructions (Phase 11G):** Staged configuration setup checklists, manual copy runbooks, validation rerun guides, and safety deactivation rollback plans.
+- **MCP Setup Review and Readiness Gate (Phase 11H):** Local credentials scan gates, live integration eligibility matrices, outstanding blockers lists, and manual setup review reports.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
+- **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
