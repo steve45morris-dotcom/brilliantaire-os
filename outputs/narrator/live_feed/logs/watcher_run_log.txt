@@ -1,0 +1,3 @@
+[2026-05-31T12:53:50.722Z] Watcher daemon process started.
+[2026-05-31T12:53:50.724Z] Polling whitelisted narrator directories...
+[2026-05-31T12:53:50.725Z] Watcher initialized with baseline timestamps.

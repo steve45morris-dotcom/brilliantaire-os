@@ -38,7 +38,7 @@ export function SystemShell({ children, title, subtitle }: { children: ReactNode
     "[OK] System core loaded in 14.2ms",
     "[SYS] Monitoring loop active"
   ]);
-  const consoleEndRef = useRef<HTMLDivElement>(null);
+  const consoleContainerRef = useRef<HTMLDivElement>(null);
 
   // Periodically push a random log to make the shell feel highly interactive
   useEffect(() => {
@@ -52,8 +52,8 @@ export function SystemShell({ children, title, subtitle }: { children: ReactNode
   }, []);
 
   useEffect(() => {
-    if (consoleEndRef.current) {
-      consoleEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (consoleContainerRef.current) {
+      consoleContainerRef.current.scrollTop = consoleContainerRef.current.scrollHeight;
     }
   }, [logs]);
 
@@ -142,11 +142,10 @@ export function SystemShell({ children, title, subtitle }: { children: ReactNode
               <span>Sentinel telemetry</span>
             </div>
             <div className="relative h-28 overflow-hidden rounded-lg border border-slate-800 bg-black/60 p-2 font-mono text-[9px] leading-relaxed text-cyan-400/90 shadow-inner">
-              <div className="h-full overflow-y-auto space-y-1 pr-1">
+              <div className="h-full overflow-y-auto space-y-1 pr-1" ref={consoleContainerRef}>
                 {logs.map((log, index) => (
                   <div key={index} className="truncate select-none border-l border-cyan-500/20 pl-1">{log}</div>
                 ))}
-                <div ref={consoleEndRef} />
               </div>
             </div>
           </div>

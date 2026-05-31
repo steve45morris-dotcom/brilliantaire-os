@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-05-30T23:55:06.514Z",
+  "timestamp": "2026-05-31T12:20:15.445Z",
   "vaultsScanned": [
     "/Users/alexanderanthony/AlexanderOSVault"
   ],
-  "filesScannedCount": 187,
+  "filesScannedCount": 194,
   "statistics": {
     "todos": 3,
-    "nexts": 205,
-    "decisions": 94,
+    "nexts": 209,
+    "decisions": 95,
     "blockeds": 43
   },
   "files": [
@@ -420,7 +420,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Mission Control.md",
       "title": "Mission Control",
-      "lastModified": "2026-05-27T19:45:32.276Z",
+      "lastModified": "2026-05-31T07:59:19.793Z",
       "tags": [],
       "headings": [
         "# Mission Control",
@@ -666,7 +666,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/ProfBetGeng/ProfBetGeng - Current State.md",
       "title": "Start backend",
-      "lastModified": "2026-05-27T19:45:29.587Z",
+      "lastModified": "2026-05-31T07:59:11.929Z",
       "tags": [],
       "headings": [
         "# ProfBetGeng - Current State",
@@ -720,7 +720,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Home.md",
       "title": "Alexander OS",
-      "lastModified": "2026-05-27T19:45:23.219Z",
+      "lastModified": "2026-05-31T07:59:32.476Z",
       "tags": [],
       "headings": [
         "# Alexander OS",
@@ -761,7 +761,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md",
       "title": "Project Status Dashboard",
-      "lastModified": "2026-05-27T19:45:30.894Z",
+      "lastModified": "2026-05-31T07:59:16.364Z",
       "tags": [],
       "headings": [
         "# Project Status Dashboard",
@@ -801,7 +801,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Projects Dashboard.md",
       "title": "Projects Dashboard",
-      "lastModified": "2026-05-27T19:45:30.893Z",
+      "lastModified": "2026-05-31T07:59:16.359Z",
       "tags": [],
       "headings": [
         "# Projects Dashboard",
@@ -1136,7 +1136,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Who Is Icyflamze Release - Current State.md",
       "title": "Who Is Icyflamze Release - Current State",
-      "lastModified": "2026-05-27T19:45:30.140Z",
+      "lastModified": "2026-05-31T07:59:13.806Z",
       "tags": [],
       "headings": [
         "# Who Is Icyflamze Release - Current State",
@@ -1237,7 +1237,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Antigravity CLI/Antigravity CLI - Current State.md",
       "title": "🌌 Antigravity CLI — Sovereign Intelligence Node",
-      "lastModified": "2026-05-27T19:45:30.512Z",
+      "lastModified": "2026-05-31T07:59:15.152Z",
       "tags": [],
       "headings": [
         "# 🌌 Antigravity CLI — Sovereign Intelligence Node",
@@ -1410,6 +1410,40 @@
       "relevanceScore": 6.5
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-31.md",
+      "title": "2026-05-31",
+      "lastModified": "2026-05-31T07:59:11.006Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-31",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6.5
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md",
       "title": "memory_summary",
       "lastModified": "2026-05-29T16:07:13.841Z",
@@ -1545,7 +1579,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Operating Metrics.md",
       "title": "Operating Metrics",
-      "lastModified": "2026-05-27T19:45:32.842Z",
+      "lastModified": "2026-05-31T07:59:32.472Z",
       "tags": [],
       "headings": [
         "# Operating Metrics",
@@ -1558,7 +1592,7 @@
         "todo": [],
         "next": [],
         "decision": [
-          "| Vault decision notes | 3 |"
+          "| Vault decision notes | 4 |"
         ],
         "blocked": [],
         "icyflamze": [
@@ -2047,7 +2081,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/Memory Display.md",
       "title": "Memory Display",
-      "lastModified": "2026-05-27T19:45:22.592Z",
+      "lastModified": "2026-05-31T07:59:28.508Z",
       "tags": [],
       "headings": [
         "# Memory Display",
@@ -2077,7 +2111,7 @@
         ],
         "antigravity": [
           "| [[Antigravity CLI - Current State]] | clean | high |  |",
-          "| [[Antigravity-Brain Index]] | 20 |"
+          "| [[Antigravity-Brain Index]] | 33 |"
         ]
       },
       "relevanceScore": 5
@@ -2243,7 +2277,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem/TheOneSystem - Current State.md",
       "title": "TheOneSystem - Current State",
-      "lastModified": "2026-05-27T19:45:29.778Z",
+      "lastModified": "2026-05-31T07:59:12.643Z",
       "tags": [],
       "headings": [
         "# TheOneSystem - Current State",
@@ -2560,7 +2594,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Icyflamze Creative OS/Icyflamze Creative OS - Current State.md",
       "title": "Icyflamze Creative OS - Current State",
-      "lastModified": "2026-05-27T19:45:30.139Z",
+      "lastModified": "2026-05-31T07:59:13.795Z",
       "tags": [],
       "headings": [
         "# Icyflamze Creative OS - Current State",
@@ -2863,7 +2897,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/Video Use/Video Use - Current State.md",
       "title": "Video Use - Current State",
-      "lastModified": "2026-05-27T19:45:30.317Z",
+      "lastModified": "2026-05-31T07:59:14.468Z",
       "tags": [],
       "headings": [
         "# Video Use - Current State",
@@ -3062,7 +3096,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/TheOneSystem UI/TheOneSystem UI - Current State.md",
       "title": "TheOneSystem UI - Current State",
-      "lastModified": "2026-05-27T19:45:29.959Z",
+      "lastModified": "2026-05-31T07:59:13.203Z",
       "tags": [],
       "headings": [
         "# TheOneSystem UI - Current State",
@@ -3620,7 +3654,7 @@
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/02 Projects/VibeVoice/VibeVoice - Current State.md",
       "title": "VibeVoice - Current State",
-      "lastModified": "2026-05-27T19:45:30.511Z",
+      "lastModified": "2026-05-31T07:59:15.143Z",
       "tags": [],
       "headings": [
         "# VibeVoice - Current State",
@@ -3813,6 +3847,34 @@
         "todo": [],
         "next": [
           "| **Implementation Feasibility** | 5 / 5 | Single-page Next.js outputs using static build output |"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/8e442356-5fea-4b33-bde6-95e9da9b207f/dashboard_remediation_summary.md",
+      "title": "🛡️ Sentinel OS: Dashboard Remediation Summary",
+      "lastModified": "2026-05-31T10:01:55.000Z",
+      "tags": [],
+      "headings": [
+        "# 🛡️ Sentinel OS: Dashboard Remediation Summary",
+        "## 🛠️ Actions Taken",
+        "### 1. Unified Sibling Assets",
+        "### 2. Converted Paths to Relative Layouts",
+        "### 3. Corrected Variable Index Exception",
+        "## 📸 Verified Layout Render"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "We copied the active asset directories (`sounds` and `images`) from the Next.js app to the root workspace directory, ensuring they are adjacent to `sentinel-dashboard.html`:"
         ],
         "decision": [],
         "blocked": [],
@@ -5411,6 +5473,121 @@
       "tags": [],
       "headings": [
         "# Codex Workspace Isolation"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/Security Hash Audit - 2026-05-31_00-56-07.md",
+      "title": "🔒 Cryptographic Security Audit Report",
+      "lastModified": "2026-05-31T07:56:07.434Z",
+      "tags": [],
+      "headings": [
+        "# 🔒 Cryptographic Security Audit Report",
+        "## 📊 File Integrity Validation Results",
+        "## 🧬 System Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/Security Hash Audit - 2026-05-31_02-41-52.md",
+      "title": "🔒 Cryptographic Security Audit Report",
+      "lastModified": "2026-05-31T09:41:52.699Z",
+      "tags": [],
+      "headings": [
+        "# 🔒 Cryptographic Security Audit Report",
+        "## 📊 File Integrity Validation Results",
+        "## 🧬 System Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/Security Hash Audit - 2026-05-31_03-25-48.md",
+      "title": "🔒 Cryptographic Security Audit Report",
+      "lastModified": "2026-05-31T10:25:48.885Z",
+      "tags": [],
+      "headings": [
+        "# 🔒 Cryptographic Security Audit Report",
+        "## 📊 File Integrity Validation Results",
+        "## 🧬 System Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/Security Hash Audit - 2026-05-31_05-06-57.md",
+      "title": "🔒 Cryptographic Security Audit Report",
+      "lastModified": "2026-05-31T12:06:57.889Z",
+      "tags": [],
+      "headings": [
+        "# 🔒 Cryptographic Security Audit Report",
+        "## 📊 File Integrity Validation Results",
+        "## 🧬 System Summary"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/05 Decisions/Security Hash Audit - 2026-05-31_05-09-44.md",
+      "title": "🔒 Cryptographic Security Audit Report",
+      "lastModified": "2026-05-31T12:09:44.652Z",
+      "tags": [],
+      "headings": [
+        "# 🔒 Cryptographic Security Audit Report",
+        "## 📊 File Integrity Validation Results",
+        "## 🧬 System Summary"
       ],
       "matchedLines": {
         "todo": [],

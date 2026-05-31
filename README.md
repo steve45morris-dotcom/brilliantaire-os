@@ -820,8 +820,123 @@ The **Narrator Brief Composer** is a decoupled local templating and generation l
 
 ---
 
-## 🚀 Next Phase Recommendation
-* **Phase 11G: NotebookLM MCP Live Adapter Integration**
-  - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N3: Live Dashboard Narration Feed**
-  - Integrate real-time WebSocket or event-driven state triggers for instantaneous dashboard narrative sync.
+## 📡 Phase N3: Live Dashboard Narration Feed
+
+The **Live Dashboard Narration Feed** is a read-only telemetry consolidation layer that aggregates generated briefs and operating system variables into a single, lightweight status feed JSON.
+
+### 🛡️ Safety & Read-Only Rules
+1. **Zero Command Invocation:** The dashboard contains no inputs or buttons capable of executing commands.
+2. **Read-Only Storage:** No HTTP POST routes or write gateways are exposed to the browser dashboard.
+3. **Watcher Isolation:** The watch daemon checks modifications locally without spawning child processes.
+4. **WebSocket Blocked:** WebSocket real-time protocols are disabled (`ENABLE_WEBSOCKET = false`) in favor of secure local interval polling.
+
+### 💻 Command Examples
+* View live feed commands menu:
+  ```bash
+  npm run command -- "narrator-live-feed-help"
+  ```
+* Generate unified live feed JSON:
+  ```bash
+  npm run command -- "narrator-live-feed generate"
+  ```
+* Log telemetry synchronization events:
+  ```bash
+  npm run command -- "narrator-live-feed event"
+  ```
+* Verify configuration values and safety gates:
+  ```bash
+  npm run command -- "narrator-live-feed status"
+  ```
+* Check files modification and trigger conditional update:
+  ```bash
+  npm run command -- "narrator-live-feed watch-once"
+  ```
+* Run local read-only observation watcher daemon (requires exact name):
+  ```bash
+  npm run command -- "narrator-feed-watch"
+  ```
+
+---
+
+## 🎙️ Phase N4: Voice Narration Sync
+
+The **Voice Narration Sync** layer is a local staging component that translates compiled narrative voice scripts and live telemetry status feeds into structured, voice-ready packets and VNP queue files.
+
+### 🛡️ Safety & Sync Rules
+1. **Zero Playback Execution:** Stages files offline without executing commands or direct audio playback.
+2. **Zero External API Calls:** Cloud TTS requests are disabled (`ALLOW_TTS_API_CALLS = false`) to enforce sandboxed execution.
+3. **Sandbox Gating:** Outputs are written strictly to `outputs/narrator/voice_sync/` and do not auto-run.
+4. **Collision Suffixing:** Timestamped backups of packets, queues, and sync logs are generated to prevent data loss.
+
+### 💻 Command Examples
+* View voice sync commands menu:
+  ```bash
+  npm run command -- "narrator-voice-sync-help"
+  ```
+* Compile parameter packets and VNP queues:
+  ```bash
+  npm run command -- "narrator-voice-sync all"
+  ```
+* Generate voice packets only:
+  ```bash
+  npm run command -- "narrator-voice-sync packet"
+  ```
+* Stage VNP queue briefs only:
+  ```bash
+  npm run command -- "narrator-voice-sync queue"
+  ```
+* Check files availability and safety indicators:
+  ```bash
+  npm run command -- "narrator-voice-sync status"
+  ```
+
+---
+
+## 🚀 Move 4: Sentinel Safety Gate and Knowledge Intake Router
+
+### 🛡️ Safety Isolation & Staging Rules
+The integration of public tunneling utilities and voice command loops introduces external exposure vectors. To enforce strict system boundaries:
+1. **Public Tunnel Gatekeep:** Voice commands are blocked from starting public tunnel interfaces. Tunnel setups default to disabled and require manual approval. Emergency tunnel termination is allowed to bypass confirmation.
+2. **Knowledge Staging Buffers:** Knowledge ingestion and NotebookLM bridge execution are locked. Raw feeds must stage strictly inside local staging folders (\`staging/\`).
+3. **No Direct Vault writes:** Direct writes to Obsidian vault directories are disabled. Intermediary staging registers all files prior to approval.
+4. **Collision & Security Audits:** Collision Isolation Protocol (CIP) validator checks for path overlaps, and secret scans prevent credential leaks in logs.
+
+### 💻 Safety & Staging Commands
+Run the safety validator and staging pipelines using:
+* Validate safety assertions & CIP state:
+  ```bash
+  npm run sentinel:safety
+  ```
+* Log and audit public tunnel sessions:
+  ```bash
+  npm run sentinel:tunnel-log <action> <port> <by> <url> <status>
+  ```
+* Compile voice command risk matrices:
+  ```bash
+  npm run sentinel:voice-risk
+  ```
+* Configure knowledge router directories and staging checklists:
+  ```bash
+  npm run sentinel:knowledge-router
+  ```
+* Aggregate reports and build unified safety summaries:
+  ```bash
+  npm run sentinel:safety-report
+  ```
+
+### 📊 Safety & Session Reports
+Audit ledgers are written to designated markdown files:
+- **Safety Gate:** `reports/sentinel_safety/sentinel_safety_gate_YYYY-MM-DD.md`
+- **Session Log:** `reports/tunnel_sessions/tunnel_session_log_YYYY-MM-DD.md`
+- **Risk Registry:** `reports/voice_dispatch/voice_risk_registry.md`
+- **Intake Router:** `reports/knowledge_intake/knowledge_intake_router_status_YYYY-MM-DD.md`
+- **Unified Summary:** `reports/sentinel_safety/sentinel_safety_summary_YYYY-MM-DD.md`
+
+---
+
+## 🧭 Next Recommended Phase
+* **Offline Knowledge Ingestion Engine Integration**
+  - Integrate offline web scraper assets and document parsing scripts that interface only with the secure staging directory (\`staging/knowledge_harvest/\`).
+* **NotebookLM MCP Gateway Verification**
+  - Verify authorization handshakes and connection protocols with the NotebookLM MCP sidecar bridge in dry-run mode before unlocking execution.
+

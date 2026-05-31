@@ -77,7 +77,17 @@
     "narrator-sources": "tsx scripts/narrator-sources.ts",
     "narrator-validate": "tsx scripts/narrator-validate.ts",
     "narrator-brief": "tsx scripts/narrator-brief.ts",
-    "narrator-brief-help": "tsx scripts/narrator-brief-help.ts"
+    "narrator-brief-help": "tsx scripts/narrator-brief-help.ts",
+    "narrator-live-feed": "tsx scripts/narrator-live-feed.ts",
+    "narrator-live-feed-help": "tsx scripts/narrator-live-feed-help.ts",
+    "narrator-feed-watch": "tsx scripts/narrator-feed-watch.ts",
+    "narrator-voice-sync": "tsx scripts/narrator-voice-sync.ts",
+    "narrator-voice-sync-help": "tsx scripts/narrator-voice-sync-help.ts",
+    "sentinel:safety": "tsx tools/sentinel_safety_gate.ts",
+    "sentinel:tunnel-log": "tsx tools/tunnel_session_logger.ts",
+    "sentinel:voice-risk": "tsx tools/voice_risk_registry.ts",
+    "sentinel:knowledge-router": "tsx tools/knowledge_intake_router.ts",
+    "sentinel:safety-report": "tsx tools/sentinel_safety_report.ts"
   },
   "keywords": [
     "antigravity",

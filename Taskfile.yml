@@ -359,6 +359,31 @@ tasks:
     cmds:
       - python3 tools/ai_narrator.py --watch
 
+  narrator-live-feed:
+    desc: "Compile and aggregate read-only live dashboard feeds and event logs"
+    cmds:
+      - npm run narrator-live-feed -- {{.CLI_ARGS}}
+
+  narrator-live-feed-help:
+    desc: "Print help commands for the live feed controller"
+    cmds:
+      - npm run narrator-live-feed-help
+
+  narrator-feed-watch:
+    desc: "Run the local read-only file watcher daemon for narrator feed updates"
+    cmds:
+      - npm run narrator-feed-watch
+
+  narrator-voice-sync:
+    desc: "Compile and stage voice narration packets and VNP queue files"
+    cmds:
+      - npm run narrator-voice-sync -- {{.CLI_ARGS}}
+
+  narrator-voice-sync-help:
+    desc: "Print help commands for the voice narration sync controller"
+    cmds:
+      - npm run narrator-voice-sync-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -378,3 +403,29 @@ tasks:
     desc: "Announce completion via Voice Narrative Protocol"
     cmds:
       - bash -c 'source /Users/alexanderanthony/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
+
+  sentinel:safety:
+    desc: "Run Sentinel safety gate configuration checks"
+    cmds:
+      - npm run sentinel:safety
+
+  sentinel:tunnel-log:
+    desc: "Record and audit public tunnel sessions"
+    cmds:
+      - npm run sentinel:tunnel-log -- {{.CLI_ARGS}}
+
+  sentinel:voice-risk:
+    desc: "Generate the Voice Command Risk Registry"
+    cmds:
+      - npm run sentinel:voice-risk
+
+  sentinel:knowledge-router:
+    desc: "Stage incoming knowledge sources and check routing constraints"
+    cmds:
+      - npm run sentinel:knowledge-router
+
+  sentinel:safety-report:
+    desc: "Compile safety status reports into unified summary"
+    cmds:
+      - npm run sentinel:safety-report
+

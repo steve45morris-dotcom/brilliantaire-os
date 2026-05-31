@@ -97,8 +97,8 @@
 
 ---
 
-## [2026-05-31T12:06:56.406Z] Command Attempt: "notebooklm-mcp-auth-help"
-- **Matched Command:** `notebooklm-mcp-auth-help`
+## [2026-05-31T12:16:43.764Z] Command Attempt: "narrator-brief-help"
+- **Matched Command:** `narrator-brief-help`
 - **Alias Used:** `false`
 - **Owning Agent:** `Knowledge Librarian`
 - **Risk Level:** `low`
@@ -108,30 +108,8 @@
 
 ---
 
-## [2026-05-31T12:08:06.602Z] Command Attempt: "notebooklm-mcp-auth scan"
-- **Matched Command:** `notebooklm-mcp-auth`
-- **Alias Used:** `false`
-- **Owning Agent:** `Knowledge Librarian`
-- **Risk Level:** `medium`
-- **Confirmed:** `false`
-- **Result Status:** `Success`
-- **Exit Code:** `0`
-
----
-
-## [2026-05-31T12:08:26.460Z] Command Attempt: "notebook auth"
-- **Matched Command:** `notebooklm-mcp-auth`
-- **Alias Used:** `true`
-- **Owning Agent:** `Knowledge Librarian`
-- **Risk Level:** `medium`
-- **Confirmed:** `false`
-- **Result Status:** `Blocked: Alias Used for Exact Name`
-- **Exit Code:** `1`
-
----
-
-## [2026-05-31T12:37:34.866Z] Command Attempt: "notebooklm-mcp-auth-help"
-- **Matched Command:** `notebooklm-mcp-auth-help`
+## [2026-05-31T12:18:07.968Z] Command Attempt: "narrator-brief all"
+- **Matched Command:** `narrator-brief`
 - **Alias Used:** `false`
 - **Owning Agent:** `Knowledge Librarian`
 - **Risk Level:** `low`
@@ -141,25 +119,25 @@
 
 ---
 
-## [2026-05-31T12:39:14.815Z] Command Attempt: "notebooklm-mcp-auth scan"
-- **Matched Command:** `notebooklm-mcp-auth`
+## [2026-05-31T12:51:30.464Z] Command Attempt: "narrator-live-feed-help"
+- **Matched Command:** `narrator-live-feed-help`
 - **Alias Used:** `false`
 - **Owning Agent:** `Knowledge Librarian`
-- **Risk Level:** `medium`
+- **Risk Level:** `low`
 - **Confirmed:** `false`
 - **Result Status:** `Success`
 - **Exit Code:** `0`
 
 ---
 
-## [2026-05-31T12:40:09.854Z] Command Attempt: "notebook auth"
-- **Matched Command:** `notebooklm-mcp-auth`
-- **Alias Used:** `true`
+## [2026-05-31T12:52:36.158Z] Command Attempt: "narrator-live-feed generate"
+- **Matched Command:** `narrator-live-feed`
+- **Alias Used:** `false`
 - **Owning Agent:** `Knowledge Librarian`
-- **Risk Level:** `medium`
+- **Risk Level:** `low`
 - **Confirmed:** `false`
-- **Result Status:** `Blocked: Alias Used for Exact Name`
-- **Exit Code:** `1`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
 
 ---
 

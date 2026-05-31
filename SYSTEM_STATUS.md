@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N2: Narrator Brief Composer — COMPLETE
+- **Current Phase:** Phase N4: Voice Narration Sync — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -51,6 +51,8 @@
 - **NotebookLM MCP Live Authorization Validation (Phase 11E):** Offline credentials validation checks, minimum privilege scope reviews, and activation checklist compiling.
 - **NotebookLM MCP Connector Hardening (Phase 11F):** Staged credentials env template, MCP JSON configs generation, local credentials hygiene scan, and hardening readiness recheck.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
+- **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
+- **Voice Narration Sync (Phase N4):** Safe voice sync staging layer (`scripts/narrator-voice-sync.ts`) that compiles voice-ready packets, stages VNP queue files, and generates execution sync logs.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
@@ -63,41 +65,37 @@
 ## 🚀 Next Upgrade
 - **Phase 22: Universal Autonomy Validation & Ledger Handover**
 
-
-
-
-
 ## Obsidian Intelligence Snapshot
 
-- **Last Ingest:** 5/29/2026, 9:27:57 AM
+- **Last Ingest:** 5/31/2026, 5:20:15 AM
 - **Vaults Scanned:**
   - `/Users/alexanderanthony/AlexanderOSVault`
 - **Top Relevant Files:**
-  - [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md) (Score: 25.5)
-  - [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md) (Score: 19.5)
-  - [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18)
-  - [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 17)
-  - [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md) (Score: 16.5)
+  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
 - **Extracted Next Actions:**
-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] 3. Execute the smallest useful next step. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] A project with no clear next action gets archived. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))
-  - [ ] The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))
-  - [ ] The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))
+  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 - **Extracted Blockers:**
-  - ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))
-  - ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))
-  - ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md))
-  - ⚠️ learnings: Treat install requests as execution work, `astroship` built cleanly, `open-react-template` may need network for Google Fonts, `chai-builder-sdk` is blocked by upstream `TS6133`, and Onlook stalled around Bun extraction for `gpt-tokenizer`. (in [memory_summary](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md))
+  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 - **Extracted Decisions:**
-  - ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))
-  - ⚖️ | Tier | Project | Decision | Reason | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))
-  - ⚖️ | 2 | The One System | Maintain as control layer | It governs memory, agents, workflows, and decisions | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))
+  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
