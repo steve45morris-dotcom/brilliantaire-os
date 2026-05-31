@@ -207,3 +207,80 @@
 
 ---
 
+## [2026-05-30T23:17:59.918Z] Command Attempt: "manual-release-help"
+- **Matched Command:** `manual-release-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T23:18:35.260Z] Command Attempt: "manual-release sporty checklist"
+- **Matched Command:** `manual-release`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-30T23:19:09.934Z] Command Attempt: "manual posting"
+- **Matched Command:** `manual-release`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T00:09:11.606Z] Command Attempt: "distribution-metrics-help"
+- **Matched Command:** `distribution-metrics-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T00:09:25.367Z] Command Attempt: "distribution-metrics sporty entry youtube"
+- **Matched Command:** `distribution-metrics`
+- **Alias Used:** `false`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T00:09:29.900Z] Command Attempt: "metrics"
+- **Matched Command:** `distribution-metrics`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T00:09:35.139Z] Command Attempt: "distribution sporty entry youtube"
+- **Matched Command:** `distribution-metrics`
+- **Alias Used:** `true`
+- **Owning Agent:** `Creative Revenue Strategist`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

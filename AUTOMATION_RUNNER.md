@@ -59,3 +59,30 @@ Any future background automation or cron execution must:
 1. Load schedules strictly through a sandbox task scheduler (e.g. `Taskfile`).
 2. Directly invoke the `automation-runner` with a target routine.
 3. Keep all write buffers non-destructive and isolated.
+
+---
+
+## 6. Bootstrap & Startup
+
+The system is configured to boot automatically on user login using a macOS LaunchAgent.
+
+### Plist File Placement
+The LaunchAgent configuration plist file is saved at:
+`/Users/alexanderanthony/Library/LaunchAgents/com.sentinel.boot.plist`
+
+### LaunchAgent Details
+- **Label:** `com.sentinel.boot`
+- **Program:** Runs `/Users/alexanderanthony/sentinel-os/sentinel_boot.sh` using `/bin/bash`.
+- **RunAtLoad:** Set to `true` (executes when user logs in).
+- **Logging:** Stdout and Stderr are redirected to `/Users/alexanderanthony/sentinel_boot.log`.
+
+### Manual Commands
+To register and start the daemon manually:
+```bash
+launchctl bootstrap gui/501 /Users/alexanderanthony/Library/LaunchAgents/com.sentinel.boot.plist
+```
+
+To stop and unregister the daemon manually:
+```bash
+launchctl bootout gui/501 /Users/alexanderanthony/Library/LaunchAgents/com.sentinel.boot.plist
+```

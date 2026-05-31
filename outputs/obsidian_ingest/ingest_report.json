@@ -1,20 +1,90 @@
 {
-  "timestamp": "2026-05-29T16:44:58.561Z",
+  "timestamp": "2026-05-30T23:55:06.514Z",
   "vaultsScanned": [
     "/Users/alexanderanthony/AlexanderOSVault"
   ],
-  "filesScannedCount": 175,
+  "filesScannedCount": 187,
   "statistics": {
     "todos": 3,
-    "nexts": 158,
-    "decisions": 75,
-    "blockeds": 28
+    "nexts": 205,
+    "decisions": 94,
+    "blockeds": 43
   },
   "files": [
     {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md",
       "title": "🎯 Next Actions",
       "lastModified": "2026-05-29T16:37:15.096Z",
+      "tags": [],
+      "headings": [
+        "# 🎯 Next Actions",
+        "## Do Now",
+        "## Do Next",
+        "## Schedule",
+        "## Pause",
+        "## Archive",
+        "## Obsidian Intelligence Snapshot"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "# 🎯 Next Actions",
+          "- [x] Add operational intelligence scripts (audit, brief, next)",
+          "- [x] Create next-action generator",
+          "## Do Next",
+          "- **Extracted Next Actions:**",
+          "- [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] 3. Execute the smallest useful next step. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] A project with no clear next action gets archived. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))"
+        ],
+        "decision": [
+          "- [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18)",
+          "- **Extracted Decisions:**",
+          "- ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))",
+          "- ⚖️ | Tier | Project | Decision | Reason | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))",
+          "- ⚖️ | 2 | The One System | Maintain as control layer | It governs memory, agents, workflows, and decisions | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))"
+        ],
+        "blocked": [
+          "- [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))",
+          "- ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md))",
+          "- ⚠️ learnings: Treat install requests as execution work, `astroship` built cleanly, `open-react-template` may need network for Google Fonts, `chai-builder-sdk` is blocked by upstream `TS6133`, and Onlook stalled around Bun extraction for `gpt-tokenizer`. (in [memory_summary](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md))"
+        ],
+        "icyflamze": [],
+        "treeGroove": [
+          "- [ ] Build automated release pipeline integration for Tree Groove Records"
+        ],
+        "brilliantier": [],
+        "profBetGeng": [
+          "- [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))"
+        ],
+        "antigravity": [
+          "- [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md) (Score: 19.5)",
+          "- [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md) (Score: 16.5)",
+          "- [ ] The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))"
+        ]
+      },
+      "relevanceScore": 58
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md",
+      "title": "🎯 Next Actions",
+      "lastModified": "2026-05-29T16:53:15.288Z",
       "tags": [],
       "headings": [
         "# 🎯 Next Actions",
@@ -150,9 +220,142 @@
       "relevanceScore": 57.5
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md",
+      "title": "📂 Projects Matrix",
+      "lastModified": "2026-05-29T16:53:15.290Z",
+      "tags": [],
+      "headings": [
+        "# 📂 Projects Matrix",
+        "## Obsidian Intelligence Snapshot"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "| Project Name | Purpose | Status | Priority | Next Action | Related Tools | Notes |",
+          "- **Extracted Next Actions:**",
+          "- [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] 3. Execute the smallest useful next step. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] A project with no clear next action gets archived. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- [ ] The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))"
+        ],
+        "decision": [
+          "- [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18)",
+          "- **Extracted Decisions:**",
+          "- ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))",
+          "- ⚖️ | Tier | Project | Decision | Reason | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))",
+          "- ⚖️ | 2 | The One System | Maintain as control layer | It governs memory, agents, workflows, and decisions | (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md))"
+        ],
+        "blocked": [
+          "- [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))",
+          "- ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md))",
+          "- ⚠️ learnings: Treat install requests as execution work, `astroship` built cleanly, `open-react-template` may need network for Google Fonts, `chai-builder-sdk` is blocked by upstream `TS6133`, and Onlook stalled around Bun extraction for `gpt-tokenizer`. (in [memory_summary](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md))"
+        ],
+        "icyflamze": [
+          "| **Icyflamze** | Creative persona and brand narrative strategy | Active | High | Refine lyric flow & voice bridge integration | VibeVoice, Oracle | Mr. 2 Lighter identity stack baseline |"
+        ],
+        "treeGroove": [
+          "| **Tree Groove Records** | Independent label operations and music distribution pipeline | Active | High | Align master release schedule | Remotion, WebAudits | Digital release orchestration focus |"
+        ],
+        "brilliantier": [
+          "| **Brilliantier OS** | Local tactical executor with strict CIP rules | Building | Critical | Manage active agent execution | Taskfile, tsx | Self-aware OS core building phase |"
+        ],
+        "profBetGeng": [
+          "| **ProfBetGeng** | High-signal sports betting analytics and pricing engine | Active | Medium | Optimize betting odds tracking scripts | Looker, Python REST | Analytics-heavy backend layer |",
+          "- [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))"
+        ],
+        "antigravity": [
+          "| **Antigravity Lab** | Development lab and CLI testing sandbox | Active | Medium | Test local plugin boundaries | Antigravity CLI | Testing ground for agent mesh scripts |",
+          "- [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md) (Score: 19.5)",
+          "- [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md) (Score: 16.5)",
+          "- [ ] The user approved the next phase with “Okay Approved Next Phase” and “Okay Lets Go” -> when they approve, they expect concrete build work rather than more discussion. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user explicitly said: “I want to move this project to my Antigravity CLI so it helps with the building as it has more tools for that” -> future work should treat Antigravity as the preferred next builder when the user asks for a larger rebuild. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- [ ] The user later asked, “Now moving forward what can we do” -> a clear next-step plan and a concrete launch command are useful defaults. (in [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md))",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))"
+        ]
+      },
+      "relevanceScore": 57.5
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md",
       "title": "🛰️ Daily Operating Brief - 2026-05-29",
       "lastModified": "2026-05-29T16:37:15.071Z",
+      "tags": [],
+      "headings": [
+        "# 🛰️ Daily Operating Brief - 2026-05-29",
+        "## 🛠️ System Status",
+        "## 📂 Active Projects",
+        "## 🔥 Top 5 Priorities",
+        "## ⚖️ Decisions Needing Review",
+        "## ⚠️ Blockers & Risks",
+        "## 💸 Money-Making Opportunities",
+        "## 🎨 Creative Opportunities",
+        "## 💻 Tech Build Opportunities",
+        "## 🟩 Green Flag Execution Steps",
+        "## ⏭️ Next 7 Moves"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "🔥 **Icyflamze** - Next Action: Refine lyric flow & voice bridge integration",
+          "🔥 **Tree Groove Records** - Next Action: Align master release schedule",
+          "🔥 **Brilliantier OS** - Next Action: Scaffold operational intelligence layer",
+          "🔥 **Sporty No Go Take My Soul Rollout** - Next Action: Draft distribution & visual forge prompts",
+          "🔥 **Visual Identity System** - Next Action: Catalog theme color tokens (HSL)",
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "## ⏭️ Next 7 Moves",
+          "1. Add operational intelligence scripts (audit, brief, next)",
+          "4. Create next-action generator"
+        ],
+        "decision": [
+          "## ⚖️ Decisions Needing Review"
+        ],
+        "blocked": [
+          "- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))",
+          "- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))"
+        ],
+        "icyflamze": [
+          "- **Icyflamze** (Active) - Purpose: Creative persona and brand narrative strategy",
+          "🔥 **Icyflamze** - Next Action: Refine lyric flow & voice bridge integration",
+          "- **Icyflamze Lyrical Integration:** Run VibeVoice voice synthesis checks on new verse drafts."
+        ],
+        "treeGroove": [
+          "- **Tree Groove Records** (Active) - Purpose: Independent label operations and music distribution pipeline",
+          "🔥 **Tree Groove Records** - Next Action: Align master release schedule",
+          "- **Tree Groove Records Distribution:** Finalize digital release pathways to maximize launch day revenues."
+        ],
+        "brilliantier": [
+          "- **Brilliantier OS** (Building) - Purpose: Local tactical executor with strict CIP rules",
+          "🔥 **Brilliantier OS** - Next Action: Scaffold operational intelligence layer"
+        ],
+        "profBetGeng": [
+          "- **ProfBetGeng** (Active) - Purpose: High-signal sports betting analytics and pricing engine",
+          "- **ProfBetGeng Analytics Optimization:** Execute betting odds analysis scripts to identify high-signal opportunities."
+        ],
+        "antigravity": [
+          "- **Antigravity Lab** (Active) - Purpose: Development lab and CLI testing sandbox",
+          "- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))",
+          "- **Antigravity CLI Plugins:** Test new schema bounds and validate sandbox file boundaries."
+        ]
+      },
+      "relevanceScore": 34.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29_1780073595.md",
+      "title": "🛰️ Daily Operating Brief - 2026-05-29",
+      "lastModified": "2026-05-29T16:53:15.283Z",
       "tags": [],
       "headings": [
         "# 🛰️ Daily Operating Brief - 2026-05-29",
@@ -1173,6 +1376,40 @@
       "relevanceScore": 6.5
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-30.md",
+      "title": "2026-05-30",
+      "lastModified": "2026-05-30T17:06:02.746Z",
+      "tags": [],
+      "headings": [
+        "# 2026-05-30",
+        "## Focus",
+        "## Active Projects",
+        "## Claude/Codex Sessions",
+        "## Librarian Skill Audits",
+        "## Decisions Made",
+        "## Next Actions",
+        "## Notes"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "## Next Actions",
+          "<!-- next-actions:start -->",
+          "<!-- next-actions:end -->"
+        ],
+        "decision": [
+          "## Decisions Made"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 6.5
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/memory_summary.md",
       "title": "memory_summary",
       "lastModified": "2026-05-29T16:07:13.841Z",
@@ -1872,6 +2109,32 @@
       "relevanceScore": 5
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/decisions/decisions_snapshot_2026-05-29_1780073595.md",
+      "title": "⚖️ Decision Log",
+      "lastModified": "2026-05-29T16:53:15.284Z",
+      "tags": [],
+      "headings": [
+        "# ⚖️ Decision Log"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [
+          "# ⚖️ Decision Log",
+          "| Decision | Date | Reason | Impact | Reversal Condition |"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": [
+          "| **Maintain Collision Isolation Protocol** | 2026-05-29 | Prevent collision between GEMINI and other CLI systems (Antigravity/Codex) | Isolated `.agents/` and `.gemini/` directories | Re-evaluate if unified cross-platform agents are introduced |"
+        ]
+      },
+      "relevanceScore": 5
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/01 Daily Logs/2026-05-18.md",
       "title": "2026-05-18",
       "lastModified": "2026-05-18T16:50:06.350Z",
@@ -2098,6 +2361,37 @@
         ],
         "blocked": [],
         "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 4
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/f80a07d4-53c5-460f-99c4-9649d594af49/agent_and_feature_recommendations.md",
+      "title": "Strategic Blueprint: OS Agent & Feature Roadmap",
+      "lastModified": "2026-05-29T19:14:37.013Z",
+      "tags": [],
+      "headings": [
+        "# Strategic Blueprint: OS Agent & Feature Roadmap",
+        "## 🔌 2. Local System Adapters (Background Daemons)",
+        "### 📝 Obsidian Vault Parser Daemon",
+        "### 🎛️ Dagu API Workflows Controller",
+        "### 📻 Hands-Free Vocal Command Parser",
+        "## 🛠️ Recommended Activation Path"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "* **Tool**: REST gateway endpoint connecting Next.js to Dagu.",
+          "* **Capability**: Add tactile action buttons next to the scheduler widgets. Clicking *\"FORCE REPO REBUILD\"* or *\"RUN HEALTH SWEEP\"* triggers the corresponding Dagu DAG workflow asynchronously, updating the screen logs."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [
+          "To evolve the **Icyflamze Creative OS** from a high-fidelity visual telemetry board into a fully autonomous command center, I propose deploying three architectural upgrades."
+        ],
         "treeGroove": [],
         "brilliantier": [],
         "profBetGeng": [],
@@ -2482,9 +2776,39 @@
       "relevanceScore": 3.5
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Agent Workflows/execution_captain.md",
+      "title": "Execution Captain",
+      "lastModified": "2026-05-29T16:52:34.548Z",
+      "tags": [],
+      "headings": [
+        "# Execution Captain",
+        "## Purpose",
+        "## Inputs",
+        "## Output",
+        "## Decision Rules",
+        "## Current Daily Lane"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "5. Output only the next three commands, not a long backlog."
+        ],
+        "decision": [
+          "## Decision Rules"
+        ],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 3.5
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/logs/write_log_2026-05-29.md",
       "title": "📝 Safe Write Log: 2026-05-29",
-      "lastModified": "2026-05-29T16:37:15.128Z",
+      "lastModified": "2026-05-29T16:53:15.293Z",
       "tags": [],
       "headings": [
         "# 📝 Safe Write Log: 2026-05-29",
@@ -2493,10 +2817,10 @@
       "matchedLines": {
         "todo": [],
         "next": [
-          "- Staged: `next_actions_2026-05-29.md` -> Written: `brilliantaire-briefs/next-actions/next_actions_2026-05-29.md`"
+          "- Staged: `next_actions_2026-05-29.md` -> Written: `brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md`"
         ],
         "decision": [
-          "- Staged: `decisions_snapshot_2026-05-29.md` -> Written: `brilliantaire-briefs/decisions/decisions_snapshot_2026-05-29.md`"
+          "- Staged: `decisions_snapshot_2026-05-29.md` -> Written: `brilliantaire-briefs/decisions/decisions_snapshot_2026-05-29_1780073595.md`"
         ],
         "blocked": [],
         "icyflamze": [],
@@ -2648,6 +2972,39 @@
         "antigravity": [
           "When routing tasks, explicitly map the required worker to one of the registered Antigravity agents (e.g., assigning Mercedes Rollout Architect as the Distribution Worker for Lane C)."
         ]
+      },
+      "relevanceScore": 3
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/8e442356-5fea-4b33-bde6-95e9da9b207f/scheduler_system_summary.md",
+      "title": "Phase 8B: Safe Background Scheduler Integration",
+      "lastModified": "2026-05-30T17:06:45.288Z",
+      "tags": [],
+      "headings": [
+        "# Phase 8B: Safe Background Scheduler Integration",
+        "## 📂 Deliverables Created",
+        "## 📈 Verification Outputs",
+        "### 1. Scheduler Health Status",
+        "### 2. Registered Schedules",
+        "### 3. Generated Sample Report (`daily_scheduler_report.md`)",
+        "# Daily Scheduler Report",
+        "## 📈 System Metrics (Last 24 Hours)",
+        "## 🛡️ Safety & Audits Verification",
+        "### 4. Recovery Routine (Missed Schedules)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "Schedule Name             Routine         Frequency    Status   Last Run                  Next Run",
+          "If nextRun is in the past, the schedule triggers exactly once, and calculates the next run date relative to the current time, preventing queue bulk executes."
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
       },
       "relevanceScore": 3
     },
@@ -3482,6 +3839,31 @@
         "todo": [],
         "next": [
           "▲ Next.js 16.2.6 (Turbopack)"
+        ],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 1.5
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/f80a07d4-53c5-460f-99c4-9649d594af49/ui_redesign_walkthrough.md",
+      "title": "UI Cybernetic Refactoring: 100x HUD Upgrade (Cockpit Edition)",
+      "lastModified": "2026-05-29T20:53:23.877Z",
+      "tags": [],
+      "headings": [
+        "# UI Cybernetic Refactoring: 100x HUD Upgrade (Cockpit Edition)",
+        "## 🔌 6. Obsidian Vault Sync Daemon",
+        "## 📈 Compiled Production Preview"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [
+          "The Next.js compiler completed static optimizations in **11.9 seconds**. You can launch the dashboard locally in your browser immediately:"
         ],
         "decision": [],
         "blocked": [],
@@ -4724,6 +5106,29 @@
       "relevanceScore": 0
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/68401107-a383-4128-ae17-621b461dafe1/walkthrough.md",
+      "title": "Cyberpunk Workspace Landing Page: Production Handoff",
+      "lastModified": "2026-05-30T19:36:41.798Z",
+      "tags": [],
+      "headings": [
+        "# Cyberpunk Workspace Landing Page: Production Handoff",
+        "## 🚀 Direct Local Handoff Preview",
+        "## 🛠️ Stack Configuration Verified"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/6eed78fa-d51c-446a-8c13-f7c195676c88/docker_integration_plan.md",
       "title": "Docker Integration Blueprint",
       "lastModified": "2026-05-23T09:49:28.715Z",
@@ -4826,6 +5231,32 @@
       "relevanceScore": 0
     },
     {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/b2026e25-6530-4820-b7e1-158006906faf/supernova_design_blueprint.md",
+      "title": "🌌 SUPERNOVA COCKPIT: SENTINEL OS REDESIGN BLUEPRINT",
+      "lastModified": "2026-05-30T23:32:57.279Z",
+      "tags": [],
+      "headings": [
+        "# 🌌 SUPERNOVA COCKPIT: SENTINEL OS REDESIGN BLUEPRINT",
+        "## 2. Interactive Mechanics",
+        "### A. WebGL 3D Supernova Core",
+        "### B. 3D Card Tilt (Perspective Physics)",
+        "### C. Apple-Style Fluid Audio Visualizer",
+        "### D. Blueprint Details (HUD Accents)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
       "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/b9b3975c-aeb9-422b-b5a7-cea1a8b35254/task.md",
       "title": "Task Checklist: Brilliantaire OS Rebuild",
       "lastModified": "2026-05-27T21:18:00.894Z",
@@ -4892,6 +5323,29 @@
       "headings": [
         "# 🌌 Sovereign Stack Integration Blueprint — Alexander OS",
         "## 🔍 The Gaps (What is Unwired?)"
+      ],
+      "matchedLines": {
+        "todo": [],
+        "next": [],
+        "decision": [],
+        "blocked": [],
+        "icyflamze": [],
+        "treeGroove": [],
+        "brilliantier": [],
+        "profBetGeng": [],
+        "antigravity": []
+      },
+      "relevanceScore": 0
+    },
+    {
+      "filePath": "/Users/alexanderanthony/AlexanderOSVault/04 Claude/Antigravity Brain/f80a07d4-53c5-460f-99c4-9649d594af49/project_lane_runner_walkthrough.md",
+      "title": "Project Lane Runner Walkthrough",
+      "lastModified": "2026-05-29T17:20:12.260Z",
+      "tags": [],
+      "headings": [
+        "# Project Lane Runner Walkthrough",
+        "## 📂 Created & Modified Files",
+        "## 📈 Generated Artifact Reports"
       ],
       "matchedLines": {
         "todo": [],

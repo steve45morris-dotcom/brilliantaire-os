@@ -203,6 +203,8 @@ export function MeshTopology() {
 
   useEffect(() => {
     void load();
+    const interval = setInterval(load, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const nodes = data?.nodes || [];
