@@ -771,6 +771,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-local-secrets-help',
+    aliases: ['notebook secrets help', 'mcp secrets help'],
+    description: 'Print commands for NotebookLM MCP Local Secrets Staging Guide',
+    npmScript: 'notebooklm-mcp-local-secrets-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-local-secrets',
+    aliases: ['notebook secrets', 'mcp secrets'],
+    description: 'Execute NotebookLM MCP Local Secrets Staging Guide checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-local-secrets',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'notebooklm-mcp-fix-cycle-help',
     aliases: ['notebook fix help', 'mcp fix help'],
     description: 'Print commands for NotebookLM MCP Setup Fix Cycle',
@@ -858,6 +880,7 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     enabled: true,
     requiresExactName: true
   },
+  {
     name: 'grounded-index-help',
     aliases: ['graph help', 'grounded help'],
     description: 'Print help menu for grounded intelligence graph index',
@@ -878,6 +901,61 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'grounded-narrator-review-help',
+    aliases: ['narrator review help', 'grounded narrator help'],
+    description: 'Print help menu for grounded narrator review queue',
+    npmScript: 'grounded-narrator-review-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'grounded-narrator-review',
+    aliases: ['narrator review', 'grounded narrator'],
+    description: 'Compile local review queue and stage briefs from grounded index graphs',
+    npmScript: 'grounded-narrator-review',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'git-asset-help',
+    aliases: ['git asset help', 'repo asset help'],
+    description: 'Print help menu and policies for Git Asset Guard',
+    npmScript: 'git-asset-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'git-asset-audit',
+    aliases: ['asset audit', 'repo audit'],
+    description: 'Run Git Asset Guard scan and policy compliance check',
+    npmScript: 'git-asset-audit',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'git-prepush-check',
+    aliases: ['prepush check', 'push check'],
+    description: 'Run prepush compiler compile, system audits, and Git asset checks sequentially',
+    npmScript: 'git-prepush-check',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
   },
   {
     name: 'list-schedules',
@@ -1093,6 +1171,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['narrator asr', 'asr listener'],
     description: 'Stage and manage local offline speech-to-text transcription and VNP command packets',
     npmScript: 'narrator-asr-listener',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'narrator-asr-backend-help',
+    aliases: ['asr backend help', 'narrator asr backend help'],
+    description: 'Print help commands for the narrator local ASR backend manager',
+    npmScript: 'narrator-asr-backend-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-asr-backend',
+    aliases: ['narrator asr backend', 'asr backend'],
+    description: 'Register and verify local ASR binaries and models offline',
+    npmScript: 'narrator-asr-backend',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',

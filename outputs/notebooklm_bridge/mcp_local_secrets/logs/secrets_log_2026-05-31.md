@@ -1,0 +1,6 @@
+- [2026-05-31T18:12:27.155Z] **ENV-GUIDE**: Env configuration guide generated at: notebooklm_env_local_guide_2026-05-31.md
+- [2026-05-31T18:13:23.588Z] **ENV-GUIDE**: Env configuration guide generated at: notebooklm_env_local_guide_2026-05-31_1780251203.md
+- [2026-05-31T18:14:08.797Z] **CHECKLIST**: Local secret staging checklist compiled at: notebooklm_local_secret_checklist_2026-05-31.md
+- [2026-05-31T18:14:29.352Z] **GITIGNORE-CHECK**: Gitignore secrets safety report generated at: notebooklm_gitignore_secret_check_2026-05-31.md
+- [2026-05-31T18:14:48.301Z] **READINESS-RERUN**: Readiness rerun guide compiled at: notebooklm_readiness_rerun_after_secret_setup_2026-05-31.md
+- [2026-05-31T21:13:50.353Z] **ENV-GUIDE**: Env configuration guide generated at: notebooklm_env_local_guide_2026-05-31_1780262030.md

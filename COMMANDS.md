@@ -98,12 +98,19 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-verify-loop` | `notebook verify`, `mcp verify` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Verification Loop checks. |
 | `notebooklm-mcp-secrets-help` | `notebook secrets help`, `mcp secrets help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Secrets Staging Guide. |
 | `notebooklm-mcp-secrets` | `notebook secrets`, `mcp secrets` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Secrets Staging Guide checks. |
+| `notebooklm-mcp-local-secrets-help` | `notebook secrets help`, `mcp secrets help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Secrets Staging Guide. |
+| `notebooklm-mcp-local-secrets` | `notebook secrets`, `mcp secrets` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Secrets Staging Guide checks. |
 | `notebooklm-mcp-live-help` | `notebook live help`, `mcp live help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Live Adapter Integration. |
 | `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | High | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
 | `notebooklm-response-intelligence-help` | `response intelligence help`, `notebook intelligence help` | Knowledge Librarian | Low | No | Print commands for NotebookLM response intelligence processor. |
 | `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
 | `grounded-index-help` | `graph help`, `grounded help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
 | `grounded-index` | `intelligence graph`, `grounded graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
+| `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
+| `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
+| `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
+| `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
+| `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
@@ -124,6 +131,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-tts-models` | `narrator tts models`, `tts models` | Knowledge Librarian | Medium | Yes | Register, verify, and clean up offline speech synthesis assets and cache. |
 | `narrator-asr-listener-help` | `asr listener help`, `narrator asr help` | Knowledge Librarian | Low | No | Print help commands for the narrator local ASR command listener. |
 | `narrator-asr-listener` | `narrator asr`, `asr listener` | Knowledge Librarian | Medium | Yes | Stage and manage local offline speech-to-text transcription and VNP command packets. |
+| `narrator-asr-backend-help` | `asr backend help`, `narrator asr backend help` | Knowledge Librarian | Low | No | Print help commands for the narrator local ASR backend manager. |
+| `narrator-asr-backend` | `narrator asr backend`, `asr backend` | Knowledge Librarian | Medium | Yes | Register and verify local ASR binaries and models offline. |
+
 
 ---
 

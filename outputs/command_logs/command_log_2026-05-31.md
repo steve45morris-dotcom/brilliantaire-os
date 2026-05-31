@@ -680,3 +680,36 @@
 
 ---
 
+## [2026-05-31T18:25:44.419Z] Command Attempt: "notebooklm-mcp-local-secrets-help"
+- **Matched Command:** `notebooklm-mcp-local-secrets-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:14:00.987Z] Command Attempt: "notebooklm-mcp-local-secrets env-guide"
+- **Matched Command:** `notebooklm-mcp-local-secrets`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:16:05.639Z] Command Attempt: "notebook secrets"
+- **Matched Command:** `notebooklm-mcp-secrets`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

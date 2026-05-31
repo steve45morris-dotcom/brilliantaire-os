@@ -382,6 +382,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-secrets -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-local-secrets-help:
+    desc: "Print NotebookLM MCP Local Secrets Staging Guide safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-local-secrets-help
+
+  notebooklm-mcp-local-secrets:
+    desc: "Run NotebookLM MCP Local Secrets Staging Guide checks safely"
+    cmds:
+      - npm run notebooklm-mcp-local-secrets -- {{.CLI_ARGS}}
+
   notebooklm-mcp-live-help:
     desc: "Print NotebookLM MCP Live Adapter Integration safety manuals"
     cmds:
@@ -410,6 +420,31 @@ tasks:
     desc: "Run Grounded Intelligence Index Graph tasks safely"
     cmds:
       - npm run grounded-index -- {{.CLI_ARGS}}
+
+  grounded-narrator-review-help:
+    desc: "Print Grounded Narrator Review Queue safety manuals"
+    cmds:
+      - npm run grounded-narrator-review-help
+
+  grounded-narrator-review:
+    desc: "Run Grounded Narrator Review Queue tasks safely"
+    cmds:
+      - npm run grounded-narrator-review -- {{.CLI_ARGS}}
+
+  git-asset-help:
+    desc: "Print Git Asset Guard policy manual"
+    cmds:
+      - npm run git-asset-help
+
+  git-asset-audit:
+    desc: "Run Git Asset Guard scan and policy audit"
+    cmds:
+      - npm run git-asset-audit
+
+  git-prepush-check:
+    desc: "Run prepush TypeScript compiler compile, static systems audit, and Git Asset safety checks"
+    cmds:
+      - npm run git-prepush-check
 
   scheduler:
     desc: "Execute scheduler CLI operations"
@@ -523,6 +558,17 @@ tasks:
     desc: "Print help commands for the narrator local ASR command listener"
     cmds:
       - npm run narrator-asr-listener-help
+
+  narrator-asr-backend:
+    desc: "Register and verify ASR binaries and models offline"
+    cmds:
+      - npm run narrator-asr-backend -- {{.CLI_ARGS}}
+
+  narrator-asr-backend-help:
+    desc: "Print help commands for the narrator local ASR backend manager"
+    cmds:
+      - npm run narrator-asr-backend-help
+
 
 
   validate:

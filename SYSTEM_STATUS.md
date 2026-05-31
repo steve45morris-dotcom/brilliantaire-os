@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 11O: Grounded Intelligence Index Graph — COMPLETE
+- **Current Phase:** Phase R2: Git Asset Guard and Pre-Push Safety Audit — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -55,7 +55,7 @@
 - **MCP Local Setup Correction Pack (Phase 11I):** Offline blocker corrections compiler, environment key maps, config checklists, push recovery guides, and readiness rerun guides.
 - **Manual MCP Setup Completion Review (Phase 11J):** Offline checking of local credentials, manual setup reviews, live eligibility determinations, and manual operator sign-off checklists.
 - **MCP Setup Fix Cycle (Phase 11K):** Repeatable local check and correction loop to generate fix task lists, readiness comparison reports, and next-pass runbooks, tracking status metrics directly to the console.
-- **NotebookLM MCP Local Secrets Staging Guide (Phase 11L):** Local-only environment configurations staging, plaintext credentials redaction check scanner, and staging readiness report compiler.
+- **NotebookLM MCP Local Secrets Staging Guide (Phase 11L):** Local-only environment configurations staging, .env.local setup guides, secret checklists, gitignore safety audits, and readiness rerun runbooks.
 - **Local MCP Setup Verification Loop (Phase 11L):** Repeatable local validation chain execution, dynamic readiness score evaluator, and final setup eligibility decision compiler.
 - **NotebookLM MCP Live Adapter Integration (Phase 11M):** Restricted read-only live query adapter scaffolding, readiness test gate auditor, and manual execution instructions fallback writer.
 - **Live Response Intelligence Processor (Phase 11N):** Safe response intelligence processor that parses normalized NotebookLM responses and converts them into structured insight indexes, citation maps, weak claims reports, workflow cards, OS module suggestions, and Obsidian-staged notes.
@@ -67,6 +67,9 @@
 - **Local TTS Audio Renderer (Phase N5B):** Safe local offline audio renderer (`scripts/narrator-tts-renderer.ts`) compiling approved request markdown text into local wave/mp3 voice scripts via Piper, verifying approved states and logging error/success reports.
 - **Local TTS Model & Cache Manager (Phase N5C):** Secure offline registration, SHA256 checksum verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.
 - **Local ASR Command Listener (Phase N5D):** Safe offline speech-to-text transcriber (`scripts/narrator-asr-listener.ts`) converting staged audio input into verified markdown transcripts and VNP command packets requiring manual verification.
+- **Local ASR Backend & Model Manager (Phase N5D.1):** Secure offline registration, SHA256 verification, and integrity auditing of local Whisper binaries and GGML models.
+- **Git Asset Guard and Pre-Push Safety Audit (Phase R2):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
+
 
 
 ## 📭 Missing Capabilities

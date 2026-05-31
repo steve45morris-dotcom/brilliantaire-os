@@ -241,17 +241,24 @@
 - [x] Generate MCP fix task list
 - [x] Generate readiness comparison report
 - [x] Generate next-pass report
-- [ ] Complete local env/config setup outside repo
-- [ ] Rerun readiness gate after local setup
+- [x] Complete local env/config setup outside repo
+- [x] Rerun readiness gate after local setup
 
+
+- [x] Build NotebookLM MCP Local Secrets Staging Guide
+- [x] Generate .env.local setup guide
+- [x] Generate local secret checklist
+- [x] Run gitignore safety check
+- [x] Generate readiness rerun guide
+- [x] Manually configure .env.local outside repo
+- [x] Rerun readiness gate after local setup
 
 ## Do Next
-- [x] Build NotebookLM MCP Local Secrets Staging Guide
-- [x] Create placeholder env templates
-- [x] Run redaction check
-- [x] Generate local secrets readiness report
-- [x] Review blockers
-- [x] Prepare live adapter only after readiness score improves
+- [x] Build Git Asset Guard
+- [x] Run Git asset audit
+- [x] Run pre-push safety check
+- [ ] Review forbidden tracked files
+- [ ] Add pre-push routine to future release workflow
 
 ## Do Next
 - [x] Build NotebookLM MCP Live Adapter

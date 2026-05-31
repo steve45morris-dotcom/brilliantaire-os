@@ -53,6 +53,12 @@ interface BackendStatus {
 }
 
 function discoverBackend(): BackendStatus {
+  // 1. Check project-registered whisper binary
+  const localWhisper = path.resolve(process.cwd(), 'bin/whisper');
+  if (fs.existsSync(localWhisper)) {
+    return { available: true, detectedType: 'registered-whisper-cli', binaryPath: localWhisper };
+  }
+
   // Check whisper-cpp in PATH
   try {
     execSync('which whisper-cpp', { stdio: 'ignore' });
@@ -281,9 +287,20 @@ function handleTranscribe(audioPath: string) {
   let confidence = DEFAULT_CONFIDENCE_THRESHOLD;
 
   try {
-    if (backend.detectedType === 'whisper-cpp') {
-      // whisper-cpp -f <file> -nt -otxt
-      // This outputs text to file.txt
+    if (backend.detectedType === 'registered-whisper-cli') {
+      const modelPath = path.resolve(process.cwd(), 'local_assets/whisper_models/ggml-base.en.bin');
+      const binExec = backend.binaryPath!;
+      const outTxtBase = path.join(ASR_TRANSCRIPTS_DIR, `temp_${transcriptId}`);
+      // whisper-cli parameters: -m <model> -f <audio> -nt (no timestamps) -np (no prints) -otxt -of <output_file_base>
+      const cmd = `"${binExec}" -m "${modelPath}" -f "${resolvedPath}" -nt -np -otxt -of "${outTxtBase}"`;
+      execSync(cmd, { stdio: 'pipe' });
+      
+      const outTxtFile = `${outTxtBase}.txt`;
+      if (fs.existsSync(outTxtFile)) {
+        transcribedText = fs.readFileSync(outTxtFile, 'utf-8').trim();
+        fs.unlinkSync(outTxtFile);
+      }
+    } else if (backend.detectedType === 'whisper-cpp') {
       const outTxtBase = path.join(ASR_TRANSCRIPTS_DIR, `temp_${transcriptId}`);
       const cmd = `whisper-cpp -f "${resolvedPath}" -nt -otxt "${outTxtBase}"`;
       execSync(cmd, { stdio: 'pipe' });

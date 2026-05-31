@@ -965,23 +965,31 @@ The **NotebookLM MCP Local Secrets Staging Guide** establishes a safe, local-onl
 ### 💻 Command Examples
 * View secrets guide help menu:
   ```bash
-  npm run command -- "notebooklm-mcp-secrets-help"
+  npm run command -- "notebooklm-mcp-local-secrets-help"
   ```
-* Create local config template examples:
+* Generate environment setup guide for .env.local:
   ```bash
-  npm run command -- "notebooklm-mcp-secrets create-templates"
+  npm run command -- "notebooklm-mcp-local-secrets env-guide"
   ```
-* Scan codebase for credential patterns:
+* Compile local secret verification checklist:
   ```bash
-  npm run command -- "notebooklm-mcp-secrets redaction-check"
+  npm run command -- "notebooklm-mcp-local-secrets checklist"
   ```
-* Generate local staging readiness report:
+* Verify gitignore entries to prevent leaks:
   ```bash
-  npm run command -- "notebooklm-mcp-secrets readiness"
+  npm run command -- "notebooklm-mcp-local-secrets gitignore-check"
+  ```
+* Generate readiness recheck runbook:
+  ```bash
+  npm run command -- "notebooklm-mcp-local-secrets readiness-rerun"
+  ```
+* Run all guides, checklists, and reports:
+  ```bash
+  npm run command -- "notebooklm-mcp-local-secrets all"
   ```
 * Print overall secrets status summary:
   ```bash
-  npm run command -- "notebooklm-mcp-secrets status"
+  npm run command -- "notebooklm-mcp-local-secrets status"
   ```
 
 ---
@@ -1402,6 +1410,42 @@ The **Local ASR Command Listener** provides safe, offline automatic speech recog
   npm run command -- "narrator-asr-listener queue-status"
   ```
 
+## 🧭 Phase N5D.1: Local ASR Backend & Model Manager
+
+The **Local ASR Backend & Model Manager** handles secure, offline registration, verification, and integrity auditing of local Whisper binaries and GGML models.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Staging Required:** Automatic internet downloads of binary executables are disabled.
+2. **Checksum Verification:** Registered backend binaries and models are checked strictly via SHA256 checksums inside the `asr-checksum-manifest.json`.
+3. **No Execution on Register:** Assets are read and verified but are never executed during registration.
+4. **Exact-Name Routing Gate:** Operations require exact command matching (`narrator-asr-backend`).
+
+### 💻 Command Examples
+* View ASR backend help menu:
+  ```bash
+  npm run command -- "narrator-asr-backend-help"
+  ```
+* Print backend registration status report:
+  ```bash
+  npm run command -- "narrator-asr-backend status"
+  ```
+* Scan backend folder for unregistered assets:
+  ```bash
+  npm run command -- "narrator-asr-backend scan"
+  ```
+* Register a compiled local Whisper CLI backend binary to `bin/whisper`:
+  ```bash
+  npm run command -- "narrator-asr-backend register-backend <LOCAL_PATH>"
+  ```
+* Register a ggml model file to `local_assets/whisper_models/ggml-base.en.bin`:
+  ```bash
+  npm run command -- "narrator-asr-backend register-model <LOCAL_PATH>"
+  ```
+* Verify registered SHA256 checksums:
+  ```bash
+  npm run command -- "narrator-asr-backend verify"
+  ```
+
 ---
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
@@ -1525,8 +1569,62 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 
 ---
 
+## 🧭 Phase 11P: Grounded Narrator Review Queue
+
+The **Grounded Narrator Review Queue** reads the grounded intelligence graph and compiles safe, citation-aware narration candidates for the offline narrator system. It acts as a safety validation layer that filters out weak claims or high-risk topics.
+
+### 🛡️ Safety & Execution Rules
+1. **Review-Only Mode:** Narration candidates are staged for manual review. No audio files are generated.
+2. **No TTS Generation:** Text-to-Speech (TTS) engine execution is locked.
+3. **Traceability:** Only candidates matching verified citations are staged for narration.
+
+### 💻 Command Examples
+* View review queue help:
+  ```bash
+  npm run command -- "grounded-narrator-review-help"
+  ```
+* Compile narration candidate queue:
+  ```bash
+  npm run command -- "grounded-narrator-review queue"
+  ```
+* Stage narration-ready brief:
+  ```bash
+  npm run command -- "grounded-narrator-review brief"
+  ```
+* Print queue status and files:
+  ```bash
+  npm run command -- "grounded-narrator-review status"
+  ```
+
+---
+
+## 🧭 Phase R2: Git Asset Guard and Pre-Push Safety Audit
+
+The **Git Asset Guard and Pre-Push Safety Audit** prevents future repository instability by scanning, auditing, and reporting forbidden folders, extensions, sensitive files, large files, and merge conflict markers locally before pushing to remote origin.
+
+### 🛡️ Safety & Execution Rules
+1. **No Local Deletions:** Violations are scanned and reported but never deleted from the working tree automatically.
+2. **No Force Pushes:** Bypassing repository safety standards via force push is strictly prohibited.
+3. **Safe Command Gate:** Direct interaction with audits remains structured under the Safe Command Router.
+
+### 💻 Command Examples
+* View policy details and safe commands:
+  ```bash
+  npm run command -- "git-asset-help"
+  ```
+* Scan the repository for tracking violations:
+  ```bash
+  npm run command -- "git-asset-audit"
+  ```
+* Run the sequential pre-push safety pipeline:
+  ```bash
+  npm run command -- "git-prepush-check"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11P: Grounded Narrator Integration**
-  - Integrate the compiled Grounded Intelligence Index Graph with the AI Narrator engine, mapping node relationships and citation structures directly into speech narration outputs.
-* **Phase 11Q: Vector Search Database Preparation**
-  - Prepare local vector database indexing pipelines to index verified nodes for semantic search and retrieval once manual review is complete.
+* **Phase 11Q: Offline TTS Brief Composer**
+  - Synthesize checked briefs using safe, local offline speech engines once the manual review queue process passes.
+* **Phase 11R: Vector Search Database Ingestion**
+  - Prepare vector database pipelines to index node metadata for semantic query retrieval.
