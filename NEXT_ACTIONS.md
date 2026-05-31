@@ -288,6 +288,16 @@
 - [x] Review high-risk weak claims
 - [ ] Prepare vector index only after graph review
 
+## Do Next
+- [x] Phase 11P: Build Grounded Narrator Review Queue
+- [x] Phase 11P: Compile narration candidates queue
+- [x] Phase 11P: Compile narrator brief from safest candidates
+- [x] Phase 11P: Compile rejected weak claims checklist
+- [x] Phase 11P: Compile queue audit metrics and safety report
+- [x] Phase 11P: Review status metrics summary on console
+- [x] Phase 11P: Test pre-approved commands via router
+- [x] Phase 11P: Test blocked unapproved command aliases via router
+
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
 - [ ] Build automated release pipeline integration for Tree Groove Records

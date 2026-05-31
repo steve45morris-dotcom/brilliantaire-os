@@ -713,3 +713,113 @@
 
 ---
 
+## [2026-05-31T21:21:01.896Z] Command Attempt: "narrator-asr-backend register-backend ./bin/whisper"
+- **Matched Command:** `narrator-asr-backend`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:21:40.788Z] Command Attempt: "narrator-asr-backend register-model ./local_assets/whisper_models/ggml-base.en.bin"
+- **Matched Command:** `narrator-asr-backend`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:22:06.489Z] Command Attempt: "grounded-narrator-review-help"
+- **Matched Command:** `grounded-narrator-review-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:23:06.754Z] Command Attempt: "grounded-narrator-review queue"
+- **Matched Command:** `grounded-narrator-review`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:23:12.475Z] Command Attempt: "git-asset-help"
+- **Matched Command:** `git-asset-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:23:40.381Z] Command Attempt: "grounded narrator"
+- **Matched Command:** `grounded-narrator-review`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T21:23:59.090Z] Command Attempt: "git-asset-audit"
+- **Matched Command:** `git-asset-audit`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T21:24:07.303Z] Command Attempt: "asr listener status"
+- **Matched Command:** `narrator-asr-listener`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T21:24:35.160Z] Command Attempt: "narrator-asr-listener status"
+- **Matched Command:** `narrator-asr-listener`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:24:37.711Z] Command Attempt: "git-prepush-check"
+- **Matched Command:** `git-prepush-check`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+

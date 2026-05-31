@@ -44,6 +44,4 @@ export function printHelp(): void {
   console.log('========================================================================');
 }
 
-if (require.main === module) {
-  printHelp();
-}
+printHelp();

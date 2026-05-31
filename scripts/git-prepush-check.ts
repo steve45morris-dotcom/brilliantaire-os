@@ -2,6 +2,10 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 
 export function runPrepushCheck(): { success: boolean; reportPath: string } {
@@ -92,13 +96,11 @@ export function runPrepushCheck(): { success: boolean; reportPath: string } {
   };
 }
 
-if (require.main === module) {
-  const result = runPrepushCheck();
-  if (!result.success) {
-    console.error('❌ Pre-Push Safety check blocked. Address the issues before pushing.');
-    process.exit(1);
-  } else {
-    console.log('✅ Pre-Push safety check passed. Safe to push!');
-    process.exit(0);
-  }
+const result = runPrepushCheck();
+if (!result.success) {
+  console.error('❌ Pre-Push Safety check blocked. Address the issues before pushing.');
+  process.exit(1);
+} else {
+  console.log('✅ Pre-Push safety check passed. Safe to push!');
+  process.exit(0);
 }

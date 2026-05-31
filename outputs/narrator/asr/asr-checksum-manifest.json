@@ -1,0 +1,12 @@
+{
+  "bin/whisper": {
+    "sha256": "0e2296bc5f3ca8dda8ee8b722b30633887dc6517d7877497a3dc102034574c0b",
+    "type": "backend",
+    "registeredAt": "2026-05-31T21:21:01.854Z"
+  },
+  "local_assets/whisper_models/ggml-base.en.bin": {
+    "sha256": "a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002",
+    "type": "model",
+    "registeredAt": "2026-05-31T21:21:40.493Z"
+  }
+}

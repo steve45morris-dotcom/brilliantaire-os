@@ -1,0 +1,5 @@
+- [2026-05-31T21:19:53.297Z] **COMPILE_QUEUE**: Narrator review queue compiled. Total candidates: 27. Saved to: grounded_narrator_review_queue_2026-05-31.md
+- [2026-05-31T21:20:17.056Z] **COMPILE_BRIEF**: Narrator brief compiled safely. Saved to: grounded_narrator_brief_2026-05-31.md
+- [2026-05-31T21:20:51.485Z] **REJECT_WEAK**: Rejection list compiled successfully. Excluded: 7. Saved to: grounded_narrator_rejected_2026-05-31.md
+- [2026-05-31T21:21:13.896Z] **COMPILE_REPORT**: Narrator queue report compiled. Saved to: grounded_narrator_queue_report_2026-05-31.md
+- [2026-05-31T21:22:56.968Z] **COMPILE_QUEUE**: Narrator review queue compiled. Total candidates: 27. Saved to: grounded_narrator_review_queue_2026-05-31_1780262576.md

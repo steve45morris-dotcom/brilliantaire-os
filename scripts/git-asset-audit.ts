@@ -9,6 +9,10 @@ import {
   MAX_TRACKED_FILE_SIZE_MB
 } from '../config/git-asset-policy';
 
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..');
 
 // Helper to check if file is binary to avoid checking conflict markers
@@ -124,19 +128,20 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
     if (!isBinaryFile(fullPath)) {
       try {
         const content = fs.readFileSync(fullPath, 'utf-8');
-        if (content.includes('<<<<<<<') || content.includes('=======') || content.includes('>>>>>>>')) {
+        // Both start and end conflict markers must be present to count as a merge conflict
+        if (content.includes('<<<<<<<') && content.includes('>>>>>>>')) {
           const lines = content.split('\n');
+          let hasConflict = false;
           for (let i = 0; i < lines.length; i++) {
-            const lineContent = lines[i];
-            if (lineContent.startsWith('<<<<<<<')) {
-              conflictMarkersFound.push({ path: file, line: i + 1, type: '<<<<<<<' });
-            } else if (lineContent.startsWith('=======')) {
-              conflictMarkersFound.push({ path: file, line: i + 1, type: '=======' });
-            } else if (lineContent.startsWith('>>>>>>>')) {
-              conflictMarkersFound.push({ path: file, line: i + 1, type: '>>>>>>>' });
+            const rawLine = lines[i];
+            if (rawLine.startsWith('<<<<<<<') || rawLine === '=======' || rawLine.startsWith('>>>>>>>')) {
+              conflictMarkersFound.push({ path: file, line: i + 1, type: rawLine.substring(0, 7) });
+              hasConflict = true;
             }
           }
-          log(`⚠️  Merge conflict marker found in: ${file}`);
+          if (hasConflict) {
+            log(`⚠️  Merge conflict marker found in: ${file}`);
+          }
         }
       } catch (_) {}
     }
@@ -293,13 +298,11 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
   };
 }
 
-if (require.main === module) {
-  const result = runAudit();
-  if (!result.success) {
-    console.error('❌ Audit Failed: Safety checks triggered. Review the report.');
-    process.exit(1);
-  } else {
-    console.log('✅ Audit Passed: System complies with Git Asset Policies.');
-    process.exit(0);
-  }
+const result = runAudit();
+if (!result.success) {
+  console.error('❌ Audit Failed: Safety checks triggered. Review the report.');
+  process.exit(1);
+} else {
+  console.log('✅ Audit Passed: System complies with Git Asset Policies.');
+  process.exit(0);
 }

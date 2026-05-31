@@ -68,7 +68,7 @@ function handleStatus() {
   let modelRegistered = 'None';
 
   for (const [relPath, entry] of Object.entries(manifest)) {
-    const fullPath = path.resolve(process.cwd(), 'outputs/narrator/asr', relPath);
+    const fullPath = path.resolve(process.cwd(), relPath);
     if (fs.existsSync(fullPath)) {
       if (entry.type === 'backend') {
         binaryRegistered = `Registered (sha256: ${entry.sha256})`;
