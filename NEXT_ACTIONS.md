@@ -264,10 +264,10 @@
 
 ## Do Next
 - [x] Build Local MCP Setup Verification Loop
-- [x] Run safe validation chain
+- [x] Run safe validation chain (readiness rerun completed)
 - [x] Generate final eligibility report
-- [x] Confirm whether Phase 11M is allowed
-- [x] Complete local setup manually if still blocked
+- [x] Confirm whether Phase 11M is allowed (setup is eligible)
+- [x] Complete local setup manually (local env staging completed)
 
 ## Do Next
 - [x] Build Git Asset Guard
