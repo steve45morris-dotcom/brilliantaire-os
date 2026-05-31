@@ -262,3 +262,25 @@
 
 ---
 
+## [2026-05-31T14:13:29.912Z] Command Attempt: "narrator-voice-sync-help"
+- **Matched Command:** `narrator-voice-sync-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T14:13:51.035Z] Command Attempt: "narrator-voice-sync all"
+- **Matched Command:** `narrator-voice-sync`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
