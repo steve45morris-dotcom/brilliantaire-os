@@ -505,5 +505,27 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'distribution-metrics-help',
+    aliases: ['metrics help', 'distribution help'],
+    description: 'Print manual distribution metrics safety manuals',
+    npmScript: 'distribution-metrics-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'distribution-metrics',
+    aliases: ['metrics', 'distribution'],
+    description: 'Generate manual distribution metrics entry files, reports, and indexes (Medium Risk)',
+    npmScript: 'distribution-metrics',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];

@@ -55,7 +55,9 @@
     "platform-verify": "tsx scripts/platform-verify.ts",
     "platform-verify-help": "tsx scripts/platform-verify-help.ts",
     "manual-release": "tsx scripts/manual-release.ts",
-    "manual-release-help": "tsx scripts/manual-release-help.ts"
+    "manual-release-help": "tsx scripts/manual-release-help.ts",
+    "distribution-metrics": "tsx scripts/distribution-metrics.ts",
+    "distribution-metrics-help": "tsx scripts/distribution-metrics-help.ts"
   },
   "keywords": [
     "antigravity",

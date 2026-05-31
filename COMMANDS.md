@@ -70,6 +70,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `platform-verify` | `verify platform`, `verify package` | Workflow Auditor | Medium | Yes | Verify generated platform packages. |
 | `manual-release-help` | `release help`, `manual posting help` | Creative Revenue Strategist | Low | No | Print manual release safety manuals. |
 | `manual-release` | `release`, `manual posting` | Creative Revenue Strategist | Medium | Yes | Generate manual release checklists and runbooks. |
+| `distribution-metrics-help` | `metrics help`, `distribution help` | Creative Revenue Strategist | Low | No | Print manual distribution metrics safety manuals. |
+| `distribution-metrics` | `metrics`, `distribution` | Creative Revenue Strategist | Medium | Yes | Generate manual distribution metrics entry files, reports, and indexes. |
 
 ---
 

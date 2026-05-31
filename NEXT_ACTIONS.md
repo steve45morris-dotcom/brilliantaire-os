@@ -105,7 +105,18 @@
 - [x] Generate Sporty manual release checklist
 - [x] Generate Sporty release runbook
 - [x] Check manual release readiness
-- [ ] Prepare distribution metrics after manual release checklist passes
+- [x] Prepare distribution metrics after manual release checklist passes
+- [ ] Build manual distribution metrics
+- [ ] Generate Sporty YouTube metric entry
+- [ ] Generate Sporty TikTok metric entry
+- [ ] Generate Sporty Instagram metric entry
+- [ ] Generate Sporty Facebook metric entry
+- [ ] Generate Sporty WhatsApp metric entry
+- [ ] Generate Sporty Obsidian metric entry
+- [ ] Generate Sporty distribution report
+- [ ] Generate Sporty archive index
+- [ ] Review manual metrics after posting
+
 
 
 ## Do Next

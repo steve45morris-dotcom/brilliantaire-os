@@ -31,6 +31,7 @@
 - **Platform Output Adapters:** Generate local copy-paste posting packages for YouTube, TikTok, Instagram, Facebook, WhatsApp, and Obsidian.
 - **Platform Verification Gates:** Inspect, validate, and score platform output packages offline to confirm manual copy-paste readiness.
 - **Manual Release Checklist:** Compiles verified posting packages into structured checklists, step-by-step posting runbooks, and manual release readiness briefings.
+- **Manual Distribution Metrics and Archiving:** Tracks campaign performance metrics offline via manual entries, compiles consolidated distribution reports, and cataloges all campaign files in a structured archive index.
 - **Edge-Link Protocol (Phase 15):** Standardized protocol to onboard mobile, IoT, and desktop edge devices dynamically into database node storage.
 - **Cross-OS Invoke Gateway (Phase 15):** Standalone API endpoint with challenge verification to execute secure tasks dispatched from external operating systems.
 - **Compute Auction Market Oracle (Phase 15):** Live bidding market oracle matching BUY/SELL compute capacity across local caching registries.
@@ -44,7 +45,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 10A: Platform Distribution Metrics and Archiving**
+- **Phase 10B: Automated Report Syndication**
 
 
 

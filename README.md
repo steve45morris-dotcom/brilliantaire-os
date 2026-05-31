@@ -518,8 +518,40 @@ The **Manual Release Checklist** layer aggregates verified platform packages, ve
 
 ---
 
-## 🚀 Next Phase Recommendation
-* **Phase 10A: Platform Distribution Metrics and Archiving**
-  - Construct local content trackers to archive successful manual copy-pastes and map release telemetry analytics.
+## 📊 Phase 10A: Manual Distribution Metrics and Archiving
 
+The **Manual Distribution Metrics and Archiving** layer tracks campaign performance metrics and catalogs all campaign-related files offline. It generates manual metric entry templates, parses platform logs, and indexes local files to aggregate distribution analytics.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual-Entry-Only Boundary:** The OS has zero connection to third-party social media APIs. Metric entry files are populated manually by the creator.
+2. **No scraping, crawling, or uploading:** The metrics engine functions entirely offline, protecting user data and respecting platform terms of service.
+3. **No Overwrite without Suffix:** Appends timestamp suffixes if metric entries, reports, or archive indexes already exist.
+
+### 💻 Command Examples
+* View manual distribution metrics safety manuals:
+  ```bash
+  npm run command -- "distribution-metrics-help"
+  ```
+* Generate manual metric entry template for YouTube (via safe router):
+  ```bash
+  npm run command -- "distribution-metrics sporty entry youtube"
+  ```
+* Compile consolidated distribution report (via safe router):
+  ```bash
+  npm run command -- "distribution-metrics sporty report"
+  ```
+* Generate campaign archive index (via safe router):
+  ```bash
+  npm run command -- "distribution-metrics sporty archive-index"
+  ```
+* Display manual metrics status checklist (via safe router):
+  ```bash
+  npm run command -- "distribution-metrics sporty status"
+  ```
+
+---
+
+## 🚀 Next Phase Recommendation
+* **Phase 10B: Automated Report Syndication**
+  - Construct local formatters to export distribution reports into rich charts and Obsidian canvases.
 

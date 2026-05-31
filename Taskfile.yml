@@ -241,6 +241,17 @@ tasks:
     cmds:
       - npm run manual-release -- {{.CLI_ARGS}}
 
+  distribution-metrics-help:
+    desc: "Print manual distribution metrics safety manuals"
+    cmds:
+      - npm run distribution-metrics-help
+
+  distribution-metrics:
+    desc: "Generate manual distribution metrics entry files, reports, and indexes"
+    cmds:
+      - npm run distribution-metrics -- {{.CLI_ARGS}}
+
+
 
 
   validate:
