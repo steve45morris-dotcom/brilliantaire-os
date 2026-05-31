@@ -372,6 +372,17 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-secrets -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-live-help:
+    desc: "Print NotebookLM MCP Live Adapter Integration safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-live-help
+
+  notebooklm-mcp-live:
+    desc: "Run NotebookLM MCP Live Adapter Integration checks safely"
+    cmds:
+      - npm run notebooklm-mcp-live -- {{.CLI_ARGS}}
+
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:

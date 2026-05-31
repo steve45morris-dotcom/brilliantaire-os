@@ -994,6 +994,49 @@ The **NotebookLM MCP Local Secrets Staging Guide** establishes a safe, local-onl
 
 ---
 
+## 🧭 Phase 11L: NotebookLM MCP Live Adapter Integration
+
+The **NotebookLM MCP Live Adapter Integration** establishes a restricted, read-only live query adapter structure that enforces multi-layered safety gates, manual query staging, readiness gating, and response imports.
+
+### 🛡️ Safety & Execution Rules
+1. **Read-Only Restrict:** Only performs read-only query dispatch. Mutating notebooks or uploading files is blocked.
+2. **Offline Responses:** Staged results remain locally under the outputs directory and are never written directly to Obsidian.
+3. **Manual Trigger Only:** Requires explicit developer `--confirm` flag and exact command name routing.
+4. **Safe Fallback Instruction Generator:** If client invocation signatures are unknown or safety gates fail, it outputs manual client instructions instead of calling external systems.
+
+### 💻 Command Examples
+* View live adapter help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-live-help"
+  ```
+* Check status of live adapter variables and env states:
+  ```bash
+  npm run command -- "notebooklm-mcp-live status"
+  ```
+* Stage prepared live query files:
+  ```bash
+  npm run command -- "notebooklm-mcp-live prepare-live-query source-summary"
+  npm run command -- "notebooklm-mcp-live prepare-live-query workflow-extraction"
+  ```
+* Run live adapter readiness tests:
+  ```bash
+  npm run command -- "notebooklm-mcp-live test-readiness"
+  ```
+* Dispatch live query (high risk confirmation):
+  ```bash
+  npm run command -- "notebooklm-mcp-live run-live-query source-summary" --confirm
+  ```
+* Import manually captured response file:
+  ```bash
+  npm run command -- "notebooklm-mcp-live import-response <path_to_response_file>"
+  ```
+* Compile live adapter operational metrics report:
+  ```bash
+  npm run command -- "notebooklm-mcp-live report"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.

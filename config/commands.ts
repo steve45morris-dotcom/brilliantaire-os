@@ -793,6 +793,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-live-help',
+    aliases: ['notebook live help', 'mcp live help'],
+    description: 'Print commands for NotebookLM MCP Live Adapter Integration',
+    npmScript: 'notebooklm-mcp-live-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-live',
+    aliases: ['notebook live', 'mcp live'],
+    description: 'Execute NotebookLM MCP Live Adapter Integration checks (High Risk)',
+    npmScript: 'notebooklm-mcp-live',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

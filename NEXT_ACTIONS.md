@@ -251,6 +251,17 @@
 - [x] Review blockers
 - [x] Prepare live adapter only after readiness score improves
 
+## Do Next
+- [x] Build NotebookLM MCP Live Adapter
+- [x] Prepare source-summary live query
+- [x] Prepare workflow-extraction live query
+- [x] Run live adapter readiness test
+- [x] Confirm live execution remains disabled by default
+- [x] Test blocked live query without environment enable
+- [x] Test manual response import
+- [x] Review live adapter report
+
+
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
 - [ ] Build automated release pipeline integration for Tree Groove Records

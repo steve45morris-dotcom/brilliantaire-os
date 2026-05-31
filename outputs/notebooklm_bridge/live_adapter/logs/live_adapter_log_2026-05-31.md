@@ -1,0 +1,10 @@
+- [2026-05-31T16:09:33.165Z] **STATUS**: Status requested. secretsScore=100%, envsPresent=false
+- [2026-05-31T16:09:47.738Z] **PREPARE_QUERY**: Live query file staged at: notebooklm_live_query_source_summary_2026-05-31.md
+- [2026-05-31T16:10:09.124Z] **PREPARE_QUERY**: Live query file staged at: notebooklm_live_query_workflow_extraction_2026-05-31.md
+- [2026-05-31T16:10:32.159Z] **TEST_READINESS**: Live readiness report written to: notebooklm_live_adapter_readiness_2026-05-31.md. Eligible=false
+- [2026-05-31T16:10:58.602Z] **RUN_LIVE_QUERY_BLOCKED**: Live run blocked: Confirm flag --confirm missing, NOTEBOOKLM_MCP_ENABLED environment variable is not true
+- [2026-05-31T16:11:21.360Z] **RUN_LIVE_QUERY_BLOCKED**: Live run blocked: NOTEBOOKLM_MCP_ENABLED environment variable is not true
+- [2026-05-31T16:15:55.207Z] **RUN_LIVE_QUERY_MANUAL_FALLBACK**: Live execution report created at notebooklm_live_run_report_source_summary_2026-05-31.md. Manual instructions path: notebooklm_manual_execution_instructions_source_summary_2026-05-31.md
+- [2026-05-31T16:16:31.373Z] **IMPORT_RESPONSE**: Normalized response generated at notebooklm_normalized_response_notebooklm_live_response_sample_2026-05-31.md. Raw response copied to notebooklm_live_response_notebooklm_live_response_sample_2026-05-31.md
+- [2026-05-31T16:17:07.878Z] **GENERATE_REPORT**: Live adapter operations report compiled at: notebooklm_live_adapter_report_2026-05-31.md
+- [2026-05-31T16:20:12.241Z] **STATUS**: Status requested. secretsScore=100%, envsPresent=false

@@ -416,3 +416,80 @@
 
 ---
 
+## [2026-05-31T15:54:30.620Z] Command Attempt: "narrator-tts-models status"
+- **Matched Command:** `narrator-tts-models`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:54:50.368Z] Command Attempt: "tts models status"
+- **Matched Command:** `narrator-tts-models`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T16:18:34.078Z] Command Attempt: "notebooklm-mcp-live-help"
+- **Matched Command:** `notebooklm-mcp-live-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T16:19:00.055Z] Command Attempt: "notebooklm-mcp-live status"
+- **Matched Command:** `notebooklm-mcp-live`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `high`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Missing Confirmation Flag`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T16:19:28.931Z] Command Attempt: "notebooklm-mcp-live status --confirm"
+- **Matched Command:** `notebooklm-mcp-live`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `high`
+- **Confirmed:** `true`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T16:20:12.272Z] Command Attempt: "notebooklm-mcp-live status --confirm"
+- **Matched Command:** `notebooklm-mcp-live`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `high`
+- **Confirmed:** `true`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T16:20:36.619Z] Command Attempt: "notebook live"
+- **Matched Command:** `notebooklm-mcp-live`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `high`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
