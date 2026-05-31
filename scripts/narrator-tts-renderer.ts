@@ -52,13 +52,18 @@ function getLatestFile(dirPath: string): string | null {
 function extractSection(content: string, headerName: string): string {
   const lines = content.split('\n');
   let inSection = false;
+  let inCodeBlock = false;
   const sectionLines: string[] = [];
   for (const line of lines) {
-    if (line.trim().startsWith('## ') || line.trim().startsWith('# ')) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('```')) {
+      inCodeBlock = !inCodeBlock;
+    }
+    if (!inCodeBlock && (trimmed.startsWith('## ') || trimmed.startsWith('# '))) {
       if (inSection) {
-        break; // Met another header, stop
+        break; // Met another header outside code block, stop
       }
-      if (line.toLowerCase().includes(headerName.toLowerCase())) {
+      if (trimmed.toLowerCase().includes(headerName.toLowerCase())) {
         inSection = true;
         continue;
       }
