@@ -934,25 +934,17 @@ The **MCP Setup Fix Cycle** provides a repeatable local check and correction loo
   ```bash
   npm run command -- "notebooklm-mcp-fix-cycle-help"
   ```
-* Generate missing environment variables checklist:
+* Generate fix tasks checklist:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle missing-env"
+  npm run command -- "notebooklm-mcp-fix-cycle tasks"
   ```
-* Generate local configuration checklist:
+* Compare current readiness score against previous readiness and review scores:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle local-config"
+  npm run command -- "notebooklm-mcp-fix-cycle compare"
   ```
-* Compile verification rerun sequence runbook:
+* Generate sequential manual runbook for next pass:
   ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle rerun-sequence"
-  ```
-* Generate fix cycle decision summary:
-  ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle decision-summary"
-  ```
-* Run all checks and compile all checklists:
-  ```bash
-  npm run command -- "notebooklm-mcp-fix-cycle all"
+  npm run command -- "notebooklm-mcp-fix-cycle next-pass"
   ```
 * Print status summary directly to console:
   ```bash
@@ -994,7 +986,36 @@ The **NotebookLM MCP Local Secrets Staging Guide** establishes a safe, local-onl
 
 ---
 
-## 🧭 Phase 11L: NotebookLM MCP Live Adapter Integration
+## 🧭 Phase 11M: Local MCP Setup Verification Loop
+
+The **Local MCP Setup Verification Loop** provides a repeatable validation runbook to confirm all environment variables, gitignore exclusions, and configuration files are properly set up locally without committing keys or running live external queries.
+
+### 🛡️ Safety & Execution Rules
+1. **Local-Only Boundary:** Verification tools are strictly diagnostic and never write real secrets or bypass the Safe Command Router.
+2. **Dynamic Gating:** Validates score thresholds dynamically from local setup files.
+3. **No Live Execution:** All live query commands are blocked during the re-scan.
+
+### 💻 Command Examples
+* View verification loop help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-verify-loop-help"
+  ```
+* Run the verification loop command chain:
+  ```bash
+  npm run command -- "notebooklm-mcp-verify-loop chain"
+  ```
+* Execute the final eligibility check:
+  ```bash
+  npm run command -- "notebooklm-mcp-verify-loop final-check"
+  ```
+* Print overall verification loop status:
+  ```bash
+  npm run command -- "notebooklm-mcp-verify-loop status"
+  ```
+
+---
+
+## 🧭 Phase 11N: NotebookLM MCP Live Adapter Integration
 
 The **NotebookLM MCP Live Adapter Integration** establishes a restricted, read-only live query adapter structure that enforces multi-layered safety gates, manual query staging, readiness gating, and response imports.
 
@@ -1033,6 +1054,55 @@ The **NotebookLM MCP Live Adapter Integration** establishes a restricted, read-o
 * Compile live adapter operational metrics report:
   ```bash
   npm run command -- "notebooklm-mcp-live report"
+  ```
+
+---
+
+## 🧭 Phase 11O: Live Response Intelligence Processor
+
+The **Live Response Intelligence Processor** is an offline mapping layer that ingests normalized response files and parses them into structured local outputs, citation maps, weak claims reviews, workflow cards, OS module suggestions, and Obsidian-staged note files.
+
+### 🛡️ Safety & Execution Rules
+1. **Offline Ingestion Lock:** Operates strictly on local response files. External queries, notebook edits, and source uploads are blocked.
+2. **Obsidian Vault Staging:** Note files are staged locally under the outputs directory. Direct vault writes are locked.
+3. **Safety Verification:** Rejects response imports that exceed size limits or contain script injections.
+
+### 💻 Command Examples
+* View intelligence processor help menu:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence-help"
+  ```
+* Compile executive summary index:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence process-latest"
+  ```
+* Map citations and support confidence:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence citation-map"
+  ```
+* Identify claims needing verification evidence:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence weak-claims"
+  ```
+* Extract structured workflow cards:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence workflow-cards"
+  ```
+* Compile OS module implementation suggestion cards:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence os-modules"
+  ```
+* Assemble staged Obsidian ingestion note:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence obsidian-note"
+  ```
+* Run all intelligence processors in batch:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence full"
+  ```
+* Print review status audit log summary:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence status"
   ```
 
 ---
@@ -1284,10 +1354,134 @@ The **Local TTS Model & Cache Manager** handles secure, offline registration, ve
   npm run command -- "narrator-tts-models cache-clean-approved"
   ```
 
+## 🧭 Phase N5D: Local ASR Command Listener
+
+The **Local ASR Command Listener** provides safe, offline automatic speech recognition (ASR) to transcribe local audio command briefings, staging them as VNP command packets requiring manual verification before execution.
+
+### 🛡️ Safety & Execution Rules
+1. **Local-Only Transcription:** External cloud speech-to-text APIs are strictly disabled (`CLOUD_ASR_ENABLED = false`).
+2. **Offline-First Intake:** Audio files must be placed within `outputs/narrator/asr/input_audio/` before scan or transcription.
+3. **No Automatic Execution:** Transcribed commands are staged as packets and require manual approval. Execution is completely blocked.
+4. **Exact-Name Routing Gate:** Operations require exact command matching (`narrator-asr-listener`).
+
+### 💻 Command Examples
+* View ASR help menu:
+  ```bash
+  npm run command -- "narrator-asr-listener-help"
+  ```
+* Print ASR status and queue counts:
+  ```bash
+  npm run command -- "narrator-asr-listener status"
+  ```
+* Scan intake directory for compatible audio:
+  ```bash
+  npm run command -- "narrator-asr-listener scan-inputs"
+  ```
+* Transcribe a staged audio file:
+  ```bash
+  npm run command -- "narrator-asr-listener transcribe outputs/narrator/tts_queue/rendered_audio/narrator_audio_2026-05-31_0801.mp3"
+  ```
+* Stage a VNP command packet:
+  ```bash
+  npm run command -- "narrator-asr-listener stage-command <TRANSCRIPT_ID>"
+  ```
+* Review proposed command details:
+  ```bash
+  npm run command -- "narrator-asr-listener review <TRANSCRIPT_ID>"
+  ```
+* Approve command packet (stages for manual CLI run):
+  ```bash
+  npm run command -- "narrator-asr-listener approve <TRANSCRIPT_ID>"
+  ```
+* Reject command packet:
+  ```bash
+  npm run command -- "narrator-asr-listener reject <TRANSCRIPT_ID>"
+  ```
+* Check queue metrics:
+  ```bash
+  npm run command -- "narrator-asr-listener queue-status"
+  ```
+
+---
+
+## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
+
+The **NotebookLM MCP Live Adapter Integration** establishes a safe, offline-gated live query preparation, query execution, and manual answers staging runbooks.
+
+### 🛡️ Safety & Execution Rules
+1. **Restricted Execution:** No active network queries or server connections are run automatically.
+2. **Offline Fallback:** If live adapter is not authorized, falls back to manual answers files.
+
+### 💻 Command Examples
+* View live adapter help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-live-help"
+  ```
+* View live adapter status:
+  ```bash
+  npm run command -- "notebooklm-mcp-live status"
+  ```
+
+---
+
+## 🧭 Phase 11N: Live Response Intelligence Processor
+
+The **Live Response Intelligence Processor** is a safe, local, offline layer designed to ingest normalized NotebookLM response markdown files and convert them into structured, actionable intelligence cards, maps, suggestions, and staged notes.
+
+### 🛡️ Safety & Execution Rules
+1. **Response-Only Processing:** This script only reads local, pre-saved response files.
+2. **No Direct Obsidian Writes:** Staged markdown notes are written under `outputs/notebooklm_bridge/response_intelligence/` for manual review first.
+3. **No External APIs:** The processor must never make external API calls.
+
+### 💻 Command Examples
+* View response intelligence help menu:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence-help"
+  ```
+* Run all processors sequentially:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence full"
+  ```
+* Print processor file path status summaries:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence status"
+  ```
+
+---
+
+## 🧭 Phase 11O: Grounded Intelligence Index Graph
+
+The **Grounded Intelligence Index Graph** compiles and links all response intelligence outputs (insight indexes, citation maps, weak claims, workflow cards, OS module suggestions, and staged Obsidian notes) into a unified, traceable local network graph.
+
+### 🛡️ Safety & Execution Rules
+1. **Local-Only Graph:** Node relations are built entirely offline from local Markdown outputs.
+2. **No Vector DB Writes:** No external vector database or indexer (like Pinecone or Chroma) is called yet.
+3. **No External APIs:** No embedding generation APIs or external network calls are allowed.
+4. **No Obsidian Writes:** Staged Markdown graphs are kept under `outputs/` for review first.
+5. **Timestamp Suffix Preservation:** Existing graph files are never overwritten without a timestamp suffix.
+
+### 💻 Command Examples
+* View grounded index help menu:
+  ```bash
+  npm run command -- "grounded-index-help"
+  ```
+* Compile graph files:
+  ```bash
+  npm run command -- "grounded-index build"
+  ```
+* Generate graph statistics report:
+  ```bash
+  npm run command -- "grounded-index report"
+  ```
+* Inspect latest graph structure:
+  ```bash
+  npm run command -- "grounded-index inspect latest"
+  ```
+
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11M: NotebookLM MCP Live Adapter Integration**
-  - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N5D: Local ASR Command Listener**
-  - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
+* **Phase 11P: Grounded Narrator Integration**
+  - Integrate the compiled Grounded Intelligence Index Graph with the AI Narrator engine, mapping node relationships and citation structures directly into speech narration outputs.
+* **Phase 11Q: Vector Search Database Preparation**
+  - Prepare local vector database indexing pipelines to index verified nodes for semantic search and retrieval once manual review is complete.

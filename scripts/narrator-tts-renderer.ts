@@ -531,11 +531,19 @@ function handleRenderAllApproved() {
 
 function main() {
   const args = process.argv.slice(2);
-  const commandInput = args[0] ? args[0].trim() : 'help';
+  let command = 'help';
+  let reqId = '';
 
-  const tokens = commandInput.split(/\s+/);
-  const command = tokens[0].toLowerCase();
-  const reqId = tokens[1] || '';
+  if (args.length > 0) {
+    if (args.length === 1 && args[0].includes(' ')) {
+      const tokens = args[0].trim().split(/\s+/);
+      command = tokens[0].toLowerCase();
+      reqId = tokens[1] || '';
+    } else {
+      command = args[0].toLowerCase();
+      reqId = args[1] || '';
+    }
+  }
 
   const validCommands = ['help', 'status', 'dry-run', 'render', 'render-all-approved'];
 

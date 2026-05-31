@@ -361,6 +361,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-fix-cycle -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-verify-loop-help:
+    desc: "Print NotebookLM MCP Setup Verification Loop safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-verify-loop-help
+
+  notebooklm-mcp-verify-loop:
+    desc: "Run NotebookLM MCP Setup Verification Loop checks safely"
+    cmds:
+      - npm run notebooklm-mcp-verify-loop -- {{.CLI_ARGS}}
+
 
   notebooklm-mcp-secrets-help:
     desc: "Print NotebookLM MCP Local Secrets Staging Guide safety manuals"
@@ -382,6 +392,25 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-live -- {{.CLI_ARGS}}
 
+  notebooklm-response-intelligence-help:
+    desc: "Print NotebookLM Response Intelligence Processor safety manuals"
+    cmds:
+      - npm run notebooklm-response-intelligence-help
+
+  notebooklm-response-intelligence:
+    desc: "Run NotebookLM Response Intelligence Processor tasks safely"
+    cmds:
+      - npm run notebooklm-response-intelligence -- {{.CLI_ARGS}}
+
+  grounded-index-help:
+    desc: "Print Grounded Intelligence Index Graph safety manuals"
+    cmds:
+      - npm run grounded-index-help
+
+  grounded-index:
+    desc: "Run Grounded Intelligence Index Graph tasks safely"
+    cmds:
+      - npm run grounded-index -- {{.CLI_ARGS}}
 
   scheduler:
     desc: "Execute scheduler CLI operations"
@@ -485,6 +514,17 @@ tasks:
     desc: "Print help commands for the narrator tts model and cache manager controller"
     cmds:
       - npm run narrator-tts-models-help
+
+  narrator-asr-listener:
+    desc: "Stage and manage local offline speech-to-text command packets"
+    cmds:
+      - npm run narrator-asr-listener -- {{.CLI_ARGS}}
+
+  narrator-asr-listener-help:
+    desc: "Print help commands for the narrator local ASR command listener"
+    cmds:
+      - npm run narrator-asr-listener-help
+
 
   validate:
     desc: "Lint and run workspace checks"

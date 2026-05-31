@@ -1,0 +1,644 @@
+{
+  "graphId": "graph_2026-05-31",
+  "createdAt": "2026-05-31T17:48:42.835Z",
+  "sourceFiles": [
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/insight_indexes/notebooklm_insight_index_2026-05-31_1780248273.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/citation_maps/notebooklm_citation_map_2026-05-31_1780248297.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/weak_claims/notebooklm_weak_claims_2026-05-31_1780248320.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/workflow_cards/notebooklm_workflow_cards_2026-05-31_1780248342.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/os_module_suggestions/notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/obsidian_staged_notes/notebooklm_staged_obsidian_note_2026-05-31_1780248403.md"
+  ],
+  "nodes": [
+    {
+      "id": "source_response_1",
+      "type": "source_response",
+      "title": "notebooklm_normalized_response_notebooklm_live_response_sample_2026-05-31.md",
+      "sourceFile": "notebooklm_insight_index_2026-05-31_1780248273.md",
+      "summary": "The raw normalized response file serving as the grounded source data.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "insight_2",
+      "type": "insight",
+      "title": "Automate channel audits via programmatic crawling engines.",
+      "sourceFile": "notebooklm_insight_index_2026-05-31_1780248273.md",
+      "summary": "Key actionable insight or takeaway parsed from NotebookLM response.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "insight_3",
+      "type": "insight",
+      "title": "Stage all local workflow posting assets inside Git-monitored directories before release.",
+      "sourceFile": "notebooklm_insight_index_2026-05-31_1780248273.md",
+      "summary": "Key actionable insight or takeaway parsed from NotebookLM response.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "insight_4",
+      "type": "insight",
+      "title": "Leverage decentralized Raft consensus to synchronize storage ledger nodes.",
+      "sourceFile": "notebooklm_insight_index_2026-05-31_1780248273.md",
+      "summary": "Key actionable insight or takeaway parsed from NotebookLM response.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "citation_5",
+      "type": "citation",
+      "title": "[1]",
+      "sourceFile": "notebooklm_citation_map_2026-05-31_1780248297.md",
+      "summary": "Citation reference to external document: Ingest process handles notes in read-only mode to prevent write conflicts.. Warning: Source file Ingest cannot be found locally.",
+      "confidence": "High",
+      "tags": [
+        "Ingest process handles notes in read-only mode to prevent write conflicts."
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "citation_6",
+      "type": "citation",
+      "title": "[2]",
+      "sourceFile": "notebooklm_citation_map_2026-05-31_1780248297.md",
+      "summary": "Citation reference to external document: Staged files reside under the outputs folder for validation checks.. Warning: Source file Staged cannot be found locally.",
+      "confidence": "High",
+      "tags": [
+        "Staged files reside under the outputs folder for validation checks."
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "citation_7",
+      "type": "citation",
+      "title": "[3]",
+      "sourceFile": "notebooklm_citation_map_2026-05-31_1780248297.md",
+      "summary": "Citation reference to external document: Weak claims analysis identifies 4 key segments requiring additional documentation.. Warning: Source file Weak cannot be found locally.",
+      "confidence": "High",
+      "tags": [
+        "Weak claims analysis identifies 4 key segments requiring additional documentation."
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "weak_claim_8",
+      "type": "weak_claim",
+      "title": "Recursive transcript scanning without limits",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Weak claim: Risk of hitting YouTube API daily quota limits and blocking future requests.. Missing: No rate-limiting logic or telemetry exists in the default ingest module.",
+      "confidence": "Medium",
+      "tags": [
+        "Medium"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "risk_9",
+      "type": "risk",
+      "title": "Risk: Recursive transcript scanning without limits",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Identified system risk with level Medium from weak claim.",
+      "confidence": "High",
+      "tags": [
+        "Medium"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_10",
+      "type": "next_action",
+      "title": "Implement token bucket rate limiter in ingestion runner.",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Mitigation next action to verify or correct the weak claim.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "weak_claim_11",
+      "type": "weak_claim",
+      "title": "Direct publishing to social media APIs",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Weak claim: Possibility of publishing unverified or formatted errors directly to public profiles.. Missing: No manual approval staging UI built into the pipeline.",
+      "confidence": "Medium",
+      "tags": [
+        "High"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "risk_12",
+      "type": "risk",
+      "title": "Risk: Direct publishing to social media APIs",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Identified system risk with level High from weak claim.",
+      "confidence": "High",
+      "tags": [
+        "High"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_13",
+      "type": "next_action",
+      "title": "Enforce read-only outputs and local staging folder check.",
+      "sourceFile": "notebooklm_weak_claims_2026-05-31_1780248320.md",
+      "summary": "Mitigation next action to verify or correct the weak claim.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "workflow_card_14",
+      "type": "workflow_card",
+      "title": "SEO landing page crawling validation",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Workflow utilizing Node.js Crawling Lib for expected benefit: Prevents broken links or invalid metadata publishing.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "agent_15",
+      "type": "agent",
+      "title": "Workflow Auditor",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Productivity Agent council member overseeing operations.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "risk_16",
+      "type": "risk",
+      "title": "Risk: SEO landing page crawling validation",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Can hit target site firewall rate limits.",
+      "confidence": "Medium",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_17",
+      "type": "next_action",
+      "title": "Test crawlers on local mock server first.",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Next action for workflow: Test crawlers on local mock server first.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "workflow_card_18",
+      "type": "workflow_card",
+      "title": "Obsidian Local Note Staging",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Workflow utilizing NotebookLM Processor for expected benefit: Prevents corrupted Obsidian note databases.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "agent_19",
+      "type": "agent",
+      "title": "Knowledge Librarian",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Productivity Agent council member overseeing operations.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "risk_20",
+      "type": "risk",
+      "title": "Risk: Obsidian Local Note Staging",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Accidental local file overrides.",
+      "confidence": "Medium",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_21",
+      "type": "next_action",
+      "title": "Enable getSafeWritePath timestamping suffix.",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Next action for workflow: Enable getSafeWritePath timestamping suffix.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "workflow_card_22",
+      "type": "workflow_card",
+      "title": "Raft Consensus Replication",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Workflow utilizing One System Mesh Router for expected benefit: Ensures zero database synchronization conflicts.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "agent_23",
+      "type": "agent",
+      "title": "Build Operator",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Productivity Agent council member overseeing operations.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "risk_24",
+      "type": "risk",
+      "title": "Risk: Raft Consensus Replication",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Network partition node latency.",
+      "confidence": "Medium",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_25",
+      "type": "next_action",
+      "title": "Test consensus with 3 nodes in local Docker setup.",
+      "sourceFile": "notebooklm_workflow_cards_2026-05-31_1780248342.md",
+      "summary": "Next action for workflow: Test consensus with 3 nodes in local Docker setup.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "os_module_suggestion_26",
+      "type": "os_module_suggestion",
+      "title": "programmatic-seo-validator",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "OS Module suggestion. Input: outputs/platform_adapters/packages/, Output: outputs/security_audits/seo_reports/. Score: 8/10",
+      "confidence": "High",
+      "tags": [
+        "Medium"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_27",
+      "type": "next_action",
+      "title": "Scaffold TypeScript validator utility.",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "Next action for OS suggestion: Scaffold TypeScript validator utility.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "os_module_suggestion_28",
+      "type": "os_module_suggestion",
+      "title": "notebooklm-response-intelligence",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "OS Module suggestion. Input: outputs/notebooklm_bridge/live_adapter/responses/, Output: outputs/notebooklm_bridge/response_intelligence/. Score: 9/10",
+      "confidence": "High",
+      "tags": [
+        "Low"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_29",
+      "type": "next_action",
+      "title": "Integrate command into config/commands.ts.",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "Next action for OS suggestion: Integrate command into config/commands.ts.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "os_module_suggestion_30",
+      "type": "os_module_suggestion",
+      "title": "raft-consensus-mesh",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "OS Module suggestion. Input: outputs/mesh_telemetry/snapshots/, Output: supernova.db state logs. Score: 9/10",
+      "confidence": "High",
+      "tags": [
+        "High"
+      ],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "agent_31",
+      "type": "agent",
+      "title": "OS Architect",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "Productivity Agent council member overseeing operations.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "next_action_32",
+      "type": "next_action",
+      "title": "Draft Raft consensus module blueprints.",
+      "sourceFile": "notebooklm_os_module_suggestions_2026-05-31_1780248374.md",
+      "summary": "Next action for OS suggestion: Draft Raft consensus module blueprints.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    },
+    {
+      "id": "obsidian_staged_note_33",
+      "type": "obsidian_staged_note",
+      "title": "🛰️ NotebookLM MCP Live Query Response",
+      "sourceFile": "notebooklm_staged_obsidian_note_2026-05-31_1780248403.md",
+      "summary": "Unified staged markdown note compiled and formatted for manual review.",
+      "confidence": "High",
+      "tags": [],
+      "reviewStatus": "staged_for_manual_review"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_1",
+      "type": "derived_from",
+      "from": "insight_2",
+      "to": "source_response_1",
+      "rationale": "Insight was derived directly from the source response text.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_2",
+      "type": "derived_from",
+      "from": "insight_3",
+      "to": "source_response_1",
+      "rationale": "Insight was derived directly from the source response text.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_3",
+      "type": "derived_from",
+      "from": "insight_4",
+      "to": "source_response_1",
+      "rationale": "Insight was derived directly from the source response text.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_4",
+      "type": "supports",
+      "from": "citation_5",
+      "to": "source_response_1",
+      "rationale": "Citation supports claim: \"Actionable staging configuration validation\" in the source response.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_5",
+      "type": "supports",
+      "from": "citation_6",
+      "to": "source_response_1",
+      "rationale": "Citation supports claim: \"Actionable staging configuration validation\" in the source response.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_6",
+      "type": "supports",
+      "from": "citation_7",
+      "to": "source_response_1",
+      "rationale": "Citation supports claim: \"Actionable staging configuration validation\" in the source response.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_7",
+      "type": "contradicts",
+      "from": "weak_claim_8",
+      "to": "source_response_1",
+      "rationale": "Claim contradicts system safety constraints or lacks documented evidence.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_8",
+      "type": "needs_verification",
+      "from": "weak_claim_8",
+      "to": "risk_9",
+      "rationale": "Weak claim introduces system risk requiring mitigation.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_9",
+      "type": "becomes_next_action",
+      "from": "weak_claim_8",
+      "to": "next_action_10",
+      "rationale": "Prescribed verification step to resolve the weak claim.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_10",
+      "type": "contradicts",
+      "from": "weak_claim_11",
+      "to": "source_response_1",
+      "rationale": "Claim contradicts system safety constraints or lacks documented evidence.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_11",
+      "type": "needs_verification",
+      "from": "weak_claim_11",
+      "to": "risk_12",
+      "rationale": "Weak claim introduces system risk requiring mitigation.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_12",
+      "type": "becomes_next_action",
+      "from": "weak_claim_11",
+      "to": "next_action_13",
+      "rationale": "Prescribed verification step to resolve the weak claim.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_13",
+      "type": "derived_from",
+      "from": "workflow_card_14",
+      "to": "insight_2",
+      "rationale": "Workflow card is derived from the parsed key insight node.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_14",
+      "type": "owned_by_agent",
+      "from": "workflow_card_14",
+      "to": "agent_15",
+      "rationale": "Workflow execution is owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_15",
+      "type": "needs_verification",
+      "from": "workflow_card_14",
+      "to": "risk_16",
+      "rationale": "Workflow steps introduce potential risks requiring manual checks.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_16",
+      "type": "becomes_next_action",
+      "from": "workflow_card_14",
+      "to": "next_action_17",
+      "rationale": "Mitigation next action to resolve workflow risk or execute setup.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_17",
+      "type": "derived_from",
+      "from": "workflow_card_18",
+      "to": "insight_3",
+      "rationale": "Workflow card is derived from the parsed key insight node.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_18",
+      "type": "owned_by_agent",
+      "from": "workflow_card_18",
+      "to": "agent_19",
+      "rationale": "Workflow execution is owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_19",
+      "type": "needs_verification",
+      "from": "workflow_card_18",
+      "to": "risk_20",
+      "rationale": "Workflow steps introduce potential risks requiring manual checks.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_20",
+      "type": "becomes_next_action",
+      "from": "workflow_card_18",
+      "to": "next_action_21",
+      "rationale": "Mitigation next action to resolve workflow risk or execute setup.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_21",
+      "type": "derived_from",
+      "from": "workflow_card_22",
+      "to": "insight_4",
+      "rationale": "Workflow card is derived from the parsed key insight node.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_22",
+      "type": "owned_by_agent",
+      "from": "workflow_card_22",
+      "to": "agent_23",
+      "rationale": "Workflow execution is owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_23",
+      "type": "needs_verification",
+      "from": "workflow_card_22",
+      "to": "risk_24",
+      "rationale": "Workflow steps introduce potential risks requiring manual checks.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_24",
+      "type": "becomes_next_action",
+      "from": "workflow_card_22",
+      "to": "next_action_25",
+      "rationale": "Mitigation next action to resolve workflow risk or execute setup.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_25",
+      "type": "suggests_module",
+      "from": "insight_2",
+      "to": "os_module_suggestion_26",
+      "rationale": "Insight suggests the creation or expansion of an OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_26",
+      "type": "owned_by_agent",
+      "from": "os_module_suggestion_26",
+      "to": "agent_15",
+      "rationale": "Module operations and maintenance are owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_27",
+      "type": "becomes_next_action",
+      "from": "os_module_suggestion_26",
+      "to": "next_action_27",
+      "rationale": "Prescribed next steps to build or integrate the OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_28",
+      "type": "suggests_module",
+      "from": "insight_3",
+      "to": "os_module_suggestion_28",
+      "rationale": "Insight suggests the creation or expansion of an OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_29",
+      "type": "owned_by_agent",
+      "from": "os_module_suggestion_28",
+      "to": "agent_19",
+      "rationale": "Module operations and maintenance are owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_30",
+      "type": "becomes_next_action",
+      "from": "os_module_suggestion_28",
+      "to": "next_action_29",
+      "rationale": "Prescribed next steps to build or integrate the OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_31",
+      "type": "suggests_module",
+      "from": "insight_4",
+      "to": "os_module_suggestion_30",
+      "rationale": "Insight suggests the creation or expansion of an OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_32",
+      "type": "owned_by_agent",
+      "from": "os_module_suggestion_30",
+      "to": "agent_31",
+      "rationale": "Module operations and maintenance are owned by the productivity agent.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_33",
+      "type": "becomes_next_action",
+      "from": "os_module_suggestion_30",
+      "to": "next_action_32",
+      "rationale": "Prescribed next steps to build or integrate the OS module.",
+      "confidence": "High"
+    },
+    {
+      "id": "edge_34",
+      "type": "stages_to_obsidian",
+      "from": "obsidian_staged_note_33",
+      "to": "source_response_1",
+      "rationale": "Obsidian staged note aggregates all intelligence sections for the source response.",
+      "confidence": "High"
+    }
+  ],
+  "safetyFlags": {
+    "localOnly": true,
+    "noExternalCalls": true,
+    "noVectorDbWrite": true,
+    "noObsidianWrite": true
+  }
+}

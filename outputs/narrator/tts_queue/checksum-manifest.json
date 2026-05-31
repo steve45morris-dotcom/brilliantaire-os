@@ -1,0 +1,19 @@
+{
+  "bin/piper": {
+    "sha256": "a95d6e900d0a95aba7faa1012899b1b81b6a518dc75a34461895f3e14f4648bf",
+    "type": "binary",
+    "registeredAt": "2026-05-31T17:03:16.564Z"
+  },
+  "models/oracle-neutral.onnx": {
+    "sha256": "5efe09e69902187827af646e1a6e9d269dee769f9877d17b16b1b46eeaaf019f",
+    "type": "model",
+    "registeredAt": "2026-05-31T16:47:38.780Z",
+    "profile": "oracle-neutral"
+  },
+  "models/oracle-neutral.json": {
+    "sha256": "efe19c417bed055f2d69908248c6ba650fa135bc868b0e6abb3da181dab690a0",
+    "type": "config",
+    "registeredAt": "2026-05-31T16:47:38.780Z",
+    "profile": "oracle-neutral"
+  }
+}

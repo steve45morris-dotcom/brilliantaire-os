@@ -80,10 +80,16 @@
     "notebooklm-mcp-completion-review-help": "tsx scripts/notebooklm-mcp-completion-review-help.ts",
     "notebooklm-mcp-fix-cycle": "tsx scripts/notebooklm-mcp-fix-cycle.ts",
     "notebooklm-mcp-fix-cycle-help": "tsx scripts/notebooklm-mcp-fix-cycle-help.ts",
+    "notebooklm-mcp-verify-loop": "tsx scripts/notebooklm-mcp-verify-loop.ts",
+    "notebooklm-mcp-verify-loop-help": "tsx scripts/notebooklm-mcp-verify-loop-help.ts",
     "notebooklm-mcp-secrets": "tsx scripts/notebooklm-mcp-secrets.ts",
     "notebooklm-mcp-secrets-help": "tsx scripts/notebooklm-mcp-secrets-help.ts",
     "notebooklm-mcp-live": "tsx scripts/notebooklm-mcp-live.ts",
     "notebooklm-mcp-live-help": "tsx scripts/notebooklm-mcp-live-help.ts",
+    "notebooklm-response-intelligence": "tsx scripts/notebooklm-response-intelligence.ts",
+    "notebooklm-response-intelligence-help": "tsx scripts/notebooklm-response-intelligence-help.ts",
+    "grounded-index": "tsx scripts/grounded-intelligence-index.ts",
+    "grounded-index-help": "tsx scripts/grounded-intelligence-index-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -102,7 +108,9 @@
     "narrator-tts-renderer": "tsx scripts/narrator-tts-renderer.ts",
     "narrator-tts-renderer-help": "tsx scripts/narrator-tts-renderer-help.ts",
     "narrator-tts-models": "tsx scripts/narrator-tts-models.ts",
-    "narrator-tts-models-help": "tsx scripts/narrator-tts-models-help.ts"
+    "narrator-tts-models-help": "tsx scripts/narrator-tts-models-help.ts",
+    "narrator-asr-listener": "tsx scripts/narrator-asr-listener.ts",
+    "narrator-asr-listener-help": "tsx scripts/narrator-asr-listener-help.ts"
   },
   "keywords": [
     "antigravity",

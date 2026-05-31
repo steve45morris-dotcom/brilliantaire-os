@@ -153,7 +153,10 @@
 - [x] Phase N5C: Test registration of Piper binaries and models
 - [x] Phase N5C: Test cache status and cleanup commands
 - [x] Phase N5C: Verify integrated renderer cache hitting
-
+- [x] Phase N5D: Build local ASR command listener
+- [x] Phase N5D: Test ASR status and input scanning
+- [x] Phase N5D: Test transcription command routing and safety boundaries
+- [x] Phase N5D: Test staging, review, approval, and queue status workflows
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -235,12 +238,11 @@
 
 ## Do Next
 - [x] Build MCP Setup Fix Cycle
-- [x] Generate missing env checklist
-- [x] Generate local config checklist
-- [x] Generate rerun sequence
-- [x] Generate decision summary
-- [ ] Complete local MCP setup outside repo
-- [ ] Rerun readiness after local fixes
+- [x] Generate MCP fix task list
+- [x] Generate readiness comparison report
+- [x] Generate next-pass report
+- [ ] Complete local env/config setup outside repo
+- [ ] Rerun readiness gate after local setup
 
 
 ## Do Next
@@ -261,6 +263,24 @@
 - [x] Test manual response import
 - [x] Review live adapter report
 
+## Do Next
+- [x] Build Live Response Intelligence Processor
+- [x] Process latest NotebookLM response
+- [x] Generate citation map
+- [x] Generate weak claims report
+- [x] Generate workflow cards
+- [x] Generate OS module suggestions
+- [x] Generate Obsidian staged note
+- [x] Review Grounded Narrator indexing boundary
+
+## Do Next
+- [ ] Build Grounded Intelligence Index Graph
+- [ ] Generate local JSON graph
+- [ ] Generate Markdown graph
+- [ ] Generate graph report
+- [ ] Inspect latest graph
+- [ ] Review high-risk weak claims
+- [ ] Prepare vector index only after graph review
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

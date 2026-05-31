@@ -1,5 +1,5 @@
 // scripts/notebooklm-mcp-fix-cycle.ts
-// Handles the NotebookLM MCP Setup Fix Cycle, checklists, runbooks, and decisions.
+// Handles the NotebookLM MCP Setup Fix Cycle, checklists, comparisons, and runbooks.
 
 import fs from 'fs';
 import path from 'path';
@@ -19,7 +19,6 @@ const outputFolders = {
   root: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_fix_cycle'),
   reports: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_fix_cycle', 'reports'),
   checklists: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_fix_cycle', 'checklists'),
-  runbooks: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_fix_cycle', 'runbooks'),
   logs: path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_fix_cycle', 'logs'),
   templates: path.join(REPO_ROOT, 'templates', 'notebooklm_bridge', 'mcp_fix_cycle')
 };
@@ -55,7 +54,15 @@ function logEvent(action: string, detail: string) {
   fs.appendFileSync(logFile, entry);
 }
 
-// Check local variables presence dynamically
+function findLatestFile(dirPath: string, prefix: string): string | null {
+  if (!fs.existsSync(dirPath)) return null;
+  const files = fs.readdirSync(dirPath)
+    .filter(f => f.startsWith(prefix) && f.endsWith('.md'))
+    .sort();
+  if (files.length === 0) return null;
+  return path.join(dirPath, files[files.length - 1]);
+}
+
 function getEnvPresence(): { [key: string]: { present: boolean; source: string } } {
   const foundEnvNames: { [key: string]: { present: boolean; source: string } } = {};
   for (const envName of expectedEnvNames) {
@@ -65,15 +72,30 @@ function getEnvPresence(): { [key: string]: { present: boolean; source: string }
   // Check files
   for (const fileObj of candidateLocalFiles) {
     if (fs.existsSync(fileObj.path)) {
-      try {
-        const content = fs.readFileSync(fileObj.path, 'utf-8');
-        for (const envName of expectedEnvNames) {
-          const regex = new RegExp(`\\b${envName}\\b`, 'i');
-          if (regex.test(content)) {
-            foundEnvNames[envName] = { present: true, source: fileObj.name };
+      if (fileObj.type === 'file') {
+        try {
+          const content = fs.readFileSync(fileObj.path, 'utf-8');
+          for (const envName of expectedEnvNames) {
+            const regex = new RegExp(`\\b${envName}\\b`, 'i');
+            if (regex.test(content)) {
+              foundEnvNames[envName] = { present: true, source: fileObj.name };
+            }
           }
-        }
-      } catch (_) {}
+        } catch (_) {}
+      } else if (fileObj.type === 'directory') {
+        try {
+          const files = fs.readdirSync(fileObj.path);
+          for (const file of files) {
+            const content = fs.readFileSync(path.join(fileObj.path, file), 'utf-8');
+            for (const envName of expectedEnvNames) {
+              const regex = new RegExp(`\\b${envName}\\b`, 'i');
+              if (regex.test(content)) {
+                foundEnvNames[envName] = { present: true, source: `${fileObj.name}${file}` };
+              }
+            }
+          }
+        } catch (_) {}
+      }
     }
   }
 
@@ -87,145 +109,139 @@ function getEnvPresence(): { [key: string]: { present: boolean; source: string }
   return foundEnvNames;
 }
 
-// 1. missing-env checklist
-async function handleMissingEnv(): Promise<string> {
-  console.log("🔍 Compiling missing-env checklist...");
-  await announceIntent("Identifying missing NotebookLM variables for local-only setup.");
-
-  const presence = getEnvPresence();
-  const envDetails: { [key: string]: { purpose: string; example: string } } = {
-    NOTEBOOKLM_MCP_ENABLED: {
-      purpose: "Enables the NotebookLM Model Context Protocol adapter layers.",
-      example: "NOTEBOOKLM_MCP_ENABLED=false"
-    },
-    NOTEBOOKLM_MCP_SERVER_COMMAND: {
-      purpose: "Mapped path or node process command to launch the NotebookLM MCP daemon.",
-      example: "NOTEBOOKLM_MCP_SERVER_COMMAND=\"npx -y @google/notebooklm-mcp-server\""
-    },
-    NOTEBOOKLM_AUTH_PROFILE: {
-      purpose: "Selects authorization profile for local sandbox or cloud settings.",
-      example: "NOTEBOOKLM_AUTH_PROFILE=\"sandbox-profile-default\""
-    },
-    GOOGLE_APPLICATION_CREDENTIALS: {
-      purpose: "Path to the Google Service Account JSON key file.",
-      example: "GOOGLE_APPLICATION_CREDENTIALS=\"/Users/alexanderanthony/secrets/gcp-sa-key.json\""
-    },
-    GOOGLE_CLOUD_PROJECT: {
-      purpose: "Target Google Cloud Platform Project ID for NotebookLM API gateway.",
-      example: "GOOGLE_CLOUD_PROJECT=\"brilliantaire-os-prod\""
-    },
-    NOTEBOOKLM_WORKSPACE_ID: {
-      purpose: "Unique identifier of your target NotebookLM workspace instance.",
-      example: "NOTEBOOKLM_WORKSPACE_ID=\"workspace-mcp-908124\""
-    }
-  };
-
-  const rows: string[] = [];
-  for (const envName of expectedEnvNames) {
-    const isPresent = presence[envName].present;
-    const details = envDetails[envName] || { purpose: "N/A", example: "N/A" };
-    const statusText = isPresent ? "🟢 PRESENT" : "🔴 MISSING";
-    const exampleVal = isPresent ? "`[REDACTED]`" : `\`${details.example}\``;
-    rows.push(
-      `| \`${envName}\` | ${details.purpose} | ${exampleVal} | \`.env.local\` | **Local-Only (Never Commit)** | \`npm run notebooklm-mcp-completion-review -- env-check\` |`
-    );
-  }
-
-  const templatePath = path.join(outputFolders.templates, 'missing-env-fix-template.md');
-  if (!fs.existsSync(templatePath)) {
-    console.error(`❌ Template not found at: ${templatePath}`);
-    process.exit(1);
-  }
-
-  let template = fs.readFileSync(templatePath, 'utf-8');
-  template = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{MISSING_ENV_ROWS\}\}/g, rows.join('\n'));
-
-  const safePath = getSafeWritePath(outputFolders.checklists, `notebooklm_missing_env_fix_${getFormattedDate()}`, '.md');
-  fs.writeFileSync(safePath, template);
-
-  const detailMsg = `Missing environment variables checklist written to: ${path.basename(safePath)}`;
-  console.log(`✅ ${detailMsg}`);
-  logEvent('MISSING_ENV', detailMsg);
-
-  await announceCompletion("Missing env parameters checklist generated.", "10");
-  return safePath;
+function parseReadinessScore(filePath: string): number {
+  if (!fs.existsSync(filePath)) return 0;
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const match = content.match(/Readiness Score[:\*]*\s*(\d+)%/i) || content.match(/Readiness Score[:\*]*\s*(\d+)/i);
+  return match ? parseInt(match[1], 10) : 0;
 }
 
-// 2. local-config checklist
-async function handleLocalConfig(): Promise<string> {
-  console.log("⚙️ Compiling local-config fix checklist...");
-  await announceIntent("Evaluating gitignore boundaries and local override files.");
+function parseReviewScore(filePath: string): number {
+  if (!fs.existsSync(filePath)) return 0;
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const match = content.match(/Review Score[:\*]*\s*(\d+)%/i) || content.match(/Review Score[:\*]*\s*(\d+)/i);
+  return match ? parseInt(match[1], 10) : 0;
+}
 
+function parseBlockers(filePath: string | null): string[] {
+  if (!filePath || !fs.existsSync(filePath)) return [];
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n');
+  const blockers: string[] = [];
+  for (const line of lines) {
+    if (line.trim().startsWith('|') && !line.includes('Blocker') && !line.includes('---')) {
+      const parts = line.split('|');
+      if (parts.length > 2) {
+        const blockerName = parts[1].trim();
+        const blockerEvidence = parts[2] ? parts[2].trim() : '';
+        if (blockerName) {
+          if (blockerEvidence) {
+            blockers.push(`${blockerName} (${blockerEvidence})`);
+          } else {
+            blockers.push(blockerName);
+          }
+        }
+      }
+    }
+  }
+  return blockers;
+}
+
+// 1. tasks command
+async function handleTasks(): Promise<string> {
+  console.log("🔍 Processing latest reports and generating fix checklist...");
+  await announceIntent("Evaluating setup reports to compile local fix checklist.");
+
+  const readinessGateDir = path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_readiness_gate', 'reports');
+  const correctionPackDir = path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_correction_pack', 'reports');
+  const completionReviewDir = path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_completion_review', 'reports');
+
+  const latestReadinessGate = findLatestFile(readinessGateDir, 'notebooklm_mcp_readiness_gate_');
+  const latestBlocker = findLatestFile(readinessGateDir, 'notebooklm_mcp_blockers_');
+  const latestCorrectionPack = findLatestFile(correctionPackDir, 'notebooklm_mcp_blocker_corrections_');
+  const latestCompletionReview = findLatestFile(completionReviewDir, 'notebooklm_mcp_completion_review_');
+  const latestLiveEligibility = findLatestFile(completionReviewDir, 'notebooklm_mcp_live_eligibility_');
+
+  console.log("Inputs checked:");
+  console.log(`- Readiness Gate:     ${latestReadinessGate ? path.basename(latestReadinessGate) : 'Not found'}`);
+  console.log(`- Blocker List:       ${latestBlocker ? path.basename(latestBlocker) : 'Not found'}`);
+  console.log(`- Correction Pack:    ${latestCorrectionPack ? path.basename(latestCorrectionPack) : 'Not found'}`);
+  console.log(`- Completion Review:  ${latestCompletionReview ? path.basename(latestCompletionReview) : 'Not found'}`);
+  console.log(`- Live Eligibility:   ${latestLiveEligibility ? path.basename(latestLiveEligibility) : 'Not found'}`);
+
+  // Dynamic status checks
   const envLocalExists = fs.existsSync(path.join(REPO_ROOT, '.env.local'));
   let envLocalGitignored = false;
-
   const gitignorePath = path.join(REPO_ROOT, '.gitignore');
   if (fs.existsSync(gitignorePath)) {
-    try {
-      const gitignoreContent = fs.readFileSync(gitignorePath, 'utf-8');
-      if (gitignoreContent.includes('.env.local')) {
-        envLocalGitignored = true;
+    const gitignoreContent = fs.readFileSync(gitignorePath, 'utf-8');
+    if (gitignoreContent.includes('.env.local')) {
+      envLocalGitignored = true;
+    }
+  }
+
+  let mcpConfigured = false;
+  for (const fileObj of candidateLocalFiles) {
+    if (fs.existsSync(fileObj.path)) {
+      if (fileObj.type === 'file') {
+        try {
+          const content = fs.readFileSync(fileObj.path, 'utf-8');
+          if (content.includes('notebooklm-mcp')) {
+            mcpConfigured = true;
+          }
+        } catch (_) {}
+      } else if (fileObj.type === 'directory') {
+        try {
+          const files = fs.readdirSync(fileObj.path);
+          for (const file of files) {
+            const content = fs.readFileSync(path.join(fileObj.path, file), 'utf-8');
+            if (content.includes('notebooklm-mcp')) {
+              mcpConfigured = true;
+            }
+          }
+        } catch (_) {}
       }
-    } catch (_) {}
+    }
   }
 
-  const rows = [
-    `| \`.env.local File existence\` | Must exist locally only in project root | ${envLocalExists ? "🟢 EXISTS" : "🔴 MISSING"} | Medium | Create \`.env.local\` file in root directory |`,
-    `| \`Gitignore rules checklist\` | \`.env.local\` must be listed in \`.gitignore\` | ${envLocalGitignored ? "🟢 GITIGNORED" : "🔴 EXPOSED"} | Critical | Append \`.env.local\` line to \`.gitignore\` |`,
-    `| \`No secrets in repository files\` | Codebase must be clean of GCP/NotebookLM secrets | 🟢 CLEAN | Critical | Ensure no project keys are committed inside scripts |`,
-    `| \`MCP Configuration env references\` | Configurations must map dynamically to env vars | 🟢 MAPPED | High | Verify config files do not use static credential values |`,
-    `| \`Live execution status\` | \`ALLOW_LIVE_MCP_EXECUTION\` must be false | ${ALLOW_LIVE_MCP_EXECUTION ? "🔴 ACTIVE" : "🟢 LOCKED"} | High | Maintain safety gate toggle flag as false |`
-  ];
-
-  const templatePath = path.join(outputFolders.templates, 'local-config-fix-template.md');
-  if (!fs.existsSync(templatePath)) {
-    console.error(`❌ Template not found at: ${templatePath}`);
-    process.exit(1);
+  const envVarsStatus = getEnvPresence();
+  let envPresentCount = 0;
+  for (const envName of expectedEnvNames) {
+    if (envVarsStatus[envName].present) {
+      envPresentCount++;
+    }
   }
 
-  let template = fs.readFileSync(templatePath, 'utf-8');
-  template = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{LOCAL_CONFIG_ROWS\}\}/g, rows.join('\n'));
+  const allComplete = envLocalExists && envLocalGitignored && mcpConfigured && (envPresentCount === expectedEnvNames.length);
+  const fixCycleStatus = allComplete ? "COMPLETED" : "IN_PROGRESS";
 
-  const safePath = getSafeWritePath(outputFolders.checklists, `notebooklm_local_config_fix_${getFormattedDate()}`, '.md');
-  fs.writeFileSync(safePath, template);
-
-  const detailMsg = `Local configuration fix checklist written to: ${path.basename(safePath)}`;
-  console.log(`✅ ${detailMsg}`);
-  logEvent('LOCAL_CONFIG', detailMsg);
-
-  await announceCompletion("Local config rules checklists updated.", "10");
-  return safePath;
-}
-
-// 3. rerun-sequence runbook
-async function handleRerunSequence(): Promise<string> {
-  console.log("🔄 Compiling verification rerun runbook sequence...");
-  await announceIntent("Staging verification rerun commands list.");
-
-  const steps = [
-    { nr: 1, cmd: "npm run notebooklm-mcp-auth -- \"scan\"", purpose: "Scan for local Google GCP authorization keys", expected: "Scans local files outside repo", condition: "Exit code 0" },
-    { nr: 2, cmd: "npm run notebooklm-mcp-auth -- \"status\"", purpose: "Report GID authorization profiles check status", expected: "Identifies local credentials configuration", condition: "Exit code 0" },
-    { nr: 3, cmd: "npm run notebooklm-mcp-harden -- \"readiness-recheck\"", purpose: "Recheck codebase secrets hygiene compliance", expected: "Assesses sandbox secret leaks", condition: "Exit code 0" },
-    { nr: 4, cmd: "npm run notebooklm-mcp-readiness-gate -- \"scan\"", purpose: "Execute primary readiness gate validator scan", expected: "Verifies basic sandbox compliance", condition: "Exit code 0" },
-    { nr: 5, cmd: "npm run notebooklm-mcp-readiness-gate -- \"decision\"", purpose: "Outputs MCP server activation score metrics", expected: "Calculates gate readiness checks", condition: "Exit code 0" },
-    { nr: 6, cmd: "npm run notebooklm-mcp-completion-review -- \"env-check\"", purpose: "Assert required variables presence locally", expected: "Verifies required key maps", condition: "Exit code 0" },
-    { nr: 7, cmd: "npm run notebooklm-mcp-completion-review -- \"review\"", purpose: "Generate setup completion review report", expected: "Updates setup completion logs", condition: "Exit code 0" },
-    { nr: 8, cmd: "npm run notebooklm-mcp-completion-review -- \"eligibility\"", purpose: "Verify live adapter integration eligibility status", expected: "Checks 90% score gates", condition: "Exit code 0" },
-    { nr: 9, cmd: "npm run notebooklm-mcp-completion-review -- \"status\"", purpose: "Logs overall status metrics to CLI console", expected: "Status summary report compiled", condition: "Exit code 0" }
-  ];
-
+  // Compile checklist rows
   const rows: string[] = [];
-  for (const s of steps) {
+
+  const envLocalStatus = envLocalExists ? '🟢 DONE' : '🔴 PENDING';
+  rows.push(
+    `| Create .env.local file | .env.local file is missing in root | Create .env.local in repo root | ls -la .env.local | File exists | Knowledge Librarian | ${envLocalStatus} |`
+  );
+
+  const gitignoreStatus = envLocalGitignored ? '🟢 DONE' : '🔴 PENDING';
+  rows.push(
+    `| Gitignore .env.local | .env.local not found in .gitignore | Append .env.local to .gitignore | git check-ignore .env.local | File is gitignored | Knowledge Librarian | ${gitignoreStatus} |`
+  );
+
+  const configStatus = mcpConfigured ? '🟢 DONE' : '🔴 PENDING';
+  rows.push(
+    `| Configure Client Sidecar | 'notebooklm-mcp' config not found in client settings | Copy mcp config block to client settings | npm run notebooklm-mcp-readiness-gate -- scan | Client config mapped | Knowledge Librarian | ${configStatus} |`
+  );
+
+  for (const envName of expectedEnvNames) {
+    const present = envVarsStatus[envName].present;
+    const varStatus = present ? '🟢 DONE' : '🔴 PENDING';
     rows.push(
-      `| Step ${s.nr} | \`${s.cmd}\` | ${s.purpose} | ${s.expected} | \`${s.condition}\` |`
+      `| Map ${envName} | ${envName} not found in configurations | Define ${envName} inside .env.local | npm run notebooklm-mcp-completion-review -- env-check | Key is present | Knowledge Librarian | ${varStatus} |`
     );
   }
 
-  const templatePath = path.join(outputFolders.templates, 'rerun-sequence-template.md');
+  const templatePath = path.join(outputFolders.templates, 'fix-task-list-template.md');
   if (!fs.existsSync(templatePath)) {
     console.error(`❌ Template not found at: ${templatePath}`);
     process.exit(1);
@@ -234,59 +250,100 @@ async function handleRerunSequence(): Promise<string> {
   let template = fs.readFileSync(templatePath, 'utf-8');
   template = template
     .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{RERUN_ROWS\}\}/g, rows.join('\n'));
+    .replace(/\{\{FIX_CYCLE_STATUS\}\}/g, fixCycleStatus)
+    .replace(/\{\{FIX_TASK_ROWS\}\}/g, rows.join('\n'));
 
-  const safePath = getSafeWritePath(outputFolders.runbooks, `notebooklm_mcp_rerun_sequence_${getFormattedDate()}`, '.md');
+  const safePath = getSafeWritePath(outputFolders.checklists, `notebooklm_mcp_fix_tasks_${getFormattedDate()}`, '.md');
   fs.writeFileSync(safePath, template);
 
-  const detailMsg = `Rerun sequence runbook compiled at: ${path.basename(safePath)}`;
+  const detailMsg = `Fix task list generated at: ${path.basename(safePath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('RERUN_SEQUENCE', detailMsg);
+  logEvent('TASKS', detailMsg);
 
-  await announceCompletion("Rerun sequence verification runbook compiled.", "10");
+  await announceCompletion(`Fix tasks checklist updated. Status: ${fixCycleStatus}.`, "10");
   return safePath;
 }
 
-// 4. decision-summary
-async function handleDecisionSummary(): Promise<string> {
-  console.log("🧠 Evaluating setup progress for decision summary...");
-  await announceIntent("Analyzing latest readiness metrics and checklist logs.");
+// 2. compare command
+async function handleCompare(): Promise<string> {
+  console.log("📊 Comparing latest scores and blockers...");
+  await announceIntent("Compiling readiness and completion review scores comparison report.");
 
-  // Check env presence to calculate score dynamically
-  const presence = getEnvPresence();
-  let envPresentCount = 0;
-  for (const envName of expectedEnvNames) {
-    if (presence[envName].present) {
-      envPresentCount++;
+  const readinessGateDir = path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_readiness_gate', 'reports');
+  const completionReviewDir = path.join(REPO_ROOT, 'outputs', 'notebooklm_bridge', 'mcp_completion_review', 'reports');
+
+  // Scores
+  let currentReadinessScore = 0;
+  let previousReadinessScore = 0;
+  let currentReviewScore = 0;
+
+  if (fs.existsSync(readinessGateDir)) {
+    const files = fs.readdirSync(readinessGateDir)
+      .filter(f => f.startsWith('notebooklm_mcp_readiness_gate_') && f.endsWith('.md'))
+      .sort();
+    if (files.length > 0) {
+      currentReadinessScore = parseReadinessScore(path.join(readinessGateDir, files[files.length - 1]));
+    }
+    if (files.length > 1) {
+      previousReadinessScore = parseReadinessScore(path.join(readinessGateDir, files[files.length - 2]));
     }
   }
 
-  const score = Math.round((envPresentCount / expectedEnvNames.length) * 100);
-  const isEligible = score >= 90 && !ALLOW_LIVE_MCP_EXECUTION;
-
-  const blockers: string[] = [];
-  if (envPresentCount < expectedEnvNames.length) {
-    blockers.push(`- **Variables Missing:** Only ${envPresentCount} out of ${expectedEnvNames.length} keys mapped.`);
-  }
-  if (ALLOW_LIVE_MCP_EXECUTION) {
-    blockers.push("- **Safety Block:** Live integration flag ALLOW_LIVE_MCP_EXECUTION is enabled in gate.");
+  if (fs.existsSync(completionReviewDir)) {
+    const files = fs.readdirSync(completionReviewDir)
+      .filter(f => f.startsWith('notebooklm_mcp_completion_review_') && f.endsWith('.md'))
+      .sort();
+    if (files.length > 0) {
+      currentReviewScore = parseReviewScore(path.join(completionReviewDir, files[files.length - 1]));
+    }
   }
 
-  const fixes: string[] = [];
-  if (envPresentCount < expectedEnvNames.length) {
-    fixes.push(`- Map all ${expectedEnvNames.length - envPresentCount} missing parameters locally in \`.env.local\`.`);
+  const scoreDelta = currentReviewScore - previousReadinessScore;
+
+  // Blockers parsed from reports
+  let latestBlockerFile = findLatestFile(readinessGateDir, 'notebooklm_mcp_blockers_');
+  let currentBlockers: string[] = [];
+  let previousBlockers: string[] = [];
+
+  if (latestBlockerFile) {
+    currentBlockers = parseBlockers(latestBlockerFile);
+  } else {
+    // Dynamic fallback
+    const envVarsStatus = getEnvPresence();
+    const envLocalExists = fs.existsSync(path.join(REPO_ROOT, '.env.local'));
+    if (!envLocalExists) currentBlockers.push("Local Setup Files");
+    for (const envName of expectedEnvNames) {
+      if (!envVarsStatus[envName].present) currentBlockers.push(`Missing Env Key: ${envName}`);
+    }
   }
-  if (!fs.existsSync(path.join(REPO_ROOT, '.env.local'))) {
-    fixes.push("- Create local override file `.env.local`.");
+
+  if (fs.existsSync(readinessGateDir)) {
+    const files = fs.readdirSync(readinessGateDir)
+      .filter(f => f.startsWith('notebooklm_mcp_blockers_') && f.endsWith('.md'))
+      .sort();
+    if (files.length > 1) {
+      const prevBlockerFile = path.join(readinessGateDir, files[files.length - 2]);
+      previousBlockers = parseBlockers(prevBlockerFile);
+    }
   }
 
-  const blockersText = blockers.length > 0 ? blockers.join('\n') : "*Zero active setup blockers remain.*";
-  const fixesText = fixes.length > 0 ? fixes.join('\n') : "*No fixes required. Workspace is safe.*";
+  const blockersCleared = previousBlockers.filter(b => !currentBlockers.includes(b));
+  
+  const clearedText = blockersCleared.length > 0 
+    ? blockersCleared.map(b => `- **Cleared:** ${b}`).join('\n')
+    : "*No blockers cleared in this pass.*";
 
-  const ifEligible = "Live NotebookLM MCP adapter setup is approved for integration tests.";
-  const ifNotEligible = "Resolve all blockers by creating .env.local file and loading missing keys locally.";
+  const remainingText = currentBlockers.length > 0
+    ? currentBlockers.map(b => `- **Remaining:** ${b}`).join('\n')
+    : "*Zero active blockers remaining.*";
 
-  const templatePath = path.join(outputFolders.templates, 'decision-summary-template.md');
+  const isEligible = currentReviewScore >= 90 && !ALLOW_LIVE_MCP_EXECUTION && currentBlockers.length === 0;
+
+  const nextAction = isEligible 
+    ? "Proceed to live integration phase." 
+    : "Resolve remaining blockers in .env.local and rerun readiness gate.";
+
+  const templatePath = path.join(outputFolders.templates, 'readiness-comparison-template.md');
   if (!fs.existsSync(templatePath)) {
     console.error(`❌ Template not found at: ${templatePath}`);
     process.exit(1);
@@ -295,51 +352,97 @@ async function handleDecisionSummary(): Promise<string> {
   let template = fs.readFileSync(templatePath, 'utf-8');
   template = template
     .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{READINESS_SCORE\}\}/g, `${score}%`)
+    .replace(/\{\{PREVIOUS_SCORE\}\}/g, `${previousReadinessScore}%`)
+    .replace(/\{\{CURRENT_SCORE\}\}/g, `${currentReviewScore}%`)
+    .replace(/\{\{DELTA\}\}/g, `${scoreDelta >= 0 ? '+' : ''}${scoreDelta}%`)
+    .replace(/\{\{BLOCKERS_CLEARED\}\}/g, clearedText)
+    .replace(/\{\{BLOCKERS_REMAINING\}\}/g, remainingText)
     .replace(/\{\{LIVE_ELIGIBLE\}\}/g, isEligible ? "Yes" : "No")
-    .replace(/\{\{BLOCKERS_REMAINING\}\}/g, blockersText)
-    .replace(/\{\{REQUIRED_FIXES\}\}/g, fixesText)
-    .replace(/\{\{IF_ELIGIBLE\}\}/g, ifEligible)
-    .replace(/\{\{IF_NOT_ELIGIBLE\}\}/g, ifNotEligible);
+    .replace(/\{\{NEXT_ACTION\}\}/g, nextAction);
 
-  const safePath = getSafeWritePath(outputFolders.reports, `notebooklm_mcp_fix_cycle_decision_${getFormattedDate()}`, '.md');
+  const safePath = getSafeWritePath(outputFolders.reports, `notebooklm_mcp_readiness_comparison_${getFormattedDate()}`, '.md');
   fs.writeFileSync(safePath, template);
 
-  const detailMsg = `Fix cycle decision report generated at: ${path.basename(safePath)}. Eligibility: ${isEligible ? "Yes" : "No"}`;
+  const detailMsg = `Readiness comparison generated at: ${path.basename(safePath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('DECISION', detailMsg);
+  logEvent('COMPARE', detailMsg);
 
-  await announceCompletion(`Fix cycle decision compiled. Score: ${score}%. Eligible: ${isEligible ? "Yes" : "No"}.`, "10");
+  await announceCompletion(`Readiness comparison compiled. Score Delta: ${scoreDelta >= 0 ? '+' : ''}${scoreDelta}%.`, "10");
   return safePath;
 }
 
-// 5. status
-async function handleStatus() {
-  const today = getFormattedDate();
-  const missingEnvChecklist = fs.readdirSync(outputFolders.checklists).some(f => f.startsWith('notebooklm_missing_env_fix_'));
-  const localConfigChecklist = fs.readdirSync(outputFolders.checklists).some(f => f.startsWith('notebooklm_local_config_fix_'));
-  const rerunSequence = fs.readdirSync(outputFolders.runbooks).some(f => f.startsWith('notebooklm_mcp_rerun_sequence_'));
-  const decisionSummary = fs.readdirSync(outputFolders.reports).some(f => f.startsWith('notebooklm_mcp_fix_cycle_decision_'));
+// 3. next-pass command
+async function handleNextPass(): Promise<string> {
+  console.log("🧭 Compiling runbook for the next pass...");
+  await announceIntent("Compiling sequential sandbox setup runbook for the next pass.");
 
-  const presence = getEnvPresence();
+  const nextPassRows = [
+    `| 1 | Map missing env variables in local override file | Define expected keys (e.g. NOTEBOOKLM_MCP_ENABLED) inside \`.env.local\` | Keys are successfully parsed | All 6 env vars detected |`,
+    `| 2 | Confirm .env.local is properly gitignored | Verify \`.env.local\` is in \`.gitignore\` | File is ignored | git check-ignore returns file path |`,
+    `| 3 | Configure Claude/Cursor MCP client settings | Add sidecar connector block to local configuration path | 'notebooklm-mcp' detected | Client setup matches command |`,
+    `| 4 | Run local readiness gate validation re-check | \`npm run notebooklm-mcp-readiness-gate -- scan\` | Readiness score increases | Readiness Score is >= 90% |`,
+    `| 5 | Compile setup manual review check | \`npm run notebooklm-mcp-completion-review -- review\` | Setup Completion Review report is created | Review Score reaches >= 90% |`,
+    `| 6 | Check fix cycle status and compare progress | \`npm run notebooklm-mcp-fix-cycle -- status\` | Progress metrics printed | Live eligibility is confirmed |`
+  ].join('\n');
+
+  const safetyNote = "DO NOT enable live execution. The toggle ALLOW_LIVE_MCP_EXECUTION must remain set to false in config/notebooklm-mcp-readiness-gate.ts to prevent any external API queries, OAuth launch, or secret exposure in production/CI environments.";
+
+  const templatePath = path.join(outputFolders.templates, 'next-pass-template.md');
+  if (!fs.existsSync(templatePath)) {
+    console.error(`❌ Template not found at: ${templatePath}`);
+    process.exit(1);
+  }
+
+  let template = fs.readFileSync(templatePath, 'utf-8');
+  template = template
+    .replace(/\{\{DATE\}\}/g, getFormattedDate())
+    .replace(/\{\{NEXT_PASS_ROWS\}\}/g, nextPassRows)
+    .replace(/\{\{SAFETY_NOTE\}\}/g, safetyNote);
+
+  const safePath = getSafeWritePath(outputFolders.reports, `notebooklm_mcp_next_pass_${getFormattedDate()}`, '.md');
+  fs.writeFileSync(safePath, template);
+
+  const detailMsg = `Next pass runbook generated at: ${path.basename(safePath)}`;
+  console.log(`✅ ${detailMsg}`);
+  logEvent('NEXT-PASS', detailMsg);
+
+  await announceCompletion("Next pass runbook staged safely in reports directory.", "10");
+  return safePath;
+}
+
+// 4. status command
+async function handleStatus() {
+  const checklistsDir = path.join(outputFolders.root, 'checklists');
+  const reportsDir = path.join(outputFolders.root, 'reports');
+
+  const fixTaskListExists = fs.existsSync(checklistsDir) && fs.readdirSync(checklistsDir).some(f => f.startsWith('notebooklm_mcp_fix_tasks_') && f.endsWith('.md'));
+  const comparisonReportExists = fs.existsSync(reportsDir) && fs.readdirSync(reportsDir).some(f => f.startsWith('notebooklm_mcp_readiness_comparison_') && f.endsWith('.md'));
+  const nextPassReportExists = fs.existsSync(reportsDir) && fs.readdirSync(reportsDir).some(f => f.startsWith('notebooklm_mcp_next_pass_') && f.endsWith('.md'));
+
+  const envVarsStatus = getEnvPresence();
   let envPresentCount = 0;
   for (const envName of expectedEnvNames) {
-    if (presence[envName].present) {
+    if (envVarsStatus[envName].present) {
       envPresentCount++;
     }
   }
-  const score = Math.round((envPresentCount / expectedEnvNames.length) * 100);
-  const isEligible = score >= 90 && !ALLOW_LIVE_MCP_EXECUTION;
+
+  const currentScore = Math.round((envPresentCount / expectedEnvNames.length) * 100);
+  const isEligible = currentScore >= 90 && !ALLOW_LIVE_MCP_EXECUTION;
+
+  const nextRecommendedAction = isEligible
+    ? "Setup score is ready. Proceed to live integration stage."
+    : "Rerun 'tasks' and generate the next-pass runbook to clear blockers.";
 
   console.log("=========================================");
   console.log("🔄 NOTEBOOKLM MCP SETUP FIX CYCLE STATUS");
   console.log("=========================================");
-  console.log(`- Missing-env checklist exists:    ${missingEnvChecklist ? "Yes" : "No"}`);
-  console.log(`- Local-config checklist exists:   ${localConfigChecklist ? "Yes" : "No"}`);
-  console.log(`- Rerun sequence exists:           ${rerunSequence ? "Yes" : "No"}`);
-  console.log(`- Decision summary exists:         ${decisionSummary ? "Yes" : "No"}`);
-  console.log(`- Current live eligible:           ${isEligible ? "Yes" : "No"} (${score}%)`);
-  console.log(`- Next recommended action:         ${isEligible ? "Proceed to live integration" : "Rerun missing-env and local-config check steps"}`);
+  console.log(`- Latest fix task list exists:     ${fixTaskListExists ? "Yes" : "No"}`);
+  console.log(`- Latest comparison report exists:  ${comparisonReportExists ? "Yes" : "No"}`);
+  console.log(`- Latest next-pass report exists:  ${nextPassReportExists ? "Yes" : "No"}`);
+  console.log(`- Current score:                   ${currentScore}%`);
+  console.log(`- Live eligible:                   ${isEligible ? "Yes" : "No"}`);
+  console.log(`- Next recommended action:         ${nextRecommendedAction}`);
   console.log("=========================================");
 }
 
@@ -355,31 +458,24 @@ async function run() {
   }
 
   switch (command) {
-    case "missing-env":
-      await handleMissingEnv();
+    case "tasks":
+      await handleTasks();
       break;
-    case "local-config":
-      await handleLocalConfig();
+    case "compare":
+      await handleCompare();
       break;
-    case "rerun-sequence":
-      await handleRerunSequence();
-      break;
-    case "decision-summary":
-      await handleDecisionSummary();
-      break;
-    case "all":
-      await handleMissingEnv();
-      await handleLocalConfig();
-      await handleRerunSequence();
-      await handleDecisionSummary();
+    case "next-pass":
+      await handleNextPass();
       break;
     case "status":
       await handleStatus();
       break;
     case "help":
-    default:
-      console.log("Usage: npm run notebooklm-mcp-fix-cycle -- <missing-env | local-config | rerun-sequence | decision-summary | all | status | help>");
+      console.log("Usage: npm run notebooklm-mcp-fix-cycle -- <tasks | compare | next-pass | status | help>");
       break;
+    default:
+      console.error(`Error: Unknown subcommand "${command}".`);
+      process.exit(1);
   }
 }
 

@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N5C: Local TTS Model Autoinstaller & Audio Cache Manager — COMPLETE
+- **Current Phase:** Phase 11O: Grounded Intelligence Index Graph — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -54,15 +54,20 @@
 - **MCP Setup Review and Readiness Gate (Phase 11H):** Local credentials scan gates, live integration eligibility matrices, outstanding blockers lists, and manual setup review reports.
 - **MCP Local Setup Correction Pack (Phase 11I):** Offline blocker corrections compiler, environment key maps, config checklists, push recovery guides, and readiness rerun guides.
 - **Manual MCP Setup Completion Review (Phase 11J):** Offline checking of local credentials, manual setup reviews, live eligibility determinations, and manual operator sign-off checklists.
-- **MCP Setup Fix Cycle (Phase 11K):** Repeatable local check and correction loop to compile missing environment checklists, configure local config guidelines, generate sequential rerun runbooks, and compile fix cycle decision summaries.
+- **MCP Setup Fix Cycle (Phase 11K):** Repeatable local check and correction loop to generate fix task lists, readiness comparison reports, and next-pass runbooks, tracking status metrics directly to the console.
 - **NotebookLM MCP Local Secrets Staging Guide (Phase 11L):** Local-only environment configurations staging, plaintext credentials redaction check scanner, and staging readiness report compiler.
+- **Local MCP Setup Verification Loop (Phase 11L):** Repeatable local validation chain execution, dynamic readiness score evaluator, and final setup eligibility decision compiler.
 - **NotebookLM MCP Live Adapter Integration (Phase 11M):** Restricted read-only live query adapter scaffolding, readiness test gate auditor, and manual execution instructions fallback writer.
+- **Live Response Intelligence Processor (Phase 11N):** Safe response intelligence processor that parses normalized NotebookLM responses and converts them into structured insight indexes, citation maps, weak claims reports, workflow cards, OS module suggestions, and Obsidian-staged notes.
+- **Grounded Intelligence Index Graph (Phase 11O):** Safe local offline index compiler that reads response intelligence files and compiles them into grounded JSON graphs, Markdown graphs, and statistics reports, with console status and preview inspect support.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
 - **Local TTS Render Queue (Phase N5A):** Safe local offline staging queue (`scripts/narrator-tts-queue.ts`) compiling approved voice packets into structured rendering requests, supporting manual approval and rejection workflows without calling external TTS APIs or auto-playing audio.
 - **Local TTS Audio Renderer (Phase N5B):** Safe local offline audio renderer (`scripts/narrator-tts-renderer.ts`) compiling approved request markdown text into local wave/mp3 voice scripts via Piper, verifying approved states and logging error/success reports.
 - **Local TTS Model & Cache Manager (Phase N5C):** Secure offline registration, SHA256 checksum verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.
+- **Local ASR Command Listener (Phase N5D):** Safe offline speech-to-text transcriber (`scripts/narrator-asr-listener.ts`) converting staged audio input into verified markdown transcripts and VNP command packets requiring manual verification.
+
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

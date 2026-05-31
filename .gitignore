@@ -6,4 +6,16 @@ dist/
 .env.local
 .mcp.local.json
 mcp_secrets/
+scratch/
 
+
+
+# Audio and Piper Staging Cache
+local_assets/
+outputs/narrator/tts_queue/models/
+outputs/narrator/tts_queue/rendered_audio/
+outputs/narrator/tts_queue/bin/
+*.wav
+*.mp3
+*.tar.gz
+test.wav

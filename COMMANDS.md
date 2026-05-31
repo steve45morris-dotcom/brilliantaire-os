@@ -94,10 +94,16 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-completion-review` | `notebook completion`, `mcp completion` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Manual Setup Completion Review checks. |
 | `notebooklm-mcp-fix-cycle-help` | `notebook fix help`, `mcp fix help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Setup Fix Cycle. |
 | `notebooklm-mcp-fix-cycle` | `notebook fix`, `mcp fix` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Fix Cycle checks. |
+| `notebooklm-mcp-verify-loop-help` | `notebook verify help`, `mcp verify help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Setup Verification Loop. |
+| `notebooklm-mcp-verify-loop` | `notebook verify`, `mcp verify` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Verification Loop checks. |
 | `notebooklm-mcp-secrets-help` | `notebook secrets help`, `mcp secrets help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Secrets Staging Guide. |
 | `notebooklm-mcp-secrets` | `notebook secrets`, `mcp secrets` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Secrets Staging Guide checks. |
 | `notebooklm-mcp-live-help` | `notebook live help`, `mcp live help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Live Adapter Integration. |
 | `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | High | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
+| `notebooklm-response-intelligence-help` | `response intelligence help`, `notebook intelligence help` | Knowledge Librarian | Low | No | Print commands for NotebookLM response intelligence processor. |
+| `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
+| `grounded-index-help` | `graph help`, `grounded help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
+| `grounded-index` | `intelligence graph`, `grounded graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
@@ -116,6 +122,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-tts-renderer` | `narrator tts renderer`, `tts renderer` | Knowledge Librarian | Medium | Yes | Dry-run and compile approved text-to-speech requests to offline audio. |
 | `narrator-tts-models-help` | `tts models help`, `narrator tts models help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts model and cache manager. |
 | `narrator-tts-models` | `narrator tts models`, `tts models` | Knowledge Librarian | Medium | Yes | Register, verify, and clean up offline speech synthesis assets and cache. |
+| `narrator-asr-listener-help` | `asr listener help`, `narrator asr help` | Knowledge Librarian | Low | No | Print help commands for the narrator local ASR command listener. |
+| `narrator-asr-listener` | `narrator asr`, `asr listener` | Knowledge Librarian | Medium | Yes | Stage and manage local offline speech-to-text transcription and VNP command packets. |
 
 ---
 

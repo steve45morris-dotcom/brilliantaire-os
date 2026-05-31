@@ -493,3 +493,190 @@
 
 ---
 
+## [2026-05-31T16:47:04.029Z] Command Attempt: "narrator-tts-models register-binary ./local_assets/piper_staging/piper/piper"
+- **Matched Command:** `narrator-tts-models`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T16:47:39.023Z] Command Attempt: "narrator-tts-models register-model ./local_assets/piper_staging/en_US-lessac-medium.onnx ./local_assets/piper_staging/en_US-lessac-medium.json"
+- **Matched Command:** `narrator-tts-models`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T16:48:57.341Z] Command Attempt: "narrator-tts-renderer render 2026-05-31_0801"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T16:50:06.504Z] Command Attempt: "narrator-tts-renderer render 2026-05-31_0801"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Failed`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T17:01:12.956Z] Command Attempt: "notebooklm-mcp-verify-loop-help"
+- **Matched Command:** `notebooklm-mcp-verify-loop-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:03:16.612Z] Command Attempt: "narrator-tts-models register-binary ./local_assets/piper_staging/piper_wrapper/piper"
+- **Matched Command:** `narrator-tts-models`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:05:32.931Z] Command Attempt: "narrator-tts-renderer render 2026-05-31_0801"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:06:44.136Z] Command Attempt: "narrator-tts-renderer render 2026-05-31_0801"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:08:04.611Z] Command Attempt: "notebooklm-mcp-verify-loop chain"
+- **Matched Command:** `notebooklm-mcp-verify-loop`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:09:32.289Z] Command Attempt: "notebook verify"
+- **Matched Command:** `notebooklm-mcp-verify-loop`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T17:28:08.341Z] Command Attempt: "narrator-asr-listener status"
+- **Matched Command:** `narrator-asr-listener`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:28:47.397Z] Command Attempt: "notebooklm-mcp-fix-cycle-help"
+- **Matched Command:** `notebooklm-mcp-fix-cycle-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:28:54.902Z] Command Attempt: "asr listener status"
+- **Matched Command:** `narrator-asr-listener`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T17:29:25.971Z] Command Attempt: "notebook fix"
+- **Matched Command:** `notebooklm-mcp-fix-cycle`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T17:29:55.880Z] Command Attempt: "notebooklm-mcp-fix-cycle tasks"
+- **Matched Command:** `notebooklm-mcp-fix-cycle`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:48:51.176Z] Command Attempt: "grounded-index build"
+- **Matched Command:** `grounded-index`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T17:49:27.542Z] Command Attempt: "grounded graph"
+- **Matched Command:** `grounded-index`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

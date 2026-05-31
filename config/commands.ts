@@ -793,6 +793,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-verify-loop-help',
+    aliases: ['notebook verify help', 'mcp verify help'],
+    description: 'Print commands for NotebookLM MCP Setup Verification Loop',
+    npmScript: 'notebooklm-mcp-verify-loop-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-verify-loop',
+    aliases: ['notebook verify', 'mcp verify'],
+    description: 'Execute NotebookLM MCP Setup Verification Loop checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-verify-loop',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'notebooklm-mcp-live-help',
     aliases: ['notebook live help', 'mcp live help'],
     description: 'Print commands for NotebookLM MCP Live Adapter Integration',
@@ -810,6 +832,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     npmScript: 'notebooklm-mcp-live',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'notebooklm-response-intelligence-help',
+    aliases: ['response intelligence help', 'notebook intelligence help'],
+    description: 'Print help menu for NotebookLM response intelligence processor',
+    npmScript: 'notebooklm-response-intelligence-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-response-intelligence',
+    aliases: ['response intelligence', 'notebook intelligence'],
+    description: 'Process NotebookLM responses into structured intelligence files',
+    npmScript: 'notebooklm-response-intelligence',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grounded-index-help',
+    aliases: ['graph help', 'grounded help'],
+    description: 'Print help menu for grounded intelligence graph index',
+    npmScript: 'grounded-index-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'grounded-index',
+    aliases: ['intelligence graph', 'grounded graph'],
+    description: 'Compile response intelligence files into grounded index graphs',
+    npmScript: 'grounded-index',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
     outputType: 'files',
     enabled: true,
     requiresExactName: true
@@ -1006,6 +1072,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['narrator tts models', 'tts models'],
     description: 'Register, verify, and clean up offline speech synthesis assets and cache',
     npmScript: 'narrator-tts-models',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'narrator-asr-listener-help',
+    aliases: ['asr listener help', 'narrator asr help'],
+    description: 'Print help commands for the narrator local ASR command listener',
+    npmScript: 'narrator-asr-listener-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-asr-listener',
+    aliases: ['narrator asr', 'asr listener'],
+    description: 'Stage and manage local offline speech-to-text transcription and VNP command packets',
+    npmScript: 'narrator-asr-listener',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',
