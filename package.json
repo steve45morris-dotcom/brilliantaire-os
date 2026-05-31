@@ -96,7 +96,9 @@
     "narrator-tts-queue": "tsx scripts/narrator-tts-queue.ts",
     "narrator-tts-queue-help": "tsx scripts/narrator-tts-queue-help.ts",
     "narrator-tts-renderer": "tsx scripts/narrator-tts-renderer.ts",
-    "narrator-tts-renderer-help": "tsx scripts/narrator-tts-renderer-help.ts"
+    "narrator-tts-renderer-help": "tsx scripts/narrator-tts-renderer-help.ts",
+    "narrator-tts-models": "tsx scripts/narrator-tts-models.ts",
+    "narrator-tts-models-help": "tsx scripts/narrator-tts-models-help.ts"
   },
   "keywords": [
     "antigravity",

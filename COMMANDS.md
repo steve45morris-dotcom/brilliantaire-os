@@ -110,6 +110,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-tts-queue` | `narrator tts`, `tts queue` | Knowledge Librarian | Medium | Yes | Stage and manage local offline text-to-speech rendering requests. |
 | `narrator-tts-renderer-help` | `tts renderer help`, `narrator tts renderer help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts renderer controller. |
 | `narrator-tts-renderer` | `narrator tts renderer`, `tts renderer` | Knowledge Librarian | Medium | Yes | Dry-run and compile approved text-to-speech requests to offline audio. |
+| `narrator-tts-models-help` | `tts models help`, `narrator tts models help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts model and cache manager. |
+| `narrator-tts-models` | `narrator tts models`, `tts models` | Knowledge Librarian | Medium | Yes | Register, verify, and clean up offline speech synthesis assets and cache. |
 
 ---
 

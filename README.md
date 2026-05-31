@@ -1152,11 +1152,59 @@ The **Local TTS Audio Renderer** converts approved text-to-speech rendering requ
 
 ---
 
+## 🎙️ Phase N5C: Local TTS Model Autoinstaller & Audio Cache Manager
+
+The **Local TTS Model & Cache Manager** handles secure, offline registration, verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.
+
+### 🛡️ Safety & Execution Rules
+1. **Offline-First / No Network:** Automatic downloads are disabled (`ALLOW_EXTERNAL_DOWNLOADS = false`). All assets must be manually staged and registered.
+2. **No Execution on Verify/Register:** Binary files are verified strictly via SHA256 checksum calculations and whitelist rules. They are never executed during registration.
+3. **Sandbox Isolation:** Models, configs, and binaries are stored inside separate folders under `outputs/narrator/tts_queue/`.
+4. **Cache Clean Integrity:** The cleanup operation targets only files inside `rendered_audio/` cache. Manifests, models, binaries, and request files are never touched.
+5. **Exact-Name Routing Gate:** Commands require exact matching (`narrator-tts-models`).
+
+### 💻 Command Examples
+* View model manager help commands:
+  ```bash
+  npm run command -- "narrator-tts-models-help"
+  ```
+* Print model manager status report:
+  ```bash
+  npm run command -- "narrator-tts-models status"
+  ```
+* Scan assets for unregistered or unsafe files:
+  ```bash
+  npm run command -- "narrator-tts-models scan"
+  ```
+* Verify registered SHA256 checksums:
+  ```bash
+  npm run command -- "narrator-tts-models verify"
+  ```
+* Register a local Piper binary:
+  ```bash
+  npm run command -- "narrator-tts-models register-binary <LOCAL_PATH>"
+  ```
+* Register local voice model and config files:
+  ```bash
+  npm run command -- "narrator-tts-models register-model <MODEL_PATH> <CONFIG_PATH>"
+  ```
+* View audio cache statistics:
+  ```bash
+  npm run command -- "narrator-tts-models cache-status"
+  ```
+* Dry-run audio cache cleanup simulation:
+  ```bash
+  npm run command -- "narrator-tts-models cache-clean-dry-run"
+  ```
+* Execute audio cache cleanup:
+  ```bash
+  npm run command -- "narrator-tts-models cache-clean-approved"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 * **Phase 11L: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N5C: Local ASR Command Listener**
+* **Phase N5D: Local ASR Command Listener**
   - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
-
-
-

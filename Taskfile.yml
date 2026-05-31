@@ -454,6 +454,16 @@ tasks:
     cmds:
       - npm run narrator-tts-renderer-help
 
+  narrator-tts-models:
+    desc: "Register, verify, and clean up offline speech synthesis binaries, voice models, and cache"
+    cmds:
+      - npm run narrator-tts-models -- {{.CLI_ARGS}}
+
+  narrator-tts-models-help:
+    desc: "Print help commands for the narrator tts model and cache manager controller"
+    cmds:
+      - npm run narrator-tts-models-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

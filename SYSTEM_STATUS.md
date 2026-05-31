@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N5B: Local TTS Audio Renderer — COMPLETE
+- **Current Phase:** Phase N5C: Local TTS Model Autoinstaller & Audio Cache Manager — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -60,6 +60,7 @@
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
 - **Local TTS Render Queue (Phase N5A):** Safe local offline staging queue (`scripts/narrator-tts-queue.ts`) compiling approved voice packets into structured rendering requests, supporting manual approval and rejection workflows without calling external TTS APIs or auto-playing audio.
 - **Local TTS Audio Renderer (Phase N5B):** Safe local offline audio renderer (`scripts/narrator-tts-renderer.ts`) compiling approved request markdown text into local wave/mp3 voice scripts via Piper, verifying approved states and logging error/success reports.
+- **Local TTS Model & Cache Manager (Phase N5C):** Secure offline registration, SHA256 checksum verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

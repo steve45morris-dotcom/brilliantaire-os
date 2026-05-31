@@ -945,6 +945,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'narrator-tts-models-help',
+    aliases: ['tts models help', 'narrator tts models help'],
+    description: 'Print help commands for the narrator tts model and cache manager',
+    npmScript: 'narrator-tts-models-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-tts-models',
+    aliases: ['narrator tts models', 'tts models'],
+    description: 'Register, verify, and clean up offline speech synthesis assets and cache',
+    npmScript: 'narrator-tts-models',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

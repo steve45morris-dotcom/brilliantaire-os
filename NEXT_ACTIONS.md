@@ -147,7 +147,12 @@
 - [x] Phase N5A: Test approve request flow
 - [x] Phase N5A: Test reject request flow
 - [x] Phase N5A: Verify TTS queue status
-- [ ] Phase N5B: Prepare local TTS renderer only after queue passes
+- [x] Phase N5B: Prepare local TTS renderer only after queue passes
+- [x] Phase N5C: Build local TTS model autoinstaller & cache manager
+- [x] Phase N5C: Test models status, scan, and verification
+- [x] Phase N5C: Test registration of Piper binaries and models
+- [x] Phase N5C: Test cache status and cleanup commands
+- [x] Phase N5C: Verify integrated renderer cache hitting
 
 
 ## Do Now
