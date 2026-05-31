@@ -29,6 +29,24 @@ export interface CampaignReadiness {
   missingFilesList: string[];
 }
 
+export interface RecorderSafetyFlags {
+  liveMicEnabled: boolean;
+  backgroundRecordingEnabled: boolean;
+  autoTranscribeAfterRecording: boolean;
+  confirmationRequired: boolean;
+}
+
+export interface VoiceRecorderData {
+  backendStatus: string;
+  latestSession: string;
+  sessionCount: number;
+  stagedForAsrCount: number;
+  rejectedCount: number;
+  archivedCount: number;
+  safetyFlags: RecorderSafetyFlags;
+  latestRecorderLog: string;
+}
+
 export interface VoiceLoopData {
   asrBackend: string;
   ttsRenderer: string;
@@ -51,6 +69,7 @@ export interface VoiceLoopData {
     exactNameRouterActive: boolean;
     rawShellExecutionBlocked: boolean;
   };
+  recorder?: VoiceRecorderData;
 }
 
 export interface DashboardData {

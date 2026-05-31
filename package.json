@@ -125,6 +125,8 @@
     "narrator-voice-bridge-help": "tsx scripts/narrator-voice-bridge-help.ts",
     "narrator-voice-loop-dashboard": "tsx scripts/narrator-voice-loop-dashboard.ts",
     "narrator-voice-loop-dashboard-help": "tsx scripts/narrator-voice-loop-dashboard-help.ts",
+    "narrator-voice-session-recorder": "tsx scripts/narrator-voice-session-recorder.ts",
+    "narrator-voice-session-recorder-help": "tsx scripts/narrator-voice-session-recorder-help.ts",
     "git-asset-help": "tsx scripts/git-asset-help.ts",
     "git-asset-audit": "tsx scripts/git-asset-audit.ts",
     "git-prepush-check": "tsx scripts/git-prepush-check.ts",

@@ -629,6 +629,16 @@ tasks:
     cmds:
       - npm run narrator-voice-loop-dashboard-help
 
+  narrator-voice-session-recorder:
+    desc: "Manage and record local offline voice sessions"
+    cmds:
+      - npm run narrator-voice-session-recorder -- {{.CLI_ARGS}}
+
+  narrator-voice-session-recorder-help:
+    desc: "Print help commands for the local voice session recorder"
+    cmds:
+      - npm run narrator-voice-session-recorder-help
+
 
 
   validate:

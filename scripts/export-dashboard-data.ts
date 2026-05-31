@@ -1,6 +1,18 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
+import {
+  REC_METADATA_DIR,
+  REC_ARCHIVE_DIR,
+  REC_REJECTED_DIR,
+  REC_LOGS_DIR,
+  REC_ASR_INPUT_DIR,
+  LIVE_MIC_ENABLED as REC_LIVE_MIC_ENABLED,
+  BACKGROUND_RECORDING_ENABLED as REC_BG_ENABLED,
+  AUTO_TRANSCRIBE_AFTER_RECORDING as REC_AUTO_TRANS,
+  CONFIRMATION_REQUIRED as REC_CONF_REQ
+} from '../config/narrator-voice-session-recorder.config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -277,6 +289,41 @@ function main() {
     if (logFiles.length > 0) lastAuditEvent = logFiles[logFiles.length - 1];
   }
 
+  // Voice Session Recorder details
+  const countRecorderFiles = (dir: string, extension: string = '.json') => {
+    if (!fs.existsSync(dir)) return 0;
+    return fs.readdirSync(dir).filter(f => f.endsWith(extension)).length;
+  };
+
+  let latestSession = 'None';
+  if (fs.existsSync(REC_METADATA_DIR)) {
+    const metaFiles = fs.readdirSync(REC_METADATA_DIR).filter(f => f.endsWith('.json')).sort();
+    if (metaFiles.length > 0) {
+      latestSession = metaFiles[metaFiles.length - 1].replace('.json', '');
+    }
+  }
+
+  let latestRecorderLog = 'No events recorded.';
+  const recLogPath = path.join(REC_LOGS_DIR, 'voice_recorder.log');
+  if (fs.existsSync(recLogPath)) {
+    const lines = fs.readFileSync(recLogPath, 'utf-8').trim().split('\n');
+    if (lines.length > 0) {
+      latestRecorderLog = lines[lines.length - 1];
+    }
+  }
+
+  // Detect recorder backend
+  let recBackend = 'None Detected';
+  try {
+    const ffmpegPath = execSync('which ffmpeg', { encoding: 'utf-8' }).trim();
+    if (ffmpegPath) recBackend = `ffmpeg (${ffmpegPath})`;
+  } catch (err) {
+    try {
+      const recPath = execSync('which rec', { encoding: 'utf-8' }).trim();
+      if (recPath) recBackend = `rec (${recPath})`;
+    } catch (e) {}
+  }
+
   const voiceLoop = {
     asrBackend: 'registered-whisper-cli',
     ttsRenderer: 'piper (en)',
@@ -298,6 +345,21 @@ function main() {
       cloudAsrEnabled: false,
       exactNameRouterActive: true,
       rawShellExecutionBlocked: true
+    },
+    recorder: {
+      backendStatus: recBackend,
+      latestSession,
+      sessionCount: countRecorderFiles(REC_METADATA_DIR),
+      stagedForAsrCount: fs.existsSync(REC_ASR_INPUT_DIR) ? fs.readdirSync(REC_ASR_INPUT_DIR).length : 0,
+      rejectedCount: countRecorderFiles(REC_REJECTED_DIR),
+      archivedCount: countRecorderFiles(REC_ARCHIVE_DIR),
+      safetyFlags: {
+        liveMicEnabled: REC_LIVE_MIC_ENABLED,
+        backgroundRecordingEnabled: REC_BG_ENABLED,
+        autoTranscribeAfterRecording: REC_AUTO_TRANS,
+        confirmationRequired: REC_CONF_REQ
+      },
+      latestRecorderLog
     }
   };
 

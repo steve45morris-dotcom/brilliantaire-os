@@ -73,6 +73,7 @@
 - **Local ASR Backend & Model Manager (Phase N5D.1):** Secure offline registration, SHA256 verification, and integrity auditing of local Whisper binaries and GGML models.
 - **Voice Command Approval Bridge (Phase N5E):** Manual approval, verification, staging, and dispatch of ASR command packets directly to whitelisted commands in the exact-name command router, with complete process auditing.
 - **Voice Loop Dashboard & Human Confirmation UI (Phase N5F):** Safe offline visibility panel (`scripts/narrator-voice-loop-dashboard.ts`) mapping ASR and Bridge pipeline packet depths, safety checks, audit trail outputs, and manual confirmation dispatcher delegation triggers.
+- **Local Voice Session Recorder (Phase N5G):** Safe local voice session recorder (`scripts/narrator-voice-session-recorder.ts`) that manages manual voice session audio recording, metadata tracking, and ASR staging queues under strict local constraints.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 

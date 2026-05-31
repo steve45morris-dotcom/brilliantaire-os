@@ -1010,3 +1010,36 @@
 
 ---
 
+## [2026-05-31T22:21:06.304Z] Command Attempt: "tts-queue-validator-help"
+- **Matched Command:** `tts-queue-validator-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:22:23.298Z] Command Attempt: "tts-queue-validator validate"
+- **Matched Command:** `tts-queue-validator`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T22:23:00.751Z] Command Attempt: "audio queue"
+- **Matched Command:** `tts-queue-validator`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

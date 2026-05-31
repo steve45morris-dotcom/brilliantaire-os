@@ -1330,6 +1330,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'narrator-voice-session-recorder-help',
+    aliases: ['voice session recorder help', 'narrator voice session recorder help'],
+    description: 'Print help command menu for the narrator voice session recorder',
+    npmScript: 'narrator-voice-session-recorder-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-voice-session-recorder',
+    aliases: ['voice session recorder', 'narrator voice session recorder'],
+    description: 'Local offline voice session recorder status, start, stop, and stage commands',
+    npmScript: 'narrator-voice-session-recorder',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

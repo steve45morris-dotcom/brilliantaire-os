@@ -145,6 +145,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-bridge` | `voice bridge`, `narrator voice bridge`, `narrator bridge` | Knowledge Librarian | Medium | Yes | Manual approval, validation, staging, and execution bridge for ASR command packets. |
 | `narrator-voice-loop-dashboard-help` | `voice loop dashboard help`, `narrator voice loop dashboard help` | Knowledge Librarian | Low | No | Print help command menu for the voice loop dashboard and confirmation UI. |
 | `narrator-voice-loop-dashboard` | `voice loop dashboard`, `narrator voice loop dashboard`, `voice loop` | Knowledge Librarian | Medium | Yes | Interactive dashboard and confirmation UI for ASR and Voice Bridge pipelines. |
+| `narrator-voice-session-recorder-help` | `voice session recorder help`, `narrator voice session recorder help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice session recorder. |
+| `narrator-voice-session-recorder` | `voice session recorder`, `narrator voice session recorder` | Knowledge Librarian | Medium | Yes | Local offline voice session recorder status, start, stop, and stage commands. |
 
 
 ---

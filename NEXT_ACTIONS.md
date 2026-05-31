@@ -164,7 +164,8 @@
 - [x] Phase N5E: Test manual execution of approved commands
 - [x] Phase N5E: Test exact-name command routing and safety blocks
 - [x] Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI
-- [ ] Phase N5G: Build Local Voice Session Recorder
+- [x] Phase N5G: Build Local Voice Session Recorder
+- [ ] Phase N5H: Prepare Voice Session to ASR Pipeline Orchestrator
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
