@@ -1448,6 +1448,57 @@ The **Local ASR Backend & Model Manager** handles secure, offline registration, 
 
 ---
 
+## 🧭 Phase N5E: Voice Command Approval Bridge
+
+The **Voice Command Approval Bridge** acts as an offline manual gate that validates and stages approved ASR packets, allowing controlled dispatch through the exact-name command router.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Run Gate:** Approved packets are never auto-executed; they require explicit operator validation, preparation, and execution steps.
+2. **Strict Allowlist:** Executes only pre-approved exact-name script router actions. Bans shell operators, piping, and command injection.
+3. **Freshness Checks:** Blocks validation for packets older than 24 hours.
+
+### 💻 Command Examples
+* View bridge help:
+  ```bash
+  npm run command -- "narrator-voice-bridge-help"
+  ```
+* Check queue status and safety:
+  ```bash
+  npm run command -- "narrator-voice-bridge status"
+  ```
+* Scan approved packets:
+  ```bash
+  npm run command -- "narrator-voice-bridge scan-approved"
+  ```
+* Inspect approved command details:
+  ```bash
+  npm run command -- "narrator-voice-bridge inspect <PACKET_ID>"
+  ```
+* Run validation checks:
+  ```bash
+  npm run command -- "narrator-voice-bridge validate <PACKET_ID>"
+  ```
+* Stage to ready queue:
+  ```bash
+  npm run command -- "narrator-voice-bridge prepare <PACKET_ID>"
+  ```
+* Check bridge queues depth:
+  ```bash
+  npm run command -- "narrator-voice-bridge bridge-queue-status"
+  ```
+* Execute prepared exact-name command:
+  ```bash
+  npm run command -- "narrator-voice-bridge execute-approved <PACKET_ID>"
+  ```
+* View execution audit log logs:
+  ```bash
+  npm run command -- "narrator-voice-bridge audit-log"
+  ```
+
+---
+
+---
+
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
 The **NotebookLM MCP Live Adapter Integration** establishes a safe, offline-gated live query preparation, query execution, and manual answers staging runbooks.
@@ -1623,8 +1674,54 @@ The **Git Asset Guard and Pre-Push Safety Audit** prevents future repository ins
 
 ---
 
+## 🧭 Phase 11Q: Offline TTS Brief Composer
+
+The **Offline TTS Brief Composer** compiles citation-backed, manual-reviewed narrator briefs into TTS-ready script documents, audio queue packets, and voice directions without generating sound files. This ensures structured offline formatting.
+
+### 🛡️ Safety & Execution Rules
+1. **Composer-Only Mode:** Script compilation and formatting only. No TTS engine execution (Piper, say) or audio file creation.
+2. **No TTS Generation:** Under no circumstances should audio assets be generated during this phase.
+3. **No External APIs:** No network operations, cloud voices, or external API lookups.
+
+### 💻 Command Examples
+* View composer help menu:
+  ```bash
+  npm run command -- "tts-brief-composer-help"
+  ```
+* Compile short script:
+  ```bash
+  npm run command -- "tts-brief-composer short"
+  ```
+* Compile medium script:
+  ```bash
+  npm run command -- "tts-brief-composer medium"
+  ```
+* Compile long script:
+  ```bash
+  npm run command -- "tts-brief-composer long"
+  ```
+* Compile all scripts:
+  ```bash
+  npm run command -- "tts-brief-composer all"
+  ```
+* Compile queue packet:
+  ```bash
+  npm run command -- "tts-brief-composer queue-packet"
+  ```
+* Compile voice direction spec:
+  ```bash
+  npm run command -- "tts-brief-composer voice-direction"
+  ```
+* View status metrics:
+  ```bash
+  npm run command -- "tts-brief-composer status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11Q: Offline TTS Brief Composer**
-  - Synthesize checked briefs using safe, local offline speech engines once the manual review queue process passes.
-* **Phase 11R: Vector Search Database Ingestion**
+* **Phase 11R: Offline TTS Audio Synthesis**
+  - Synthesize checked briefs using safe, local offline speech engines (e.g. Piper) once the manual review queue and TTS brief composer script process passes.
+* **Phase 11S: Vector Search Database Ingestion**
   - Prepare vector database pipelines to index node metadata for semantic query retrieval.
+

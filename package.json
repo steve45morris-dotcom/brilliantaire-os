@@ -94,6 +94,8 @@
     "grounded-index-help": "tsx scripts/grounded-intelligence-index-help.ts",
     "grounded-narrator-review": "tsx scripts/grounded-narrator-review.ts",
     "grounded-narrator-review-help": "tsx scripts/grounded-narrator-review-help.ts",
+    "tts-brief-composer": "tsx scripts/tts-brief-composer.ts",
+    "tts-brief-composer-help": "tsx scripts/tts-brief-composer-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -117,6 +119,8 @@
     "narrator-asr-listener-help": "tsx scripts/narrator-asr-listener-help.ts",
     "narrator-asr-backend": "tsx scripts/narrator-asr-backend.ts",
     "narrator-asr-backend-help": "tsx scripts/narrator-asr-backend-help.ts",
+    "narrator-voice-bridge": "tsx scripts/narrator-voice-bridge.ts",
+    "narrator-voice-bridge-help": "tsx scripts/narrator-voice-bridge-help.ts",
     "git-asset-help": "tsx scripts/git-asset-help.ts",
     "git-asset-audit": "tsx scripts/git-asset-audit.ts",
     "git-prepush-check": "tsx scripts/git-prepush-check.ts"

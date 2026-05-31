@@ -823,3 +823,36 @@
 
 ---
 
+## [2026-05-31T21:40:09.803Z] Command Attempt: "voice bridge status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T21:41:01.488Z] Command Attempt: "narrator-voice-bridge status"
+- **Matched Command:** `narrator-voice-bridge`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T21:41:42.632Z] Command Attempt: "narrator-live-feed generate"
+- **Matched Command:** `narrator-live-feed`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

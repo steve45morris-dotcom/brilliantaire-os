@@ -431,6 +431,16 @@ tasks:
     cmds:
       - npm run grounded-narrator-review -- {{.CLI_ARGS}}
 
+  tts-brief-composer-help:
+    desc: "Print Offline TTS Brief Composer safety manuals"
+    cmds:
+      - npm run tts-brief-composer-help
+
+  tts-brief-composer:
+    desc: "Run Offline TTS Brief Composer tasks safely"
+    cmds:
+      - npm run tts-brief-composer -- {{.CLI_ARGS}}
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -568,6 +578,16 @@ tasks:
     desc: "Print help commands for the narrator local ASR backend manager"
     cmds:
       - npm run narrator-asr-backend-help
+
+  narrator-voice-bridge:
+    desc: "Stage, validate, prepare, and execute ASR approved command packets"
+    cmds:
+      - npm run narrator-voice-bridge -- {{.CLI_ARGS}}
+
+  narrator-voice-bridge-help:
+    desc: "Print help commands for the narrator voice command approval bridge"
+    cmds:
+      - npm run narrator-voice-bridge-help
 
 
 

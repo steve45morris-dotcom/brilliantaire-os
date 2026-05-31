@@ -157,6 +157,13 @@
 - [x] Phase N5D: Test ASR status and input scanning
 - [x] Phase N5D: Test transcription command routing and safety boundaries
 - [x] Phase N5D: Test staging, review, approval, and queue status workflows
+- [x] Phase N5E: Build Voice Command Approval Bridge
+- [x] Phase N5E: Test bridge status and scan-approved commands
+- [x] Phase N5E: Test inspect and validate command verification gates
+- [x] Phase N5E: Test prepare and bridge-queue-status workflows
+- [x] Phase N5E: Test manual execution of approved commands
+- [x] Phase N5E: Test exact-name command routing and safety blocks
+- [ ] Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -257,8 +264,12 @@
 - [x] Build Git Asset Guard
 - [x] Run Git asset audit
 - [x] Run pre-push safety check
-- [ ] Review forbidden tracked files
-- [ ] Add pre-push routine to future release workflow
+- [x] Review forbidden tracked files
+- [x] Add pre-push routine to future release workflow
+- [x] Untrack forbidden legacy audio assets (Phase R3)
+- [x] Verify gitignore exclusion rules
+- [x] Regulate pre-push check status to READY
+- [ ] Maintain Git Asset Guard policy checks in future runs
 
 ## Do Next
 - [x] Build NotebookLM MCP Live Adapter
@@ -297,6 +308,16 @@
 - [x] Phase 11P: Review status metrics summary on console
 - [x] Phase 11P: Test pre-approved commands via router
 - [x] Phase 11P: Test blocked unapproved command aliases via router
+
+## Do Next
+- [x] Phase 11Q: Build Offline TTS Brief Composer
+- [ ] Phase 11Q: Generate short TTS script
+- [ ] Phase 11Q: Generate medium TTS script
+- [ ] Phase 11Q: Generate long TTS script
+- [ ] Phase 11Q: Generate TTS queue packet
+- [ ] Phase 11Q: Generate voice direction sheet
+- [ ] Phase 11Q: Review scripts before audio generation
+- [ ] Phase 11Q: Prepare TTS generation only after manual script review
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

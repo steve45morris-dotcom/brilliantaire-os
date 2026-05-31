@@ -925,6 +925,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'tts-brief-composer-help',
+    aliases: ['tts composer help', 'narrator script help'],
+    description: 'Print help menu for offline TTS brief composer',
+    npmScript: 'tts-brief-composer-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'tts-brief-composer',
+    aliases: ['tts composer', 'narrator script'],
+    description: 'Read narrator briefs and compile scripts or packets safely offline',
+    npmScript: 'tts-brief-composer',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'git-asset-help',
     aliases: ['git asset help', 'repo asset help'],
     description: 'Print help menu and policies for Git Asset Guard',
@@ -1193,6 +1215,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['narrator asr backend', 'asr backend'],
     description: 'Register and verify local ASR binaries and models offline',
     npmScript: 'narrator-asr-backend',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'narrator-voice-bridge-help',
+    aliases: ['voice bridge help', 'narrator voice bridge help'],
+    description: 'Print help command menu for the narrator voice command approval bridge',
+    npmScript: 'narrator-voice-bridge-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-voice-bridge',
+    aliases: ['voice bridge', 'narrator voice bridge', 'narrator bridge'],
+    description: 'Manual approval, validation, staging, and execution bridge for ASR command packets',
+    npmScript: 'narrator-voice-bridge',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',

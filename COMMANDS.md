@@ -108,6 +108,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `grounded-index` | `intelligence graph`, `grounded graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
 | `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
+| `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |
+| `tts-brief-composer` | `tts composer`, `narrator script` | Knowledge Librarian | Medium | Yes | Read narrator briefs and compile scripts or packets safely offline. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -133,6 +135,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-asr-listener` | `narrator asr`, `asr listener` | Knowledge Librarian | Medium | Yes | Stage and manage local offline speech-to-text transcription and VNP command packets. |
 | `narrator-asr-backend-help` | `asr backend help`, `narrator asr backend help` | Knowledge Librarian | Low | No | Print help commands for the narrator local ASR backend manager. |
 | `narrator-asr-backend` | `narrator asr backend`, `asr backend` | Knowledge Librarian | Medium | Yes | Register and verify local ASR binaries and models offline. |
+| `narrator-voice-bridge-help` | `voice bridge help`, `narrator voice bridge help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice command approval bridge. |
+| `narrator-voice-bridge` | `voice bridge`, `narrator voice bridge`, `narrator bridge` | Knowledge Librarian | Medium | Yes | Manual approval, validation, staging, and execution bridge for ASR command packets. |
 
 
 ---

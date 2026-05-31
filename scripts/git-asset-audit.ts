@@ -147,13 +147,21 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
     }
   }
 
-  // 6. Check ignored staged assets
+  // 6. Check ignored staged assets (excluding deletions)
   const ignoredStaged: string[] = [];
   try {
-    const stagedOut = execSync('git diff --cached --name-only', { cwd: REPO_ROOT, encoding: 'utf-8' });
-    const stagedFiles = stagedOut.split('\n').map(f => f.trim()).filter(Boolean);
+    const stagedOut = execSync('git diff --cached --name-status', { cwd: REPO_ROOT, encoding: 'utf-8' });
+    const stagedLines = stagedOut.split('\n').map(l => l.trim()).filter(Boolean);
     
-    for (const stagedFile of stagedFiles) {
+    for (const line of stagedLines) {
+      const parts = line.split(/\s+/);
+      const status = parts[0];
+      const stagedFile = parts.slice(1).join(' ');
+      
+      if (status === 'D') {
+        continue;
+      }
+      
       try {
         // git check-ignore returns exit code 0 if file is ignored
         execSync(`git check-ignore "${stagedFile}"`, { cwd: REPO_ROOT, stdio: 'ignore' });

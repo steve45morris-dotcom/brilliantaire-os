@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 11P: Grounded Narrator Review Queue — COMPLETE
+- **Current Phase:** Phase R3: Repository Asset Hardening & Clean-up — COMPLETE
 - **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
@@ -61,6 +61,7 @@
 - **Live Response Intelligence Processor (Phase 11N):** Safe response intelligence processor that parses normalized NotebookLM responses and converts them into structured insight indexes, citation maps, weak claims reports, workflow cards, OS module suggestions, and Obsidian-staged notes.
 - **Grounded Intelligence Index Graph (Phase 11O):** Safe local offline index compiler that reads response intelligence files and compiles them into grounded JSON graphs, Markdown graphs, and statistics reports, with console status and preview inspect support.
 - **Grounded Narrator Review Queue (Phase 11P):** Local review queue script compiler that filters grounded index graph nodes against citations, compiles narration candidates, stages narrator-ready briefs, and flags excluded weak claims reports under safe offline constraints.
+- **Offline TTS Brief Composer (Phase 11Q):** Safe offline script builder that compiles citation-backed, manual-reviewed narrator briefs into TTS-ready script variants, audio queue packets, and voice directions without executing local TTS engines or calling external APIs.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
@@ -69,7 +70,8 @@
 - **Local TTS Model & Cache Manager (Phase N5C):** Secure offline registration, SHA256 checksum verification, and cleanup of the speech synthesis engine (Piper), voice models, config files, and audio cache assets.
 - **Local ASR Command Listener (Phase N5D):** Safe offline speech-to-text transcriber (`scripts/narrator-asr-listener.ts`) converting staged audio input into verified markdown transcripts and VNP command packets requiring manual verification.
 - **Local ASR Backend & Model Manager (Phase N5D.1):** Secure offline registration, SHA256 verification, and integrity auditing of local Whisper binaries and GGML models.
-- **Git Asset Guard and Pre-Push Safety Audit (Phase R2):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
+- **Voice Command Approval Bridge (Phase N5E):** Manual approval, verification, staging, and dispatch of ASR command packets directly to whitelisted commands in the exact-name command router, with complete process auditing.
+- **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 
 
 

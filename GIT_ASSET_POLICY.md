@@ -62,3 +62,10 @@ If forbidden assets are accidentally committed or staged:
    ```bash
    npm run git-prepush-check
    ```
+
+---
+
+## 📈 Compliance Status
+- **Current Status:** Compliant (Clean)
+- **Phase R3 Complete:** Forbidden legacy audio files (`sentinel-os/public/sounds/*.wav`) untracked from git cache.
+- **Pre-Push Safety Check:** Activated and verifying all commits.
