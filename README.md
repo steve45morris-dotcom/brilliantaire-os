@@ -58,6 +58,8 @@ Manage and execute operations using the following `task` commands:
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
 | `task voice-confirm` | `npm run voice-confirm -- <CLI_ARGS>` | Approve and execute a pending voice command |
 | `task voice-deny` | `npm run voice-deny -- <CLI_ARGS>` | Deny and discard a pending voice command |
+| `task knowledge-harvest-help` | `npm run knowledge-harvest-help` | Print knowledge harvest engine CLI help |
+| `task knowledge-harvest` | `npm run knowledge-harvest -- <CLI_ARGS>` | Run knowledge harvest task commands safely |
 
 ---
 
@@ -551,7 +553,46 @@ The **Manual Distribution Metrics and Archiving** layer tracks campaign performa
 
 ---
 
+## 🌾 Phase 11A: Knowledge Harvest Engine v1
+
+The **Knowledge Harvest Engine** aggregates video and transcript learning logs from select AI channels offline to generate local Obsidian notes, NotebookLM source packs, and Brilliantaire OS workflow suggestions.
+
+### 🛡️ Safety & Intake Rules
+1. **Manual Ingestion Gate:** Strictly offline processing using manually registered YouTube URLs or locally provided transcript files.
+2. **Zero Aggressive Crawling:** No automated channel scanning or scraping is performed.
+3. **No Copyright Republication:** Keeps transcripts locally in the staging directory and avoids republishing full copies in summarized notes.
+4. **Collision Suffixing:** Never overwrites notes, source packs, or workflow ideas without appending a unique UNIX timestamp suffix.
+
+### 💻 Command Examples
+* View knowledge harvest help (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest-help"
+  ```
+* Intake manual YouTube URL (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest intake-url https://www.youtube.com/@JulianGoldieSEO"
+  ```
+* Ingest local transcript file (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest intake-transcript test_inputs/julian_goldie_sample_transcript.txt"
+  ```
+* Generate NotebookLM source pack (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest source-pack"
+  ```
+* Generate Brilliantaire OS workflow ideas (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest workflow-ideas"
+  ```
+* Check harvest engine diagnostics (via safe router):
+  ```bash
+  npm run command -- "knowledge-harvest status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 10B: Automated Report Syndication**
-  - Construct local formatters to export distribution reports into rich charts and Obsidian canvases.
+* **Phase 11B: Semi-Automated API Synthesis**
+  - Integrate selective local LLM API ingestion parameters once custom keys are configured.
+
 

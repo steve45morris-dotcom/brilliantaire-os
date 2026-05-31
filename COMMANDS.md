@@ -72,6 +72,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `manual-release` | `release`, `manual posting` | Creative Revenue Strategist | Medium | Yes | Generate manual release checklists and runbooks. |
 | `distribution-metrics-help` | `metrics help`, `distribution help` | Creative Revenue Strategist | Low | No | Print manual distribution metrics safety manuals. |
 | `distribution-metrics` | `metrics`, `distribution` | Creative Revenue Strategist | Medium | Yes | Generate manual distribution metrics entry files, reports, and indexes. |
+| `knowledge-harvest-help` | `learning help`, `harvest help` | Knowledge Librarian | Low | No | Print commands for Knowledge Harvest Engine. |
+| `knowledge-harvest` | `learn`, `harvest` | Knowledge Librarian | Medium | Yes | Run Knowledge Harvest Engine manual URL or transcript commands. |
 
 ---
 

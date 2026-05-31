@@ -1,14 +1,14 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 21: Post-Singularity Omnipresence
-- **Last Verified:** 2026-05-30
+- **Current Phase:** Phase 22: Live Omnipresence Expansion — ACTIVE
+- **Last Verified:** 2026-05-31
 - **Build Status:** passing
 
 ## 🔋 Active Capabilities
 - **Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).
 - **Build Pipeline:** Structured task runner via `Taskfile.yml`.
-- **Audit Trails:** Voice Narrative Protocol (VNP) logging to `voice_buffer.txt`.
+- **Audit Trails:** Voice Narrative Protocol (VNP) expanded to 32 active phrases (including 8 new trigger configurations), logging to `voice_buffer.txt`.
 - **GitHub Sync:** Remote origin linked and tracking `main`.
 - **Obsidian Read-Only Gateway:** Recursively scans and parses local vaults in read-only mode.
 - **Self-Audit Automation:** Verified core files and local skill structures.
@@ -41,6 +41,9 @@
 - **Micro-Product Factory (Phase 21):** Compile, bundle, and register ready-to-monetize vertical micro-agents to SQLite sovereign ledger.
 - **Decentralized Settlement Bridge (Phase 21):** Reconcile and clear cross-chain token/fiat transactions autonomously.
 - **Zero-Knowledge System Audits (Phase 21):** Perform cryptographic SHA-256 block chain integrity checks over the database logs.
+- **Phase 8B (Bootstrap & Status Sync):** Local startup bootstrap script (`sentinel_boot.sh`) integrated with macOS LaunchAgent daemon (`com.sentinel.boot.plist`), publishing live system health briefings to `Home.md`.
+- **Phase 21 (Reconciliation Ledger & Webhooks):** Local payment reconciliation ledger (`stripe_ledger.ts`) and mock webhook ingest endpoint (`/api/webhooks/stripe`) writing transaction states to `stripe_ledger.md` and feeding live telemetry components.
+- **Knowledge Harvest Engine (Phase 11):** Local YouTube learning note ingest, NotebookLM source pack compiling, and OS workflow ideas generator.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

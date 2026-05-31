@@ -57,7 +57,9 @@
     "manual-release": "tsx scripts/manual-release.ts",
     "manual-release-help": "tsx scripts/manual-release-help.ts",
     "distribution-metrics": "tsx scripts/distribution-metrics.ts",
-    "distribution-metrics-help": "tsx scripts/distribution-metrics-help.ts"
+    "distribution-metrics-help": "tsx scripts/distribution-metrics-help.ts",
+    "knowledge-harvest": "tsx scripts/knowledge-harvest.ts",
+    "knowledge-harvest-help": "tsx scripts/knowledge-harvest-help.ts"
   },
   "keywords": [
     "antigravity",

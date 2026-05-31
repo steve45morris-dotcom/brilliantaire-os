@@ -120,12 +120,22 @@
 
 
 ## Do Next
+- [ ] Build Knowledge Harvest Engine v1
+- [ ] Test manual YouTube URL intake
+- [ ] Test local transcript intake
+- [ ] Generate NotebookLM source pack
+- [ ] Generate OS workflow ideas
+- [ ] Review first creator source: Julian Goldie
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
 - [ ] Build automated release pipeline integration for Tree Groove Records
+- [ ] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
+- [ ] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
+- [ ] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
+- [ ] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
 
 ## Pause
 - [ ] Local web interface (focusing on pure CLI operations first)

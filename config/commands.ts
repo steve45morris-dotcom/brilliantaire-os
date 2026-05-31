@@ -527,5 +527,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'knowledge-harvest-help',
+    aliases: ['learning help', 'harvest help'],
+    description: 'Print commands for Knowledge Harvest Engine',
+    npmScript: 'knowledge-harvest-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'knowledge-harvest',
+    aliases: ['learn', 'harvest'],
+    description: 'Execute Knowledge Harvest Engine commands (Medium Risk)',
+    npmScript: 'knowledge-harvest',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
+

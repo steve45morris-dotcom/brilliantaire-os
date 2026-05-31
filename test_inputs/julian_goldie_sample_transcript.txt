@@ -1,0 +1,47 @@
+CREATOR: Julian Goldie
+TITLE: Julian Goldie's AI SEO Strategy
+URL: https://www.youtube.com/watch?v=sample-goldie-seo
+TOPICS: AI automation, SEO, content systems, workflow automation
+
+Hey everyone, Julian Goldie here. Today we are mapping out the ultimate AI SEO Strategy and workflow automation loops. The secret to scaling content systems isn't writing thousands of low-quality pages; it's compiling high-leverage knowledge bases.
+
+We are going to use Obsidian for our local note organization, NotebookLM for parsing source documents, and Make.com or Zapier to connect the pipes. By taking manual text transcripts, we can extract the core workflow ideas, opportunities for our OS, and tool parameters without violating YouTube's terms or scraping channels aggressively.
+
+Let's walk through the exact setup. First, we feed our transcript texts locally. Next, we build structured video learning notes. Then we package these into a clean NotebookLM source pack to ask deep questions. This gives you a massive advantage!
+
+CORE SUMMARY:
+How to build a high-leverage local AI SEO content pipeline with zero API dependencies by mapping transcript knowledge directly to local markdown notes and NotebookLM source packs.
+
+KEY IDEAS:
+- Scraping channels aggressively is high-risk; manual URL mapping protects workflow reputation.
+- Translating video transcript structures into local obsidian notes builds a structured base.
+- Directing queries to NotebookLM via curated source packs speeds up project research.
+
+TOOLS MENTIONED:
+- Obsidian
+- NotebookLM
+- Make.com
+- ChatGPT
+- SEMrush
+
+WORKFLOW EXTRACTED:
+1. Collect video URL or text transcript manually.
+2. Formulate video learning note with structured frontmatter tags.
+3. Aggregate note metadata into NotebookLM source packs.
+4. Formulate OS workflow ideas with direct action items.
+
+PROMPTS OR FRAMEWORKS:
+- Synthesize key points from local text documents using structural summaries.
+
+OPPORTUNITIES OS:
+- Build automated distribution metrics logger tracking campaign analytics.
+
+OPPORTUNITIES ICYFLAMZE:
+- Monetize knowledge bases by packaging customized NotebookLM source packs for SEO agency clients.
+
+RISKS OR WEAK CLAIMS:
+- Relying on automated video scraping can lead to quick API blocking or terms violations.
+
+ACTIONABLE NEXT STEPS:
+- Review the scripts run command router mappings.
+- Confirm manual URL and local transcript generation results.

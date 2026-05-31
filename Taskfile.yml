@@ -251,8 +251,23 @@ tasks:
     cmds:
       - npm run distribution-metrics -- {{.CLI_ARGS}}
 
+  knowledge-harvest-help:
+    desc: "Print knowledge harvest engine CLI help"
+    cmds:
+      - npm run knowledge-harvest-help
+
+  knowledge-harvest:
+    desc: "Run knowledge harvest task commands safely"
+    cmds:
+      - npm run knowledge-harvest -- {{.CLI_ARGS}}
 
 
+
+
+  narrator-watch:
+    desc: "Run the AI Narrator in watch mode as a background daemon"
+    cmds:
+      - python3 tools/ai_narrator.py --watch
 
   validate:
     desc: "Lint and run workspace checks"
