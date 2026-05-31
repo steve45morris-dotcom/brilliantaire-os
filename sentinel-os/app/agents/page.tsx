@@ -8,7 +8,8 @@ import { MeshTopology } from "@/components/MeshTopology";
 import { AstraScoutPanel } from "@/components/AstraScoutPanel";
 import { EdgeLinkPanel } from "@/components/EdgeLinkPanel";
 import { InfiniteNetworkPanel } from "@/components/InfiniteNetworkPanel";
-import { Users, Globe, Compass, Network, Cpu } from "lucide-react";
+import { SentinelAudit } from "@/components/SentinelAudit";
+import { Users, Globe, Compass, Network, Cpu, Terminal } from "lucide-react";
 
 const agents = [
   ["Commander", "Human final GO / STOP authority", "Human controlled", "commander"],
@@ -20,7 +21,7 @@ const agents = [
 ] as const;
 
 export default function AgentsPage() {
-  const [tab, setTab] = useState<"roles" | "mesh" | "astra" | "edge" | "network">("roles");
+  const [tab, setTab] = useState<"roles" | "mesh" | "audit" | "astra" | "edge" | "network">("roles");
 
   return (
     <SystemShell
@@ -30,6 +31,8 @@ export default function AgentsPage() {
           ? "Operating roles and authority boundaries."
           : tab === "mesh"
           ? "Planetary node consensus and mesh topology tracker."
+          : tab === "audit"
+          ? "Sovereign phrase fire ledger and secure audit event monitoring."
           : tab === "astra"
           ? "Active target market licensing opportunities and lead generation parsing."
           : tab === "edge"
@@ -52,6 +55,7 @@ export default function AgentsPage() {
             <Users className="h-4 w-4" />
             <span>Council Roles</span>
           </button>
+          
           <button
             onClick={() => setTab("mesh")}
             className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
@@ -63,6 +67,19 @@ export default function AgentsPage() {
             <Globe className="h-4 w-4" />
             <span>Planetary Mesh Topology</span>
           </button>
+
+          <button
+            onClick={() => setTab("audit")}
+            className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
+              tab === "audit"
+                ? "border-cyan-400 text-cyan-200 glow-text-cyan font-black"
+                : "border-transparent text-slate-500 hover:text-slate-300 font-bold"
+            }`}
+          >
+            <Terminal className="h-4 w-4" />
+            <span>Sentinel Audit</span>
+          </button>
+
           <button
             onClick={() => setTab("astra")}
             className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
@@ -74,6 +91,7 @@ export default function AgentsPage() {
             <Compass className="h-4 w-4" />
             <span>ASTRA Scout</span>
           </button>
+
           <button
             onClick={() => setTab("edge")}
             className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
@@ -85,6 +103,7 @@ export default function AgentsPage() {
             <Network className="h-4 w-4" />
             <span>Edge Link</span>
           </button>
+
           <button
             onClick={() => setTab("network")}
             className={`flex min-h-10 items-center gap-2 px-4 text-xs font-black uppercase tracking-wider border-b-2 transition cursor-pointer ${
@@ -112,6 +131,12 @@ export default function AgentsPage() {
         {tab === "mesh" && (
           <div className="animate-fade-in">
             <MeshTopology />
+          </div>
+        )}
+
+        {tab === "audit" && (
+          <div className="animate-fade-in">
+            <SentinelAudit />
           </div>
         )}
 

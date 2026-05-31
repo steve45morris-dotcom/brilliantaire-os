@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTINEL OS // Sovereign Command Deck</title>
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              bg: '#08090d',       /* Pitch void black */
+              void: '#0b0d14',     /* Tactical card dark */
+              border: '#161b26',   /* Blueprint line */
+              cyan: '#00f0ff',     /* Electric Cyan */
+              red: '#ff2e55',      /* Aerospace crimson */
+              gold: '#ffb000',     /* Amber alert */
+              emerald: '#00e676',  /* Mint operational green */
+              slate: '#64748b'     /* Cool gray */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Three.js CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --background: #08090d;
+      --foreground: #f1f5f9;
+      --border-color: rgba(0, 240, 255, 0.12);
+      --accent: #00f0ff;
+      --accent-muted: rgba(0, 240, 255, 0.05);
+      --danger: #ff2e55;
+      --success: #00e676;
+      --warning: #ffb000;
+    }
+
+    * {
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 240, 255, 0.1) transparent;
+    }
+
+    /* Webkit Scrollbars */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 240, 255, 0.15);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Aerospace Blueprint Grid */
+    .blueprint-grid {
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center;
+    }
+
+    /* Sweep Scanline Line Animation */
+    @keyframes radar-scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    .radar-sweep {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to bottom, rgba(0, 240, 255, 0.08), transparent);
+      pointer-events: none;
+      z-index: 5;
+      animation: radar-scan 10s linear infinite;
+    }
+
+    /* HUD Blueprint Panel Style */
+    .hud-panel {
+      position: relative;
+      background: rgba(11, 13, 20, 0.7);
+      border: 1px solid var(--border-color);
+      box-shadow: 
+        inset 0 0 20px rgba(0, 240, 255, 0.02),
+        0 10px 30px -10px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hud-panel::before, .hud-panel::after {
+      content: '+';
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(0, 240, 255, 0.35);
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hud-panel::before { top: -6px; left: -4px; }
+    .hud-panel::after { bottom: -6px; right: -4px; }
+
+    .hud-panel:hover {
+      border-color: rgba(0, 240, 255, 0.35);
+      box-shadow: 
+        inset 0 0 25px rgba(0, 240, 255, 0.05),
+        0 20px 40px -15px rgba(0, 240, 255, 0.08);
+    }
+
+    /* 3D Perspective Card Tilt Class */
+    .tilt-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* Glitch text keyframe styling */
+    @keyframes glitch-play {
+      0% { text-shadow: 1px 0 0 red, -1px 0 0 cyan; }
+      50% { text-shadow: -1px 0 0 red, 1px 0 0 cyan; }
+      100% { text-shadow: 1px 0 0 red, -1px 0 0 cyan; }
+    }
+    .text-glitch:hover {
+      animation: glitch-play 0.3s linear infinite;
+    }
+
+    /* Tab Sections Transition */
+    .tab-section {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: none;
+    }
+    .tab-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* High Fidelity Spring Physics Button */
+    .spring-btn {
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .spring-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+      border-color: var(--accent) !important;
+      color: #ffffff !important;
+    }
+    .spring-btn:active {
+      transform: translateY(1px) scale(0.97);
+    }
+
+    /* Apple intelligence style voice canvas container */
+    #voice-wave-canvas {
+      width: 100%;
+      height: 48px;
+      display: block;
+    }
+  </style>
+</head>
+<body class="blueprint-grid min-h-screen relative flex flex-col justify-between selection:bg-brand-cyan/20 selection:text-white">
+
+  <!-- Radar sweep line -->
+  <div class="radar-sweep"></div>
+
+  <!-- 3D WebGL Holographic Mesh Background -->
+  <canvas id="three-webgl-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- 3D Cybernetic Mesh Grid Background Overlay -->
+  <div class="pointer-events-none fixed inset-0 z-0 opacity-[0.04] mix-blend-screen bg-[url('images/mesh_grid.png')] bg-cover bg-center" style="pointer-events: none;"></div>
+
+  <!-- Playwright Validation Root Wrapper -->
+  <div id="root" class="grid min-h-screen lg:grid-cols-[300px_1fr] relative z-10">
+    
+    <!-- ================= SIDEBAR NAVIGATION ================= -->
+    <aside class="flex flex-col justify-between border-b border-brand-border bg-brand-bg/95 p-6 lg:border-b-0 lg:border-r relative backdrop-blur-xl">
+      
+      <div>
+        <!-- Brand Identity with pulsing indicator -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <div class="relative flex h-11 w-11 items-center justify-center rounded bg-brand-void border border-brand-border group-hover:border-brand-cyan/40 transition-colors">
+            <!-- Custom scope grid icon -->
+            <svg class="h-6 w-6 text-brand-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9" stroke-dasharray="4 2"></circle>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2"></path>
+              <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+            </svg>
+            <span class="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-brand-cyan animate-ping"></span>
+            <span class="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-brand-cyan"></span>
+          </div>
+          <div>
+            <div class="text-xs font-black tracking-widest text-white font-sans text-glitch">SENTINEL OS</div>
+            <div class="text-[9px] tracking-widest text-brand-slate font-mono uppercase">SOVEREIGN CORE // V3.2</div>
+          </div>
+        </a>
+
+        <!-- Interactive Navigation deck (Explicit mixed case links) -->
+        <nav class="mt-8 grid gap-1 font-mono text-[10px] uppercase tracking-wider">
+          
+          <button onclick="switchTab('overview')" id="nav-overview" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-brand-cyan/30 bg-brand-cyan/5 px-4 text-white font-bold transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan"></span>
+            <i data-lucide="layout-grid" class="h-4 w-4 text-brand-cyan"></i>
+            <span>Overview Desk</span>
+          </button>
+          
+          <button onclick="switchTab('governance')" id="nav-governance" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="shield-alert" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>CIP Governance</span>
+          </button>
+
+          <button onclick="switchTab('audits')" id="nav-audits" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="bar-chart-3" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Audit Intel</span>
+          </button>
+
+          <button onclick="switchTab('voice')" id="nav-voice" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="mic" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Voice Layer</span>
+          </button>
+
+          <button onclick="switchTab('agents')" id="nav-agents" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="bot" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Council Nodes</span>
+          </button>
+
+          <button onclick="switchTab('automation')" id="nav-automation" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="cpu" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Automation Deck</span>
+          </button>
+
+          <button onclick="switchTab('reports')" id="nav-reports" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="file-key-2" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Ledger Records</span>
+          </button>
+
+          <button onclick="switchTab('sovereignty')" id="nav-sovereignty" class="nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all">
+            <span class="active-bar absolute left-0 top-1/4 h-1/2 w-0.5 bg-brand-cyan hidden"></span>
+            <i data-lucide="coins" class="h-4 w-4 text-slate-500 group-hover:text-brand-cyan transition-colors"></i>
+            <span>Sovereignty Bridge</span>
+          </button>
+        </nav>
+
+        <!-- Live Daemon Status Monitors -->
+        <div class="mt-6 border border-brand-border bg-brand-void/45 p-4 relative overflow-hidden">
+          <div class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3 font-mono">Live Core Enclaves</div>
+          <div class="grid gap-2.5 font-mono text-[10px]">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse"></span> Main Enclave
+              </span>
+              <span class="text-[8px] font-bold text-brand-cyan uppercase">online</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-brand-red animate-pulse"></span> CIP Collision Guard
+              </span>
+              <span class="text-[8px] font-bold text-brand-red uppercase">secured</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-brand-emerald animate-pulse"></span> Oracle Bridge
+              </span>
+              <span class="text-[8px] font-bold text-brand-emerald uppercase">active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Matrix CLI Terminal -->
+        <div class="mt-4 border border-brand-border bg-brand-void/60 p-3.5 rounded relative">
+          <div class="flex items-center gap-1.5 text-[9px] font-black uppercase text-slate-500 mb-2 font-mono">
+            <i data-lucide="terminal" class="h-3.5 w-3.5 text-brand-cyan"></i>
+            <span>Sovereign CLI Terminal</span>
+          </div>
+          <div class="flex gap-1.5 font-mono text-[10px] items-center">
+            <span class="text-brand-cyan shrink-0">&gt;</span>
+            <input id="cli-input-field" type="text" placeholder="Type command..." class="w-full bg-transparent text-white placeholder-slate-700 focus:outline-none uppercase font-mono">
+          </div>
+          <div id="cli-input-feedback" class="mt-2 text-[8px] text-brand-gold font-mono hidden"></div>
+        </div>
+      </div>
+
+      <!-- Telemetry Stream Printer -->
+      <div class="mt-6">
+        <div class="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2.5 font-mono">
+          <i data-lucide="terminal" class="h-3 w-3 text-brand-red animate-pulse"></i>
+          <span>Telemetry Stream Log</span>
+        </div>
+        <div class="relative h-28 overflow-hidden border border-brand-border bg-brand-void p-3 font-mono text-[9px] leading-relaxed text-brand-cyan">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-void via-transparent to-transparent pointer-events-none z-10"></div>
+          <div id="sidebar-console" class="h-full overflow-y-auto space-y-1 pr-1 relative z-0">
+            <div class="truncate text-slate-500 font-semibold">[15:10:01] Initializing Sentinel command deck...</div>
+            <div class="truncate text-brand-cyan/80 font-medium">[15:10:02] [OK] Core handshakes validated</div>
+            <div class="truncate text-slate-500 font-semibold">[15:10:05] Monitoring active loops...</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN WORKSPACE CANVAS ================= -->
+    <main class="flex flex-col min-w-0 min-h-screen">
+      
+      <!-- Top header strip -->
+      <header class="border-b border-brand-border bg-brand-void/50 px-8 py-6 relative backdrop-blur-md">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between relative z-10">
+          <div>
+            <h1 id="page-title" class="text-2xl font-black tracking-tight text-white uppercase font-sans">Overview Command</h1>
+            <p id="page-subtitle" class="mt-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-widest">Central orchestration ledger and system metrics dashboard.</p>
+          </div>
+          
+          <!-- State Telemetry Indicators -->
+          <div class="flex flex-wrap gap-2 text-[9px] font-black tracking-widest uppercase font-mono">
+            <span class="border border-brand-gold/30 bg-brand-gold/5 px-3 py-1.5 text-brand-gold flex items-center gap-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse"></span> Authority Level: Commander
+            </span>
+            <span class="border border-brand-cyan/30 bg-brand-cyan/5 px-3 py-1.5 text-brand-cyan flex items-center gap-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse"></span> Mission Control: Sandbox
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Canvas Container -->
+      <div class="flex-1 p-8 space-y-8 relative z-10 max-w-[1400px] w-full mx-auto">
+
+        <!-- ================= PAGE 1: OVERVIEW ================= -->
+        <div id="tab-overview" class="tab-section active space-y-8">
+          
+          <!-- Dashboard Hardening: Metrics Grid with SVG live mini lines -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-brand-border bg-brand-void/40 backdrop-blur-md divide-y md:divide-y-0 md:divide-x divide-brand-border">
+            
+            <div class="p-6 flex flex-col justify-between min-h-[130px] relative overflow-hidden group">
+              <div class="absolute inset-x-0 bottom-0 h-[2px] bg-brand-gold/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-350"></div>
+              <div>
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500">system authority</span>
+                <div id="telemetry-authority" class="mt-2 text-xl font-bold tracking-tight text-brand-gold font-mono uppercase">Commander</div>
+              </div>
+              <div class="flex items-center justify-between text-[9px] text-slate-500 uppercase tracking-wider mt-3 font-mono">
+                <span>Final GO / STOP status</span>
+                <svg class="w-12 h-4 text-brand-gold opacity-45" viewBox="0 0 50 10">
+                  <path d="M0 5 Q 12 1, 25 5 T 50 5" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                </svg>
+              </div>
+            </div>
+            
+            <div class="p-6 flex flex-col justify-between min-h-[130px] relative overflow-hidden group">
+              <div class="absolute inset-x-0 bottom-0 h-[2px] bg-brand-cyan/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-350"></div>
+              <div>
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500">orchestrator node</span>
+                <div id="telemetry-orchestration" class="mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase">Supernova</div>
+              </div>
+              <div class="flex items-center justify-between text-[9px] text-slate-500 uppercase tracking-wider mt-3 font-mono">
+                <span>Routing loop active</span>
+                <svg class="w-12 h-4 text-brand-cyan opacity-45" viewBox="0 0 50 10">
+                  <path d="M0 8 L 10 3 L 20 8 L 30 2 L 40 7 L 50 2" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between min-h-[130px] relative overflow-hidden group">
+              <div class="absolute inset-x-0 bottom-0 h-[2px] bg-brand-cyan/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-350"></div>
+              <div>
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500">security monitor</span>
+                <div id="telemetry-governance" class="mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase">SENTINEL</div>
+              </div>
+              <div class="flex items-center justify-between text-[9px] text-slate-500 uppercase tracking-wider mt-3 font-mono">
+                <span>CIP Isolation active</span>
+                <svg class="w-12 h-4 text-brand-cyan opacity-45" viewBox="0 0 50 10">
+                  <path d="M0 5 L 12 5 L 18 1 L 24 9 L 30 5 L 50 5" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between min-h-[130px] relative overflow-hidden group">
+              <div class="absolute inset-x-0 bottom-0 h-[2px] bg-brand-emerald/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-350"></div>
+              <div>
+                <span class="text-[9px] font-black font-mono uppercase tracking-widest text-slate-500">execution safety</span>
+                <div id="telemetry-execution" class="mt-2 text-xl font-bold tracking-tight text-brand-emerald font-mono uppercase">Allowlisted</div>
+              </div>
+              <div class="flex items-center justify-between text-[9px] text-slate-500 uppercase tracking-wider mt-3 font-mono">
+                <span>System load: secure</span>
+                <svg class="w-12 h-4 text-brand-emerald opacity-45" viewBox="0 0 50 10">
+                  <path d="M0 9 Q 25 1, 50 9" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Mission Control / Runtime Loop Section -->
+          <div class="hud-panel tilt-card p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4 relative z-10">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="activity" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono">Mission Control Active Rhythm</h2>
+              </div>
+              <span class="text-[9px] font-mono text-slate-500">REALTIME DISPATCH</span>
+            </div>
+            
+            <div class="space-y-3 font-mono text-[11px] leading-relaxed relative z-10">
+              <div class="flex items-start gap-4 p-2.5 bg-brand-bg/40 border border-brand-border/20">
+                <span class="text-brand-cyan shrink-0">[13:07]</span>
+                <span class="text-slate-400 shrink-0 font-bold">[SYSTEM_BOOT]</span>
+                <p class="text-white">Mission Control active sandbox operational loops established. Verification processes armed.</p>
+              </div>
+              <div class="flex items-start gap-4 p-2.5 bg-brand-bg/40 border border-brand-border/20">
+                <span class="text-brand-cyan shrink-0">[13:08]</span>
+                <span class="text-brand-gold shrink-0 font-bold">[CIP_VERIFY]</span>
+                <p class="text-white">Collision Guardian scanning active directory scopes. All credentials isolated.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Executive Control Panel Deck with Spring Buttons -->
+          <div class="hud-panel tilt-card p-6 rounded-xl">
+            <div class="flex items-center gap-2.5 border-b border-brand-border/40 pb-4 mb-4 relative z-10">
+              <i data-lucide="sliders" class="h-4.5 w-4.5 text-brand-cyan"></i>
+              <h2 class="text-xs font-black tracking-wider text-white font-mono">Executive Orchestration Deck</h2>
+            </div>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-4 relative z-10">Perform direct operations, local backups, and diagnostic state triggers.</p>
+            
+            <div class="flex flex-wrap gap-2.5 relative z-10">
+              <button onclick="triggerExecutiveAction('focus', this)" class="spring-btn flex h-9 items-center justify-center gap-2.5 rounded border border-brand-cyan/30 bg-brand-cyan/5 text-brand-cyan hover:bg-brand-cyan/15 px-4 font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer">
+                <i data-lucide="eye-off" class="h-4 w-4"></i>
+                <span>Enforce Focus</span>
+              </button>
+              <button onclick="triggerExecutiveAction('backup', this)" class="spring-btn flex h-9 items-center justify-center gap-2.5 rounded border border-brand-cyan/30 bg-brand-cyan/5 text-brand-cyan hover:bg-brand-cyan/15 px-4 font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer">
+                <i data-lucide="database" class="h-4 w-4"></i>
+                <span>Backup Snapshot</span>
+              </button>
+              <button onclick="triggerExecutiveAction('tests', this)" class="spring-btn flex h-9 items-center justify-center gap-2.5 rounded border border-brand-gold/30 bg-brand-gold/5 text-brand-gold hover:bg-brand-gold/15 px-4 font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer">
+                <i data-lucide="check-square" class="h-4 w-4"></i>
+                <span>Run System Tests</span>
+              </button>
+              <button onclick="triggerExecutiveAction('boot', this)" class="spring-btn flex h-9 items-center justify-center gap-2.5 rounded border border-brand-emerald/30 bg-brand-emerald/5 text-brand-emerald hover:bg-brand-emerald/15 px-4 font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer">
+                <i data-lucide="power" class="h-4 w-4"></i>
+                <span>Boot Workday</span>
+              </button>
+              <button onclick="triggerExecutiveAction('shutdown', this)" class="spring-btn flex h-9 items-center justify-center gap-2.5 rounded border border-brand-red/30 bg-brand-red/5 text-brand-red hover:bg-brand-red/15 px-4 font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer">
+                <i data-lucide="square" class="h-4 w-4"></i>
+                <span>Shutdown Workday</span>
+              </button>
+            </div>
+
+            <!-- Executive Output Buffer -->
+            <div id="executive-control-output" class="mt-4 rounded border border-brand-border bg-brand-bg/90 p-4 font-mono text-[10px] leading-relaxed text-slate-350 relative z-10 hidden">
+              <div class="text-[8px] font-black uppercase tracking-widest text-slate-500 mb-2 border-b border-brand-border pb-1.5">execution response</div>
+              <pre id="executive-output-text" class="whitespace-pre-wrap"></pre>
+            </div>
+          </div>
+
+          <!-- Active Council Registry Section -->
+          <div class="hud-panel p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border pb-4 mb-4">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="bot" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono">Active Agents Council</h2>
+              </div>
+              <span class="text-[9px] font-mono text-slate-500">AGENT_REGISTRY</span>
+            </div>
+            
+            <div class="grid gap-4 sm:grid-cols-2">
+              
+              <div class="hud-panel tilt-card p-5 rounded-lg flex flex-col justify-between h-32">
+                <div class="relative z-10">
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Commander</div>
+                  <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-tight font-mono">Alexander Anthony // Human Authority Gate</p>
+                </div>
+                <button onclick="pingAgent('Commander', this)" class="spring-btn h-8 border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-widest rounded mt-2 relative z-10">Ping Handshake</button>
+              </div>
+              
+              <div class="hud-panel tilt-card p-5 rounded-lg flex flex-col justify-between h-32">
+                <div class="relative z-10">
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Supernova</div>
+                  <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-tight font-mono">Central logic router // System dispatcher</p>
+                </div>
+                <button onclick="pingAgent('Supernova', this)" class="spring-btn h-8 border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-widest rounded mt-2 relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel tilt-card p-5 rounded-lg flex flex-col justify-between h-32">
+                <div class="relative z-10">
+                  <div class="text-xs font-black text-white uppercase tracking-wider">SENTINEL</div>
+                  <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-tight font-mono">Active risk analyzer // Compliance monitor</p>
+                </div>
+                <button onclick="pingAgent('SENTINEL', this)" class="spring-btn h-8 border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-widest rounded mt-2 relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel tilt-card p-5 rounded-lg flex flex-col justify-between h-32">
+                <div class="relative z-10">
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Voice Layer</div>
+                  <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-tight font-mono">Oracle synthesis bridge // Speech profile</p>
+                </div>
+                <button onclick="pingAgent('Voice Layer', this)" class="spring-btn h-8 border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-widest rounded mt-2 relative z-10">Ping Handshake</button>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 2: CIP GOVERNANCE ================= -->
+        <div id="tab-governance" class="tab-section space-y-8">
+          
+          <div class="hud-panel tilt-card p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4 relative z-10">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="shield-alert" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono">Collision Isolation Rules Panel</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[9px] font-mono text-slate-500">THREAT SCENARIO INDEX:</span>
+                <span id="threat-indicator-score" class="text-[9px] font-black px-2 py-1 rounded bg-brand-emerald/10 border border-brand-emerald/30 text-brand-emerald font-mono">0.0 (SECURE)</span>
+              </div>
+            </div>
+            
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-6 relative z-10">Manage allowed execution gates for dynamic agent workspace scripts.</p>
+
+            <div class="grid gap-4 relative z-10">
+              
+              <!-- Rule Row 1 -->
+              <div class="flex items-center justify-between border border-brand-border bg-brand-bg/40 p-4 rounded hover:border-brand-cyan/30 transition-colors">
+                <div>
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Core Command Allowlist Filter</div>
+                  <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase">Terminate scripts running unapproved commands</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span id="txt-rule-allowlist" class="text-[9px] font-black text-brand-cyan font-mono uppercase">STRICT BLOCK</span>
+                  <button onclick="toggleGovernanceRule('allowlist')" id="btn-rule-allowlist" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent transition-colors duration-200 focus:outline-none bg-brand-cyan">
+                    <span id="toggle-allowlist" class="translate-x-5 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Rule Row 2 -->
+              <div class="flex items-center justify-between border border-brand-border bg-brand-bg/40 p-4 rounded hover:border-brand-cyan/30 transition-colors">
+                <div>
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Directory Scope Isolation (CIP)</div>
+                  <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase">Prevent cross-workspace file edits outside authorized zones</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span id="txt-rule-isolation" class="text-[9px] font-black text-brand-cyan font-mono uppercase">STRICT BLOCK</span>
+                  <button onclick="toggleGovernanceRule('isolation')" id="btn-rule-isolation" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent transition-colors duration-200 focus:outline-none bg-brand-cyan">
+                    <span id="toggle-isolation" class="translate-x-5 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Rule Row 3 -->
+              <div class="flex items-center justify-between border border-brand-border bg-brand-bg/40 p-4 rounded hover:border-brand-cyan/30 transition-colors">
+                <div>
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Automated Rollback Safeguard</div>
+                  <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase">Trigger snapshot reversion upon task validation failure</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span id="txt-rule-rollback" class="text-[9px] font-black text-brand-cyan font-mono uppercase">STRICT BLOCK</span>
+                  <button onclick="toggleGovernanceRule('rollback')" id="btn-rule-rollback" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent transition-colors duration-200 focus:outline-none bg-brand-cyan">
+                    <span id="toggle-rollback" class="translate-x-5 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Rule Row 4 -->
+              <div class="flex items-center justify-between border border-brand-border bg-brand-bg/40 p-4 rounded hover:border-brand-cyan/30 transition-colors">
+                <div>
+                  <div class="text-xs font-black text-white uppercase tracking-wider">Credential Lock & Seal</div>
+                  <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase">Block output buffers from printing secret env variables</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span id="txt-rule-lock" class="text-[9px] font-black text-brand-cyan font-mono uppercase">STRICT BLOCK</span>
+                  <button onclick="toggleGovernanceRule('lock')" id="btn-rule-lock" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent transition-colors duration-200 focus:outline-none bg-brand-cyan">
+                    <span id="toggle-lock" class="translate-x-5 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5"></span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Live Rule Trigger Log Stream -->
+          <div class="hud-panel p-6 rounded-xl">
+            <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 font-mono">
+              <i data-lucide="logs" class="h-4.5 w-4.5 text-brand-cyan"></i>
+              <span>Active Rule Enforcement Events</span>
+            </div>
+            
+            <div id="governance-stream-logs" class="h-44 overflow-y-auto border border-brand-border bg-brand-bg/40 p-4 font-mono text-[9.5px] leading-relaxed text-slate-400 space-y-1.5">
+              <div class="text-slate-500 font-semibold">[13:07:01] CIP Isolation Subsystem loaded successfully.</div>
+              <div class="text-brand-cyan font-medium">[13:07:02] Rule enforced: ALLOWLIST_FILTER enabled in STRICT mode.</div>
+              <div class="text-brand-cyan font-medium">[13:07:02] Rule enforced: CODESPACE_ISOLATION enabled in STRICT mode.</div>
+              <div class="text-brand-cyan font-medium">[13:07:02] Rule enforced: ROLLBACK_SAFEGUARD enabled in STRICT mode.</div>
+              <div class="text-brand-cyan font-medium">[13:07:02] Rule enforced: CREDENTIAL_LOCK enabled in STRICT mode.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 3: AUDITS ================= -->
+        <div id="tab-audits" class="tab-section space-y-8">
+          
+          <div class="hud-panel tilt-card p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4 relative z-10">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="bar-chart-3" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono">Allowlisted Script Scanners</h2>
+              </div>
+              <span class="text-[9px] font-mono text-slate-500">SANDBOX ENVIRONMENT</span>
+            </div>
+            
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-6 relative z-10">Select a pre-approved diagnostic task below to run in isolated user session.</p>
+
+            <div class="grid gap-4 md:grid-cols-3 relative z-10">
+              
+              <div class="border border-brand-border bg-brand-bg/40 p-5 flex flex-col justify-between h-44 hover:border-brand-cyan/40 transition-colors">
+                <div>
+                  <span class="text-[8px] font-mono text-brand-cyan border border-brand-cyan/20 px-2 py-0.5 rounded uppercase font-semibold">reposcout_agent.py</span>
+                  <div class="text-xs font-black text-white uppercase tracking-wider mt-2.5">Daily Silent Scan</div>
+                  <p class="text-[9.5px] text-slate-400 mt-1 leading-normal uppercase font-mono">Audit local filesystems for legacy conflicts quietly</p>
+                </div>
+                <button onclick="triggerAuditBtn('Daily Silent')" class="spring-btn w-full h-8 bg-brand-cyan/5 hover:bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 text-[9px] font-mono font-bold uppercase tracking-wider rounded">Execute Scan</button>
+              </div>
+
+              <div class="border border-brand-border bg-brand-bg/40 p-5 flex flex-col justify-between h-44 hover:border-brand-cyan/40 transition-colors">
+                <div>
+                  <span class="text-[8px] font-mono text-brand-cyan border border-brand-cyan/20 px-2 py-0.5 rounded uppercase font-semibold">reposcout_agent.py</span>
+                  <div class="text-xs font-black text-white uppercase tracking-wider mt-2.5">Daily Spoken Brief</div>
+                  <p class="text-[9.5px] text-slate-400 mt-1 leading-normal uppercase font-mono">Audit filesystem and announce output summary via speak</p>
+                </div>
+                <button onclick="triggerAuditBtn('Daily Spoken')" class="spring-btn w-full h-8 bg-brand-cyan/5 hover:bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 text-[9px] font-mono font-bold uppercase tracking-wider rounded">Execute Scan</button>
+              </div>
+
+              <div class="border border-brand-border bg-brand-bg/40 p-5 flex flex-col justify-between h-44 hover:border-brand-red/40 transition-colors">
+                <div>
+                  <span class="text-[8px] font-mono text-brand-red border border-brand-red/20 px-2 py-0.5 rounded uppercase font-semibold">keep_guardian_alive.sh</span>
+                  <div class="text-xs font-black text-white uppercase tracking-wider mt-2.5">Health Scan</div>
+                  <p class="text-[9.5px] text-slate-400 mt-1 leading-normal uppercase font-mono">Trigger live memory health check & recovery routines</p>
+                </div>
+                <button onclick="triggerAuditBtn('Health Scan')" class="spring-btn w-full h-8 bg-brand-red/5 hover:bg-brand-red/15 text-brand-red border border-brand-red/30 text-[9px] font-mono font-bold uppercase tracking-wider rounded">Execute Scan</button>
+              </div>
+
+            </div>
+
+            <!-- Standard Output Console -->
+            <div id="audit-control-output" class="mt-6 rounded border border-brand-border bg-brand-bg/90 p-5 font-mono text-[10px] leading-relaxed text-slate-350 relative z-10 hidden">
+              <div class="text-[8px] font-black uppercase tracking-widest text-slate-500 mb-3 border-b border-brand-border pb-2">audit action standard output</div>
+              <pre id="audit-output-text" class="whitespace-pre-wrap"></pre>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 4: VOICE LAYER ================= -->
+        <div id="tab-voice" class="tab-section space-y-8">
+          
+          <div class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+            
+            <!-- Voice Strategy Generator -->
+            <div class="hud-panel p-6 rounded-xl flex flex-col justify-between">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4">
+                  <div class="flex items-center gap-2.5">
+                    <i data-lucide="mic" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                    <h2 class="text-xs font-black tracking-wider text-white font-mono">Vocal Strategy Translator</h2>
+                  </div>
+                  <span class="text-[9px] font-mono text-brand-cyan font-bold">LAGOS FREQUENCY</span>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-4">Map boring technical instructions to active Area Boy strategic lyrics.</p>
+                
+                <textarea id="voice-input-text" rows="3" placeholder="Enter directive (e.g. 'scan database and run test suite')" class="w-full bg-brand-bg/60 border border-brand-border rounded p-3 text-[11px] font-mono text-white placeholder-slate-700 focus:outline-none focus:border-brand-cyan/50 mb-4"></textarea>
+                
+                <div class="flex gap-2.5 mb-4">
+                  <button onclick="translateToIcyflamze()" class="spring-btn h-9 bg-brand-cyan/5 hover:bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 text-[9px] font-mono font-bold uppercase tracking-wider rounded px-4 flex-1">Translate Directive</button>
+                  <button onclick="speakSovereignDirective()" class="spring-btn h-9 bg-brand-emerald/5 hover:bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30 text-[9px] font-mono font-bold uppercase tracking-wider rounded px-4 flex items-center justify-center gap-1.5"><i data-lucide="play" class="h-3 w-3"></i> Speak</button>
+                </div>
+              </div>
+
+              <!-- Translation Output -->
+              <div class="border border-brand-border bg-brand-bg p-4 font-mono text-[10px] leading-relaxed relative rounded z-10">
+                <span onclick="copyTranslation()" class="absolute top-2.5 right-2.5 text-[8px] text-brand-cyan hover:text-white cursor-pointer select-none font-bold">[COPY LYRICS]</span>
+                <div class="text-[8px] font-black uppercase text-slate-500 mb-2 border-b border-brand-border pb-1">lyrical brief translation</div>
+                <pre id="voice-translation-output" class="whitespace-pre-wrap text-slate-300">✦ Translate a developer directive using the controls above. ✦</pre>
+              </div>
+            </div>
+
+            <!-- Speech Settings & Apple Style Waveform visualizer -->
+            <div class="hud-panel p-6 rounded-xl flex flex-col justify-between">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4">
+                  <h2 class="text-xs font-black tracking-wider text-white font-mono">Speech Parameters</h2>
+                  <span class="text-[9px] font-mono text-slate-500 font-semibold">TUNE DAEMON</span>
+                </div>
+
+                <div class="space-y-4 text-[10px] font-mono">
+                  <div>
+                    <div class="flex justify-between mb-1.5 text-slate-400">
+                      <span>SPEED REGULATOR</span>
+                      <span id="val-voice-speed" class="text-brand-cyan font-bold">165 WPM</span>
+                    </div>
+                    <input type="range" min="120" max="220" value="165" oninput="updateVoiceRange('speed', this.value)" class="w-full h-1 bg-brand-border rounded-lg appearance-none cursor-pointer accent-brand-cyan">
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1.5 text-slate-400">
+                      <span>VOICE PITCH</span>
+                      <span id="val-voice-pitch" class="text-brand-cyan font-bold">1.00x</span>
+                    </div>
+                    <input type="range" min="50" max="150" value="100" oninput="updateVoiceRange('pitch', this.value)" class="w-full h-1 bg-brand-border rounded-lg appearance-none cursor-pointer accent-brand-cyan">
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1.5 text-slate-400">
+                      <span>LAGOS ACCENT INJECTION</span>
+                      <span id="val-voice-accent" class="text-brand-cyan font-bold">85%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="85" oninput="updateVoiceRange('accent', this.value)" class="w-full h-1 bg-brand-border rounded-lg appearance-none cursor-pointer accent-brand-cyan">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Siri/Cortana Style Morphing Sine Wave Visualizer -->
+              <div class="mt-6 border border-brand-border bg-brand-bg p-4 rounded relative z-10">
+                <div class="text-[8px] font-black uppercase text-slate-500 mb-3 font-mono">Voice Output Frequency Visualizer</div>
+                <div class="flex flex-col items-center gap-3">
+                  <div id="waveform-visualizer" class="w-full h-12 flex items-center justify-center bg-brand-void/50 border border-brand-border/40 rounded overflow-hidden">
+                    <!-- Dynamic HTML5 Canvas rendering Bezier Sine Waves -->
+                    <canvas id="voice-wave-canvas"></canvas>
+                  </div>
+                  <div id="voice-synthesis-status" class="text-[8px] text-slate-500 font-mono uppercase tracking-widest text-center">Engine Status: IDLE</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 5: COUNCIL NODES ================= -->
+        <div id="tab-agents" class="tab-section space-y-8">
+          
+          <div class="hud-panel p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border pb-4 mb-4">
+              <h2 class="text-xs font-black tracking-wider text-white font-mono">Council Nodes Cryptographical Access</h2>
+              <span class="text-[9px] font-mono text-slate-500 font-semibold">5 ACTIVE NODES</span>
+            </div>
+            
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-6">Handshake access roles mapped under Sovereign Mesh directives.</p>
+
+            <div class="grid gap-4">
+              
+              <div class="hud-panel flex items-center justify-between border border-brand-border bg-brand-void/40 p-4 rounded-lg">
+                <div class="flex items-center gap-4 relative z-10">
+                  <div class="h-9 w-9 bg-brand-bg border border-brand-border flex items-center justify-center text-brand-cyan font-mono font-bold">01</div>
+                  <div>
+                    <div class="text-xs font-black text-white uppercase tracking-wider">Commander Node</div>
+                    <p class="text-[10px] text-slate-400 mt-0.5 uppercase font-mono font-semibold">Authorized: Alexander Anthony // GO - STOP Gates</p>
+                  </div>
+                </div>
+                <button onclick="pingAgent('Commander', this)" class="spring-btn border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel flex items-center justify-between border border-brand-border bg-brand-void/40 p-4 rounded-lg">
+                <div class="flex items-center gap-4 relative z-10">
+                  <div class="h-9 w-9 bg-brand-bg border border-brand-border flex items-center justify-center text-brand-cyan font-mono font-bold">02</div>
+                  <div>
+                    <div class="text-xs font-black text-white uppercase tracking-wider">Supernova Logic Node</div>
+                    <p class="text-[10px] text-slate-400 mt-0.5 uppercase font-mono font-semibold">Authorized: Central scheduler logic dispatch and metrics mapper</p>
+                  </div>
+                </div>
+                <button onclick="pingAgent('Supernova', this)" class="spring-btn border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel flex items-center justify-between border border-brand-border bg-brand-void/40 p-4 rounded-lg">
+                <div class="flex items-center gap-4 relative z-10">
+                  <div class="h-9 w-9 bg-brand-bg border border-brand-border flex items-center justify-center text-brand-cyan font-mono font-bold">03</div>
+                  <div>
+                    <div class="text-xs font-black text-white uppercase tracking-wider">SENTINEL Analyzer Node</div>
+                    <p class="text-[10px] text-slate-400 mt-0.5 uppercase font-mono font-semibold">Authorized: 24/7 Collision Guard sandbox validator</p>
+                  </div>
+                </div>
+                <button onclick="pingAgent('SENTINEL', this)" class="spring-btn border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel flex items-center justify-between border border-brand-border bg-brand-void/40 p-4 rounded-lg">
+                <div class="flex items-center gap-4 relative z-10">
+                  <div class="h-9 w-9 bg-brand-bg border border-brand-border flex items-center justify-center text-brand-cyan font-mono font-bold">04</div>
+                  <div>
+                    <div class="text-xs font-black text-white uppercase tracking-wider">Voice Layer Sync</div>
+                    <p class="text-[10px] text-slate-400 mt-0.5 uppercase font-mono font-semibold">Authorized: TTS speak manager mapping logic</p>
+                  </div>
+                </div>
+                <button onclick="pingAgent('Voice Layer', this)" class="spring-btn border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10">Ping Handshake</button>
+              </div>
+
+              <div class="hud-panel flex items-center justify-between border border-brand-border bg-brand-void/40 p-4 rounded-lg">
+                <div class="flex items-center gap-4 relative z-10">
+                  <div class="h-9 w-9 bg-brand-bg border border-brand-border flex items-center justify-center text-brand-red font-mono font-bold">05</div>
+                  <div>
+                    <div class="text-xs font-black text-white uppercase tracking-wider font-mono">Icyflamze Creative OS Node</div>
+                    <p class="text-[10px] text-slate-400 mt-0.5 uppercase font-mono font-semibold">Authorized: Mr. 2 Lighter creative writer identity generator</p>
+                  </div>
+                </div>
+                <button onclick="pingAgent('ICYFLAMZE', this)" class="spring-btn border border-brand-red/30 text-brand-red hover:bg-brand-red/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10">Ping Handshake</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 6: AUTOMATION ================= -->
+        <div id="tab-automation" class="tab-section space-y-8">
+          
+          <div class="hud-panel p-6 rounded-xl">
+            <div class="flex items-center justify-between border-b border-brand-border pb-4 mb-4">
+              <h2 class="text-xs font-black tracking-wider text-white font-mono">LaunchAgent Active Schedules</h2>
+              <span class="text-[9px] font-mono text-slate-500 font-semibold">HEARTBEAT LOGS</span>
+            </div>
+
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-6">Manage plist configurations running diagnostic jobs under the allowlist rules.</p>
+
+            <div class="space-y-4 font-mono text-[10px]">
+              
+              <div class="hud-panel p-4 flex items-center justify-between rounded-lg">
+                <div class="relative z-10">
+                  <div class="text-white font-bold">com.icyflamze.daily_audit.plist</div>
+                  <p class="text-slate-500 mt-0.5 font-semibold">Runs: /Users/alexanderanthony/Projects/one-system/scripts/daily_audit.sh --no-speak</p>
+                </div>
+                <div class="text-right relative z-10">
+                  <span class="px-2 py-0.5 rounded border border-brand-cyan/20 text-brand-cyan bg-brand-cyan/5 text-[8.5px]">09:00 AM DAILY</span>
+                  <div class="text-slate-500 text-[8px] mt-1 font-semibold">LAST EXIT: 0</div>
+                </div>
+              </div>
+
+              <div class="hud-panel p-4 flex items-center justify-between rounded-lg">
+                <div class="relative z-10">
+                  <div class="text-white font-bold">com.icyflamze.campaign_check.plist</div>
+                  <p class="text-slate-500 mt-0.5 font-semibold">Runs: /Users/alexanderanthony/scripts/campaign_check.sh</p>
+                </div>
+                <div class="text-right relative z-10">
+                  <span class="px-2 py-0.5 rounded border border-brand-cyan/20 text-brand-cyan bg-brand-cyan/5 text-[8.5px]">EVERY 30 MIN</span>
+                  <div class="text-slate-500 text-[8px] mt-1 font-semibold">LAST EXIT: 0</div>
+                </div>
+              </div>
+
+              <div class="hud-panel p-4 flex items-center justify-between rounded-lg">
+                <div class="relative z-10">
+                  <div class="text-white font-bold">com.icyflamze.voice_check.plist</div>
+                  <p class="text-slate-500 mt-0.5 font-semibold">Runs: /Users/alexanderanthony/scripts/voice_check.sh</p>
+                </div>
+                <div class="text-right relative z-10">
+                  <span class="px-2 py-0.5 rounded border border-brand-cyan/20 text-brand-cyan bg-brand-cyan/5 text-[8.5px]">ON DEMAND</span>
+                  <div class="text-slate-500 text-[8px] mt-1 font-semibold">LAST EXIT: 0</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 7: REPORTS ================= -->
+        <div id="tab-reports" class="tab-section space-y-8">
+          
+          <div class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+            
+            <!-- Sankey Ribbon Path Simulation -->
+            <div class="hud-panel p-6 rounded-xl flex flex-col justify-between">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4">
+                  <h2 class="text-xs font-black tracking-wider text-white font-mono">Sankey Data Flow Path Trace</h2>
+                  <span id="audit-flow-state-label" class="text-[9px] font-black text-brand-emerald font-mono uppercase">ACTIVE STATUS: SECURE</span>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mb-6">Cryptographical audit tracks from raw user input to execution layers.</p>
+
+                <!-- Vector graphic for data flow paths -->
+                <div class="flex justify-center p-4 bg-brand-bg rounded border border-brand-border/40">
+                  <svg class="w-full max-w-[460px] h-[240px]" viewBox="0 0 500 260" fill="none" stroke="currentColor">
+                    <rect x="10" y="20" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="20" y="38" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">USER_INPUT</text>
+                    
+                    <rect x="10" y="110" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="20" y="128" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">SCHEDULER</text>
+
+                    <rect x="200" y="20" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="215" y="38" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">ASTRA (S)</text>
+
+                    <rect x="200" y="110" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="218" y="128" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">SID (E)</text>
+
+                    <rect x="200" y="200" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="212" y="218" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">GEMINI (V)</text>
+
+                    <rect x="400" y="65" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="410" y="83" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">DB_LEDGER</text>
+
+                    <rect x="400" y="155" width="80" height="30" fill="#0b0d14" stroke="rgba(0, 240, 255, 0.12)" />
+                    <text x="412" y="173" fill="#f1f5f9" font-family="monospace" font-size="8" font-weight="bold">ORACLE_SP</text>
+
+                    <path id="flow-path-user-astra" d="M 90 35 C 140 35, 150 35, 200 35" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                    <path id="flow-path-user-sid" d="M 90 35 C 140 35, 150 125, 200 125" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                    <path id="flow-path-user-gemini" d="M 90 35 C 140 35, 150 215, 200 215" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                    
+                    <path id="flow-path-astra-vault" d="M 280 35 C 330 35, 350 80, 400 80" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                    <path id="flow-path-sid-vault" d="M 280 125 C 330 125, 350 80, 400 80" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                    <path id="flow-path-gemini-voice" d="M 280 215 C 330 215, 350 170, 400 170" stroke="var(--success)" stroke-width="1.5" opacity="0.35" fill="none" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Filter Selector Options -->
+              <div class="mt-4 flex gap-2 relative z-10">
+                <button id="filter-btn-secure" onclick="filterAuditFlow('SECURE')" class="spring-btn flex-1 h-9 border border-brand-emerald/40 bg-brand-emerald/10 text-brand-emerald font-mono text-[9px] font-bold uppercase tracking-wider rounded cursor-pointer">SECURE STATE</button>
+                <button id="filter-btn-warning" onclick="filterAuditFlow('WARNING')" class="spring-btn flex-1 h-9 border border-brand-border bg-brand-bg hover:border-brand-gold/40 text-slate-400 hover:text-white font-mono text-[9px] font-bold uppercase tracking-wider rounded cursor-pointer">WARNING STATE</button>
+                <button id="filter-btn-blocked" onclick="filterAuditFlow('BLOCKED')" class="spring-btn flex-1 h-9 border border-brand-border bg-brand-bg hover:border-brand-red/40 text-slate-400 hover:text-white font-mono text-[9px] font-bold uppercase tracking-wider rounded cursor-pointer">BLOCKED STATE</button>
+              </div>
+            </div>
+
+            <!-- Ledger Stream Records List -->
+            <div class="hud-panel p-6 rounded-xl flex flex-col justify-between">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between border-b border-brand-border/40 pb-4 mb-4">
+                  <h2 class="text-xs font-black tracking-wider text-white font-mono">Inventory Records Log</h2>
+                  <span onclick="refreshLedger()" class="text-[9px] font-mono text-brand-cyan hover:text-white cursor-pointer select-none font-bold flex items-center gap-1">
+                    <i id="ledger-refresh-icon" data-lucide="rotate-cw" class="h-3 w-3"></i> FORCE REFRESH
+                  </span>
+                </div>
+                
+                <div id="audit-flow-records" class="h-56 overflow-y-auto space-y-2.5 font-mono text-[9.5px]">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Raw Static Code Block output -->
+              <div class="mt-4 border border-brand-border bg-brand-bg p-4 font-mono text-[9px] text-brand-cyan relative z-10 rounded">
+                <pre id="ledger-code-block" class="h-20 overflow-y-auto">
+<div class="flex py-0.5"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">1</span><span># SECURE STATUS: ACTIVE REPORT INDEX</span></div>
+<div class="flex py-0.5"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">2</span><span>All cryptographical signatures verified. Ledger locked.</span></div>
+                </pre>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= PAGE 8: SOVEREIGNTY BRIDGE ================= -->
+        <div id="tab-sovereignty" class="tab-section space-y-8">
+          
+          <!-- Micro-Product Factory Card -->
+          <div class="hud-panel p-6 rounded-xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-cyan to-transparent"></div>
+            <div class="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen bg-[url('images/ledger_node.png')] bg-cover bg-center" style="pointer-events: none;"></div>
+            
+            <div class="border-b border-brand-border/40 pb-4 mb-4 flex items-center justify-between relative z-10">
+              <div>
+                <h2 class="text-xs font-black tracking-wider text-white font-mono flex items-center gap-2">
+                  <i data-lucide="folder-plus" class="h-4.5 w-4.5 text-brand-cyan"></i>
+                  Micro-Product Factory (Task 2.1)
+                </h2>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mt-1">Compile and deploy standalone agent pages dynamically.</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 relative z-10">
+              <div class="border border-brand-border bg-brand-bg/40 p-5 rounded-lg flex flex-col justify-between">
+                <div class="space-y-4">
+                  <span class="text-[9px] font-black font-mono text-slate-500 uppercase tracking-widest block">Product Deployer</span>
+                  <div>
+                    <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">App Domain Handle</label>
+                    <input id="static-deploy-name" type="text" onfocus="playFocus()" placeholder="e.g. music-licensing" class="w-full h-8 px-3 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-white focus:outline-none focus:border-brand-cyan/50" />
+                  </div>
+                  <div>
+                    <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">Stack Template</label>
+                    <select id="static-deploy-template" onfocus="playFocus()" class="w-full h-8 px-2 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-slate-300 focus:outline-none focus:border-brand-cyan/50 cursor-pointer">
+                      <option value="Astro SaaS Starter">Astro SaaS Starter</option>
+                      <option value="Vite React Minimal">Vite React Minimal</option>
+                      <option value="Next.js App Router API">Next.js App Router API</option>
+                      <option value="Static HTML Landing Page">Static HTML Landing Page</option>
+                    </select>
+                  </div>
+                </div>
+                <button onclick="simulateDeployStaticProduct()" class="w-full mt-4 h-9 border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan/5 transition text-[10px] font-mono font-black uppercase tracking-wider rounded cursor-pointer">
+                  Compile & Deploy App
+                </button>
+              </div>
+
+              <div class="md:col-span-2 border border-brand-border bg-brand-bg/40 p-5 rounded-lg">
+                <span class="text-[9px] font-black font-mono text-slate-500 uppercase tracking-widest block mb-3">Deployed Micro-Agent Applications</span>
+                <div id="static-deployed-list" class="space-y-3 max-h-[160px] overflow-y-auto pr-1">
+                  <!-- Default simulated app -->
+                  <div class="flex items-center justify-between border-b border-brand-border/40 pb-2">
+                    <div class="space-y-1">
+                      <div class="flex items-center gap-2">
+                        <span class="font-mono text-brand-cyan font-black tracking-wide text-xs">test-factory-app</span>
+                        <span class="text-[8px] font-bold text-slate-500 border border-brand-border px-1 py-0.2 rounded bg-brand-bg font-mono">Astro SaaS Starter</span>
+                      </div>
+                      <a href="#" class="text-[9px] text-slate-400 hover:text-brand-cyan transition flex items-center gap-1 font-semibold">https://supernova-mesh-test-factory-app.vercel.app</a>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[8px] font-black uppercase border border-brand-emerald/30 bg-brand-emerald/10 text-brand-emerald tracking-wider font-mono">LIVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bridge & ZK Sweeps -->
+          <div class="grid md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 border border-brand-border bg-brand-bg/40 p-6 rounded-xl relative overflow-hidden">
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-purple to-transparent"></div>
+              <div class="pointer-events-none absolute inset-0 opacity-[0.02] mix-blend-screen bg-[url('images/ledger_node.png')] bg-cover bg-center" style="pointer-events: none;"></div>
+              
+              <div class="border-b border-brand-border/40 pb-4 mb-4 relative z-10">
+                <h3 class="text-xs font-black tracking-wider text-brand-purple flex items-center gap-2 font-mono">
+                  <i data-lucide="coins" class="h-4.5 w-4.5 text-brand-purple"></i>
+                  Decentralized Settlement Bridge (Task 2.2)
+                </h3>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mt-1">Cross-bridge financial swaps, reconciling invoice ledgers with on-chain assets.</p>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4 items-end relative z-10">
+                <div>
+                  <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">Select Client</label>
+                  <select id="static-settle-client" onfocus="playFocus()" class="w-full h-8 px-2 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-slate-300 focus:outline-none focus:border-brand-purple/50 cursor-pointer">
+                    <option value="Quantum_Creative">Quantum_Creative</option>
+                    <option value="NexTech_Global">NexTech_Global</option>
+                    <option value="SecureBase_Inc">SecureBase_Inc</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">Settlement Swap Value ($ USD)</label>
+                  <input id="static-settle-amount" type="number" onfocus="playFocus()" value="45000" class="w-full h-8 px-3 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-white focus:outline-none focus:border-brand-purple/50" />
+                </div>
+                <div>
+                  <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">Source Settlement Bridge</label>
+                  <select id="static-settle-source" onfocus="playFocus()" class="w-full h-8 px-2 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-slate-300 focus:outline-none focus:border-brand-purple/50 cursor-pointer">
+                    <option value="Stripe Financial Rails">Stripe Financial Rails</option>
+                    <option value="Solana USDC Bridge">Solana USDC Bridge</option>
+                    <option value="Ethereum Smart Invoicing Tunnel">Ethereum Smart Invoicing Tunnel</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-black font-mono uppercase text-slate-500 block mb-1">Destination Settlement Ledger</label>
+                  <select id="static-settle-dest" onfocus="playFocus()" class="w-full h-8 px-2 bg-brand-bg border border-brand-border rounded text-[10px] font-mono text-slate-300 focus:outline-none focus:border-brand-purple/50 cursor-pointer">
+                    <option value="SOV Token (ERC-20)">SOV Token (ERC-20)</option>
+                    <option value="USDC Vault Enclave">USDC Vault Enclave</option>
+                    <option value="USD Bank Wire Clearing">USD Bank Wire Clearing</option>
+                  </select>
+                </div>
+                <div class="sm:col-span-2">
+                  <button onclick="simulateStaticSettlement()" class="w-full h-9 border border-brand-purple/40 text-brand-purple hover:bg-brand-purple/5 transition text-[10px] font-mono font-black uppercase tracking-wider rounded cursor-pointer">
+                    Execute Settlement Swap
+                  </button>
+                </div>
+              </div>
+
+              <div id="static-settle-receipt" class="mt-4 p-4 border border-brand-border bg-brand-void/60 rounded-lg hidden animate-fade-in text-[10px] font-mono text-slate-300 space-y-1.5 relative z-10">
+              </div>
+            </div>
+
+            <div class="border border-brand-border bg-brand-bg/40 p-6 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-emerald to-transparent" />
+              <div class="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen bg-[url('images/ledger_node.png')] bg-cover bg-center" style="pointer-events: none;"></div>
+              
+              <div class="relative z-10">
+                <div class="border-b border-brand-border/40 pb-4 mb-4">
+                  <h3 class="text-xs font-black tracking-wider text-brand-emerald flex items-center gap-2 font-mono">
+                    <i data-lucide="lock" class="h-4.5 w-4.5 text-brand-emerald"></i>
+                    ZK System Audit Sweep (Task 3.1)
+                  </h3>
+                  <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mt-1">Compute SHA-256 block chain proofs over all ledger states to guarantee history integrity.</p>
+                </div>
+                <p class="text-[9px] text-slate-500 font-mono uppercase leading-relaxed mb-4">
+                  Runs a Zero-Knowledge hash-chain validity validator covering the entire `sovereign_ledger` database rows.
+                </p>
+              </div>
+
+              <div class="relative z-10">
+                <div id="static-zk-result" class="p-3 border border-brand-emerald/20 bg-brand-emerald/5 rounded-lg text-[9px] font-mono mb-4 space-y-1 hidden animate-fade-in">
+                </div>
+                <button onclick="simulateStaticZKAudit()" class="w-full h-9 border border-brand-emerald/40 text-brand-emerald hover:bg-brand-emerald/5 transition text-[10px] font-mono font-black uppercase tracking-wider rounded cursor-pointer">
+                  Run ZK Verification Sweep
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Static Footer -->
+      <footer class="p-6 border-t border-brand-border bg-brand-void/40 flex flex-col md:flex-row items-center justify-between text-slate-500 font-mono text-[9px] uppercase tracking-widest relative backdrop-blur-md">
+        <span>Sovereign Command Center © 2026 // Icyflamze OS</span>
+        <span class="mt-2 md:mt-0 font-bold text-slate-400">Mr. 2 Lighter // Lagos Roots // Sovereign Web Mesh</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- App Interactive Logic Script -->
+  <script>
+    // ==========================================
+    // SOVEREIGN SYSTEM SOUND PLAYER
+    // ==========================================
+    function playClick() {
+      try {
+        const audio = new Audio('sounds/click.wav');
+        audio.volume = 0.25;
+        audio.play().catch(()=>{});
+      } catch (e) {}
+    }
+    function playFocus() {
+      try {
+        const audio = new Audio('sounds/focus.wav');
+        audio.volume = 0.15;
+        audio.play().catch(()=>{});
+      } catch (e) {}
+    }
+    function playSuccess() {
+      try {
+        const audio = new Audio('sounds/success.wav');
+        audio.volume = 0.3;
+        audio.play().catch(()=>{});
+      } catch (e) {}
+    }
+
+    // ==========================================
+    // CLIENT-SIDE ROBUST MOCK FALLBACKS
+    // ==========================================
+    // Ensures fully dynamic previews even over static file:// URL protocol
+    function safeFetch(url, options = {}) {
+      return fetch(url, options)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
+          return res.json();
+        })
+        .catch(err => {
+          console.warn(`[Local Fallback Mode Activated for ${url}] Reason: ${err.message}`);
+          return getMockResponse(url, options);
+        });
+    }
+
+    function getMockResponse(url, options) {
+      const parsedUrl = new URL(url, window.location.origin);
+      const path = parsedUrl.pathname;
+      
+      if (path === "/api/telemetry") {
+        const randCpu = (5 + Math.random() * 8).toFixed(1);
+        const randMem = (43 + Math.random() * 4).toFixed(1);
+        return {
+          cpu: randCpu,
+          memory: randMem,
+          disk: 35.0,
+          focus_active: false,
+          db_tables: 4,
+          postgres_running: true,
+          redis_running: true
+        };
+      }
+      
+      else if (path === "/api/logs") {
+        return {
+          logs: [
+            { timestamp: new Date().toLocaleTimeString(), category: "system", action: "heartbeat", status: "success", detail: "Local mockup stream running active" },
+            { timestamp: new Date().toLocaleTimeString(), category: "security", action: "sandbox", status: "success", detail: "All filesystem borders locked" }
+          ]
+        };
+      }
+      
+      else if (path === "/api/ping") {
+        // Retrieve payload
+        let nodeName = "SYSTEM";
+        if (options.body) {
+          try {
+            const data = JSON.parse(options.body);
+            nodeName = data.node || "SYSTEM";
+          } catch(e) {}
+        }
+        return {
+          status: "success",
+          message: `Pong check complete. Node ${nodeName} returned Pong response in 8.4ms (Simulated Local Link).`
+        };
+      }
+      
+      else if (path === "/api/audit") {
+        let name = "Daily Silent";
+        if (options.body) {
+          try { name = JSON.parse(options.body).name; } catch(e) {}
+        }
+        return {
+          status: "success",
+          message: `Audit execution of ${name} complete`,
+          output: `[LOCAL SANDBOX SIMULATOR]
+Scanning path /Users/alexanderanthony for duplicate files...
+Checking .gemini directory isolation...
+[OK] Sandbox rules valid. Done.`
+        };
+      }
+      
+      // Default fallback for focus, backup, tests, boot, shutdown
+      const actionName = path.split('/').pop() || "action";
+      return {
+        status: "success",
+        message: `Local simulated completion of executive task: ${actionName.toUpperCase()}`
+      };
+    }
+
+    // ==========================================
+    // STATIC LEDGER COMPILER SIMULATOR
+    // ==========================================
+    function refreshLedger() {
+      const icon = document.getElementById('ledger-refresh-icon');
+      const codeBlock = document.getElementById('ledger-code-block');
+      
+      if (icon) icon.classList.add('animate-spin');
+      triggerShockwave();
+      
+      setTimeout(() => {
+        if (icon) icon.classList.remove('animate-spin');
+        const dateStr = new Date().toISOString().split('T')[0];
+        
+        if (codeBlock) {
+          codeBlock.innerHTML = `
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">1</span><span># SENTINEL SYSTEM AUDIT STATE</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">2</span><span>Date Compiled: ${dateStr}</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">3</span><span></span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">4</span><span>## System Status</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">5</span><span>- core_enclave_01: ONLINE</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">6</span><span>- collision_guard: ACTIVE</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">7</span><span>- memory_vault: SECURED</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">8</span><span></span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">9</span><span>## Diagnostics Summary</span></div>
+<div class="flex py-0.5 hover:bg-slate-800/20 px-2 rounded"><span class="w-10 select-none text-slate-600 font-bold mr-4 border-r border-brand-border text-right pr-2">10</span><span>All local security parameters verified. System execution isolated.</span></div>
+          `;
+        }
+      }, 1000);
+    }
+
+    // ==========================================
+    // DYNAMIC NAVIGATION CONTROLLER
+    // ==========================================
+    function switchTab(tabId) {
+      playClick();
+      document.querySelectorAll('.tab-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const targetSec = document.getElementById(`tab-${tabId}`);
+      if (targetSec) targetSec.classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.className = "nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-transparent px-4 text-slate-400 hover:text-white hover:border-brand-border/40 hover:bg-brand-void/50 transition-all";
+        const indicator = btn.querySelector('.active-bar');
+        if (indicator) indicator.classList.add('hidden');
+        
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = icon.className.replace('text-brand-cyan', 'text-slate-500');
+      });
+
+      const activeBtn = document.getElementById(`nav-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = "nav-btn group relative flex h-10 w-full items-center gap-3.5 rounded border border-brand-cyan/30 bg-brand-cyan/5 px-4 text-white font-bold transition-all";
+        const indicator = activeBtn.querySelector('.active-bar');
+        if (indicator) indicator.classList.remove('hidden');
+        
+        const icon = activeBtn.querySelector('i');
+        if (icon) icon.className = icon.className.replace('text-slate-500', 'text-brand-cyan');
+      }
+
+      // Dynamic header mapping
+      const titleEl = document.getElementById('page-title');
+      const subtitleEl = document.getElementById('page-subtitle');
+      
+      const pageMetadata = {
+        overview: ["Overview Command", "Central orchestration ledger and system metrics dashboard."],
+        governance: ["CIP Governance", "Classify container rules and manage blast radius limits."],
+        audits: ["Audit Intelligence", "Execute static security sandboxes and compile report streams."],
+        voice: ["Voice Frequency", "Synthesize Lagos roots Area Boy strategy flow presets."],
+        agents: ["Sovereign Council Nodes", "Defined node access roles and cryptographical bounds."],
+        automation: ["Automation Deck", "Scheduled LaunchAgent configurations and status heartbeats."],
+        reports: ["Ledger Records Inventory", "Secured index of all compiled diagnostic logs."],
+        sovereignty: ["Sovereignty Bridge", "Compile micro-products, clear cross-chain settlements, and audit ZK-proofs."]
+      }[tabId] || ["SENTINEL OS", "Enterprise Command Matrix"];
+
+      if (titleEl) titleEl.innerText = pageMetadata[0];
+      if (subtitleEl) subtitleEl.innerText = pageMetadata[1];
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // ==========================================
+    // AUDIT SCRIPT DISPATCHER
+    // ==========================================
+    function triggerAuditBtn(name) {
+      const box = document.getElementById('audit-control-output');
+      const text = document.getElementById('audit-output-text');
+      
+      if (box) box.classList.remove('hidden');
+      if (text) text.innerText = `[${new Date().toLocaleTimeString()}] Triggering allowlisted action: ${name}...
+[SYS] Initializing local sandbox scanner...`;
+      
+      triggerShockwave();
+
+      safeFetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name })
+      })
+      .then(data => {
+        if (text) {
+          text.innerText = `[${new Date().toLocaleTimeString()}] Action finished.
+[SYS] Response Message: ${data.message || 'Execution Complete'}
+----------------------------------------------------------------------
+${data.output || 'No output returned'}`;
+        }
+      });
+    }
+
+    // ==========================================
+    // EXECUTIVE ACTION ENGINE
+    // ==========================================
+    function triggerExecutiveAction(action, btn) {
+      const box = document.getElementById('executive-control-output');
+      const text = document.getElementById('executive-output-text');
+      
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i data-lucide="loader" class="h-3.5 w-3.5 animate-spin text-brand-cyan"></i> <span>EXECUTING...</span>`;
+      btn.disabled = true;
+      if (window.lucide) lucide.createIcons();
+      
+      if (box) box.classList.remove('hidden');
+      if (text) text.innerText = `[${new Date().toLocaleTimeString()}] Triggering executive API: /api/${action}...
+[SYS] Accessing local service bridge...`;
+      
+      triggerShockwave();
+
+      safeFetch(`/api/${action}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(data => {
+        if (text) {
+          text.innerText = `[${new Date().toLocaleTimeString()}] Action finished.
+[SYS] Status: ${data.status.toUpperCase()}
+[SYS] Message: ${data.message}`;
+        }
+        
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        if (window.lucide) lucide.createIcons();
+      });
+    }
+
+    // ==========================================
+    // CIP GOVERNANCE RULE SWITCHER
+    // ==========================================
+    const ruleStates = {
+      allowlist: true,
+      isolation: true,
+      rollback: true,
+      lock: true
+    };
+
+    function toggleGovernanceRule(ruleName) {
+      ruleStates[ruleName] = !ruleStates[ruleName];
+      
+      const btn = document.getElementById(`btn-rule-${ruleName}`);
+      const circle = document.getElementById(`toggle-${ruleName}`);
+      const txt = document.getElementById(`txt-rule-${ruleName}`);
+      
+      if (ruleStates[ruleName]) {
+        if (btn) btn.className = 'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent transition-colors duration-200 focus:outline-none bg-brand-cyan';
+        if (circle) circle.className = 'translate-x-5 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5';
+        if (txt) {
+          txt.innerText = 'STRICT BLOCK';
+          txt.className = 'text-brand-cyan font-bold uppercase tracking-wider font-mono';
+        }
+      } else {
+        if (btn) btn.className = 'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border border-transparent bg-brand-border transition-colors duration-200 focus:outline-none';
+        if (circle) circle.className = 'translate-x-0 pointer-events-none inline-block h-4.5 w-4.5 transform rounded bg-brand-void shadow transition duration-200 mt-0.5 ml-0.5';
+        if (txt) {
+          txt.innerText = 'LOG ONLY';
+          txt.className = 'text-brand-gold font-bold uppercase tracking-wider font-mono';
+        }
+      }
+
+      let relaxedRules = 0;
+      for (const k in ruleStates) {
+        if (!ruleStates[k]) relaxedRules++;
+      }
+
+      const scoreEl = document.getElementById('threat-indicator-score');
+      const scoreNum = (relaxedRules * 2.5).toFixed(1);
+      
+      let indexText = 'SECURE';
+      let styleClasses = 'text-brand-emerald bg-brand-emerald/10 border border-brand-emerald/30';
+
+      if (relaxedRules === 1) {
+        indexText = 'LOW STATE';
+        styleClasses = 'text-brand-gold bg-brand-gold/10 border border-brand-gold/30';
+      } else if (relaxedRules === 2) {
+        indexText = 'MODERATE STATE';
+        styleClasses = 'text-brand-gold bg-brand-gold/10 border border-brand-gold/30';
+      } else if (relaxedRules === 3) {
+        indexText = 'HIGH THREAT';
+        styleClasses = 'text-brand-red bg-brand-red/10 border border-brand-red/30 animate-pulse';
+      } else if (relaxedRules === 4) {
+        indexText = 'CRITICAL ALARM';
+        styleClasses = 'text-brand-red bg-brand-red/20 border border-brand-red/40 animate-pulse';
+      }
+
+      if (scoreEl) {
+        scoreEl.innerText = `${scoreNum} (${indexText})`;
+        scoreEl.className = `text-[9px] font-black px-2 py-1 rounded font-mono ${styleClasses}`;
+      }
+
+      const stream = document.getElementById('governance-stream-logs');
+      const timeStr = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      
+      if (ruleStates[ruleName]) {
+        div.className = "text-brand-cyan font-bold";
+        div.innerText = `[${timeStr}] Rule armed: Protocol #${ruleName.toUpperCase()} locked to STRICT BLOCK. Status stabilized.`;
+      } else {
+        div.className = "text-brand-gold font-bold";
+        div.innerText = `[${timeStr}] Policy WARNING: Protocol #${ruleName.toUpperCase()} relaxed to LOG ONLY. Threat Index elevated!`;
+      }
+      if (stream) {
+        stream.appendChild(div);
+        stream.scrollTop = stream.scrollHeight;
+      }
+      triggerShockwave();
+    }
+
+    // ==========================================
+    // AREA BOY DIRECITVE TRANSLATOR
+    // ==========================================
+    function translateToIcyflamze() {
+      const textVal = document.getElementById('voice-input-text').value.trim();
+      if (!textVal) {
+        document.getElementById('voice-translation-output').innerText = "✦ Enter a standard developer directive on the left panel. ✦";
+        return;
+      }
+
+      const slangMap = {
+        "scan": "recon the perimeter",
+        "codebase": "blocks and grid lines",
+        "build": "construct the foundation",
+        "compile": "fuse the circuits",
+        "dashboard": "high-density clean terminal",
+        "test": "heat-stress in the Lagos sun",
+        "run": "ignite the engine",
+        "execute": "strike the board",
+        "debug": "shake the dust out of the rug",
+        "error": "street collision",
+        "success": "victory bells",
+        "database": "sacred ledger vault",
+        "security": "perimeter shield protection",
+        "voice": "lyrical strategic frequency",
+        "server": "iron mainframe deck",
+        "deploy": "launch under pressure",
+        "write": "etch the neon runes"
+      };
+
+      let translatedText = textVal;
+      for (const original in slangMap) {
+        const r = new RegExp(`\\b${original}\\b`, 'gi');
+        translatedText = translatedText.replace(r, slangMap[original]);
+      }
+
+      const stanzas = [
+        "✦ ICYFLAMZE STRATEGY SPELL ✦",
+        `"[Intent]: ${translatedText}"`,
+        "",
+        "Pressure makes the brilliantier; we stand tall on this board.",
+        "We craft our designs high, before the fire claims the yard.",
+        "Signature: 'I build before burning.'"
+      ];
+
+      document.getElementById('voice-translation-output').innerText = stanzas.join('\n');
+
+      const consoleBox = document.getElementById('sidebar-console');
+      const timeStr = new Date().toLocaleTimeString();
+      const line = document.createElement('div');
+      line.className = "truncate border-l border-brand-cyan/30 pl-2 text-brand-cyan font-bold";
+      line.innerText = `[${timeStr}] [VOICE] Synced translation lyrics successfully`;
+      if (consoleBox) {
+        consoleBox.appendChild(line);
+        consoleBox.scrollTop = consoleBox.scrollHeight;
+      }
+    }
+
+    function copyTranslation() {
+      const outputText = document.getElementById('voice-translation-output').innerText;
+      navigator.clipboard.writeText(outputText).then(() => {
+        const copyBtn = document.querySelector('span[onclick="copyTranslation()"]');
+        if (copyBtn) {
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = "[COPIED!]";
+          copyBtn.style.color = "#00e676";
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.color = "";
+          }, 1500);
+        }
+      });
+    }
+
+    // ==========================================
+    // VOICE FREQUENCY SYNTHESIZER (SINE WAVE)
+    // ==========================================
+    let voiceSynthesisInterval = null;
+    let waveCanvas, waveCtx;
+    let wavePhase = 0;
+    let waveAmplitude = 0.08;
+    let targetWaveAmplitude = 0.08;
+
+    function initVoiceWaveform() {
+      waveCanvas = document.getElementById('voice-wave-canvas');
+      if (!waveCanvas) return;
+      
+      waveCtx = waveCanvas.getContext('2d');
+      
+      // Handle resizing
+      const resizeCanvas = () => {
+        const rect = waveCanvas.parentElement.getBoundingClientRect();
+        waveCanvas.width = rect.width;
+        waveCanvas.height = rect.height;
+      };
+      
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      drawVoiceWave();
+    }
+
+    function drawVoiceWave() {
+      if (!waveCanvas || !waveCtx) return;
+      
+      const ctx = waveCtx;
+      const width = waveCanvas.width;
+      const height = waveCanvas.height;
+      
+      ctx.clearRect(0, 0, width, height);
+      
+      // Interpolate amplitude smoothly
+      waveAmplitude += (targetWaveAmplitude - waveAmplitude) * 0.15;
+      
+      const waves = [
+        { color: 'rgba(0, 240, 255, 0.55)', ratio: 1.0, phase: wavePhase },
+        { color: 'rgba(255, 46, 85, 0.35)', ratio: 1.5, phase: wavePhase + 1.2 },
+        { color: 'rgba(255, 176, 0, 0.25)', ratio: 0.7, phase: wavePhase - 1.5 }
+      ];
+      
+      waves.forEach(w => {
+        ctx.beginPath();
+        ctx.strokeStyle = w.color;
+        ctx.lineWidth = 1.8;
+        
+        for (let x = 0; x < width; x++) {
+          const angle = (x / width) * Math.PI * 2 * w.ratio + w.phase;
+          // Apply Gaussian-like taper towards edges (bell shape envelope)
+          const envelope = Math.sin((x / width) * Math.PI);
+          const y = height / 2 + Math.sin(angle) * (height / 2.5) * waveAmplitude * envelope;
+          
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.stroke();
+      });
+      
+      wavePhase += 0.06;
+      requestAnimationFrame(drawVoiceWave);
+    }
+
+    function speakSovereignDirective() {
+      const input = document.getElementById('voice-input-text').value.trim();
+      const stanzasText = document.getElementById('voice-translation-output').innerText;
+      
+      const textToSpeak = input ? stanzasText : "Pressure makes the brilliantier; we stand tall on this board. We craft our designs high, before the fire claims the yard. Signature: I build before burning.";
+      
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        
+        const speedWpm = parseInt(document.getElementById('val-voice-speed').innerText);
+        utterance.rate = speedWpm / 165; 
+        
+        const pitchVal = parseFloat(document.getElementById('val-voice-pitch').innerText);
+        utterance.pitch = pitchVal; 
+        
+        const statusEl = document.getElementById('voice-synthesis-status');
+        
+        utterance.onstart = function() {
+          if (statusEl) statusEl.innerText = "SpeechSynthesis: Active speaking directive...";
+          targetWaveAmplitude = 0.95; // Trigger visually active waves!
+          triggerShockwave();
+        };
+        
+        utterance.onend = function() {
+          if (statusEl) statusEl.innerText = "SpeechSynthesis: Speaking playback finished. Idle.";
+          targetWaveAmplitude = 0.08; // Reset back to a low calm hum
+        };
+        
+        window.speechSynthesis.speak(utterance);
+        
+      } else {
+        // Fallback simulated speaking
+        const statusEl = document.getElementById('voice-synthesis-status');
+        if (statusEl) statusEl.innerText = "SpeechSynthesis not supported. Simulating frequency...";
+        targetWaveAmplitude = 0.95;
+        triggerShockwave();
+        setTimeout(() => {
+          if (statusEl) statusEl.innerText = "SpeechSynthesis: Speaking playback finished. Idle.";
+          targetWaveAmplitude = 0.08;
+        }, 3000);
+      }
+    }
+
+    function updateVoiceRange(parameter, value) {
+      if (parameter === 'speed') {
+        const valEl = document.getElementById('val-voice-speed');
+        if (valEl) valEl.innerText = `${value} WPM`;
+      } else if (parameter === 'pitch') {
+        const valEl = document.getElementById('val-voice-pitch');
+        if (valEl) valEl.innerText = `${(value / 100).toFixed(2)}x`;
+      } else if (parameter === 'accent') {
+        const valEl = document.getElementById('val-voice-accent');
+        if (valEl) valEl.innerText = `${value}%`;
+      }
+    }
+
+    // ==========================================
+    // PING NODE COMMAND HANDSHAKES
+    // ==========================================
+    function pingAgent(nodeName, btnElement) {
+      if (!btnElement) return;
+
+      const originalText = btnElement.innerText;
+      btnElement.innerText = "PINGING...";
+      btnElement.disabled = true;
+      btnElement.classList.add('animate-pulse');
+
+      const consoleBox = document.getElementById('sidebar-console');
+      const stream = document.getElementById('governance-stream-logs');
+      const timeStr = new Date().toLocaleTimeString();
+
+      const log1 = document.createElement('div');
+      log1.className = "truncate border-l border-brand-cyan/30 pl-2 text-brand-cyan";
+      log1.innerText = `[${timeStr}] [SYS] Dispatching secure handshake query to ${nodeName}...`;
+      if (consoleBox) {
+        consoleBox.appendChild(log1);
+        consoleBox.scrollTop = consoleBox.scrollHeight;
+      }
+      
+      triggerShockwave();
+
+      safeFetch('/api/ping', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ node: nodeName })
+      })
+      .then(data => {
+        btnElement.innerText = "PONG!";
+        btnElement.classList.remove('animate-pulse');
+        btnElement.className = 'spring-btn rounded border border-brand-emerald/40 bg-brand-emerald/10 text-brand-emerald px-3 py-1.5 font-mono text-[9px] font-bold cursor-default relative z-10';
+
+        const log2 = document.createElement('div');
+        log2.className = "truncate border-l border-brand-emerald/30 pl-2 text-brand-emerald font-bold";
+        log2.innerText = `[${timeStr}] [OK] ${data.message}`;
+        if (consoleBox) {
+          consoleBox.appendChild(log2);
+          consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
+        if (stream) {
+          const streamLine = document.createElement('div');
+          streamLine.className = 'text-brand-emerald font-bold';
+          streamLine.innerText = `[${timeStr}] Council node ${nodeName} handshaked: SUCCESS (${data.message})`;
+          stream.appendChild(streamLine);
+          stream.scrollTop = stream.scrollHeight;
+        }
+
+        setTimeout(() => {
+          btnElement.innerText = originalText;
+          btnElement.disabled = false;
+          btnElement.className = 'spring-btn border border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/5 text-[9px] font-mono font-bold uppercase tracking-wider h-8 px-4 rounded relative z-10';
+        }, 1500);
+      });
+    }
+
+    // ==========================================
+    // METRICS & TELEMETRY STREAM UPDATERS
+    // ==========================================
+    const displayedLogIds = new Set();
+    
+    function fetchLiveTelemetry() {
+      safeFetch('/api/telemetry')
+      .then(data => {
+        const authEl = document.getElementById('telemetry-authority');
+        if (authEl) {
+          if (data.focus_active) {
+            authEl.innerText = "FOCUS: ACTIVE";
+            authEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase";
+          } else {
+            authEl.innerText = "Commander";
+            authEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-gold font-mono uppercase";
+          }
+        }
+
+        const orchEl = document.getElementById('telemetry-orchestration');
+        if (orchEl) {
+          if (data.postgres_running && data.redis_running) {
+            orchEl.innerText = "INFRA: ONLINE";
+            orchEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-emerald font-mono uppercase";
+          } else {
+            orchEl.innerText = "Supernova";
+            orchEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase";
+          }
+        }
+
+        const govEl = document.getElementById('telemetry-governance');
+        if (govEl) {
+          govEl.innerText = `SENTINEL`;
+          govEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase";
+        }
+
+        const execEl = document.getElementById('telemetry-execution');
+        if (execEl) {
+          execEl.innerText = `CPU ${data.cpu}% | MEM ${data.memory}%`;
+          execEl.className = "mt-2 text-xl font-bold tracking-tight text-brand-cyan font-mono uppercase";
+        }
+      });
+    }
+
+    function fetchLiveLogs() {
+      safeFetch('/api/logs')
+      .then(data => {
+        const consoleBox = document.getElementById('sidebar-console');
+        if (!consoleBox) return;
+
+        const newLogs = data.logs || [];
+        newLogs.reverse().forEach(log => {
+          const logKey = `${log.timestamp}-${log.category}-${log.action}-${log.status}`;
+          if (!displayedLogIds.has(logKey)) {
+            displayedLogIds.add(logKey);
+            
+            const line = document.createElement('div');
+            if (log.status === "failed" || log.category === "error") {
+              line.className = "truncate border-l border-brand-red/30 pl-2 text-brand-red font-medium";
+            } else if (log.status === "success") {
+              line.className = "truncate border-l border-brand-emerald/30 pl-2 text-brand-emerald font-medium";
+            } else {
+              line.className = "truncate border-l border-brand-cyan/20 pl-2 text-slate-300 font-medium";
+            }
+            
+            const logTime = log.timestamp.includes(' ') ? log.timestamp.split(' ')[1] : log.timestamp;
+            line.innerText = `[${logTime}] [${log.category.toUpperCase()}] ${log.action.toUpperCase()} -> ${log.status.toUpperCase()}`;
+            consoleBox.appendChild(line);
+
+            if (consoleBox.children.length > 25) {
+              consoleBox.removeChild(consoleBox.firstChild);
+            }
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+          }
+        });
+      });
+    }
+
+    // ==========================================
+    // SANKEY COMPILER STATE FILTER
+    // ==========================================
+    const auditFlowLogsData = {
+      SECURE: [
+        { time: "15:20:01", type: "INGEST", desc: "Local log file dropped successfully: transcript.jsonl parsed safely.", status: "SECURE" },
+        { time: "15:20:04", type: "ASTRA", desc: "Planning task loaded. Command routes resolved for allowed allowlist compliance.", status: "SECURE" },
+        { time: "15:20:08", type: "SID", desc: "Playwright automated test trace complete: passed dynamic checks.", status: "SECURE" },
+        { time: "15:20:12", type: "GEMINI", desc: "Secure credentials handshake verified for Core Enclave Vault.", status: "SECURE" }
+      ],
+      WARNING: [
+        { time: "15:21:05", type: "INGEST", desc: "Local directory trace parsed with warnings: found legacy files.", status: "WARNING" },
+        { time: "15:21:10", type: "ASTRA", desc: "Direct command override requested. Threat score index raised.", status: "WARNING" },
+        { time: "15:21:15", type: "GEMINI", desc: "Warning: Directory scope check relaxed to 75% blast radius.", status: "WARNING" }
+      ],
+      BLOCKED: [
+        { time: "15:22:01", type: "INGEST", desc: "Strict Block: Raw CLI command blocked (Target: curl command).", status: "BLOCKED" },
+        { time: "15:22:04", type: "GEMINI", desc: "Collision Guard Triggered: Write block on duplicate xlsx path.", status: "BLOCKED" },
+        { time: "15:22:08", type: "SID", desc: "Bypass Rejected: Direct database modify command terminated.", status: "BLOCKED" }
+      ]
+    };
+
+    let activeFilter = "SECURE";
+
+    function filterAuditFlow(severity) {
+      activeFilter = severity;
+      triggerShockwave();
+      
+      const buttons = {
+        SECURE: { id: "filter-btn-secure", style: "border-brand-emerald/40 bg-brand-emerald/10 text-brand-emerald" },
+        WARNING: { id: "filter-btn-warning", style: "border-brand-gold/40 bg-brand-gold/10 text-brand-gold" },
+        BLOCKED: { id: "filter-btn-blocked", style: "border-brand-red/40 bg-brand-red/10 text-brand-red" }
+      };
+
+      for (const key in buttons) {
+        const btn = document.getElementById(buttons[key].id);
+        if (btn) {
+          if (key === severity) {
+            btn.className = `spring-btn flex-1 h-9 border px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-wider rounded cursor-pointer ${buttons[key].style}`;
+          } else {
+            btn.className = "spring-btn flex-1 h-9 border border-brand-border bg-brand-bg hover:border-brand-border/80 text-slate-400 hover:text-white font-mono text-[9px] font-bold uppercase tracking-wider rounded cursor-pointer";
+          }
+        }
+      }
+
+      const paths = {
+        SECURE: { color: "var(--success)", label: "ACTIVE STATUS: SECURE" },
+        WARNING: { color: "var(--warning)", label: "ACTIVE STATUS: WARNING" },
+        BLOCKED: { color: "var(--danger)", label: "ACTIVE STATUS: BLOCKED" }
+      };
+
+      const labelEl = document.getElementById('audit-flow-state-label');
+      if (labelEl) {
+        labelEl.innerText = paths[severity].label;
+        labelEl.className = severity === 'SECURE' 
+          ? "text-brand-emerald font-mono uppercase font-bold text-[9px]" 
+          : severity === 'WARNING' 
+          ? "text-brand-gold font-mono uppercase font-bold text-[9px] animate-pulse" 
+          : "text-brand-red font-mono uppercase font-bold text-[9px] animate-pulse";
+      }
+
+      const lineIds = ['user-astra', 'user-sid', 'user-gemini', 'astra-vault', 'sid-vault', 'gemini-voice'];
+      lineIds.forEach(id => {
+        const pathEl = document.getElementById(`flow-path-${id}`);
+        if (pathEl) {
+          pathEl.style.stroke = paths[severity].color;
+          pathEl.setAttribute("opacity", "0.85");
+          setTimeout(() => pathEl.setAttribute("opacity", "0.35"), 600);
+        }
+      });
+
+      renderAuditFlowLogs(severity);
+    }
+
+    function renderAuditFlowLogs(severity) {
+      const recordsBox = document.getElementById('audit-flow-records');
+      if (!recordsBox) return;
+      recordsBox.innerHTML = "";
+      
+      const logs = auditFlowLogsData[severity] || [];
+      logs.forEach(log => {
+        const row = document.createElement('div');
+        row.className = "flex items-start gap-3 border-l border-brand-border pl-3.5 py-1 hover:bg-brand-void/40 transition-all";
+        
+        const badgeColor = severity === 'SECURE' 
+          ? 'text-brand-emerald border-brand-emerald/30 bg-brand-emerald/5' 
+          : severity === 'WARNING' 
+          ? 'text-brand-gold border-brand-gold/30 bg-brand-gold/5' 
+          : 'text-brand-red border-brand-red/30 bg-brand-red/5';
+
+        row.innerHTML = `
+          <div class="flex items-start gap-1.5 shrink-0">
+            <span class="text-slate-500 font-bold text-[8.5px]">[${log.time}]</span>
+            <span class="rounded border px-1 py-0.5 text-[7px] font-black uppercase ${badgeColor}">${log.type}</span>
+          </div>
+          <p class="text-slate-300 flex-1 leading-normal">${log.desc}</p>
+        `;
+        recordsBox.appendChild(row);
+      });
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // ==========================================
+    // THREE.JS HOLOGRAPHIC WEBGL ENGINE (SUPERNOVA CORE)
+    // ==========================================
+    let threeScene, threeCamera, threeRenderer;
+    let mainCoreSphere, outerTorus1, outerTorus2, starsField;
+    const coreParticlesCount = 400; // Dense glowing center
+    const coreOriginals = [];
+    const corePositionsArray = new Float32Array(coreParticlesCount * 3);
+    const activeWebGLRipples = [];
+
+    function init3DWebGL() {
+      const canvas = document.getElementById('three-webgl-canvas');
+      if (!canvas) return;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      threeScene = new THREE.Scene();
+      threeCamera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
+      threeCamera.position.z = 180;
+
+      threeRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      threeRenderer.setSize(width, height);
+      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Construct Supernova Core (Spherical distribution)
+      for (let i = 0; i < coreParticlesCount; i++) {
+        const u = Math.random();
+        const v = Math.random();
+        const theta = u * 2.0 * Math.PI;
+        const phi = Math.acos(2.0 * v - 1.0);
+        const r = 38 + Math.random() * 12; // Base core radius 38 to 50
+        
+        const x = r * Math.sin(phi) * Math.cos(theta);
+        const y = r * Math.sin(phi) * Math.sin(theta);
+        const z = r * Math.cos(phi);
+
+        corePositionsArray[i * 3] = x;
+        corePositionsArray[i * 3 + 1] = y;
+        corePositionsArray[i * 3 + 2] = z;
+
+        coreOriginals.push(new THREE.Vector3(x, y, z));
+      }
+
+      const coreGeometry = new THREE.BufferGeometry();
+      coreGeometry.setAttribute('position', new THREE.BufferAttribute(corePositionsArray, 3));
+
+      const coreMaterial = new THREE.PointsMaterial({
+        color: 0x00f0ff,
+        size: 2.8,
+        transparent: true,
+        opacity: 0.65,
+        sizeAttenuation: true
+      });
+
+      mainCoreSphere = new THREE.Points(coreGeometry, coreMaterial);
+      threeScene.add(mainCoreSphere);
+
+      // Orbital Ring 1 (Cyan horizontal flat ring)
+      const ring1Geom = new THREE.BufferGeometry();
+      const ring1Pts = [];
+      const ringPointsCount = 180;
+      for (let i = 0; i < ringPointsCount; i++) {
+        const angle = (i / ringPointsCount) * Math.PI * 2;
+        ring1Pts.push(new THREE.Vector3(Math.cos(angle) * 85, 0, Math.sin(angle) * 85));
+      }
+      ring1Geom.setFromPoints(ring1Pts);
+      const ring1Mat = new THREE.PointsMaterial({
+        color: 0x00f0ff,
+        size: 2.0,
+        transparent: true,
+        opacity: 0.35
+      });
+      outerTorus1 = new THREE.Points(ring1Geom, ring1Mat);
+      threeScene.add(outerTorus1);
+
+      // Orbital Ring 2 (Crimson vertical ring)
+      const ring2Geom = new THREE.BufferGeometry();
+      const ring2Pts = [];
+      for (let i = 0; i < ringPointsCount; i++) {
+        const angle = (i / ringPointsCount) * Math.PI * 2;
+        ring2Pts.push(new THREE.Vector3(0, Math.cos(angle) * 100, Math.sin(angle) * 100));
+      }
+      ring2Geom.setFromPoints(ring2Pts);
+      const ring2Mat = new THREE.PointsMaterial({
+        color: 0xff2e55,
+        size: 2.0,
+        transparent: true,
+        opacity: 0.25
+      });
+      outerTorus2 = new THREE.Points(ring2Geom, ring2Mat);
+      threeScene.add(outerTorus2);
+
+      // Twin Background Stars Field
+      const starGeom = new THREE.BufferGeometry();
+      const starPositions = new Float32Array(300 * 3);
+      for (let i = 0; i < 300; i++) {
+        starPositions[i * 3] = (Math.random() - 0.5) * 600;
+        starPositions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+        starPositions[i * 3 + 2] = (Math.random() - 0.5) * 300 - 150;
+      }
+      starGeom.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+      const starMat = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 1.2,
+        transparent: true,
+        opacity: 0.35
+      });
+      starsField = new THREE.Points(starGeom, starMat);
+      threeScene.add(starsField);
+
+      // Window resize listener
+      window.addEventListener('resize', () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        threeCamera.aspect = w / h;
+        threeCamera.updateProjectionMatrix();
+        threeRenderer.setSize(w, h);
+      });
+
+      // Drag/Mouse interactive tracking
+      window.addEventListener('mousemove', (e) => {
+        webglMouseX = (e.clientX - window.innerWidth / 2) / 60;
+        webglMouseY = (e.clientY - window.innerHeight / 2) / 60;
+      });
+
+      animate3DWebGL();
+    }
+
+    let webglMouseX = 0, webglMouseY = 0;
+    let webglTargetRotX = 0, webglTargetRotY = 0;
+
+    function animate3DWebGL() {
+      requestAnimationFrame(animate3DWebGL);
+
+      const time = Date.now() * 0.001;
+      const positions = mainCoreSphere.geometry.attributes.position.array;
+
+      // Update active ripples
+      for (let rIdx = activeWebGLRipples.length - 1; rIdx >= 0; rIdx--) {
+        const rip = activeWebGLRipples[rIdx];
+        rip.radius += rip.speed;
+        if (rip.radius > rip.maxRadius) {
+          activeWebGLRipples.splice(rIdx, 1);
+        }
+      }
+
+      // Undulate Supernova sphere particles using multi-frequency wave calculations
+      for (let i = 0; i < coreParticlesCount; i++) {
+        const xIdx = i * 3;
+        const yIdx = i * 3 + 1;
+        const zIdx = i * 3 + 2;
+
+        const orig = coreOriginals[i];
+        const distToCenter = orig.length();
+
+        // Wave formula for organic ripple expansion
+        const wave1 = Math.sin(distToCenter * 0.15 - time * 2.2) * 2.5;
+        const wave2 = Math.cos(orig.x * 0.08 + time * 1.5) * 1.5;
+        
+        let posX = orig.x + (orig.x / distToCenter) * (wave1 + wave2);
+        let posY = orig.y + (orig.y / distToCenter) * (wave1 + wave2);
+        let posZ = orig.z + (orig.z / distToCenter) * (wave1 + wave2);
+
+        // Apply physical shockwave displacement
+        activeWebGLRipples.forEach(rip => {
+          const ripDiff = Math.abs(distToCenter - rip.radius);
+          if (ripDiff < 15) {
+            const force = (1.0 - ripDiff / 15) * 14 * (1.0 - rip.radius / rip.maxRadius);
+            posX += (orig.x / distToCenter) * force;
+            posY += (orig.y / distToCenter) * force;
+            posZ += (orig.z / distToCenter) * force;
+          }
+        });
+
+        positions[xIdx] = posX;
+        positions[yIdx] = posY;
+        positions[zIdx] = posZ;
+      }
+
+      mainCoreSphere.geometry.attributes.position.needsUpdate = true;
+
+      // Spin orbital rings with fixed inclination angle
+      outerTorus1.rotation.y = time * 0.2;
+      outerTorus1.rotation.x = 0.55;
+
+      outerTorus2.rotation.z = -time * 0.15;
+      outerTorus2.rotation.y = 0.35;
+
+      // Slow drift star rotation
+      starsField.rotation.y = time * 0.01;
+
+      // Interpolate rotation based on client hover position
+      webglTargetRotX += (webglMouseX - webglTargetRotX) * 0.05;
+      webglTargetRotY += (webglMouseY - webglTargetRotY) * 0.05;
+
+      mainCoreSphere.rotation.y = webglTargetRotX * 0.1;
+      mainCoreSphere.rotation.x = webglTargetRotY * 0.1;
+
+      outerTorus1.rotation.y += webglTargetRotX * 0.05;
+      outerTorus2.rotation.z += webglTargetRotY * 0.05;
+
+      threeRenderer.render(threeScene, threeCamera);
+    }
+
+    function triggerShockwave() {
+      activeWebGLRipples.push({
+        radius: 0,
+        maxRadius: 180,
+        speed: 4.2
+      });
+    }
+
+    // ==========================================
+    // 3D CARD PERSPECTIVE TILT CONTROLLER
+    // ==========================================
+    function init3DTiltEffects() {
+      const cards = document.querySelectorAll('.tilt-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const w = rect.width;
+          const h = rect.height;
+          
+          // Max rotation 5.5 degrees
+          const rotX = ((y / h) - 0.5) * -11;
+          const rotY = ((x / w) - 0.5) * 11;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01, 1.01, 1.01)`;
+          
+          // Spotlight hover positions
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+      });
+    }
+
+    // ==========================================
+    // CLI COMMAND DISPATCH TERMINAL
+    // ==========================================
+    function initCLITerminal() {
+      const field = document.getElementById('cli-input-field');
+      const feedback = document.getElementById('cli-input-feedback');
+      const consoleBox = document.getElementById('sidebar-console');
+
+      if (!field) return;
+
+      field.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+          const cmd = field.value.trim().toLowerCase();
+          field.value = "";
+
+          if (!cmd) return;
+
+          if (feedback) {
+            feedback.classList.remove('hidden');
+            feedback.innerText = `Executing: ${cmd.toUpperCase()}...`;
+          }
+
+          const timeStr = new Date().toLocaleTimeString();
+          const logLine = document.createElement('div');
+          logLine.className = "truncate border-l border-brand-cyan/30 pl-2 text-white font-bold";
+          logLine.innerText = `[${timeStr}] CLI -> ${cmd.toUpperCase()}`;
+          if (consoleBox) {
+            consoleBox.appendChild(logLine);
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+          }
+
+          triggerShockwave();
+
+          // Command Router logic
+          setTimeout(() => {
+            const respLine = document.createElement('div');
+            respLine.className = "truncate border-l border-brand-emerald/30 pl-2 text-brand-emerald";
+            
+            if (cmd === 'help') {
+              respLine.innerText = `[${timeStr}] OS CLI Codes: HELP, STATUS, PING, CLEAR, BURN, IGNITE`;
+            } else if (cmd === 'burn') {
+              respLine.className = "truncate border-l border-brand-red/30 pl-2 text-brand-red font-black text-glitch";
+              respLine.innerText = `[${timeStr}] I build before burning. Mr. 2 Lighter operational.`;
+            } else if (cmd === 'ignite' || cmd.includes('ignite the lighter') || cmd.includes('ignite')) {
+              respLine.className = "truncate border-l border-brand-cyan/30 pl-2 text-brand-cyan font-black text-glitch";
+              respLine.innerText = `[${timeStr}] Lighters ignited. Initiating sovereign command dispatch.`;
+              
+              if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance("Am ready to ignite the lighter. Sovereign core online.");
+                utterance.pitch = 0.95;
+                utterance.rate = 1.05;
+                targetWaveAmplitude = 0.98;
+                window.speechSynthesis.speak(utterance);
+                utterance.onend = () => { targetWaveAmplitude = 0.08; };
+              }
+              
+              triggerShockwave();
+              setTimeout(triggerShockwave, 250);
+              setTimeout(triggerShockwave, 500);
+            } else if (cmd === 'clear') {
+              if (consoleBox) consoleBox.innerHTML = "";
+              respLine.innerText = `[${timeStr}] Telemetry screen wiped clean.`;
+            } else if (cmd === 'status') {
+              respLine.innerText = `[${timeStr}] OS: ACTIVE // V3.2 // CIP GATEWAYS SECURED.`;
+            } else if (cmd === 'ping') {
+              respLine.innerText = `[${timeStr}] Ping response: Supernova core online at localhost:8000.`;
+            } else {
+              respLine.className = "truncate border-l border-brand-red/30 pl-2 text-brand-red";
+              respLine.innerText = `[${timeStr}] Command not found: '${cmd.toUpperCase()}'`;
+            }
+
+            if (consoleBox) {
+              consoleBox.appendChild(respLine);
+              consoleBox.scrollTop = consoleBox.scrollHeight;
+            }
+            if (feedback) feedback.classList.add('hidden');
+          }, 450);
+        }
+      });
+    }
+
+    // ==========================================
+    // SOVEREIGNTY STATIC SIMULATOR
+    // ==========================================
+    const staticProducts = [
+      { id: 'prod-yhkptkk', name: 'test-factory-app', template: 'Astro SaaS Starter', deploymentUrl: 'https://supernova-mesh-test-factory-app.vercel.app', status: 'LIVE' }
+    ];
+
+    function simulateDeployStaticProduct() {
+      playClick();
+      const nameField = document.getElementById('static-deploy-name');
+      const tempField = document.getElementById('static-deploy-template');
+      const name = nameField.value.trim();
+      const template = tempField.value;
+
+      if (!name) {
+        alert("Micro-product name is required");
+        return;
+      }
+
+      const cleanName = name.toLowerCase().replace(/[^a-z0-9_-]/g, '_');
+      const newProduct = {
+        id: `prod-${Math.random().toString(36).substring(2, 9)}`,
+        name: cleanName,
+        template: template,
+        deploymentUrl: `https://supernova-mesh-${cleanName}.vercel.app`,
+        status: 'LIVE'
+      };
+
+      staticProducts.unshift(newProduct);
+      nameField.value = "";
+
+      setTimeout(() => {
+        playSuccess();
+        renderStaticProducts();
+      }, 800);
+    }
+
+    function renderStaticProducts() {
+      const list = document.getElementById('static-deployed-list');
+      if (!list) return;
+      list.innerHTML = staticProducts.map(p => `
+        <div class="flex items-center justify-between border-b border-brand-border/40 pb-2">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-brand-cyan font-black tracking-wide text-xs">${p.name}</span>
+              <span class="text-[8px] font-bold text-slate-500 border border-brand-border px-1 py-0.2 rounded bg-brand-bg font-mono">${p.template}</span>
+            </div>
+            <a href="#" class="text-[9px] text-slate-400 hover:text-brand-cyan transition flex items-center gap-1 font-semibold">${p.deploymentUrl}</a>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[8px] font-black uppercase border border-brand-emerald/30 bg-brand-emerald/10 text-brand-emerald tracking-wider font-mono">LIVE</span>
+        </div>
+      `).join('');
+    }
+
+    function simulateStaticSettlement() {
+      playClick();
+      const client = document.getElementById('static-settle-client').value;
+      const amount = parseFloat(document.getElementById('static-settle-amount').value || '0');
+      const source = document.getElementById('static-settle-source').value;
+      const dest = document.getElementById('static-settle-dest').value;
+
+      const txHash = `0x${Math.random().toString(16).slice(2, 10)}${Math.random().toString(16).slice(2, 10)}${Math.random().toString(16).slice(2, 10)}`;
+      const receiptEl = document.getElementById('static-settle-receipt');
+
+      setTimeout(() => {
+        playSuccess();
+        if (receiptEl) {
+          receiptEl.classList.remove('hidden');
+          receiptEl.innerHTML = `
+            <div class="flex justify-between border-b border-brand-border/40 pb-1.5 mb-1.5">
+              <span class="text-slate-500 font-bold uppercase text-[9px]">Receipt Token</span>
+              <span class="text-brand-emerald font-black">SUCCESS</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">TX Hash:</span>
+              <span class="text-brand-purple select-all font-bold">${txHash}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Value cleared:</span>
+              <span class="text-slate-100 font-bold">$${amount.toLocaleString()} USD</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Bridges swap:</span>
+              <span class="text-slate-100 uppercase">${source} &rarr; ${dest}</span>
+            </div>
+          `;
+        }
+      }, 700);
+    }
+
+    function simulateStaticZKAudit() {
+      playClick();
+      const resultEl = document.getElementById('static-zk-result');
+      const rootHash = 'e6ba04e26a81bd23cec1827f6aa8210d9e8c09543a342d2cfcb67706320ac734';
+
+      setTimeout(() => {
+        playSuccess();
+        if (resultEl) {
+          resultEl.classList.remove('hidden');
+          resultEl.innerHTML = `
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-bold uppercase text-[8px]">Audit Pass</span>
+              <span class="text-brand-cyan font-black">VALID: PASS</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Blocks Checked:</span>
+              <span class="text-slate-100 font-bold">5</span>
+            </div>
+            <div class="flex flex-col mt-1 border-t border-brand-border/40 pt-1">
+              <span class="text-slate-500">ZK Root Hash:</span>
+              <span class="text-brand-cyan font-bold break-all select-all text-[8px] leading-snug mt-0.5">${rootHash}</span>
+            </div>
+          `;
+        }
+      }, 900);
+    }
+
+    // ==========================================
+    // INITIALIZATION & TIMERS
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+      renderAuditFlowLogs("SECURE");
+      fetchLiveTelemetry();
+      fetchLiveLogs();
+      init3DWebGL();
+      init3DTiltEffects();
+      initVoiceWaveform();
+      initCLITerminal();
+      
+      setInterval(fetchLiveTelemetry, 3000);
+      setInterval(fetchLiveLogs, 4000);
+    });
+  </script>
+</body>
+</html>
