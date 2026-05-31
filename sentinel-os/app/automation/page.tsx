@@ -5,10 +5,12 @@ import { BroadcastPanel } from "@/components/BroadcastPanel";
 import { OracleBidsPanel } from "@/components/OracleBidsPanel";
 import { SystemShell } from "@/components/SystemShell";
 
+import { LogSentinelPanel } from "@/components/LogSentinelPanel";
 export default function AutomationPage() {
   return (
     <SystemShell title="Automation" subtitle="Sovereign scheduler control, Stripe billing, compute auctions, and content broadcasters.">
       <div className="grid gap-6">
+        <LogSentinelPanel />
         <BillingPanel />
         <OracleBidsPanel />
         <BroadcastPanel />
