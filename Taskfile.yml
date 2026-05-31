@@ -341,6 +341,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-correction-pack -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-completion-review-help:
+    desc: "Print NotebookLM MCP Manual Setup Completion Review safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-completion-review-help
+
+  notebooklm-mcp-completion-review:
+    desc: "Run NotebookLM MCP Manual Setup Completion Review checks safely"
+    cmds:
+      - npm run notebooklm-mcp-completion-review -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:
@@ -413,6 +423,16 @@ tasks:
     desc: "Print help commands for the narrator voice sync controller"
     cmds:
       - npm run narrator-voice-sync-help
+
+  narrator-tts-queue:
+    desc: "Stage and manage local offline text-to-speech rendering requests"
+    cmds:
+      - npm run narrator-tts-queue -- {{.CLI_ARGS}}
+
+  narrator-tts-queue-help:
+    desc: "Print help commands for the narrator tts queue controller"
+    cmds:
+      - npm run narrator-tts-queue-help
 
   validate:
     desc: "Lint and run workspace checks"

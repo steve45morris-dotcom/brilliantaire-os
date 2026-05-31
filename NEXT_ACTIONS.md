@@ -142,7 +142,12 @@
 - [x] Phase N4: Generate narrator voice packet
 - [x] Phase N4: Generate VNP queue file
 - [x] Phase N4: Verify voice sync status
-- [ ] Phase N5: Prepare WebSocket live stream only after voice sync passes
+- [x] Phase N5A: Build local TTS render queue
+- [x] Phase N5A: Generate first TTS render request
+- [x] Phase N5A: Test approve request flow
+- [x] Phase N5A: Test reject request flow
+- [x] Phase N5A: Verify TTS queue status
+- [ ] Phase N5B: Prepare local TTS renderer only after queue passes
 
 
 ## Do Now
@@ -206,14 +211,22 @@
 - [x] Review whether live adapter is eligible
 
 ## Do Next
-- [ ] Build MCP Local Setup Correction Pack
-- [ ] Generate blocker correction report
-- [ ] Generate env key map
-- [ ] Generate local config checklist
-- [ ] Generate git push recovery runbook
-- [ ] Generate readiness rerun runbook
+- [x] Build MCP Local Setup Correction Pack
+- [x] Generate blocker correction report
+- [x] Generate env key map
+- [x] Generate local config checklist
+- [x] Generate git push recovery runbook
+- [x] Generate readiness rerun runbook
 - [ ] Complete manual local setup outside repo
 - [ ] Rerun readiness gate after manual correction
+
+## Do Next
+- [ ] Build Manual MCP Setup Completion Review
+- [ ] Run env presence check
+- [ ] Generate completion review
+- [ ] Generate live eligibility report
+- [ ] Generate manual signoff checklist
+- [ ] Decide whether live MCP adapter is eligible
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

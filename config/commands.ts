@@ -727,6 +727,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-completion-review-help',
+    aliases: ['notebook completion help', 'mcp completion help'],
+    description: 'Print commands for NotebookLM MCP Manual Setup Completion Review',
+    npmScript: 'notebooklm-mcp-completion-review-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-completion-review',
+    aliases: ['notebook completion', 'mcp completion'],
+    description: 'Execute NotebookLM MCP Manual Setup Completion Review checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-completion-review',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',
@@ -857,6 +879,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: false
+  },
+  {
+    name: 'narrator-tts-queue-help',
+    aliases: ['tts queue help', 'narrator tts help'],
+    description: 'Print help commands for the narrator tts queue controller',
+    npmScript: 'narrator-tts-queue-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'narrator-tts-queue',
+    aliases: ['narrator tts', 'tts queue'],
+    description: 'Stage and manage local offline text-to-speech rendering requests',
+    npmScript: 'narrator-tts-queue',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

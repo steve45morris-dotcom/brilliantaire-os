@@ -885,6 +885,42 @@ The **MCP Local Setup Correction Pack** converts readiness gate blockers into ex
 
 ---
 
+## 🧭 Phase 11J: Manual MCP Setup Completion Review
+
+The **Manual MCP Setup Completion Review** layer performs local checking of operator corrections to determine final eligibility for live integration.
+
+### 🛡️ Safety & Execution Rules
+1. **Safety Compliance Check:** Redacts all sensitive variables while executing checks offline.
+2. **Review Score:** Live integration is blocked unless review score achieves >= 90% and outstanding config blockers are cleared.
+
+### 💻 Command Examples
+* View completion review help instructions:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review-help"
+  ```
+* Run environment variable presence check:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review env-check"
+  ```
+* Run manual completion review:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review review"
+  ```
+* Generate eligibility report:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review eligibility"
+  ```
+* Generate manual signoff checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review signoff"
+  ```
+* Print overall status review and status summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-completion-review status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -1012,9 +1048,47 @@ The **Voice Narration Sync** layer converts compiled voice scripts and live feed
 
 ---
 
+## 🎙️ Phase N5A: Local TTS Render Queue
+
+The **Local TTS Render Queue** stages approved voice packets into text-to-speech rendering request markdown files safely offline.
+
+### 🛡️ Safety & Execution Rules
+1. **Local-Only Queue:** All requests are staged as files under `outputs/narrator/tts_queue/`. External TTS APIs and direct audio playback are strictly disabled.
+2. **Zero Command Subprocess Execution:** Command strings embedded in request payloads are blocked from executing.
+3. **Exact-Name Routing Gate:** Operations require exact command name matching (`narrator-tts-queue`) to run, preventing alias execution.
+
+### 💻 Command Examples
+* View tts queue help commands menu:
+  ```bash
+  npm run command -- "narrator-tts-queue-help"
+  ```
+* Generate a new render request file:
+  ```bash
+  npm run command -- "narrator-tts-queue request"
+  ```
+* Approve a render request by request ID (requires exact name router gate):
+  ```bash
+  npm run command -- "narrator-tts-queue approve <REQUEST_ID>"
+  ```
+* Reject a render request by request ID (requires exact name router gate):
+  ```bash
+  npm run command -- "narrator-tts-queue reject <REQUEST_ID>"
+  ```
+* Print tts queue status report:
+  ```bash
+  npm run command -- "narrator-tts-queue status"
+  ```
+* Compile request and print status:
+  ```bash
+  npm run command -- "narrator-tts-queue all"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11J: NotebookLM MCP Live Adapter Integration**
+* **Phase 11K: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
-* **Phase N5: Live Voice Bridge Integration**
-  - Integrate safe local TTS rendering engines and WebSocket audio streams once manual staging and review gates are fully operational.
+* **Phase N5B: Local TTS Audio Renderer**
+  - Integrate safe, offline local text-to-speech synthesis (e.g. Kokoro or Piper Python adapters) to compile approved text requests into audio files without external network connections.
+
 

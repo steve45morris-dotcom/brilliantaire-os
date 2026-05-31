@@ -90,6 +90,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-readiness-gate` | `notebook readiness`, `mcp readiness` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Setup Review and Readiness Gate checks. |
 | `notebooklm-mcp-correction-pack-help` | `notebook correction help`, `mcp correction help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Local Setup Correction Pack. |
 | `notebooklm-mcp-correction-pack` | `notebook correction`, `mcp correction` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Local Setup Correction Pack checks. |
+| `notebooklm-mcp-completion-review-help` | `notebook completion help`, `mcp completion help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Manual Setup Completion Review. |
+| `notebooklm-mcp-completion-review` | `notebook completion`, `mcp completion` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Manual Setup Completion Review checks. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |
@@ -102,6 +104,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-feed-watch` | `watch narrator`, `narrator watcher` | Workflow Auditor | Medium | Yes | Run the local read-only file watcher daemon for narrator feed updates. |
 | `narrator-voice-sync-help` | `narrator voice help`, `voice sync help` | Knowledge Librarian | Low | No | Print help commands for the narrator voice sync controller. |
 | `narrator-voice-sync` | `narrator voice`, `sync narrator voice` | Knowledge Librarian | Low | No | Compile voice-ready packets and stage manual VNP voice queue entries. |
+| `narrator-tts-queue-help` | `tts queue help`, `narrator tts help` | Knowledge Librarian | Low | No | Print help commands for the narrator tts queue controller. |
+| `narrator-tts-queue` | `narrator tts`, `tts queue` | Knowledge Librarian | Medium | Yes | Stage and manage local offline text-to-speech rendering requests. |
 
 ---
 

@@ -295,3 +295,36 @@
 
 ---
 
+## [2026-05-31T15:04:45.808Z] Command Attempt: "narrator-tts-queue-help"
+- **Matched Command:** `narrator-tts-queue-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:05:08.888Z] Command Attempt: "narrator tts"
+- **Matched Command:** `narrator-tts-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T15:05:12.956Z] Command Attempt: "narrator-tts-queue request"
+- **Matched Command:** `narrator-tts-queue`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
