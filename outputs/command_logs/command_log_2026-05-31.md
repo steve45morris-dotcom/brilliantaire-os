@@ -196,3 +196,36 @@
 
 ---
 
+## [2026-05-31T13:22:43.750Z] Command Attempt: "notebooklm-mcp-setup-guide-help"
+- **Matched Command:** `notebooklm-mcp-setup-guide-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:24:34.497Z] Command Attempt: "notebooklm-mcp-setup-guide runbook"
+- **Matched Command:** `notebooklm-mcp-setup-guide`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T13:24:59.305Z] Command Attempt: "notebook setup"
+- **Matched Command:** `notebooklm-mcp-setup-guide`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

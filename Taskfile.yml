@@ -311,6 +311,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-harden -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-setup-guide-help:
+    desc: "Print NotebookLM MCP Manual Setup Instructions safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-setup-guide-help
+
+  notebooklm-mcp-setup-guide:
+    desc: "Run NotebookLM MCP Manual Setup Instructions checks safely"
+    cmds:
+      - npm run notebooklm-mcp-setup-guide -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:

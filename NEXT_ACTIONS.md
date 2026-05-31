@@ -177,12 +177,19 @@
 - [x] Generate activation checklist
 - [x] Review blockers
 - [x] Decide whether MCP live query adapter can be prepared
-- [ ] Build NotebookLM MCP Connector Hardening
-- [ ] Generate staged env template
-- [ ] Generate staged MCP config template
-- [ ] Run secret hygiene scan
-- [ ] Run readiness recheck
-- [ ] Decide whether real config can be added manually outside repo
+- [x] Build NotebookLM MCP Connector Hardening
+- [x] Generate staged env template
+- [x] Generate staged MCP config template
+- [x] Run secret hygiene scan
+- [x] Run readiness recheck
+- [x] Decide whether real config can be added manually outside repo
+- [ ] Build NotebookLM MCP Manual Setup Instructions
+- [ ] Generate manual setup runbook
+- [ ] Generate .env.local instructions
+- [ ] Generate MCP config copy guide
+- [ ] Generate readiness rerun guide
+- [ ] Generate rollback guide
+- [ ] Review local setup steps before live adapter integration
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

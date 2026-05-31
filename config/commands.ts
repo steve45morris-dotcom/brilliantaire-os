@@ -661,6 +661,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-setup-guide-help',
+    aliases: ['notebook setup help', 'mcp setup help'],
+    description: 'Print commands for NotebookLM MCP Manual Setup Instructions',
+    npmScript: 'notebooklm-mcp-setup-guide-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-setup-guide',
+    aliases: ['notebook setup', 'mcp setup'],
+    description: 'Execute NotebookLM MCP Manual Setup Instructions checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-setup-guide',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

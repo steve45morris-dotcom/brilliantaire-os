@@ -84,6 +84,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-auth` | `notebook auth`, `mcp auth` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Live Authorization Validation checks. |
 | `notebooklm-mcp-harden-help` | `notebook hardening help`, `mcp hardening help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Connector Hardening. |
 | `notebooklm-mcp-harden` | `notebook harden`, `mcp harden` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Connector Hardening checks. |
+| `notebooklm-mcp-setup-guide-help` | `notebook setup help`, `mcp setup help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Manual Setup Instructions. |
+| `notebooklm-mcp-setup-guide` | `notebook setup`, `mcp setup` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Manual Setup Instructions checks. |
 | `list-schedules` | `schedules`, `list schedules` | Workflow Auditor | Low | No | List registered background schedules. |
 | `scheduler-health` | `scheduler health`, `health status` | Workflow Auditor | Low | No | Print background scheduler health status analytics. |
 | `scheduler-report` | `scheduler report`, `compile report` | Workflow Auditor | Low | No | Generate daily and weekly scheduler performance reports. |

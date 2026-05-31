@@ -70,6 +70,8 @@
     "notebooklm-mcp-auth-help": "tsx scripts/notebooklm-mcp-auth-help.ts",
     "notebooklm-mcp-harden": "tsx scripts/notebooklm-mcp-harden.ts",
     "notebooklm-mcp-harden-help": "tsx scripts/notebooklm-mcp-harden-help.ts",
+    "notebooklm-mcp-setup-guide": "tsx scripts/notebooklm-mcp-setup-guide.ts",
+    "notebooklm-mcp-setup-guide-help": "tsx scripts/notebooklm-mcp-setup-guide-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",

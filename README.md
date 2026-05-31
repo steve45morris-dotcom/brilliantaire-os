@@ -764,6 +764,50 @@ The **NotebookLM MCP Connector Hardening** layer creates safe environment templa
 
 ---
 
+## 🧭 Phase 11G: NotebookLM MCP Manual Setup Instructions
+
+The **NotebookLM MCP Manual Setup Instructions** layer provides step-by-step setup guides, gitignore parameters, sidecar client settings checklists, validation reruns, and deactivation rollback templates.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Actions Boundary:** The application only compiles setup checklists and status briefings. No environment variables are altered automatically, and no live configurations are overwritten.
+2. **Git Credentials Isolation:** real variable values are restricted strictly to local `.env.local` files and must never be committed.
+
+### 💻 Command Examples
+* View manual setup help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide-help"
+  ```
+* Compile manual setup runbook:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide runbook"
+  ```
+* Compile .env.local setup guide:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide env-instructions"
+  ```
+* Compile MCP config copy checklist:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide config-copy"
+  ```
+* Compile validation rerun guide:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide readiness-rerun"
+  ```
+* Compile rollback deactivation plan:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide rollback"
+  ```
+* Compile all setup documents at once:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide all"
+  ```
+* Print overall setup status verification:
+  ```bash
+  npm run command -- "notebooklm-mcp-setup-guide status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -859,7 +903,7 @@ The **Live Dashboard Narration Feed** is a read-only telemetry consolidation lay
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11G: NotebookLM MCP Live Adapter Integration**
+* **Phase 11H: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
 * **Phase N4: WebSocket and Live Stream Narration Integration**
   - Enable WebSocket transport protocol and live telemetry updates streaming from background watch loops.
