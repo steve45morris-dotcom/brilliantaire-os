@@ -749,6 +749,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-mcp-secrets-help',
+    aliases: ['notebook secrets help', 'mcp secrets help'],
+    description: 'Print commands for NotebookLM MCP Local Secrets Staging Guide',
+    npmScript: 'notebooklm-mcp-secrets-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-secrets',
+    aliases: ['notebook secrets', 'mcp secrets'],
+    description: 'Execute NotebookLM MCP Local Secrets Staging Guide checks (Medium Risk)',
+    npmScript: 'notebooklm-mcp-secrets',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'list-schedules',
     aliases: ['schedules', 'list schedules'],
     description: 'List registered background schedules',

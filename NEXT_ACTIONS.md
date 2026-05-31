@@ -221,12 +221,20 @@
 - [ ] Rerun readiness gate after manual correction
 
 ## Do Next
-- [ ] Build Manual MCP Setup Completion Review
-- [ ] Run env presence check
-- [ ] Generate completion review
-- [ ] Generate live eligibility report
-- [ ] Generate manual signoff checklist
-- [ ] Decide whether live MCP adapter is eligible
+- [x] Build Manual MCP Setup Completion Review
+- [x] Run env presence check
+- [x] Generate completion review
+- [x] Generate live eligibility report
+- [x] Generate manual signoff checklist
+- [x] Decide whether live MCP adapter is eligible
+
+## Do Next
+- [x] Build NotebookLM MCP Local Secrets Staging Guide
+- [x] Create placeholder env templates
+- [x] Run redaction check
+- [x] Generate local secrets readiness report
+- [x] Review blockers
+- [x] Prepare live adapter only after readiness score improves
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

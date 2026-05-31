@@ -78,6 +78,8 @@
     "notebooklm-mcp-correction-pack-help": "tsx scripts/notebooklm-mcp-correction-pack-help.ts",
     "notebooklm-mcp-completion-review": "tsx scripts/notebooklm-mcp-completion-review.ts",
     "notebooklm-mcp-completion-review-help": "tsx scripts/notebooklm-mcp-completion-review-help.ts",
+    "notebooklm-mcp-secrets": "tsx scripts/notebooklm-mcp-secrets.ts",
+    "notebooklm-mcp-secrets-help": "tsx scripts/notebooklm-mcp-secrets-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",

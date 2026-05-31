@@ -351,6 +351,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-completion-review -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-secrets-help:
+    desc: "Print NotebookLM MCP Local Secrets Staging Guide safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-secrets-help
+
+  notebooklm-mcp-secrets:
+    desc: "Run NotebookLM MCP Local Secrets Staging Guide checks safely"
+    cmds:
+      - npm run notebooklm-mcp-secrets -- {{.CLI_ARGS}}
+
   scheduler:
     desc: "Execute scheduler CLI operations"
     cmds:

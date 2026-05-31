@@ -361,3 +361,58 @@
 
 ---
 
+## [2026-05-31T15:28:03.174Z] Command Attempt: "narrator-tts-renderer status"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:28:56.774Z] Command Attempt: "tts renderer status"
+- **Matched Command:** `narrator-tts-renderer`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-05-31T15:36:27.322Z] Command Attempt: "notebooklm-mcp-secrets-help"
+- **Matched Command:** `notebooklm-mcp-secrets-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:37:28.371Z] Command Attempt: "notebooklm-mcp-secrets create-templates"
+- **Matched Command:** `notebooklm-mcp-secrets`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T15:37:52.858Z] Command Attempt: "notebook secrets"
+- **Matched Command:** `notebooklm-mcp-secrets`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

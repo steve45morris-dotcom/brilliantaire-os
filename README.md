@@ -921,6 +921,39 @@ The **Manual MCP Setup Completion Review** layer performs local checking of oper
 
 ---
 
+## 🧭 Phase 11K: NotebookLM MCP Local Secrets Staging Guide
+
+The **NotebookLM MCP Local Secrets Staging Guide** establishes a safe, local-only configuration staging and verification checklist to prepare for future activation without committing credentials or triggering live API calls.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Secret Storage:** Private credentials reside strictly offline inside git-ignored files.
+2. **Redaction Check Enforced:** Codebase is scanned for suspicious credential patterns.
+3. **Readiness Verification:** Local readiness metrics must achieve 100% before transition.
+
+### 💻 Command Examples
+* View secrets guide help menu:
+  ```bash
+  npm run command -- "notebooklm-mcp-secrets-help"
+  ```
+* Create local config template examples:
+  ```bash
+  npm run command -- "notebooklm-mcp-secrets create-templates"
+  ```
+* Scan codebase for credential patterns:
+  ```bash
+  npm run command -- "notebooklm-mcp-secrets redaction-check"
+  ```
+* Generate local staging readiness report:
+  ```bash
+  npm run command -- "notebooklm-mcp-secrets readiness"
+  ```
+* Print overall secrets status summary:
+  ```bash
+  npm run command -- "notebooklm-mcp-secrets status"
+  ```
+
+---
+
 ## 🧭 Phase N1: AI Narrator Safety and Source Binding
 
 The **AI Narrator** is a grounded observer layer that reads approved system status logs and telemetry files, translating them into a clear narrative brief for the dashboard and Obsidian vaults.
@@ -1120,7 +1153,7 @@ The **Local TTS Audio Renderer** converts approved text-to-speech rendering requ
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11K: NotebookLM MCP Live Adapter Integration**
+* **Phase 11L: NotebookLM MCP Live Adapter Integration**
   - Establish live, restricted read-only query adapter operations once safety gates and manual credential setups are signed off.
 * **Phase N5C: Local ASR Command Listener**
   - Integrate safe, offline local automatic speech recognition (ASR) daemons to parse manual voice briefs, enabling a complete offline feedback loop.
