@@ -593,6 +593,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'notebooklm-mcp-execute-help',
+    aliases: ['notebook execution help', 'mcp execution help'],
+    description: 'Print commands for NotebookLM MCP Dry-Run Execution',
+    npmScript: 'notebooklm-mcp-execute-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-mcp-execute',
+    aliases: ['notebook execute', 'mcp execute'],
+    description: 'Execute NotebookLM MCP Adapter Dry-Run simulations (Medium Risk)',
+    npmScript: 'notebooklm-mcp-execute',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

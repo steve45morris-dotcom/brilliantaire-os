@@ -64,3 +64,36 @@
 
 ---
 
+## [2026-05-31T11:49:19.712Z] Command Attempt: "notebooklm-mcp-execute-help"
+- **Matched Command:** `notebooklm-mcp-execute-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T11:50:04.517Z] Command Attempt: "notebooklm-mcp-execute prepare-query source-summary"
+- **Matched Command:** `notebooklm-mcp-execute`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-05-31T11:50:24.418Z] Command Attempt: "notebook execute"
+- **Matched Command:** `notebooklm-mcp-execute`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

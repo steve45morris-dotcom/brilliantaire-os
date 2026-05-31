@@ -665,6 +665,35 @@ The **NotebookLM MCP Adapter Detection** layer checks whether a NotebookLM MCP c
 
 ---
 
+## ⚙️ Phase 11D: NotebookLM MCP Adapter Dry-Run Execution
+
+The **NotebookLM MCP Adapter Dry-Run Execution** layer acts as a safe translation and staging bridge. It compiles query payloads from source packs and generates simulated execution (dry-run) reports without sending live external network queries.
+
+### 🛡️ Safety & Execution Rules
+1. **Dry-Run Only:** Live queries to NotebookLM are strictly disabled (`ALLOW_LIVE_MCP_EXECUTION: false`).
+2. **No External Calls:** No network requests, API queries, or OAuth verification flows.
+3. **No Direct Writes:** Stages all reports locally inside `outputs/notebooklm_bridge/mcp_execution/` with timestamp suffixes to avoid overwriting existing data.
+
+### 💻 Command Examples
+* View execution help:
+  ```bash
+  npm run command -- "notebooklm-mcp-execute-help"
+  ```
+* Prepare a query payload (e.g., source-summary):
+  ```bash
+  npm run command -- "notebooklm-mcp-execute prepare-query source-summary"
+  ```
+* Simulate dry-run execution (e.g., source-summary):
+  ```bash
+  npm run command -- "notebooklm-mcp-execute dry-run source-summary"
+  ```
+* Check execution status and logs:
+  ```bash
+  npm run command -- "notebooklm-mcp-execute status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11D: NotebookLM MCP Adapter Execution**
-  - Execute dry-run and simulated research integrations under approved safety gates.
+* **Phase 11E: NotebookLM MCP Live Authorization Validation**
+  - Integrate secure challenge-handshake validation and verify API key scopes prior to live connections.

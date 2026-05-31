@@ -135,12 +135,19 @@
 - [x] Prepare future MCP adapter after manual bridge passes
 
 ## Do Next
-- [ ] Build NotebookLM MCP Adapter Detection
-- [ ] Scan for local MCP connector configuration
-- [ ] Generate detection report
-- [ ] Generate capability report
-- [ ] Decide whether MCP adapter should be activated
-- [ ] Prepare NotebookLM MCP Query Adapter only after detection passes
+- [x] Build NotebookLM MCP Adapter Detection
+- [x] Scan for local MCP connector configuration
+- [x] Generate detection report
+- [x] Generate capability report
+- [x] Decide whether MCP adapter should be activated
+- [x] Prepare NotebookLM MCP Query Adapter only after detection passes
+- [ ] Build NotebookLM MCP Dry-Run Execution
+- [ ] Prepare source-summary query payload
+- [ ] Prepare workflow-extraction query payload
+- [ ] Run source-summary dry-run
+- [ ] Run workflow-extraction dry-run
+- [ ] Review dry-run reports
+- [ ] Decide whether live MCP query execution should be enabled later
 - [x] Implement VNP integration in scripts to log script runs
 - [x] Add strict validation commands in Taskfile
 

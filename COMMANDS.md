@@ -78,6 +78,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-bridge` | `notebooklm`, `notebook bridge` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Sidecar Bridge tasks safely. |
 | `notebooklm-mcp-detect-help` | `notebook mcp help`, `mcp notebook help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Adapter Detection. |
 | `notebooklm-mcp-detect` | `notebook mcp detect`, `notebooklm mcp` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Adapter Detection scans. |
+| `notebooklm-mcp-execute-help` | `notebook execution help`, `mcp execution help` | Knowledge Librarian | Low | No | Print commands for NotebookLM MCP Dry-Run Execution. |
+| `notebooklm-mcp-execute` | `notebook execute`, `mcp execute` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Adapter Dry-Run simulations. |
 
 ---
 

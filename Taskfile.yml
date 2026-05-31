@@ -281,6 +281,16 @@ tasks:
     cmds:
       - npm run notebooklm-mcp-detect -- {{.CLI_ARGS}}
 
+  notebooklm-mcp-execute-help:
+    desc: "Print NotebookLM MCP Adapter Dry-Run Execution safety manuals"
+    cmds:
+      - npm run notebooklm-mcp-execute-help
+
+  notebooklm-mcp-execute:
+    desc: "Run NotebookLM MCP Adapter Dry-Run Execution checks safely"
+    cmds:
+      - npm run notebooklm-mcp-execute -- {{.CLI_ARGS}}
+
 
 
 

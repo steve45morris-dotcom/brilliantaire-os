@@ -1,0 +1,7 @@
+- [2026-05-31T11:46:50.688Z] **prepare-query** | Type: `source-summary` | Mode: `dry-run` | Status: `Success` | Notes: Staged payload: notebooklm_payload_source_summary_2026-05-31.md
+- [2026-05-31T11:47:16.639Z] **prepare-query** | Type: `workflow-extraction` | Mode: `dry-run` | Status: `Success` | Notes: Staged payload: notebooklm_payload_workflow_extraction_2026-05-31.md
+- [2026-05-31T11:47:45.676Z] **prepare-query** | Type: `weak-claims-review` | Mode: `dry-run` | Status: `Success` | Notes: Staged payload: notebooklm_payload_weak_claims_review_2026-05-31.md
+- [2026-05-31T11:48:11.357Z] **dry-run** | Type: `source-summary` | Mode: `dry-run` | Status: `Success` | Notes: Staged dry-run report: notebooklm_dry_run_source_summary_2026-05-31.md
+- [2026-05-31T11:48:39.370Z] **dry-run** | Type: `workflow-extraction` | Mode: `dry-run` | Status: `Success` | Notes: Staged dry-run report: notebooklm_dry_run_workflow_extraction_2026-05-31.md
+- [2026-05-31T11:48:57.386Z] **status** | Type: `None` | Mode: `dry-run` | Status: `Success` | Notes: Status checked. Payloads=3, DryRuns=2
+- [2026-05-31T11:49:51.784Z] **prepare-query** | Type: `source-summary` | Mode: `dry-run` | Status: `Success` | Notes: Staged payload: notebooklm_payload_source_summary_2026-05-31_1780228191.md

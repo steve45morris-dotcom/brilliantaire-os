@@ -46,6 +46,7 @@
 - **Knowledge Harvest Engine (Phase 11):** Local YouTube learning note ingest, NotebookLM source pack compiling, and OS workflow ideas generator.
 - **NotebookLM MCP Sidecar Bridge (Phase 22):** Local connector bridge to compile query packets, ingest manual answers safely, stage Obsidian exports, and extract workflow automation ideas.
 - **NotebookLM MCP Adapter Detection (Phase 11C):** Offline local configuration scanner, status checks, and capability reports compiler.
+- **NotebookLM MCP Adapter Dry-Run Execution (Phase 11D):** Offline query payload compiler, simulation reports generation, and execution logs tracker.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.

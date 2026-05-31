@@ -1,0 +1,1 @@
+- [{{TIMESTAMP}}] **{{COMMAND}}** | Type: `{{QUERY_TYPE}}` | Mode: `{{MODE}}` | Status: `{{STATUS}}` | Notes: {{NOTES}}
