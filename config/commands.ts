@@ -969,6 +969,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'tts-ready-narration-export-queue-help',
+    aliases: ['tts export help', 'export queue help'],
+    description: 'Print help menu for TTS-ready narration export queue processor',
+    npmScript: 'tts-ready-narration-export-queue-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'tts-ready-narration-export-queue',
+    aliases: ['tts export', 'export queue'],
+    description: 'Scan approval manifests and compile clean offline TTS-ready export queues',
+    npmScript: 'tts-ready-narration-export-queue',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'grounded-narrator-review-help',
     aliases: ['narrator review help', 'grounded narrator help'],
     description: 'Print help menu for grounded narrator review queue',
@@ -1160,6 +1182,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['asr', 'whisper'],
     description: 'Verify ASR readiness, prepare job packets, and dry-run Whisper simulations',
     npmScript: 'asr-orchestrator',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-model-gate-help',
+    aliases: ['asr model help', 'whisper model help'],
+    description: 'Print help menu for offline ASR model gate safety limits',
+    npmScript: 'asr-model-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'asr-model-gate',
+    aliases: ['asr model', 'whisper model'],
+    description: 'Verify local model files manually placed, directory inventories, and cryptographic checksum reviews',
+    npmScript: 'asr-model-gate',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',

@@ -112,6 +112,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `grounded-narrator-review-queue` | `narrator queue`, `review queue` | Knowledge Librarian | Medium | Yes | Compile review-safe narrator briefs and priority lists from dashboards. |
 | `voice-safe-narration-approval-gate-help` | `approval gate help`, `voice approval help` | Workflow Auditor | Low | No | Print help menu for voice-safe narration approval gate processor. |
 | `voice-safe-narration-approval-gate` | `approval gate`, `voice approval` | Workflow Auditor | Medium | Yes | Scan review queues and compile safe approved/rejected narration manifests. |
+| `tts-ready-narration-export-queue-help` | `tts export help`, `export queue help` | Workflow Auditor | Low | No | Print help menu for TTS-ready narration export queue processor. |
+| `tts-ready-narration-export-queue` | `tts export`, `export queue` | Workflow Auditor | Medium | Yes | Scan approval manifests and compile clean offline TTS-ready export queues. |
 | `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
 | `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |
@@ -130,6 +132,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-session-recorder` | `voice session`, `recorder` | Build Operator | Medium | Yes | Scaffold manual recording sessions metadata drop checks and reviews. |
 | `asr-orchestrator-help` | `asr help`, `whisper help` | Build Operator | Low | No | Print help menu for offline ASR orchestrator safety limits. |
 | `asr-orchestrator` | `asr`, `whisper` | Build Operator | Medium | Yes | Verify ASR readiness, prepare job packets, and dry-run Whisper simulations. |
+| `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help menu for offline ASR model gate safety limits. |
+| `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Verify local model files manually placed, directory inventories, and cryptographic checksum reviews. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |

@@ -451,6 +451,16 @@ tasks:
     cmds:
       - npm run voice-safe-narration-approval-gate -- {{.CLI_ARGS}}
 
+  tts-ready-narration-export-queue-help:
+    desc: "Print TTS-Ready Narration Export Queue safety manuals"
+    cmds:
+      - npm run tts-ready-narration-export-queue-help
+
+  tts-ready-narration-export-queue:
+    desc: "Run TTS-Ready Narration Export Queue compiler tasks safely"
+    cmds:
+      - npm run tts-ready-narration-export-queue -- {{.CLI_ARGS}}
+
   grounded-narrator-review-help:
     desc: "Print Grounded Narrator Review Queue safety manuals"
     cmds:
@@ -540,6 +550,16 @@ tasks:
     desc: "Run Offline ASR Orchestrator tasks safely"
     cmds:
       - npm run asr-orchestrator -- {{.CLI_ARGS}}
+
+  asr-model-gate-help:
+    desc: "Print Offline ASR Model Gate safety manuals"
+    cmds:
+      - npm run asr-model-gate-help
+
+  asr-model-gate:
+    desc: "Run Offline ASR Model Gate tasks safely"
+    cmds:
+      - npm run asr-model-gate -- {{.CLI_ARGS}}
 
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
@@ -769,6 +789,15 @@ tasks:
     cmds:
       - npm run voice-ops-scheduled-briefing-help
 
+  briefing-tts-render-approval:
+    desc: "Briefing TTS Render Approval CLI manager (status, scan-tts-requests, inspect, validate, submit, approve, render, etc.)"
+    cmds:
+      - npm run briefing-tts-render-approval -- {{.CLI_ARGS}}
+
+  briefing-tts-render-approval-help:
+    desc: "Print help menu for the briefing TTS render approval flow"
+    cmds:
+      - npm run briefing-tts-render-approval-help
 
 
   validate:

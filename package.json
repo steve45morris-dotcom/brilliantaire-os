@@ -100,6 +100,8 @@
     "grounded-narrator-review-queue-help": "tsx scripts/grounded-narrator-review-queue-help.ts",
     "voice-safe-narration-approval-gate": "tsx scripts/voice-safe-narration-approval-gate.ts",
     "voice-safe-narration-approval-gate-help": "tsx scripts/voice-safe-narration-approval-gate-help.ts",
+    "tts-ready-narration-export-queue": "tsx scripts/tts-ready-narration-export-queue.ts",
+    "tts-ready-narration-export-queue-help": "tsx scripts/tts-ready-narration-export-queue-help.ts",
     "tts-brief-composer": "tsx scripts/tts-brief-composer.ts",
     "tts-brief-composer-help": "tsx scripts/tts-brief-composer-help.ts",
     "tts-queue-validator": "tsx scripts/tts-queue-validator.ts",
@@ -116,6 +118,8 @@
     "voice-session-recorder-help": "tsx scripts/voice-session-recorder-help.ts",
     "asr-orchestrator": "tsx scripts/asr-orchestrator.ts",
     "asr-orchestrator-help": "tsx scripts/asr-orchestrator-help.ts",
+    "asr-model-gate": "tsx scripts/asr-model-gate.ts",
+    "asr-model-gate-help": "tsx scripts/asr-model-gate-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -161,7 +165,9 @@
     "git-hook-status": "tsx scripts/git-hook-status.ts",
     "git-hook-uninstall": "tsx scripts/git-hook-uninstall.ts",
     "cleanup-gate": "tsx scripts/cleanup-gate.ts",
-    "cleanup-gate-help": "tsx scripts/cleanup-gate-help.ts"
+    "cleanup-gate-help": "tsx scripts/cleanup-gate-help.ts",
+    "briefing-tts-render-approval": "tsx scripts/briefing-tts-render-approval.ts",
+    "briefing-tts-render-approval-help": "tsx scripts/briefing-tts-render-approval-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -493,3 +493,36 @@
 
 ---
 
+## [2026-06-01T09:05:16.389Z] Command Attempt: "tts-ready-narration-export-queue-help"
+- **Matched Command:** `tts-ready-narration-export-queue-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T09:06:08.470Z] Command Attempt: "tts-ready-narration-export-queue"
+- **Matched Command:** `tts-ready-narration-export-queue`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T09:06:47.083Z] Command Attempt: "tts export"
+- **Matched Command:** `tts-ready-narration-export-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

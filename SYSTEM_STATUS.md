@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 11Q: Voice-Safe Narration Approval Gate — COMPLETE
+- **Current Phase:** Phase 11R: TTS-Ready Narration Export Queue — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -62,13 +62,14 @@
 - **Grounded Intelligence Index Graph (Phase 11O):** Safe local offline index compiler that reads response intelligence files and compiles them into grounded JSON graphs, Markdown graphs, and statistics reports, with console status and preview inspect support. [Enforces exact-name routing policy at runtime.]
 - **Grounded Narrator Review Queue (Phase 11P):** Local review queue script compiler that filters grounded index graph nodes against citations, compiles narration candidates, stages narrator-ready briefs, and flags excluded weak claims reports under safe offline constraints.
 - **Voice-Safe Narration Approval Gate (Phase 11Q):** Strict offline compiler validating grounded narrator review blocks against manual operator approval flags, weak claims, and risk markers, compiling approved and rejected manifests without external synthesis API or TTS invocations.
-- **Offline TTS Queue Validator (Phase 11R):** Local verification scans checking syntax constraints, word limits, unsafe character injections, empty template placeholders, and metadata alignments on scripts, queue packets, and voice directions before TTS audio compilation.
+- **TTS-Ready Narration Export Queue (Phase 11R):** Safe offline script and specification builder compiling approved voice-safe narrator blocks into timed, metadata-annotated TTS-ready files without calling external APIs or local synthesis rendering.
 - **Offline Local TTS Audio Synthesizer Scaffold (Phase 11S):** Local synthesizer config report compiling, local ONNX model presence checking, expected audio manifest generation, and synthesis dry-run simulations under safe offline constraints.
 - **Offline TTS Model Readiness Gate (Phase 11T):** Strict local verification scans verifying manual voice model placements, matching configuration profiles, environmental overrides, and model readiness checklists under safe offline constraints.
 - **Local Offline TTS Voice Model Placement and Activation Check (Phase 11U):** Local verification scans verifying manual voice model placements, matching configuration profiles, and environment variable flags to ensure all speech assets are fully validated before offline voice synthesis.
 - **Offline TTS Model Acquisition Guide and Placement Assistant (Phase 11V):** Local assistant compiling manual staging guides, model directory inventory reports, voice configuration pairing audits, and next-step roadmap checklists without external network queries.
 - **Offline Voice Session Recorder (Phase 11W):** Local scaffold initializing metadata sessions, manual drop check reports, recording inventory checks, and transcription staging records under strict scaffold-only constraints.
 - **Local Offline ASR Orchestrator (Phase 11X):** Local scaffold validating ASR readiness, preparing job packets, simulating dry-run commands, and staging transcript records under strict offline constraints.
+- **Offline ASR Model Acquisition Guide and Checksum Gate (Phase 11Y):** Local assistant compiling manual staging guides, model directory inventory reports, Node crypto SHA256 validation checks, and readiness gate checks under strict safety rules.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.

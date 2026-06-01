@@ -2057,38 +2057,31 @@ The **Pre-Push Hook Installer** establishes a local Git hook that intercepts pus
 
 ---
 
-## 🧭 Phase 11R: Offline TTS Queue Validator
+## 🧭 Phase 11R: TTS-Ready Narration Export Queue
 
-The **Offline TTS Queue Validator** checks generated text-to-speech scripts, queue packets, and voice directions before any audio synthesis is allowed. It acts as an offline safety filter.
+The **TTS-Ready Narration Export Queue** processes approved blocks from the approval gate manifest and formats them into a clean, offline TTS-ready export format, calculating duration estimates and formatting spec sheets without calling external services.
 
 ### 🛡️ Safety & Execution Rules
-1. **Validation-Only Mode:** Inspects files and logs metrics. It does not execute TTS models or construct audio files.
-2. **No Audio Generation:** No audio compilation or synthesis is triggered.
-3. **No External APIs:** Direct network connections, cloud synthesis calls, or remote voice databases are completely bypassed.
+1. **Export-Only Mode:** Script checks and staging only. No outbound audio generation is allowed.
+2. **Fail Closed Policy:** Rejects blocks with missing parameters or risk tiers exceeding safe thresholds.
+3. **Local Spec Alignment:** Outputs plain-text script blocks, JSON logs, and voice metadata specs locally.
 
 ### 💻 Command Examples
-* View validator help menu:
+* View export queue help menu:
   ```bash
-  npm run command -- "tts-queue-validator-help"
+  npm run command -- "tts-ready-narration-export-queue-help"
   ```
-* Run syntax and limits validation:
+* Execute export and generate manifests:
   ```bash
-  npm run command -- "tts-queue-validator validate"
+  npm run command -- "tts-ready-narration-export-queue"
   ```
-* Compile eligibility checklist:
+* Execute export simulation in dry-run mode:
   ```bash
-  npm run command -- "tts-queue-validator checklist"
-  ```
-* Compile security risk report:
-  ```bash
-  npm run command -- "tts-queue-validator risk-report"
-  ```
-* View status metrics:
-  ```bash
-  npm run command -- "tts-queue-validator status"
+  npm run command -- "tts-ready-narration-export-queue check --dry-run"
   ```
 
 ---
+
 
 ## 🧭 Phase 11S: Offline Local TTS Audio Synthesizer Scaffold
 
@@ -2311,6 +2304,43 @@ The **Local Offline ASR Orchestrator** provides a safe sandbox scaffold to check
 * View orchestrator status dashboard:
   ```bash
   npm run command -- "asr-orchestrator status"
+  ```
+
+---
+
+## 🧭 Phase 11Y: Offline ASR Model Acquisition Guide and Checksum Gate
+
+The **ASR Model Gate** provides a manual model acquisition, inventory reporting, cryptographic hashing validation (using Node crypto SHA256), and readiness gate evaluation pipeline designed to verify offline Whisper models before unlocking offline transcription.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Model Placement:** Automated network model downloads, remote APIs, and curl queries are completely blocked. Files must be staged manually.
+2. **Safe Hashes Verification:** Generates cryptographic SHA256 checks locally to warn operators against running unverified model files.
+3. **Execution Flag Lockout:** Unlocks ASR execution only when the operator manually sets the `ASR_EXECUTION_ENABLED=true` environment flag alongside successful model checks.
+
+### 💻 Command Examples
+* View model gate help menu:
+  ```bash
+  npm run command -- "asr-model-gate-help"
+  ```
+* Compile manual acquisition guide:
+  ```bash
+  npm run command -- "asr-model-gate guide"
+  ```
+* Scan directory models inventory:
+  ```bash
+  npm run command -- "asr-model-gate inventory"
+  ```
+* Run cryptographic checksum audits:
+  ```bash
+  npm run command -- "asr-model-gate checksum"
+  ```
+* Run gate readiness check:
+  ```bash
+  npm run command -- "asr-model-gate readiness"
+  ```
+* Print gate status panel:
+  ```bash
+  npm run command -- "asr-model-gate status"
   ```
 
 ---

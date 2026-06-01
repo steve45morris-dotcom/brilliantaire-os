@@ -389,8 +389,10 @@
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
 - [x] Phase 11Q: Test gate checks with approved and rejected queue states
-- [ ] Phase 11R: TTS-Ready Narration Export Queue
-- [ ] Phase 11R: Export only approved voice-safe blocks to TTS format
+- [x] Phase 11R: TTS-Ready Narration Export Queue
+- [x] Phase 11R: Export only approved voice-safe blocks to TTS format
+- [ ] Phase 11S: Offline TTS Dry-Run Renderer
+- [ ] Phase 11S: Simulate no-audio dry-run through TTS lifecycle
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

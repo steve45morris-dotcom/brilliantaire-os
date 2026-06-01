@@ -1,0 +1,29 @@
+{
+  "exportId": "tts_export_2026-06-01",
+  "compiledAt": "2026-06-01T09:05:47.036Z",
+  "sourceManifest": "voice_safe_approval_manifest_2026-06-01.json",
+  "counts": {
+    "imported": 1,
+    "exported": 1,
+    "rejected": 0
+  },
+  "exportedBlocks": [
+    {
+      "export_id": "export_block_1",
+      "block_id": "narrator_block_3",
+      "node_id": "claim_1",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "narrator_text": "Offline query validation checklist verified.",
+      "approved_for_voice": true,
+      "citation_status": "Grounded",
+      "risk_level": "Low",
+      "suggested_voice_tone": "Authoritative / Grounded",
+      "suggested_priority": "Low",
+      "estimated_word_count": 5,
+      "estimated_duration_seconds": 2,
+      "export_status": "staged_for_tts",
+      "tts_generated": false
+    }
+  ],
+  "rejectedBlocks": []
+}
