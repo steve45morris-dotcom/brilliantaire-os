@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N5M: Briefing Audio Playback Review Gate — COMPLETE
+- **Current Phase:** Phase N5N: Briefing Delivery Package Exporter — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -87,10 +87,12 @@
 - **Voice Ops Scheduled Briefing Queue (Phase N5K):** Safe local briefing queue (`scripts/voice-ops-scheduled-briefing.ts`) staging and inspection system compiling daily report summaries into approved jobs and enqueuing TTS rendering requests under strict manual approval gates.
 - **Briefing TTS Render Approval Flow (Phase N5L):** Safe briefing TTS request validation, queue submission, manual approval, and offline Piper rendering flow (`scripts/briefing-tts-render-approval.ts`) preventing unauthorized audio generation.
 - **Briefing Audio Playback Review Gate (Phase N5M):** Safe local briefing audio playback review gate (`scripts/briefing-audio-playback-review.ts`) enqueuing, inspecting, and manual operator approving/rejecting rendered daily briefing audios under strict no-autoplay and offline restrictions.
+- **Briefing Delivery Package Exporter (Phase N5N):** Safe local exporter (`scripts/briefing-delivery-package-exporter.ts`) that packages approved briefing audio, source report metadata, review status, transcript summary, and delivery notes into a local delivery folder under strict local-only safety gates.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 - **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.
 - **Approved Quarantine Execution Gate (Phase 12B):** Safe execution engine (`scripts/quarantine-executor.ts`) performing approved move actions, integrity checksum validations, quarantine logs tracking, and rollback restore mapping generation under the Workflow Auditor.
+- **Project Registry Drift Review (Phase 12C):** Safe offline project registry review engine (`scripts/project-registry-review.ts`) scanning unregistered local directories, scoring codebase importance, and staging candidate entries for manual PROJECTS.md updates under the Workflow Auditor.
 
 
 

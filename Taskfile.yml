@@ -571,6 +571,16 @@ tasks:
     cmds:
       - npm run asr-model-gate -- {{.CLI_ARGS}}
 
+  asr-dry-run-transcription-gate:
+    desc: "Run Offline ASR Dry-Run Transcription Readiness Gate"
+    cmds:
+      - npm run asr-dry-run-transcription-gate -- {{.CLI_ARGS}}
+
+  asr-dry-run-transcription-gate-help:
+    desc: "Print Offline ASR Dry-Run Transcription Readiness Gate help manual"
+    cmds:
+      - npm run asr-dry-run-transcription-gate-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -774,6 +784,16 @@ tasks:
     cmds:
       - npm run asr-model-gate -- {{.CLI_ARGS}}
 
+  asr-dry-run-transcription-gate:
+    desc: "Run Offline ASR Dry-Run Transcription Readiness Gate"
+    cmds:
+      - npm run asr-dry-run-transcription-gate -- {{.CLI_ARGS}}
+
+  asr-dry-run-transcription-gate-help:
+    desc: "Print Offline ASR Dry-Run Transcription Readiness Gate help manual"
+    cmds:
+      - npm run asr-dry-run-transcription-gate-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -819,6 +839,27 @@ tasks:
     cmds:
       - npm run briefing-tts-render-approval-help
 
+  briefing-audio-playback-review:
+    desc: "Briefing Audio Playback Review Gate CLI manager (status, scan-rendered, inspect, queue-review, mark-reviewed, approve-audio, reject-audio, etc.)"
+    cmds:
+      - npm run briefing-audio-playback-review -- {{.CLI_ARGS}}
+
+  briefing-audio-playback-review-help:
+    desc: "Print help menu for the briefing audio playback review gate"
+    cmds:
+      - npm run briefing-audio-playback-review-help
+
+  briefing-delivery-package-exporter:
+    desc: "Briefing Delivery Package Exporter CLI manager (status, scan-approved-audio, inspect, create-package, package-status, list-packages, latest, export-manifest, verify-package, etc.)"
+    cmds:
+      - npm run briefing-delivery-package-exporter -- {{.CLI_ARGS}}
+
+  briefing-delivery-package-exporter-help:
+    desc: "Print help menu for the briefing delivery package exporter"
+    cmds:
+      - npm run briefing-delivery-package-exporter-help
+
+
   cleanup-gate:
     desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
     cmds:
@@ -838,6 +879,16 @@ tasks:
     desc: "Print help command menu for the approved quarantine executor"
     cmds:
       - npm run quarantine-executor-help
+
+  project-registry-review:
+    desc: "Scan roots, classify projects, and generate review matrix and action plan"
+    cmds:
+      - npm run project-registry-review -- {{.CLI_ARGS}}
+
+  project-registry-review-help:
+    desc: "Print help menu for local project registry drift review system"
+    cmds:
+      - npm run project-registry-review-help
 
   validate:
     desc: "Lint and run workspace checks"

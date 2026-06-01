@@ -122,6 +122,8 @@
     "asr-orchestrator-help": "tsx scripts/asr-orchestrator-help.ts",
     "asr-model-gate": "tsx scripts/asr-model-gate.ts",
     "asr-model-gate-help": "tsx scripts/asr-model-gate-help.ts",
+    "asr-dry-run-transcription-gate": "tsx scripts/asr-dry-run-transcription-gate.ts",
+    "asr-dry-run-transcription-gate-help": "tsx scripts/asr-dry-run-transcription-gate-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -172,8 +174,12 @@
     "quarantine-executor-help": "tsx scripts/quarantine-executor-help.ts",
     "briefing-tts-render-approval": "tsx scripts/briefing-tts-render-approval.ts",
     "briefing-tts-render-approval-help": "tsx scripts/briefing-tts-render-approval-help.ts",
-    "asr-model-gate": "tsx scripts/asr-model-gate.ts",
-    "asr-model-gate-help": "tsx scripts/asr-model-gate-help.ts"
+    "briefing-audio-playback-review": "tsx scripts/briefing-audio-playback-review.ts",
+    "briefing-audio-playback-review-help": "tsx scripts/briefing-audio-playback-review-help.ts",
+    "briefing-delivery-package-exporter": "tsx scripts/briefing-delivery-package-exporter.ts",
+    "briefing-delivery-package-exporter-help": "tsx scripts/briefing-delivery-package-exporter-help.ts",
+    "project-registry-review": "tsx scripts/project-registry-review.ts",
+    "project-registry-review-help": "tsx scripts/project-registry-review-help.ts"
   },
   "keywords": [
     "antigravity",

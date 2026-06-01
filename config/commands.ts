@@ -1792,6 +1792,116 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'briefing-tts-render-approval-help',
+    aliases: ['briefing tts render help', 'briefing tts approval help'],
+    description: 'Print help menu for the briefing TTS render approval flow',
+    npmScript: 'briefing-tts-render-approval-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-tts-render-approval',
+    aliases: ['briefing tts render', 'briefing tts approval'],
+    description: 'Briefing TTS Render Approval flow manager (status, scan, inspect, validate, submit, approve, render)',
+    npmScript: 'briefing-tts-render-approval',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-audio-playback-review-help',
+    aliases: ['briefing audio review help', 'playback review help'],
+    description: 'Print help menu for the briefing audio playback review gate',
+    npmScript: 'briefing-audio-playback-review-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-audio-playback-review',
+    aliases: ['briefing audio review', 'playback review'],
+    description: 'Briefing audio playback review gate manager (status, scan-rendered, inspect, queue-review, mark-reviewed, approve-audio, reject-audio, latest)',
+    npmScript: 'briefing-audio-playback-review',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-delivery-package-exporter-help',
+    aliases: ['briefing delivery help', 'exporter help'],
+    description: 'Print help menu for the briefing delivery package exporter',
+    npmScript: 'briefing-delivery-package-exporter-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-delivery-package-exporter',
+    aliases: ['briefing delivery', 'delivery exporter'],
+    description: 'Briefing delivery package exporter manager (status, scan-approved-audio, inspect, create-package, package-status, list-packages, latest, export-manifest, verify-package, etc.)',
+    npmScript: 'briefing-delivery-package-exporter',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-dry-run-transcription-gate-help',
+    aliases: ['asr dry run help', 'whisper dry run help'],
+    description: 'Print help menu for the offline ASR dry-run transcription gate',
+    npmScript: 'asr-dry-run-transcription-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-dry-run-transcription-gate',
+    aliases: ['asr dry run', 'whisper dry run'],
+    description: 'Verify local model presence, inspect staged audio, and map simulated routes without executing transcription',
+    npmScript: 'asr-dry-run-transcription-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'project-registry-review-help',
+    aliases: ['registry help', 'project drift help'],
+    description: 'Print help menu for the local project registry drift review system',
+    npmScript: 'project-registry-review-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'project-registry-review',
+    aliases: ['registry review', 'project drift'],
+    description: 'Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entry proposals',
+    npmScript: 'project-registry-review',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

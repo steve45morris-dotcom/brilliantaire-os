@@ -171,7 +171,8 @@
 - [x] Phase N5K: Voice Ops Scheduled Briefing Queue
 - [x] Phase N5L: Briefing TTS Render Approval Flow
 - [x] Phase N5M: Briefing Audio Playback Review Gate
-- [ ] Phase N5N: Briefing Delivery Package Exporter
+- [x] Phase N5N: Briefing Delivery Package Exporter
+- [ ] Phase N5O: Manual Delivery Checklist and Handoff Log
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -394,12 +395,19 @@
 - [x] Generate project registry drift report
 - [x] Review 32 unregistered directories manually
 - [x] Approve quarantine only after review
-- [ ] Build Approved Quarantine Execution Gate
-- [ ] Run quarantine dry-run
-- [ ] Execute approved quarantine only with --confirm
-- [ ] Verify checksums
-- [ ] Generate restore map
-- [ ] Review quarantined files before any future deletion phase
+- [x] Build Approved Quarantine Execution Gate
+- [x] Run quarantine dry-run
+- [x] Execute approved quarantine only with --confirm
+- [x] Verify checksums
+- [x] Generate restore map
+- [x] Review quarantined files before any future deletion phase
+- [ ] Build Project Registry Drift Review
+- [ ] Classify unregistered directories
+- [ ] Generate staged PROJECTS.md entries
+- [ ] Generate project drift summary
+- [ ] Generate project registry action plan
+- [ ] Review register candidates manually
+- [ ] Delay permanent duplicate deletion until monitoring period passes
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering

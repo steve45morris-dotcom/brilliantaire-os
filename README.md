@@ -1919,6 +1919,68 @@ The **Briefing Audio Playback Review Gate** provides a safe, offline, local-firs
 
 ---
 
+## 🧭 Phase N5N: Briefing Delivery Package Exporter
+
+The **Briefing Delivery Package Exporter** is a safe, offline local packaging service. It is designed to package approved briefing audio, source daily reports, playback review reports, manifests, and manual delivery notes into a standardized delivery folder.
+
+### 🛡️ Safety Boundaries & Gate Rules
+1. **No Automated Delivery**: The exporter is configured strictly for local archiving and staging. It will not send, upload, publish, or email packages automatically.
+2. **Approved Audio Enforcement**: The exporter requires that an audio file be marked as approved via Phase N5M review gate before a delivery package can be created.
+3. **Idempotency & Duplicate Protection**: Duplicate package creation attempts are blocked to prevent data collision.
+4. **Integrity Validation**: SHA256 cryptographic checksums are computed for all files within the delivery folder and verified against a generated package manifest.
+
+### 💻 Command Examples
+* View delivery exporter help menu:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter-help"
+  ```
+* Check safety flags, paths, and packaging state counters:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter status"
+  ```
+* Scan and list approved briefing audio files available for packaging:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter scan-approved-audio"
+  ```
+* Inspect metadata and check packaging eligibility:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter inspect briefing_YYYY-MM-DD"
+  ```
+* Create local delivery package folder:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter create-package briefing_YYYY-MM-DD"
+  ```
+* View lifecycle status and details of a package:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter package-status delivery_package_briefing_YYYY-MM-DD"
+  ```
+* List all generated package directories:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter list-packages"
+  ```
+* Print the latest package info:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter latest"
+  ```
+* Verify file integrity and checksums of a package:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter verify-package delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Print package manifest content:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter export-manifest delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Compile delivery statistics into a report:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter delivery-summary"
+  ```
+* Show recent exporter log events:
+  ```bash
+  npm run command -- "briefing-delivery-package-exporter exporter-log"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -2500,4 +2562,42 @@ The **Approved Quarantine Execution Gate** provides an approval-based execution 
 * Display status dashboard:
   ```bash
   npm run command -- "quarantine-executor status"
+  ```
+
+---
+
+## 🛡️ Phase 12C: Project Registry Drift Review
+
+The **Project Registry Drift Review** provides a local project registry drift review system. It scans unregistered directories, scores their activity and importance, and generates staged `PROJECTS.md` candidate matrix proposals for manual review.
+
+### 🔒 Guardrails Summary
+1. **Review-Only Safety:** All files generated are read-only candidate staging reports; the system prevents writing directly to `PROJECTS.md`.
+2. **Move Containment:** Moving, archiving, or deleting folders is completely disabled.
+3. **No Target Process Executions:** No external commands or scripts are run inside scanned project directories.
+4. **No Router Bypassing:** All operations pass through the exact-name Command Router.
+
+### 💻 Command Examples
+* Print help menu:
+  ```bash
+  npm run command -- "project-registry-review-help"
+  ```
+* Classify unregistered folders:
+  ```bash
+  npm run command -- "project-registry-review classify"
+  ```
+* Generate staged entries:
+  ```bash
+  npm run command -- "project-registry-review staged-entries"
+  ```
+* Generate summary report:
+  ```bash
+  npm run command -- "project-registry-review summary"
+  ```
+* Generate action plan:
+  ```bash
+  npm run command -- "project-registry-review action-plan"
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "project-registry-review status"
   ```
