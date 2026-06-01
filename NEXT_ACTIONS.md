@@ -173,7 +173,8 @@
 - [x] Phase N5M: Briefing Audio Playback Review Gate
 - [x] Phase N5P: Delivery Archive and Retention Ledger
 - [x] Phase N5Q: Voice Ops Release Closure Report
-- [ ] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
+- [x] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
+- [ ] Phase N5S: Voice Ops Post-Freeze Health Monitor
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -433,6 +434,24 @@
 - [x] Phase 11Z-E: Enforce dry-run safety constraints (zero ASR execution, zero downloads, zero APIs)
 - [x] Phase 11Z-E: Evaluate readiness status and default routes to blocked_for_model_and_audio
 - [x] Phase 11Z-E: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-F: Build ASR Manual Asset Intake Checklist
+- [x] Phase 11Z-F: Create manual asset intake configuration file
+- [x] Phase 11Z-F: Create main checklist generator script
+- [x] Phase 11Z-F: Create manual asset intake help utility
+- [x] Phase 11Z-F: Create manual checklist, model placement, checksum entry, audio staging, rerun sequence, blocker resolution, and safety reminder templates
+- [x] Phase 11Z-F: Generate outputs under outputs/asr_manual_intake/ (8 markdown checklists and 1 json manifest)
+- [x] Phase 11Z-F: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-F: Confirm zero ASR execution, zero model downloads, zero API calls, and zero file/audio mutations
+- [x] Phase 11Z-F2: Build ASR Manual Asset Presence Preflight
+- [x] Phase 11Z-F2: Create manual asset presence preflight config/asr-manual-asset-presence-preflight.ts
+- [x] Phase 11Z-F2: Create main preflight script scripts/asr-manual-asset-presence-preflight.ts
+- [x] Phase 11Z-F2: Create preflight help utility scripts/asr-manual-asset-presence-preflight-help.ts
+- [x] Phase 11Z-F2: Create markdown templates for report, model presence, audio presence, manifest presence, preflight blockers, preflight summary, and next actions
+- [x] Phase 11Z-F2: Generate outputs under outputs/asr_asset_preflight/ (7 markdown files and 1 json manifest)
+- [x] Phase 11Z-F2: Implement preflight check logic for Whisper binaries and staging folders
+- [x] Phase 11Z-F2: Enforce requiresExactName constraint and verify alias command rejection
+- [x] Phase 11Z-F2: Adhere to strict safety rules (no ASR execution, no audio transcription, no Whisper invocations, no model downloads, no external API calls, and no file mutations)
+
 
 ## Do Next
 - [x] Build Duplicate Cleanup Staging Gate
@@ -468,12 +487,20 @@
 - [x] Monitor quarantined duplicates
 - [x] Generate registry health report
 - [x] Delay permanent duplicate deletion until monitoring period passes
-- [ ] Build Duplicate Registry Entry Resolution Gate
-- [ ] Scan PROJECTS.md duplicate entries
-- [ ] Stage duplicate resolution plan
-- [ ] Apply approved duplicate resolution with --confirm
-- [ ] Verify PROJECTS.md integrity again
-- [ ] Delay quarantine deletion readiness until registry duplicates are resolved
+- [x] Build Duplicate Registry Entry Resolution Gate
+- [x] Scan PROJECTS.md duplicate entries
+- [x] Stage duplicate resolution plan
+- [x] Apply approved duplicate resolution with --confirm
+- [x] Verify PROJECTS.md integrity again
+- [x] Delay quarantine deletion readiness until registry duplicates are resolved
+- [ ] Build Quarantine Deletion Readiness Staging Gate
+- [ ] Scan quarantine state
+- [ ] Validate restore map
+- [ ] Check quarantine monitoring age
+- [ ] Generate deletion readiness report
+- [ ] Generate future deletion checklist
+- [ ] Keep permanent deletion disabled
+
 
 
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
@@ -490,7 +517,16 @@
 - [x] Phase 12B: Build expanded scripts (adaptive-loop, vault-awareness, content-drafts, consensus-packet)
 - [x] Phase 12B: Build 16 R&D engine templates under templates/
 - [x] Phase 12B: Register commands and verify alias blocks
-- [ ] Phase 12C: Grinders Keep Gap Hunter
+- [x] Phase 12C: Grinders Keep Gap Hunter
+- [x] Phase 12C: Build config/grinders-keep-gap-hunter.ts
+- [x] Phase 12C: Build main scanner script grinders-keep-gap-hunter.ts
+- [x] Phase 12C: Build help utility script grinders-keep-gap-hunter-help.ts
+- [x] Phase 12C: Build 12 R&D gap hunter templates under templates/
+- [x] Phase 12C: Register command routes in config/commands.ts and package.json
+- [x] Phase 12C: Verify alias block routing gates and command executes
+- [ ] Phase 12D: Grinders Keep Adaptive Learning Deepener
+- [ ] Phase 12D: Deepen Adaptive Learning Loop to compare repeated Gap Hunter results
+- [ ] Phase 12D: Detect recurring system behavior and suggest habits without executing changes
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

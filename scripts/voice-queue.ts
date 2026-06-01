@@ -117,8 +117,26 @@ async function processQueue() {
     console.log(`   Raw phrase: "${rawContent.trim()}"`);
     console.log(`   Normalized: "${normalized}"`);
 
-    // Match against registry
-    const match = VOICE_COMMANDS_REGISTRY.find(c => c.normalizedCommand === normalized);
+    // Match against registry with support for prefix command arguments
+    let match: VoiceCommandDefinition | undefined;
+    let extraArgs = '';
+
+    // Sort registry by normalizedCommand length descending to match longest prefix first
+    const sortedRegistry = [...VOICE_COMMANDS_REGISTRY].sort(
+      (a, b) => b.normalizedCommand.length - a.normalizedCommand.length
+    );
+
+    for (const c of sortedRegistry) {
+      if (normalized === c.normalizedCommand) {
+        match = c;
+        extraArgs = '';
+        break;
+      } else if (normalized.startsWith(c.normalizedCommand + ' ')) {
+        match = c;
+        extraArgs = normalized.substring(c.normalizedCommand.length + 1).trim();
+        break;
+      }
+    }
 
     if (!match) {
       console.error(`❌ Rejection: Unknown voice phrase: "${normalized}"`);
@@ -131,6 +149,34 @@ async function processQueue() {
       fs.unlinkSync(filePath);
       writeVoiceLog(file, rawContent.trim(), normalized, '', '', '', '', false, `Rejected: ${reason}`, 1);
       continue;
+    }
+
+    // Validate extra arguments against injection attempts
+    if (extraArgs) {
+      const safeArgRegex = /^[a-zA-Z0-9\s\-_=\/'"]*$/;
+      if (!safeArgRegex.test(extraArgs)) {
+        console.error(`❌ Rejection: Security violation. Malicious characters detected in voice command arguments.`);
+        const reason = 'Security violation: invalid argument characters';
+        const rejectedPath = path.join(rejectedDir, file);
+        fs.writeFileSync(
+          rejectedPath,
+          `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Rejected\nReason: ${reason}\n`
+        );
+        fs.unlinkSync(filePath);
+        writeVoiceLog(
+          file,
+          rawContent.trim(),
+          normalized,
+          match.phrase,
+          match.routerCommand,
+          match.owningAgent,
+          match.riskLevel,
+          match.requiresConfirmation,
+          `Rejected: ${reason}`,
+          1
+        );
+        continue;
+      }
     }
 
     if (!match.enabled) {
@@ -157,6 +203,8 @@ async function processQueue() {
       continue;
     }
 
+    const routerCommandToRun = extraArgs ? `${match.routerCommand} ${extraArgs}` : match.routerCommand;
+
     if (match.requiresConfirmation) {
       console.warn(`⚠️  Blocked: Voice phrase "${match.phrase}" requires manual confirmation due to ${match.riskLevel.toUpperCase()} risk.`);
       const reason = 'Blocked: Manual confirmation required';
@@ -174,7 +222,7 @@ async function processQueue() {
         rawPhrase: rawContent.trim(),
         normalizedPhrase: normalized,
         matchedPhrase: match.phrase,
-        routerCommand: match.routerCommand,
+        routerCommand: routerCommandToRun,
         owningAgent: match.owningAgent,
         riskLevel: match.riskLevel,
         confirmationRequired: match.requiresConfirmation,
@@ -189,7 +237,7 @@ async function processQueue() {
         rawContent.trim(),
         normalized,
         match.phrase,
-        match.routerCommand,
+        routerCommandToRun,
         match.owningAgent,
         match.riskLevel,
         match.requiresConfirmation,
@@ -200,13 +248,13 @@ async function processQueue() {
     }
 
     // Low risk, execute command
-    const exitCode = await runRouterCommand(match.routerCommand);
+    const exitCode = await runRouterCommand(routerCommandToRun);
     const status = exitCode === 0 ? 'Success' : 'Failed';
     const processedPath = path.join(processedDir, file);
 
     fs.writeFileSync(
       processedPath,
-      `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Processed\nRouter Command: npm run command -- "${match.routerCommand}"\nExit Code: ${exitCode}\n`
+      `Original Phrase: ${rawContent}\nNormalized: ${normalized}\nStatus: Processed\nRouter Command: npm run command -- "${routerCommandToRun}"\nExit Code: ${exitCode}\n`
     );
     fs.unlinkSync(filePath);
 
@@ -215,7 +263,7 @@ async function processQueue() {
       rawContent.trim(),
       normalized,
       match.phrase,
-      match.routerCommand,
+      routerCommandToRun,
       match.owningAgent,
       match.riskLevel,
       match.requiresConfirmation,

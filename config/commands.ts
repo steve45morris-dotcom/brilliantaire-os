@@ -1926,6 +1926,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'voice-ops-freeze-snapshot-help',
+    aliases: ['voice freeze snapshot help', 'freeze snapshot help', 'voice-ops freeze snapshot help'],
+    description: 'Print help menu for the voice ops freeze tag and recovery snapshot manager',
+    npmScript: 'voice-ops-freeze-snapshot-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-freeze-snapshot',
+    aliases: ['voice freeze snapshot', 'freeze snapshot', 'voice-ops freeze snapshot'],
+    description: 'Voice Ops Freeze Tag and Recovery Snapshot manager (status, scan-release, create-freeze-tag, snapshot-manifest, recovery-checklist, verify-snapshot, list-snapshots, latest, freeze-summary, freeze-log)',
+    npmScript: 'voice-ops-freeze-snapshot',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-dry-run-transcription-gate-help',
     aliases: ['asr dry run help', 'whisper dry run help'],
     description: 'Print help menu for the offline ASR dry-run transcription gate',
@@ -2036,6 +2058,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'asr-manual-asset-intake-checklist-help',
+    aliases: ['asr intake help', 'whisper intake help'],
+    description: 'Print help menu for the offline ASR manual asset intake checklist generator',
+    npmScript: 'asr-manual-asset-intake-checklist-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-intake-checklist',
+    aliases: ['asr intake', 'whisper intake'],
+    description: 'Generate manual asset intake checklists, manifest instructions, and validation rerun sequences',
+    npmScript: 'asr-manual-asset-intake-checklist',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-presence-preflight-help',
+    aliases: ['asr preflight help', 'whisper preflight help'],
+    description: 'Print help menu for the offline ASR manual asset presence preflight check',
+    npmScript: 'asr-manual-asset-presence-preflight-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-presence-preflight',
+    aliases: ['asr preflight', 'whisper preflight'],
+    description: 'Perform manual asset presence preflight check for offline ASR models and audio inputs',
+    npmScript: 'asr-manual-asset-presence-preflight',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'project-registry-review-help',
     aliases: ['registry help', 'project drift help'],
     description: 'Print help menu for the local project registry drift review system',
@@ -2123,6 +2189,29 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     enabled: true,
     requiresExactName: true
   },
+  {
+    name: 'quarantine-deletion-readiness-help',
+    aliases: ['deletion readiness help', 'quarantine deletion help'],
+    description: 'Print help menu for the local quarantine deletion readiness staging gate',
+    npmScript: 'quarantine-deletion-readiness-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'quarantine-deletion-readiness',
+    aliases: ['deletion readiness', 'quarantine deletion'],
+    description: 'Stage deletion readiness audits for quarantined duplicate files',
+    npmScript: 'quarantine-deletion-readiness',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+
 
   {
     name: 'grinders-keep-daily-brief',
@@ -2187,6 +2276,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'OS Architect',
     riskLevel: 'low',
     outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-gap-hunter',
+    aliases: [],
+    description: 'Scan real local project data to identify gaps, stale outputs, duplicates, blocked phases, routing issues, and monetization opportunities',
+    npmScript: 'grinders-keep-gap-hunter',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-gap-hunter-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Gap Hunter engine commands',
+    npmScript: 'grinders-keep-gap-hunter-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
     enabled: true,
     requiresExactName: true
   }

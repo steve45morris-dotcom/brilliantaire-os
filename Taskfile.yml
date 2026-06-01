@@ -621,6 +621,26 @@ tasks:
     cmds:
       - npm run asr-readiness-join-gate-help
 
+  asr-manual-asset-intake-checklist:
+    desc: "Run Offline ASR Manual Asset Intake Checklist Generator"
+    cmds:
+      - npm run asr-manual-asset-intake-checklist -- {{.CLI_ARGS}}
+
+  asr-manual-asset-intake-checklist-help:
+    desc: "Print Offline ASR Manual Asset Intake Checklist Generator help manual"
+    cmds:
+      - npm run asr-manual-asset-intake-checklist-help
+
+  asr-manual-asset-presence-preflight:
+    desc: "Run Offline ASR Manual Asset Presence Preflight check"
+    cmds:
+      - npm run asr-manual-asset-presence-preflight -- {{.CLI_ARGS}}
+
+  asr-manual-asset-presence-preflight-help:
+    desc: "Print Offline ASR Manual Asset Presence Preflight help manual"
+    cmds:
+      - npm run asr-manual-asset-presence-preflight-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -874,6 +894,26 @@ tasks:
     cmds:
       - npm run asr-readiness-join-gate-help
 
+  asr-manual-asset-intake-checklist:
+    desc: "Run Offline ASR Manual Asset Intake Checklist Generator"
+    cmds:
+      - npm run asr-manual-asset-intake-checklist -- {{.CLI_ARGS}}
+
+  asr-manual-asset-intake-checklist-help:
+    desc: "Print Offline ASR Manual Asset Intake Checklist Generator help manual"
+    cmds:
+      - npm run asr-manual-asset-intake-checklist-help
+
+  asr-manual-asset-presence-preflight:
+    desc: "Run Offline ASR Manual Asset Presence Preflight check"
+    cmds:
+      - npm run asr-manual-asset-presence-preflight -- {{.CLI_ARGS}}
+
+  asr-manual-asset-presence-preflight-help:
+    desc: "Print Offline ASR Manual Asset Presence Preflight help manual"
+    cmds:
+      - npm run asr-manual-asset-presence-preflight-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -969,6 +1009,16 @@ tasks:
     cmds:
       - npm run voice-ops-release-closure-help
 
+  voice-ops-freeze-snapshot:
+    desc: "Voice Ops Freeze Tag and Recovery Snapshot (Phase N5R)"
+    cmds:
+      - npm run voice-ops-freeze-snapshot -- {{.CLI_ARGS}}
+
+  voice-ops-freeze-snapshot-help:
+    desc: "Print help menu for the voice ops freeze tag and recovery snapshot manager"
+    cmds:
+      - npm run voice-ops-freeze-snapshot-help
+
 
 
 
@@ -1032,6 +1082,17 @@ tasks:
     cmds:
       - npm run project-registry-duplicate-resolution-help
 
+  quarantine-deletion-readiness:
+    desc: "Stage deletion readiness audits for quarantined duplicate files"
+    cmds:
+      - npm run quarantine-deletion-readiness -- {{.CLI_ARGS}}
+
+  quarantine-deletion-readiness-help:
+    desc: "Print help menu for local quarantine deletion readiness staging gate"
+    cmds:
+      - npm run quarantine-deletion-readiness-help
+
+
 
   grinders-keep-daily-brief:
     desc: "Generate daily creative intelligence brief"
@@ -1062,6 +1123,16 @@ tasks:
     desc: "Stage local agent consensus review packets"
     cmds:
       - npm run grinders-keep-consensus-packet
+
+  grinders-keep-gap-hunter:
+    desc: "Run v0.1 Grinders Keep Gap Hunter sweep"
+    cmds:
+      - npm run grinders-keep-gap-hunter
+
+  grinders-keep-gap-hunter-help:
+    desc: "Print help documentation for Grinders Keep Gap Hunter"
+    cmds:
+      - npm run grinders-keep-gap-hunter-help
 
   validate:
     desc: "Lint and run workspace checks"

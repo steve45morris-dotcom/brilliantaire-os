@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 12B: Grinders Keep Core Brief Engine Plus — COMPLETE
+- **Current Phase:** Phase 12C: Grinders Keep Gap Hunter — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -75,6 +75,8 @@
 - **ASR Checksum Manifest Validation Gate (Phase 11Z-C):** Cryptographic manifest validation gate cross-auditing root and official checksum manifests, checking required properties, verifying local model files presence, performing Node crypto SHA256 matches, and outputting validation report logs and summaries.
 - **ASR Audio Input Staging Validation Gate (Phase 11Z-D):** Safe offline local audio validation gate compiling folder inspection states, extension checks (.wav, .mp3, .m4a, .flac, .ogg), path traversal checks, size verification, model trust status resolution, and simulated transcription route previews under strict offline safety constraints without audio transcription or model downloads.
 - **ASR Readiness Join Gate (Phase 11Z-E):** Safe offline local ASR readiness join gate script integrating model checksum status (Phase 11Z-C) and audio staging status (Phase 11Z-D) into a unified JSON manifest and generating blocker checklists, route eligibility maps, and detail reports under strict safety rules.
+- **ASR Manual Asset Intake Checklist (Phase 11Z-F):** Safe offline local ASR manual asset intake checklist script generating model placement guides, checksum configurations, audio staging instructions, blocker resolution maps, and validation rerun sequence checklists under strict safety rules.
+- **ASR Manual Asset Presence Preflight (Phase 11Z-F2):** Lightweight offline preflight gate verifying the physical existence and read accessibility of staged Whisper binaries and eligible audio files, ensuring all staging prerequisites are met before attempting full revalidation.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
@@ -96,6 +98,7 @@
 - **Manual Delivery Checklist and Handoff Log (Phase N5O):** Safe local human checklist validation, SHA256 integrity verification, and signed handoff logging system (`scripts/manual-delivery-handoff.ts`) for briefing delivery packages before manual release.
 - **Delivery Archive and Retention Ledger (Phase N5P):** Safe local archiving engine, SHA256 integrity auditing, and manual retention reviews database ledger (`scripts/delivery-archive-retention.ts`) for distribution custody tracking.
 - **Voice Ops Release Closure Report (Phase N5Q):** Safe read-only rollup, artifact verification, safety auditing, and release report generation engine (`scripts/voice-ops-release-closure.ts`) compiling the complete N5A-N5P voice loop.
+- **Voice Ops Freeze Tag and Recovery Snapshot (Phase N5R):** Safe local freeze tagging, recovery snapshot compiler, SHA256 checksum manifest exporter, and recovery checklist generator.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 - **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.
@@ -104,8 +107,11 @@
 - **Staged Registry Appending Gate (Phase 12D):** Safe offline project registry append engine (`scripts/project-registry-append-gate.ts`) validating safety duplicates, generating local backups, enforcing confirm switches, and appending approved candidates to PROJECTS.md under the Workflow Auditor.
 - **Registry Health Monitor (Phase 12E):** Safe offline post-append health monitor (`scripts/project-registry-health-monitor.ts`) verifying PROJECTS.md matrix row structures, duplicate paths, skipped candidates, and quarantine file parameters under the Workflow Auditor.
 - **Duplicate Registry Entry Resolution Gate (Phase 12F):** Safe offline duplicate registry entry resolution engine (`scripts/project-registry-duplicate-resolution.ts`) scanning PROJECTS.md matrix duplicate names and paths, staging resolution plan recommendations, backing up the registry, and applying safe approved resolutions under the Workflow Auditor.
+- **Quarantine Deletion Readiness Staging Gate (Phase 12G):** Safe read-only staging gate (`scripts/quarantine-deletion-readiness.ts`) verifying quarantined files, restore script coverage, age monitor thresholds, and compiling pre-deletion check indicators under the Workflow Auditor.
+
 
 - **Grinders Keep Brief Engine (Phase 12B):** Local-first creative R&D engine (`scripts/grinders-keep-daily-brief.ts`) compiling daily briefs, lessons, gap scans, build suggestions, money moves, Google Ultra opportunities, content drafts, and consensus packets.
+- **Grinders Keep Gap Hunter (Phase 12C):** Local-first project audit sweep (`scripts/grinders-keep-gap-hunter.ts`) scanning project telemetry to identify missing gates, stale outputs, duplicate reports, blocked phases, weak docs, unverified metrics, command routing gaps, and monetization opportunities.
 
 
 
@@ -119,7 +125,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot**
+- **Phase 12D: Grinders Keep Adaptive Learning Deepener**
 
 ## Obsidian Intelligence Snapshot
 

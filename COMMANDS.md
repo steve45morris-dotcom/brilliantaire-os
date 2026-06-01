@@ -144,6 +144,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-audio-input-staging-validation-gate` | `asr audio`, `whisper audio` | Build Operator | Medium | Yes | Validate offline ASR local staged audio input files and route previews. |
 | `asr-readiness-join-gate-help` | `asr readiness help`, `whisper readiness help` | Build Operator | Low | No | Print help menu for the offline ASR readiness join gate. |
 | `asr-readiness-join-gate` | `asr readiness`, `whisper readiness` | Build Operator | Medium | Yes | Integrate offline ASR checksum models and audio input signals into unified readiness manifest. |
+| `asr-manual-asset-intake-checklist-help` | `asr intake help`, `whisper intake help` | Build Operator | Low | No | Print help menu for the offline ASR manual asset intake checklist generator. |
+| `asr-manual-asset-intake-checklist` | `asr intake`, `whisper intake` | Build Operator | Medium | Yes | Generate manual asset intake checklists, manifest instructions, and validation rerun sequences. |
+| `asr-manual-asset-presence-preflight-help` | `asr preflight help`, `whisper preflight help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset presence preflight check. |
+| `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -210,6 +214,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-audio-input-staging-validation-gate` | `asr audio`, `whisper audio` | Build Operator | Medium | Yes | Validate offline ASR local staged audio input files and route previews. |
 | `asr-readiness-join-gate-help` | `asr readiness help`, `whisper readiness help` | Build Operator | Low | No | Print help menu for the offline ASR readiness join gate. |
 | `asr-readiness-join-gate` | `asr readiness`, `whisper readiness` | Build Operator | Medium | Yes | Integrate offline ASR checksum models and audio input signals into unified readiness manifest. |
+| `asr-manual-asset-intake-checklist-help` | `asr intake help`, `whisper intake help` | Build Operator | Low | No | Print help menu for the offline ASR manual asset intake checklist generator. |
+| `asr-manual-asset-intake-checklist` | `asr intake`, `whisper intake` | Build Operator | Medium | Yes | Generate manual asset intake checklists, manifest instructions, and validation rerun sequences. |
+| `asr-manual-asset-presence-preflight-help` | `asr preflight help`, `whisper preflight help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset presence preflight check. |
+| `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -218,6 +226,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `delivery-archive-retention` | `delivery archive`, `retention ledger` | Workflow Auditor | Medium | Yes | Ingest approved manual handoffs to retention ledger, verify archive checksums, run retention reviews, and export ledger. |
 | `voice-ops-release-closure-help` | `release closure help`, `ops closure help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops release closure report manager. |
 | `voice-ops-release-closure` | `voice release closure`, `release closure` | Workflow Auditor | Medium | Yes | Compile completed phases (N5A - N5P), index artifacts, audit safety, and generate final release closure report. |
+| `voice-ops-freeze-snapshot-help` | `voice freeze snapshot help`, `freeze snapshot help`, `voice-ops freeze snapshot help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops freeze tag and recovery snapshot manager. |
+| `voice-ops-freeze-snapshot` | `voice freeze snapshot`, `freeze snapshot`, `voice-ops freeze snapshot` | Workflow Auditor | Medium | Yes | Capture stable voice ops release state, export JSON/MD manifests, generate recovery checklist, and verify integrity. |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
@@ -226,6 +236,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `project-registry-health-monitor` | `registry health`, `project health` | Workflow Auditor | Medium | Yes | Verify projects registry integrity, skipped candidates, and quarantine status. |
 | `project-registry-duplicate-resolution-help` | `duplicate registry help`, `registry duplicate help` | Workflow Auditor | Low | No | Print help command menu for the local projects registry duplicate resolution gate. |
 | `project-registry-duplicate-resolution` | `duplicate registry`, `registry duplicate` | Workflow Auditor | High | Yes | Stage and resolve duplicate project registry entries in PROJECTS.md. |
+| `quarantine-deletion-readiness-help` | `deletion readiness help`, `quarantine deletion help` | Workflow Auditor | Low | No | Print help command menu for the local quarantine deletion readiness staging gate. |
+| `quarantine-deletion-readiness` | `deletion readiness`, `quarantine deletion` | Workflow Auditor | Medium | Yes | Stage deletion readiness audits for quarantined duplicate files. |
+
 
 | `grinders-keep-daily-brief` | *(none)* | OS Architect | Low | Yes | Generate daily creative intelligence brief summarizing projects, money moves, lessons, and gaps. |
 | `grinders-keep-daily-brief-help` | *(none)* | OS Architect | Low | Yes | Print help documentation for Grinders Keep creative R&D engine commands. |
@@ -233,6 +246,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-vault-awareness` | *(none)* | OS Architect | Low | Yes | Scan candidate Obsidian and workspace folder roles and report status safely. |
 | `grinders-keep-content-drafts` | *(none)* | Creative Revenue Strategist | Low | Yes | Generate local-only smart content drafts (Icyflamze ideas, build updates, newsletter notes). |
 | `grinders-keep-consensus-packet` | *(none)* | OS Architect | Low | Yes | Stage multi-model agent consensus review templates for ChatGPT, Gemini, Claude, and NotebookLM. |
+| `grinders-keep-gap-hunter` | *(none)* | Workflow Auditor | Low | Yes | Scan real local project data to identify gaps, stale outputs, duplicates, blocked phases, routing issues, and monetization opportunities. |
+| `grinders-keep-gap-hunter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Gap Hunter engine commands. |
 
 
 

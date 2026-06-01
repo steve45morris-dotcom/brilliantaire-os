@@ -3,6 +3,7 @@ import { REPO_ROOT } from './paths.js';
 
 export const VOICE_INPUT_ROOT = path.join(REPO_ROOT, 'voice_input');
 export const MANUAL_INPUT_DIR = path.join(VOICE_INPUT_ROOT, 'manual');
+export const LIVE_INPUT_DIR = path.join(VOICE_INPUT_ROOT, 'live');
 export const TRANSCRIPTS_DIR = path.join(VOICE_INPUT_ROOT, 'transcripts');
 export const VIBEVOICE_LOG_DIR = path.join(REPO_ROOT, 'outputs', 'vibevoice_logs');
 export const VOICE_QUEUE_INBOX = path.join(REPO_ROOT, 'voice_queue', 'inbox');

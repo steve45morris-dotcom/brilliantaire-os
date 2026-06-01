@@ -2181,6 +2181,58 @@ The **Voice Ops Release Closure Report** compiles completion logs, indexes deliv
 
 ---
 
+## 🧭 Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
+
+The **Voice Ops Freeze Tag and Recovery Snapshot** system captures the current stable Voice Ops release state, creates local freeze tags, maps snapshot manifests of source scripts and deliverables with SHA256 checksums, and compiles recovery checklists for restoration.
+
+### CLI Command List
+* Show help menu:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot-help"
+  ```
+* Show snapshot status, safety flags, and detected snapshot info:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot status"
+  ```
+* Scan release state:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot scan-release"
+  ```
+* Create local freeze tag record:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot create-freeze-tag"
+  ```
+* Export MD and JSON snapshot manifests:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot snapshot-manifest"
+  ```
+* Generate markdown recovery checklist:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot recovery-checklist"
+  ```
+* Verify snapshot manifest files and integrity:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot verify-snapshot"
+  ```
+* List existing snapshots:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot list-snapshots"
+  ```
+* Show the latest freeze snapshot:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot latest"
+  ```
+* Generate global statistics and summaries report:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot freeze-summary"
+  ```
+* View recent freeze events:
+  ```bash
+  npm run command -- "voice-ops-freeze-snapshot freeze-log"
+  ```
+
+---
+
 
 
 
@@ -2791,12 +2843,50 @@ The **ASR Readiness Join Gate** integrates model cryptographic validation signal
   npm run command -- "asr-readiness-join-gate"
   ```
 
+## 🧭 Phase 11Z-F: ASR Manual Asset Intake Checklist
+
+The **ASR Manual Asset Intake Checklist** compiles detailed checklists (such as model placements, checksum entry, audio staging directories) and blocker resolutions, mapping out a strict re-run sequence for developers to manually stage required files offline.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Automation:** Does not run automated downloads, speech rendering, or transcribing loops.
+2. **Offline-First:** All assets must be manually staged, cryptographic checksum hashes computed locally, and verification manifest values filled by operator.
+3. **Fail-Closed Evaluation:** Reminders block transitions to execution-ready states.
+
+### 💻 Command Examples
+* View manual checklist help menu:
+  ```bash
+  npm run command -- "asr-manual-asset-intake-checklist-help"
+  ```
+* Run manual checklist compiler:
+  ```bash
+  npm run command -- "asr-manual-asset-intake-checklist"
+  ```
+
+## 🧭 Phase 11Z-F2: ASR Manual Asset Presence Preflight
+
+The **ASR Manual Asset Presence Preflight** acts as a lightweight preflight gate checking whether required Whisper model binaries (`ggml-base.en.bin` and `ggml-tiny.bin`) and at least one approved local audio file are staged in appropriate directories before attempting full revalidation.
+
+### 🛡️ Safety & Execution Rules
+1. **No Checksums Computed:** Cryptographic hashes (SHA256) are not verified in this preflight phase to preserve low latency. That responsibility remains owned by Phase 11Z-C.
+2. **Zero ASR Invocations:** Under no circumstances does this gate execute Whisper, transcribe audio inputs, or perform any network API requests or downloads.
+3. **Safety Isolation:** Manifest validation errors or staging directory absences automatically force a blocked status.
+
+### 💻 Command Examples
+* View preflight help menu:
+  ```bash
+  npm run command -- "asr-manual-asset-presence-preflight-help"
+  ```
+* Run preflight validation:
+  ```bash
+  npm run command -- "asr-manual-asset-presence-preflight"
+  ```
+
 ---
 
 ## 🚀 Next Phase Recommendation
 
-* **Phase 11Z-F: ASR Manual Asset Intake Checklist**
-  - Generate a human checklist for manually adding Whisper model binaries and approved audio files, then rerunning checksum and audio staging gates before any transcription approval switch is considered.
+* **Phase 11Z-G: Manual Asset Revalidation Pass**
+  - After the preflight status transitions to `ready_for_revalidation`, rerun checksum, audio staging, and readiness join gates, then produce a consolidated revalidation report.
 
 ---
 
@@ -3019,6 +3109,14 @@ The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engin
 * Stage multi-model agent consensus review template:
   ```bash
   npm run command -- "grinders-keep-consensus-packet"
+  ```
+* Run Gap Hunter scanner sweep:
+  ```bash
+  npm run command -- "grinders-keep-gap-hunter"
+  ```
+* Print Gap Hunter help menu:
+  ```bash
+  npm run command -- "grinders-keep-gap-hunter-help"
   ```
 
 ---
