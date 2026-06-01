@@ -1,2 +1,5 @@
 - [2026-06-01T07:38:50.514Z] **COMPILE_PLACEMENT_GUIDE**: TTS manual-placement guide generated successfully. Saved to: tts_model_manual_placement_guide_2026-06-01.md
 - [2026-06-01T07:39:14.107Z] **COMPILE_PLACEMENT_REPORT**: TTS model placement report generated. Saved to: tts_model_placement_report_2026-06-01.md
+- [2026-06-01T07:39:49.536Z] **COMPILE_PAIRING_REPORT**: TTS model pairing report generated. Saved to: tts_model_pairing_report_2026-06-01.md
+- [2026-06-01T07:40:11.841Z] **COMPILE_READINESS_REPORT**: TTS activation readiness report generated. Score: 20%. Saved to: tts_activation_readiness_2026-06-01.md
+- [2026-06-01T07:42:25.785Z] **COMPILE_PLACEMENT_REPORT**: TTS model placement report generated. Saved to: tts_model_placement_report_2026-06-01_1780299745.md

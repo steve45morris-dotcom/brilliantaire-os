@@ -119,3 +119,36 @@
 
 ---
 
+## [2026-06-01T07:41:33.397Z] Command Attempt: "tts-model-activation-help"
+- **Matched Command:** `tts-model-activation-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:42:33.984Z] Command Attempt: "tts-model-activation scan"
+- **Matched Command:** `tts-model-activation`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:42:57.205Z] Command Attempt: "tts activation"
+- **Matched Command:** `tts-model-activation`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
