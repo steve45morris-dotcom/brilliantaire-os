@@ -2201,5 +2201,32 @@
     "source": "command_log_2026-06-01",
     "status": "SUCCESS",
     "details": "Matched Command: \"tts-model-acquisition\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:54:16.256Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts acquisition\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-model-acquisition\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:54:20.065Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice ops report status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:55:06.679Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-ops-daily-report status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-ops-daily-report\" | Exit Code: 0"
   }
 ]

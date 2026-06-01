@@ -229,3 +229,47 @@
 
 ---
 
+## [2026-06-01T07:55:06.679Z] Command Attempt: "narrator-voice-ops-daily-report status"
+- **Matched Command:** `narrator-voice-ops-daily-report`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:56:41.686Z] Command Attempt: "notebooklm-grounded-index-graph"
+- **Matched Command:** `notebooklm-grounded-index-graph`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:57:28.994Z] Command Attempt: "intelligence graph"
+- **Matched Command:** `notebooklm-grounded-index-graph`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T07:57:41.599Z] Command Attempt: "notebooklm-grounded-index-graph-help"
+- **Matched Command:** `notebooklm-grounded-index-graph-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

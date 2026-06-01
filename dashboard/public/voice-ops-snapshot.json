@@ -6,7 +6,7 @@
   "totalTranscripts": 0,
   "approvedPackets": 0,
   "executedPackets": 0,
-  "blockedEvents": 6,
+  "blockedEvents": 8,
   "safetyStatus": "Critical Safety Alarms Active",
   "nextRecommendedPhase": "Phase N5K: Voice Ops Scheduled Briefing Queue"
 }
