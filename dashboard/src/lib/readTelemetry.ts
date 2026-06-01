@@ -107,6 +107,8 @@ export interface VoiceLoopData {
   audit?: VoiceLifecycleAuditData;
   report?: VoiceOpsDailyReportData;
   briefing?: VoiceOpsBriefingSnapshotData;
+  briefingTts?: VoiceOpsBriefingTtsSnapshotData;
+  briefingAudio?: VoiceOpsBriefingAudioSnapshotData;
 }
 
 export interface VoiceOpsBriefingSnapshotData {
@@ -119,6 +121,32 @@ export interface VoiceOpsBriefingSnapshotData {
   duplicateBriefingProtection: boolean;
   autoRun: boolean;
   manualApprovalRequired: boolean;
+}
+
+export interface VoiceOpsBriefingTtsSnapshotData {
+  latestBriefingId: string;
+  generatedTtsRequestCount: number;
+  submittedRequestCount: number;
+  approvedRequestCount: number;
+  renderedAudioCount: number;
+  blockedRequestCount: number;
+  latestRenderedAudioPath: string;
+  cloudTtsStatus: string;
+  autoPlaybackStatus: string;
+  manualApprovalRequired: boolean;
+}
+
+export interface VoiceOpsBriefingAudioSnapshotData {
+  latestAudioId: string;
+  renderedAudioCount: number;
+  pendingReviewCount: number;
+  reviewedCount: number;
+  approvedAudioCount: number;
+  rejectedAudioCount: number;
+  latestApprovedAudioPath: string;
+  autoPlaybackStatus: string;
+  cloudUploadStatus: string;
+  manualReviewRequired: boolean;
 }
 
 export interface DashboardData {

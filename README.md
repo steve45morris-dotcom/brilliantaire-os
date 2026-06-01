@@ -1861,6 +1861,64 @@ The **Briefing TTS Render Approval Flow** processes and validates briefing TTS r
 
 ---
 
+## 🧭 Phase N5M: Briefing Audio Playback Review Gate
+
+The **Briefing Audio Playback Review Gate** provides a safe, offline, local-first review workflow for rendered briefing audio files. It allows operators to inspect audio metadata, register files in the review queue, mark them as human-reviewed, and manually approve or reject them.
+
+### 🛡️ Safety & Execution Rules
+1. **No Autoplay Policy**: Audio files are never played automatically during scanning, enqueuing, or inspection. All media player subprocess launches are strictly blocked.
+2. **Offline Integrity**: Staged audio remains local and is never uploaded, published, or broadcast to cloud endpoints.
+3. **Approval Dependency**: Audio files cannot be approved unless they have first been flagged as reviewed via the `mark-reviewed` command.
+4. **Reversible Rejections**: Rejecting an audio file flags it as rejected in the logs but does not delete the source file by default.
+
+### 💻 Command Examples
+* View review gate help menu:
+  ```bash
+  npm run command -- "briefing-audio-playback-review-help"
+  ```
+* Check safety flags, paths, and review state counters:
+  ```bash
+  npm run command -- "briefing-audio-playback-review status"
+  ```
+* Scan and list discovered rendered audio files:
+  ```bash
+  npm run command -- "briefing-audio-playback-review scan-rendered"
+  ```
+* Inspect metadata details of a specific audio file:
+  ```bash
+  npm run command -- "briefing-audio-playback-review inspect briefing_YYYY-MM-DD"
+  ```
+* Register an audio file into the review queue:
+  ```bash
+  npm run command -- "briefing-audio-playback-review queue-review briefing_YYYY-MM-DD"
+  ```
+* Flag enqueued audio as reviewed by the operator:
+  ```bash
+  npm run command -- "briefing-audio-playback-review mark-reviewed briefing_YYYY-MM-DD"
+  ```
+* Approve reviewed audio:
+  ```bash
+  npm run command -- "briefing-audio-playback-review approve-audio briefing_YYYY-MM-DD"
+  ```
+* Reject enqueued audio:
+  ```bash
+  npm run command -- "briefing-audio-playback-review reject-audio briefing_YYYY-MM-DD"
+  ```
+* View the detailed review status of an item:
+  ```bash
+  npm run command -- "briefing-audio-playback-review review-status briefing_YYYY-MM-DD"
+  ```
+* Compile review statistics into a markdown report:
+  ```bash
+  npm run command -- "briefing-audio-playback-review review-summary"
+  ```
+* Show recent review gate logs:
+  ```bash
+  npm run command -- "briefing-audio-playback-review review-log"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -2406,4 +2464,40 @@ The **Duplicate Cleanup Staging Gate** provides a secure gating mechanism for st
   npm run command -- "cleanup-gate status"
   ```
 
+---
 
+## 🛡️ Phase 12B: Approved Quarantine Execution Gate
+
+The **Approved Quarantine Execution Gate** provides an approval-based execution mechanism to safely move duplicate briefs from source directories into quarantine (`outputs/cleanup/quarantine/`). It enforces dry-runs, requires explicit confirmation flags, performs integrity checksum validation, and outputs a commented rollback mapping script.
+
+### 🔒 Guardrails Summary
+1. **Approval Enforcement:** Operations require explicit confirmation via the `--confirm` flag.
+2. **Move Containment:** Files are moved into quarantine; no permanent deletion or `rm` commands are permitted.
+3. **Checksum Verification:** MD5 hashes are computed before and after moves to ensure zero data corruption.
+4. **Restore Map Rollback:** A detailed rollback shell script is created to move files back to original directories.
+
+### 💻 Command Examples
+* View quarantine executor help:
+  ```bash
+  npm run command -- "quarantine-executor-help"
+  ```
+* Preview potential quarantine moves:
+  ```bash
+  npm run command -- "quarantine-executor dry-run"
+  ```
+* Execute the approved quarantine (requires confirmation):
+  ```bash
+  npm run command -- "quarantine-executor execute-approved" --confirm
+  ```
+* Verify checksums of quarantined files:
+  ```bash
+  npm run command -- "quarantine-executor checksum"
+  ```
+* Generate restore map:
+  ```bash
+  npm run command -- "quarantine-executor restore-map"
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "quarantine-executor status"
+  ```

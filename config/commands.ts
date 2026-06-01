@@ -1750,6 +1750,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'quarantine-executor-help',
+    aliases: ['quarantine help', 'cleanup quarantine help'],
+    description: 'Print help command menu for the approved quarantine executor',
+    npmScript: 'quarantine-executor-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'quarantine-executor',
+    aliases: ['quarantine', 'cleanup quarantine'],
+    description: 'Move staged duplicate files into quarantine and verify checksums',
+    npmScript: 'quarantine-executor',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-model-gate-help',
     aliases: ['asr model help', 'whisper model help'],
     description: 'Print help command menu for offline ASR model gate and checksum gate',

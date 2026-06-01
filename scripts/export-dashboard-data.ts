@@ -479,6 +479,28 @@ function main() {
         }
       }
       return undefined;
+    })(),
+    briefingTts: (() => {
+      const briefingTtsSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/briefing_tts_render_approval/reports/dashboard_briefing_tts_snapshot.json');
+      if (fs.existsSync(briefingTtsSnapshotPath)) {
+        try {
+          return JSON.parse(fs.readFileSync(briefingTtsSnapshotPath, 'utf-8'));
+        } catch (e) {
+          console.error(`Failed to parse dashboard briefing TTS snapshot JSON: ${e}`);
+        }
+      }
+      return undefined;
+    })(),
+    briefingAudio: (() => {
+      const briefingAudioSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/briefing_audio_playback_review/reports/dashboard_briefing_audio_snapshot.json');
+      if (fs.existsSync(briefingAudioSnapshotPath)) {
+        try {
+          return JSON.parse(fs.readFileSync(briefingAudioSnapshotPath, 'utf-8'));
+        } catch (e) {
+          console.error(`Failed to parse dashboard briefing audio snapshot JSON: ${e}`);
+        }
+      }
+      return undefined;
     })()
   };
 

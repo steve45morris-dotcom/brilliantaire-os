@@ -819,6 +819,25 @@ tasks:
     cmds:
       - npm run briefing-tts-render-approval-help
 
+  cleanup-gate:
+    desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
+    cmds:
+      - npm run cleanup-gate -- {{.CLI_ARGS}}
+
+  cleanup-gate-help:
+    desc: "Print help command menu for the duplicate cleanup staging gate"
+    cmds:
+      - npm run cleanup-gate-help
+
+  quarantine-executor:
+    desc: "Move approved duplicate candidates into quarantine"
+    cmds:
+      - npm run quarantine-executor -- {{.CLI_ARGS}}
+
+  quarantine-executor-help:
+    desc: "Print help command menu for the approved quarantine executor"
+    cmds:
+      - npm run quarantine-executor-help
 
   validate:
     desc: "Lint and run workspace checks"

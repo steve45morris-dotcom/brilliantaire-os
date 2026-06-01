@@ -172,6 +172,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-ops-daily-report` | `voice ops daily report`, `narrator voice ops daily report` | Knowledge Librarian | Medium | Yes | Summarize the day's local voice sessions, ASR transcripts, staged packets, approvals, bridge executions, rejections, blocked attempts, safety events, and dashboard status. |
 | `cleanup-gate-help` | `cleanup help`, `duplicate cleanup help` | Workflow Auditor | Low | No | Print help command menu for the duplicate cleanup staging gate. |
 | `cleanup-gate` | `cleanup`, `duplicate cleanup` | Workflow Auditor | Medium | Yes | Stage duplicate briefs cleanup plans and scan project registry drift. |
+| `quarantine-executor-help` | `quarantine help`, `cleanup quarantine help` | Workflow Auditor | Low | No | Print help command menu for the approved quarantine executor. |
+| `quarantine-executor` | `quarantine`, `cleanup quarantine` | Workflow Auditor | High | Yes | Move staged duplicate files into quarantine and verify checksums. |
 | `narrator-voice-asr-orchestrator-help` | `voice asr orchestrator help`, `narrator voice asr orchestrator help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice ASR orchestrator. |
 | `narrator-voice-asr-orchestrator` | `voice asr orchestrator`, `narrator voice asr orchestrator` | Knowledge Librarian | Medium | Yes | Local offline voice session to ASR queue dispatch and approval orchestrator. |
 | `narrator-voice-lifecycle-audit-help` | `voice lifecycle audit help`, `narrator voice lifecycle audit help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice session lifecycle auditor. |
@@ -182,6 +184,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-ops-scheduled-briefing` | `scheduled briefing`, `voice ops scheduled briefing` | Knowledge Librarian | Medium | Yes | Stage, inspect, approve, reject daily briefing jobs, and compile TTS rendering queue requests. |
 | `briefing-tts-render-approval-help` | `briefing tts help`, `briefing tts render approval help` | Knowledge Librarian | Low | Yes | Print help command menu for the briefing TTS render approval manager. |
 | `briefing-tts-render-approval` | `briefing tts`, `briefing tts render approval` | Knowledge Librarian | Medium | Yes | Briefing TTS render request validation, queue submission, manual approval, and offline Piper rendering. |
+| `briefing-audio-playback-review-help` | `briefing audio review help`, `playback review help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing audio playback review gate. |
+| `briefing-audio-playback-review` | `briefing audio review`, `playback review` | Workflow Auditor | Medium | Yes | Stage, inspect, mark reviewed, and approve or reject rendered daily briefing audio files under strict no-autoplay constraints. |
 | `offline-tts-dry-run-renderer-help` | `tts dry run help`, `dry run help` | Workflow Auditor | Low | Yes | Print help command menu for offline TTS dry-run renderer simulation. |
 | `offline-tts-dry-run-renderer` | `tts dry run`, `dry run renderer` | Workflow Auditor | Medium | Yes | Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs. |
 | `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help command menu for offline ASR model gate and checksum gate. |

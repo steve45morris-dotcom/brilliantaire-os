@@ -64,6 +64,32 @@ interface VoiceOpsBriefingSnapshotData {
   manualApprovalRequired: boolean;
 }
 
+interface VoiceOpsBriefingTtsSnapshotData {
+  latestBriefingId: string;
+  generatedTtsRequestCount: number;
+  submittedRequestCount: number;
+  approvedRequestCount: number;
+  renderedAudioCount: number;
+  blockedRequestCount: number;
+  latestRenderedAudioPath: string;
+  cloudTtsStatus: string;
+  autoPlaybackStatus: string;
+  manualApprovalRequired: boolean;
+}
+
+interface VoiceOpsBriefingAudioSnapshotData {
+  latestAudioId: string;
+  renderedAudioCount: number;
+  pendingReviewCount: number;
+  reviewedCount: number;
+  approvedAudioCount: number;
+  rejectedAudioCount: number;
+  latestApprovedAudioPath: string;
+  autoPlaybackStatus: string;
+  cloudUploadStatus: string;
+  manualReviewRequired: boolean;
+}
+
 interface VoiceLoopDashboardPanelProps {
   asrBackend: string;
   ttsRenderer: string;
@@ -90,6 +116,8 @@ interface VoiceLoopDashboardPanelProps {
   audit?: VoiceLifecycleAuditData;
   report?: VoiceOpsDailyReportData;
   briefing?: VoiceOpsBriefingSnapshotData;
+  briefingTts?: VoiceOpsBriefingTtsSnapshotData;
+  briefingAudio?: VoiceOpsBriefingAudioSnapshotData;
 }
 
 export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = ({
@@ -106,7 +134,9 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
   recorder,
   audit,
   report,
-  briefing
+  briefing,
+  briefingTts,
+  briefingAudio
 }) => {
   return (
     <div style={{
@@ -452,6 +482,108 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
               <span style={{ color: '#64748b' }}>Latest Source Report Path:</span>
               <span style={{ color: '#00ffcc', fontStyle: 'italic', wordBreak: 'break-all' }}>
                 {briefing.latestSourceReportPath}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Briefing TTS Render Approval */}
+      {briefingTts && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid #1e293b', paddingTop: '12px' }}>
+          <h3 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#00ffcc' }}>🔊 BRIEFING TTS RENDER APPROVAL</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Latest Briefing ID:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{briefingTts.latestBriefingId}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Generated Requests:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{briefingTts.generatedTtsRequestCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Submitted Requests:</span>
+              <span style={{ color: '#ffb300', fontWeight: 'bold' }}>{briefingTts.submittedRequestCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Approved Requests:</span>
+              <span style={{ color: '#39ff14', fontWeight: 'bold' }}>{briefingTts.approvedRequestCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Rendered Audio Files:</span>
+              <span style={{ color: '#00ffcc', fontWeight: 'bold' }}>{briefingTts.renderedAudioCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Blocked Requests:</span>
+              <span style={{ color: '#ff073a', fontWeight: 'bold' }}>{briefingTts.blockedRequestCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Cloud TTS Status:</span>
+              <span style={{ color: briefingTts.cloudTtsStatus === 'enabled' ? '#ff073a' : '#39ff14' }}>{briefingTts.cloudTtsStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Auto Playback Status:</span>
+              <span style={{ color: briefingTts.autoPlaybackStatus === 'enabled' ? '#ff073a' : '#39ff14' }}>{briefingTts.autoPlaybackStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Manual Approval Required:</span>
+              <span style={{ color: briefingTts.manualApprovalRequired ? '#39ff14' : '#ff073a' }}>{briefingTts.manualApprovalRequired ? 'TRUE (Active Gate)' : 'FALSE'}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginTop: '4px' }}>
+              <span style={{ color: '#64748b' }}>Latest Rendered Audio Path:</span>
+              <span style={{ color: '#00ffcc', fontStyle: 'italic', wordBreak: 'break-all' }}>
+                {briefingTts.latestRenderedAudioPath}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Briefing Audio Playback Review */}
+      {briefingAudio && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid #1e293b', paddingTop: '12px' }}>
+          <h3 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#00ffcc' }}>🔊 BRIEFING AUDIO PLAYBACK REVIEW</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Latest Audio ID:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{briefingAudio.latestAudioId}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Rendered Briefing Audio Count:</span>
+              <span style={{ color: '#00ffcc', fontWeight: 'bold' }}>{briefingAudio.renderedAudioCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Pending Review Count:</span>
+              <span style={{ color: '#ffb300', fontWeight: 'bold' }}>{briefingAudio.pendingReviewCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Reviewed Count:</span>
+              <span style={{ color: '#39ff14', fontWeight: 'bold' }}>{briefingAudio.reviewedCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Approved Audio Count:</span>
+              <span style={{ color: '#39ff14', fontWeight: 'bold' }}>{briefingAudio.approvedAudioCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Rejected Audio Count:</span>
+              <span style={{ color: '#ff073a', fontWeight: 'bold' }}>{briefingAudio.rejectedAudioCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Auto Playback Status:</span>
+              <span style={{ color: briefingAudio.autoPlaybackStatus === 'enabled' ? '#ff073a' : '#39ff14' }}>{briefingAudio.autoPlaybackStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Cloud Upload Status:</span>
+              <span style={{ color: briefingAudio.cloudUploadStatus === 'enabled' ? '#ff073a' : '#39ff14' }}>{briefingAudio.cloudUploadStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Manual Review Required:</span>
+              <span style={{ color: briefingAudio.manualReviewRequired ? '#39ff14' : '#ff073a' }}>{briefingAudio.manualReviewRequired ? 'TRUE' : 'FALSE'}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginTop: '4px' }}>
+              <span style={{ color: '#64748b' }}>Latest Approved Audio Path:</span>
+              <span style={{ color: '#00ffcc', fontStyle: 'italic', wordBreak: 'break-all' }}>
+                {briefingAudio.latestApprovedAudioPath}
               </span>
             </div>
           </div>

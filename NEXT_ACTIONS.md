@@ -170,7 +170,8 @@
 - [x] Phase N5J: Prepare Voice Ops Daily Report Generator
 - [x] Phase N5K: Voice Ops Scheduled Briefing Queue
 - [x] Phase N5L: Briefing TTS Render Approval Flow
-- [ ] Phase N5M: Briefing Audio Playback Review Gate
+- [x] Phase N5M: Briefing Audio Playback Review Gate
+- [ ] Phase N5N: Briefing Delivery Package Exporter
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -386,13 +387,19 @@
 - [x] Phase 11Y: Prepare ASR execution only after model and manual enable pass
 
 ## Do Next
-- [ ] Build Duplicate Cleanup Staging Gate
-- [ ] Scan Obsidian duplicate briefs
-- [ ] Stage duplicate quarantine plan
-- [ ] Generate restore plan
-- [ ] Generate project registry drift report
-- [ ] Review 32 unregistered directories manually
-- [ ] Approve quarantine only after review
+- [x] Build Duplicate Cleanup Staging Gate
+- [x] Scan Obsidian duplicate briefs
+- [x] Stage duplicate quarantine plan
+- [x] Generate restore plan
+- [x] Generate project registry drift report
+- [x] Review 32 unregistered directories manually
+- [x] Approve quarantine only after review
+- [ ] Build Approved Quarantine Execution Gate
+- [ ] Run quarantine dry-run
+- [ ] Execute approved quarantine only with --confirm
+- [ ] Verify checksums
+- [ ] Generate restore map
+- [ ] Review quarantined files before any future deletion phase
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering

@@ -168,6 +168,8 @@
     "git-hook-uninstall": "tsx scripts/git-hook-uninstall.ts",
     "cleanup-gate": "tsx scripts/cleanup-gate.ts",
     "cleanup-gate-help": "tsx scripts/cleanup-gate-help.ts",
+    "quarantine-executor": "tsx scripts/quarantine-executor.ts",
+    "quarantine-executor-help": "tsx scripts/quarantine-executor-help.ts",
     "briefing-tts-render-approval": "tsx scripts/briefing-tts-render-approval.ts",
     "briefing-tts-render-approval-help": "tsx scripts/briefing-tts-render-approval-help.ts",
     "asr-model-gate": "tsx scripts/asr-model-gate.ts",
