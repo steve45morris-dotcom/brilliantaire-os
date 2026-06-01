@@ -1,15 +1,16 @@
-# 🗺️ NotebookLM Citation Map: {{DATE}}
+# 🗺️ NotebookLM Response Citation Map: {{DATE}}
 
-## Metadata
-- **Source Response:** {{SOURCE_RESPONSE}}
-- **Processing Date:** {{DATE}}
+- **Response Record:** `{{RESPONSE_RECORD}}`
+- **Evidence Strength:** {{EVIDENCE_STRENGTH}}
 
-## Citation Mappings
-{{CITATION_MAPPING_ROWS}}
+## 📁 Cited Sources
+{{CITED_SOURCES}}
 
-*Legend:*
-- **Citation:** The source number or identifier in the text.
-- **Supported Claim:** The assertion made in the response.
-- **Source Note:** The description or path to the cited document/transcript.
-- **Confidence:** Assessed alignment score (High/Medium/Low).
-- **Missing Source Warning:** Alerts if the referenced source file cannot be verified locally.
+## ⚠️ Uncited Claims
+{{UNCITED_CLAIMS}}
+
+## 🔍 Citation Gaps
+{{CITATION_GAPS}}
+
+## 🎯 Follow-Up Sources Needed
+{{FOLLOW_UP_SOURCES_NEEDED}}

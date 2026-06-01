@@ -461,6 +461,16 @@ tasks:
     cmds:
       - npm run tts-synthesizer -- {{.CLI_ARGS}}
 
+  tts-model-gate-help:
+    desc: "Print Offline TTS Model Gate safety manuals"
+    cmds:
+      - npm run tts-model-gate-help
+
+  tts-model-gate:
+    desc: "Run Offline TTS Model Gate tasks safely"
+    cmds:
+      - npm run tts-model-gate -- {{.CLI_ARGS}}
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -658,6 +668,16 @@ tasks:
     desc: "Print help commands for the voice session to ASR orchestrator"
     cmds:
       - npm run narrator-voice-asr-orchestrator-help
+
+  narrator-voice-lifecycle-audit:
+    desc: "Scan and build chronological transitions timeline for voice sessions"
+    cmds:
+      - npm run narrator-voice-lifecycle-audit -- {{.CLI_ARGS}}
+
+  narrator-voice-lifecycle-audit-help:
+    desc: "Print help commands for the voice session lifecycle auditor"
+    cmds:
+      - npm run narrator-voice-lifecycle-audit-help
 
 
 

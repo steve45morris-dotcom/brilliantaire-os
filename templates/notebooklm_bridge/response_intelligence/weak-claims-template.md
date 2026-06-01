@@ -1,15 +1,12 @@
-# ⚠️ NotebookLM Weak Claims Report: {{DATE}}
+# ⚠️ Weak Claim Verification Audit: {{DATE}}
 
-## Metadata
-- **Source Response:** {{SOURCE_RESPONSE}}
-- **Processing Date:** {{DATE}}
+- **Claim:** {{CLAIM}}
+- **Weakness:** {{WEAKNESS}}
+- **Risk Level:** {{RISK_LEVEL}}
 
-## Weak Claims Analysis
-{{WEAK_CLAIMS_ROWS}}
+## 🔍 Evidence Gap
+- **Missing Evidence:** {{MISSING_EVIDENCE}}
 
-*Legend:*
-- **Claim:** The assertion from the NotebookLM response that lacks solid grounding or poses risk.
-- **Weakness:** Explanation of why the claim is weak (unsupported logic, quota limits, etc.).
-- **Missing Evidence:** Documentation or telemetry missing to validate this assertion.
-- **Risk Level:** Risk to system if executed without verification (High/Medium/Low).
-- **Verification Step:** Prescribed offline checks or trials needed before validation.
+## 🛠️ Verification & Remediation Action Plan
+- **Verification Method:** {{VERIFICATION_METHOD}}
+- **Recommended Action:** {{RECOMMENDED_ACTION}}

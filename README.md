@@ -1080,9 +1080,9 @@ The **Live Response Intelligence Processor** is an offline mapping layer that in
   ```bash
   npm run command -- "notebooklm-response-intelligence-help"
   ```
-* Compile executive summary index:
+* Extract workflows from latest response:
   ```bash
-  npm run command -- "notebooklm-response-intelligence process-latest"
+  npm run command -- "notebooklm-response-intelligence workflows"
   ```
 * Map citations and support confidence:
   ```bash
@@ -1092,21 +1092,25 @@ The **Live Response Intelligence Processor** is an offline mapping layer that in
   ```bash
   npm run command -- "notebooklm-response-intelligence weak-claims"
   ```
-* Extract structured workflow cards:
+* Compile OS module implementation recommendations:
   ```bash
-  npm run command -- "notebooklm-response-intelligence workflow-cards"
+  npm run command -- "notebooklm-response-intelligence module-recommendations"
   ```
-* Compile OS module implementation suggestion cards:
+* Generate prompt pack ideas:
   ```bash
-  npm run command -- "notebooklm-response-intelligence os-modules"
+  npm run command -- "notebooklm-response-intelligence prompt-packs"
   ```
 * Assemble staged Obsidian ingestion note:
   ```bash
   npm run command -- "notebooklm-response-intelligence obsidian-note"
   ```
+* Generate response intelligence summary:
+  ```bash
+  npm run command -- "notebooklm-response-intelligence summary"
+  ```
 * Run all intelligence processors in batch:
   ```bash
-  npm run command -- "notebooklm-response-intelligence full"
+  npm run command -- "notebooklm-response-intelligence all"
   ```
 * Print review status audit log summary:
   ```bash
@@ -1558,9 +1562,129 @@ The **Voice Loop Dashboard & Human Confirmation UI** provides central operators 
 
 ---
 
----
+## 🧭 Phase N5G: Local Voice Session Recorder
+
+The **Local Voice Session Recorder** handles offline session audio recording, metadata tracking, and ASR staging queues under strict local constraints.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Ingestion Gate:** Background listening or always-on microphone streaming is completely blocked.
+2. **Double Recording Block:** The recorder creates a local lockfile (`recording.pid`) during capture to prevent overlapping recording processes.
+3. **Exact-Name Routing Gate:** CLI triggers require exact naming (`narrator-voice-session-recorder`).
+
+### 💻 Command Examples
+* Show help menu:
+  ```bash
+  npm run command -- "narrator-voice-session-recorder-help"
+  ```
+* Check session recorder status:
+  ```bash
+  npm run command -- "narrator-voice-session-recorder status"
+  ```
+* Start a new recording session:
+  ```bash
+  npm run command -- "narrator-voice-session-recorder start-session <SESSION_NAME>"
+  ```
+* Stop the active recording session:
+  ```bash
+  npm run command -- "narrator-voice-session-recorder stop-session"
+  ```
+* Stage a recording for ASR:
+  ```bash
+  npm run command -- "narrator-voice-session-recorder stage-for-asr <SESSION_ID>"
+  ```
 
 ---
+
+## 🧭 Phase N5H: Voice Session to ASR Pipeline Orchestrator
+
+The **Voice Session to ASR Pipeline Orchestrator** connects completed voice recordings to Whisper offline transcription, staging packet validation, and operator approval flows.
+
+### 🛡️ Safety & Execution Rules
+1. **Approval Boundaries:** The orchestrator stops at ASR approval; actual command executions are strictly bypassed and handled downstream.
+2. **Duplicate Dispatch Lock:** Duplicate copies to the ASR queue are blocked via checksum or path uniqueness locks.
+3. **Exact-Name Gating:** Fuzzy naming patterns or shortcuts are blocked at execution boundaries.
+
+### 💻 Command Examples
+* View orchestrator help:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator-help"
+  ```
+* View queue states and metrics:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator status"
+  ```
+* Dispatch a session to ASR:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator dispatch-asr <SESSION_ID>"
+  ```
+* Run transcription delegator:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator transcribe-session <SESSION_ID>"
+  ```
+* Stage transcript as VNP command:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator stage-transcript <SESSION_ID>"
+  ```
+* Approve command packet:
+  ```bash
+  npm run command -- "narrator-voice-asr-orchestrator approve-session-command <SESSION_ID>"
+  ```
+
+---
+
+## 🧭 Phase N5I: Voice Command Lifecycle Audit Timeline
+
+The **Voice Command Lifecycle Auditor** indexes files, metadata, and log logs to trace each voice command lifecycle from microphone recording ingestion to Whisper transcription, staging, approval, and execution status.
+
+### 🛡️ Safety & Execution Rules
+1. **Read-First Auditor:** Purely read-only; does not write or modify source artifacts.
+2. **No Command Execution:** The auditor contains no script execution routes.
+3. **Anomaly Alerts:** Automatically parses and flags blocked fuzzy attempts, blocked injections, or duplicate dispatches.
+
+### 💻 Command Examples
+* View lifecycle audit help:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit-help"
+  ```
+* Show auditor status and monitored paths:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit status"
+  ```
+* Scan pipeline directories and rebuild events cache:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit scan-events"
+  ```
+* Display timeline transition graph for a session:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit timeline <SESSION_ID>"
+  ```
+* Display overview mapping table of all session states:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit lifecycle-map"
+  ```
+* List safety warnings and blocked actions:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit safety-events"
+  ```
+* List successful executions:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit execution-events"
+  ```
+* List fuzzy routing blocks:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit blocked-events"
+  ```
+* Export latest session report:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit export-latest"
+  ```
+* Compile global audit summary:
+  ```bash
+  npm run command -- "narrator-voice-lifecycle-audit audit-summary"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -1598,7 +1722,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
   ```
 * Run all processors sequentially:
   ```bash
-  npm run command -- "notebooklm-response-intelligence full"
+  npm run command -- "notebooklm-response-intelligence all"
   ```
 * Print processor file path status summaries:
   ```bash
@@ -1674,7 +1798,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
   ```
 * Run all processors sequentially:
   ```bash
-  npm run command -- "notebooklm-response-intelligence full"
+  npm run command -- "notebooklm-response-intelligence all"
   ```
 * Print processor file path status summaries:
   ```bash
@@ -1882,8 +2006,42 @@ The **Offline Local TTS Audio Synthesizer Scaffold** prepares Piper-style local 
 
 ---
 
+## 🧭 Phase 11T: Offline TTS Model Readiness Gate
+
+The **Offline TTS Model Readiness Gate** enforces strict verification checks to audit local voice model manual placements, matching configuration profiles, environment variables, and safety checklist records before any future voice compilation synthesis is enabled.
+
+### 🛡️ Safety & Execution Rules
+1. **Model Gate-Only Verification:** Validates local directories, voice ONNX/JSON pairs, and override flags. No Piper compilation process is spawned.
+2. **No Audio Generation:** Real audio compiling and wave file creation are blocked.
+3. **No Automatic Model Downloads:** System does not perform remote HTTP/HTTPS queries to download models.
+4. **No External APIs:** Synthesis requests to cloud providers are completely disabled.
+
+### 💻 Command Examples
+* View model gate help menu:
+  ```bash
+  npm run command -- "tts-model-gate-help"
+  ```
+* Run model directory scan and configuration check:
+  ```bash
+  npm run command -- "tts-model-gate check"
+  ```
+* Compile model files checklist:
+  ```bash
+  npm run command -- "tts-model-gate checklist"
+  ```
+* Compile manual enable instructions:
+  ```bash
+  npm run command -- "tts-model-gate manual-enable"
+  ```
+* Check model readiness status:
+  ```bash
+  npm run command -- "tts-model-gate status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11T: Local Voice Session Recorder**
+* **Phase 11U: Local Voice Session Recorder**
   - Construct a local offline voice session recorder that records microphone inputs, stores raw voice clips, and logs sessions safely for speech recognition audits.
 
 

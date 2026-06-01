@@ -353,13 +353,19 @@
 - [x] Phase 11R: Generate TTS risk report
 - [x] Phase 11R: Review blockers
 - [x] Phase 11R: Prepare offline TTS synthesis only after validator passes
-- [ ] Phase 11S: Build Offline TTS Synthesizer Scaffold
-- [ ] Phase 11S: Generate TTS engine config report
-- [ ] Phase 11S: Run model readiness check
-- [ ] Phase 11S: Run synthesis dry-run
-- [ ] Phase 11S: Generate audio output manifest
-- [ ] Phase 11S: Confirm no audio generation occurs
-- [ ] Phase 11S: Prepare real offline synthesis only after model files are placed manually
+- [x] Phase 11S: Build Offline TTS Synthesizer Scaffold
+- [x] Phase 11S: Generate TTS engine config report
+- [x] Phase 11S: Run model readiness check
+- [x] Phase 11S: Run synthesis dry-run
+- [x] Phase 11S: Generate audio output manifest
+- [x] Phase 11S: Confirm no audio generation occurs
+- [x] Phase 11S: Prepare real offline synthesis only after model files are placed manually
+- [ ] Phase 11T: Build Offline TTS Model Readiness Gate
+- [ ] Phase 11T: Run model readiness check
+- [ ] Phase 11T: Generate model file checklist
+- [ ] Phase 11T: Generate manual enable instructions
+- [ ] Phase 11T: Confirm no audio generation occurs
+- [ ] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
