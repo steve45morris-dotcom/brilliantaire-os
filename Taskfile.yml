@@ -591,6 +591,16 @@ tasks:
     cmds:
       - npm run asr-model-manifest-preparation-gate-help
 
+  asr-checksum-manifest-validation-gate:
+    desc: "Run Offline ASR Checksum Manifest Validation Gate"
+    cmds:
+      - npm run asr-checksum-manifest-validation-gate -- {{.CLI_ARGS}}
+
+  asr-checksum-manifest-validation-gate-help:
+    desc: "Print Offline ASR Checksum Manifest Validation Gate help manual"
+    cmds:
+      - npm run asr-checksum-manifest-validation-gate-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -814,6 +824,16 @@ tasks:
     cmds:
       - npm run asr-model-manifest-preparation-gate-help
 
+  asr-checksum-manifest-validation-gate:
+    desc: "Run Offline ASR Checksum Manifest Validation Gate"
+    cmds:
+      - npm run asr-checksum-manifest-validation-gate -- {{.CLI_ARGS}}
+
+  asr-checksum-manifest-validation-gate-help:
+    desc: "Print Offline ASR Checksum Manifest Validation Gate help manual"
+    cmds:
+      - npm run asr-checksum-manifest-validation-gate-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -889,6 +909,17 @@ tasks:
     cmds:
       - npm run manual-delivery-handoff-help
 
+  delivery-archive-retention:
+    desc: "Briefing Delivery Archive & Retention Ledger CLI manager (status, scan-handoffs, inspect-handoff, archive-record, ledger-status, list-archive, verify-archive, retention-review, mark-retention-reviewed, export-ledger, latest, archive-summary, archive-log)"
+    cmds:
+      - npm run delivery-archive-retention -- {{.CLI_ARGS}}
+
+  delivery-archive-retention-help:
+    desc: "Print help menu for the delivery archive and retention ledger manager"
+    cmds:
+      - npm run delivery-archive-retention-help
+
+
 
 
   cleanup-gate:
@@ -930,6 +961,16 @@ tasks:
     desc: "Print help menu for local project registry append gate"
     cmds:
       - npm run project-registry-append-gate-help
+
+  project-registry-health-monitor:
+    desc: "Verify projects registry integrity, skipped candidates, and quarantine status"
+    cmds:
+      - npm run project-registry-health-monitor -- {{.CLI_ARGS}}
+
+  project-registry-health-monitor-help:
+    desc: "Print help menu for local projects registry health monitor"
+    cmds:
+      - npm run project-registry-health-monitor-help
 
   validate:
     desc: "Lint and run workspace checks"

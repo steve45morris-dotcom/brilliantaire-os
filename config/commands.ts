@@ -1882,6 +1882,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'delivery-archive-retention-help',
+    aliases: ['archive help', 'retention help'],
+    description: 'Print help menu for the delivery archive and retention ledger manager',
+    npmScript: 'delivery-archive-retention-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'delivery-archive-retention',
+    aliases: ['delivery archive', 'retention ledger'],
+    description: 'Briefing delivery archive and retention ledger manager (status, scan-handoffs, inspect-handoff, archive-record, ledger-status, list-archive, verify-archive, retention-review, mark-retention-reviewed, export-ledger, latest, archive-summary, archive-log)',
+    npmScript: 'delivery-archive-retention',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-dry-run-transcription-gate-help',
     aliases: ['asr dry run help', 'whisper dry run help'],
     description: 'Print help menu for the offline ASR dry-run transcription gate',
@@ -1919,6 +1941,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['asr manifest', 'whisper manifest'],
     description: 'Prepare offline ASR model placement structures, checksum templates, and validators',
     npmScript: 'asr-model-manifest-preparation-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-checksum-manifest-validation-gate-help',
+    aliases: ['asr checksum help', 'whisper checksum help'],
+    description: 'Print help menu for the offline ASR checksum manifest validation gate',
+    npmScript: 'asr-checksum-manifest-validation-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-checksum-manifest-validation-gate',
+    aliases: ['asr checksum', 'whisper checksum'],
+    description: 'Validate offline ASR model placement schemas, checksum details, and sizes',
+    npmScript: 'asr-checksum-manifest-validation-gate',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',
@@ -1965,6 +2009,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     npmScript: 'project-registry-append-gate',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'project-registry-health-monitor-help',
+    aliases: ['registry health help', 'project health help'],
+    description: 'Print help menu for the local projects registry health monitor',
+    npmScript: 'project-registry-health-monitor-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'project-registry-health-monitor',
+    aliases: ['registry health', 'project health'],
+    description: 'Verify projects registry integrity, skipped candidates, and quarantine status',
+    npmScript: 'project-registry-health-monitor',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
     outputType: 'files',
     enabled: true,
     requiresExactName: true

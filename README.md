@@ -2051,6 +2051,77 @@ The **Manual Delivery Checklist and Handoff Log** is a human verification gate. 
 
 ---
 
+## 🧭 Phase N5P: Delivery Archive and Retention Ledger
+
+The **Delivery Archive and Retention Ledger** system registers approved manual handoff records, builds a local archive index, traces chain of custody trails, verifies cryptographic file checksums over time, and generates retention policy warning audits without deleting files automatically.
+
+### 🛡️ Safety Boundaries & Gate Rules
+1. **Zero Auto-Deletion**: The archiving script compiles reviews and recommendations but must never delete any files. Deletions remain strictly manual-first.
+2. **Local Preservation**: Archived packages are recorded as metadata-first ledger items, preserving the original folder contents without alterations.
+3. **No Automatic Distribution**: Auto-send, auto-upload, and auto-publish configurations remain disabled to maintain system sovereignty.
+4. **Handoff Approval Enforce**: Packages are blocked from archiving unless they have passed the handoff checklist gate.
+
+### 💻 Command Examples
+* View archive manager help menu:
+  ```bash
+  npm run command -- "delivery-archive-retention-help"
+  ```
+* Check safety flags, approved handoffs, and archive counts:
+  ```bash
+  npm run command -- "delivery-archive-retention status"
+  ```
+* List approved handoff records available for archiving:
+  ```bash
+  npm run command -- "delivery-archive-retention scan-handoffs"
+  ```
+* Inspect approved handoff metadata and verify archive eligibility:
+  ```bash
+  npm run command -- "delivery-archive-retention inspect-handoff delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Ingest an approved handoff into the retention ledger:
+  ```bash
+  npm run command -- "delivery-archive-retention archive-record delivery_package_briefing_YYYY-MM-DD"
+  ```
+* View lifecycle status and custody history of an archived package:
+  ```bash
+  npm run command -- "delivery-archive-retention ledger-status delivery_package_briefing_YYYY-MM-DD"
+  ```
+* List all registered ledger records:
+  ```bash
+  npm run command -- "delivery-archive-retention list-archive"
+  ```
+* Verify manifest references and file checksums for an archive entry:
+  ```bash
+  npm run command -- "delivery-archive-retention verify-archive delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Scan for packages approaching or exceeding policy retention warning limits:
+  ```bash
+  npm run command -- "delivery-archive-retention retention-review"
+  ```
+* Log a manual retention extension audit review:
+  ```bash
+  npm run command -- "delivery-archive-retention mark-retention-reviewed delivery_package_briefing_YYYY-MM-DD --signer \"<NAME>\" --note \"<NOTE>\""
+  ```
+* Compile and write unified ledger data exports:
+  ```bash
+  npm run command -- "delivery-archive-retention export-ledger"
+  ```
+* Print the latest archive ledger entry:
+  ```bash
+  npm run command -- "delivery-archive-retention latest"
+  ```
+* Compile stats and generate archiving summary report:
+  ```bash
+  npm run command -- "delivery-archive-retention archive-summary"
+  ```
+* Display the last 20 events from the retention log:
+  ```bash
+  npm run command -- "delivery-archive-retention archive-log"
+  ```
+
+---
+
+
 
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
@@ -2747,3 +2818,42 @@ The **Staged Registry Appending Gate** provides a safe approved registry append 
   ```bash
   npm run command -- "project-registry-append-gate status"
   ```
+
+---
+
+## 🛡️ Phase 12E: Registry Health Monitor
+
+The **Registry Health Monitor** provides post-append registry verification, candidate review audits, and quarantine telemetry indicators without carrying out any modifications or deletions.
+
+### 🔒 Guardrails Summary
+1. **Read-Only Operations:** The script strictly audits, scans, and monitors without editing `PROJECTS.md`, deleting files, or moving folders.
+2. **Command Router Protection:** Explicit commands are routed through the Safe Command Router, ensuring execution permissions are respected.
+3. **No Dynamic Auto-Modifications:** Does not automatically repair or rewrite structure layout lines; errors are logged for manual resolution.
+4. **Permanent File Preservation:** Quarantined duplicates are kept for observation without deletion capabilities.
+
+### 💻 Command Examples
+* Print help menu:
+  ```bash
+  npm run command -- "project-registry-health-monitor-help"
+  ```
+* Audit PROJECTS.md matrix integrity:
+  ```bash
+  npm run command -- "project-registry-health-monitor verify-projects"
+  ```
+* Review skipped candidate profiles:
+  ```bash
+  npm run command -- "project-registry-health-monitor skipped-candidates"
+  ```
+* Monitor quarantine duplicate parameters:
+  ```bash
+  npm run command -- "project-registry-health-monitor quarantine-status"
+  ```
+* Generate unified health report:
+  ```bash
+  npm run command -- "project-registry-health-monitor health-report"
+  ```
+* Print health status summary console dashboard:
+  ```bash
+  npm run command -- "project-registry-health-monitor status"
+  ```
+

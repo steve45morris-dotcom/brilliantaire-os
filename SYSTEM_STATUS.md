@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N5O: Manual Delivery Checklist and Handoff Log — COMPLETE
+- **Current Phase:** Phase N5P: Delivery Archive and Retention Ledger — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -72,6 +72,7 @@
 - **Offline ASR Model Acquisition Guide and Checksum Gate (Phase 11Y):** Local assistant compiling manual staging guides, model directory inventory reports, Node crypto SHA256 validation checks, and readiness gate checks under strict safety rules.
 - **Offline ASR Dry-Run Transcription Readiness Gate (Phase 11Z):** Offline dry-run gate compiling model presence validation state, SHA256 checksum validation, approved audio input discovery, simulated transcription routing table, and verification manifest outputs under strict offline safety constraints.
 - **ASR Model Manifest Preparation Gate (Phase 11Z-B):** Safe manifest preparation gate compiling local model directory guide, offline audio inputs configuration checklist, template checklist mapping state, and dry-run preparation status reports under strict safety rules.
+- **ASR Checksum Manifest Validation Gate (Phase 11Z-C):** Cryptographic manifest validation gate cross-auditing root and official checksum manifests, checking required properties, verifying local model files presence, performing Node crypto SHA256 matches, and outputting validation report logs and summaries.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
@@ -91,12 +92,15 @@
 - **Briefing Audio Playback Review Gate (Phase N5M):** Safe local briefing audio playback review gate (`scripts/briefing-audio-playback-review.ts`) enqueuing, inspecting, and manual operator approving/rejecting rendered daily briefing audios under strict no-autoplay and offline restrictions.
 - **Briefing Delivery Package Exporter (Phase N5N):** Safe local exporter (`scripts/briefing-delivery-package-exporter.ts`) that packages approved briefing audio, source report metadata, review status, transcript summary, and delivery notes into a local delivery folder under strict local-only safety gates.
 - **Manual Delivery Checklist and Handoff Log (Phase N5O):** Safe local human checklist validation, SHA256 integrity verification, and signed handoff logging system (`scripts/manual-delivery-handoff.ts`) for briefing delivery packages before manual release.
+- **Delivery Archive and Retention Ledger (Phase N5P):** Safe local archiving engine, SHA256 integrity auditing, and manual retention reviews database ledger (`scripts/delivery-archive-retention.ts`) for distribution custody tracking.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 - **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.
 - **Approved Quarantine Execution Gate (Phase 12B):** Safe execution engine (`scripts/quarantine-executor.ts`) performing approved move actions, integrity checksum validations, quarantine logs tracking, and rollback restore mapping generation under the Workflow Auditor.
 - **Project Registry Drift Review (Phase 12C):** Safe offline project registry review engine (`scripts/project-registry-review.ts`) scanning unregistered local directories, scoring codebase importance, and staging candidate entries for manual PROJECTS.md updates under the Workflow Auditor.
 - **Staged Registry Appending Gate (Phase 12D):** Safe offline project registry append engine (`scripts/project-registry-append-gate.ts`) validating safety duplicates, generating local backups, enforcing confirm switches, and appending approved candidates to PROJECTS.md under the Workflow Auditor.
+- **Registry Health Monitor (Phase 12E):** Safe offline post-append health monitor (`scripts/project-registry-health-monitor.ts`) verifying PROJECTS.md matrix row structures, duplicate paths, skipped candidates, and quarantine file parameters under the Workflow Auditor.
+
 
 
 

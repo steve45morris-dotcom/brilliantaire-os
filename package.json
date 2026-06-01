@@ -126,6 +126,8 @@
     "asr-dry-run-transcription-gate-help": "tsx scripts/asr-dry-run-transcription-gate-help.ts",
     "asr-model-manifest-preparation-gate": "tsx scripts/asr-model-manifest-preparation-gate.ts",
     "asr-model-manifest-preparation-gate-help": "tsx scripts/asr-model-manifest-preparation-gate-help.ts",
+    "asr-checksum-manifest-validation-gate": "tsx scripts/asr-checksum-manifest-validation-gate.ts",
+    "asr-checksum-manifest-validation-gate-help": "tsx scripts/asr-checksum-manifest-validation-gate-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -182,10 +184,14 @@
     "briefing-delivery-package-exporter-help": "tsx scripts/briefing-delivery-package-exporter-help.ts",
     "manual-delivery-handoff": "tsx scripts/manual-delivery-handoff.ts",
     "manual-delivery-handoff-help": "tsx scripts/manual-delivery-handoff-help.ts",
+    "delivery-archive-retention": "tsx scripts/delivery-archive-retention.ts",
+    "delivery-archive-retention-help": "tsx scripts/delivery-archive-retention-help.ts",
     "project-registry-review": "tsx scripts/project-registry-review.ts",
     "project-registry-review-help": "tsx scripts/project-registry-review-help.ts",
     "project-registry-append-gate": "tsx scripts/project-registry-append-gate.ts",
-    "project-registry-append-gate-help": "tsx scripts/project-registry-append-gate-help.ts"
+    "project-registry-append-gate-help": "tsx scripts/project-registry-append-gate-help.ts",
+    "project-registry-health-monitor": "tsx scripts/project-registry-health-monitor.ts",
+    "project-registry-health-monitor-help": "tsx scripts/project-registry-health-monitor-help.ts"
   },
   "keywords": [
     "antigravity",
