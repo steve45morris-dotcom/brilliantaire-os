@@ -1994,6 +1994,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'voice-ops-post-freeze-health-help',
+    aliases: ['voice health help', 'post-freeze health help', 'voice-ops post-freeze health help'],
+    description: 'Print help menu for the voice ops post-freeze health monitor',
+    npmScript: 'voice-ops-post-freeze-health-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-post-freeze-health',
+    aliases: ['voice health', 'post-freeze health', 'voice-ops post-freeze health'],
+    description: 'Voice Ops Post-Freeze Health Monitor manager (status, scan-freeze, verify-checksums, registry-health, dashboard-health, safety-health, drift-report, run-health-check, latest, list-reports, health-summary, health-log)',
+    npmScript: 'voice-ops-post-freeze-health',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-dry-run-transcription-gate-help',
     aliases: ['asr dry run help', 'whisper dry run help'],
     description: 'Print help menu for the offline ASR dry-run transcription gate',
@@ -2141,6 +2163,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['asr preflight', 'whisper preflight'],
     description: 'Perform manual asset presence preflight check for offline ASR models and audio inputs',
     npmScript: 'asr-manual-asset-presence-preflight',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-revalidation-pass-help',
+    aliases: ['asr revalidation help', 'whisper revalidation help'],
+    description: 'Print help menu for the offline ASR manual asset revalidation pass',
+    npmScript: 'asr-manual-asset-revalidation-pass-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-revalidation-pass',
+    aliases: ['asr revalidation', 'whisper revalidation'],
+    description: 'Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates',
+    npmScript: 'asr-manual-asset-revalidation-pass',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',

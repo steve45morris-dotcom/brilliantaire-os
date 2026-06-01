@@ -174,7 +174,8 @@
 - [x] Phase N5P: Delivery Archive and Retention Ledger
 - [x] Phase N5Q: Voice Ops Release Closure Report
 - [x] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
-- [ ] Phase N5S: Voice Ops Post-Freeze Health Monitor
+- [x] Phase N5S: Voice Ops Post-Freeze Health Monitor
+- [ ] Phase N5T: Voice Ops Maintenance Mode Scheduler
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -388,14 +389,21 @@
 - [x] Phase 11Y: Generate ASR model readiness gate
 - [x] Phase 11Y: Confirm no transcription occurs
 - [x] Phase 11Y: Prepare ASR execution only after model and manual enable pass
-- [x] Phase 11Z: Build Offline ASR Dry-Run Transcription Readiness Gate
-- [x] Phase 11Z: Create dry-run transcription gate configuration
-- [x] Phase 11Z: Create main dry-run validator script
-- [x] Phase 11Z: Create help utility
-- [x] Phase 11Z: Generate markdown report templates
-- [x] Phase 11Z: Generate dry-run reports and manifest outputs
-- [x] Phase 11Z: Register command routing with exact-name constraint and alias blocking
-- [x] Phase 11Z: Confirm zero transcription execution and fail-closed readiness state
+- [x] Phase 11Z: Build Manual Audio Drop Verification
+- [x] Phase 11Z: Generate audio drop inventory
+- [x] Phase 11Z: Match audio to session metadata
+- [x] Phase 11Z: Run quarantine check
+- [x] Phase 11Z: Generate cleanup report
+- [x] Phase 11Z: Confirm no ASR execution occurs
+- [x] Phase 11Z: Prepare ASR execution only after model placement and audio cleanup pass
+- [x] Phase 11Z-Alt: Build Offline ASR Dry-Run Transcription Readiness Gate
+- [x] Phase 11Z-Alt: Create dry-run transcription gate configuration
+- [x] Phase 11Z-Alt: Create main dry-run validator script
+- [x] Phase 11Z-Alt: Create help utility
+- [x] Phase 11Z-Alt: Generate markdown report templates
+- [x] Phase 11Z-Alt: Generate dry-run reports and manifest outputs
+- [x] Phase 11Z-Alt: Register command routing with exact-name constraint and alias blocking
+- [x] Phase 11Z-Alt: Confirm zero transcription execution and fail-closed readiness state
 - [x] Phase 11Z-B: Build ASR Model Manifest Preparation Gate
 - [x] Phase 11Z-B: Create manifest preparation gate configuration
 - [x] Phase 11Z-B: Create main preparation script
@@ -451,6 +459,16 @@
 - [x] Phase 11Z-F2: Implement preflight check logic for Whisper binaries and staging folders
 - [x] Phase 11Z-F2: Enforce requiresExactName constraint and verify alias command rejection
 - [x] Phase 11Z-F2: Adhere to strict safety rules (no ASR execution, no audio transcription, no Whisper invocations, no model downloads, no external API calls, and no file mutations)
+- [x] Phase 11Z-G: Build ASR Manual Asset Revalidation Pass
+- [x] Phase 11Z-G: Create manual asset revalidation pass configuration config/asr-manual-asset-revalidation-pass.ts
+- [x] Phase 11Z-G: Create main revalidation script scripts/asr-manual-asset-revalidation-pass.ts
+- [x] Phase 11Z-G: Create revalidation help utility scripts/asr-manual-asset-revalidation-pass-help.ts
+- [x] Phase 11Z-G: Create markdown templates for report, model result, audio result, readiness result, blockers, and summary
+- [x] Phase 11Z-G: Generate outputs under outputs/asr_revalidation/ (7 markdown files and 1 json manifest)
+- [x] Phase 11Z-G: Implement revalidation check logic that reads previous manifests and audits physical files/folders
+- [x] Phase 11Z-G: Enforce requiresExactName constraint and verify alias command rejection
+- [x] Phase 11Z-G: Adhere to strict safety rules (no ASR, no audio transcription, no Whisper invocations, no model downloads, no external API calls, and no file mutations)
+
 
 
 ## Do Next
@@ -524,9 +542,15 @@
 - [x] Phase 12C: Build 12 R&D gap hunter templates under templates/
 - [x] Phase 12C: Register command routes in config/commands.ts and package.json
 - [x] Phase 12C: Verify alias block routing gates and command executes
-- [ ] Phase 12D: Grinders Keep Adaptive Learning Deepener
-- [ ] Phase 12D: Deepen Adaptive Learning Loop to compare repeated Gap Hunter results
-- [ ] Phase 12D: Detect recurring system behavior and suggest habits without executing changes
+- [x] Phase 12D: Grinders Keep Adaptive Learning Deepener
+- [x] Phase 12D: Build config/grinders-keep-adaptive-learning-deepener.ts
+- [x] Phase 12D: Build main deepener script grinders-keep-adaptive-learning-deepener.ts
+- [x] Phase 12D: Build help utility script grinders-keep-adaptive-learning-deepener-help.ts
+- [x] Phase 12D: Build 10 R&D adaptive deepener templates under templates/
+- [x] Phase 12D: Register commands in config/commands.ts and package.json
+- [x] Phase 12D: Verify alias block router gates and command execution
+- [ ] Phase 12E: Grinders Keep Content Drafting Lab Deepener
+- [ ] Phase 12E: Deepen Smart Content Drafting Layer to convert verified ideas and monetization moves into review-ready content packs
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

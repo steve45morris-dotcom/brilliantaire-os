@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 12D: Grinders Keep Adaptive Learning Deepener — COMPLETE
+- **Current Phase:** Phase N5S: Voice Ops Post-Freeze Health Monitor — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -70,13 +70,15 @@
 - **Offline Voice Session Recorder (Phase 11W):** Local scaffold initializing metadata sessions, manual drop check reports, recording inventory checks, and transcription staging records under strict scaffold-only constraints.
 - **Local Offline ASR Orchestrator (Phase 11X):** Local scaffold validating ASR readiness, preparing job packets, simulating dry-run commands, and staging transcript records under strict offline constraints.
 - **Offline ASR Model Acquisition Guide and Checksum Gate (Phase 11Y):** Local assistant compiling manual staging guides, model directory inventory reports, Node crypto SHA256 validation checks, and readiness gate checks under strict safety rules.
-- **Offline ASR Dry-Run Transcription Readiness Gate (Phase 11Z):** Offline dry-run gate compiling model presence validation state, SHA256 checksum validation, approved audio input discovery, simulated transcription routing table, and verification manifest outputs under strict offline safety constraints.
+- **Manual Audio Drop Verification and Cleanup (Phase 11Z):** Local manual audio drop verification layer validating dropped recordings, mapping sessions, and quarantining unsupported items safely under strict offline constraints.
+- **Offline ASR Dry-Run Transcription Readiness Gate (Phase 11Z-Alt):** Offline dry-run gate compiling model presence validation state, SHA256 checksum validation, approved audio input discovery, simulated transcription routing table, and verification manifest outputs under strict offline safety constraints.
 - **ASR Model Manifest Preparation Gate (Phase 11Z-B):** Safe manifest preparation gate compiling local model directory guide, offline audio inputs configuration checklist, template checklist mapping state, and dry-run preparation status reports under strict safety rules.
 - **ASR Checksum Manifest Validation Gate (Phase 11Z-C):** Cryptographic manifest validation gate cross-auditing root and official checksum manifests, checking required properties, verifying local model files presence, performing Node crypto SHA256 matches, and outputting validation report logs and summaries.
 - **ASR Audio Input Staging Validation Gate (Phase 11Z-D):** Safe offline local audio validation gate compiling folder inspection states, extension checks (.wav, .mp3, .m4a, .flac, .ogg), path traversal checks, size verification, model trust status resolution, and simulated transcription route previews under strict offline safety constraints without audio transcription or model downloads.
 - **ASR Readiness Join Gate (Phase 11Z-E):** Safe offline local ASR readiness join gate script integrating model checksum status (Phase 11Z-C) and audio staging status (Phase 11Z-D) into a unified JSON manifest and generating blocker checklists, route eligibility maps, and detail reports under strict safety rules.
 - **ASR Manual Asset Intake Checklist (Phase 11Z-F):** Safe offline local ASR manual asset intake checklist script generating model placement guides, checksum configurations, audio staging instructions, blocker resolution maps, and validation rerun sequence checklists under strict safety rules.
 - **ASR Manual Asset Presence Preflight (Phase 11Z-F2):** Lightweight offline preflight gate verifying the physical existence and read accessibility of staged Whisper binaries and eligible audio files, ensuring all staging prerequisites are met before attempting full revalidation.
+- **ASR Manual Asset Revalidation Pass (Phase 11Z-G):** Offline revalidation pass compiler aggregating and consolidating status from prior gates, determining unified pipeline readiness, and outputting JSON manifests and templates under dry-run constraints.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
@@ -99,6 +101,7 @@
 - **Delivery Archive and Retention Ledger (Phase N5P):** Safe local archiving engine, SHA256 integrity auditing, and manual retention reviews database ledger (`scripts/delivery-archive-retention.ts`) for distribution custody tracking.
 - **Voice Ops Release Closure Report (Phase N5Q):** Safe read-only rollup, artifact verification, safety auditing, and release report generation engine (`scripts/voice-ops-release-closure.ts`) compiling the complete N5A-N5P voice loop.
 - **Voice Ops Freeze Tag and Recovery Snapshot (Phase N5R):** Safe local freeze tagging, recovery snapshot compiler, SHA256 checksum manifest exporter, and recovery checklist generator.
+- **Voice Ops Post-Freeze Health Monitor (Phase N5S):** Safe read-only diagnostics checker validating snapshot tags, file checksum hashes, command registries, Vite dashboards, and safety post-freeze configurations.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 - **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.
@@ -126,7 +129,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 12E: Grinders Keep Content Drafting Lab Deepener**
+- **Phase N5T: Voice Ops Maintenance Mode Scheduler**
 
 ## Obsidian Intelligence Snapshot
 

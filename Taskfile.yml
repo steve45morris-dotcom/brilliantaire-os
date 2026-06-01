@@ -651,6 +651,16 @@ tasks:
     cmds:
       - npm run asr-manual-asset-presence-preflight-help
 
+  asr-manual-asset-revalidation-pass:
+    desc: "Run Offline ASR Manual Asset Revalidation Pass"
+    cmds:
+      - npm run asr-manual-asset-revalidation-pass -- {{.CLI_ARGS}}
+
+  asr-manual-asset-revalidation-pass-help:
+    desc: "Print Offline ASR Manual Asset Revalidation Pass help manual"
+    cmds:
+      - npm run asr-manual-asset-revalidation-pass-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -934,6 +944,16 @@ tasks:
     cmds:
       - npm run asr-manual-asset-presence-preflight-help
 
+  asr-manual-asset-revalidation-pass:
+    desc: "Run Offline ASR Manual Asset Revalidation Pass"
+    cmds:
+      - npm run asr-manual-asset-revalidation-pass -- {{.CLI_ARGS}}
+
+  asr-manual-asset-revalidation-pass-help:
+    desc: "Print Offline ASR Manual Asset Revalidation Pass help manual"
+    cmds:
+      - npm run asr-manual-asset-revalidation-pass-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -1038,6 +1058,16 @@ tasks:
     desc: "Print help menu for the voice ops freeze tag and recovery snapshot manager"
     cmds:
       - npm run voice-ops-freeze-snapshot-help
+
+  voice-ops-post-freeze-health:
+    desc: "Voice Ops Post-Freeze Health Monitor (Phase N5S)"
+    cmds:
+      - npm run voice-ops-post-freeze-health -- {{.CLI_ARGS}}
+
+  voice-ops-post-freeze-health-help:
+    desc: "Print help menu for the voice ops post-freeze health monitor"
+    cmds:
+      - npm run voice-ops-post-freeze-health-help
 
 
 

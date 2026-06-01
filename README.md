@@ -2233,6 +2233,66 @@ The **Voice Ops Freeze Tag and Recovery Snapshot** system captures the current s
 
 ---
 
+## 🧭 Phase N5S: Voice Ops Post-Freeze Health Monitor
+
+The **Voice Ops Post-Freeze Health Monitor** checks whether the frozen stable Voice Ops release remains intact and functional. It monitors checksums, drift, exact-name command registries, Vite dashboard integrations, and safety configurations.
+
+### CLI Command List
+* Show help menu:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health-help"
+  ```
+* Show health status, safety flags, and latest diagnostic verdict:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health status"
+  ```
+* Scan freeze snapshot files presence:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health scan-freeze"
+  ```
+* Audit reference checksum matches for codebase file drift:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health verify-checksums"
+  ```
+* Verify npm scripts, Taskfile tasks, and exact-name configs:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health registry-health"
+  ```
+* Check dashboard bundle index, telemetry dataset, and panels:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health dashboard-health"
+  ```
+* Verify safety config flags and no-restore/no-execute locks:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health safety-health"
+  ```
+* Generate a detailed drift analysis report:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health drift-report"
+  ```
+* Run all health diagnostics checks and save the full markdown report:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health run-health-check"
+  ```
+* Print path of the latest health report:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health latest"
+  ```
+* List registered health diagnostic reports:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health list-reports"
+  ```
+* Print latest health report summary:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health health-summary"
+  ```
+* View recent health monitor logged events:
+  ```bash
+  npm run command -- "voice-ops-post-freeze-health health-log"
+  ```
+
+---
+
 
 
 
@@ -2737,7 +2797,44 @@ The **ASR Model Gate** provides a manual model acquisition, inventory reporting,
 
 ---
 
-## 🧭 Phase 11Z: Offline ASR Dry-Run Transcription Readiness Gate
+## 🧭 Phase 11Z: Manual Audio Drop Verification and Cleanup
+
+The **Manual Audio Drop Verification** layer provides a local validation suite for dropped audio command files. It inventories audio sizes and formats, maps files to voice session metadata, quarantines unsupported/oversized items, and compiles cleanup status reports prior to downstream staging.
+
+### 🛡️ Safety & Execution Rules
+1. **Validation-Only Focus:** Waveform transcription, local ASR/Whisper libraries, and external API requests are completely bypassed.
+2. **Preservation Guarantee:** Original files are never deleted or renamed automatically (`ALLOW_AUDIO_DELETION = false`).
+3. **Quarantine Isolation:** Unsupported format files and oversized payloads exceeding 100MB are safely copied to a dedicated quarantine directory.
+
+### 💻 Command Examples
+* Print help menu:
+  ```bash
+  npm run command -- "audio-drop-verification-help"
+  ```
+* Scan manual drops directory:
+  ```bash
+  npm run command -- "audio-drop-verification inventory"
+  ```
+* Match audio drops to session metadata:
+  ```bash
+  npm run command -- "audio-drop-verification match-sessions"
+  ```
+* Perform quarantine isolation:
+  ```bash
+  npm run command -- "audio-drop-verification quarantine-check"
+  ```
+* Compile cleanup report:
+  ```bash
+  npm run command -- "audio-drop-verification cleanup-report"
+  ```
+* View switch status dashboard:
+  ```bash
+  npm run command -- "audio-drop-verification status"
+  ```
+
+---
+
+## 🧭 Phase 11Z-Alt: Offline ASR Dry-Run Transcription Readiness Gate
 
 The **Offline ASR Dry-Run Transcription Readiness Gate** verifies whether the local ASR environment is ready for offline transcription by auditing model integrity (sizes, extensions, SHA256 hashes), inspecting approved local audio inputs, generating simulated routing tables, and outputting dry-run manifests without invoking Whisper models or translating waveforms.
 
@@ -2881,12 +2978,31 @@ The **ASR Manual Asset Presence Preflight** acts as a lightweight preflight gate
   npm run command -- "asr-manual-asset-presence-preflight"
   ```
 
+## 🧭 Phase 11Z-G: ASR Manual Asset Revalidation Pass
+
+The **ASR Manual Asset Revalidation Pass** aggregates and consolidates outputs from prior offline ASR validation gates (checksum manifest, audio staging, readiness join, and presence preflight) to determine if the pipeline is structurally ready to transition into a dry-run offline state.
+
+### 🛡️ Safety & Execution Rules
+1. **Aggregator Only:** Reads gate output manifests and disk configurations without performing transcription, model downloads, or external network requests.
+2. **Safety Defaults:** Automatically defaults to a blocked status if any binaries are missing, checksum matches are zero, or manifest files are incomplete.
+3. **No Execution:** Never compiles or routes actual transcription requests in this phase.
+
+### 💻 Command Examples
+* View revalidation pass help menu:
+  ```bash
+  npm run command -- "asr-manual-asset-revalidation-pass-help"
+  ```
+* Run manual asset revalidation pass:
+  ```bash
+  npm run command -- "asr-manual-asset-revalidation-pass"
+  ```
+
 ---
 
 ## 🚀 Next Phase Recommendation
 
-* **Phase 11Z-G: Manual Asset Revalidation Pass**
-  - After the preflight status transitions to `ready_for_revalidation`, rerun checksum, audio staging, and readiness join gates, then produce a consolidated revalidation report.
+* **Phase 12A: Offline ASR Execution Approval Switch**
+  - After revalidation pass status transitions to `dry_run_ready`, configure a human-controlled execution approval switch for selected audio transcription routes.
 
 ---
 

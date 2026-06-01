@@ -150,6 +150,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-intake-checklist` | `asr intake`, `whisper intake` | Build Operator | Medium | Yes | Generate manual asset intake checklists, manifest instructions, and validation rerun sequences. |
 | `asr-manual-asset-presence-preflight-help` | `asr preflight help`, `whisper preflight help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset presence preflight check. |
 | `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
+| `asr-manual-asset-revalidation-pass-help` | `asr revalidation help`, `whisper revalidation help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset revalidation pass. |
+| `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -206,6 +208,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `offline-tts-dry-run-renderer` | `tts dry run`, `dry run renderer` | Workflow Auditor | Medium | Yes | Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs. |
 | `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help command menu for offline ASR model gate and checksum gate. |
 | `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Manual acquisition, verification inventory, and checksum gate for offline Whisper models. |
+| `audio-drop-verification-help` | `audio drop help`, `recording check help` | Build Operator | Low | No | Print help menu for offline audio drop verification and cleanup safety limits. |
+| `audio-drop-verification` | `audio drop`, `recording check` | Build Operator | Medium | Yes | Validate manually dropped audio files, match sessions, and quarantine unsupported items. |
 | `asr-dry-run-transcription-gate-help` | `asr dry run help`, `whisper dry run help` | Build Operator | Low | No | Print help command menu for offline ASR dry-run transcription gate. |
 | `asr-dry-run-transcription-gate` | `asr dry run`, `whisper dry run` | Build Operator | Medium | Yes | Verify local model presence, inspect staged audio, and map simulated routes without executing transcription. |
 | `asr-model-manifest-preparation-gate-help` | `asr manifest help`, `whisper manifest help` | Build Operator | Low | No | Print help command menu for offline ASR model manifest preparation gate. |
@@ -220,6 +224,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-intake-checklist` | `asr intake`, `whisper intake` | Build Operator | Medium | Yes | Generate manual asset intake checklists, manifest instructions, and validation rerun sequences. |
 | `asr-manual-asset-presence-preflight-help` | `asr preflight help`, `whisper preflight help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset presence preflight check. |
 | `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
+| `asr-manual-asset-revalidation-pass-help` | `asr revalidation help`, `whisper revalidation help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset revalidation pass. |
+| `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -230,6 +236,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-ops-release-closure` | `voice release closure`, `release closure` | Workflow Auditor | Medium | Yes | Compile completed phases (N5A - N5P), index artifacts, audit safety, and generate final release closure report. |
 | `voice-ops-freeze-snapshot-help` | `voice freeze snapshot help`, `freeze snapshot help`, `voice-ops freeze snapshot help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops freeze tag and recovery snapshot manager. |
 | `voice-ops-freeze-snapshot` | `voice freeze snapshot`, `freeze snapshot`, `voice-ops freeze snapshot` | Workflow Auditor | Medium | Yes | Capture stable voice ops release state, export JSON/MD manifests, generate recovery checklist, and verify integrity. |
+| `voice-ops-post-freeze-health-help` | `voice health help`, `post-freeze health help`, `voice-ops post-freeze health help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops post-freeze health monitor. |
+| `voice-ops-post-freeze-health` | `voice health`, `post-freeze health`, `voice-ops post-freeze health` | Workflow Auditor | Medium | Yes | Monitor the health of the frozen stable release (status, scan-freeze, verify-checksums, registry-health, dashboard-health, safety-health, drift-report, run-health-check, latest, list-reports, health-summary, health-log). |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |

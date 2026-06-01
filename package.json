@@ -139,6 +139,8 @@
     "asr-manual-asset-intake-checklist-help": "tsx scripts/asr-manual-asset-intake-checklist-help.ts",
     "asr-manual-asset-presence-preflight": "tsx scripts/asr-manual-asset-presence-preflight.ts",
     "asr-manual-asset-presence-preflight-help": "tsx scripts/asr-manual-asset-presence-preflight-help.ts",
+    "asr-manual-asset-revalidation-pass": "tsx scripts/asr-manual-asset-revalidation-pass.ts",
+    "asr-manual-asset-revalidation-pass-help": "tsx scripts/asr-manual-asset-revalidation-pass-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -220,7 +222,9 @@
     "grinders-keep-adaptive-learning-deepener": "tsx scripts/grinders-keep-adaptive-learning-deepener.ts",
     "grinders-keep-adaptive-learning-deepener-help": "tsx scripts/grinders-keep-adaptive-learning-deepener-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
-    "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts"
+    "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
+    "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",
+    "voice-ops-post-freeze-health-help": "tsx scripts/voice-ops-post-freeze-health-help.ts"
   },
   "keywords": [
     "antigravity",
