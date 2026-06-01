@@ -285,9 +285,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `maintenance-check` | `maintenance`, `daily maintenance` | Workflow Auditor | Medium | Yes | Run registry health and quarantine monitoring checks during daily check sweeps. |
 | `maintenance-observation-help` | `observation help`, `maintenance observation help` | Workflow Auditor | Low | No | Print help menu for the local daily maintenance observation routine. |
 | `maintenance-observation` | `observation`, `maintenance observation` | Workflow Auditor | Medium | Yes | Run quarantine countdown and expiration watch during daily check sweeps. |
-
-
-
+| `knowledge-source-registry-help` | `source registry help`, `harvest source help` | Knowledge Librarian | Low | No | Print help menu for Knowledge Harvest Source Registry CLI. |
+| `knowledge-source-registry` | `source registry`, `harvest source` | Knowledge Librarian | Medium | Yes | Execute Knowledge Harvest Source Registry commands. |
 
 ---
 

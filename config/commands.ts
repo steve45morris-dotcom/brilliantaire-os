@@ -2654,7 +2654,30 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'knowledge-source-registry-help',
+    aliases: ['source registry help', 'harvest source help'],
+    description: 'Print help menu for Knowledge Harvest Source Registry CLI',
+    npmScript: 'knowledge-source-registry-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'knowledge-source-registry',
+    aliases: ['source registry', 'harvest source'],
+    description: 'Execute Knowledge Harvest Source Registry commands',
+    npmScript: 'knowledge-source-registry',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
+
 
 

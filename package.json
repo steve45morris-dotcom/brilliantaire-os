@@ -246,7 +246,9 @@
     "maintenance-check": "tsx scripts/maintenance-check.ts",
     "maintenance-check-help": "tsx scripts/maintenance-check-help.ts",
     "maintenance-observation": "tsx scripts/maintenance-observation.ts",
-    "maintenance-observation-help": "tsx scripts/maintenance-observation-help.ts"
+    "maintenance-observation-help": "tsx scripts/maintenance-observation-help.ts",
+    "knowledge-source-registry": "tsx scripts/knowledge-source-registry.ts",
+    "knowledge-source-registry-help": "tsx scripts/knowledge-source-registry-help.ts"
   },
   "keywords": [
     "antigravity",

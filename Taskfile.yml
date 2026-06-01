@@ -1366,5 +1366,12 @@ tasks:
     cmds:
       - npm run maintenance-observation-help
 
+  knowledge-source-registry:
+    desc: "Run Knowledge Harvest Source Registry CLI commands"
+    cmds:
+      - npm run knowledge-source-registry -- {{.CLI_ARGS}}
 
-
+  knowledge-source-registry-help:
+    desc: "Print help menu for Knowledge Harvest Source Registry CLI"
+    cmds:
+      - npm run knowledge-source-registry-help

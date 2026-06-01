@@ -3682,4 +3682,47 @@ The **Cleanup Approval Gate** reads duplicate cleanup reports and builds manual 
   npm run command -- "cleanup-approval" -- "status"
   ```
 
+---
+
+## 📖 Phase 13A: Knowledge Harvest Source Expansion
+
+The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.
+
+### 🔒 Guardrails Summary
+1. **Manual-First Registry:** Direct channel scraping and video downloading are strictly disabled.
+2. **Offline Local-First Routing:** Bypasses external APIs and prevents direct Obsidian write mutations.
+3. **Registry-Only Constraints:** Focuses exclusively on staging metadata, value scores, and status reports.
+4. **Command Routing Gating:** Enforces exact-name routing for medium-risk scripts and blocks aliases.
+
+### 💻 Command Examples
+* View registry help menu:
+  ```bash
+  npm run command -- "knowledge-source-registry-help"
+  ```
+* Generate Julian Goldie staged source record:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "add-source julian"
+  ```
+* Compile source priority report:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "priority-report"
+  ```
+* Compile transcript status report:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "transcript-status"
+  ```
+* Compile workflow value report:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "workflow-value"
+  ```
+* Compile source pack status report:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "source-pack-status"
+  ```
+* Query current registry status dashboard:
+  ```bash
+  npm run command -- "knowledge-source-registry" -- "status"
+  ```
+
+
 

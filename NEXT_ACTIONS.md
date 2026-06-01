@@ -548,10 +548,13 @@
 - [x] Generate expiration watch report
 - [x] Keep pruning blocked until June 8, 2026 or later
 - [x] Recheck deletion readiness after monitoring period passes
-
-
-
-
+- [x] Build Knowledge Harvest Source Expansion
+- [x] Add Julian Goldie source record
+- [x] Generate source priority report
+- [x] Generate transcript status report
+- [x] Generate workflow value report
+- [x] Generate source pack status report
+- [ ] Review next creator sources manually
 
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
