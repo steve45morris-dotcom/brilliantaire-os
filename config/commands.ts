@@ -1594,6 +1594,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'cleanup-gate-help',
+    aliases: ['cleanup help', 'duplicate cleanup help'],
+    description: 'Print help command menu for the duplicate cleanup staging gate',
+    npmScript: 'cleanup-gate-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'cleanup-gate',
+    aliases: ['cleanup', 'duplicate cleanup'],
+    description: 'Stage duplicate briefs cleanup plans and scan project registry drift',
+    npmScript: 'cleanup-gate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
