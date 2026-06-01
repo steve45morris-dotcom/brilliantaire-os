@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 12C: Grinders Keep Gap Hunter — COMPLETE
+- **Current Phase:** Phase 12D: Grinders Keep Adaptive Learning Deepener — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -112,6 +112,7 @@
 
 - **Grinders Keep Brief Engine (Phase 12B):** Local-first creative R&D engine (`scripts/grinders-keep-daily-brief.ts`) compiling daily briefs, lessons, gap scans, build suggestions, money moves, Google Ultra opportunities, content drafts, and consensus packets.
 - **Grinders Keep Gap Hunter (Phase 12C):** Local-first project audit sweep (`scripts/grinders-keep-gap-hunter.ts`) scanning project telemetry to identify missing gates, stale outputs, duplicate reports, blocked phases, weak docs, unverified metrics, command routing gaps, and monetization opportunities.
+- **Grinders Keep Adaptive Learning Deepener (Phase 12D):** Local-first history deepener (`scripts/grinders-keep-adaptive-learning-deepener.ts`) comparing Gap Hunter manifests, scanning CLI command logs for alias attempts, recommending operating habits, and staging configuration adjustments.
 
 
 
@@ -125,7 +126,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 12D: Grinders Keep Adaptive Learning Deepener**
+- **Phase 12E: Grinders Keep Content Drafting Lab Deepener**
 
 ## Obsidian Intelligence Snapshot
 

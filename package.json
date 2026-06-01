@@ -123,6 +123,8 @@
     "asr-orchestrator-help": "tsx scripts/asr-orchestrator-help.ts",
     "asr-model-gate": "tsx scripts/asr-model-gate.ts",
     "asr-model-gate-help": "tsx scripts/asr-model-gate-help.ts",
+    "audio-drop-verification": "tsx scripts/audio-drop-verification.ts",
+    "audio-drop-verification-help": "tsx scripts/audio-drop-verification-help.ts",
     "asr-dry-run-transcription-gate": "tsx scripts/asr-dry-run-transcription-gate.ts",
     "asr-dry-run-transcription-gate-help": "tsx scripts/asr-dry-run-transcription-gate-help.ts",
     "asr-model-manifest-preparation-gate": "tsx scripts/asr-model-manifest-preparation-gate.ts",
@@ -215,6 +217,8 @@
     "grinders-keep-consensus-packet": "tsx scripts/grinders-keep-consensus-packet.ts",
     "grinders-keep-gap-hunter": "tsx scripts/grinders-keep-gap-hunter.ts",
     "grinders-keep-gap-hunter-help": "tsx scripts/grinders-keep-gap-hunter-help.ts",
+    "grinders-keep-adaptive-learning-deepener": "tsx scripts/grinders-keep-adaptive-learning-deepener.ts",
+    "grinders-keep-adaptive-learning-deepener-help": "tsx scripts/grinders-keep-adaptive-learning-deepener-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts"
   },

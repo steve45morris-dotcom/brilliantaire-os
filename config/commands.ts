@@ -1211,6 +1211,29 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'audio-drop-verification-help',
+    aliases: ['audio drop help', 'recording check help'],
+    description: 'Print help menu for offline audio drop verification and cleanup safety limits',
+    npmScript: 'audio-drop-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'audio-drop-verification',
+    aliases: ['audio drop', 'recording check'],
+    description: 'Validate manually dropped audio files, match sessions, and quarantine unsupported items',
+    npmScript: 'audio-drop-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+
+  {
     name: 'git-asset-help',
     aliases: ['git asset help', 'repo asset help'],
     description: 'Print help menu and policies for Git Asset Guard',
@@ -1794,6 +1817,29 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'audio-drop-verification-help',
+    aliases: ['audio drop help', 'recording check help'],
+    description: 'Print help menu for offline audio drop verification and cleanup safety limits',
+    npmScript: 'audio-drop-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'audio-drop-verification',
+    aliases: ['audio drop', 'recording check'],
+    description: 'Validate manually dropped audio files, match sessions, and quarantine unsupported items',
+    npmScript: 'audio-drop-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+
+  {
     name: 'briefing-tts-render-approval-help',
     aliases: ['briefing tts render help', 'briefing tts approval help'],
     description: 'Print help menu for the briefing TTS render approval flow',
@@ -2295,6 +2341,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: [],
     description: 'Print help documentation for Grinders Keep Gap Hunter engine commands',
     npmScript: 'grinders-keep-gap-hunter-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-adaptive-learning-deepener',
+    aliases: [],
+    description: 'Run v0.1 Adaptive Learning Deepener to compare gap records, analyze behavior signals, recommend habits, and stage adjustments',
+    npmScript: 'grinders-keep-adaptive-learning-deepener',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-adaptive-learning-deepener-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Adaptive Learning Deepener engine commands',
+    npmScript: 'grinders-keep-adaptive-learning-deepener-help',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'low',
     outputType: 'console',

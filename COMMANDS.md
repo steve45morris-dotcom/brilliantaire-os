@@ -134,6 +134,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-orchestrator` | `asr`, `whisper` | Build Operator | Medium | Yes | Verify ASR readiness, prepare job packets, and dry-run Whisper simulations. |
 | `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help menu for offline ASR model gate safety limits. |
 | `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Verify local model files manually placed, directory inventories, and cryptographic checksum reviews. |
+| `audio-drop-verification-help` | `audio drop help`, `recording check help` | Build Operator | Low | No | Print help menu for offline audio drop verification and cleanup safety limits. |
+| `audio-drop-verification` | `audio drop`, `recording check` | Build Operator | Medium | Yes | Validate manually dropped audio files, match sessions, and quarantine unsupported items. |
 | `asr-dry-run-transcription-gate-help` | `asr dry run help`, `whisper dry run help` | Build Operator | Low | No | Print help menu for offline ASR dry-run transcription gate. |
 | `asr-dry-run-transcription-gate` | `asr dry run`, `whisper dry run` | Build Operator | Medium | Yes | Verify local model presence, inspect staged audio, and map simulated routes without executing transcription. |
 | `asr-model-manifest-preparation-gate-help` | `asr manifest help`, `whisper manifest help` | Build Operator | Low | No | Print help menu for offline ASR model manifest preparation gate. |
@@ -248,6 +250,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-consensus-packet` | *(none)* | OS Architect | Low | Yes | Stage multi-model agent consensus review templates for ChatGPT, Gemini, Claude, and NotebookLM. |
 | `grinders-keep-gap-hunter` | *(none)* | Workflow Auditor | Low | Yes | Scan real local project data to identify gaps, stale outputs, duplicates, blocked phases, routing issues, and monetization opportunities. |
 | `grinders-keep-gap-hunter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Gap Hunter engine commands. |
+| `grinders-keep-adaptive-learning-deepener` | *(none)* | Workflow Auditor | Low | Yes | Run v0.1 Adaptive Learning Deepener to compare gap records, analyze behavior signals, recommend habits, and stage adjustments. |
+| `grinders-keep-adaptive-learning-deepener-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Adaptive Learning Deepener engine commands. |
 
 
 

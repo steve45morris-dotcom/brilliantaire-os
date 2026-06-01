@@ -571,6 +571,16 @@ tasks:
     cmds:
       - npm run asr-model-gate -- {{.CLI_ARGS}}
 
+  audio-drop-verification-help:
+    desc: "Print help command menu for offline audio drop verification and cleanup"
+    cmds:
+      - npm run audio-drop-verification-help
+
+  audio-drop-verification:
+    desc: "Run offline audio drop verification tasks safely"
+    cmds:
+      - npm run audio-drop-verification -- {{.CLI_ARGS}}
+
   asr-dry-run-transcription-gate:
     desc: "Run Offline ASR Dry-Run Transcription Readiness Gate"
     cmds:
@@ -843,6 +853,16 @@ tasks:
     desc: "Run Offline ASR Model Gate tasks safely"
     cmds:
       - npm run asr-model-gate -- {{.CLI_ARGS}}
+
+  audio-drop-verification-help:
+    desc: "Print help command menu for offline audio drop verification and cleanup"
+    cmds:
+      - npm run audio-drop-verification-help
+
+  audio-drop-verification:
+    desc: "Run offline audio drop verification tasks safely"
+    cmds:
+      - npm run audio-drop-verification -- {{.CLI_ARGS}}
 
   asr-dry-run-transcription-gate:
     desc: "Run Offline ASR Dry-Run Transcription Readiness Gate"
@@ -1133,6 +1153,16 @@ tasks:
     desc: "Print help documentation for Grinders Keep Gap Hunter"
     cmds:
       - npm run grinders-keep-gap-hunter-help
+
+  grinders-keep-adaptive-learning-deepener:
+    desc: "Run v0.1 Grinders Keep Adaptive Learning Deepener sweep"
+    cmds:
+      - npm run grinders-keep-adaptive-learning-deepener
+
+  grinders-keep-adaptive-learning-deepener-help:
+    desc: "Print help documentation for Grinders Keep Adaptive Learning Deepener"
+    cmds:
+      - npm run grinders-keep-adaptive-learning-deepener-help
 
   validate:
     desc: "Lint and run workspace checks"

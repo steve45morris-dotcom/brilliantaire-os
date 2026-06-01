@@ -3118,6 +3118,14 @@ The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engin
   ```bash
   npm run command -- "grinders-keep-gap-hunter-help"
   ```
+* Run Adaptive Learning Deepener sweep:
+  ```bash
+  npm run command -- "grinders-keep-adaptive-learning-deepener"
+  ```
+* Print Adaptive Learning Deepener help menu:
+  ```bash
+  npm run command -- "grinders-keep-adaptive-learning-deepener-help"
+  ```
 
 ---
 
@@ -3156,3 +3164,45 @@ The **Duplicate Registry Entry Resolution Gate** provides a safe duplicate entry
 
 
 
+---
+
+## 🛡️ Phase 12G: Quarantine Deletion Readiness Staging Gate
+
+The **Quarantine Deletion Readiness Staging Gate** provides a read-only validation check of the quarantine status. It checks quarantined duplicate files, restore map coverage, checksum reports, and monitoring age before any future pruning or deletion is considered.
+
+### 🔒 Guardrails Summary
+1. **Read-Only Operation:** No permanent deletion, unlinking, moving, or mutating of quarantined files is allowed.
+2. **Safety Gates Enforced:** Validates restore script existence and coverage, checksum reports matching, and minimum monitoring period age (7 days).
+3. **No PROJECTS.md Modifications:** The registry file is never modified or appended to.
+4. **No Shell Escapes:** Arbitrary shell command execution, external API calls, and automated dependency downloads are blocked.
+5. **Exact Command Matching:** The command router enforces the exact command name check and blocks aliases.
+
+### 💻 Command Examples
+* Print deletion readiness gate help:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness-help"
+  ```
+* Scan quarantine directory and manifests:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness scan"
+  ```
+* Validate restore map coverage:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness restore-check"
+  ```
+* Calculate quarantine monitoring elapsed age:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness age-check"
+  ```
+* Compile unified deletion readiness report:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness readiness-report"
+  ```
+* Generate future deletion safety checklist:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness future-checklist"
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "quarantine-deletion-readiness status"
+  ```

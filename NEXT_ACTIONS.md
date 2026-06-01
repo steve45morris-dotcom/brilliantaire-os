@@ -493,13 +493,13 @@
 - [x] Apply approved duplicate resolution with --confirm
 - [x] Verify PROJECTS.md integrity again
 - [x] Delay quarantine deletion readiness until registry duplicates are resolved
-- [ ] Build Quarantine Deletion Readiness Staging Gate
-- [ ] Scan quarantine state
-- [ ] Validate restore map
-- [ ] Check quarantine monitoring age
-- [ ] Generate deletion readiness report
-- [ ] Generate future deletion checklist
-- [ ] Keep permanent deletion disabled
+- [x] Build Quarantine Deletion Readiness Staging Gate
+- [x] Scan quarantine state
+- [x] Validate restore map
+- [x] Check quarantine monitoring age
+- [x] Generate deletion readiness report
+- [x] Generate future deletion checklist
+- [x] Keep permanent deletion disabled
 
 
 
