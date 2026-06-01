@@ -2322,23 +2322,23 @@ The **ASR Model Gate** provides a manual model acquisition, inventory reporting,
   ```bash
   npm run command -- "asr-model-gate-help"
   ```
-* Compile manual acquisition guide:
+* Generate manual model acquisition guide:
   ```bash
   npm run command -- "asr-model-gate guide"
   ```
-* Scan directory models inventory:
+* Scan models folder inventory:
   ```bash
   npm run command -- "asr-model-gate inventory"
   ```
-* Run cryptographic checksum audits:
+* Calculate model cryptographic SHA256 checksums:
   ```bash
   npm run command -- "asr-model-gate checksum"
   ```
-* Run gate readiness check:
+* Audit readiness gate parameters:
   ```bash
   npm run command -- "asr-model-gate readiness"
   ```
-* Print gate status panel:
+* Print gate status dashboard:
   ```bash
   npm run command -- "asr-model-gate status"
   ```
@@ -2346,8 +2346,8 @@ The **ASR Model Gate** provides a manual model acquisition, inventory reporting,
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11X: Local Offline Speech Synthesis Execution**
-  - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
+* **Phase 11Z: Offline Local ASR Whisper Executor**
+  - Implement the offline Whisper transcriber executing speech-to-text analysis only when the acquisition gate status achieves 100%.
 
 ---
 

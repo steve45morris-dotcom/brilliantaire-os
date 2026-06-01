@@ -12,9 +12,10 @@ import {
   REQUIRE_MANUAL_MODEL_PLACEMENT,
   REQUIRE_CHECKSUM_REVIEW,
   REQUIRE_MANUAL_ENABLE,
-  modelDirectory,
-  EXPECTED_MANUAL_ENABLE_VAR,
+  MODEL_DIRECTORY,
   ALLOWED_MODEL_EXTENSIONS,
+  MANUAL_ENABLE_FLAG_NAME,
+  inputFolders,
   outputFolders,
   REPO_ROOT
 } from '../config/asr-model-gate.js';
@@ -22,19 +23,6 @@ import { announceIntent, announceCompletion } from './vnp.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-function ensureDirectories() {
-  for (const dir of Object.values(outputFolders)) {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-  }
-  // Ensure Whisper model directory
-  const modelPath = path.join(REPO_ROOT, modelDirectory);
-  if (!fs.existsSync(modelPath)) {
-    fs.mkdirSync(modelPath, { recursive: true });
-  }
-}
 
 function getFormattedDate(): string {
   const d = new Date();
@@ -45,6 +33,9 @@ function getFormattedDate(): string {
 }
 
 function getSafeWritePath(dir: string, baseName: string, ext: string): string {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
   let targetPath = path.join(dir, `${baseName}${ext}`);
   if (fs.existsSync(targetPath)) {
     const timestampSuffix = Math.floor(Date.now() / 1000);
@@ -54,6 +45,9 @@ function getSafeWritePath(dir: string, baseName: string, ext: string): string {
 }
 
 function logEvent(action: string, detail: string) {
+  if (!fs.existsSync(outputFolders.logs)) {
+    fs.mkdirSync(outputFolders.logs, { recursive: true });
+  }
   const dateStr = getFormattedDate();
   const logFile = path.join(outputFolders.logs, `asr_model_gate_log_${dateStr}.md`);
   const timestamp = new Date().toISOString();
@@ -70,262 +64,284 @@ function getLatestFileInDir(dir: string, prefix: string, ext = '.md'): string | 
   return files.length > 0 ? files[0].path : null;
 }
 
-function calculateFileSHA256(filePath: string): string {
-  const fileBuffer = fs.readFileSync(filePath);
-  const hashSum = crypto.createHash('sha256');
-  hashSum.update(fileBuffer);
-  return hashSum.digest('hex');
+// Check staged audio files presence
+function checkStagedAudio(): boolean {
+  // Option 1: check if audio files exist
+  let audioFound = false;
+  if (fs.existsSync(inputFolders.inputAudio)) {
+    const files = fs.readdirSync(inputFolders.inputAudio);
+    const audioFiles = files.filter(f => ['.wav', '.mp3', '.m4a'].includes(path.extname(f).toLowerCase()));
+    if (audioFiles.length > 0) audioFound = true;
+  }
+  if (!audioFound && fs.existsSync(inputFolders.recordings)) {
+    const files = fs.readdirSync(inputFolders.recordings);
+    const audioFiles = files.filter(f => ['.wav', '.mp3', '.m4a'].includes(path.extname(f).toLowerCase()));
+    if (audioFiles.length > 0) audioFound = true;
+  }
+  // Option 2: scan metadata json files
+  if (!audioFound && fs.existsSync(inputFolders.metadata)) {
+    const files = fs.readdirSync(inputFolders.metadata).filter(f => f.endsWith('.json'));
+    for (const f of files) {
+      try {
+        const content = JSON.parse(fs.readFileSync(path.join(inputFolders.metadata, f), 'utf-8'));
+        if (content.status === 'staged_for_asr' || content.stagedForAsr === true) {
+          audioFound = true;
+          break;
+        }
+      } catch (err) {}
+    }
+  }
+  return audioFound;
+}
+
+// Run scans of models directory
+interface ScanData {
+  dirExists: boolean;
+  modelCount: number;
+  modelFiles: string[];
+  unexpectedCount: number;
+  unexpectedList: string[];
+  emptyCount: number;
+  emptyList: string[];
+  filesMetadata: { name: string; size: number; ext: string }[];
+}
+
+function runScans(): ScanData {
+  const dirExists = fs.existsSync(MODEL_DIRECTORY);
+  let modelCount = 0;
+  const modelFiles: string[] = [];
+  let unexpectedCount = 0;
+  const unexpectedList: string[] = [];
+  let emptyCount = 0;
+  const emptyList: string[] = [];
+  const filesMetadata: { name: string; size: number; ext: string }[] = [];
+
+  if (dirExists) {
+    const files = fs.readdirSync(MODEL_DIRECTORY);
+    for (const file of files) {
+      if (file === '.DS_Store' || file === 'README.md' || file === 'SKILL.md') continue;
+      const filePath = path.join(MODEL_DIRECTORY, file);
+      const stats = fs.statSync(filePath);
+      const ext = path.extname(file).toLowerCase();
+      const isAllowed = ALLOWED_MODEL_EXTENSIONS.includes(ext);
+
+      if (isAllowed) {
+        modelCount++;
+        modelFiles.push(file);
+        filesMetadata.push({ name: file, size: stats.size, ext });
+        if (stats.size === 0) {
+          emptyCount++;
+          emptyList.push(file);
+        }
+      } else {
+        unexpectedCount++;
+        unexpectedList.push(file);
+      }
+    }
+  }
+
+  return {
+    dirExists,
+    modelCount,
+    modelFiles,
+    unexpectedCount,
+    unexpectedList,
+    emptyCount,
+    emptyList,
+    filesMetadata
+  };
 }
 
 // 1. guide command
 async function handleGuide(): Promise<string> {
-  console.log("🛠️ Generating manual ASR model placement and acquisition guide...");
-  await announceIntent("Generating ASR model acquisition guide.");
+  console.log("📖 Generating manual ASR model acquisition guide...");
+  await announceIntent("Generating manual ASR model acquisition guide.");
 
   const templatePath = path.join(REPO_ROOT, 'templates', 'asr_model_gate', 'asr-model-acquisition-guide-template.md');
   if (!fs.existsSync(templatePath)) {
-    throw new Error(`Guide template not found at: ${templatePath}`);
+    throw new Error(`Acquisition guide template not found at: ${templatePath}`);
   }
   const template = fs.readFileSync(templatePath, 'utf-8');
 
+  const formattedDate = getFormattedDate();
+  const nextAction = "Place Whisper model binaries inside the target folder manually and run inventory verification.";
   const content = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{TARGET_FOLDER\}\}/g, modelDirectory)
+    .replace(/\{\{DATE\}\}/g, formattedDate)
+    .replace(/\{\{TARGET_FOLDER\}\}/g, MODEL_DIRECTORY)
     .replace(/\{\{ALLOWED_FORMATS\}\}/g, ALLOWED_MODEL_EXTENSIONS.join(', '))
-    .replace(/\{\{RECHECK_COMMANDS\}\}/g, `npm run asr-model-gate -- "inventory"\nnpm run asr-model-gate -- "checksum"`)
-    .replace(/\{\{NEXT_ACTION\}\}/g, "Download a Whisper model file manually, place it in models/asr/whisper/, and run the inventory scan.");
+    .replace(/\{\{NEXT_ACTION\}\}/g, nextAction);
 
-  const outPath = getSafeWritePath(outputFolders.guides, 'asr_model_acquisition_guide_' + getFormattedDate(), '.md');
-  fs.writeFileSync(outPath, content);
+  const outPath = getSafeWritePath(outputFolders.guides, 'asr_model_acquisition_guide_' + formattedDate, '.md');
+  fs.writeFileSync(outPath, content, 'utf-8');
 
   const detailMsg = `ASR model acquisition guide generated. Saved to: ${path.basename(outPath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('COMPILE_ASR_GUIDE', detailMsg);
+  logEvent('COMPILE_ACQUISITION_GUIDE', detailMsg);
 
-  await announceCompletion("ASR model guide compiled.");
+  await announceCompletion("ASR model acquisition guide compiled successfully.");
   return outPath;
 }
 
 // 2. inventory command
 async function handleInventory(): Promise<string> {
-  console.log("🔬 Scanning ASR models directory for local file inventory...");
-  await announceIntent("Running ASR model inventory audit.");
+  console.log("🗃️ Scanning Whisper models folder and generating inventory...");
+  await announceIntent("Scanning local ASR models inventory.");
 
+  const scan = runScans();
   const templatePath = path.join(REPO_ROOT, 'templates', 'asr_model_gate', 'asr-model-inventory-template.md');
   if (!fs.existsSync(templatePath)) {
     throw new Error(`Inventory template not found at: ${templatePath}`);
   }
   const template = fs.readFileSync(templatePath, 'utf-8');
 
-  const modelsPath = path.join(REPO_ROOT, modelDirectory);
-  const dirExists = fs.existsSync(modelsPath) ? 'Yes' : 'No';
-
-  let filesFoundCount = 0;
-  const fileNames: string[] = [];
-  const fileSizes: string[] = [];
-  const extensions: string[] = [];
-  const unexpectedFiles: string[] = [];
-  const emptyFiles: string[] = [];
-
-  if (fs.existsSync(modelsPath)) {
-    const files = fs.readdirSync(modelsPath);
-    for (const file of files) {
-      if (file === '.DS_Store' || file === '.gitkeep') continue;
-      const fullPath = path.join(modelsPath, file);
-      const stat = fs.statSync(fullPath);
-      const ext = path.extname(file).toLowerCase();
-
-      if (stat.size === 0) {
-        emptyFiles.push(file);
-      }
-
-      if (ALLOWED_MODEL_EXTENSIONS.includes(ext)) {
-        filesFoundCount++;
-        fileNames.push(file);
-        fileSizes.push(`${file} (${(stat.size / (1024 * 1024)).toFixed(2)} MB)`);
-        if (!extensions.includes(ext)) {
-          extensions.push(ext);
-        }
-      } else {
-        unexpectedFiles.push(file);
-      }
+  let fileRows = '';
+  if (scan.filesMetadata.length > 0) {
+    for (const file of scan.filesMetadata) {
+      fileRows += `| ${file.name} | ${file.size} | ${file.ext} | Placed |\n`;
     }
+  } else {
+    fileRows = '| *No files found* | 0 | - | - |\n';
   }
 
-  const outPath = getSafeWritePath(outputFolders.inventory, 'asr_model_inventory_' + getFormattedDate(), '.md');
-  const nextAction = filesFoundCount > 0
-    ? "Proceed to calculate hash values and run cryptographic checksum review."
-    : "Stage Whisper model files manually under models/asr/whisper/ and re-run check.";
+  const formattedDate = getFormattedDate();
+  let nextAction = "Place Whisper model files in the target directory.";
+  if (scan.modelCount > 0) {
+    nextAction = "Verify model file cryptographic hashes using the checksum command.";
+  }
+  if (scan.unexpectedCount > 0) {
+    nextAction = "Remove unexpected/disallowed files from models/asr/whisper/ directory immediately.";
+  }
 
   const content = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{MODEL_DIRECTORY\}\}/g, modelDirectory)
-    .replace(/\{\{FILES_FOUND\}\}/g, String(filesFoundCount))
-    .replace(/\{\{FILE_NAMES\}\}/g, fileNames.length > 0 ? fileNames.join(', ') : 'None')
-    .replace(/\{\{FILE_SIZES\}\}/g, fileSizes.length > 0 ? fileSizes.join(', ') : 'None')
-    .replace(/\{\{EXTENSIONS\}\}/g, extensions.length > 0 ? extensions.join(', ') : 'None')
-    .replace(/\{\{UNEXPECTED_FILES\}\}/g, unexpectedFiles.length > 0 ? unexpectedFiles.join(', ') : 'None')
-    .replace(/\{\{EMPTY_FILES\}\}/g, emptyFiles.length > 0 ? emptyFiles.join(', ') : 'None')
+    .replace(/\{\{DATE\}\}/g, formattedDate)
+    .replace(/\{\{MODEL_DIRECTORY\}\}/g, MODEL_DIRECTORY)
+    .replace(/\{\{DIR_EXISTS\}\}/g, scan.dirExists ? 'Yes' : 'No')
+    .replace(/\{\{FILES_COUNT\}\}/g, String(scan.modelCount))
+    .replace(/\{\{FILE_ROWS\}\}/g, fileRows.trim())
+    .replace(/\{\{ALLOWED_EXTENSIONS\}\}/g, ALLOWED_MODEL_EXTENSIONS.join(', '))
+    .replace(/\{\{UNEXPECTED_COUNT\}\}/g, String(scan.unexpectedCount))
+    .replace(/\{\{UNEXPECTED_FILES\}\}/g, scan.unexpectedCount > 0 ? scan.unexpectedList.join(', ') : 'None')
+    .replace(/\{\{EMPTY_COUNT\}\}/g, String(scan.emptyCount))
+    .replace(/\{\{EMPTY_FILES\}\}/g, scan.emptyCount > 0 ? scan.emptyList.join(', ') : 'None')
     .replace(/\{\{NEXT_ACTION\}\}/g, nextAction);
 
-  fs.writeFileSync(outPath, content);
+  const outPath = getSafeWritePath(outputFolders.inventory, 'asr_model_inventory_' + formattedDate, '.md');
+  fs.writeFileSync(outPath, content, 'utf-8');
 
-  const detailMsg = `ASR model inventory compiled. Found ${filesFoundCount} files. Saved to: ${path.basename(outPath)}`;
+  const detailMsg = `ASR model inventory generated. Found ${scan.modelCount} model files. Saved to: ${path.basename(outPath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('COMPILE_ASR_INVENTORY', detailMsg);
+  logEvent('COMPILE_INVENTORY', detailMsg);
 
-  await announceCompletion("ASR model inventory compiled.");
+  await announceCompletion("ASR model inventory compiled successfully.");
   return outPath;
 }
 
 // 3. checksum command
 async function handleChecksum(): Promise<string> {
-  console.log("🔒 Calculating safe cryptographic checksum reviews...");
-  await announceIntent("Running cryptographic checksum audit.");
+  console.log("🔑 Generating cryptographic file checksum report...");
+  await announceIntent("Calculating ASR model file checksum hashes.");
 
+  const scan = runScans();
   const templatePath = path.join(REPO_ROOT, 'templates', 'asr_model_gate', 'asr-checksum-template.md');
   if (!fs.existsSync(templatePath)) {
     throw new Error(`Checksum template not found at: ${templatePath}`);
   }
   const template = fs.readFileSync(templatePath, 'utf-8');
 
-  // Check inventory for files
-  const modelsPath = path.join(REPO_ROOT, modelDirectory);
-  const files = fs.existsSync(modelsPath) 
-    ? fs.readdirSync(modelsPath).filter(f => ALLOWED_MODEL_EXTENSIONS.includes(path.extname(f).toLowerCase()))
-    : [];
-
-  let fileResult = 'None';
-  let sha256Hash = 'No hashes generated';
-  let checksumStatus = 'N/A';
-  let manualSourceVerification = 'N/A';
-  let warningText = 'No model files present to audit.';
-  let nextAction = 'Staged models first before auditing checksums.';
-
-  if (files.length > 0) {
-    const file = files[0]; // audit the primary model file
-    fileResult = file;
-    const fullPath = path.join(modelsPath, file);
-    try {
-      console.log(`Hashing file: ${file}...`);
-      sha256Hash = calculateFileSHA256(fullPath);
-      checksumStatus = 'verified_locally';
-      manualSourceVerification = 'Required (Review SHA256 against HuggingFace/Whisper repository index)';
-      warningText = 'Always verify checksum hashes manually against trusted upstream registries. Never trust unknown model downloads.';
-      nextAction = 'Proceed to run final readiness gate check.';
-    } catch (e) {
-      sha256Hash = 'ERROR_CALCULATING_HASH';
-      checksumStatus = 'failed';
+  let hashRows = '';
+  let checksumStatus = 'No hashes generated';
+  if (scan.modelCount > 0 && scan.dirExists) {
+    checksumStatus = 'COMPLETED';
+    for (const file of scan.modelFiles) {
+      try {
+        const filePath = path.join(MODEL_DIRECTORY, file);
+        const hash = crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+        hashRows += `| ${file} | \`${hash}\` | Calculated |\n`;
+      } catch (err) {
+        hashRows += `| ${file} | *Error reading file* | Error |\n`;
+      }
     }
+  } else {
+    hashRows = '| *No files checked* | - | *No hashes generated - no model files present* |\n';
   }
 
-  const outPath = getSafeWritePath(outputFolders.checksums, 'asr_model_checksum_review_' + getFormattedDate(), '.md');
+  const formattedDate = getFormattedDate();
+  const nextAction = scan.modelCount > 0
+    ? "Review calculated hashes against trusted official sources, then check readiness status."
+    : "Acquire local model binaries before checksum validation can proceed.";
 
   const content = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{FILE\}\}/g, fileResult)
-    .replace(/\{\{SHA256\}\}/g, sha256Hash)
+    .replace(/\{\{DATE\}\}/g, formattedDate)
+    .replace(/\{\{HASH_ROWS\}\}/g, hashRows.trim())
     .replace(/\{\{CHECKSUM_STATUS\}\}/g, checksumStatus)
-    .replace(/\{\{MANUAL_SOURCE_VERIFICATION\}\}/g, manualSourceVerification)
-    .replace(/\{\{WARNING\}\}/g, warningText)
+    .replace(/\{\{MANUAL_VERIFICATION_STATUS\}\}/g, 'Pending review by operator')
     .replace(/\{\{NEXT_ACTION\}\}/g, nextAction);
 
-  fs.writeFileSync(outPath, content);
+  const outPath = getSafeWritePath(outputFolders.checksums, 'asr_model_checksum_review_' + formattedDate, '.md');
+  fs.writeFileSync(outPath, content, 'utf-8');
 
-  const detailMsg = `ASR checksum report generated. Hash: ${sha256Hash.substring(0, 10)}... Status: ${checksumStatus}. Saved to: ${path.basename(outPath)}`;
+  const detailMsg = `ASR checksum report generated. Hash count: ${scan.modelCount}. Saved to: ${path.basename(outPath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('COMPILE_ASR_CHECKSUM', detailMsg);
+  logEvent('COMPILE_CHECKSUM', detailMsg);
 
-  await announceCompletion("ASR model checksum review compiled.");
+  await announceCompletion("ASR checksum validation review compiled successfully.");
   return outPath;
 }
 
 // 4. readiness command
 async function handleReadiness(): Promise<string> {
-  console.log("🔬 Evaluating model readiness gate criteria...");
+  console.log("🚦 Auditing ASR model gate readiness parameters...");
   await announceIntent("Evaluating ASR model readiness gate status.");
 
-  // Check audio staging state by scanning voice recordings directory
-  const recordingsDir = path.join(REPO_ROOT, 'voice_sessions', 'manual_recordings');
-  let stagedAudioFound = 'No';
-  if (fs.existsSync(recordingsDir)) {
-    const files = fs.readdirSync(recordingsDir).filter(f => f !== '.DS_Store' && f !== '.gitkeep');
-    if (files.length > 0) {
-      stagedAudioFound = 'Yes';
-    }
-  }
+  const scan = runScans();
+  const stagedAudioExists = checkStagedAudio();
+  const checksumReportExists = getLatestFileInDir(outputFolders.checksums, 'asr_model_checksum_review') !== null;
+  const manualFlagPresent = process.env[MANUAL_ENABLE_FLAG_NAME] !== undefined;
+  const asrExecutionEnabled = process.env[MANUAL_ENABLE_FLAG_NAME] === 'true';
 
-  // Model inventory check
-  const modelsPath = path.join(REPO_ROOT, modelDirectory);
-  let modelFilesFound = 'No';
-  if (fs.existsSync(modelsPath)) {
-    const files = fs.readdirSync(modelsPath).filter(f => ALLOWED_MODEL_EXTENSIONS.includes(path.extname(f).toLowerCase()));
-    if (files.length > 0) {
-      modelFilesFound = 'Yes';
-    }
-  }
-
-  // Checksum report existence
-  const latestChecksum = getLatestFileInDir(outputFolders.checksums, 'asr_model_checksum_review_');
-  let checksumReportPresent = latestChecksum ? 'Yes' : 'No';
-
-  // Env variable manual check
-  const envVal = process.env[EXPECTED_MANUAL_ENABLE_VAR];
-  const manualEnableFlag = envVal !== undefined ? 'Yes' : 'No';
-  const asrExecutionEnabled = envVal === 'true' ? 'Yes' : 'No';
-
-  let score = 0;
+  // Audit blockers list
   const blockers: string[] = [];
-
-  if (stagedAudioFound === 'Yes') {
-    score += 20;
-  } else {
-    blockers.push("Staged audio recording files not found under voice_sessions/manual_recordings/.");
+  if (!stagedAudioExists) {
+    blockers.push("No staged audio files found for transcription.");
+  }
+  if (!scan.dirExists) {
+    blockers.push("Model directory models/asr/whisper/ does not exist.");
+  }
+  if (scan.dirExists && scan.modelCount === 0) {
+    blockers.push("No Whisper ASR model files found in models/asr/whisper/.");
+  }
+  if (scan.unexpectedCount > 0) {
+    blockers.push(`Suspicious or unexpected files found in model directory: ${scan.unexpectedList.join(', ')}`);
+  }
+  if (!checksumReportExists) {
+    blockers.push("No checksum review report has been generated yet.");
+  }
+  if (!asrExecutionEnabled) {
+    blockers.push("Manual ASR activation flag ASR_EXECUTION_ENABLED is not set to true in environment.");
   }
 
-  if (modelFilesFound === 'Yes') {
-    score += 30;
-  } else {
-    blockers.push("Whisper ASR model files not found under models/asr/whisper/.");
-  }
+  // Calculate readiness score
+  let score = 100;
+  if (!stagedAudioExists) score -= 10;
+  if (!scan.dirExists) score -= 30;
+  if (scan.dirExists && scan.modelCount === 0) score -= 20;
+  if (scan.unexpectedCount > 0) score -= 30;
+  if (!checksumReportExists) score -= 15;
+  if (!asrExecutionEnabled) score -= 15;
+  const readinessScore = Math.max(0, score);
 
-  if (checksumReportPresent === 'Yes') {
-    score += 20;
-  } else {
-    blockers.push("ASR model checksum verification review report is missing.");
-  }
-
-  if (manualEnableFlag === 'Yes') {
-    score += 15;
-  } else {
-    blockers.push("ASR_EXECUTION_ENABLED environment enable variable is missing.");
-  }
-
-  if (asrExecutionEnabled === 'Yes') {
-    score += 15;
-  } else {
-    blockers.push("ASR_EXECUTION_ENABLED environment enable variable is not set to 'true'.");
-  }
-
-  // System constraints
-  if (!ALLOW_ASR_EXECUTION) {
-    blockers.push("ASR execution is blocked by safety policy configuration.");
-  }
-
-  // Final Status
+  // Final status state machine
   let finalStatus = 'blocked';
-  if (!ALLOW_ASR_EXECUTION) {
+  if (scan.unexpectedCount > 0) {
     finalStatus = 'blocked';
-  } else if (modelFilesFound === 'No') {
+  } else if (!scan.dirExists || scan.modelCount === 0) {
     finalStatus = 'missing_model_files';
-  } else if (checksumReportPresent === 'No') {
+  } else if (!checksumReportExists) {
     finalStatus = 'missing_checksum_review';
-  } else if (manualEnableFlag === 'No' || asrExecutionEnabled === 'No') {
+  } else if (!asrExecutionEnabled) {
     finalStatus = 'missing_enable_flag';
-  } else if (asrExecutionEnabled === 'No') {
-    finalStatus = 'ready_for_manual_asr_enable';
   } else {
-    finalStatus = 'ready';
+    finalStatus = 'ready_for_manual_asr_enable';
   }
 
   const templatePath = path.join(REPO_ROOT, 'templates', 'asr_model_gate', 'asr-readiness-gate-template.md');
@@ -334,38 +350,39 @@ async function handleReadiness(): Promise<string> {
   }
   const template = fs.readFileSync(templatePath, 'utf-8');
 
-  const outPath = getSafeWritePath(outputFolders.reports, 'asr_model_gate_readiness_' + getFormattedDate(), '.md');
   const blockersText = blockers.length > 0 ? blockers.map(b => `- ${b}`).join('\n') : "- None";
-  const nextAction = finalStatus === 'ready'
-    ? "All gates satisfied. Offline Whisper transcription execution can be unlocked."
-    : "Review outstanding blockers, acquire model, calculate hashes, and verify enable environment flags.";
+  const nextAction = finalStatus === 'ready_for_manual_asr_enable'
+    ? "ASR model readiness gate is fully satisfied. Safe manual transcription is permitted under operator supervision."
+    : "Resolve outstanding blockers listed in this report.";
 
+  const formattedDate = getFormattedDate();
   const content = template
-    .replace(/\{\{DATE\}\}/g, getFormattedDate())
-    .replace(/\{\{STAGED_AUDIO\}\}/g, stagedAudioFound)
-    .replace(/\{\{MODEL_FILES\}\}/g, modelFilesFound)
-    .replace(/\{\{CHECKSUM_REVIEW\}\}/g, checksumReportPresent)
-    .replace(/\{\{MANUAL_ENABLE_FLAG\}\}/g, manualEnableFlag)
-    .replace(/\{\{ASR_EXECUTION_ENABLED\}\}/g, asrExecutionEnabled)
-    .replace(/\{\{READINESS_SCORE\}\}/g, String(score))
-    .replace(/\{\{BLOCKERS\}\}/g, blockersText)
+    .replace(/\{\{DATE\}\}/g, formattedDate)
+    .replace(/\{\{STAGED_AUDIO_FOUND\}\}/g, stagedAudioExists ? 'Yes' : 'No')
+    .replace(/\{\{ASR_MODEL_FILES_FOUND\}\}/g, scan.modelCount > 0 ? 'Yes' : 'No')
+    .replace(/\{\{CHECKSUM_REPORT_PRESENT\}\}/g, checksumReportExists ? 'Yes' : 'No')
+    .replace(/\{\{MANUAL_ENABLE_FLAG_PRESENT\}\}/g, manualFlagPresent ? 'Yes' : 'No')
+    .replace(/\{\{ASR_EXECUTION_ENABLED\}\}/g, asrExecutionEnabled ? 'Yes' : 'No')
+    .replace(/\{\{READINESS_SCORE\}\}/g, String(readinessScore))
     .replace(/\{\{FINAL_STATUS\}\}/g, finalStatus)
+    .replace(/\{\{BLOCKERS_LIST\}\}/g, blockersText)
     .replace(/\{\{NEXT_ACTION\}\}/g, nextAction);
 
-  fs.writeFileSync(outPath, content);
+  const outPath = getSafeWritePath(outputFolders.reports, 'asr_model_gate_readiness_' + formattedDate, '.md');
+  fs.writeFileSync(outPath, content, 'utf-8');
 
-  const detailMsg = `ASR model gate readiness compiled. Score: ${score}%, Status: ${finalStatus}. Saved to: ${path.basename(outPath)}`;
+  const detailMsg = `ASR readiness gate report compiled. Readiness Score: ${readinessScore}%. Status: ${finalStatus}. Saved to: ${path.basename(outPath)}`;
   console.log(`✅ ${detailMsg}`);
-  logEvent('COMPILE_ASR_READINESS_GATE', detailMsg);
+  logEvent('COMPILE_READINESS', detailMsg);
 
-  await announceCompletion("ASR model readiness gate report compiled.");
+  await announceCompletion("ASR model readiness report compiled successfully.");
   return outPath;
 }
 
-// 5. status
+// 5. status command
 function handleStatus() {
   console.log("=========================================");
-  console.log("🔬 OFFLINE ASR MODEL GATE STATUS");
+  console.log("🎙️ OFFLINE ASR MODEL READINESS GATE STATUS");
   console.log("=========================================");
 
   const getLatestFile = (dir: string, prefix: string): string => {
@@ -373,75 +390,72 @@ function handleStatus() {
     return f ? path.basename(f) : 'None generated';
   };
 
-  const guide = getLatestFile(outputFolders.guides, 'asr_model_acquisition_guide_');
-  const inventory = getLatestFile(outputFolders.inventory, 'asr_model_inventory_');
-  const checksum = getLatestFile(outputFolders.checksums, 'asr_model_checksum_review_');
-  const reports = getLatestFile(outputFolders.reports, 'asr_model_gate_readiness_');
+  const guide = getLatestFile(outputFolders.guides, 'asr_model_acquisition_guide');
+  const inventory = getLatestFile(outputFolders.inventory, 'asr_model_inventory');
+  const checksum = getLatestFile(outputFolders.checksums, 'asr_model_checksum_review');
+  const readiness = getLatestFile(outputFolders.reports, 'asr_model_gate_readiness');
 
-  // Verify Whisper model directory
-  const modelsPath = path.join(REPO_ROOT, modelDirectory);
-  let modelFilesFound = 'No';
-  let audioFilesFound = 'No';
+  const scan = runScans();
+  const stagedAudioExists = checkStagedAudio();
+  const checksumReportExists = checksum !== 'None generated';
+  const asrExecutionEnabled = process.env[MANUAL_ENABLE_FLAG_NAME] === 'true';
 
-  if (fs.existsSync(modelsPath)) {
-    const files = fs.readdirSync(modelsPath).filter(f => ALLOWED_MODEL_EXTENSIONS.includes(path.extname(f).toLowerCase()));
-    if (files.length > 0) {
-      modelFilesFound = 'Yes';
-    }
-  }
+  // Audit blockers list
+  const blockers: string[] = [];
+  if (!stagedAudioExists) blockers.push("No staged audio files found for transcription.");
+  if (!scan.dirExists) blockers.push("Model directory models/asr/whisper/ does not exist.");
+  if (scan.dirExists && scan.modelCount === 0) blockers.push("No Whisper ASR model files found.");
+  if (scan.unexpectedCount > 0) blockers.push("Disallowed files present inside models directory.");
+  if (!checksumReportExists) blockers.push("No checksum review report generated.");
+  if (!asrExecutionEnabled) blockers.push("Manual override flag ASR_EXECUTION_ENABLED is not set to true in environment.");
 
-  // Audio check
-  const recordingsDir = path.join(REPO_ROOT, 'voice_sessions', 'manual_recordings');
-  if (fs.existsSync(recordingsDir)) {
-    const files = fs.readdirSync(recordingsDir).filter(f => f !== '.DS_Store' && f !== '.gitkeep');
-    if (files.length > 0) {
-      audioFilesFound = 'Yes';
-    }
-  }
+  let score = 100;
+  if (!stagedAudioExists) score -= 10;
+  if (!scan.dirExists) score -= 30;
+  if (scan.dirExists && scan.modelCount === 0) score -= 20;
+  if (scan.unexpectedCount > 0) score -= 30;
+  if (!checksumReportExists) score -= 15;
+  if (!asrExecutionEnabled) score -= 15;
+  const readinessScore = Math.max(0, score);
 
-  const envVal = process.env[EXPECTED_MANUAL_ENABLE_VAR];
-  const asrEnabled = envVal === 'true' ? 'Yes' : 'No';
-
-  let score = 0;
-  if (audioFilesFound === 'Yes') score += 20;
-  if (modelFilesFound === 'Yes') score += 30;
-  if (checksum !== 'None generated') score += 20;
-  if (envVal !== undefined) score += 15;
-  if (asrEnabled === 'Yes') score += 15;
-
-  console.log(`Latest Acquisition Guide: ${guide}`);
-  console.log(`Latest Inventory Scan:   ${inventory}`);
-  console.log(`Latest Checksum Review:   ${checksum}`);
-  console.log(`Latest Readiness Report:  ${reports}`);
-  console.log(`ASR Model Files Found:    ${modelFilesFound}`);
-  console.log(`Checksum Reviewed:        ${checksum !== 'None generated' ? 'Yes' : 'No'}`);
-  console.log(`ASR Execution Enabled:    ${asrEnabled}`);
-  console.log(`Readiness Score:          ${score}%`);
-
-  if (!ALLOW_ASR_EXECUTION) {
-    console.log("Recommended Action:      ASR execution is disabled by safety policy configuration.");
-  } else if (score < 100) {
-    console.log("Recommended Action:      Review blockers in readiness report, place models manually, and verify environment flags.");
+  console.log(`Latest Acquisition Guide:  ${guide}`);
+  console.log(`Latest Inventory:          ${inventory}`);
+  console.log(`Latest Checksum Review:    ${checksum}`);
+  console.log(`Latest Readiness Gate:     ${readiness}`);
+  console.log(`Model Files Found:         ${scan.modelCount > 0 ? 'Yes' : 'No'} (${scan.modelCount} files total)`);
+  console.log(`Checksum Reviewed:         ${checksumReportExists ? 'Yes' : 'No'}`);
+  console.log(`ASR Execution Enabled:     ${asrExecutionEnabled ? 'Yes' : 'No'}`);
+  console.log(`Readiness Score:           ${readinessScore}%`);
+  console.log(`Active Blockers Count:     ${blockers.length}`);
+  if (blockers.length > 0) {
+    console.log("\n🚫 Current Blocker Audits:");
+    blockers.forEach(b => console.log(`  - ${b}`));
+    console.log("\nRecommended Action:        Ensure model binaries exist, review their checksums, stage audio, and set the env flag.");
   } else {
-    console.log("Recommended Action:      Model acquisition and validation complete. Ready to proceed with offline ASR execution.");
+    console.log("\nRecommended Action:        Gate checks passed. Local transcription is fully eligible for manual enable.");
   }
   console.log("=========================================");
 }
 
 async function main() {
-  ensureDirectories();
-
   const args = process.argv.slice(2);
-  const command = args[0]?.toLowerCase() || 'help';
+  let command = args[0] ? args[0].toLowerCase().trim() : 'help';
+  let subCommand = args[1] ? args[1].toLowerCase().trim() : '';
 
-  // Safety checks
+  if (command.includes(' ')) {
+    const parts = command.split(/\s+/);
+    command = parts[0];
+    subCommand = parts[1] || '';
+  }
+
+  // Safety Gate Check validations
   if (!MODEL_GATE_ONLY) {
-    console.error("❌ Safety Gate Triggered: ASR model gate is not in gate-only mode.");
+    console.error("❌ Safety Gate Triggered: Model gate is not in model-gate-only mode.");
     process.exit(1);
   }
 
   if (ALLOW_MODEL_DOWNLOAD || ALLOW_ASR_EXECUTION || ALLOW_AUDIO_TRANSCRIPTION || ALLOW_EXTERNAL_API_CALLS || ALLOW_SHELL_EXECUTION) {
-    console.error("❌ Safety Gate Triggered: Safety policies are incorrectly configured.");
+    console.error("❌ Safety Gate Triggered: Synthesis execution, model downloads, or external connections are incorrectly enabled.");
     process.exit(1);
   }
 
@@ -459,7 +473,7 @@ async function main() {
     } else if (command === 'status') {
       handleStatus();
     } else {
-      console.error(`❌ Unknown command: "${command}". Safe fallback triggered. Command failed.`);
+      console.error(`❌ Unknown command: "${command} ${subCommand}". Safe fallback triggered. Command failed.`);
       process.exit(1);
     }
   } catch (err) {

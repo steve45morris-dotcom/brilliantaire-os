@@ -376,6 +376,13 @@
 - [x] Phase 11X: Stage transcript placeholder
 - [x] Phase 11X: Confirm no transcription occurs
 - [ ] Phase 11X: Prepare ASR model placement only after readiness review
+- [x] Phase 11Y: Build Offline ASR Model Acquisition Guide
+- [x] Phase 11Y: Generate ASR model acquisition guide
+- [x] Phase 11Y: Generate ASR model inventory
+- [x] Phase 11Y: Generate checksum review
+- [x] Phase 11Y: Generate ASR model readiness gate
+- [x] Phase 11Y: Confirm no transcription occurs
+- [x] Phase 11Y: Prepare ASR execution only after model and manual enable pass
 
 ## Do Next
 - [ ] Build Duplicate Cleanup Staging Gate

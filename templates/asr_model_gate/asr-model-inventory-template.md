@@ -1,17 +1,28 @@
-# 🗃️ ASR Model Inventory Report: {{DATE}}
+# 🗃️ Offline ASR Whisper Model Inventory
+*Generated on: {{DATE}}*
 
-This report logs inventory checks of the offline Whisper models folder.
+## 1. Model Directory
+* **Path:** `{{MODEL_DIRECTORY}}`
+* **Exists:** `{{DIR_EXISTS}}`
 
-## 👥 Inventory Matrix
-*   **Model Directory:** `{{MODEL_DIRECTORY}}`
-*   **Files Found:** {{FILES_FOUND}}
-*   **File Names:** {{FILE_NAMES}}
-*   **File Sizes:** {{FILE_SIZES}}
-*   **Extensions:** {{EXTENSIONS}}
+## 2. Files Found
+* **Total Allowed Models:** `{{FILES_COUNT}}`
 
-## ⚠️ Integrity Anomalies
-*   **Unexpected Files:** {{UNEXPECTED_FILES}}
-*   **Empty Files:** {{EMPTY_FILES}}
+## 3. File Inventory Details
+| File Name | File Size (Bytes) | Format | Status |
+|-----------|------------------|--------|--------|
+{{FILE_ROWS}}
 
----
-**Next Action Recommended:** {{NEXT_ACTION}}
+## 4. Extensions
+* **Allowed Extensions:** `{{ALLOWED_EXTENSIONS}}`
+
+## 5. Unexpected Files
+* **Count:** `{{UNEXPECTED_COUNT}}`
+* **Files:** `{{UNEXPECTED_FILES}}`
+
+## 6. Empty Files
+* **Count:** `{{EMPTY_COUNT}}`
+* **Files:** `{{EMPTY_FILES}}`
+
+## 7. Next Action
+* **Recommended Next Step:** `{{NEXT_ACTION}}`

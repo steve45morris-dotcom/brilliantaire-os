@@ -167,7 +167,9 @@
     "cleanup-gate": "tsx scripts/cleanup-gate.ts",
     "cleanup-gate-help": "tsx scripts/cleanup-gate-help.ts",
     "briefing-tts-render-approval": "tsx scripts/briefing-tts-render-approval.ts",
-    "briefing-tts-render-approval-help": "tsx scripts/briefing-tts-render-approval-help.ts"
+    "briefing-tts-render-approval-help": "tsx scripts/briefing-tts-render-approval-help.ts",
+    "asr-model-gate": "tsx scripts/asr-model-gate.ts",
+    "asr-model-gate-help": "tsx scripts/asr-model-gate-help.ts"
   },
   "keywords": [
     "antigravity",

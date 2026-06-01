@@ -1,0 +1,28 @@
+# 🗃️ Offline ASR Whisper Model Inventory
+*Generated on: 2026-06-01*
+
+## 1. Model Directory
+* **Path:** `/Users/alexanderanthony/models/asr/whisper`
+* **Exists:** `No`
+
+## 2. Files Found
+* **Total Allowed Models:** `0`
+
+## 3. File Inventory Details
+| File Name | File Size (Bytes) | Format | Status |
+|-----------|------------------|--------|--------|
+| *No files found* | 0 | - | - |
+
+## 4. Extensions
+* **Allowed Extensions:** `.bin, .pt, .onnx, .ggml, .tflite`
+
+## 5. Unexpected Files
+* **Count:** `0`
+* **Files:** `None`
+
+## 6. Empty Files
+* **Count:** `0`
+* **Files:** `None`
+
+## 7. Next Action
+* **Recommended Next Step:** `Place Whisper model files in the target directory.`

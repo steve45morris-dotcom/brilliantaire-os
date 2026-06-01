@@ -759,6 +759,16 @@ tasks:
     cmds:
       - npm run narrator-voice-asr-orchestrator-help
 
+  asr-model-gate:
+    desc: "Run Offline ASR Model Gate tasks safely"
+    cmds:
+      - npm run asr-model-gate -- {{.CLI_ARGS}}
+
+  asr-model-gate-help:
+    desc: "Print Offline ASR Model Gate safety manuals"
+    cmds:
+      - npm run asr-model-gate-help
+
   narrator-voice-lifecycle-audit:
     desc: "Scan and build chronological transitions timeline for voice sessions"
     cmds:

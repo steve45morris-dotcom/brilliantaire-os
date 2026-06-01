@@ -1704,6 +1704,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'asr-model-gate-help',
+    aliases: ['asr model help', 'whisper model help'],
+    description: 'Print help command menu for offline ASR model gate and checksum gate',
+    npmScript: 'asr-model-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'asr-model-gate',
+    aliases: ['asr model', 'whisper model'],
+    description: 'Manual acquisition, verification inventory, and checksum gate for offline Whisper models',
+    npmScript: 'asr-model-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
