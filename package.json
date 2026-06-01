@@ -147,7 +147,9 @@
     "git-hook-help": "tsx scripts/git-hook-help.ts",
     "git-hook-install": "tsx scripts/git-hook-install.ts",
     "git-hook-status": "tsx scripts/git-hook-status.ts",
-    "git-hook-uninstall": "tsx scripts/git-hook-uninstall.ts"
+    "git-hook-uninstall": "tsx scripts/git-hook-uninstall.ts",
+    "cleanup-gate": "tsx scripts/cleanup-gate.ts",
+    "cleanup-gate-help": "tsx scripts/cleanup-gate-help.ts"
   },
   "keywords": [
     "antigravity",
