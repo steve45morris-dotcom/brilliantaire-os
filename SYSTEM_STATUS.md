@@ -83,6 +83,7 @@
 - **Voice Ops Daily Report Generator (Phase N5J):** Safe read-only daily operational reporter (`scripts/narrator-voice-ops-daily-report.ts`) compiling local voice pipeline sessions, ASR stats, rejections, blocked attempts, and dashboard snapshot outputs under strict safety rules.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
+- **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.
 
 
 

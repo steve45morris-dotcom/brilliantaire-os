@@ -2183,4 +2183,42 @@ The **Offline TTS Model Acquisition Guide and Placement Assistant** provides man
 * **Phase 11W: Local Offline Speech Synthesis Execution**
   - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
 
+---
+
+## 🛡️ Phase 12A: Duplicate Cleanup Staging Gate
+
+The **Duplicate Cleanup Staging Gate** provides a secure gating mechanism for staging duplicate brief cleanups and assessing project directory registry drift, operating with strict dry-run, quarantine-first, and restore policies under the Workflow Auditor.
+
+### 🔒 Guardrails Summary
+1. **Staging Only:** Direct file deletion is disabled by default.
+2. **Blocked rm Commands:** System deletes are blocked; copies are made to quarantine first.
+3. **Rollback Shell Script:** Generation of fully commented `.sh` scripts to reverse any executed quarantine event.
+4. **Registry Drift Audit:** Identifies and classifies unregistered directories in `Projects/` and `TreeGrooveProjects/` without auto-editing.
+
+### 💻 Command Examples
+* View cleanup gate help menu:
+  ```bash
+  npm run command -- "cleanup-gate-help"
+  ```
+* Run duplicates scan in targeted folders:
+  ```bash
+  npm run command -- "cleanup-gate scan-duplicates"
+  ```
+* Stage duplicate briefs quarantine plan:
+  ```bash
+  npm run command -- "cleanup-gate stage-quarantine"
+  ```
+* Generate safe restore script:
+  ```bash
+  npm run command -- "cleanup-gate restore-plan"
+  ```
+* Scan for Projects matrix drift:
+  ```bash
+  npm run command -- "cleanup-gate project-drift"
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "cleanup-gate status"
+  ```
+
 
