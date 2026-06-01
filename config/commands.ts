@@ -2192,6 +2192,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'asr-asset-acquisition-ledger-help',
+    aliases: ['asr ledger help', 'whisper ledger help'],
+    description: 'Print help menu for the offline ASR manual asset acquisition ledger compiler',
+    npmScript: 'asr-asset-acquisition-ledger-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-asset-acquisition-ledger',
+    aliases: ['asr ledger', 'whisper ledger'],
+    description: 'Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks',
+    npmScript: 'asr-asset-acquisition-ledger',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'project-registry-review-help',
     aliases: ['registry help', 'project drift help'],
     description: 'Print help menu for the local project registry drift review system',
@@ -2295,6 +2317,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['deletion readiness', 'quarantine deletion'],
     description: 'Stage deletion readiness audits for quarantined duplicate files',
     npmScript: 'quarantine-deletion-readiness',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'quarantine-monitoring-help',
+    aliases: ['quarantine monitor help', 'cleanup monitor help'],
+    description: 'Print help menu for quarantine monitoring continuation CLI',
+    npmScript: 'quarantine-monitoring-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'quarantine-monitoring',
+    aliases: ['quarantine monitor', 'cleanup monitor'],
+    description: 'Safe monitoring continuation layer tracking quarantined duplicate files',
+    npmScript: 'quarantine-monitoring',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',
@@ -2410,6 +2454,72 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     owningAgent: 'Workflow Auditor',
     riskLevel: 'low',
     outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-content-drafting-lab-deepener',
+    aliases: [],
+    description: 'Run v0.1 Content Drafting Lab Deepener to extract telemetry signals and draft review-ready content, scripts, and offers',
+    npmScript: 'grinders-keep-content-drafting-lab-deepener',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-content-drafting-lab-deepener-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Content Drafting Lab Deepener engine commands',
+    npmScript: 'grinders-keep-content-drafting-lab-deepener-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-maintenance-scheduler-help',
+    aliases: [],
+    description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
+    npmScript: 'voice-ops-maintenance-scheduler-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-maintenance-scheduler',
+    aliases: [],
+    description: 'Stage, approve, reject, list, and sign off Voice Ops manual-first maintenance checklists',
+    npmScript: 'voice-ops-maintenance-scheduler',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'duplicate-cleanup-help',
+    aliases: ['cleanup help', 'duplicate help'],
+    description: 'Print help documentation for Duplicate Cleanup Quarantine engine commands',
+    npmScript: 'duplicate-cleanup-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'duplicate-cleanup',
+    aliases: ['cleanup', 'duplicate scan'],
+    description: 'Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations',
+    npmScript: 'duplicate-cleanup',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
     enabled: true,
     requiresExactName: true
   }

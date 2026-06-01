@@ -2293,6 +2293,78 @@ The **Voice Ops Post-Freeze Health Monitor** checks whether the frozen stable Vo
 
 ---
 
+## 🧭 Phase N5T: Voice Ops Maintenance Mode Scheduler
+
+The **Voice Ops Maintenance Mode Scheduler** stages manual-first recurring maintenance tasks for post-freeze health checkups, dashboard telemetry rebuilds, release closure reviews, and archive ledgers. It creates checklists and recommends troubleshooting commands but never runs them automatically, preserving strict post-freeze security boundaries.
+
+### CLI Command List
+* Show help menu:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler-help"
+  ```
+* Show scheduler status, paths, safety flags, and queue metrics:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler status"
+  ```
+* Stage a weekly maintenance checklist job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-weekly"
+  ```
+* Stage a daily lightweight checklist job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-daily"
+  ```
+* Stage a manual post-freeze health check job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-health-check"
+  ```
+* Stage a manual dashboard refresh & build job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-dashboard-refresh"
+  ```
+* Stage a manual archive retention review job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-retention-review"
+  ```
+* Stage a manual known drift inspection job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler create-drift-review"
+  ```
+* List all pending, approved, rejected, and completed jobs:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler list-queue"
+  ```
+* Inspect job details, recommended commands, and risk level:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler inspect <JOB_ID>"
+  ```
+* Approve a pending job for manual execution:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler approve <JOB_ID>"
+  ```
+* Reject a pending job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler reject <JOB_ID>"
+  ```
+* Sign off and record human completion of a job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler mark-complete <JOB_ID> --signer \"<NAME>\" --note \"<NOTE>\""
+  ```
+* Compile and write a markdown summary report of all jobs:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler maintenance-summary"
+  ```
+* Print path/contents of the latest job:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler latest"
+  ```
+* Print recent scheduler activity log events:
+  ```bash
+  npm run command -- "voice-ops-maintenance-scheduler scheduler-log"
+  ```
+
+---
+
 
 
 
@@ -3242,6 +3314,14 @@ The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engin
   ```bash
   npm run command -- "grinders-keep-adaptive-learning-deepener-help"
   ```
+* Run Content Drafting Lab Deepener sweep:
+  ```bash
+  npm run command -- "grinders-keep-content-drafting-lab-deepener"
+  ```
+* Print Content Drafting Lab Deepener help menu:
+  ```bash
+  npm run command -- "grinders-keep-content-drafting-lab-deepener-help"
+  ```
 
 ---
 
@@ -3322,3 +3402,80 @@ The **Quarantine Deletion Readiness Staging Gate** provides a read-only validati
   ```bash
   npm run command -- "quarantine-deletion-readiness status"
   ```
+
+---
+
+## 🛡️ Phase 12H: Quarantine Monitoring Continuation
+
+The **Quarantine Monitoring Continuation** establishes a safe monitoring continuation layer. It keeps tracking quarantined duplicate files until the monitoring period passes, refreshes readiness reports, and blocks pruning while deletion eligibility remains false.
+
+### 🔒 Guardrails Summary
+1. **Continuation Monitoring:** Regularly tracks quarantined duplicate briefs, checksum verification parameters, and readiness logs.
+2. **Strict Operation Block:** Files cannot be deleted, unlinked, or moved. Pruning commands remain completely blocked.
+3. **Registry Isolation:** The central registry file `PROJECTS.md` remains unmodified.
+4. **Command Gating:** The command router enforces the exact command name check and blocks aliases.
+
+### 💻 Command Examples
+* Print monitoring continuation help:
+  ```bash
+  npm run command -- "quarantine-monitoring-help"
+  ```
+* Capture quarantine status snapshot:
+  ```bash
+  npm run command -- "quarantine-monitoring snapshot"
+  ```
+* Update tracking elapsed age and generate continuation report:
+  ```bash
+  npm run command -- "quarantine-monitoring continuation-report"
+  ```
+* Document pruning operation safety blocks:
+  ```bash
+  npm run command -- "quarantine-monitoring pruning-block"
+  ```
+* Display next check command guides:
+  ```bash
+  npm run command -- "quarantine-monitoring next-check"
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "quarantine-monitoring status"
+  ```
+
+---
+
+## 🛡️ Phase 12A: Duplicate Cleanup Quarantine
+
+The **Duplicate Cleanup Quarantine** creates a safe local duplicate and stale artifact cleanup system that scans generated outputs, detects duplicate timestamp variants, identifies stale reports, and stages cleanup recommendations without deleting files.
+
+### 🔒 Guardrails Summary
+1. **Strict Scan-Only:** Direct file deletion is disabled by default.
+2. **Blocked rm Commands:** System deletes are blocked; copies are made to quarantine index first.
+3. **No Source Modification:** Source files under `src/`, `scripts/`, or config paths are never modified or curated.
+4. **Command Gating:** The command router enforces the exact command name check and blocks aliases.
+
+### 💻 Command Examples
+* View duplicate cleanup help:
+  ```bash
+  npm run command -- "duplicate-cleanup-help"
+  ```
+* Run duplicate scan in targeted folders:
+  ```bash
+  npm run command -- "duplicate-cleanup" -- "scan"
+  ```
+* Identify stale reports, empty files, and orphan packets:
+  ```bash
+  npm run command -- "duplicate-cleanup" -- "stale"
+  ```
+* Generate quarantine index:
+  ```bash
+  npm run command -- "duplicate-cleanup" -- "quarantine-index"
+  ```
+* Generate cleanup review list:
+  ```bash
+  npm run command -- "duplicate-cleanup" -- "review-list"
+  ```
+* Print status metrics:
+  ```bash
+  npm run command -- "duplicate-cleanup" -- "status"
+  ```
+

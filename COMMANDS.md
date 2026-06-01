@@ -152,6 +152,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
 | `asr-manual-asset-revalidation-pass-help` | `asr revalidation help`, `whisper revalidation help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset revalidation pass. |
 | `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
+| `asr-asset-acquisition-ledger-help` | `asr ledger help`, `whisper ledger help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset acquisition ledger compiler. |
+| `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -226,6 +228,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-presence-preflight` | `asr preflight`, `whisper preflight` | Build Operator | Medium | Yes | Perform manual asset presence preflight check for offline ASR models and audio inputs. |
 | `asr-manual-asset-revalidation-pass-help` | `asr revalidation help`, `whisper revalidation help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset revalidation pass. |
 | `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
+| `asr-asset-acquisition-ledger-help` | `asr ledger help`, `whisper ledger help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset acquisition ledger compiler. |
+| `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -238,6 +242,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-ops-freeze-snapshot` | `voice freeze snapshot`, `freeze snapshot`, `voice-ops freeze snapshot` | Workflow Auditor | Medium | Yes | Capture stable voice ops release state, export JSON/MD manifests, generate recovery checklist, and verify integrity. |
 | `voice-ops-post-freeze-health-help` | `voice health help`, `post-freeze health help`, `voice-ops post-freeze health help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops post-freeze health monitor. |
 | `voice-ops-post-freeze-health` | `voice health`, `post-freeze health`, `voice-ops post-freeze health` | Workflow Auditor | Medium | Yes | Monitor the health of the frozen stable release (status, scan-freeze, verify-checksums, registry-health, dashboard-health, safety-health, drift-report, run-health-check, latest, list-reports, health-summary, health-log). |
+| `voice-ops-maintenance-scheduler-help` | None | Workflow Auditor | Low | Yes | Print help menu for the voice ops maintenance mode scheduler. |
+| `voice-ops-maintenance-scheduler` | None | Workflow Auditor | Medium | Yes | Stage, approve, reject, list, and sign off voice ops manual-first maintenance checklists (status, create-weekly, create-daily, create-health-check, create-dashboard-refresh, create-retention-review, create-drift-review, list-queue, inspect, approve, reject, mark-complete, maintenance-summary, latest, scheduler-log). |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
@@ -248,7 +254,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `project-registry-duplicate-resolution` | `duplicate registry`, `registry duplicate` | Workflow Auditor | High | Yes | Stage and resolve duplicate project registry entries in PROJECTS.md. |
 | `quarantine-deletion-readiness-help` | `deletion readiness help`, `quarantine deletion help` | Workflow Auditor | Low | No | Print help command menu for the local quarantine deletion readiness staging gate. |
 | `quarantine-deletion-readiness` | `deletion readiness`, `quarantine deletion` | Workflow Auditor | Medium | Yes | Stage deletion readiness audits for quarantined duplicate files. |
-
+| `quarantine-monitoring-help` | `quarantine monitor help`, `cleanup monitor help` | Workflow Auditor | Low | No | Print help menu for quarantine monitoring continuation CLI. |
+| `quarantine-monitoring` | `quarantine monitor`, `cleanup monitor` | Workflow Auditor | Medium | Yes | Safe monitoring continuation layer tracking quarantined duplicate files. |
 
 | `grinders-keep-daily-brief` | *(none)* | OS Architect | Low | Yes | Generate daily creative intelligence brief summarizing projects, money moves, lessons, and gaps. |
 | `grinders-keep-daily-brief-help` | *(none)* | OS Architect | Low | Yes | Print help documentation for Grinders Keep creative R&D engine commands. |
@@ -260,6 +267,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-gap-hunter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Gap Hunter engine commands. |
 | `grinders-keep-adaptive-learning-deepener` | *(none)* | Workflow Auditor | Low | Yes | Run v0.1 Adaptive Learning Deepener to compare gap records, analyze behavior signals, recommend habits, and stage adjustments. |
 | `grinders-keep-adaptive-learning-deepener-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Adaptive Learning Deepener engine commands. |
+| `grinders-keep-content-drafting-lab-deepener` | *(none)* | Creative Revenue Strategist | Low | Yes | Run v0.1 Content Drafting Lab Deepener to extract telemetry signals and draft review-ready content, scripts, and offers. |
+| `grinders-keep-content-drafting-lab-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Content Drafting Lab Deepener engine commands. |
+| `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
+| `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 
 
 

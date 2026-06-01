@@ -661,6 +661,16 @@ tasks:
     cmds:
       - npm run asr-manual-asset-revalidation-pass-help
 
+  asr-asset-acquisition-ledger:
+    desc: "Run Offline ASR Asset Acquisition Ledger compiler"
+    cmds:
+      - npm run asr-asset-acquisition-ledger -- {{.CLI_ARGS}}
+
+  asr-asset-acquisition-ledger-help:
+    desc: "Print Offline ASR Asset Acquisition Ledger help manual"
+    cmds:
+      - npm run asr-asset-acquisition-ledger-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -954,6 +964,16 @@ tasks:
     cmds:
       - npm run asr-manual-asset-revalidation-pass-help
 
+  asr-asset-acquisition-ledger:
+    desc: "Run Offline ASR Asset Acquisition Ledger compiler"
+    cmds:
+      - npm run asr-asset-acquisition-ledger -- {{.CLI_ARGS}}
+
+  asr-asset-acquisition-ledger-help:
+    desc: "Print Offline ASR Asset Acquisition Ledger help manual"
+    cmds:
+      - npm run asr-asset-acquisition-ledger-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -1069,8 +1089,15 @@ tasks:
     cmds:
       - npm run voice-ops-post-freeze-health-help
 
+  voice-ops-maintenance-scheduler:
+    desc: "Voice Ops Maintenance Mode Scheduler (Phase N5T)"
+    cmds:
+      - npm run voice-ops-maintenance-scheduler -- {{.CLI_ARGS}}
 
-
+  voice-ops-maintenance-scheduler-help:
+    desc: "Print help menu for the voice ops maintenance mode scheduler"
+    cmds:
+      - npm run voice-ops-maintenance-scheduler-help
 
   cleanup-gate:
     desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
@@ -1142,6 +1169,16 @@ tasks:
     cmds:
       - npm run quarantine-deletion-readiness-help
 
+  quarantine-monitoring:
+    desc: "Safe monitoring continuation layer tracking quarantined duplicate files"
+    cmds:
+      - npm run quarantine-monitoring -- {{.CLI_ARGS}}
+
+  quarantine-monitoring-help:
+    desc: "Print help menu for quarantine monitoring continuation CLI"
+    cmds:
+      - npm run quarantine-monitoring-help
+
 
 
   grinders-keep-daily-brief:
@@ -1194,6 +1231,16 @@ tasks:
     cmds:
       - npm run grinders-keep-adaptive-learning-deepener-help
 
+  grinders-keep-content-drafting-lab-deepener:
+    desc: "Run v0.1 Grinders Keep Content Drafting Lab Deepener sweep"
+    cmds:
+      - npm run grinders-keep-content-drafting-lab-deepener
+
+  grinders-keep-content-drafting-lab-deepener-help:
+    desc: "Print help documentation for Grinders Keep Content Drafting Lab Deepener"
+    cmds:
+      - npm run grinders-keep-content-drafting-lab-deepener-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1238,4 +1285,14 @@ tasks:
     desc: "Compile safety status reports into unified summary"
     cmds:
       - npm run sentinel:safety-report
+
+  duplicate-cleanup:
+    desc: "Run v0.1 Duplicate Cleanup Quarantine sweep"
+    cmds:
+      - npm run duplicate-cleanup -- {{.CLI_ARGS}}
+
+  duplicate-cleanup-help:
+    desc: "Print help documentation for Duplicate Cleanup Quarantine"
+    cmds:
+      - npm run duplicate-cleanup-help
 
