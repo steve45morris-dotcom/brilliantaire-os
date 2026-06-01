@@ -813,4 +813,12 @@ function main() {
   }
 }
 
-main();
+const isRunningDirectly = process.argv[1] && (
+  process.argv[1].endsWith('narrator-voice-lifecycle-audit.ts') ||
+  process.argv[1].endsWith('narrator-voice-lifecycle-audit.js') ||
+  process.argv[1].endsWith('narrator-voice-lifecycle-audit')
+);
+
+if (isRunningDirectly) {
+  main();
+}

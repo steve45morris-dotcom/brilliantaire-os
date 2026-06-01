@@ -152,3 +152,80 @@
 
 ---
 
+## [2026-06-01T07:51:52.148Z] Command Attempt: "notebooklm-grounded-index-graph-help"
+- **Matched Command:** `notebooklm-grounded-index-graph-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:52:47.808Z] Command Attempt: "notebooklm-grounded-index-graph build"
+- **Matched Command:** `notebooklm-grounded-index-graph`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:52:50.564Z] Command Attempt: "tts-model-acquisition-help"
+- **Matched Command:** `tts-model-acquisition-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:53:22.640Z] Command Attempt: "intelligence graph"
+- **Matched Command:** `notebooklm-grounded-index-graph`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T07:53:50.857Z] Command Attempt: "tts-model-acquisition inventory"
+- **Matched Command:** `tts-model-acquisition`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:54:16.256Z] Command Attempt: "tts acquisition"
+- **Matched Command:** `tts-model-acquisition`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T07:54:20.065Z] Command Attempt: "voice ops report status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

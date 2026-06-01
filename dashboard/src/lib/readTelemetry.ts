@@ -68,6 +68,19 @@ export interface VoiceLifecycleAuditData {
   latestAuditReportPath: string;
 }
 
+export interface VoiceOpsDailyReportData {
+  reportDate: string;
+  reportPath: string;
+  riskLevel: string;
+  totalSessions: number;
+  totalTranscripts: number;
+  approvedPackets: number;
+  executedPackets: number;
+  blockedEvents: number;
+  safetyStatus: string;
+  nextRecommendedPhase: string;
+}
+
 export interface VoiceLoopData {
   asrBackend: string;
   ttsRenderer: string;
@@ -92,6 +105,7 @@ export interface VoiceLoopData {
   };
   recorder?: VoiceRecorderData;
   audit?: VoiceLifecycleAuditData;
+  report?: VoiceOpsDailyReportData;
 }
 
 export interface DashboardData {

@@ -1685,6 +1685,63 @@ The **Voice Command Lifecycle Auditor** indexes files, metadata, and log logs to
 
 ---
 
+## 🧭 Phase N5J: Voice Ops Daily Report Generator
+
+The **Voice Ops Daily Report Generator** aggregates local voice pipeline activity, ASR transcription logs, safety blocks, and approvals to compile operating summaries for the current day or a specified calendar period.
+
+### 🛡️ Safety & Execution Rules
+1. **Read-Only Reporting:** Purely read-only; does not write or modify source artifacts (except compiling daily report files, logs, and dashboard JSON snapshots).
+2. **Strict Exact-Name Routing:** All router commands require exact name matching; no aliases or fuzzy names are allowed.
+3. **Redacted Previews:** Previews transcript strings for review but never executes them.
+
+### 💻 Command Examples
+* View daily report generator help:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report-help"
+  ```
+* Check watched paths, report directory, safety flags, and latest report:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report status"
+  ```
+* Generate today's markdown report:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report generate"
+  ```
+* Generate a report for a specific calendar date YYYY-MM-DD:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report generate-date YYYY-MM-DD"
+  ```
+* Print the path and content of the latest compiled report:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report latest"
+  ```
+* List recent daily reports generated:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report list-reports"
+  ```
+* Display safety violations and blocked attempts:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report safety-summary"
+  ```
+* Display command staging, approval, and execution summary:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report command-summary"
+  ```
+* Display voice recording session pipeline summary:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report session-summary"
+  ```
+* Export small telemetry JSON snapshot for dashboard integration:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report export-dashboard-snapshot"
+  ```
+* Print report generator compilation logs:
+  ```bash
+  npm run command -- "narrator-voice-ops-daily-report report-log"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -1714,6 +1771,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 1. **Response-Only Processing:** This script only reads local, pre-saved response files.
 2. **No Direct Obsidian Writes:** Staged markdown notes are written under `outputs/notebooklm_bridge/response_intelligence/` for manual review first.
 3. **No External APIs:** The processor must never make external API calls.
+4. **Exact-Name Execution Gateway:** Enforces exact-name matching. Execution via registered aliases (such as "response intelligence") is blocked at runtime.
 
 ### 💻 Command Examples
 * View response intelligence help menu:
@@ -1733,7 +1791,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 
 ## 🧭 Phase 11O: Grounded Intelligence Index Graph
 
-The **Grounded Intelligence Index Graph** compiles and links all response intelligence outputs (insight indexes, citation maps, weak claims, workflow cards, OS module suggestions, and staged Obsidian notes) into a unified, traceable local network graph.
+The **Grounded Intelligence Index Graph** compiles and links all response intelligence outputs (citation maps, workflows, weak claims, module recommendations, prompt pack ideas, and staged Obsidian notes) into a unified, traceable local network graph.
 
 ### 🛡️ Safety & Execution Rules
 1. **Local-Only Graph:** Node relations are built entirely offline from local Markdown outputs.
@@ -1741,23 +1799,28 @@ The **Grounded Intelligence Index Graph** compiles and links all response intell
 3. **No External APIs:** No embedding generation APIs or external network calls are allowed.
 4. **No Obsidian Writes:** Staged Markdown graphs are kept under `outputs/` for review first.
 5. **Timestamp Suffix Preservation:** Existing graph files are never overwritten without a timestamp suffix.
+6. **Exact-Name Execution Gateway:** Enforces exact-name matching. Execution via registered aliases is blocked at runtime.
 
 ### 💻 Command Examples
 * View grounded index help menu:
   ```bash
-  npm run command -- "grounded-index-help"
+  npm run command -- "notebooklm-grounded-index-graph-help"
   ```
 * Compile graph files:
   ```bash
-  npm run command -- "grounded-index build"
+  npm run command -- "notebooklm-grounded-index-graph build"
+  ```
+* Compile graph files in dry-run simulation mode:
+  ```bash
+  npm run command -- "notebooklm-grounded-index-graph build --dry-run"
   ```
 * Generate graph statistics report:
   ```bash
-  npm run command -- "grounded-index report"
+  npm run command -- "notebooklm-grounded-index-graph report"
   ```
 * Inspect latest graph structure:
   ```bash
-  npm run command -- "grounded-index inspect latest"
+  npm run command -- "notebooklm-grounded-index-graph inspect latest"
   ```
 
 ---
@@ -1790,6 +1853,7 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 1. **Response-Only Processing:** This script only reads local, pre-saved response files.
 2. **No Direct Obsidian Writes:** Staged markdown notes are written under `outputs/notebooklm_bridge/response_intelligence/` for manual review first.
 3. **No External APIs:** The processor must never make external API calls.
+4. **Exact-Name Execution Gateway:** Enforces exact-name matching. Execution via registered aliases (such as "response intelligence") is blocked at runtime.
 
 ### 💻 Command Examples
 * View response intelligence help menu:
@@ -2078,8 +2142,45 @@ The **Local Offline TTS Voice Model Placement and Activation Check** provides a 
 
 ---
 
+## 🧭 Phase 11V: Offline TTS Model Acquisition Guide and Placement Assistant
+
+The **Offline TTS Model Acquisition Guide and Placement Assistant** provides manual staging guidelines, model directory inventory scanning, pairing audits, and next-step roadmap compilations.
+
+### 🛡️ Safety & Execution Rules
+1. **Acquisition-Guide Only:** Spawning automatic curl/wget downloads, calling external APIs, writing configuration settings, or starting audio synthesizers is strictly disabled.
+2. **Manual Download Reminder:** Guide outlines manual browser steps to fetch required files without executing terminal compiler steps.
+3. **Large Binary Untracked Warning:** Emphasizes policies to prevent committing large binary `.onnx` model weights to Git repositories.
+
+### 💻 Command Examples
+* View model acquisition help menu:
+  ```bash
+  npm run command -- "tts-model-acquisition-help"
+  ```
+* Generate manual model acquisition guide:
+  ```bash
+  npm run command -- "tts-model-acquisition guide"
+  ```
+* Generate cataloged folder inventory list:
+  ```bash
+  npm run command -- "tts-model-acquisition inventory"
+  ```
+* Verify voice config file pairing compatibility:
+  ```bash
+  npm run command -- "tts-model-acquisition verify-placement"
+  ```
+* Generate next required manual step roadmap:
+  ```bash
+  npm run command -- "tts-model-acquisition next-step"
+  ```
+* Check acquisition status:
+  ```bash
+  npm run command -- "tts-model-acquisition status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11V: Local Offline Speech Synthesis Execution**
+* **Phase 11W: Local Offline Speech Synthesis Execution**
   - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
 
 

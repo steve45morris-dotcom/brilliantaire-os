@@ -167,7 +167,8 @@
 - [x] Phase N5G: Build Local Voice Session Recorder
 - [x] Phase N5H: Prepare Voice Session to ASR Pipeline Orchestrator
 - [x] Phase N5I: Build Voice Command Lifecycle Audit Timeline
-- [ ] Phase N5J: Prepare Voice Ops Daily Report Generator
+- [x] Phase N5J: Prepare Voice Ops Daily Report Generator
+- [ ] Phase N5K: Voice Ops Scheduled Briefing Queue
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -313,14 +314,14 @@
 - [ ] Prepare vector index only after graph review
 
 ## Do Next
-- [x] Phase 11P: Build Grounded Narrator Review Queue
-- [x] Phase 11P: Compile narration candidates queue
-- [x] Phase 11P: Compile narrator brief from safest candidates
-- [x] Phase 11P: Compile rejected weak claims checklist
-- [x] Phase 11P: Compile queue audit metrics and safety report
-- [x] Phase 11P: Review status metrics summary on console
-- [x] Phase 11P: Test pre-approved commands via router
-- [x] Phase 11P: Test blocked unapproved command aliases via router
+- [ ] Phase 11P: Build Grounded Narrator Review Queue
+- [ ] Phase 11P: Compile narration candidates queue
+- [ ] Phase 11P: Compile narrator brief from safest candidates
+- [ ] Phase 11P: Compile rejected weak claims checklist
+- [ ] Phase 11P: Compile queue audit metrics and safety report
+- [ ] Phase 11P: Review status metrics summary on console
+- [ ] Phase 11P: Test pre-approved commands via router
+- [ ] Phase 11P: Test blocked unapproved command aliases via router
 
 ## Do Next
 - [x] Phase 11Q: Build Offline TTS Brief Composer
@@ -352,13 +353,20 @@
 - [x] Phase 11T: Generate manual enable instructions
 - [x] Phase 11T: Confirm no audio generation occurs
 - [x] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
-- [ ] Phase 11U: Build TTS model activation check
-- [ ] Phase 11U: Generate model placement guide
-- [ ] Phase 11U: Scan local Piper model folder
-- [ ] Phase 11U: Run model pairing check
-- [ ] Phase 11U: Generate activation readiness report
-- [ ] Phase 11U: Confirm no audio generation occurs
-- [ ] Phase 11U: Prepare offline synthesis only after model pair and enable flag pass
+- [x] Phase 11U: Build TTS model activation check
+- [x] Phase 11U: Generate model placement guide
+- [x] Phase 11U: Scan local Piper model folder
+- [x] Phase 11U: Run model pairing check
+- [x] Phase 11U: Generate activation readiness report
+- [x] Phase 11U: Confirm no audio generation occurs
+- [x] Phase 11U: Prepare offline synthesis only after model pair and enable flag pass
+- [ ] Phase 11V: Build TTS model acquisition guide
+- [ ] Phase 11V: Generate manual acquisition guide
+- [ ] Phase 11V: Generate local model inventory
+- [ ] Phase 11V: Verify model placement
+- [ ] Phase 11V: Generate next-step report
+- [ ] Phase 11V: Manually place Piper model files
+- [ ] Phase 11V: Rerun model gate after placement
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

@@ -457,7 +457,18 @@ function main() {
       blockedEventCount,
       safetyEventCount,
       latestAuditReportPath
-    }
+    },
+    report: (() => {
+      const dailyReportSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/voice_ops_daily_report/snapshots/dashboard_snapshot.json');
+      if (fs.existsSync(dailyReportSnapshotPath)) {
+        try {
+          return JSON.parse(fs.readFileSync(dailyReportSnapshotPath, 'utf-8'));
+        } catch (e) {
+          console.error(`Failed to parse dashboard snapshot JSON: ${e}`);
+        }
+      }
+      return undefined;
+    })()
   };
 
   const data = {

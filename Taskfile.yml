@@ -411,15 +411,15 @@ tasks:
     desc: "Run NotebookLM Response Intelligence Processor tasks safely"
     cmds:
       - npm run notebooklm-response-intelligence -- {{.CLI_ARGS}}
-  grounded-index-help:
+  notebooklm-grounded-index-graph-help:
     desc: "Print Grounded Intelligence Index Graph safety manuals"
     cmds:
-      - npm run grounded-index-help
+      - npm run notebooklm-grounded-index-graph-help
 
-  grounded-index:
+  notebooklm-grounded-index-graph:
     desc: "Run Grounded Intelligence Index Graph tasks safely"
     cmds:
-      - npm run grounded-index -- {{.CLI_ARGS}}
+      - npm run notebooklm-grounded-index-graph -- {{.CLI_ARGS}}
 
   grounded-narrator-review-help:
     desc: "Print Grounded Narrator Review Queue safety manuals"
@@ -480,6 +480,16 @@ tasks:
     desc: "Run Offline TTS Model Activation tasks safely"
     cmds:
       - npm run tts-model-activation -- {{.CLI_ARGS}}
+
+  tts-model-acquisition-help:
+    desc: "Print Offline TTS Model Acquisition safety manuals"
+    cmds:
+      - npm run tts-model-acquisition-help
+
+  tts-model-acquisition:
+    desc: "Run Offline TTS Model Acquisition tasks safely"
+    cmds:
+      - npm run tts-model-acquisition -- {{.CLI_ARGS}}
 
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
@@ -688,6 +698,16 @@ tasks:
     desc: "Print help commands for the voice session lifecycle auditor"
     cmds:
       - npm run narrator-voice-lifecycle-audit-help
+
+  narrator-voice-ops-daily-report:
+    desc: "Daily voice ops report generator (status, generate, latest, list-reports, etc.)"
+    cmds:
+      - npm run narrator-voice-ops-daily-report -- {{.CLI_ARGS}}
+
+  narrator-voice-ops-daily-report-help:
+    desc: "Print help menu for the daily voice ops report generator"
+    cmds:
+      - npm run narrator-voice-ops-daily-report-help
 
 
 

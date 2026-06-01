@@ -104,8 +104,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-mcp-live` | `notebook live`, `mcp live` | Knowledge Librarian | Medium | Yes | Execute NotebookLM MCP Live Adapter Integration checks. |
 | `notebooklm-response-intelligence-help` | `response intelligence help`, `notebook response help` | Knowledge Librarian | Low | No | Print commands for NotebookLM response intelligence processor. |
 | `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
-| `grounded-index-help` | `graph help`, `grounded help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
-| `grounded-index` | `intelligence graph`, `grounded graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
+| `notebooklm-grounded-index-graph-help` | `graph help`, `grounded help`, `notebook graph help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
+| `notebooklm-grounded-index-graph` | `intelligence graph`, `grounded graph`, `notebook graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
 | `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
 | `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |
@@ -118,6 +118,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `tts-model-gate` | `model gate`, `tts model` | Build Operator | Medium | Yes | Verify local model placements, configurations, and overrides safety. |
 | `tts-model-activation-help` | `model activation help`, `tts activation help` | Build Operator | Low | No | Print help menu for offline TTS model activation checks. |
 | `tts-model-activation` | `model activation`, `tts activation` | Build Operator | Medium | Yes | Verify manually placed voice files matching config pairs and engine readiness. |
+| `tts-model-acquisition-help` | `model acquisition help`, `tts model guide` | Build Operator | Low | No | Print help menu for offline TTS model manual acquisition guides. |
+| `tts-model-acquisition` | `model acquisition`, `tts acquisition` | Build Operator | Medium | Yes | Verify model staging checklists manual download instructions and directory inventory. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -157,6 +159,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-asr-orchestrator` | `voice asr orchestrator`, `narrator voice asr orchestrator` | Knowledge Librarian | Medium | Yes | Local offline voice session to ASR queue dispatch and approval orchestrator. |
 | `narrator-voice-lifecycle-audit-help` | `voice lifecycle audit help`, `narrator voice lifecycle audit help` | Knowledge Librarian | Low | No | Print help command menu for the narrator voice session lifecycle auditor. |
 | `narrator-voice-lifecycle-audit` | `voice lifecycle audit`, `narrator voice lifecycle audit` | Knowledge Librarian | Medium | Yes | Chronological timeline mapping of voice session recordings, ASR events, and bridge actions. |
+| `narrator-voice-ops-daily-report-help` | `voice ops report help`, `narrator voice ops report help` | Knowledge Librarian | Low | Yes | Print help command menu for the daily Voice Ops report generator. |
+| `narrator-voice-ops-daily-report` | `voice ops daily report`, `narrator voice ops daily report` | Knowledge Librarian | Medium | Yes | Summarize the day's local voice sessions, ASR transcripts, staged packets, approvals, bridge executions, rejections, blocked attempts, safety events, and dashboard status. |
 
 
 ---

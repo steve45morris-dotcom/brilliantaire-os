@@ -2129,5 +2129,77 @@
     "source": "command_log_2026-06-01",
     "status": "BLOCKED",
     "details": "Matched Command: \"notebooklm-response-intelligence\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:41:33.397Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-activation-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-activation-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:42:33.984Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-activation scan\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-activation\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:42:57.205Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts activation\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-model-activation\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:51:52.148Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-grounded-index-graph-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:52:47.808Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-grounded-index-graph build\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:52:50.564Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-acquisition-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-acquisition-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:53:22.640Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"intelligence graph\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:53:50.857Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-acquisition inventory\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-acquisition\" | Exit Code: 0"
   }
 ]

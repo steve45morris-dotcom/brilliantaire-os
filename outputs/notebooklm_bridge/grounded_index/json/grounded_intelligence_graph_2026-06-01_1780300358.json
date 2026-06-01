@@ -1,0 +1,267 @@
+{
+  "graphId": "grounded_graph_2026-06-01",
+  "createdAt": "2026-06-01T07:52:38.810Z",
+  "sourceFiles": [
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/citation_maps/notebooklm_citation_map_2026-06-01_1780299522.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/weak_claims/notebooklm_weak_claims_2026-06-01.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/workflows/notebooklm_workflows_2026-06-01.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/module_recommendations/notebooklm_module_recommendations_2026-06-01.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/prompt_packs/notebooklm_prompt_pack_ideas_2026-06-01.md",
+    "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/response_intelligence/obsidian_notes/notebooklm_intelligence_note_2026-06-01.md"
+  ],
+  "claims": [
+    {
+      "id": "claim_1",
+      "sourceFile": "notebooklm_citation_map_2026-06-01_1780299522.md",
+      "sourceSection": "## ⚠️ Uncited Claims",
+      "text": "Offline query validation checklist verified.",
+      "confidence": "High",
+      "relatedNodes": [
+        "citation_1"
+      ],
+      "action": "Review manual instructions report."
+    },
+    {
+      "id": "claim_2",
+      "sourceFile": "notebooklm_citation_map_2026-06-01_1780299522.md",
+      "sourceSection": "## ⚠️ Uncited Claims",
+      "text": "State consistency check runs in prepush hook to intercept forbidden files.",
+      "confidence": "High",
+      "relatedNodes": [
+        "citation_2"
+      ],
+      "action": "Inspect local pre-push status reports."
+    },
+    {
+      "id": "claim_3",
+      "sourceFile": "notebooklm_citation_map_2026-06-01_1780299522.md",
+      "sourceSection": "## ⚠️ Uncited Claims",
+      "text": "Direct Obsidian writing remains offline.",
+      "confidence": "Medium",
+      "relatedNodes": [
+        "weak_claim_1"
+      ],
+      "action": "Review Obsidian note staging folder structure."
+    }
+  ],
+  "citations": [
+    {
+      "id": "citation_1",
+      "sourceFile": "notebooklm_citation_map_2026-06-01_1780299522.md",
+      "sourceSection": "## 📁 Cited Sources",
+      "refDoc": "notebooklm_live_response_source_summary_2026-05-31.md",
+      "text": "Offline query validation checklist verified.",
+      "confidence": "High",
+      "relatedNodes": [
+        "claim_1"
+      ],
+      "action": "Verify reference doc presence in local workspace."
+    },
+    {
+      "id": "citation_2",
+      "sourceFile": "notebooklm_citation_map_2026-06-01_1780299522.md",
+      "sourceSection": "## 📁 Cited Sources",
+      "refDoc": "scripts/git-prepush-check.ts",
+      "text": "State consistency check runs in prepush hook to intercept forbidden files.",
+      "confidence": "High",
+      "relatedNodes": [
+        "claim_1"
+      ],
+      "action": "Verify reference doc presence in local workspace."
+    }
+  ],
+  "weakClaims": [
+    {
+      "id": "weak_claim_1",
+      "sourceFile": "notebooklm_weak_claims_2026-06-01.md",
+      "claim": "Direct Obsidian writing remains offline.",
+      "weakness": "Execution depends entirely on static variable configurations rather than verified container environments.",
+      "evidence": "No dynamic runtime sandbox checks block local write actions.",
+      "risk": "Medium",
+      "method": "Examine config/notebooklm-response-intelligence.ts ALLOW_OBSIDIAN_WRITE configuration value.",
+      "action": "Implement container detection and assert failure if executed outside verified sandbox.",
+      "relatedNodes": [
+        "claim_3"
+      ]
+    },
+    {
+      "id": "weak_claim_2",
+      "sourceFile": "notebooklm_weak_claims_2026-06-01.md",
+      "claim": "Manual query instructions are fully simulated.",
+      "weakness": "Manual instructions use hardcoded workspace ID parameters.",
+      "evidence": "instructions reference fallback 'your-workspace-id' value.",
+      "risk": "Low",
+      "method": "Inspect output templates for hardcoded string patterns.",
+      "action": "Load NOTEBOOKLM_WORKSPACE_ID environment variables dynamically during fallback printing.",
+      "relatedNodes": [
+        "claim_3"
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "id": "workflow_1",
+      "sourceFile": "notebooklm_workflows_2026-06-01.md",
+      "title": "Offline Response Intelligence Processing",
+      "insight": "Automation runner setup is locked to manual confirmation.",
+      "steps": "1. Scan responses directory for new markdown records.\n2. Ingest contents and load templates.\n3. Write processed reports and stage Obsidian vault note.",
+      "agent": "Knowledge Librarian",
+      "difficulty": "Medium",
+      "benefit": "Converts raw query instructions and outputs into structured blueprints without OAuth or browser runs.",
+      "relatedNodes": [
+        "recommendation_1"
+      ]
+    },
+    {
+      "id": "workflow_2",
+      "sourceFile": "notebooklm_workflows_2026-06-01.md",
+      "title": "Pre-Push Hook Security Enforcement",
+      "insight": "State consistency checks block dangerous commits from remote.",
+      "steps": "1. Scan tracked workspace files for binary files or large size violations.\n2. Evaluate against the project gitignore definitions.\n3. Fail the git push workflow safely if files are tracked.",
+      "agent": "Workflow Auditor",
+      "difficulty": "Low",
+      "benefit": "Safeguards remote repository sanity automatically.",
+      "relatedNodes": [
+        "recommendation_1"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "recommendation_1",
+      "sourceFile": "notebooklm_module_recommendations_2026-06-01.md",
+      "moduleName": "live-response-intelligence-processor",
+      "problem": "Extracting structured schemas from raw textual response records.",
+      "basis": "Live adapter integration scaffolding is active.",
+      "agent": "Knowledge Librarian",
+      "difficulty": "Medium",
+      "benefit": "Removes manual parser script writing overhead.",
+      "risk": "Parsing issues on complex raw text structures.",
+      "nextPhase": "Phase 11O: Grounded Ingestion & Live Validation Loop",
+      "relatedNodes": [
+        "workflow_1"
+      ]
+    },
+    {
+      "id": "recommendation_2",
+      "sourceFile": "notebooklm_module_recommendations_2026-06-01.md",
+      "moduleName": "approved-obsidian-write-gateway",
+      "problem": "Writing staged markdown notes into Obsidian vault securely.",
+      "basis": "Direct Obsidian writing remains offline to prevent vault indexing conflicts.",
+      "agent": "Knowledge Librarian",
+      "difficulty": "Medium",
+      "benefit": "Allows reviewed, staged notes to enter the vault safely.",
+      "risk": "Overwriting existing vault notes with conflicting filenames.",
+      "nextPhase": "Phase 12: Approved Obsidian Write Gateway",
+      "relatedNodes": [
+        "workflow_1"
+      ]
+    }
+  ],
+  "promptPacks": [
+    {
+      "id": "prompt_pack_1",
+      "sourceFile": "notebooklm_prompt_pack_ideas_2026-06-01.md",
+      "title": "NotebookLM Response Aggregator Prompt",
+      "workflow": "Offline Response Intelligence Processing",
+      "purpose": "Instructs NotebookLM to format replies with clear headings for Key Ideas, Citations, and Modules.",
+      "structure": "Process input transcripts and output key insights under predefined standard headers.",
+      "output": "Markdown structured text.",
+      "benefit": "Ensures raw text is highly parseable by scripts.",
+      "relatedNodes": [
+        "workflow_1",
+        "recommendation_1"
+      ]
+    }
+  ],
+  "obsidianNotes": [
+    {
+      "id": "obsidian_note_1",
+      "sourceFile": "notebooklm_intelligence_note_2026-06-01.md",
+      "title": "NotebookLM Response Intelligence Note",
+      "summary": "Offline response record parsed and split into distinct intelligence vectors for verification.",
+      "status": "staged_for_obsidian_review",
+      "tags": [
+        "notebooklm-mcp",
+        "brilliantaire-os",
+        "intelligence"
+      ],
+      "backlinks": [
+        "NOTEBOOKLM_MCP_LIVE_ADAPTER",
+        "NOTEBOOKLM_RESPONSE_INTELLIGENCE"
+      ],
+      "relatedNodes": [
+        "claim_1",
+        "claim_2",
+        "claim_3",
+        "workflow_1",
+        "workflow_2",
+        "recommendation_1",
+        "recommendation_2",
+        "prompt_pack_1"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "citation_1",
+      "to": "claim_1",
+      "relationType": "supports",
+      "label": "exact_relation"
+    },
+    {
+      "from": "citation_2",
+      "to": "claim_1",
+      "relationType": "supports",
+      "label": "exact_relation"
+    },
+    {
+      "from": "weak_claim_1",
+      "to": "claim_3",
+      "relationType": "contradicts",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "weak_claim_2",
+      "to": "claim_3",
+      "relationType": "contradicts",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "workflow_1",
+      "to": "recommendation_1",
+      "relationType": "suggests_module",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "workflow_2",
+      "to": "recommendation_1",
+      "relationType": "suggests_module",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "prompt_pack_1",
+      "to": "workflow_1",
+      "relationType": "becomes_next_action",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "prompt_pack_1",
+      "to": "recommendation_1",
+      "relationType": "suggests_module",
+      "label": "inferred_relation"
+    },
+    {
+      "from": "obsidian_note_1",
+      "to": "claim_1",
+      "relationType": "stages_to_obsidian",
+      "label": "exact_relation"
+    },
+    {
+      "from": "obsidian_note_1",
+      "to": "workflow_1",
+      "relationType": "stages_to_obsidian",
+      "label": "exact_relation"
+    }
+  ]
+}
