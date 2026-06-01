@@ -1,0 +1,80 @@
+{
+  "sessionId": "2026-05-31_0801",
+  "events": [
+    {
+      "timestamp": "2026-05-31T16:48:57.341Z",
+      "type": "execution_blocked",
+      "sessionId": "2026-05-31_0801",
+      "description": "Safety Blocked: Command \"narrator-tts-renderer render 2026-05-31_0801\" rejected. Reason: Failed",
+      "source": "command_log_2026-05-31",
+      "status": "BLOCKED",
+      "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 1"
+    },
+    {
+      "timestamp": "2026-05-31T16:50:06.504Z",
+      "type": "execution_blocked",
+      "sessionId": "2026-05-31_0801",
+      "description": "Safety Blocked: Command \"narrator-tts-renderer render 2026-05-31_0801\" rejected. Reason: Failed",
+      "source": "command_log_2026-05-31",
+      "status": "BLOCKED",
+      "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 1"
+    },
+    {
+      "timestamp": "2026-05-31T17:05:32.931Z",
+      "type": "command_executed",
+      "sessionId": "2026-05-31_0801",
+      "description": "Command execution completed: \"narrator-tts-renderer render 2026-05-31_0801\"",
+      "source": "command_log_2026-05-31",
+      "status": "SUCCESS",
+      "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 0"
+    },
+    {
+      "timestamp": "2026-05-31T17:06:44.136Z",
+      "type": "command_executed",
+      "sessionId": "2026-05-31_0801",
+      "description": "Command execution completed: \"narrator-tts-renderer render 2026-05-31_0801\"",
+      "source": "command_log_2026-05-31",
+      "status": "SUCCESS",
+      "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 0"
+    },
+    {
+      "timestamp": "2026-05-31T21:23:08.212Z",
+      "type": "transcription_created",
+      "sessionId": "2026-05-31_0801",
+      "description": "Offline Whisper transcription file generated.",
+      "source": "transcripts",
+      "status": "SUCCESS",
+      "details": "Raw text: \"System operational brief for 5/31/2026. Telemetry parsing verified. Generate live feed.\""
+    },
+    {
+      "timestamp": "2026-05-31T21:23:48.999Z",
+      "type": "asr_approved",
+      "sessionId": "2026-05-31_0801",
+      "description": "Operator Approved staged command packet.",
+      "source": "asr_approved",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T21:41:57.738Z",
+      "type": "bridge_executed",
+      "sessionId": "2026-05-31_0801",
+      "description": "Voice Command Approval Bridge transition: [BRIDGE_EXECUTED].",
+      "source": "voice_bridge",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:12:18.690Z",
+      "type": "bridge_prepared",
+      "sessionId": "2026-05-31_0801",
+      "description": "Voice Command Approval Bridge transition: [BRIDGE_PREPARED].",
+      "source": "voice_bridge",
+      "status": "SUCCESS"
+    }
+  ],
+  "currentState": "Initialized",
+  "audioExists": false,
+  "transcriptExists": true,
+  "stagedExists": false,
+  "approvedExists": true,
+  "executedExists": true
+}

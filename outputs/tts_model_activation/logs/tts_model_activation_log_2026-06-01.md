@@ -1,0 +1,2 @@
+- [2026-06-01T07:38:50.514Z] **COMPILE_PLACEMENT_GUIDE**: TTS manual-placement guide generated successfully. Saved to: tts_model_manual_placement_guide_2026-06-01.md
+- [2026-06-01T07:39:14.107Z] **COMPILE_PLACEMENT_REPORT**: TTS model placement report generated. Saved to: tts_model_placement_report_2026-06-01.md

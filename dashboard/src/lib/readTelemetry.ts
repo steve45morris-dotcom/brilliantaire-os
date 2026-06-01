@@ -55,6 +55,19 @@ export interface VoiceRecorderData {
   latestRecorderLog: string;
 }
 
+export interface VoiceLifecycleAuditData {
+  latestLifecycleId: string;
+  latestSessionStatus: string;
+  latestAsrTranscriptStatus: string;
+  latestCommandPacketStatus: string;
+  latestApprovalStatus: string;
+  latestBridgeStatus: string;
+  latestExecutionStatus: string;
+  blockedEventCount: number;
+  safetyEventCount: number;
+  latestAuditReportPath: string;
+}
+
 export interface VoiceLoopData {
   asrBackend: string;
   ttsRenderer: string;
@@ -78,6 +91,7 @@ export interface VoiceLoopData {
     rawShellExecutionBlocked: boolean;
   };
   recorder?: VoiceRecorderData;
+  audit?: VoiceLifecycleAuditData;
 }
 
 export interface DashboardData {

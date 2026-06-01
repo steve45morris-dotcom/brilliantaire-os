@@ -165,7 +165,9 @@
 - [x] Phase N5E: Test exact-name command routing and safety blocks
 - [x] Phase N5F: Prepare Voice Loop Dashboard & Human Confirmation UI
 - [x] Phase N5G: Build Local Voice Session Recorder
-- [ ] Phase N5H: Prepare Voice Session to ASR Pipeline Orchestrator
+- [x] Phase N5H: Prepare Voice Session to ASR Pipeline Orchestrator
+- [x] Phase N5I: Build Voice Command Lifecycle Audit Timeline
+- [ ] Phase N5J: Prepare Voice Ops Daily Report Generator
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -270,33 +272,25 @@
 - [x] Complete local setup manually (local env staging completed)
 
 ## Do Next
-- [ ] Build Live MCP Query Adapter With Manual Enable (Phase 11M)
-- [ ] Prepare source-summary live payload
-- [ ] Prepare workflow-extraction live payload
-- [ ] Run safety report before execution
-- [ ] Execute source-summary only if --confirm and live eligibility pass
-- [ ] Generate staged Obsidian export from live response
-- [ ] Review live safety report
-- [ ] Decide whether expanded live query types are allowed
+- [x] Build Live MCP Query Adapter With Manual Enable (Phase 11M)
+- [x] Prepare source-summary live payload
+- [x] Prepare workflow-extraction live payload
+- [x] Run safety report before execution
+- [x] Execute source-summary only if --confirm and live eligibility pass
+- [x] Generate staged Obsidian export from live response
+- [x] Review live safety report
+- [x] Decide whether expanded live query types are allowed
 
 ## Do Next
-- [x] Build Git Asset Guard
-- [x] Run Git asset audit
-- [x] Run pre-push safety check
-- [x] Review forbidden tracked files
-- [x] Add pre-push routine to future release workflow
-- [x] Untrack forbidden legacy audio assets (Phase R3)
-- [x] Verify gitignore exclusion rules
-- [x] Regulate pre-push check status to READY
-- [x] Maintain Git Asset Guard policy checks in future runs
-
-## Do Next
-- [x] Build Pre-Push Hook Installer (Phase R4)
-- [x] Install local pre-push hook
-- [x] Check hook status
-- [x] Run git-prepush-check manually
-- [x] Confirm push protection is active
-- [x] Return to Phase 11L after hook passes
+- [x] Phase 11N: Build Live Response Intelligence Processor
+- [x] Phase 11N: Generate citation map
+- [x] Phase 11N: Extract workflows
+- [x] Phase 11N: Review weak claims
+- [x] Phase 11N: Generate module recommendations
+- [x] Phase 11N: Generate prompt pack ideas
+- [x] Phase 11N: Generate staged Obsidian intelligence note
+- [x] Phase 11N: Generate response intelligence summary
+- [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
 
 ## Do Next
 - [x] Build NotebookLM MCP Live Adapter
@@ -308,14 +302,6 @@
 - [x] Test manual response import
 - [x] Review live adapter report
 
-- [x] Build Live Response Intelligence Processor
-- [x] Process latest NotebookLM response
-- [x] Generate citation map
-- [x] Generate weak claims report
-- [x] Generate workflow cards
-- [x] Generate OS module suggestions
-- [x] Generate Obsidian staged note
-- [x] Review Grounded Narrator indexing boundary
 
 ## Do Next
 - [x] Build Grounded Intelligence Index Graph
@@ -360,12 +346,19 @@
 - [x] Phase 11S: Generate audio output manifest
 - [x] Phase 11S: Confirm no audio generation occurs
 - [x] Phase 11S: Prepare real offline synthesis only after model files are placed manually
-- [ ] Phase 11T: Build Offline TTS Model Readiness Gate
-- [ ] Phase 11T: Run model readiness check
-- [ ] Phase 11T: Generate model file checklist
-- [ ] Phase 11T: Generate manual enable instructions
-- [ ] Phase 11T: Confirm no audio generation occurs
-- [ ] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
+- [x] Phase 11T: Build Offline TTS Model Readiness Gate
+- [x] Phase 11T: Run model readiness check
+- [x] Phase 11T: Generate model file checklist
+- [x] Phase 11T: Generate manual enable instructions
+- [x] Phase 11T: Confirm no audio generation occurs
+- [x] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
+- [ ] Phase 11U: Build TTS model activation check
+- [ ] Phase 11U: Generate model placement guide
+- [ ] Phase 11U: Scan local Piper model folder
+- [ ] Phase 11U: Run model pairing check
+- [ ] Phase 11U: Generate activation readiness report
+- [ ] Phase 11U: Confirm no audio generation occurs
+- [ ] Phase 11U: Prepare offline synthesis only after model pair and enable flag pass
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

@@ -1,0 +1,84 @@
+{
+  "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+  "events": [
+    {
+      "timestamp": "2026-05-31T22:26:43.049Z",
+      "type": "metadata_written",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Session metadata file registered with status [staged_for_asr].",
+      "source": "metadata",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:26:44.131Z",
+      "type": "recording_created",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Voice session audio WAV recording created.",
+      "source": "recordings",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:27:17.264Z",
+      "type": "asr_dispatched",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "WAV file staged in ASR input folder (Dispatch stage completed).",
+      "source": "asr_inputs",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:40:46.660Z",
+      "type": "orch_dispatch_asr",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Voice ASR Orchestrator logged event: [DISPATCH_ASR].",
+      "source": "orchestrator.log",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:42:19.704Z",
+      "type": "transcription_created",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Offline Whisper transcription file generated.",
+      "source": "transcripts",
+      "status": "SUCCESS",
+      "details": "Raw text: \"System operational brief for 5/31/2026. Telemetry parsing verified. Generate live feed.\""
+    },
+    {
+      "timestamp": "2026-05-31T22:42:19.754Z",
+      "type": "orch_transcribe_session",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Voice ASR Orchestrator delegated workflow [TRANSCRIBE_SESSION] output is: SUCCESS",
+      "source": "orchestrator.log",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:42:27.786Z",
+      "type": "orch_stage_transcript",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Voice ASR Orchestrator delegated workflow [STAGE_TRANSCRIPT] output is: SUCCESS",
+      "source": "orchestrator.log",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:42:40.514Z",
+      "type": "asr_approved",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Operator Approved staged command packet.",
+      "source": "asr_approved",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-05-31T22:42:40.554Z",
+      "type": "orch_approve_session_command",
+      "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+      "description": "Voice ASR Orchestrator delegated workflow [APPROVE_SESSION_COMMAND] output is: SUCCESS",
+      "source": "orchestrator.log",
+      "status": "SUCCESS"
+    }
+  ],
+  "currentState": "staged_for_asr",
+  "audioExists": true,
+  "transcriptExists": true,
+  "stagedExists": false,
+  "approvedExists": true,
+  "executedExists": false
+}

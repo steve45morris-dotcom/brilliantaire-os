@@ -2040,8 +2040,46 @@ The **Offline TTS Model Readiness Gate** enforces strict verification checks to 
 
 ---
 
+## 🧭 Phase 11U: Local Offline TTS Voice Model Placement and Activation Check
+
+The **Local Offline TTS Voice Model Placement and Activation Check** provides a manual model staging verification layer. It audits directory configurations, matching configuration JSON files, and environment variable flags to ensure all speech assets are fully validated before offline voice synthesis.
+
+### 🛡️ Safety & Execution Rules
+1. **Activation-Check Only:** Validates staged file layouts and config prefixes. Spawning audio rendering compilers or running speech modules is disabled.
+2. **No Audio Generation:** Blocks audio generation and wave output.
+3. **No Model Download:** Blocks automatic network requests or model fetches.
+4. **No External APIs:** Speech rendering queries are held offline.
+
+### 💻 Command Examples
+* View model activation help menu:
+  ```bash
+  npm run command -- "tts-model-activation-help"
+  ```
+* Generate manual model placement guide:
+  ```bash
+  npm run command -- "tts-model-activation placement-guide"
+  ```
+* Run model folder scanning audit:
+  ```bash
+  npm run command -- "tts-model-activation scan"
+  ```
+* Run voice model configuration pairing check:
+  ```bash
+  npm run command -- "tts-model-activation pairing-check"
+  ```
+* Run multi-layer activation readiness compilation:
+  ```bash
+  npm run command -- "tts-model-activation activation-readiness"
+  ```
+* Check activation status:
+  ```bash
+  npm run command -- "tts-model-activation status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11U: Local Voice Session Recorder**
-  - Construct a local offline voice session recorder that records microphone inputs, stores raw voice clips, and logs sessions safely for speech recognition audits.
+* **Phase 11V: Local Offline Speech Synthesis Execution**
+  - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
 
 

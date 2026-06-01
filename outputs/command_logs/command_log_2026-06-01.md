@@ -64,3 +64,58 @@
 
 ---
 
+## [2026-06-01T07:37:52.761Z] Command Attempt: "notebooklm-response-intelligence-help"
+- **Matched Command:** `notebooklm-response-intelligence-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:38:05.438Z] Command Attempt: "voice lifecycle audit status"
+- **Matched Command:** `voice-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T07:38:42.537Z] Command Attempt: "narrator-voice-lifecycle-audit status"
+- **Matched Command:** `narrator-voice-lifecycle-audit`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:38:52.107Z] Command Attempt: "notebooklm-response-intelligence citation-map"
+- **Matched Command:** `notebooklm-response-intelligence`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T07:38:57.541Z] Command Attempt: "response intelligence"
+- **Matched Command:** `notebooklm-response-intelligence`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+

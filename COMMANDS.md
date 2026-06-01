@@ -116,6 +116,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `tts-synthesizer` | `tts synth`, `audio synth` | Build Operator | Medium | Yes | Dry-run validate and scaffold Piper offline local TTS audio generation settings. |
 | `tts-model-gate-help` | `model gate help`, `tts model help` | Build Operator | Low | No | Print help menu for offline TTS model readiness gate. |
 | `tts-model-gate` | `model gate`, `tts model` | Build Operator | Medium | Yes | Verify local model placements, configurations, and overrides safety. |
+| `tts-model-activation-help` | `model activation help`, `tts activation help` | Build Operator | Low | No | Print help menu for offline TTS model activation checks. |
+| `tts-model-activation` | `model activation`, `tts activation` | Build Operator | Medium | Yes | Verify manually placed voice files matching config pairs and engine readiness. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |

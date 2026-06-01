@@ -471,6 +471,16 @@ tasks:
     cmds:
       - npm run tts-model-gate -- {{.CLI_ARGS}}
 
+  tts-model-activation-help:
+    desc: "Print Offline TTS Model Activation safety manuals"
+    cmds:
+      - npm run tts-model-activation-help
+
+  tts-model-activation:
+    desc: "Run Offline TTS Model Activation tasks safely"
+    cmds:
+      - npm run tts-model-activation -- {{.CLI_ARGS}}
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:

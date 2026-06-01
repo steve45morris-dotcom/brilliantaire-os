@@ -22,6 +22,8 @@ import {
   DUPLICATE_DISPATCH_PROTECTION
 } from '../config/narrator-voice-asr-orchestrator.config.js';
 
+import { performScan } from './narrator-voice-lifecycle-audit.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -367,6 +369,38 @@ function main() {
     } catch (e) {}
   }
 
+  // Scan lifecycle events for audit timeline telemetry
+  let latestLifecycleId = 'None';
+  let auditSessionStatus = 'Pending';
+  let auditAsrTranscriptStatus = 'Pending';
+  let auditCommandPacketStatus = 'Pending';
+  let auditApprovalStatus = 'Pending';
+  let auditBridgeStatus = 'Pending';
+  let auditExecutionStatus = 'Pending';
+  let blockedEventCount = 0;
+  let safetyEventCount = 0;
+  let latestAuditReportPath = 'None';
+
+  try {
+    const { events, timelines } = performScan();
+    const keys = Object.keys(timelines);
+    if (keys.length > 0) {
+      latestLifecycleId = keys[keys.length - 1];
+      latestAuditReportPath = `outputs/narrator/voice_lifecycle_audit/reports/voice_command_lifecycle_report_${latestLifecycleId}.md`;
+      const t = timelines[latestLifecycleId];
+      auditSessionStatus = t.currentState;
+      if (t.events.some(e => e.type === 'asr_dispatched')) auditAsrTranscriptStatus = 'Dispatched';
+      if (t.transcriptExists) auditAsrTranscriptStatus = 'Transcribed';
+      if (t.stagedExists) auditCommandPacketStatus = 'Staged';
+      if (t.approvedExists) auditApprovalStatus = 'Approved';
+      else if (t.events.some(e => e.type === 'asr_rejected')) auditApprovalStatus = 'Rejected';
+      if (t.events.some(e => e.type === 'bridge_prepared')) auditBridgeStatus = 'Ready';
+      if (t.executedExists) auditExecutionStatus = 'Executed';
+    }
+    blockedEventCount = events.filter(e => e.status === 'BLOCKED' || e.type.includes('blocked')).length;
+    safetyEventCount = events.filter(e => e.type === 'fuzzy_command_blocked' || e.type === 'injection_blocked' || e.type === 'duplicate_blocked').length;
+  } catch (err) {}
+
   const voiceLoop = {
     asrBackend: 'registered-whisper-cli',
     ttsRenderer: 'piper (en)',
@@ -411,6 +445,18 @@ function main() {
         confirmationRequired: REC_CONF_REQ
       },
       latestRecorderLog
+    },
+    audit: {
+      latestLifecycleId,
+      latestSessionStatus: auditSessionStatus,
+      latestAsrTranscriptStatus: auditAsrTranscriptStatus,
+      latestCommandPacketStatus: auditCommandPacketStatus,
+      latestApprovalStatus: auditApprovalStatus,
+      latestBridgeStatus: auditBridgeStatus,
+      latestExecutionStatus: auditExecutionStatus,
+      blockedEventCount,
+      safetyEventCount,
+      latestAuditReportPath
     }
   };
 

@@ -26,6 +26,19 @@ interface VoiceRecorderData {
   latestRecorderLog: string;
 }
 
+interface VoiceLifecycleAuditData {
+  latestLifecycleId: string;
+  latestSessionStatus: string;
+  latestAsrTranscriptStatus: string;
+  latestCommandPacketStatus: string;
+  latestApprovalStatus: string;
+  latestBridgeStatus: string;
+  latestExecutionStatus: string;
+  blockedEventCount: number;
+  safetyEventCount: number;
+  latestAuditReportPath: string;
+}
+
 interface VoiceLoopDashboardPanelProps {
   asrBackend: string;
   ttsRenderer: string;
@@ -49,6 +62,7 @@ interface VoiceLoopDashboardPanelProps {
     rawShellExecutionBlocked: boolean;
   };
   recorder?: VoiceRecorderData;
+  audit?: VoiceLifecycleAuditData;
 }
 
 export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = ({
@@ -62,7 +76,8 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
   blockedPacketCount,
   lastAuditEvent,
   safetyFlags,
-  recorder
+  recorder,
+  audit
 }) => {
   return (
     <div style={{
@@ -259,6 +274,57 @@ export const VoiceLoopDashboardPanel: React.FC<VoiceLoopDashboardPanelProps> = (
             <span style={{ color: '#e2e8f0', fontStyle: 'italic', wordBreak: 'break-all', display: 'block', marginTop: '2px' }}>
               "{recorder.latestRecorderLog || 'No events recorded.'}"
             </span>
+          </div>
+        </div>
+      )}
+
+      {/* Lifecycle Audit Timeline */}
+      {audit && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid #1e293b', paddingTop: '12px' }}>
+          <h3 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#00ffcc' }}>📊 LIFECYCLE AUDIT TIMELINE</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '11px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Latest Lifecycle ID:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold', wordBreak: 'break-all' }}>{audit.latestLifecycleId}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Session Status:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestSessionStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>ASR Transcript:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestAsrTranscriptStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Command Packet:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestCommandPacketStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Approval Status:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestApprovalStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Bridge Status:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestBridgeStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Execution Status:</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{audit.latestExecutionStatus}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Blocked Events:</span>
+              <span style={{ color: '#ff073a', fontWeight: 'bold' }}>{audit.blockedEventCount}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#94a3b8' }}>Safety Alerts:</span>
+              <span style={{ color: '#ffb300', fontWeight: 'bold' }}>{audit.safetyEventCount}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginTop: '4px' }}>
+              <span style={{ color: '#64748b' }}>Latest Audit Report:</span>
+              <span style={{ color: '#00ffcc', fontStyle: 'italic', wordBreak: 'break-all' }}>
+                {audit.latestAuditReportPath}
+              </span>
+            </div>
           </div>
         </div>
       )}

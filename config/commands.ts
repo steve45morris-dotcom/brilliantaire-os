@@ -1013,6 +1013,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'tts-model-activation-help',
+    aliases: ['model activation help', 'tts activation help'],
+    description: 'Print help menu for offline TTS model activation checks',
+    npmScript: 'tts-model-activation-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'tts-model-activation',
+    aliases: ['model activation', 'tts activation'],
+    description: 'Verify manually placed voice files matching config pairs and engine readiness',
+    npmScript: 'tts-model-activation',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'git-asset-help',
     aliases: ['git asset help', 'repo asset help'],
     description: 'Print help menu and policies for Git Asset Guard',

@@ -1,0 +1,9 @@
+- [2026-06-01T07:34:47.217Z] **CITATION_MAP**: Generated citation map at notebooklm_citation_map_2026-06-01.md
+- [2026-06-01T07:35:20.762Z] **CITATION_MAP**: Generated citation map at notebooklm_citation_map_2026-06-01_1780299320.md
+- [2026-06-01T07:35:39.126Z] **WORKFLOWS**: Extracted workflows to notebooklm_workflows_2026-06-01.md
+- [2026-06-01T07:35:57.344Z] **WEAK_CLAIMS**: Generated weak claims report at notebooklm_weak_claims_2026-06-01.md
+- [2026-06-01T07:36:16.120Z] **MODULE_RECOMMENDATIONS**: Generated module recommendations report at notebooklm_module_recommendations_2026-06-01.md
+- [2026-06-01T07:36:35.451Z] **PROMPT_PACKS**: Generated prompt packs at notebooklm_prompt_pack_ideas_2026-06-01.md
+- [2026-06-01T07:36:52.963Z] **OBSIDIAN_NOTE**: Generated staged Obsidian note at notebooklm_intelligence_note_2026-06-01.md
+- [2026-06-01T07:37:10.368Z] **SUMMARY**: Generated summary report at notebooklm_response_intelligence_summary_2026-06-01.md
+- [2026-06-01T07:38:42.676Z] **CITATION_MAP**: Generated citation map at notebooklm_citation_map_2026-06-01_1780299522.md

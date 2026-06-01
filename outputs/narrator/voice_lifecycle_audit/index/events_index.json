@@ -1,0 +1,2133 @@
+[
+  {
+    "timestamp": "2026-05-29T16:51:57.763Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T16:52:14.786Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T16:52:21.943Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"agents\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"agents\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T16:52:28.267Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"build\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"build\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T16:52:37.952Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"unknown-test\" rejected. Reason: Error: Unknown Command",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"None (Unknown Command)\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T16:52:51.883Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"stage\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"stage-write\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T16:53:03.740Z",
+    "type": "confirmation_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"approve-write\" rejected. Reason: Blocked: Missing Confirmation Flag",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"approve-write\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T16:53:15.328Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"approve-write --confirm\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"approve-write\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:08:21.749Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"campaign\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:08:25.481Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"campaigns\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:08:39.208Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"campaign brief sporty\" rejected. Reason: Error: Unknown Command",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"None (Unknown Command)\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:08:55.349Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"campaign brief sporty\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:09:16.460Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign brief sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:09:22.404Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:13:12.526Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign street-script sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:21:27.871Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"daily-brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"daily-brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:21:42.145Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:21:51.455Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:22:03.852Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-queue\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:29:55.170Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"daily-brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"daily-brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:38:39.816Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign brief sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:39:16.762Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-pending\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-pending\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T17:39:24.070Z",
+    "type": "confirmation_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice-confirm\" rejected. Reason: Blocked: Missing Confirmation Flag",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-confirm\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T17:50:48.245Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign brief sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:01:07.744Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"daily-brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"daily-brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:01:21.409Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"vibevoice-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"vibevoice-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:01:37.216Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"vibevoice-transcript\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"vibevoice-transcript\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:01:45.168Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"transcribe voice\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"vibevoice-transcript\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T18:24:38.058Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"daily-brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"daily-brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:24:55.836Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"live-asr-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"live-asr-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:25:02.031Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"live-asr-import\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"live-asr-import\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T18:25:12.849Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"import voice\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"live-asr-import\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T19:23:06.353Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-scheduler-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-scheduler-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T19:23:23.233Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-scheduler\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-scheduler\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T20:33:20.640Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"scheduler\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign-scheduler\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T20:58:32.452Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-simulate-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-simulate-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T20:58:39.595Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-simulate\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-simulate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T20:58:46.602Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"simulate campaign\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign-simulate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T21:17:57.513Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:18:06.117Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:18:12.180Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"telemetry\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T21:30:35.134Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:30:56.710Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-build\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-build\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:04.261Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:05.828Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:07.386Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:09.092Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:10.644Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:12.219Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:45:31.551Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"campaign-simulate status sporty\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"campaign-simulate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:00.598Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-simulate status sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-simulate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:02.306Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry campaign sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:04.219Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:22.793Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-pending\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-pending\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:24.541Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:26.491Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:39.386Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"automation-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"automation-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:47:58.919Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:01.247Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:03.218Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:05.348Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:07.328Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:09.064Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:09.216Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"automation-runner daily-check\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"automation-runner\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T21:48:35.660Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"run automation daily-check\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"automation-runner\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:29.646Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:31.238Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:32.814Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:34.404Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:36.002Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:37.602Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:53.743Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"campaign-simulate status sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"campaign-simulate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:55.311Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry campaign sporty\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:01:56.873Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:07.970Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-pending\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-pending\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:09.547Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:11.110Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:22.793Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"automation-help\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"automation-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:33.088Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:34.656Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:36.222Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:37.797Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:39.371Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:40.951Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:40.998Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"automation-runner daily-check\"",
+    "source": "command_log_2026-05-29",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"automation-runner\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-29T22:02:56.465Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"run automation daily-check\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-29",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"automation-runner\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T14:08:50.103Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"background-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"background-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T14:08:58.428Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"background-dry-run\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"background-dry-run\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T14:09:06.834Z",
+    "type": "confirmation_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"background-run\" rejected. Reason: Blocked: Missing Confirmation Flag",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"background-run\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T14:09:10.757Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"run background\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"background-run\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T14:23:21.896Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"platform-adapter-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"platform-adapter-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T14:23:28.382Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"platform-adapter sporty youtube\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"platform-adapter\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T14:25:14.827Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"platform-adapter sporty youtube\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"platform-adapter\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T14:25:19.889Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"platform package\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"platform-adapter\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T14:25:25.838Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"platform-adapter\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"platform-adapter\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T16:51:05.775Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"platform-verify-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"platform-verify-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T16:51:11.634Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"platform-verify sporty youtube\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"platform-verify\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T16:51:17.484Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"verify package\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T16:52:06.230Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T16:52:12.427Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"verify package\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"platform-verify\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T16:52:18.856Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"verify platform\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"platform-verify\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T16:52:34.107Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"platform-verify sporty youtube\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"platform-verify\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T17:30:28.495Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"manual-release-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"manual-release-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T17:30:32.938Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"manual-release sporty checklist\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"manual-release\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T17:30:35.881Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"manual posting\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"manual-release\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-30T23:17:59.918Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"manual-release-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"manual-release-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T23:18:35.260Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"manual-release sporty checklist\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"manual-release\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-30T23:19:09.934Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"manual posting\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"manual-release\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T00:09:11.606Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"distribution-metrics-help\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"distribution-metrics-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T00:09:25.367Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"distribution-metrics sporty entry youtube\"",
+    "source": "command_log_2026-05-30",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"distribution-metrics\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T00:09:29.900Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"metrics\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"distribution-metrics\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T00:09:35.139Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"distribution sporty entry youtube\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-30",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"distribution-metrics\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T08:18:23.030Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry --confirm\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T08:19:00.291Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot --confirm\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T08:22:31.151Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T11:32:19.089Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-detect-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-detect-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T11:33:07.901Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-detect scan\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-detect\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T11:33:22.305Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebooklm mcp\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-detect\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T11:49:19.712Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-execute-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-execute-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T11:50:04.517Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-execute prepare-query source-summary\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-execute\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T11:50:24.418Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook execute\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-execute\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T12:16:43.764Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-brief-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-brief-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T12:18:07.968Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-brief all\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T12:51:30.464Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-live-feed-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-live-feed-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T12:52:36.158Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-live-feed generate\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-live-feed\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:09:06.175Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-harden-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-harden-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:10:27.771Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-harden create-env-template\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-harden\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:10:52.834Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook harden\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-harden\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T13:22:43.750Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-setup-guide-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-setup-guide-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:24:34.497Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-setup-guide runbook\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-setup-guide\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:24:59.305Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook setup\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-setup-guide\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T13:47:14.795Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-readiness-gate-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-readiness-gate-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:48:21.473Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-readiness-gate scan\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-readiness-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T13:48:57.901Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook readiness\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-readiness-gate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T14:13:29.912Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-sync-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-sync-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T14:13:51.035Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-sync all\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-sync\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T14:29:14.595Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-correction-pack-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-correction-pack-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T14:30:33.621Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-correction-pack blockers\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-correction-pack\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T14:31:18.105Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook correction\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-correction-pack\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T15:04:45.808Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-queue-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-queue-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:05:08.888Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"narrator tts\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-tts-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T15:05:12.956Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-queue request\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-queue\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:19:21.224Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-completion-review-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-completion-review-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:21:36.222Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-completion-review env-check\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-completion-review\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:22:17.256Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook completion\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-completion-review\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T15:28:03.174Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-renderer status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:28:56.774Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts renderer status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T15:36:27.322Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-secrets-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-secrets-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:37:28.371Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-secrets create-templates\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-secrets\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:37:52.858Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook secrets\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-secrets\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T15:54:30.620Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-models status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-models\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T15:54:50.368Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts models status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-tts-models\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T16:18:34.078Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-live-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-live-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T16:19:00.055Z",
+    "type": "confirmation_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebooklm-mcp-live status\" rejected. Reason: Blocked: Missing Confirmation Flag",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T16:19:28.931Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-live status --confirm\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T16:20:12.272Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-live status --confirm\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T16:20:36.619Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook live\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T16:47:04.029Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-models register-binary ./local_assets/piper_staging/piper/piper\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-models\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T16:47:39.023Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-models register-model ./local_assets/piper_staging/en_US-lessac-medium.onnx ./local_assets/piper_staging/en_US-lessac-medium.json\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-models\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T16:48:57.341Z",
+    "type": "execution_blocked",
+    "sessionId": "2026-05-31_0801",
+    "description": "Safety Blocked: Command \"narrator-tts-renderer render 2026-05-31_0801\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T16:50:06.504Z",
+    "type": "execution_blocked",
+    "sessionId": "2026-05-31_0801",
+    "description": "Safety Blocked: Command \"narrator-tts-renderer render 2026-05-31_0801\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T17:01:12.956Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-verify-loop-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:03:16.612Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-tts-models register-binary ./local_assets/piper_staging/piper_wrapper/piper\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-models\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:05:32.931Z",
+    "type": "command_executed",
+    "sessionId": "2026-05-31_0801",
+    "description": "Command execution completed: \"narrator-tts-renderer render 2026-05-31_0801\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:06:44.136Z",
+    "type": "command_executed",
+    "sessionId": "2026-05-31_0801",
+    "description": "Command execution completed: \"narrator-tts-renderer render 2026-05-31_0801\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-tts-renderer\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:08:04.611Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-verify-loop chain\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:09:32.289Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook verify\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T17:28:08.341Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-asr-listener status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-asr-listener\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:28:47.397Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-fix-cycle-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-fix-cycle-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:28:54.902Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"asr listener status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-asr-listener\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T17:29:25.971Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook fix\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-fix-cycle\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T17:29:55.880Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-fix-cycle tasks\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-fix-cycle\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:48:51.176Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"grounded-index build\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"grounded-index\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T17:49:27.542Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"grounded graph\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"grounded-index\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T18:25:44.419Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-local-secrets-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-local-secrets-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:14:00.987Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-local-secrets env-guide\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-local-secrets\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:16:05.639Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook secrets\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-secrets\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:21:01.896Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-asr-backend register-backend ./bin/whisper\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-asr-backend\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:21:40.788Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-asr-backend register-model ./local_assets/whisper_models/ggml-base.en.bin\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-asr-backend\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:22:06.489Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"grounded-narrator-review-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"grounded-narrator-review-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:23:06.754Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"grounded-narrator-review queue\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"grounded-narrator-review\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:23:08.212Z",
+    "type": "transcription_created",
+    "sessionId": "2026-05-31_0801",
+    "description": "Offline Whisper transcription file generated.",
+    "source": "transcripts",
+    "status": "SUCCESS",
+    "details": "Raw text: \"System operational brief for 5/31/2026. Telemetry parsing verified. Generate live feed.\""
+  },
+  {
+    "timestamp": "2026-05-31T21:23:12.475Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"git-asset-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"git-asset-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:23:40.381Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"grounded narrator\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"grounded-narrator-review\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:23:48.999Z",
+    "type": "asr_approved",
+    "sessionId": "2026-05-31_0801",
+    "description": "Operator Approved staged command packet.",
+    "source": "asr_approved",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T21:23:59.090Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"git-asset-audit\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"git-asset-audit\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:24:07.303Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"asr listener status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"narrator-asr-listener\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:24:35.160Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-asr-listener status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-asr-listener\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:24:37.711Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"git-prepush-check\" rejected. Reason: Failed",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"git-prepush-check\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:40:09.803Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice bridge status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:41:01.488Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-bridge status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-bridge\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:41:42.632Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-live-feed generate\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-live-feed\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:41:57.738Z",
+    "type": "bridge_executed",
+    "sessionId": "2026-05-31_0801",
+    "description": "Voice Command Approval Bridge transition: [BRIDGE_EXECUTED].",
+    "source": "voice_bridge",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T21:43:44.065Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-brief-composer-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-brief-composer-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:44:49.120Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-brief-composer short\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-brief-composer\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:45:19.101Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"narrator script\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-brief-composer\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T21:57:08.335Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"git-hook-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"git-hook-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:57:59.540Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"git-hook-status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"git-hook-status\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:58:37.644Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"git-hook-install\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"git-hook-install\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T21:59:03.212Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"install hook\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"git-hook-install\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:05:23.742Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice loop dashboard status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:06:00.583Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-loop-dashboard status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-loop-dashboard\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:10:33.910Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-verify-loop-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:11:15.618Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice loop dashboard status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:11:42.754Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-loop-dashboard status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-loop-dashboard\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:12:18.690Z",
+    "type": "bridge_prepared",
+    "sessionId": "2026-05-31_0801",
+    "description": "Voice Command Approval Bridge transition: [BRIDGE_PREPARED].",
+    "source": "voice_bridge",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:14:05.859Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-verify-loop chain\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:14:38.937Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook verify\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-verify-loop\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:21:06.304Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-queue-validator-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-queue-validator-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:22:23.298Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-queue-validator validate\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-queue-validator\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:23:00.751Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"audio queue\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-queue-validator\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:26:43.049Z",
+    "type": "metadata_written",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Session metadata file registered with status [staged_for_asr].",
+    "source": "metadata",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:26:44.131Z",
+    "type": "recording_created",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Voice session audio WAV recording created.",
+    "source": "recordings",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:27:17.264Z",
+    "type": "asr_dispatched",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "WAV file staged in ASR input folder (Dispatch stage completed).",
+    "source": "asr_inputs",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:28:42.077Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice session recorder status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:29:57.868Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-session-recorder status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-session-recorder\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:40:00.107Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice asr orchestrator status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-05-31T22:40:41.652Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-asr-orchestrator status\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-asr-orchestrator\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:40:46.660Z",
+    "type": "orch_dispatch_asr",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Voice ASR Orchestrator logged event: [DISPATCH_ASR].",
+    "source": "orchestrator.log",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:42:15.318Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-synthesizer-help\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-synthesizer-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:42:19.704Z",
+    "type": "transcription_created",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Offline Whisper transcription file generated.",
+    "source": "transcripts",
+    "status": "SUCCESS",
+    "details": "Raw text: \"System operational brief for 5/31/2026. Telemetry parsing verified. Generate live feed.\""
+  },
+  {
+    "timestamp": "2026-05-31T22:42:19.754Z",
+    "type": "orch_transcribe_session",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Voice ASR Orchestrator delegated workflow [TRANSCRIBE_SESSION] output is: SUCCESS",
+    "source": "orchestrator.log",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:42:27.786Z",
+    "type": "orch_stage_transcript",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Voice ASR Orchestrator delegated workflow [STAGE_TRANSCRIPT] output is: SUCCESS",
+    "source": "orchestrator.log",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:42:40.514Z",
+    "type": "asr_approved",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Operator Approved staged command packet.",
+    "source": "asr_approved",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:42:40.554Z",
+    "type": "orch_approve_session_command",
+    "sessionId": "voice_session_test_voice_session_2026-05-31_152643",
+    "description": "Voice ASR Orchestrator delegated workflow [APPROVE_SESSION_COMMAND] output is: SUCCESS",
+    "source": "orchestrator.log",
+    "status": "SUCCESS"
+  },
+  {
+    "timestamp": "2026-05-31T22:43:27.259Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-synthesizer dry-run\"",
+    "source": "command_log_2026-05-31",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-synthesizer\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-05-31T22:43:59.438Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"audio synth\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-05-31",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-synthesizer\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:09:23.818Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-live-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-live-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:10:20.470Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-mcp-live prepare source-summary\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:10:43.866Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"notebook live\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-mcp-live\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:30:53.823Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-gate-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-gate-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:31:52.939Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-model-gate check\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-model-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:32:16.835Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts model\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-model-gate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:37:52.761Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-response-intelligence-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-response-intelligence-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:38:05.438Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice lifecycle audit status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:38:42.537Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"narrator-voice-lifecycle-audit status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"narrator-voice-lifecycle-audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:38:52.107Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-response-intelligence citation-map\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-response-intelligence\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:38:57.541Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"response intelligence\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-response-intelligence\" | Exit Code: 1"
+  }
+]

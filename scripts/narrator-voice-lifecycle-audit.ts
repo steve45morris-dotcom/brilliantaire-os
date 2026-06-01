@@ -24,7 +24,7 @@ import {
   READONLY_MODE_DEFAULT
 } from '../config/narrator-voice-lifecycle-audit.config.js';
 
-interface AuditEvent {
+export interface AuditEvent {
   timestamp: string;
   type: string;
   sessionId: string;
@@ -34,7 +34,7 @@ interface AuditEvent {
   details?: string;
 }
 
-interface LifecycleTimeline {
+export interface LifecycleTimeline {
   sessionId: string;
   events: AuditEvent[];
   currentState: string;
@@ -85,7 +85,7 @@ function getFileTime(filePath: string): string {
 }
 
 // ─── Scan All Pipeline Folders & Build Cache Indexes ──────────────────────────
-function performScan(): { events: AuditEvent[]; timelines: Record<string, LifecycleTimeline> } {
+export function performScan(): { events: AuditEvent[]; timelines: Record<string, LifecycleTimeline> } {
   ensureDirs();
   const events: AuditEvent[] = [];
   const timelines: Record<string, LifecycleTimeline> = {};
