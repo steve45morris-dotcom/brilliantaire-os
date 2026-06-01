@@ -126,6 +126,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `tts-model-acquisition` | `model acquisition`, `tts acquisition` | Build Operator | Medium | Yes | Verify model staging checklists manual download instructions and directory inventory. |
 | `voice-session-recorder-help` | `voice session help`, `recorder help` | Build Operator | Low | No | Print help menu for offline narrator voice capture staging. |
 | `voice-session-recorder` | `voice session`, `recorder` | Build Operator | Medium | Yes | Scaffold manual recording sessions metadata drop checks and reviews. |
+| `asr-orchestrator-help` | `asr help`, `whisper help` | Build Operator | Low | No | Print help menu for offline ASR orchestrator safety limits. |
+| `asr-orchestrator` | `asr`, `whisper` | Build Operator | Medium | Yes | Verify ASR readiness, prepare job packets, and dry-run Whisper simulations. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |

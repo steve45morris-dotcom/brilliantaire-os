@@ -2293,6 +2293,43 @@ The **Offline Voice Session Recorder** provides a safe sandbox scaffold to initi
 
 ---
 
+## 🧭 Phase 11X: Local Offline ASR Orchestrator
+
+The **Local Offline ASR Orchestrator** provides a safe sandbox scaffold to check speech recognition readiness, prepare job packets detailing target configurations, perform simulated dry-run previews, and stage empty transcript placeholder files before deploying regional models.
+
+### 🛡️ Safety & Execution Rules
+1. **Orchestration-Only Scaffold:** Audio translation engines (Whisper / GGML) are completely blocked. No waveform decoding or speech-to-text extraction is conducted.
+2. **Safety Gates Enforced:** No commands are spawned to external APIs, and no shell scripts invoke local execution binaries.
+3. **Staging Flow:** Readiness reviews check for Whisper `.bin` files and manual staged `.wav` audio, compiling dry-run simulation checklists and transcript placeholders safely.
+
+### 💻 Command Examples
+* View ASR help menu:
+  ```bash
+  npm run command -- "asr-orchestrator-help"
+  ```
+* Run local system readiness audit:
+  ```bash
+  npm run command -- "asr-orchestrator readiness"
+  ```
+* Initialize new staging job packet:
+  ```bash
+  npm run command -- "asr-orchestrator create-job"
+  ```
+* Simulate dry-run execution checks:
+  ```bash
+  npm run command -- "asr-orchestrator dry-run"
+  ```
+* Create transcript staging placeholder:
+  ```bash
+  npm run command -- "asr-orchestrator stage-transcript"
+  ```
+* View orchestrator status dashboard:
+  ```bash
+  npm run command -- "asr-orchestrator status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 * **Phase 11X: Local Offline Speech Synthesis Execution**
   - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.

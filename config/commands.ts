@@ -947,6 +947,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'voice-safe-narration-approval-gate-help',
+    aliases: ['approval gate help', 'voice approval help'],
+    description: 'Print help menu for voice-safe narration approval gate processor',
+    npmScript: 'voice-safe-narration-approval-gate-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'voice-safe-narration-approval-gate',
+    aliases: ['approval gate', 'voice approval'],
+    description: 'Scan review queues and compile safe approved/rejected narration manifests',
+    npmScript: 'voice-safe-narration-approval-gate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'grounded-narrator-review-help',
     aliases: ['narrator review help', 'grounded narrator help'],
     description: 'Print help menu for grounded narrator review queue',
@@ -1116,6 +1138,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['voice session', 'recorder'],
     description: 'Scaffold manual recording sessions metadata drop checks and reviews',
     npmScript: 'voice-session-recorder',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-orchestrator-help',
+    aliases: ['asr help', 'whisper help'],
+    description: 'Print help menu for offline ASR orchestrator safety limits',
+    npmScript: 'asr-orchestrator-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'asr-orchestrator',
+    aliases: ['asr', 'whisper'],
+    description: 'Verify ASR readiness, prepare job packets, and dry-run Whisper simulations',
+    npmScript: 'asr-orchestrator',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',

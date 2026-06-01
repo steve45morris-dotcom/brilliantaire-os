@@ -441,6 +441,16 @@ tasks:
     cmds:
       - npm run grounded-narrator-review-queue -- {{.CLI_ARGS}}
 
+  voice-safe-narration-approval-gate-help:
+    desc: "Print Voice-Safe Narration Approval Gate safety manuals"
+    cmds:
+      - npm run voice-safe-narration-approval-gate-help
+
+  voice-safe-narration-approval-gate:
+    desc: "Run Voice-Safe Narration Approval Gate compiler tasks safely"
+    cmds:
+      - npm run voice-safe-narration-approval-gate -- {{.CLI_ARGS}}
+
   grounded-narrator-review-help:
     desc: "Print Grounded Narrator Review Queue safety manuals"
     cmds:
@@ -520,6 +530,16 @@ tasks:
     desc: "Run Offline Voice Session Recorder tasks safely"
     cmds:
       - npm run voice-session-recorder -- {{.CLI_ARGS}}
+
+  asr-orchestrator-help:
+    desc: "Print Offline ASR Orchestrator safety manuals"
+    cmds:
+      - npm run asr-orchestrator-help
+
+  asr-orchestrator:
+    desc: "Run Offline ASR Orchestrator tasks safely"
+    cmds:
+      - npm run asr-orchestrator -- {{.CLI_ARGS}}
 
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"

@@ -1,0 +1,71 @@
+{
+  "manifestId": "voice_manifest_2026-06-01",
+  "gateRunTimestamp": "2026-06-01T08:42:36.585Z",
+  "sourceQueue": "grounded_narrator_review_queue_2026-06-01.json",
+  "counts": {
+    "totalScanned": 5,
+    "approved": 1,
+    "rejected": 4
+  },
+  "approvedBlocks": [
+    {
+      "block_id": "narrator_block_3",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "node_id": "claim_1",
+      "approved_for_voice": true,
+      "citation_status": "Grounded",
+      "risk_level": "Low",
+      "narrator_text": "Offline query validation checklist verified.",
+      "suggested_voice_tone": "Authoritative / Grounded",
+      "suggested_priority": "Low",
+      "approval_timestamp": "2026-06-01T08:42:36.585Z",
+      "approval_source": "Simulator_Override_SignOff"
+    }
+  ],
+  "rejectedBlocks": [
+    {
+      "block_id": "narrator_block_1",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "node_id": "weak_claim_1",
+      "approved_for_voice": false,
+      "rejection_reason": "Blocked: Manually review-required. approved_for_voice is false or missing.",
+      "risk_level": "High",
+      "citation_status": "Weak",
+      "suggested_fix": "Open Obsidian dashboard [[notebooklm_obsidian_review_queue_2026-06-01]], audit references, and update approvedForVoice flag in JSON queue file.",
+      "review_required": true
+    },
+    {
+      "block_id": "narrator_block_2",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "node_id": "weak_claim_2",
+      "approved_for_voice": false,
+      "rejection_reason": "Blocked: Manually review-required. approved_for_voice is false or missing.",
+      "risk_level": "High",
+      "citation_status": "Weak",
+      "suggested_fix": "Open Obsidian dashboard [[notebooklm_obsidian_review_queue_2026-06-01]], audit references, and update approvedForVoice flag in JSON queue file.",
+      "review_required": true
+    },
+    {
+      "block_id": "narrator_block_4",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "node_id": "claim_2",
+      "approved_for_voice": false,
+      "rejection_reason": "Blocked: Manually review-required. approved_for_voice is false or missing.",
+      "risk_level": "Medium",
+      "citation_status": "Uncited",
+      "suggested_fix": "Open Obsidian dashboard [[notebooklm_obsidian_review_queue_2026-06-01]], audit references, and update approvedForVoice flag in JSON queue file.",
+      "review_required": true
+    },
+    {
+      "block_id": "narrator_block_5",
+      "source_file": "grounded_narrator_review_queue_2026-06-01.json",
+      "node_id": "claim_3",
+      "approved_for_voice": false,
+      "rejection_reason": "Blocked: Manually review-required. approved_for_voice is false or missing.",
+      "risk_level": "Medium",
+      "citation_status": "Uncited",
+      "suggested_fix": "Open Obsidian dashboard [[notebooklm_obsidian_review_queue_2026-06-01]], audit references, and update approvedForVoice flag in JSON queue file.",
+      "review_required": true
+    }
+  ]
+}

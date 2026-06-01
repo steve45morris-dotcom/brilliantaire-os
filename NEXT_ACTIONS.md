@@ -367,8 +367,15 @@
 - [x] Phase 11W: Create narrator briefing session metadata
 - [x] Phase 11W: Scan manual recordings folder
 - [x] Phase 11W: Generate recording review
-- [ ] Phase 11W: Stage transcription record
-- [ ] Phase 11W: Prepare ASR orchestrator only after manual audio exists
+- [x] Phase 11W: Stage transcription record
+- [x] Phase 11W: Prepare ASR orchestrator only after manual audio exists
+- [x] Phase 11X: Build Local Offline ASR Orchestrator
+- [x] Phase 11X: Generate ASR readiness report
+- [x] Phase 11X: Create ASR job packet
+- [x] Phase 11X: Run ASR dry-run
+- [x] Phase 11X: Stage transcript placeholder
+- [x] Phase 11X: Confirm no transcription occurs
+- [ ] Phase 11X: Prepare ASR model placement only after readiness review
 
 ## Do Next
 - [ ] Build Duplicate Cleanup Staging Gate
@@ -378,10 +385,12 @@
 - [ ] Generate project registry drift report
 - [ ] Review 32 unregistered directories manually
 - [ ] Approve quarantine only after review
-- [ ] Phase 11Q: Voice-Safe Narration Approval Gate
-- [ ] Phase 11Q: Build final approval validator script
-- [ ] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
-- [ ] Phase 11Q: Test gate checks with approved and rejected queue states
+- [x] Phase 11Q: Voice-Safe Narration Approval Gate
+- [x] Phase 11Q: Build final approval validator script
+- [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
+- [x] Phase 11Q: Test gate checks with approved and rejected queue states
+- [ ] Phase 11R: TTS-Ready Narration Export Queue
+- [ ] Phase 11R: Export only approved voice-safe blocks to TTS format
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

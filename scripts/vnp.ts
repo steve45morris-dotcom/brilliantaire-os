@@ -58,12 +58,12 @@ export function announcePhrase(phrase: string): Promise<void> {
       console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
     }
     
-    const cmd = `say "${cleanPhrase}"`;
+    const cmd = `say "${cleanPhrase}" &`;
     exec(cmd, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);
       }
-      resolve();
     });
+    resolve();
   });
 }

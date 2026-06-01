@@ -372,3 +372,124 @@
 
 ---
 
+## [2026-06-01T08:30:39.329Z] Command Attempt: "voice-safe-narration-approval-gate"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:31:33.768Z] Command Attempt: "voice-safe-narration-approval-gate check --test-approve narrator_block_3"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:32:07.894Z] Command Attempt: "voice approval"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `true`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:40:21.097Z] Command Attempt: "asr-orchestrator-help"
+- **Matched Command:** `asr-orchestrator-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:41:19.094Z] Command Attempt: "voice-safe-narration-approval-gate-help"
+- **Matched Command:** `voice-safe-narration-approval-gate-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:41:40.563Z] Command Attempt: "asr-orchestrator readiness"
+- **Matched Command:** `asr-orchestrator`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:42:07.284Z] Command Attempt: "voice-safe-narration-approval-gate"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:42:14.018Z] Command Attempt: "voice-safe-narration-approval-gate check --test-approve narrator_block_3"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:42:21.923Z] Command Attempt: "voice approval"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `true`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:42:25.687Z] Command Attempt: "whisper"
+- **Matched Command:** `asr-orchestrator`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:42:59.818Z] Command Attempt: "voice-safe-narration-approval-gate check --test-approve narrator_block_3"
+- **Matched Command:** `voice-safe-narration-approval-gate`
+- **Alias Used:** `false`
+- **Owning Agent:** `Workflow Auditor`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
