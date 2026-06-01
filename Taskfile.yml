@@ -671,6 +671,16 @@ tasks:
     cmds:
       - npm run asr-asset-acquisition-ledger-help
 
+  asr-human-staged-asset-verification-pass:
+    desc: "Run Offline ASR Human-Staged Asset Verification Pass"
+    cmds:
+      - npm run asr-human-staged-asset-verification-pass -- {{.CLI_ARGS}}
+
+  asr-human-staged-asset-verification-pass-help:
+    desc: "Print Offline ASR Human-Staged Asset Verification Pass help manual"
+    cmds:
+      - npm run asr-human-staged-asset-verification-pass-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -974,6 +984,16 @@ tasks:
     cmds:
       - npm run asr-asset-acquisition-ledger-help
 
+  asr-human-staged-asset-verification-pass:
+    desc: "Run Offline ASR Human-Staged Asset Verification Pass"
+    cmds:
+      - npm run asr-human-staged-asset-verification-pass -- {{.CLI_ARGS}}
+
+  asr-human-staged-asset-verification-pass-help:
+    desc: "Print Offline ASR Human-Staged Asset Verification Pass help manual"
+    cmds:
+      - npm run asr-human-staged-asset-verification-pass-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -1098,6 +1118,16 @@ tasks:
     desc: "Print help menu for the voice ops maintenance mode scheduler"
     cmds:
       - npm run voice-ops-maintenance-scheduler-help
+
+  voice-ops-operator-runbook:
+    desc: "Voice Ops Operator Runbook Manager (Phase N5U)"
+    cmds:
+      - npm run voice-ops-operator-runbook -- {{.CLI_ARGS}}
+
+  voice-ops-operator-runbook-help:
+    desc: "Print help menu for the voice ops operator runbook"
+    cmds:
+      - npm run voice-ops-operator-runbook-help
 
   cleanup-gate:
     desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
@@ -1241,6 +1271,16 @@ tasks:
     cmds:
       - npm run grinders-keep-content-drafting-lab-deepener-help
 
+  grinders-keep-consensus-review-packet-deepener:
+    desc: "Run v0.1 Grinders Keep Consensus Review Packet Deepener sweep"
+    cmds:
+      - npm run grinders-keep-consensus-review-packet-deepener
+
+  grinders-keep-consensus-review-packet-deepener-help:
+    desc: "Print help documentation for Grinders Keep Consensus Review Packet Deepener"
+    cmds:
+      - npm run grinders-keep-consensus-review-packet-deepener-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1295,4 +1335,14 @@ tasks:
     desc: "Print help documentation for Duplicate Cleanup Quarantine"
     cmds:
       - npm run duplicate-cleanup-help
+
+  cleanup-approval:
+    desc: "Run v0.1 Cleanup Approval Gate staging sweep"
+    cmds:
+      - npm run cleanup-approval -- {{.CLI_ARGS}}
+
+  cleanup-approval-help:
+    desc: "Print help documentation for Cleanup Approval Gate"
+    cmds:
+      - npm run cleanup-approval-help
 

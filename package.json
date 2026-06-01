@@ -143,6 +143,8 @@
     "asr-manual-asset-revalidation-pass-help": "tsx scripts/asr-manual-asset-revalidation-pass-help.ts",
     "asr-asset-acquisition-ledger": "tsx scripts/asr-asset-acquisition-ledger.ts",
     "asr-asset-acquisition-ledger-help": "tsx scripts/asr-asset-acquisition-ledger-help.ts",
+    "asr-human-staged-asset-verification-pass": "tsx scripts/asr-human-staged-asset-verification-pass.ts",
+    "asr-human-staged-asset-verification-pass-help": "tsx scripts/asr-human-staged-asset-verification-pass-help.ts",
     "scheduler": "tsx scripts/scheduler.ts",
     "list-schedules": "tsx scripts/scheduler.ts list",
     "scheduler-health": "tsx scripts/scheduler.ts health",
@@ -227,6 +229,8 @@
     "grinders-keep-adaptive-learning-deepener-help": "tsx scripts/grinders-keep-adaptive-learning-deepener-help.ts",
     "grinders-keep-content-drafting-lab-deepener": "tsx scripts/grinders-keep-content-drafting-lab-deepener.ts",
     "grinders-keep-content-drafting-lab-deepener-help": "tsx scripts/grinders-keep-content-drafting-lab-deepener-help.ts",
+    "grinders-keep-consensus-review-packet-deepener": "tsx scripts/grinders-keep-consensus-review-packet-deepener.ts",
+    "grinders-keep-consensus-review-packet-deepener-help": "tsx scripts/grinders-keep-consensus-review-packet-deepener-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",
@@ -234,7 +238,11 @@
     "voice-ops-maintenance-scheduler": "tsx scripts/voice-ops-maintenance-scheduler.ts",
     "voice-ops-maintenance-scheduler-help": "tsx scripts/voice-ops-maintenance-scheduler-help.ts",
     "duplicate-cleanup": "tsx scripts/duplicate-cleanup.ts",
-    "duplicate-cleanup-help": "tsx scripts/duplicate-cleanup-help.ts"
+    "duplicate-cleanup-help": "tsx scripts/duplicate-cleanup-help.ts",
+    "cleanup-approval": "tsx scripts/cleanup-approval.ts",
+    "cleanup-approval-help": "tsx scripts/cleanup-approval-help.ts",
+    "voice-ops-operator-runbook": "tsx scripts/voice-ops-operator-runbook.ts",
+    "voice-ops-operator-runbook-help": "tsx scripts/voice-ops-operator-runbook-help.ts"
   },
   "keywords": [
     "antigravity",

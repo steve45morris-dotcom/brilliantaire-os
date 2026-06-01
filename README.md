@@ -2365,6 +2365,70 @@ The **Voice Ops Maintenance Mode Scheduler** stages manual-first recurring maint
 
 ---
 
+## 🧭 Phase N5U: Voice Ops Operator Runbook
+
+The **Voice Ops Operator Runbook** compiles system purpose, operational boundaries, daily and weekly verification checklists, workflow mappings, and emergency stop guidelines into a unified local reference system. It provides operator-facing reference utilities and prints procedurals but never interacts with or executes pipeline actions.
+
+### CLI Command List
+* Show help menu:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook-help"
+  ```
+* Show runbook paths, sources, and safety configurations:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook status"
+  ```
+* Compile and write the full master operator runbook:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook generate"
+  ```
+* Print and save the grouped CLI command index:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook command-index"
+  ```
+* Print and save the core safety guidelines:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook safety-checklist"
+  ```
+* Print and save the daily operator routine checklist:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook daily-checklist"
+  ```
+* Print and save the weekly operator audit checklist:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook weekly-checklist"
+  ```
+* Print and save the step-by-step workflow maps:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook workflow-map"
+  ```
+* Print and save the troubleshooting response matrix:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook troubleshooting"
+  ```
+* Print and save the emergency stop protocol guide:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook emergency-stop"
+  ```
+* Print outline of the latest generated runbook:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook latest"
+  ```
+* List all compiled runbooks:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook list-runbooks"
+  ```
+* Generate and print a runbook summary report:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook runbook-summary"
+  ```
+* Print recent runbook activity log events:
+  ```bash
+  npm run command -- "voice-ops-operator-runbook runbook-log"
+  ```
+
+---
+
 
 
 
@@ -3071,10 +3135,31 @@ The **ASR Manual Asset Revalidation Pass** aggregates and consolidates outputs f
 
 ---
 
+## 🧭 Phase 11Z-H: ASR Asset Acquisition Ledger
+
+The **ASR Asset Acquisition Ledger** creates a local-first human asset tracking ledger for manual Whisper model acquisition, checksum recording, audio staging configurations, and validation readiness parameters before any future ASR execution approval switch is considered.
+
+### 🛡️ Safety & Execution Rules
+1. **Ledger Tracking Only:** Compiles local tracking and handoff templates without running transcription, performing model downloads, or executing external API calls.
+2. **Safety Defaults:** Automatically checks for the expected binaries, updates manifests, and reports staging gaps as LOCKED if assets are missing.
+3. **No Execution:** Speech transcription engines and Whisper executables remain offline.
+
+### 💻 Command Examples
+* View acquisition ledger help menu:
+  ```bash
+  npm run command -- "asr-asset-acquisition-ledger-help"
+  ```
+* Run asset acquisition ledger generator:
+  ```bash
+  npm run command -- "asr-asset-acquisition-ledger"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 
-* **Phase 12A: Offline ASR Execution Approval Switch**
-  - After revalidation pass status transitions to `dry_run_ready`, configure a human-controlled execution approval switch for selected audio transcription routes.
+* **Phase 11Z-I: Human-Staged Asset Verification Pass**
+  - After the human manually places model binaries, updates manifests, and stages audio, verify the ledger against actual disk state before rerunning full checksum and readiness gates.
 
 ---
 
@@ -3322,6 +3407,14 @@ The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engin
   ```bash
   npm run command -- "grinders-keep-content-drafting-lab-deepener-help"
   ```
+* Run Consensus Review Packet Deepener sweep:
+  ```bash
+  npm run command -- "grinders-keep-consensus-review-packet-deepener"
+  ```
+* Print Consensus Review Packet Deepener help menu:
+  ```bash
+  npm run command -- "grinders-keep-consensus-review-packet-deepener-help"
+  ```
 
 ---
 
@@ -3478,4 +3571,43 @@ The **Duplicate Cleanup Quarantine** creates a safe local duplicate and stale ar
   ```bash
   npm run command -- "duplicate-cleanup" -- "status"
   ```
+
+---
+
+## 🛡️ Phase 12B: Cleanup Approval Gate
+
+The **Cleanup Approval Gate** reads duplicate cleanup reports and builds manual approval check matrices to verify eligible quarantine files, protecting git files, models, credentials, and configurations.
+
+### 🔒 Guardrails Summary
+1. **Gate-Only Verification:** File movement and file deletion commands are completely disabled.
+2. **Standard File Protections:** Standard system assets, CLI commands, and registries are protected under strict do-not-touch rules.
+3. **Manual Checklists:** Generates human-signoff lists detailing candidates, reasons, confidence categories, and risk notes.
+4. **Command Routing Gating:** Enforces exact script name commands and blocks aliases.
+
+### 💻 Command Examples
+* View cleanup approval gate help menu:
+  ```bash
+  npm run command -- "cleanup-approval-help"
+  ```
+* Classify duplicate report candidates:
+  ```bash
+  npm run command -- "cleanup-approval" -- "classify"
+  ```
+* Build manual approval checklist:
+  ```bash
+  npm run command -- "cleanup-approval" -- "approval-list"
+  ```
+* Compile do-not-touch targets registry:
+  ```bash
+  npm run command -- "cleanup-approval" -- "do-not-touch"
+  ```
+* Aggregates metrics and checks readiness:
+  ```bash
+  npm run command -- "cleanup-approval" -- "summary"
+  ```
+* Display status dashboard metrics:
+  ```bash
+  npm run command -- "cleanup-approval" -- "status"
+  ```
+
 

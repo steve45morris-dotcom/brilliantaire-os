@@ -154,6 +154,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
 | `asr-asset-acquisition-ledger-help` | `asr ledger help`, `whisper ledger help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset acquisition ledger compiler. |
 | `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
+| `asr-human-staged-asset-verification-pass-help` | `asr human verify help`, `whisper human verify help` | Build Operator | Low | Yes | Print help menu for the offline ASR human-staged asset verification pass. |
+| `asr-human-staged-asset-verification-pass` | `asr human verify`, `whisper human verify` | Build Operator | Medium | Yes | Cross-validate manual Whisper model binary staging, manifest integrity, and staged audio inputs offline. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -230,6 +232,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-manual-asset-revalidation-pass` | `asr revalidation`, `whisper revalidation` | Build Operator | Medium | Yes | Run offline manual asset revalidation pass to consolidate status of prior ASR validation gates. |
 | `asr-asset-acquisition-ledger-help` | `asr ledger help`, `whisper ledger help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual asset acquisition ledger compiler. |
 | `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
+| `asr-human-staged-asset-verification-pass-help` | `asr human verify help`, `whisper human verify help` | Build Operator | Low | Yes | Print help menu for the offline ASR human-staged asset verification pass. |
+| `asr-human-staged-asset-verification-pass` | `asr human verify`, `whisper human verify` | Build Operator | Medium | Yes | Cross-validate manual Whisper model binary staging, manifest integrity, and staged audio inputs offline. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -244,6 +248,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-ops-post-freeze-health` | `voice health`, `post-freeze health`, `voice-ops post-freeze health` | Workflow Auditor | Medium | Yes | Monitor the health of the frozen stable release (status, scan-freeze, verify-checksums, registry-health, dashboard-health, safety-health, drift-report, run-health-check, latest, list-reports, health-summary, health-log). |
 | `voice-ops-maintenance-scheduler-help` | None | Workflow Auditor | Low | Yes | Print help menu for the voice ops maintenance mode scheduler. |
 | `voice-ops-maintenance-scheduler` | None | Workflow Auditor | Medium | Yes | Stage, approve, reject, list, and sign off voice ops manual-first maintenance checklists (status, create-weekly, create-daily, create-health-check, create-dashboard-refresh, create-retention-review, create-drift-review, list-queue, inspect, approve, reject, mark-complete, maintenance-summary, latest, scheduler-log). |
+| `voice-ops-operator-runbook-help` | None | Workflow Auditor | Low | Yes | Print help menu for the voice ops operator runbook. |
+| `voice-ops-operator-runbook` | None | Workflow Auditor | Medium | Yes | Compile safety, daily, weekly checklists, major workflows, command index, and stop guide procedures (status, generate, command-index, safety-checklist, daily-checklist, weekly-checklist, workflow-map, troubleshooting, emergency-stop, latest, list-runbooks, runbook-summary, runbook-log). |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
@@ -269,8 +275,12 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-adaptive-learning-deepener-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Adaptive Learning Deepener engine commands. |
 | `grinders-keep-content-drafting-lab-deepener` | *(none)* | Creative Revenue Strategist | Low | Yes | Run v0.1 Content Drafting Lab Deepener to extract telemetry signals and draft review-ready content, scripts, and offers. |
 | `grinders-keep-content-drafting-lab-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Content Drafting Lab Deepener engine commands. |
+| `grinders-keep-consensus-review-packet-deepener` | *(none)* | Creative Revenue Strategist | Low | Yes | Run v0.1 Consensus Review Packet Deepener to package context into multi-model and multi-domain manual review prompts. |
+| `grinders-keep-consensus-review-packet-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Consensus Review Packet Deepener engine commands. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
+| `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
+| `cleanup-approval` | `cleanup approval`, `quarantine approval` | Workflow Auditor | Medium | Yes | Classify duplicate candidates and generate quarantine manual approval lists. |
 
 
 

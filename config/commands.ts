@@ -2214,6 +2214,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'asr-human-staged-asset-verification-pass-help',
+    aliases: ['asr human verify help', 'whisper human verify help'],
+    description: 'Print help menu for the offline ASR human-staged asset verification pass',
+    npmScript: 'asr-human-staged-asset-verification-pass-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-human-staged-asset-verification-pass',
+    aliases: ['asr human verify', 'whisper human verify'],
+    description: 'Cross-validate manual Whisper model binary staging, manifest integrity, and staged audio inputs offline',
+    npmScript: 'asr-human-staged-asset-verification-pass',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'project-registry-review-help',
     aliases: ['registry help', 'project drift help'],
     description: 'Print help menu for the local project registry drift review system',
@@ -2480,6 +2502,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-consensus-review-packet-deepener',
+    aliases: [],
+    description: 'Run v0.1 Consensus Review Packet Deepener to package context into multi-model and multi-domain manual review prompts',
+    npmScript: 'grinders-keep-consensus-review-packet-deepener',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-consensus-review-packet-deepener-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Consensus Review Packet Deepener engine commands',
+    npmScript: 'grinders-keep-consensus-review-packet-deepener-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -2517,6 +2561,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['cleanup', 'duplicate scan'],
     description: 'Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations',
     npmScript: 'duplicate-cleanup',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'cleanup-approval-help',
+    aliases: ['cleanup approval help', 'quarantine approval help'],
+    description: 'Print help menu for the duplicate cleanup approval gate',
+    npmScript: 'cleanup-approval-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'cleanup-approval',
+    aliases: ['cleanup approval', 'quarantine approval'],
+    description: 'Classify duplicate candidates and generate quarantine manual approval lists',
+    npmScript: 'cleanup-approval',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-operator-runbook-help',
+    aliases: [],
+    description: 'Print help menu for the Voice Ops Operator Runbook',
+    npmScript: 'voice-ops-operator-runbook-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-operator-runbook',
+    aliases: [],
+    description: 'Compile safety, daily, weekly checklists, major system workflows, command index, and stop guide procedures',
+    npmScript: 'voice-ops-operator-runbook',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',

@@ -174,8 +174,8 @@
 - [x] Phase N5P: Delivery Archive and Retention Ledger
 - [x] Phase N5Q: Voice Ops Release Closure Report
 - [x] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
-- [x] Phase N5T: Voice Ops Maintenance Mode Scheduler
-- [ ] Phase N5U: Voice Ops Operator Runbook
+- [x] Phase N5U: Voice Ops Operator Runbook
+- [ ] Phase N5V: Operator Training Simulation Pack
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -468,7 +468,16 @@
 - [x] Phase 11Z-G: Implement revalidation check logic that reads previous manifests and audits physical files/folders
 - [x] Phase 11Z-G: Enforce requiresExactName constraint and verify alias command rejection
 - [x] Phase 11Z-G: Adhere to strict safety rules (no ASR, no audio transcription, no Whisper invocations, no model downloads, no external API calls, and no file mutations)
-
+- [x] Phase 11Z-H: Build ASR Asset Acquisition Ledger
+- [x] Phase 11Z-H: Create configuration config/asr-asset-acquisition-ledger.ts
+- [x] Phase 11Z-H: Create main ledger script scripts/asr-asset-acquisition-ledger.ts
+- [x] Phase 11Z-H: Create ledger help utility scripts/asr-asset-acquisition-ledger-help.ts
+- [x] Phase 11Z-H: Create markdown templates for ledger, model entries, checksum records, audio staging, human checklist, validation rerun sequence, safety locks, and next actions
+- [x] Phase 11Z-H: Generate outputs under outputs/asr_asset_ledger/ (8 markdown files and 1 json manifest)
+- [x] Phase 11Z-H: Implement ledger audit check logic that verifies models, checksum manifest files, and staged audio inputs
+- [x] Phase 11Z-H: Enforce requiresExactName constraint and verify alias command rejection
+- [x] Phase 11Z-H: Adhere to strict safety rules (no ASR execution, no speech transcription, no automatic downloads, no external API calls, and no file mutations)
+- [ ] Phase 11Z-I: Run Human-Staged Asset Verification Pass (Goal: verify human manual placements and updated manifests against actual disk state)
 
 
 ## Do Next
@@ -567,9 +576,19 @@
 - [x] Phase 12A: Run stale artifact report
 - [x] Phase 12A: Generate quarantine index
 - [x] Phase 12A: Generate cleanup review list
-- [ ] Phase 12A: Review candidates manually before any cleanup action
-- [ ] Phase 12F: Grinders Keep Consensus Review Packet Deepener
-- [ ] Phase 12F: Deepen Agent Consensus Staging Layer to package verified system questions and monetization opportunities into manual review packets for ChatGPT, Gemini, Claude, and NotebookLM without calling models automatically
+- [x] Phase 12A: Review candidates manually before any cleanup action
+- [x] Phase 12B: Cleanup Approval Gate
+- [x] Phase 12B: Build config/cleanup-approval.ts
+- [x] Phase 12B: Build main staging script scripts/cleanup-approval.ts
+- [x] Phase 12B: Build help utility script scripts/cleanup-approval-help.ts
+- [x] Phase 12B: Register commands in config/commands.ts and package.json
+- [x] Phase 12B: Generate templates under templates/cleanup_approval/
+- [x] Phase 12B: Verify exact-name command routing and alias blocks
+- [x] Phase 12B: Compile manual approval check checklists, summaries, and do-not-touch lists
+- [x] Phase 12F: Grinders Keep Consensus Review Packet Deepener
+- [x] Phase 12F: Deepen Agent Consensus Staging Layer to package verified system questions and monetization opportunities into manual review packets for ChatGPT, Gemini, Claude, and NotebookLM without calling models automatically
+- [ ] Phase 12G: Grinders Keep Google Ultra Opportunity Scanner Deepener
+- [ ] Phase 12G: Deepen the Google Ultra opportunity layer to map verified project needs to manual Gemini, NotebookLM, Flow, Whisk, Veo, Antigravity, Drive, Docs, Sheets, Gmail, YouTube, and Google Vids workflows without calling Google tools automatically
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
