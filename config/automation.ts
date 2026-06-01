@@ -18,6 +18,10 @@ export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
       'next',
       'mesh-telemetry snapshot',
       'mesh-telemetry report',
+      'project-registry-health-monitor status',
+      'quarantine-monitoring status',
+      'quarantine-deletion-readiness status',
+      'maintenance-check status',
       'dashboard-export'
     ],
     owningAgent: 'Workflow Auditor',

@@ -281,6 +281,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
 | `cleanup-approval` | `cleanup approval`, `quarantine approval` | Workflow Auditor | Medium | Yes | Classify duplicate candidates and generate quarantine manual approval lists. |
+| `maintenance-check-help` | `maintenance help`, `daily maintenance help` | Workflow Auditor | Low | No | Print help command menu for the local daily maintenance check routine. |
+| `maintenance-check` | `maintenance`, `daily maintenance` | Workflow Auditor | Medium | Yes | Run registry health and quarantine monitoring checks during daily check sweeps. |
 
 
 

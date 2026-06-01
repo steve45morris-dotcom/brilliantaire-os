@@ -3536,6 +3536,40 @@ The **Quarantine Monitoring Continuation** establishes a safe monitoring continu
 
 ---
 
+## 🛡️ Phase 12I: Maintenance Daily Check Integrator
+
+The **Maintenance Daily Check Integrator** expands the approved local daily check routine to include registry health and quarantine monitoring checks. It aggregates telemetry from all read-only safety gates, generating status reports without mutating the workspace or deleting any files.
+
+### 🔒 Guardrails Summary
+1. **Read-Only Verification:** File deletion, unlinking, and quarantine mutation are completely blocked.
+2. **Safe Registry Checks:** Inspects `PROJECTS.md` for duplicate names or paths without modifying the project matrix.
+3. **No Report Overwrites:** Reports are saved with timestamp suffixes if a file with the target filename already exists.
+4. **Router Compliance:** Restricts command execution through the Safe Command Router under exact matching rules.
+
+### 💻 Command Examples
+* Print maintenance daily check help:
+  ```bash
+  npm run command -- "maintenance-check-help"
+  ```
+* View current health and cleanup metrics dashboard:
+  ```bash
+  npm run command -- "maintenance-check status"
+  ```
+* Compile quarantine cleanup status report:
+  ```bash
+  npm run command -- "maintenance-check cleanup-status"
+  ```
+* Verify projects registry matrix integrity:
+  ```bash
+  npm run command -- "maintenance-check registry-status"
+  ```
+* Generate full workspace maintenance report:
+  ```bash
+  npm run command -- "maintenance-check full-report"
+  ```
+
+---
+
 ## 🛡️ Phase 12A: Duplicate Cleanup Quarantine
 
 The **Duplicate Cleanup Quarantine** creates a safe local duplicate and stale artifact cleanup system that scans generated outputs, detects duplicate timestamp variants, identifies stale reports, and stages cleanup recommendations without deleting files.

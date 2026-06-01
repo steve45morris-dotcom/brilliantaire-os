@@ -242,7 +242,9 @@
     "cleanup-approval": "tsx scripts/cleanup-approval.ts",
     "cleanup-approval-help": "tsx scripts/cleanup-approval-help.ts",
     "voice-ops-operator-runbook": "tsx scripts/voice-ops-operator-runbook.ts",
-    "voice-ops-operator-runbook-help": "tsx scripts/voice-ops-operator-runbook-help.ts"
+    "voice-ops-operator-runbook-help": "tsx scripts/voice-ops-operator-runbook-help.ts",
+    "maintenance-check": "tsx scripts/maintenance-check.ts",
+    "maintenance-check-help": "tsx scripts/maintenance-check-help.ts"
   },
   "keywords": [
     "antigravity",

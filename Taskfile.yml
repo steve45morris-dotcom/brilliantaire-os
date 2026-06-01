@@ -1346,3 +1346,14 @@ tasks:
     cmds:
       - npm run cleanup-approval-help
 
+  maintenance-check:
+    desc: "Run Maintenance Daily Check routine to verify workspace health and quarantine logs"
+    cmds:
+      - npm run maintenance-check -- {{.CLI_ARGS}}
+
+  maintenance-check-help:
+    desc: "Print help menu for Maintenance Daily Check routine"
+    cmds:
+      - npm run maintenance-check-help
+
+

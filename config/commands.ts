@@ -2610,6 +2610,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'maintenance-check-help',
+    aliases: ['maintenance help', 'daily maintenance help'],
+    description: 'Print help menu for the local daily maintenance check routine',
+    npmScript: 'maintenance-check-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'maintenance-check',
+    aliases: ['maintenance', 'daily maintenance'],
+    description: 'Run registry health and quarantine monitoring checks during daily check sweeps',
+    npmScript: 'maintenance-check',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
