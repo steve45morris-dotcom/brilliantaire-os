@@ -3570,6 +3570,44 @@ The **Maintenance Daily Check Integrator** expands the approved local daily chec
 
 ---
 
+## 🛡️ Phase 12J: Continued Maintenance Observation
+
+The **Continued Maintenance Observation** layer establishes a safe monitoring window countdown and expiration watch. It reads current health and cleanup logs, dynamically updates the elapsed age, and logs upcoming validation criteria while pruning execution remains blocked.
+
+### 🔒 Guardrails Summary
+1. **Observation Only:** Deletions, file unlinking, and quarantine mutations remain strictly disabled.
+2. **Dynamic Countdown:** Automatically computes elapsed and remaining days from baseline manifests.
+3. **Maturity Projection:** Tracks earliest expiration watch date (`2026-06-08`) and outputs step-by-step recheck commands.
+4. **Command Routing:** Operates under strict exact-name command router rules.
+
+### 💻 Command Examples
+* Print maintenance observation help menu:
+  ```bash
+  npm run command -- "maintenance-observation-help"
+  ```
+* Capture current reports status snapshot:
+  ```bash
+  npm run command -- "maintenance-observation snapshot"
+  ```
+* Generate quarantine countdown status:
+  ```bash
+  npm run command -- "maintenance-observation countdown"
+  ```
+* Compile maintenance observation report:
+  ```bash
+  npm run command -- "maintenance-observation observation-report"
+  ```
+* Generate quarantine expiration watch details:
+  ```bash
+  npm run command -- "maintenance-observation expiration-watch"
+  ```
+* Display observation status summary:
+  ```bash
+  npm run command -- "maintenance-observation status"
+  ```
+
+---
+
 ## 🛡️ Phase 12A: Duplicate Cleanup Quarantine
 
 The **Duplicate Cleanup Quarantine** creates a safe local duplicate and stale artifact cleanup system that scans generated outputs, detects duplicate timestamp variants, identifies stale reports, and stages cleanup recommendations without deleting files.

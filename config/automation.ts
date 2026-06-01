@@ -22,6 +22,7 @@ export const AUTOMATION_ROUTINES: AutomationRoutine[] = [
       'quarantine-monitoring status',
       'quarantine-deletion-readiness status',
       'maintenance-check status',
+      'maintenance-observation status',
       'dashboard-export'
     ],
     owningAgent: 'Workflow Auditor',

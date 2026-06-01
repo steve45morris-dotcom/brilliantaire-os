@@ -1356,4 +1356,15 @@ tasks:
     cmds:
       - npm run maintenance-check-help
 
+  maintenance-observation:
+    desc: "Run Continued Maintenance Observation loop tracking countdown status and expiration watch"
+    cmds:
+      - npm run maintenance-observation -- {{.CLI_ARGS}}
+
+  maintenance-observation-help:
+    desc: "Print help menu for Continued Maintenance Observation routine"
+    cmds:
+      - npm run maintenance-observation-help
+
+
 

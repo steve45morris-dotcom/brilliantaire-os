@@ -244,7 +244,9 @@
     "voice-ops-operator-runbook": "tsx scripts/voice-ops-operator-runbook.ts",
     "voice-ops-operator-runbook-help": "tsx scripts/voice-ops-operator-runbook-help.ts",
     "maintenance-check": "tsx scripts/maintenance-check.ts",
-    "maintenance-check-help": "tsx scripts/maintenance-check-help.ts"
+    "maintenance-check-help": "tsx scripts/maintenance-check-help.ts",
+    "maintenance-observation": "tsx scripts/maintenance-observation.ts",
+    "maintenance-observation-help": "tsx scripts/maintenance-observation-help.ts"
   },
   "keywords": [
     "antigravity",

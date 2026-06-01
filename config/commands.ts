@@ -2632,6 +2632,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'maintenance-observation-help',
+    aliases: ['observation help', 'maintenance observation help'],
+    description: 'Print help menu for the local daily maintenance observation routine',
+    npmScript: 'maintenance-observation-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'maintenance-observation',
+    aliases: ['observation', 'maintenance observation'],
+    description: 'Run quarantine countdown and expiration watch during daily check sweeps',
+    npmScript: 'maintenance-observation',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

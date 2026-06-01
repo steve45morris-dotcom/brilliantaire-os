@@ -283,6 +283,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `cleanup-approval` | `cleanup approval`, `quarantine approval` | Workflow Auditor | Medium | Yes | Classify duplicate candidates and generate quarantine manual approval lists. |
 | `maintenance-check-help` | `maintenance help`, `daily maintenance help` | Workflow Auditor | Low | No | Print help command menu for the local daily maintenance check routine. |
 | `maintenance-check` | `maintenance`, `daily maintenance` | Workflow Auditor | Medium | Yes | Run registry health and quarantine monitoring checks during daily check sweeps. |
+| `maintenance-observation-help` | `observation help`, `maintenance observation help` | Workflow Auditor | Low | No | Print help menu for the local daily maintenance observation routine. |
+| `maintenance-observation` | `observation`, `maintenance observation` | Workflow Auditor | Medium | Yes | Run quarantine countdown and expiration watch during daily check sweeps. |
 
 
 
