@@ -248,7 +248,9 @@
     "maintenance-observation": "tsx scripts/maintenance-observation.ts",
     "maintenance-observation-help": "tsx scripts/maintenance-observation-help.ts",
     "knowledge-source-registry": "tsx scripts/knowledge-source-registry.ts",
-    "knowledge-source-registry-help": "tsx scripts/knowledge-source-registry-help.ts"
+    "knowledge-source-registry-help": "tsx scripts/knowledge-source-registry-help.ts",
+    "creator-url-staging": "tsx scripts/creator-url-staging.ts",
+    "creator-url-staging-help": "tsx scripts/creator-url-staging-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -1375,3 +1375,14 @@ tasks:
     desc: "Print help menu for Knowledge Harvest Source Registry CLI"
     cmds:
       - npm run knowledge-source-registry-help
+
+  creator-url-staging:
+    desc: "Run Creator YouTube URL Staging Gate CLI commands"
+    cmds:
+      - npm run creator-url-staging -- {{.CLI_ARGS}}
+
+  creator-url-staging-help:
+    desc: "Print help menu for Creator YouTube URL Staging Gate CLI"
+    cmds:
+      - npm run creator-url-staging-help
+

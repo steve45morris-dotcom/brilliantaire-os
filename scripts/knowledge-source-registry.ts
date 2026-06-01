@@ -297,7 +297,17 @@ Next Recommended Action:
 }
 
 async function main() {
-  const arg = process.argv[2]?.trim().toLowerCase();
+  let args: string[] = [];
+  const argInput = process.argv[2]?.trim();
+  if (argInput && argInput.includes(' ')) {
+    args = argInput.split(/\s+/);
+  } else {
+    args = process.argv.slice(2).map(a => a.trim());
+  }
+
+  const command = args[0]?.toLowerCase();
+  const subCommand = args[1]?.toLowerCase();
+  const arg = command + (subCommand ? ' ' + subCommand : '');
 
   // Enforce Guardrails
   if (REGISTRY_ONLY) {

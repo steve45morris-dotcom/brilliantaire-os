@@ -554,7 +554,13 @@
 - [x] Generate transcript status report
 - [x] Generate workflow value report
 - [x] Generate source pack status report
-- [ ] Review next creator sources manually
+- [x] Review next creator sources manually
+- [x] Build Creator YouTube URL Staging Gate
+- [x] Stage first Julian Goldie URL manually
+- [x] Generate Julian batch URL template
+- [x] Generate URL staging review
+- [x] Generate transcript next-step report
+- [ ] Review which URL should enter transcript intake first
 
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script

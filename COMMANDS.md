@@ -287,7 +287,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `maintenance-observation` | `observation`, `maintenance observation` | Workflow Auditor | Medium | Yes | Run quarantine countdown and expiration watch during daily check sweeps. |
 | `knowledge-source-registry-help` | `source registry help`, `harvest source help` | Knowledge Librarian | Low | No | Print help menu for Knowledge Harvest Source Registry CLI. |
 | `knowledge-source-registry` | `source registry`, `harvest source` | Knowledge Librarian | Medium | Yes | Execute Knowledge Harvest Source Registry commands. |
-
+| `creator-url-staging-help` | `url staging help`, `creator url help` | Knowledge Librarian | Low | No | Print help menu for Creator YouTube URL Staging Gate CLI. |
+| `creator-url-staging` | `url staging`, `creator url` | Knowledge Librarian | Medium | Yes | Execute Creator YouTube URL Staging Gate CLI commands. |
 ---
 
 ## 4. Execution Examples

@@ -3724,5 +3724,44 @@ The **Knowledge Harvest Source Expansion** implements a local, manual-first crea
   npm run command -- "knowledge-source-registry" -- "status"
   ```
 
+---
+
+## 📖 Phase 13B: Creator YouTube URL Staging Gate
+
+The **Creator YouTube URL Staging Gate** implements a local, manual-first Creator YouTube URL staging and review system under the Knowledge Librarian. It organizes approved creator URLs, playlist URLs, and channel references, staging reviews and transcribing next steps without automatic web scraping, API calls, or transcript downloads.
+
+### 🔒 Guardrails Summary
+1. **Manual-First Intake:** Automatically blocks channel crawling, playlist crawling, and external API requests.
+2. **Offline Local-First review:** Excludes automatic YouTube downloads, transcript fetching, or direct Obsidian writes.
+3. **Staging-Only Constraints:** Restricts mutations to staging metadata and review files.
+4. **Command Router Verification:** Blocks alias command triggers and mandates exact script name routing.
+
+### 💻 Command Examples
+* View staging help menu:
+  ```bash
+  npm run command -- "creator-url-staging-help"
+  ```
+* Stage a single YouTube URL record:
+  ```bash
+  npm run command -- "creator-url-staging" -- "stage julian <URL>"
+  ```
+* Generate manual batch template:
+  ```bash
+  npm run command -- "creator-url-staging" -- "batch julian"
+  ```
+* Compile URL review staging report:
+  ```bash
+  npm run command -- "creator-url-staging" -- "review"
+  ```
+* Compile transcript next actions report:
+  ```bash
+  npm run command -- "creator-url-staging" -- "transcript-next"
+  ```
+* Query current staging dashboard metrics:
+  ```bash
+  npm run command -- "creator-url-staging" -- "status"
+  ```
+
+
 
 

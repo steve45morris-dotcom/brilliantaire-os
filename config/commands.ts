@@ -2676,8 +2676,31 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'creator-url-staging-help',
+    aliases: ['url staging help', 'creator url help'],
+    description: 'Print help menu for Creator YouTube URL Staging Gate CLI',
+    npmScript: 'creator-url-staging-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'creator-url-staging',
+    aliases: ['url staging', 'creator url'],
+    description: 'Execute Creator YouTube URL Staging Gate CLI commands',
+    npmScript: 'creator-url-staging',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
+
 
 
 
