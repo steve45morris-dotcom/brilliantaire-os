@@ -110,6 +110,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-obsidian-dashboard-sync` | `obsidian dashboard`, `dashboard sync` | Knowledge Librarian | Medium | Yes | Populate local Obsidian-ready dashboard markdown files from index graph. |
 | `grounded-narrator-review-queue-help` | `narrator queue help`, `narrator brief help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue compiler. |
 | `grounded-narrator-review-queue` | `narrator queue`, `review queue` | Knowledge Librarian | Medium | Yes | Compile review-safe narrator briefs and priority lists from dashboards. |
+| `voice-safe-narration-approval-gate-help` | `approval gate help`, `voice approval help` | Workflow Auditor | Low | No | Print help menu for voice-safe narration approval gate processor. |
+| `voice-safe-narration-approval-gate` | `approval gate`, `voice approval` | Workflow Auditor | Medium | Yes | Scan review queues and compile safe approved/rejected narration manifests. |
 | `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
 | `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |

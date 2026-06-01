@@ -1998,50 +1998,35 @@ The **Git Asset Guard and Pre-Push Safety Audit** prevents future repository ins
 
 ---
 
-## 🧭 Phase 11Q: Offline TTS Brief Composer
+## 🧭 Phase 11Q: Voice-Safe Narration Approval Gate
 
-The **Offline TTS Brief Composer** compiles citation-backed, manual-reviewed narrator briefs into TTS-ready script documents, audio queue packets, and voice directions without generating sound files. This ensures structured offline formatting.
+The **Voice-Safe Narration Approval Gate** enforces a strict validation layer that prevents unapproved, weak, uncited, risky, or review-required narrator blocks from passing into any TTS or voice generation workflow. No block can proceed without manual operator sign-off and explicit verification.
 
 ### 🛡️ Safety & Execution Rules
-1. **Composer-Only Mode:** Script compilation and formatting only. No TTS engine execution (Piper, say) or audio file creation.
-2. **No TTS Generation:** Under no circumstances should audio assets be generated during this phase.
-3. **No External APIs:** No network operations, cloud voices, or external API lookups.
+1. **Validation-Only Mode:** Script checks and staging only. No audio files are generated, and no TTS services are invoked.
+2. **Fail Closed Policy:** Missing properties, unapproved review flags, weak claims, or uncited topics are automatically rejected.
+3. **Local Staging:** Approved and rejected manifests are stored locally under structured directories.
 
 ### 💻 Command Examples
-* View composer help menu:
+* View approval gate help menu:
   ```bash
-  npm run command -- "tts-brief-composer-help"
+  npm run command -- "voice-safe-narration-approval-gate-help"
   ```
-* Compile short script:
+* Execute validation and compile manifests:
   ```bash
-  npm run command -- "tts-brief-composer short"
+  npm run command -- "voice-safe-narration-approval-gate"
   ```
-* Compile medium script:
+* Execute validation with test approval override for a block:
   ```bash
-  npm run command -- "tts-brief-composer medium"
+  npm run command -- "voice-safe-narration-approval-gate check --test-approve narrator_block_3"
   ```
-* Compile long script:
+* Run a validation simulation in dry-run mode:
   ```bash
-  npm run command -- "tts-brief-composer long"
-  ```
-* Compile all scripts:
-  ```bash
-  npm run command -- "tts-brief-composer all"
-  ```
-* Compile queue packet:
-  ```bash
-  npm run command -- "tts-brief-composer queue-packet"
-  ```
-* Compile voice direction spec:
-  ```bash
-  npm run command -- "tts-brief-composer voice-direction"
-  ```
-* View status metrics:
-  ```bash
-  npm run command -- "tts-brief-composer status"
+  npm run command -- "voice-safe-narration-approval-gate check --dry-run"
   ```
 
 ---
+
 
 ## 🧭 Phase R4: Pre-Push Hook Installer
 
