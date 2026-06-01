@@ -175,7 +175,9 @@
 - [x] Phase N5Q: Voice Ops Release Closure Report
 - [x] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
 - [x] Phase N5U: Voice Ops Operator Runbook
-- [ ] Phase N5V: Operator Training Simulation Pack
+- [x] Phase N5V: Operator Training Simulation Pack
+- [x] Phase N5W: Operator Certification Ledger
+- [ ] Phase N5X: Operator Recertification and Drill Rotation Scheduler
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -477,8 +479,22 @@
 - [x] Phase 11Z-H: Implement ledger audit check logic that verifies models, checksum manifest files, and staged audio inputs
 - [x] Phase 11Z-H: Enforce requiresExactName constraint and verify alias command rejection
 - [x] Phase 11Z-H: Adhere to strict safety rules (no ASR execution, no speech transcription, no automatic downloads, no external API calls, and no file mutations)
-- [ ] Phase 11Z-I: Run Human-Staged Asset Verification Pass (Goal: verify human manual placements and updated manifests against actual disk state)
-
+- [x] Phase 11Z-I: Run Human-Staged Asset Verification Pass (Goal: verify human manual placements and updated manifests against actual disk state)
+- [x] Phase 11Z-J: Build ASR Gate Rerun Orchestrator (Goal: sequentially verify validation gates offline based on human staged verification status)
+- [x] Phase 11Z-J: Create configuration config/asr-gate-rerun-orchestrator.ts
+- [x] Phase 11Z-J: Create main orchestrator scripts/asr-gate-rerun-orchestrator.ts
+- [x] Phase 11Z-J: Create help utility scripts/asr-gate-rerun-orchestrator-help.ts
+- [x] Phase 11Z-J: Generate gate rerun outputs under outputs/asr_gate_rerun/ (6 markdown reports and 1 json manifest)
+- [x] Phase 11Z-J: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-J: Adhere to strict safety rules (no ASR execution, no speech transcription, no automatic downloads, no external API calls, and no file mutations)
+- [x] Phase 11Z-K: Build ASR Manual Asset Staging Operator Packet (Goal: generate Human Staging Operator Packet instructions and capture utilities)
+- [x] Phase 11Z-K: Create configuration config/asr-manual-asset-staging-operator-packet.ts
+- [x] Phase 11Z-K: Create main generator scripts/asr-manual-asset-staging-operator-packet.ts
+- [x] Phase 11Z-K: Create help utility scripts/asr-manual-asset-staging-operator-packet-help.ts
+- [x] Phase 11Z-K: Create markdown templates for operator packet, model placement commands, SHA256 capture, file size capture, manifest update guide, audio placement guide, post-staging rerun sequence, and lock reminder
+- [x] Phase 11Z-K: Generate outputs under outputs/asr_operator_packet/ (9 markdown reports and 1 json manifest)
+- [x] Phase 11Z-K: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-K: Adhere to strict safety rules (no ASR execution, no speech transcription, no automatic downloads, no external API calls, and no file mutations)
 
 ## Do Next
 - [x] Build Duplicate Cleanup Staging Gate
@@ -605,10 +621,22 @@
 - [x] Phase 12B: Generate templates under templates/cleanup_approval/
 - [x] Phase 12B: Verify exact-name command routing and alias blocks
 - [x] Phase 12B: Compile manual approval check checklists, summaries, and do-not-touch lists
+- [x] Phase 12C: Approved Quarantine Executor
+- [x] Phase 12C: Build Approved Quarantine Executor
+- [x] Phase 12C: Run quarantine dry-run
+- [x] Phase 12C: Generate quarantine manifest
+- [x] Phase 12C: Generate rollback plan
+- [x] Phase 12C: Execute quarantine only after confirm
+- [x] Phase 12C: Verify no deletion occurs
+- [x] Phase 12C: Prepare post-quarantine audit
 - [x] Phase 12F: Grinders Keep Consensus Review Packet Deepener
 - [x] Phase 12F: Deepen Agent Consensus Staging Layer to package verified system questions and monetization opportunities into manual review packets for ChatGPT, Gemini, Claude, and NotebookLM without calling models automatically
-- [ ] Phase 12G: Grinders Keep Google Ultra Opportunity Scanner Deepener
-- [ ] Phase 12G: Deepen the Google Ultra opportunity layer to map verified project needs to manual Gemini, NotebookLM, Flow, Whisk, Veo, Antigravity, Drive, Docs, Sheets, Gmail, YouTube, and Google Vids workflows without calling Google tools automatically
+- [x] Phase 12G: Grinders Keep Google Ultra Opportunity Scanner Deepener
+- [x] Phase 12G: Deepen the Google Ultra opportunity layer to map verified project needs to manual Gemini, NotebookLM, Flow, Whisk, Veo, Antigravity, Drive, Docs, Sheets, Gmail, YouTube, and Google Vids workflows without calling Google tools automatically
+- [x] Phase 12H: Grinders Keep Manual Review Intake Gate
+- [x] Phase 12H: Create a local intake gate for manually pasted responses from ChatGPT, Gemini, Claude, NotebookLM, and Google Ultra tool tests, parsing, scoring, and comparing them without inventing model feedback
+- [ ] Phase 12I: Grinders Keep Decision Synthesis Gate
+- [ ] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
