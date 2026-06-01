@@ -273,3 +273,102 @@
 
 ---
 
+## [2026-06-01T08:14:20.590Z] Command Attempt: "voice-session-recorder-help"
+- **Matched Command:** `voice-session-recorder-help`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `low`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:14:40.149Z] Command Attempt: "notebooklm-obsidian-dashboard-sync"
+- **Matched Command:** `notebooklm-obsidian-dashboard-sync`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:15:48.454Z] Command Attempt: "voice-session-recorder guide"
+- **Matched Command:** `voice-session-recorder`
+- **Alias Used:** `false`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:15:57.068Z] Command Attempt: "grounded-narrator-review-queue"
+- **Matched Command:** `grounded-narrator-review-queue`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+
+## [2026-06-01T08:16:19.780Z] Command Attempt: "dashboard sync"
+- **Matched Command:** `notebooklm-obsidian-dashboard-sync`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:16:35.106Z] Command Attempt: "voice session"
+- **Matched Command:** `voice-session-recorder`
+- **Alias Used:** `true`
+- **Owning Agent:** `Build Operator`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:16:35.326Z] Command Attempt: "scheduled briefing status"
+- **Matched Command:** `voice-ops-scheduled-briefing`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:16:39.905Z] Command Attempt: "narrator queue"
+- **Matched Command:** `grounded-narrator-review-queue`
+- **Alias Used:** `true`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Blocked: Alias Used for Exact Name`
+- **Exit Code:** `1`
+
+---
+
+## [2026-06-01T08:17:28.052Z] Command Attempt: "voice-ops-scheduled-briefing status"
+- **Matched Command:** `voice-ops-scheduled-briefing`
+- **Alias Used:** `false`
+- **Owning Agent:** `Knowledge Librarian`
+- **Risk Level:** `medium`
+- **Confirmed:** `false`
+- **Result Status:** `Success`
+- **Exit Code:** `0`
+
+---
+

@@ -421,6 +421,26 @@ tasks:
     cmds:
       - npm run notebooklm-grounded-index-graph -- {{.CLI_ARGS}}
 
+  notebooklm-obsidian-dashboard-sync-help:
+    desc: "Print Obsidian Intelligence Dashboard Sync safety manuals"
+    cmds:
+      - npm run notebooklm-obsidian-dashboard-sync-help
+
+  notebooklm-obsidian-dashboard-sync:
+    desc: "Run Obsidian Intelligence Dashboard Sync tasks safely"
+    cmds:
+      - npm run notebooklm-obsidian-dashboard-sync -- {{.CLI_ARGS}}
+
+  grounded-narrator-review-queue-help:
+    desc: "Print Grounded Narrator Review Queue compiler safety manuals"
+    cmds:
+      - npm run grounded-narrator-review-queue-help
+
+  grounded-narrator-review-queue:
+    desc: "Run Grounded Narrator Review Queue compiler tasks safely"
+    cmds:
+      - npm run grounded-narrator-review-queue -- {{.CLI_ARGS}}
+
   grounded-narrator-review-help:
     desc: "Print Grounded Narrator Review Queue safety manuals"
     cmds:
@@ -490,6 +510,16 @@ tasks:
     desc: "Run Offline TTS Model Acquisition tasks safely"
     cmds:
       - npm run tts-model-acquisition -- {{.CLI_ARGS}}
+
+  voice-session-recorder-help:
+    desc: "Print Offline Voice Session Recorder safety manuals"
+    cmds:
+      - npm run voice-session-recorder-help
+
+  voice-session-recorder:
+    desc: "Run Offline Voice Session Recorder tasks safely"
+    cmds:
+      - npm run voice-session-recorder -- {{.CLI_ARGS}}
 
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
@@ -708,6 +738,16 @@ tasks:
     desc: "Print help menu for the daily voice ops report generator"
     cmds:
       - npm run narrator-voice-ops-daily-report-help
+
+  voice-ops-scheduled-briefing:
+    desc: "Staged briefing queue CLI manager (status, create-daily, inspect, approve, reject, etc.)"
+    cmds:
+      - npm run voice-ops-scheduled-briefing -- {{.CLI_ARGS}}
+
+  voice-ops-scheduled-briefing-help:
+    desc: "Print help menu for the voice ops scheduled briefing queue"
+    cmds:
+      - npm run voice-ops-scheduled-briefing-help
 
 
 

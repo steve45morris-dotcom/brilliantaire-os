@@ -1,0 +1,11 @@
+{
+  "latestBriefingId": "briefing_2026-05-31",
+  "pendingBriefings": 0,
+  "approvedBriefings": 1,
+  "rejectedBriefings": 0,
+  "ttsRequestCount": 1,
+  "latestSourceReportPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_ops_daily_report/reports/voice_ops_daily_report_2026-06-01.md",
+  "duplicateBriefingProtection": true,
+  "autoRun": false,
+  "manualApprovalRequired": true
+}

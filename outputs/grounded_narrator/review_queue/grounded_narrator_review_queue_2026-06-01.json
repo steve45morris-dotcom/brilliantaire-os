@@ -1,0 +1,51 @@
+{
+  "queueId": "narrator_queue_2026-06-01",
+  "compiledAt": "2026-06-01T08:15:33.406Z",
+  "blocks": [
+    {
+      "blockId": "narrator_block_1",
+      "blockType": "weak_claim",
+      "claimText": "Direct Obsidian writing remains offline.",
+      "suggestedTone": "Warning / Cautionary",
+      "priority": "High",
+      "approvedForVoice": false,
+      "sourceNode": "weak_claim_1"
+    },
+    {
+      "blockId": "narrator_block_2",
+      "blockType": "weak_claim",
+      "claimText": "Manual query instructions are fully simulated.",
+      "suggestedTone": "Warning / Cautionary",
+      "priority": "High",
+      "approvedForVoice": false,
+      "sourceNode": "weak_claim_2"
+    },
+    {
+      "blockId": "narrator_block_3",
+      "blockType": "safe_claim",
+      "claimText": "Offline query validation checklist verified.",
+      "suggestedTone": "Authoritative / Grounded",
+      "priority": "Low",
+      "approvedForVoice": false,
+      "sourceNode": "claim_1"
+    },
+    {
+      "blockId": "narrator_block_4",
+      "blockType": "uncited_claim",
+      "claimText": "State consistency check runs in prepush hook to intercept forbidden files.",
+      "suggestedTone": "Muted / Tactical",
+      "priority": "Medium",
+      "approvedForVoice": false,
+      "sourceNode": "claim_2"
+    },
+    {
+      "blockId": "narrator_block_5",
+      "blockType": "uncited_claim",
+      "claimText": "Direct Obsidian writing remains offline.",
+      "suggestedTone": "Muted / Tactical",
+      "priority": "Medium",
+      "approvedForVoice": false,
+      "sourceNode": "claim_3"
+    }
+  ]
+}

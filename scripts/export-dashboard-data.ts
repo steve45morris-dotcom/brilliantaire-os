@@ -468,6 +468,17 @@ function main() {
         }
       }
       return undefined;
+    })(),
+    briefing: (() => {
+      const briefingSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/voice_ops_scheduled_briefing/reports/dashboard_briefing_snapshot.json');
+      if (fs.existsSync(briefingSnapshotPath)) {
+        try {
+          return JSON.parse(fs.readFileSync(briefingSnapshotPath, 'utf-8'));
+        } catch (e) {
+          console.error(`Failed to parse dashboard briefing snapshot JSON: ${e}`);
+        }
+      }
+      return undefined;
     })()
   };
 

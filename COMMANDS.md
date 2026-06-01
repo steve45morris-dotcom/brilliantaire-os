@@ -106,6 +106,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `notebooklm-response-intelligence` | `response intelligence`, `notebook intelligence` | Knowledge Librarian | Medium | Yes | Process NotebookLM responses into staged local intelligence files. |
 | `notebooklm-grounded-index-graph-help` | `graph help`, `grounded help`, `notebook graph help` | Knowledge Librarian | Low | No | Print help menu for grounded intelligence graph index. |
 | `notebooklm-grounded-index-graph` | `intelligence graph`, `grounded graph`, `notebook graph` | Knowledge Librarian | Medium | Yes | Compile response intelligence files into grounded index graphs. |
+| `notebooklm-obsidian-dashboard-sync-help` | `sync help`, `dashboard help` | Knowledge Librarian | Low | No | Print help menu for Obsidian intelligence dashboard sync compiler. |
+| `notebooklm-obsidian-dashboard-sync` | `obsidian dashboard`, `dashboard sync` | Knowledge Librarian | Medium | Yes | Populate local Obsidian-ready dashboard markdown files from index graph. |
+| `grounded-narrator-review-queue-help` | `narrator queue help`, `narrator brief help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue compiler. |
+| `grounded-narrator-review-queue` | `narrator queue`, `review queue` | Knowledge Librarian | Medium | Yes | Compile review-safe narrator briefs and priority lists from dashboards. |
 | `grounded-narrator-review-help` | `narrator review help`, `grounded narrator help` | Knowledge Librarian | Low | No | Print help menu for grounded narrator review queue. |
 | `grounded-narrator-review` | `narrator review`, `grounded narrator` | Knowledge Librarian | Medium | Yes | Compile local review queue and stage briefs from grounded index graphs. |
 | `tts-brief-composer-help` | `tts composer help`, `narrator script help` | Knowledge Librarian | Low | No | Print help menu for offline TTS brief composer. |
@@ -120,6 +124,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `tts-model-activation` | `model activation`, `tts activation` | Build Operator | Medium | Yes | Verify manually placed voice files matching config pairs and engine readiness. |
 | `tts-model-acquisition-help` | `model acquisition help`, `tts model guide` | Build Operator | Low | No | Print help menu for offline TTS model manual acquisition guides. |
 | `tts-model-acquisition` | `model acquisition`, `tts acquisition` | Build Operator | Medium | Yes | Verify model staging checklists manual download instructions and directory inventory. |
+| `voice-session-recorder-help` | `voice session help`, `recorder help` | Build Operator | Low | No | Print help menu for offline narrator voice capture staging. |
+| `voice-session-recorder` | `voice session`, `recorder` | Build Operator | Medium | Yes | Scaffold manual recording sessions metadata drop checks and reviews. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -164,6 +170,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-lifecycle-audit` | `voice lifecycle audit`, `narrator voice lifecycle audit` | Knowledge Librarian | Medium | Yes | Chronological timeline mapping of voice session recordings, ASR events, and bridge actions. |
 | `narrator-voice-ops-daily-report-help` | `voice ops report help`, `narrator voice ops report help` | Knowledge Librarian | Low | Yes | Print help command menu for the daily Voice Ops report generator. |
 | `narrator-voice-ops-daily-report` | `voice ops daily report`, `narrator voice ops daily report` | Knowledge Librarian | Medium | Yes | Summarize the day's local voice sessions, ASR transcripts, staged packets, approvals, bridge executions, rejections, blocked attempts, safety events, and dashboard status. |
+| `voice-ops-scheduled-briefing-help` | `scheduled briefing help`, `voice ops scheduled briefing help` | Knowledge Librarian | Low | Yes | Print help command menu for the scheduled briefing queue manager. |
+| `voice-ops-scheduled-briefing` | `scheduled briefing`, `voice ops scheduled briefing` | Knowledge Librarian | Medium | Yes | Stage, inspect, approve, reject daily briefing jobs, and compile TTS rendering queue requests. |
 
 
 ---

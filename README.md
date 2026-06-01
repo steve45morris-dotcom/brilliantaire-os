@@ -1742,6 +1742,68 @@ The **Voice Ops Daily Report Generator** aggregates local voice pipeline activit
 
 ---
 
+## 🧭 Phase N5K: Voice Ops Scheduled Briefing Queue
+
+The **Voice Ops Scheduled Briefing Queue** stages daily or manual briefing jobs from the Voice Ops report system into a controlled queue, requiring manual confirmation for approval and TTS request generation.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Gate Check**: Staging a job does not automatically generate audio, start recordings, or execute voice commands.
+2. **Explicit Approval Gate**: An item in the queue must be explicitly transitioned to `approved` status before a TTS request can be compiled.
+3. **No Automatic synthesis**: The `generate-tts-request` command only creates a TTS rendering queue request. The actual synthesis is deferred to the TTS Approval and Renderer Flow (N5A/N5B).
+4. **Strict Exact-Name Routing**: All router commands require exact name matching; no aliases or fuzzy names are allowed.
+
+### 💻 Command Examples
+* View scheduled briefing help:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing-help"
+  ```
+* Check queue health, safety flags, and pending count:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing status"
+  ```
+* Stage today's daily briefing:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing create-daily"
+  ```
+* Stage a briefing from a specific date report:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing create-date YYYY-MM-DD"
+  ```
+* List all queued jobs:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing list-queue"
+  ```
+* Inspect a specific briefing item's metadata and summary text:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing inspect <BRIEFING_ID>"
+  ```
+* Approve a pending briefing item:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing approve <BRIEFING_ID>"
+  ```
+* Reject a pending briefing item:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing reject <BRIEFING_ID>"
+  ```
+* Generate a TTS render request for an approved briefing:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing generate-tts-request <BRIEFING_ID>"
+  ```
+* Generate briefing queue metrics report summary:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing queue-summary"
+  ```
+* View the latest briefing item details:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing latest"
+  ```
+* Print recent briefing events:
+  ```bash
+  npm run command -- "voice-ops-scheduled-briefing briefing-log"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -1871,31 +1933,42 @@ The **Live Response Intelligence Processor** is a safe, local, offline layer des
 
 ---
 
-## 🧭 Phase 11P: Grounded Narrator Review Queue
+## 🧭 Phase 11P-A: Obsidian Intelligence Dashboard Sync
 
-The **Grounded Narrator Review Queue** reads the grounded intelligence graph and compiles safe, citation-aware narration candidates for the offline narrator system. It acts as a safety validation layer that filters out weak claims or high-risk topics.
+The **Obsidian Intelligence Dashboard Sync** reads the grounded index graph and populates 7 interconnected, local-first markdown dashboards. These dashboards contain checklists, metadata fields, and Obsidian backlinks to help developers audit claims and recommendations before compiling narrator files.
 
 ### 🛡️ Safety & Execution Rules
-1. **Review-Only Mode:** Narration candidates are staged for manual review. No audio files are generated.
-2. **No TTS Generation:** Text-to-Speech (TTS) engine execution is locked.
-3. **Traceability:** Only candidates matching verified citations are staged for narration.
+1. **Staged-Only Mode:** All files are staged under the repository's output directory. Auto-writing directly to Obsidian vaults remains off by default.
+2. **Backlink Integrity:** Wikilinks use standard Obsidian backlinks `[[note-name]]` referencing local markdown nodes.
 
 ### 💻 Command Examples
-* View review queue help:
+* View dashboard sync help:
   ```bash
-  npm run command -- "grounded-narrator-review-help"
+  npm run command -- "notebooklm-obsidian-dashboard-sync-help"
+  ```
+* Populate Obsidian dashboards:
+  ```bash
+  npm run command -- "notebooklm-obsidian-dashboard-sync"
+  ```
+
+---
+
+## 🧭 Phase 11P-B: Grounded Narrator Review Queue
+
+The **Grounded Narrator Review Queue** compiles safe, citation-aware narration briefs from Obsidian dashboards and index graphs. It acts as a safety validation layer that filters out weak claims or uncited topics.
+
+### 🛡️ Safety & Execution Rules
+1. **Review-Only Mode:** Narrator briefs are compiled with review checklists and default to `approved_for_voice: false`. No audio files are generated.
+2. **No TTS Generation:** Outbound TTS API requests and Piper audio synthesizer execution are strictly disabled.
+
+### 💻 Command Examples
+* View review queue compiler help:
+  ```bash
+  npm run command -- "grounded-narrator-review-queue-help"
   ```
 * Compile narration candidate queue:
   ```bash
-  npm run command -- "grounded-narrator-review queue"
-  ```
-* Stage narration-ready brief:
-  ```bash
-  npm run command -- "grounded-narrator-review brief"
-  ```
-* Print queue status and files:
-  ```bash
-  npm run command -- "grounded-narrator-review status"
+  npm run command -- "grounded-narrator-review-queue"
   ```
 
 ---
@@ -2179,8 +2252,49 @@ The **Offline TTS Model Acquisition Guide and Placement Assistant** provides man
 
 ---
 
+## 🧭 Phase 11W: Offline Voice Session Recorder
+
+The **Offline Voice Session Recorder** provides a safe sandbox scaffold to initialize new drop sessions, configure metadata specifications, audit inventory folder, and check voice staging eligibility before future Whisper ASR operations.
+
+### 🛡️ Safety & Execution Rules
+1. **Scaffold-Only Operations:** Microphone capture, speaker modules, TTS compilers, and ASR runs are strictly blocked.
+2. **Manual Drop Protocol:** Guide details instructions for copying external wave files into `manual_recordings/` and renaming them to match metadata session IDs.
+3. **Staging Validation Audits:** Verifies format compliance, logs blockers, and stages eligible files for future translation without invoking process executables.
+
+### 💻 Command Examples
+* View voice recorder help menu:
+  ```bash
+  npm run command -- "voice-session-recorder-help"
+  ```
+* Generate manual recording guide:
+  ```bash
+  npm run command -- "voice-session-recorder guide"
+  ```
+* Create new staging metadata session:
+  ```bash
+  npm run command -- "voice-session-recorder create-session narrator briefing"
+  ```
+* Scan manual recordings directory inventory:
+  ```bash
+  npm run command -- "voice-session-recorder scan-recordings"
+  ```
+* Run compatibility review check:
+  ```bash
+  npm run command -- "voice-session-recorder review"
+  ```
+* Create transcription staging record:
+  ```bash
+  npm run command -- "voice-session-recorder stage-transcription"
+  ```
+* Check session recorder status:
+  ```bash
+  npm run command -- "voice-session-recorder status"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
-* **Phase 11W: Local Offline Speech Synthesis Execution**
+* **Phase 11X: Local Offline Speech Synthesis Execution**
   - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
 
 ---

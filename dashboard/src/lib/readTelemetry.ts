@@ -106,6 +106,19 @@ export interface VoiceLoopData {
   recorder?: VoiceRecorderData;
   audit?: VoiceLifecycleAuditData;
   report?: VoiceOpsDailyReportData;
+  briefing?: VoiceOpsBriefingSnapshotData;
+}
+
+export interface VoiceOpsBriefingSnapshotData {
+  latestBriefingId: string;
+  pendingBriefings: number;
+  approvedBriefings: number;
+  rejectedBriefings: number;
+  ttsRequestCount: number;
+  latestSourceReportPath: string;
+  duplicateBriefingProtection: boolean;
+  autoRun: boolean;
+  manualApprovalRequired: boolean;
 }
 
 export interface DashboardData {

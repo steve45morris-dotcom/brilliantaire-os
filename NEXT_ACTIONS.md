@@ -168,7 +168,8 @@
 - [x] Phase N5H: Prepare Voice Session to ASR Pipeline Orchestrator
 - [x] Phase N5I: Build Voice Command Lifecycle Audit Timeline
 - [x] Phase N5J: Prepare Voice Ops Daily Report Generator
-- [ ] Phase N5K: Voice Ops Scheduled Briefing Queue
+- [x] Phase N5K: Voice Ops Scheduled Briefing Queue
+- [ ] Phase N5L: Briefing TTS Render Approval Flow
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -346,21 +347,28 @@
 - [x] Phase 11T: Run synthesis dry-run
 - [x] Phase 11T: Generate audio output manifest
 - [x] Phase 11T: Confirm no audio generation occurs
-- [x] Phase 11U: Prepare offline TTS synthesis only after model files are placed manually
-- [x] Phase 11V: Build TTS model activation check
-- [x] Phase 11V: Generate model placement guide
-- [x] Phase 11V: Scan local Piper model folder
-- [x] Phase 11V: Run model pairing check
-- [x] Phase 11V: Generate activation readiness report
-- [x] Phase 11V: Confirm no audio generation occurs
-- [x] Phase 11V: Prepare offline synthesis only after model pair and enable flag pass
-- [ ] Phase 11W: Build TTS model acquisition guide
-- [ ] Phase 11W: Generate manual acquisition guide
-- [ ] Phase 11W: Generate local model inventory
-- [ ] Phase 11W: Verify model placement
-- [ ] Phase 11W: Generate next-step report
-- [ ] Phase 11W: Manually place Piper model files
-- [ ] Phase 11W: Rerun model gate after placement
+- [x] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
+- [x] Phase 11U: Build TTS model activation check
+- [x] Phase 11U: Generate model placement guide
+- [x] Phase 11U: Scan local Piper model folder
+- [x] Phase 11U: Run model pairing check
+- [x] Phase 11U: Generate activation readiness report
+- [x] Phase 11U: Confirm no audio generation occurs
+- [x] Phase 11U: Prepare offline synthesis only after model pair and enable flag pass
+- [x] Phase 11V: Build TTS model acquisition guide
+- [x] Phase 11V: Generate manual acquisition guide
+- [x] Phase 11V: Generate local model inventory
+- [x] Phase 11V: Verify model placement
+- [x] Phase 11V: Generate next-step report
+- [ ] Phase 11V: Manually place Piper model files
+- [ ] Phase 11V: Rerun model gate after placement
+- [x] Phase 11W: Build Offline Voice Session Recorder
+- [x] Phase 11W: Generate manual recording guide
+- [x] Phase 11W: Create narrator briefing session metadata
+- [x] Phase 11W: Scan manual recordings folder
+- [x] Phase 11W: Generate recording review
+- [ ] Phase 11W: Stage transcription record
+- [ ] Phase 11W: Prepare ASR orchestrator only after manual audio exists
 
 ## Do Next
 - [ ] Build Duplicate Cleanup Staging Gate
@@ -370,6 +378,10 @@
 - [ ] Generate project registry drift report
 - [ ] Review 32 unregistered directories manually
 - [ ] Approve quarantine only after review
+- [ ] Phase 11Q: Voice-Safe Narration Approval Gate
+- [ ] Phase 11Q: Build final approval validator script
+- [ ] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
+- [ ] Phase 11Q: Test gate checks with approved and rejected queue states
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

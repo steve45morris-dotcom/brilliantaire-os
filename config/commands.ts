@@ -903,6 +903,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'notebooklm-obsidian-dashboard-sync-help',
+    aliases: ['sync help', 'dashboard help'],
+    description: 'Print help menu for Obsidian intelligence dashboard sync compiler',
+    npmScript: 'notebooklm-obsidian-dashboard-sync-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'notebooklm-obsidian-dashboard-sync',
+    aliases: ['obsidian dashboard', 'dashboard sync'],
+    description: 'Populate local Obsidian-ready dashboard markdown files from index graph',
+    npmScript: 'notebooklm-obsidian-dashboard-sync',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grounded-narrator-review-queue-help',
+    aliases: ['narrator queue help', 'narrator brief help'],
+    description: 'Print help menu for grounded narrator review queue compiler',
+    npmScript: 'grounded-narrator-review-queue-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'grounded-narrator-review-queue',
+    aliases: ['narrator queue', 'review queue'],
+    description: 'Compile review-safe narrator briefs and priority lists from dashboards',
+    npmScript: 'grounded-narrator-review-queue',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'grounded-narrator-review-help',
     aliases: ['narrator review help', 'grounded narrator help'],
     description: 'Print help menu for grounded narrator review queue',
@@ -1050,6 +1094,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['model acquisition', 'tts acquisition'],
     description: 'Verify model staging checklists manual download instructions and directory inventory',
     npmScript: 'tts-model-acquisition',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-session-recorder-help',
+    aliases: ['voice session help', 'recorder help'],
+    description: 'Print help menu for offline narrator voice capture staging',
+    npmScript: 'voice-session-recorder-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'voice-session-recorder',
+    aliases: ['voice session', 'recorder'],
+    description: 'Scaffold manual recording sessions metadata drop checks and reviews',
+    npmScript: 'voice-session-recorder',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',
@@ -1501,6 +1567,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['voice ops daily report', 'narrator voice ops daily report'],
     description: 'Daily operational reporter CLI for local speech, ASR, safety rejections, and bridge status',
     npmScript: 'narrator-voice-ops-daily-report',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-scheduled-briefing-help',
+    aliases: ['scheduled briefing help', 'voice ops scheduled briefing help'],
+    description: 'Print help command menu for the scheduled briefing queue manager',
+    npmScript: 'voice-ops-scheduled-briefing-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-scheduled-briefing',
+    aliases: ['scheduled briefing', 'voice ops scheduled briefing'],
+    description: 'Daily operational briefing queue staging, inspection, approvals, and TTS request enqueuing',
+    npmScript: 'voice-ops-scheduled-briefing',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',

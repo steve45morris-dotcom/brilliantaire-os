@@ -2228,5 +2228,113 @@
     "source": "command_log_2026-06-01",
     "status": "SUCCESS",
     "details": "Matched Command: \"narrator-voice-ops-daily-report\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:56:41.686Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-grounded-index-graph\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T07:57:28.994Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"intelligence graph\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T07:57:41.599Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-grounded-index-graph-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-grounded-index-graph-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:14:20.590Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-session-recorder-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-session-recorder-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:14:40.149Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"notebooklm-obsidian-dashboard-sync\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"notebooklm-obsidian-dashboard-sync\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:15:48.454Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-session-recorder guide\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-session-recorder\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:15:57.068Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"grounded-narrator-review-queue\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"grounded-narrator-review-queue\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:16:19.780Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"dashboard sync\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"notebooklm-obsidian-dashboard-sync\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:16:35.106Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice session\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-session-recorder\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:16:35.326Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"scheduled briefing status\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-ops-scheduled-briefing\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:16:39.905Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"narrator queue\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"grounded-narrator-review-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:17:28.052Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-ops-scheduled-briefing status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-ops-scheduled-briefing\" | Exit Code: 0"
   }
 ]
