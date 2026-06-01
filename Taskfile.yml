@@ -581,6 +581,16 @@ tasks:
     cmds:
       - npm run asr-dry-run-transcription-gate-help
 
+  asr-model-manifest-preparation-gate:
+    desc: "Run Offline ASR Model Manifest Preparation Gate"
+    cmds:
+      - npm run asr-model-manifest-preparation-gate -- {{.CLI_ARGS}}
+
+  asr-model-manifest-preparation-gate-help:
+    desc: "Print Offline ASR Model Manifest Preparation Gate help manual"
+    cmds:
+      - npm run asr-model-manifest-preparation-gate-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -794,6 +804,16 @@ tasks:
     cmds:
       - npm run asr-dry-run-transcription-gate-help
 
+  asr-model-manifest-preparation-gate:
+    desc: "Run Offline ASR Model Manifest Preparation Gate"
+    cmds:
+      - npm run asr-model-manifest-preparation-gate -- {{.CLI_ARGS}}
+
+  asr-model-manifest-preparation-gate-help:
+    desc: "Print Offline ASR Model Manifest Preparation Gate help manual"
+    cmds:
+      - npm run asr-model-manifest-preparation-gate-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -859,6 +879,17 @@ tasks:
     cmds:
       - npm run briefing-delivery-package-exporter-help
 
+  manual-delivery-handoff:
+    desc: "Briefing Manual Delivery Handoff checklist and record manager (status, scan-packages, inspect, create-checklist, checklist-status, mark-item, approve-handoff, reject-handoff, handoff-status, list-handoffs, latest, handoff-summary, handoff-log)"
+    cmds:
+      - npm run manual-delivery-handoff -- {{.CLI_ARGS}}
+
+  manual-delivery-handoff-help:
+    desc: "Print help menu for the manual delivery handoff and checklist manager"
+    cmds:
+      - npm run manual-delivery-handoff-help
+
+
 
   cleanup-gate:
     desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
@@ -889,6 +920,16 @@ tasks:
     desc: "Print help menu for local project registry drift review system"
     cmds:
       - npm run project-registry-review-help
+
+  project-registry-append-gate:
+    desc: "Preview and safely append approved staged registry candidate entries"
+    cmds:
+      - npm run project-registry-append-gate -- {{.CLI_ARGS}}
+
+  project-registry-append-gate-help:
+    desc: "Print help menu for local project registry append gate"
+    cmds:
+      - npm run project-registry-append-gate-help
 
   validate:
     desc: "Lint and run workspace checks"

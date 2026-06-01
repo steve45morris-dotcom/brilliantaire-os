@@ -62,9 +62,7 @@ async function runCommand() {
   await announcePhrase("Area Boy standing on the mainframe.");
 
   let args = process.argv.slice(2);
-  if (args.length === 1 && args[0].includes(' ')) {
-    args = args[0].split(/\s+/);
-  }
+  args = args.flatMap(arg => (arg.includes(' ') && !arg.startsWith('-')) ? arg.split(/\s+/) : [arg]);
   const rawInput = args.join(' ');
 
   let hasConfirm = false;

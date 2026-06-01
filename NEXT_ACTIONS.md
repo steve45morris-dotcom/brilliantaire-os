@@ -171,8 +171,8 @@
 - [x] Phase N5K: Voice Ops Scheduled Briefing Queue
 - [x] Phase N5L: Briefing TTS Render Approval Flow
 - [x] Phase N5M: Briefing Audio Playback Review Gate
-- [x] Phase N5N: Briefing Delivery Package Exporter
-- [ ] Phase N5O: Manual Delivery Checklist and Handoff Log
+- [x] Phase N5O: Manual Delivery Checklist and Handoff Log
+- [ ] Phase N5P: Delivery Archive and Retention Ledger
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -386,6 +386,23 @@
 - [x] Phase 11Y: Generate ASR model readiness gate
 - [x] Phase 11Y: Confirm no transcription occurs
 - [x] Phase 11Y: Prepare ASR execution only after model and manual enable pass
+- [x] Phase 11Z: Build Offline ASR Dry-Run Transcription Readiness Gate
+- [x] Phase 11Z: Create dry-run transcription gate configuration
+- [x] Phase 11Z: Create main dry-run validator script
+- [x] Phase 11Z: Create help utility
+- [x] Phase 11Z: Generate markdown report templates
+- [x] Phase 11Z: Generate dry-run reports and manifest outputs
+- [x] Phase 11Z: Register command routing with exact-name constraint and alias blocking
+- [x] Phase 11Z: Confirm zero transcription execution and fail-closed readiness state
+- [x] Phase 11Z-B: Build ASR Model Manifest Preparation Gate
+- [x] Phase 11Z-B: Create manifest preparation gate configuration
+- [x] Phase 11Z-B: Create main preparation script
+- [x] Phase 11Z-B: Create manifest preparation gate help utility
+- [x] Phase 11Z-B: Create JSON and markdown templates
+- [x] Phase 11Z-B: Generate staged reports and json manifest template output
+- [x] Phase 11Z-B: Initialize approved local recordings/ inputAudio/ outputs/asr_inputs/ input directories
+- [x] Phase 11Z-B: Register exact commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-B: Confirm zero transcription execution and fail-closed readiness state
 
 ## Do Next
 - [x] Build Duplicate Cleanup Staging Gate
@@ -401,13 +418,20 @@
 - [x] Verify checksums
 - [x] Generate restore map
 - [x] Review quarantined files before any future deletion phase
-- [ ] Build Project Registry Drift Review
-- [ ] Classify unregistered directories
-- [ ] Generate staged PROJECTS.md entries
-- [ ] Generate project drift summary
-- [ ] Generate project registry action plan
-- [ ] Review register candidates manually
-- [ ] Delay permanent duplicate deletion until monitoring period passes
+- [x] Build Project Registry Drift Review
+- [x] Classify unregistered directories
+- [x] Generate staged PROJECTS.md entries
+- [x] Generate project drift summary
+- [x] Generate project registry action plan
+- [x] Review register candidates manually
+- [x] Delay permanent duplicate deletion until monitoring period passes
+- [ ] Build Staged Registry Appending Gate
+- [ ] Generate append preview
+- [ ] Review duplicates
+- [ ] Append approved candidates with --confirm
+- [ ] Verify PROJECTS.md backup
+- [ ] Verify append log
+- [ ] Review PROJECTS.md after append
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering

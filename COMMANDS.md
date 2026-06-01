@@ -134,6 +134,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-orchestrator` | `asr`, `whisper` | Build Operator | Medium | Yes | Verify ASR readiness, prepare job packets, and dry-run Whisper simulations. |
 | `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help menu for offline ASR model gate safety limits. |
 | `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Verify local model files manually placed, directory inventories, and cryptographic checksum reviews. |
+| `asr-dry-run-transcription-gate-help` | `asr dry run help`, `whisper dry run help` | Build Operator | Low | No | Print help menu for offline ASR dry-run transcription gate. |
+| `asr-dry-run-transcription-gate` | `asr dry run`, `whisper dry run` | Build Operator | Medium | Yes | Verify local model presence, inspect staged audio, and map simulated routes without executing transcription. |
+| `asr-model-manifest-preparation-gate-help` | `asr manifest help`, `whisper manifest help` | Build Operator | Low | No | Print help menu for offline ASR model manifest preparation gate. |
+| `asr-model-manifest-preparation-gate` | `asr manifest`, `whisper manifest` | Build Operator | Medium | Yes | Prepare offline ASR model placement structures, checksum templates, and validators. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -190,10 +194,18 @@ To ensure complete control and system safety, the router enforces the following 
 | `offline-tts-dry-run-renderer` | `tts dry run`, `dry run renderer` | Workflow Auditor | Medium | Yes | Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs. |
 | `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help command menu for offline ASR model gate and checksum gate. |
 | `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Manual acquisition, verification inventory, and checksum gate for offline Whisper models. |
+| `asr-dry-run-transcription-gate-help` | `asr dry run help`, `whisper dry run help` | Build Operator | Low | No | Print help command menu for offline ASR dry-run transcription gate. |
+| `asr-dry-run-transcription-gate` | `asr dry run`, `whisper dry run` | Build Operator | Medium | Yes | Verify local model presence, inspect staged audio, and map simulated routes without executing transcription. |
+| `asr-model-manifest-preparation-gate-help` | `asr manifest help`, `whisper manifest help` | Build Operator | Low | No | Print help command menu for offline ASR model manifest preparation gate. |
+| `asr-model-manifest-preparation-gate` | `asr manifest`, `whisper manifest` | Build Operator | Medium | Yes | Prepare offline ASR model placement structures, checksum templates, and validators. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
+| `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
+| `manual-delivery-handoff` | `manual delivery`, `handoff manager` | Workflow Auditor | Medium | Yes | Create and manage delivery handoff checklists, sign off manual handoff records, and check package checksum integrity. |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
+| `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
+| `project-registry-append-gate` | `registry append`, `append projects` | Workflow Auditor | High | Yes | Safely append approved staged registry candidate entries to PROJECTS.md. |
 
 
 

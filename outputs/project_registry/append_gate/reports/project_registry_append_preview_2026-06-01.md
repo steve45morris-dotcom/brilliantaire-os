@@ -1,0 +1,93 @@
+# 🧭 Project Registry Append Preview
+
+- **Preview Date:** 2026-06-01
+- **Staged Entries Source:** project_registry_candidate_entries_2026-06-01.md
+- **Candidates Found:** 32
+
+## 🔍 Duplicate Analysis
+- **Duplicate Names already in PROJECTS.md:**
+  - **Kronos** (`/Users/alexanderanthony/Projects/Kronos`)
+  - **Agency Agents** (`/Users/alexanderanthony/Projects/agency-agents`)
+  - **Awesome Design Md** (`/Users/alexanderanthony/Projects/awesome-design-md`)
+  - **Brilliantier Web** (`/Users/alexanderanthony/Projects/brilliantier-web`)
+  - **CrewAI** (`/Users/alexanderanthony/Projects/crewAI`)
+  - **Fastapi** (`/Users/alexanderanthony/Projects/fastapi`)
+  - **Firebase Admin Node** (`/Users/alexanderanthony/Projects/firebase-admin-node`)
+  - **Flutter** (`/Users/alexanderanthony/Projects/flutter`)
+  - **Generative Ai Python** (`/Users/alexanderanthony/Projects/generative-ai-python`)
+  - **Gstack** (`/Users/alexanderanthony/Projects/gstack`)
+  - **Obsidian Releases** (`/Users/alexanderanthony/Projects/obsidian-releases`)
+  - **Openhuman** (`/Users/alexanderanthony/Projects/openhuman`)
+  - **Pydantic** (`/Users/alexanderanthony/Projects/pydantic`)
+  - **Remotion** (`/Users/alexanderanthony/Projects/remotion`)
+  - **Remotion Skills** (`/Users/alexanderanthony/Projects/remotion-skills`)
+  - **Ruff** (`/Users/alexanderanthony/Projects/ruff`)
+  - **Siyuan** (`/Users/alexanderanthony/Projects/siyuan`)
+  - **Supabase Py** (`/Users/alexanderanthony/Projects/supabase-py`)
+  - **Tinyfish Cookbook** (`/Users/alexanderanthony/Projects/tinyfish-cookbook`)
+  - **Uv** (`/Users/alexanderanthony/Projects/uv`)
+  - **Whisper** (`/Users/alexanderanthony/Projects/whisper`)
+  - **Whisper Pipeline** (`/Users/alexanderanthony/Projects/whisper-pipeline`)
+- **Duplicate Paths already in PROJECTS.md:**
+  - **Kronos** (`/Users/alexanderanthony/Projects/Kronos`)
+  - **Agency Agents** (`/Users/alexanderanthony/Projects/agency-agents`)
+  - **Awesome Design Md** (`/Users/alexanderanthony/Projects/awesome-design-md`)
+  - **Brilliantier Web** (`/Users/alexanderanthony/Projects/brilliantier-web`)
+  - **CrewAI** (`/Users/alexanderanthony/Projects/crewAI`)
+  - **Fastapi** (`/Users/alexanderanthony/Projects/fastapi`)
+  - **Firebase Admin Node** (`/Users/alexanderanthony/Projects/firebase-admin-node`)
+  - **Flutter** (`/Users/alexanderanthony/Projects/flutter`)
+  - **Generative Ai Python** (`/Users/alexanderanthony/Projects/generative-ai-python`)
+  - **Gstack** (`/Users/alexanderanthony/Projects/gstack`)
+  - **Obsidian Releases** (`/Users/alexanderanthony/Projects/obsidian-releases`)
+  - **Openhuman** (`/Users/alexanderanthony/Projects/openhuman`)
+  - **Pydantic** (`/Users/alexanderanthony/Projects/pydantic`)
+  - **Remotion** (`/Users/alexanderanthony/Projects/remotion`)
+  - **Remotion Skills** (`/Users/alexanderanthony/Projects/remotion-skills`)
+  - **Ruff** (`/Users/alexanderanthony/Projects/ruff`)
+  - **Siyuan** (`/Users/alexanderanthony/Projects/siyuan`)
+  - **Supabase Py** (`/Users/alexanderanthony/Projects/supabase-py`)
+  - **Tinyfish Cookbook** (`/Users/alexanderanthony/Projects/tinyfish-cookbook`)
+  - **Uv** (`/Users/alexanderanthony/Projects/uv`)
+  - **Whisper** (`/Users/alexanderanthony/Projects/whisper`)
+  - **Whisper Pipeline** (`/Users/alexanderanthony/Projects/whisper-pipeline`)
+
+## 🛡️ Target Append Groups
+- **Safe To Append:**
+  None
+- **Manual Review Required:**
+  - **Kronos** (`/Users/alexanderanthony/Projects/Kronos`)
+  - **Open Higgsfield AI** (`/Users/alexanderanthony/Projects/Open-Higgsfield-AI`)
+  - **Agency Agents** (`/Users/alexanderanthony/Projects/agency-agents`)
+  - **Awesome Design Md** (`/Users/alexanderanthony/Projects/awesome-design-md`)
+  - **Awesome Design Md Extracted** (`/Users/alexanderanthony/Projects/awesome-design-md-extracted`)
+  - **Brilliantier Web** (`/Users/alexanderanthony/Projects/brilliantier-web`)
+  - **CrewAI** (`/Users/alexanderanthony/Projects/crewAI`)
+  - **Docker** (`/Users/alexanderanthony/Projects/docker`)
+  - **Fastapi** (`/Users/alexanderanthony/Projects/fastapi`)
+  - **Firebase Admin Node** (`/Users/alexanderanthony/Projects/firebase-admin-node`)
+  - **Flutter** (`/Users/alexanderanthony/Projects/flutter`)
+  - **Generative Ai Python** (`/Users/alexanderanthony/Projects/generative-ai-python`)
+  - **Gstack** (`/Users/alexanderanthony/Projects/gstack`)
+  - **Obsidian Releases** (`/Users/alexanderanthony/Projects/obsidian-releases`)
+  - **Openhuman** (`/Users/alexanderanthony/Projects/openhuman`)
+  - **Pydantic** (`/Users/alexanderanthony/Projects/pydantic`)
+  - **Remotion** (`/Users/alexanderanthony/Projects/remotion`)
+  - **Remotion Skills** (`/Users/alexanderanthony/Projects/remotion-skills`)
+  - **Ruff** (`/Users/alexanderanthony/Projects/ruff`)
+  - **Siyuan** (`/Users/alexanderanthony/Projects/siyuan`)
+  - **Supabase Py** (`/Users/alexanderanthony/Projects/supabase-py`)
+  - **Tinyfish Cookbook** (`/Users/alexanderanthony/Projects/tinyfish-cookbook`)
+  - **Uv** (`/Users/alexanderanthony/Projects/uv`)
+  - **Whisper** (`/Users/alexanderanthony/Projects/whisper`)
+  - **Whisper Pipeline** (`/Users/alexanderanthony/Projects/whisper-pipeline`)
+  - **Agents** (`/Users/alexanderanthony/TreeGrooveProjects/Agents`)
+  - **Config** (`/Users/alexanderanthony/TreeGrooveProjects/Config`)
+  - **Input** (`/Users/alexanderanthony/TreeGrooveProjects/Input`)
+  - **Output** (`/Users/alexanderanthony/TreeGrooveProjects/Output`)
+  - **Prompts** (`/Users/alexanderanthony/TreeGrooveProjects/Prompts`)
+  - **TreeGrooveFactory** (`/Users/alexanderanthony/TreeGrooveProjects/TreeGrooveFactory`)
+  - **Universe** (`/Users/alexanderanthony/TreeGrooveProjects/Universe`)
+
+## ⚠️ Action Status
+- **Default Action:** do not append yet

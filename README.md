@@ -1981,6 +1981,77 @@ The **Briefing Delivery Package Exporter** is a safe, offline local packaging se
 
 ---
 
+## 🧭 Phase N5O: Manual Delivery Checklist and Handoff Log
+
+The **Manual Delivery Checklist and Handoff Log** is a human verification gate. It requires that a local delivery package be inspected, checked off against a 12-item compliance list, and signed off with the human signer's name and note before the package is eligible for manual distribution.
+
+### 🛡️ Safety Boundaries & Gate Rules
+1. **Zero Auto-Distribution**: The handoff script records handoffs locally. It will not send, upload, publish, email, or auto-open external sharing applications.
+2. **Checksum Integrity Enforcement**: All checklist validation procedures require that SHA256 checksums match the package manifest file.
+3. **Checklist Sign-Off Verification**: A package handoff cannot be approved until all 12 checklist verification items are marked complete.
+4. **Non-Destructive Logging**: Handoff rejections are recorded in a separate rejected log folder without deleting or modifying any package files.
+
+### 💻 Command Examples
+* View manual handoff help menu:
+  ```bash
+  npm run command -- "manual-delivery-handoff-help"
+  ```
+* Check safety flags, package counts, checklist counts, and handoffs:
+  ```bash
+  npm run command -- "manual-delivery-handoff status"
+  ```
+* List local delivery packages available from Phase N5N:
+  ```bash
+  npm run command -- "manual-delivery-handoff scan-packages"
+  ```
+* Inspect package path, manifest status, checksums, and eligibility:
+  ```bash
+  npm run command -- "manual-delivery-handoff inspect delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Initialize a manual checklist for a package:
+  ```bash
+  npm run command -- "manual-delivery-handoff create-checklist delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Display completion status of required checklist items:
+  ```bash
+  npm run command -- "manual-delivery-handoff checklist-status delivery_package_briefing_YYYY-MM-DD"
+  ```
+* Mark a specific checklist item complete:
+  ```bash
+  npm run command -- "manual-delivery-handoff mark-item delivery_package_briefing_YYYY-MM-DD <ITEM_ID>"
+  ```
+* Approve the handoff of a package (requires checklist completion):
+  ```bash
+  npm run command -- "manual-delivery-handoff approve-handoff delivery_package_briefing_YYYY-MM-DD --signer \"<NAME>\" --note \"<NOTE>\""
+  ```
+* Record rejection of a handoff:
+  ```bash
+  npm run command -- "manual-delivery-handoff reject-handoff delivery_package_briefing_YYYY-MM-DD --signer \"<NAME>\" --note \"<NOTE>\""
+  ```
+* Show handoff and checklist status of a single package:
+  ```bash
+  npm run command -- "manual-delivery-handoff handoff-status delivery_package_briefing_YYYY-MM-DD"
+  ```
+* List all historical approved and rejected handoffs:
+  ```bash
+  npm run command -- "manual-delivery-handoff list-handoffs"
+  ```
+* Show the most recent handoff record context:
+  ```bash
+  npm run command -- "manual-delivery-handoff latest"
+  ```
+* Generate global statistics and summaries report:
+  ```bash
+  npm run command -- "manual-delivery-handoff handoff-summary"
+  ```
+* Display the last 20 events from the handoff log:
+  ```bash
+  npm run command -- "manual-delivery-handoff handoff-log"
+  ```
+
+---
+
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -2483,10 +2554,54 @@ The **ASR Model Gate** provides a manual model acquisition, inventory reporting,
 
 ---
 
+## 🧭 Phase 11Z: Offline ASR Dry-Run Transcription Readiness Gate
+
+The **Offline ASR Dry-Run Transcription Readiness Gate** verifies whether the local ASR environment is ready for offline transcription by auditing model integrity (sizes, extensions, SHA256 hashes), inspecting approved local audio inputs, generating simulated routing tables, and outputting dry-run manifests without invoking Whisper models or translating waveforms.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero ASR Execution:** Verification scripts strictly ensure that `ALLOW_ASR_EXECUTION = false` is active.
+2. **Zero Audio Transcription:** Transcription library loading is disabled via `ALLOW_AUDIO_TRANSCRIPTION = false`.
+3. **Zero Model Downloads:** Automated network calls are completely disabled via `ALLOW_MODEL_DOWNLOAD = false`.
+4. **Zero External API Calls:** System telemetry blocks external endpoints via `ALLOW_EXTERNAL_API_CALLS = false`.
+5. **Exact-Name Command Routing:** Strict commands are routed directly via their exact name only; unapproved command aliases are automatically blocked.
+
+### 💻 Command Examples
+* View dry-run transcription gate help menu:
+  ```bash
+  npm run command -- "asr-dry-run-transcription-gate-help"
+  ```
+* Run offline dry-run gate:
+  ```bash
+  npm run command -- "asr-dry-run-transcription-gate"
+  ```
+
+---
+
+## 🧭 Phase 11Z-B: ASR Model Manifest Preparation Gate
+
+The **ASR Model Manifest Preparation Gate** sets up offline ASR schemas and placement assets without running transcription. It initializes approved input audio directories (e.g. `recordings/`, `inputAudio/`, `outputs/asr_inputs/`), populates templates for `asr-checksum-manifest.json` with recommended model SHA256 hashes, and outputs placement guides detailing safe model acquisitions.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Transcription:** Audio waveforms are never loaded, inspected, or converted to text.
+2. **Zero Auto-Fetch:** System strictly blocks Hugging Face, OpenAI, curl downloads, and remote queries.
+3. **Fail-Closed Gate:** Gate checks verify structural parameters, failing closed if manifest fields are missing.
+
+### 💻 Command Examples
+* View preparation gate help menu:
+  ```bash
+  npm run command -- "asr-model-manifest-preparation-gate-help"
+  ```
+* Run manifest preparation gate:
+  ```bash
+  npm run command -- "asr-model-manifest-preparation-gate"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 
-* **Phase 11Z: Offline Local ASR Whisper Executor**
-  - Implement the offline Whisper transcriber executing speech-to-text analysis only when the acquisition gate status achieves 100%.
+* **Phase 11Z-C: ASR Checksum Manifest Validation Gate**
+  - Validate a manually populated asr-checksum-manifest.json against local model files and only then allow Phase 11Z dry-run readiness to move from blocked to dry_run_ready.
 
 ---
 
@@ -2600,4 +2715,35 @@ The **Project Registry Drift Review** provides a local project registry drift re
 * Display status dashboard:
   ```bash
   npm run command -- "project-registry-review status"
+  ```
+
+---
+
+## 🛡️ Phase 12D: Staged Registry Appending Gate
+
+The **Staged Registry Appending Gate** provides a safe approved registry append system. It reads staged project registry candidate entries and appends selected approved entries to `PROJECTS.md` without overwriting existing data.
+
+### 🔒 Guardrails Summary
+1. **No Overwrites:** All writes strictly append staging entries; the system forbids overwriting or editing existing registry rows.
+2. **Mandatory Backups:** A backup of `PROJECTS.md` is generated automatically before any write operation.
+3. **No Duplicate Rows:** The script skips candidates with names or paths already present in `PROJECTS.md`.
+4. **Approval Enforcement:** Writing requires explicit `--confirm` command flags.
+5. **No File System/Process Run Drift:** No folders are moved, deleted, or executed inside target project directories.
+
+### 💻 Command Examples
+* Print help menu:
+  ```bash
+  npm run command -- "project-registry-append-gate-help"
+  ```
+* Preview safe and duplicate entries:
+  ```bash
+  npm run command -- "project-registry-append-gate preview"
+  ```
+* Backup and append approved entries (requires confirmation):
+  ```bash
+  npm run command -- "project-registry-append-gate append-approved" --confirm
+  ```
+* View append status:
+  ```bash
+  npm run command -- "project-registry-append-gate status"
   ```

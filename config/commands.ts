@@ -1860,6 +1860,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'manual-delivery-handoff-help',
+    aliases: ['manual delivery help', 'handoff help'],
+    description: 'Print help menu for the manual delivery handoff and checklist manager',
+    npmScript: 'manual-delivery-handoff-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'manual-delivery-handoff',
+    aliases: ['manual delivery', 'handoff manager'],
+    description: 'Briefing manual delivery handoff checklist and record manager (status, scan-packages, inspect, create-checklist, checklist-status, mark-item, approve-handoff, reject-handoff, handoff-status, list-handoffs, latest, handoff-summary, handoff-log)',
+    npmScript: 'manual-delivery-handoff',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-dry-run-transcription-gate-help',
     aliases: ['asr dry run help', 'whisper dry run help'],
     description: 'Print help menu for the offline ASR dry-run transcription gate',
@@ -1875,6 +1897,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['asr dry run', 'whisper dry run'],
     description: 'Verify local model presence, inspect staged audio, and map simulated routes without executing transcription',
     npmScript: 'asr-dry-run-transcription-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-model-manifest-preparation-gate-help',
+    aliases: ['asr manifest help', 'whisper manifest help'],
+    description: 'Print help menu for the offline ASR model manifest preparation gate',
+    npmScript: 'asr-model-manifest-preparation-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-model-manifest-preparation-gate',
+    aliases: ['asr manifest', 'whisper manifest'],
+    description: 'Prepare offline ASR model placement structures, checksum templates, and validators',
+    npmScript: 'asr-model-manifest-preparation-gate',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',
@@ -1899,6 +1943,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     npmScript: 'project-registry-review',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'project-registry-append-gate-help',
+    aliases: ['registry append help', 'append gate help'],
+    description: 'Print help menu for the local project registry append gate',
+    npmScript: 'project-registry-append-gate-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'project-registry-append-gate',
+    aliases: ['registry append', 'append projects'],
+    description: 'Safely append approved staged registry candidate entries to PROJECTS.md',
+    npmScript: 'project-registry-append-gate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'high',
     outputType: 'files',
     enabled: true,
     requiresExactName: true
