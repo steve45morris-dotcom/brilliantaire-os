@@ -269,11 +269,11 @@
 - [x] Build Local MCP Setup Verification Loop
 - [x] Run safe validation chain (readiness rerun completed)
 - [x] Generate final eligibility report
-- [x] Confirm whether Phase 11M is allowed (setup is eligible)
+- [x] Confirm whether Phase 11N is allowed (setup is eligible)
 - [x] Complete local setup manually (local env staging completed)
 
 ## Do Next
-- [x] Build Live MCP Query Adapter With Manual Enable (Phase 11M)
+- [x] Build Live MCP Query Adapter With Manual Enable (Phase 11N)
 - [x] Prepare source-summary live payload
 - [x] Prepare workflow-extraction live payload
 - [x] Run safety report before execution
@@ -283,18 +283,18 @@
 - [x] Decide whether expanded live query types are allowed
 
 ## Do Next
-- [x] Phase 11N: Build Live Response Intelligence Processor
-- [x] Phase 11N: Generate citation map
-- [x] Phase 11N: Extract workflows
-- [x] Phase 11N: Review weak claims
-- [x] Phase 11N: Generate module recommendations
-- [x] Phase 11N: Generate prompt pack ideas
-- [x] Phase 11N: Generate staged Obsidian intelligence note
-- [x] Phase 11N: Generate response intelligence summary
+- [x] Phase 11O: Build Live Response Intelligence Processor
+- [x] Phase 11O: Generate citation map
+- [x] Phase 11O: Extract workflows
+- [x] Phase 11O: Review weak claims
+- [x] Phase 11O: Generate module recommendations
+- [x] Phase 11O: Generate prompt pack ideas
+- [x] Phase 11O: Generate staged Obsidian intelligence note
+- [x] Phase 11O: Generate response intelligence summary
 - [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
 
 ## Do Next
-- [x] Build NotebookLM MCP Live Adapter
+- [x] Phase 11N: Build NotebookLM MCP Live Adapter
 - [x] Prepare source-summary live query
 - [x] Prepare workflow-extraction live query
 - [x] Run live adapter readiness test
@@ -305,7 +305,7 @@
 
 
 ## Do Next
-- [x] Build Grounded Intelligence Index Graph
+- [x] Phase 11P: Build Grounded Intelligence Index Graph
 - [x] Generate local JSON graph
 - [x] Generate Markdown graph
 - [x] Generate graph report
@@ -314,59 +314,53 @@
 - [ ] Prepare vector index only after graph review
 
 ## Do Next
-- [ ] Phase 11P: Build Grounded Narrator Review Queue
-- [ ] Phase 11P: Compile narration candidates queue
-- [ ] Phase 11P: Compile narrator brief from safest candidates
-- [ ] Phase 11P: Compile rejected weak claims checklist
-- [ ] Phase 11P: Compile queue audit metrics and safety report
-- [ ] Phase 11P: Review status metrics summary on console
-- [ ] Phase 11P: Test pre-approved commands via router
-- [ ] Phase 11P: Test blocked unapproved command aliases via router
+- [x] Phase 11Q: Build Grounded Narrator Review Queue
+- [x] Phase 11Q: Compile narration candidates queue
+- [x] Phase 11Q: Compile narrator brief from safest candidates
+- [x] Phase 11Q: Compile rejected weak claims checklist
+- [x] Phase 11Q: Compile queue audit metrics and safety report
+- [x] Phase 11Q: Review status metrics summary on console
+- [x] Phase 11Q: Test pre-approved commands via router
+- [x] Phase 11Q: Test blocked unapproved command aliases via router
 
 ## Do Next
-- [x] Phase 11Q: Build Offline TTS Brief Composer
-- [x] Phase 11Q: Generate short TTS script
-- [x] Phase 11Q: Generate medium TTS script
-- [x] Phase 11Q: Generate long TTS script
-- [x] Phase 11Q: Generate TTS queue packet
-- [x] Phase 11Q: Generate voice direction sheet
-- [x] Phase 11Q: Review scripts before audio generation
-- [x] Phase 11Q: Prepare TTS generation only after manual script review
+- [x] Phase 11R: Build Offline TTS Brief Composer
+- [x] Phase 11R: Generate short TTS script
+- [x] Phase 11R: Generate medium TTS script
+- [x] Phase 11R: Generate long TTS script
+- [x] Phase 11R: Generate TTS queue packet
+- [x] Phase 11R: Generate voice direction sheet
+- [x] Phase 11R: Review scripts before audio generation
+- [x] Phase 11R: Prepare TTS generation only after manual script review
 
 ## Do Next
-- [x] Phase 11R: Build Offline TTS Queue Validator
-- [x] Phase 11R: Validate TTS queue packet
-- [x] Phase 11R: Generate TTS eligibility checklist
-- [x] Phase 11R: Generate TTS risk report
-- [x] Phase 11R: Review blockers
-- [x] Phase 11R: Prepare offline TTS synthesis only after validator passes
-- [x] Phase 11S: Build Offline TTS Synthesizer Scaffold
-- [x] Phase 11S: Generate TTS engine config report
-- [x] Phase 11S: Run model readiness check
-- [x] Phase 11S: Run synthesis dry-run
-- [x] Phase 11S: Generate audio output manifest
-- [x] Phase 11S: Confirm no audio generation occurs
-- [x] Phase 11S: Prepare real offline synthesis only after model files are placed manually
-- [x] Phase 11T: Build Offline TTS Model Readiness Gate
+- [x] Phase 11S: Build Offline TTS Queue Validator
+- [x] Phase 11S: Validate TTS queue packet
+- [x] Phase 11S: Generate TTS eligibility checklist
+- [x] Phase 11S: Generate TTS risk report
+- [x] Phase 11S: Review blockers
+- [x] Phase 11S: Prepare offline TTS synthesis only after validator passes
+- [x] Phase 11T: Build Offline TTS Synthesizer Scaffold
+- [x] Phase 11T: Generate TTS engine config report
 - [x] Phase 11T: Run model readiness check
-- [x] Phase 11T: Generate model file checklist
-- [x] Phase 11T: Generate manual enable instructions
+- [x] Phase 11T: Run synthesis dry-run
+- [x] Phase 11T: Generate audio output manifest
 - [x] Phase 11T: Confirm no audio generation occurs
-- [x] Phase 11T: Prepare offline TTS synthesis only after model files are placed manually
-- [x] Phase 11U: Build TTS model activation check
-- [x] Phase 11U: Generate model placement guide
-- [x] Phase 11U: Scan local Piper model folder
-- [x] Phase 11U: Run model pairing check
-- [x] Phase 11U: Generate activation readiness report
-- [x] Phase 11U: Confirm no audio generation occurs
-- [x] Phase 11U: Prepare offline synthesis only after model pair and enable flag pass
-- [ ] Phase 11V: Build TTS model acquisition guide
-- [ ] Phase 11V: Generate manual acquisition guide
-- [ ] Phase 11V: Generate local model inventory
-- [ ] Phase 11V: Verify model placement
-- [ ] Phase 11V: Generate next-step report
-- [ ] Phase 11V: Manually place Piper model files
-- [ ] Phase 11V: Rerun model gate after placement
+- [x] Phase 11U: Prepare offline TTS synthesis only after model files are placed manually
+- [x] Phase 11V: Build TTS model activation check
+- [x] Phase 11V: Generate model placement guide
+- [x] Phase 11V: Scan local Piper model folder
+- [x] Phase 11V: Run model pairing check
+- [x] Phase 11V: Generate activation readiness report
+- [x] Phase 11V: Confirm no audio generation occurs
+- [x] Phase 11V: Prepare offline synthesis only after model pair and enable flag pass
+- [ ] Phase 11W: Build TTS model acquisition guide
+- [ ] Phase 11W: Generate manual acquisition guide
+- [ ] Phase 11W: Generate local model inventory
+- [ ] Phase 11W: Verify model placement
+- [ ] Phase 11W: Generate next-step report
+- [ ] Phase 11W: Manually place Piper model files
+- [ ] Phase 11W: Rerun model gate after placement
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

@@ -17,7 +17,7 @@ export function printHelp(): void {
   console.log('  - npm run notebooklm-mcp-verify-loop -- "chain"');
   console.log('    Executes the suite of safe setup check scripts and logs a chain report.');
   console.log('  - npm run notebooklm-mcp-verify-loop -- "final-check"');
-  console.log('    Reads check reports and compiles final Phase 11M adapter eligibility.');
+  console.log('    Reads check reports and compiles final Phase 11N adapter eligibility.');
   console.log('  - npm run notebooklm-mcp-verify-loop -- "status"');
   console.log('    Prints current readiness metrics, active blockers, and eligibility.');
   console.log('========================================================================');

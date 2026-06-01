@@ -164,7 +164,7 @@ async function handleChain(): Promise<string> {
     blockers.push("- **Safety Gate Toggle Error:** ALLOW_LIVE_MCP_EXECUTION must be false.");
   }
   const blockersText = blockers.length > 0 ? blockers.join('\n') : "*Zero active setup blockers remain.*";
-  const nextAction = isEligible ? "Proceed to Phase 11M Live MCP Integration." : "Complete local-only setup and rerun verification loop.";
+  const nextAction = isEligible ? "Proceed to Phase 11N Live MCP Adapter Dry Enablement Planning." : "Complete local-only setup and rerun verification loop.";
 
   // Write chain report
   const chainTemplatePath = path.join(outputFolders.templates, 'verification-chain-template.md');
@@ -190,6 +190,7 @@ async function handleChain(): Promise<string> {
     let loopTemplate = fs.readFileSync(loopReportTemplatePath, 'utf-8');
     loopTemplate = loopTemplate
       .replace(/\{\{DATE\}\}/g, getFormattedDate())
+      .replace(/\{\{TIMESTAMP\}\}/g, new Date().toISOString())
       .replace(/\{\{READINESS_SCORE\}\}/g, `${score}%`)
       .replace(/\{\{LIVE_ELIGIBLE\}\}/g, isEligible ? "Yes" : "No")
       .replace(/\{\{COMMANDS_RUN\}\}/g, commandsToRun.map(c => `- \`${c}\``).join('\n'))
@@ -232,9 +233,9 @@ async function handleFinalCheck(): Promise<string> {
   let nextPhase = "";
 
   if (dynamicScore >= 90 && dynamicEligible) {
-    decision = "eligible for Phase 11M Live MCP Query Adapter With Manual Enable";
+    decision = "eligible for Phase 11N Live MCP Adapter Dry Enablement Planning";
     reason = `Readiness score of ${dynamicScore}% meets the required threshold (>= 90%) and safety gates are locked.`;
-    nextPhase = "Phase 11M: Live MCP Query Adapter With Manual Enable";
+    nextPhase = "Phase 11N: Live MCP Adapter Dry Enablement Planning";
   } else {
     decision = "not eligible";
     reason = `Readiness score of ${dynamicScore}% does not meet the minimum requirement (>= 90%) or safety locks are active.`;
@@ -300,7 +301,7 @@ async function handleStatus() {
   console.log(`- Current readiness score:          ${score}%`);
   console.log(`- Live eligible:                    ${isEligible ? "Yes" : "No"}`);
   console.log(`- Blockers:                         ${blockersText}`);
-  console.log(`- Next recommended phase:           ${isEligible ? "Phase 11M: Live MCP Query Adapter" : "Phase 11K/11L: Fix Cycle & Verification Loop"}`);
+  console.log(`- Next recommended phase:           ${isEligible ? "Phase 11N: Live MCP Adapter Dry Enablement Planning" : "Phase 11K/11L/11M: Fix Cycle & Verification Loop"}`);
   console.log("=========================================");
 }
 

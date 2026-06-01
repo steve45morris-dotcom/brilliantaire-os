@@ -1,6 +1,6 @@
 # 🏁 Local MCP Setup Verification Loop
 
-This document outlines the purpose, safety rules, and command specifications for the NotebookLM MCP setup verification loop (Phase 11L).
+This document outlines the purpose, safety rules, and command specifications for the NotebookLM MCP setup verification loop (Phase 11M).
 
 ---
 
@@ -9,8 +9,8 @@ The **Local MCP Setup Verification Loop** serves as the final gating mechanism f
 
 ---
 
-## 🧭 Why This Phase Follows the Fix Cycle
-The **Fix Cycle (Phase 11K)** resolves identified blockers (such as missing local parameters). The **Verification Loop (Phase 11L)** then validates the workspace *after* these local fixes are applied, ensuring that the local environment has reached 100% readiness before moving to code generation.
+## 🧭 Why This Phase Follows Staging
+The **Secrets Staging Guide (Phase 11L)** stages local configurations and gitignore templates. The **Verification Loop (Phase 11M)** then sequentially reruns all setup checks to validate that these staged local parameters and configurations are completely and correctly applied before planning any dry enablement actions.
 
 ---
 
@@ -18,6 +18,7 @@ The **Fix Cycle (Phase 11K)** resolves identified blockers (such as missing loca
 1. **Local-Only Verification:** The verification chain runs diagnostic tests locally. It never updates or pushes real secrets to git.
 2. **No Live Execution:** No live query adapters are scaffolded, and no NotebookLM live queries are executed. `ALLOW_LIVE_MCP_EXECUTION` must remain set to `false`.
 3. **No External Connections:** No OAuth triggers, external API calls, or browser windows may be opened.
+4. **Research-Only Constraint:** NotebookLM remains strictly research-only within this OS to investigate safe pipeline integration and offline semantic search concepts. Live system actions or writes to primary storage are prohibited to ensure full integrity.
 
 ---
 
@@ -43,12 +44,13 @@ npm run notebooklm-mcp-verify-loop -- "final-check"
 ```
 The system reads all generated reports and evaluates:
 - If **Readiness Score >= 90%** and **Live Eligible is Yes**:
-  - **Decision:** Eligible for Phase 11M Live MCP Query Adapter With Manual Enable.
+  - **Decision:** Eligible for Phase 11N Live MCP Adapter Dry Enablement Planning.
 - Else:
   - **Decision:** Not eligible.
   - **Next Action:** Complete local-only setup and rerun verification loop.
 
 ---
 
-## 🚀 When Phase 11M Can Begin
-Phase 11M (Live MCP Query Adapter) can only begin when the final eligibility report declares the system as **ELIGIBLE** and the readiness score is successfully verified as $\ge 90\%$.
+## 🚀 When Phase 11N Can Begin
+Phase 11N (Live MCP Adapter Dry Enablement Planning) can only begin when the final eligibility report declares the system as **ELIGIBLE** and the readiness score is successfully verified as $\ge 90\%$.
+
