@@ -184,6 +184,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `briefing-tts-render-approval` | `briefing tts`, `briefing tts render approval` | Knowledge Librarian | Medium | Yes | Briefing TTS render request validation, queue submission, manual approval, and offline Piper rendering. |
 | `offline-tts-dry-run-renderer-help` | `tts dry run help`, `dry run help` | Workflow Auditor | Low | Yes | Print help command menu for offline TTS dry-run renderer simulation. |
 | `offline-tts-dry-run-renderer` | `tts dry run`, `dry run renderer` | Workflow Auditor | Medium | Yes | Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs. |
+| `asr-model-gate-help` | `asr model help`, `whisper model help` | Build Operator | Low | No | Print help command menu for offline ASR model gate and checksum gate. |
+| `asr-model-gate` | `asr model`, `whisper model` | Build Operator | Medium | Yes | Manual acquisition, verification inventory, and checksum gate for offline Whisper models. |
 
 
 ---

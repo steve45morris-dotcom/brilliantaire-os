@@ -1,20 +1,19 @@
-# 🚦 Offline ASR Model Gate Readiness Report: {{DATE}}
+# 🚦 Offline ASR Model Gate Readiness Report
+*Generated on: {{DATE}}*
 
-This report logs the final readiness assessment of the speech recognition pipeline.
+## 1. Safety Checklist Status
+* **Staged Audio Found:** `{{STAGED_AUDIO_FOUND}}`
+* **ASR Model Files Found:** `{{ASR_MODEL_FILES_FOUND}}`
+* **Checksum Report Present:** `{{CHECKSUM_REPORT_PRESENT}}`
+* **Manual Enable Flag Present:** `{{MANUAL_ENABLE_FLAG_PRESENT}}`
+* **ASR Execution Enabled:** `{{ASR_EXECUTION_ENABLED}}`
 
-## 👥 Gate Criteria Checklist
-*   **Staged Audio Found:** {{STAGED_AUDIO}}
-*   **ASR Model Files Found:** {{MODEL_FILES}}
-*   **Checksum Review:** {{CHECKSUM_REVIEW}}
-*   **Manual Enable Flag:** {{MANUAL_ENABLE_FLAG}}
-*   **ASR Execution Enabled:** {{ASR_EXECUTION_ENABLED}}
-*   **Readiness Score:** {{READINESS_SCORE}}%
+## 2. Gate Readiness Audit
+* **Readiness Score:** `{{READINESS_SCORE}}%`
+* **Final Status:** `{{FINAL_STATUS}}`
 
-## 🚫 Critical Verification Blockers
-{{BLOCKERS}}
+## 3. 🚫 Outstanding Blockers
+{{BLOCKERS_LIST}}
 
-## 🚦 Gate Determination
-*   **Final Status:** `{{FINAL_STATUS}}`
-
----
-**Next Action Recommended:** {{NEXT_ACTION}}
+## 4. Next Action
+* **Recommended Next Step:** `{{NEXT_ACTION}}`
