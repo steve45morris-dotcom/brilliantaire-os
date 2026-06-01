@@ -140,6 +140,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-model-manifest-preparation-gate` | `asr manifest`, `whisper manifest` | Build Operator | Medium | Yes | Prepare offline ASR model placement structures, checksum templates, and validators. |
 | `asr-checksum-manifest-validation-gate-help` | `asr checksum help`, `whisper checksum help` | Build Operator | Low | No | Print help menu for offline ASR checksum manifest validation gate. |
 | `asr-checksum-manifest-validation-gate` | `asr checksum`, `whisper checksum` | Build Operator | Medium | Yes | Validate offline ASR model placement schemas, checksum details, and sizes. |
+| `asr-audio-input-staging-validation-gate-help` | `asr audio help`, `whisper audio help` | Build Operator | Low | No | Print help menu for offline ASR audio input staging validation gate. |
+| `asr-audio-input-staging-validation-gate` | `asr audio`, `whisper audio` | Build Operator | Medium | Yes | Validate offline ASR local staged audio input files and route previews. |
+| `asr-readiness-join-gate-help` | `asr readiness help`, `whisper readiness help` | Build Operator | Low | No | Print help menu for the offline ASR readiness join gate. |
+| `asr-readiness-join-gate` | `asr readiness`, `whisper readiness` | Build Operator | Medium | Yes | Integrate offline ASR checksum models and audio input signals into unified readiness manifest. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -202,18 +206,33 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-model-manifest-preparation-gate` | `asr manifest`, `whisper manifest` | Build Operator | Medium | Yes | Prepare offline ASR model placement structures, checksum templates, and validators. |
 | `asr-checksum-manifest-validation-gate-help` | `asr checksum help`, `whisper checksum help` | Build Operator | Low | No | Print help command menu for offline ASR checksum manifest validation gate. |
 | `asr-checksum-manifest-validation-gate` | `asr checksum`, `whisper checksum` | Build Operator | Medium | Yes | Validate offline ASR model placement schemas, checksum details, and sizes. |
+| `asr-audio-input-staging-validation-gate-help` | `asr audio help`, `whisper audio help` | Build Operator | Low | No | Print help menu for offline ASR audio input staging validation gate. |
+| `asr-audio-input-staging-validation-gate` | `asr audio`, `whisper audio` | Build Operator | Medium | Yes | Validate offline ASR local staged audio input files and route previews. |
+| `asr-readiness-join-gate-help` | `asr readiness help`, `whisper readiness help` | Build Operator | Low | No | Print help menu for the offline ASR readiness join gate. |
+| `asr-readiness-join-gate` | `asr readiness`, `whisper readiness` | Build Operator | Medium | Yes | Integrate offline ASR checksum models and audio input signals into unified readiness manifest. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
 | `manual-delivery-handoff` | `manual delivery`, `handoff manager` | Workflow Auditor | Medium | Yes | Create and manage delivery handoff checklists, sign off manual handoff records, and check package checksum integrity. |
 | `delivery-archive-retention-help` | `archive help`, `retention help` | Workflow Auditor | Low | Yes | Print help command menu for the delivery archive and retention ledger manager. |
 | `delivery-archive-retention` | `delivery archive`, `retention ledger` | Workflow Auditor | Medium | Yes | Ingest approved manual handoffs to retention ledger, verify archive checksums, run retention reviews, and export ledger. |
+| `voice-ops-release-closure-help` | `release closure help`, `ops closure help` | Workflow Auditor | Low | Yes | Print help menu for the voice ops release closure report manager. |
+| `voice-ops-release-closure` | `voice release closure`, `release closure` | Workflow Auditor | Medium | Yes | Compile completed phases (N5A - N5P), index artifacts, audit safety, and generate final release closure report. |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
 | `project-registry-append-gate` | `registry append`, `append projects` | Workflow Auditor | High | Yes | Safely append approved staged registry candidate entries to PROJECTS.md. |
 | `project-registry-health-monitor-help` | `registry health help`, `project health help` | Workflow Auditor | Low | No | Print help command menu for the local projects registry health monitor. |
 | `project-registry-health-monitor` | `registry health`, `project health` | Workflow Auditor | Medium | Yes | Verify projects registry integrity, skipped candidates, and quarantine status. |
+| `project-registry-duplicate-resolution-help` | `duplicate registry help`, `registry duplicate help` | Workflow Auditor | Low | No | Print help command menu for the local projects registry duplicate resolution gate. |
+| `project-registry-duplicate-resolution` | `duplicate registry`, `registry duplicate` | Workflow Auditor | High | Yes | Stage and resolve duplicate project registry entries in PROJECTS.md. |
+
+| `grinders-keep-daily-brief` | *(none)* | OS Architect | Low | Yes | Generate daily creative intelligence brief summarizing projects, money moves, lessons, and gaps. |
+| `grinders-keep-daily-brief-help` | *(none)* | OS Architect | Low | Yes | Print help documentation for Grinders Keep creative R&D engine commands. |
+| `grinders-keep-adaptive-loop` | *(none)* | OS Architect | Low | Yes | Run v0.1 Adaptive Learning Loop to analyze stale outputs, blockers, and build signals. |
+| `grinders-keep-vault-awareness` | *(none)* | OS Architect | Low | Yes | Scan candidate Obsidian and workspace folder roles and report status safely. |
+| `grinders-keep-content-drafts` | *(none)* | Creative Revenue Strategist | Low | Yes | Generate local-only smart content drafts (Icyflamze ideas, build updates, newsletter notes). |
+| `grinders-keep-consensus-packet` | *(none)* | OS Architect | Low | Yes | Stage multi-model agent consensus review templates for ChatGPT, Gemini, Claude, and NotebookLM. |
 
 
 

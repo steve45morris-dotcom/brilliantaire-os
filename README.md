@@ -2121,6 +2121,66 @@ The **Delivery Archive and Retention Ledger** system registers approved manual h
 
 ---
 
+## 🧭 Phase N5Q: Voice Ops Release Closure Report
+
+The **Voice Ops Release Closure Report** compiles completion logs, indexes deliverables, and audits system safety parameters across the entire voice pipeline (N5A through N5P).
+
+### CLI Command List
+* Show help menu:
+  ```bash
+  npm run command -- "voice-ops-release-closure-help"
+  ```
+* Show closure status, safety flags, and detected phases:
+  ```bash
+  npm run command -- "voice-ops-release-closure status"
+  ```
+* Scan registries for phase completions:
+  ```bash
+  npm run command -- "voice-ops-release-closure scan-phases"
+  ```
+* Index deliverables:
+  ```bash
+  npm run command -- "voice-ops-release-closure artifact-index"
+  ```
+* Audit safety parameters:
+  ```bash
+  npm run command -- "voice-ops-release-closure safety-rollup"
+  ```
+* Compile CLI commands:
+  ```bash
+  npm run command -- "voice-ops-release-closure command-registry-summary"
+  ```
+* Summarize dashboard build:
+  ```bash
+  npm run command -- "voice-ops-release-closure dashboard-summary"
+  ```
+* Summarize archive ledger metrics:
+  ```bash
+  npm run command -- "voice-ops-release-closure archive-retention-summary"
+  ```
+* Generate final release closure report:
+  ```bash
+  npm run command -- "voice-ops-release-closure generate-report"
+  ```
+* Show latest report:
+  ```bash
+  npm run command -- "voice-ops-release-closure latest"
+  ```
+* List generated closure reports:
+  ```bash
+  npm run command -- "voice-ops-release-closure list-reports"
+  ```
+* Verify section presence:
+  ```bash
+  npm run command -- "voice-ops-release-closure verify-closure"
+  ```
+* View last 20 closure events:
+  ```bash
+  npm run command -- "voice-ops-release-closure closure-log"
+  ```
+
+---
+
 
 
 
@@ -2669,10 +2729,74 @@ The **ASR Model Manifest Preparation Gate** sets up offline ASR schemas and plac
 
 ---
 
+## 🧭 Phase 11Z-C: ASR Checksum Manifest Validation Gate
+
+The **ASR Checksum Manifest Validation Gate** cross-audits root and official checksum manifests, checking required properties, verifying local model files presence, performing Node crypto SHA256 matches, and outputting validation report logs and summaries.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Model Downloads:** Cryptographic hashes are validated purely locally.
+2. **Zero ASR Executions:** Speech libraries are never initialized.
+3. **Double Manifest Audit:** Compares both repo-root and narrator outputs directories for conflicts.
+
+### 💻 Command Examples
+* View checksum manifest validation gate help menu:
+  ```bash
+  npm run command -- "asr-checksum-manifest-validation-gate-help"
+  ```
+* Run manifest validation gate:
+  ```bash
+  npm run command -- "asr-checksum-manifest-validation-gate"
+  ```
+
+---
+
+## 🧭 Phase 11Z-D: ASR Audio Input Staging Validation Gate
+
+The **ASR Audio Input Staging Validation Gate** validates staged local audio files for extension, size, metadata, naming safety, and routing eligibility without transcribing them.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Transcription:** Audio waveforms are never loaded, inspected, or converted to text.
+2. **Strict Folder Boundaries:** Only recording directories recordings/, inputAudio/, and outputs/asr_inputs/ are crawled.
+3. **Exact Name Required:** medium-risk command requires its exact name, aliases are blocked.
+4. **Model Trust Check:** Resolves model validation status dynamically and defaults routes to blocked if model trust fails.
+
+### 💻 Command Examples
+* View audio staging gate help menu:
+  ```bash
+  npm run command -- "asr-audio-input-staging-validation-gate-help"
+  ```
+* Run audio staging gate:
+  ```bash
+  npm run command -- "asr-audio-input-staging-validation-gate"
+  ```
+
+---
+
+## 🧭 Phase 11Z-E: ASR Readiness Join Gate
+
+The **ASR Readiness Join Gate** integrates model cryptographic validation signals (Phase 11Z-C) and audio staging validation signals (Phase 11Z-D) into a unified JSON manifest. It evaluates the joined checklist against strict dry-run criteria and maps route eligibility under offline-first constraints.
+
+### 🛡️ Safety & Execution Rules
+1. **Zero Transcription:** Waveforms are never processed or text output generated.
+2. **Unified Evaluation:** Evaluates status to dry_run_ready only if cryptographic model checks and audio staging validations both succeed.
+3. **Restricted Route Prev:** Routes default to blocked and blocker checklists are compiled if model trust or audio staging fails.
+
+### 💻 Command Examples
+* View join readiness gate help menu:
+  ```bash
+  npm run command -- "asr-readiness-join-gate-help"
+  ```
+* Run join readiness gate:
+  ```bash
+  npm run command -- "asr-readiness-join-gate"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 
-* **Phase 11Z-C: ASR Checksum Manifest Validation Gate**
-  - Validate a manually populated asr-checksum-manifest.json against local model files and only then allow Phase 11Z dry-run readiness to move from blocked to dry_run_ready.
+* **Phase 11Z-F: ASR Manual Asset Intake Checklist**
+  - Generate a human checklist for manually adding Whisper model binaries and approved audio files, then rerunning checksum and audio staging gates before any transcription approval switch is considered.
 
 ---
 
@@ -2856,4 +2980,81 @@ The **Registry Health Monitor** provides post-append registry verification, cand
   ```bash
   npm run command -- "project-registry-health-monitor status"
   ```
+
+---
+
+## 🛡️ Phase 12B: Grinders Keep Core Brief Engine Plus
+
+The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engine designed to synthesize daily creative briefs, lesson topics, gaps, build suggestions, money moves, Google Ultra tool opportunities, content drafts, and consensus packets. It enforces strict safety parameters, requiring human verification and approval for all recommended builds and workflows.
+
+### 🔒 Guardrails Summary
+1. **Local-First Verification:** Strictly no external API calls, Google tools direct execution, or remote uploads.
+2. **No Hype Rule:** Every build recommendation requires at least one reason to pause or postpone building.
+3. **Kill List Enforcement:** Every brief contains a recommendation of a feature/action to archive or delete.
+4. **Smallest Useful Version:** Enforces MVP descriptions across all suggestions to prevent over-complexity.
+5. **Money Confidence Scoring:** Every monetizable idea must include a confidence rating (1-10) and explanation.
+6. **Commander Approval Required:** Operations compile staged outputs only; no auto-execution or auto-builds.
+
+### 💻 Command Examples
+* Print Grinders Keep help:
+  ```bash
+  npm run command -- "grinders-keep-daily-brief-help"
+  ```
+* Generate unified Daily Brief report:
+  ```bash
+  npm run command -- "grinders-keep-daily-brief"
+  ```
+* Run v0.1 Adaptive Learning Loop logic:
+  ```bash
+  npm run command -- "grinders-keep-adaptive-loop"
+  ```
+* Run Vault Awareness scan:
+  ```bash
+  npm run command -- "grinders-keep-vault-awareness"
+  ```
+* Generate smart content drafts:
+  ```bash
+  npm run command -- "grinders-keep-content-drafts"
+  ```
+* Stage multi-model agent consensus review template:
+  ```bash
+  npm run command -- "grinders-keep-consensus-packet"
+  ```
+
+---
+
+## 🛡️ Phase 12F: Duplicate Registry Entry Resolution Gate
+
+The **Duplicate Registry Entry Resolution Gate** provides a safe duplicate entry resolution system. It reads the registry integrity report findings, detects duplicate project name and path records in `PROJECTS.md`, stages merge/remove recommendations in a staged plan, backs up `PROJECTS.md` with a timestamp, and applies only approved line-by-line duplicate entry resolution removals.
+
+### 🔒 Guardrails Summary
+1. **No Directory Alteration:** The system never deletes or moves project folders or files.
+2. **Mandatory Backups:** PROJECTS.md is backed up under a timestamp before any modification write occurs.
+3. **Approval Switch Gate:** Applying changes requires the explicit addition of the `--confirm` command flag.
+4. **Non-Destructive Line Patching:** Resolves only duplicate rows, leaving section headings, comments, and unrelated project notes unchanged.
+5. **Rollback Availability:** Clear restore paths are logged for simple cp-based recovery if needed.
+
+### 💻 Command Examples
+* Print duplicate resolution gate help:
+  ```bash
+  npm run command -- "project-registry-duplicate-resolution-help"
+  ```
+* Scan for duplicate entries:
+  ```bash
+  npm run command -- "project-registry-duplicate-resolution scan"
+  ```
+* Stage duplicate resolution plan:
+  ```bash
+  npm run command -- "project-registry-duplicate-resolution stage-resolution"
+  ```
+* Apply approved resolutions (requires confirmation):
+  ```bash
+  npm run command -- "project-registry-duplicate-resolution apply-approved" --confirm
+  ```
+* Display status dashboard:
+  ```bash
+  npm run command -- "project-registry-duplicate-resolution status"
+  ```
+
+
 

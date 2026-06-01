@@ -172,7 +172,8 @@
 - [x] Phase N5L: Briefing TTS Render Approval Flow
 - [x] Phase N5M: Briefing Audio Playback Review Gate
 - [x] Phase N5P: Delivery Archive and Retention Ledger
-- [ ] Phase N5Q: Voice Ops Release Closure Report
+- [x] Phase N5Q: Voice Ops Release Closure Report
+- [ ] Phase N5R: Voice Ops Freeze Tag and Recovery Snapshot
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -412,6 +413,26 @@
 - [x] Phase 11Z-C: Register exact commands with requiresExactName constraint and alias blocking
 - [x] Phase 11Z-C: Cross-compare root and official manifests, check validation rules, and fail closed if missing or mismatched files
 - [x] Phase 11Z-C: Confirm zero transcription execution and fail-closed readiness state
+- [x] Phase 11Z-D: Build ASR Audio Input Staging Validation Gate
+- [x] Phase 11Z-D: Create audio input staging configuration file
+- [x] Phase 11Z-D: Create main staging validator script
+- [x] Phase 11Z-D: Create audio staging gate help utility
+- [x] Phase 11Z-D: Create staging report, file validation, eligible, rejected, route preview, risk review, summary, and next action templates
+- [x] Phase 11Z-D: Generate outputs under outputs/asr_audio_staging/ (8 markdown reports and 1 json manifest)
+- [x] Phase 11Z-D: Audit local staged audio inputs in recordings/, inputAudio/, and outputs/asr_inputs/
+- [x] Phase 11Z-D: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-D: Verify model trust dependency dynamically from Phase 11Z-C manifest and default to blocked
+- [x] Phase 11Z-D: Confirm zero ASR transcription execution, zero model downloads, zero API calls, and zero file mutations
+- [x] Phase 11Z-E: Build ASR Readiness Join Gate
+- [x] Phase 11Z-E: Create join gate configuration file
+- [x] Phase 11Z-E: Create main join validator script
+- [x] Phase 11Z-E: Create join gate help utility
+- [x] Phase 11Z-E: Create join report, model signal, audio signal, route eligibility, blocker, and summary templates
+- [x] Phase 11Z-E: Generate outputs under outputs/asr_readiness_join/ (7 markdown reports and 1 json manifest)
+- [x] Phase 11Z-E: Read and parse Phase 11Z-C and Phase 11Z-D manifest signals (JSON with Markdown fallback)
+- [x] Phase 11Z-E: Enforce dry-run safety constraints (zero ASR execution, zero downloads, zero APIs)
+- [x] Phase 11Z-E: Evaluate readiness status and default routes to blocked_for_model_and_audio
+- [x] Phase 11Z-E: Register exact command and help commands with requiresExactName constraint and alias blocking
 
 ## Do Next
 - [x] Build Duplicate Cleanup Staging Gate
@@ -441,12 +462,19 @@
 - [x] Verify PROJECTS.md backup
 - [x] Verify append log
 - [x] Review PROJECTS.md after append
-- [ ] Build Registry Health Monitor
-- [ ] Verify PROJECTS.md integrity
-- [ ] Review skipped candidates
-- [ ] Monitor quarantined duplicates
-- [ ] Generate registry health report
-- [ ] Delay permanent duplicate deletion until monitoring period passes
+- [x] Build Registry Health Monitor
+- [x] Verify PROJECTS.md integrity
+- [x] Review skipped candidates
+- [x] Monitor quarantined duplicates
+- [x] Generate registry health report
+- [x] Delay permanent duplicate deletion until monitoring period passes
+- [ ] Build Duplicate Registry Entry Resolution Gate
+- [ ] Scan PROJECTS.md duplicate entries
+- [ ] Stage duplicate resolution plan
+- [ ] Apply approved duplicate resolution with --confirm
+- [ ] Verify PROJECTS.md integrity again
+- [ ] Delay quarantine deletion readiness until registry duplicates are resolved
+
 
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
@@ -456,9 +484,13 @@
 - [x] Phase 11R: Export only approved voice-safe blocks to TTS format
 - [x] Phase 11S: Offline TTS Dry-Run Renderer
 - [x] Phase 11S: Simulate no-audio dry-run through TTS lifecycle
-- [ ] Phase 11T: Offline TTS Render Approval Switch
-- [ ] Phase 11T: Gate Piper rendering using human-approved export tokens
-
+- [x] Phase 12B: Grinders Keep Core Brief Engine Plus
+- [x] Phase 12B: Build config/grinders-keep-core-brief-engine.ts
+- [x] Phase 12B: Build main brief generation scripts grinders-keep-daily-brief.ts
+- [x] Phase 12B: Build expanded scripts (adaptive-loop, vault-awareness, content-drafts, consensus-packet)
+- [x] Phase 12B: Build 16 R&D engine templates under templates/
+- [x] Phase 12B: Register commands and verify alias blocks
+- [ ] Phase 12C: Grinders Keep Gap Hunter
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

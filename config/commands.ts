@@ -1904,6 +1904,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'voice-ops-release-closure-help',
+    aliases: ['release closure help', 'ops closure help'],
+    description: 'Print help menu for the voice ops release closure report manager',
+    npmScript: 'voice-ops-release-closure-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-release-closure',
+    aliases: ['voice release closure', 'release closure'],
+    description: 'Voice Ops release closure manager (status, scan-phases, artifact-index, safety-rollup, command-registry-summary, dashboard-summary, archive-retention-summary, generate-report, latest, list-reports, verify-closure, closure-log)',
+    npmScript: 'voice-ops-release-closure',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'asr-dry-run-transcription-gate-help',
     aliases: ['asr dry run help', 'whisper dry run help'],
     description: 'Print help menu for the offline ASR dry-run transcription gate',
@@ -1963,6 +1985,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['asr checksum', 'whisper checksum'],
     description: 'Validate offline ASR model placement schemas, checksum details, and sizes',
     npmScript: 'asr-checksum-manifest-validation-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-audio-input-staging-validation-gate-help',
+    aliases: ['asr audio help', 'whisper audio help'],
+    description: 'Print help menu for the offline ASR audio input staging validation gate',
+    npmScript: 'asr-audio-input-staging-validation-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-audio-input-staging-validation-gate',
+    aliases: ['asr audio', 'whisper audio'],
+    description: 'Validate offline ASR local staged audio input files and route previews',
+    npmScript: 'asr-audio-input-staging-validation-gate',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-readiness-join-gate-help',
+    aliases: ['asr readiness help', 'whisper readiness help'],
+    description: 'Print help menu for the offline ASR readiness join gate',
+    npmScript: 'asr-readiness-join-gate-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-readiness-join-gate',
+    aliases: ['asr readiness', 'whisper readiness'],
+    description: 'Integrate offline ASR checksum models and audio input signals into unified readiness manifest',
+    npmScript: 'asr-readiness-join-gate',
     owningAgent: 'Build Operator',
     riskLevel: 'medium',
     outputType: 'files',
@@ -2031,6 +2097,95 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     npmScript: 'project-registry-health-monitor',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'project-registry-duplicate-resolution-help',
+    aliases: ['duplicate registry help', 'registry duplicate help'],
+    description: 'Print help menu for projects registry duplicate resolution gate',
+    npmScript: 'project-registry-duplicate-resolution-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'project-registry-duplicate-resolution',
+    aliases: ['duplicate registry', 'registry duplicate'],
+    description: 'Stage and resolve duplicate project registry entries in PROJECTS.md',
+    npmScript: 'project-registry-duplicate-resolution',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'high',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+
+  {
+    name: 'grinders-keep-daily-brief',
+    aliases: [],
+    description: 'Generate daily creative intelligence brief summarizing projects, money moves, lessons, and gaps',
+    npmScript: 'grinders-keep-daily-brief',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-daily-brief-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep creative R&D engine commands',
+    npmScript: 'grinders-keep-daily-brief-help',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-adaptive-loop',
+    aliases: [],
+    description: 'Run v0.1 Adaptive Learning Loop to analyze stale outputs, blockers, and build signals',
+    npmScript: 'grinders-keep-adaptive-loop',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-vault-awareness',
+    aliases: [],
+    description: 'Scan candidate Obsidian and workspace folder roles and report status safely',
+    npmScript: 'grinders-keep-vault-awareness',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-content-drafts',
+    aliases: [],
+    description: 'Generate local-only smart content drafts (Icyflamze ideas, build updates, newsletter notes)',
+    npmScript: 'grinders-keep-content-drafts',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-consensus-packet',
+    aliases: [],
+    description: 'Stage multi-model agent consensus review templates for ChatGPT, Gemini, Claude, and NotebookLM',
+    npmScript: 'grinders-keep-consensus-packet',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
     outputType: 'files',
     enabled: true,
     requiresExactName: true

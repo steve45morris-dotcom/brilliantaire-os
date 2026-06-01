@@ -601,6 +601,26 @@ tasks:
     cmds:
       - npm run asr-checksum-manifest-validation-gate-help
 
+  asr-audio-input-staging-validation-gate:
+    desc: "Run Offline ASR Audio Input Staging Validation Gate"
+    cmds:
+      - npm run asr-audio-input-staging-validation-gate -- {{.CLI_ARGS}}
+
+  asr-audio-input-staging-validation-gate-help:
+    desc: "Print Offline ASR Audio Input Staging Validation Gate help manual"
+    cmds:
+      - npm run asr-audio-input-staging-validation-gate-help
+
+  asr-readiness-join-gate:
+    desc: "Run Offline ASR Readiness Join Gate"
+    cmds:
+      - npm run asr-readiness-join-gate -- {{.CLI_ARGS}}
+
+  asr-readiness-join-gate-help:
+    desc: "Print Offline ASR Readiness Join Gate help manual"
+    cmds:
+      - npm run asr-readiness-join-gate-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -834,6 +854,26 @@ tasks:
     cmds:
       - npm run asr-checksum-manifest-validation-gate-help
 
+  asr-audio-input-staging-validation-gate:
+    desc: "Run Offline ASR Audio Input Staging Validation Gate"
+    cmds:
+      - npm run asr-audio-input-staging-validation-gate -- {{.CLI_ARGS}}
+
+  asr-audio-input-staging-validation-gate-help:
+    desc: "Print Offline ASR Audio Input Staging Validation Gate help manual"
+    cmds:
+      - npm run asr-audio-input-staging-validation-gate-help
+
+  asr-readiness-join-gate:
+    desc: "Run Offline ASR Readiness Join Gate"
+    cmds:
+      - npm run asr-readiness-join-gate -- {{.CLI_ARGS}}
+
+  asr-readiness-join-gate-help:
+    desc: "Print Offline ASR Readiness Join Gate help manual"
+    cmds:
+      - npm run asr-readiness-join-gate-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -919,6 +959,16 @@ tasks:
     cmds:
       - npm run delivery-archive-retention-help
 
+  voice-ops-release-closure:
+    desc: "Voice Ops Release Closure CLI manager (status, scan-phases, artifact-index, safety-rollup, command-registry-summary, dashboard-summary, archive-retention-summary, generate-report, latest, list-reports, verify-closure, closure-log)"
+    cmds:
+      - npm run voice-ops-release-closure -- {{.CLI_ARGS}}
+
+  voice-ops-release-closure-help:
+    desc: "Print help menu for the voice ops release closure reporter"
+    cmds:
+      - npm run voice-ops-release-closure-help
+
 
 
 
@@ -971,6 +1021,47 @@ tasks:
     desc: "Print help menu for local projects registry health monitor"
     cmds:
       - npm run project-registry-health-monitor-help
+
+  project-registry-duplicate-resolution:
+    desc: "Stage and resolve duplicate project registry entries in PROJECTS.md"
+    cmds:
+      - npm run project-registry-duplicate-resolution -- {{.CLI_ARGS}}
+
+  project-registry-duplicate-resolution-help:
+    desc: "Print help menu for projects registry duplicate resolution gate"
+    cmds:
+      - npm run project-registry-duplicate-resolution-help
+
+
+  grinders-keep-daily-brief:
+    desc: "Generate daily creative intelligence brief"
+    cmds:
+      - npm run grinders-keep-daily-brief
+
+  grinders-keep-daily-brief-help:
+    desc: "Print help documentation for Grinders Keep commands"
+    cmds:
+      - npm run grinders-keep-daily-brief-help
+
+  grinders-keep-adaptive-loop:
+    desc: "Run v0.1 Adaptive Learning Loop check"
+    cmds:
+      - npm run grinders-keep-adaptive-loop
+
+  grinders-keep-vault-awareness:
+    desc: "Scan candidate vaults and reports safely"
+    cmds:
+      - npm run grinders-keep-vault-awareness
+
+  grinders-keep-content-drafts:
+    desc: "Generate local smart content drafts"
+    cmds:
+      - npm run grinders-keep-content-drafts
+
+  grinders-keep-consensus-packet:
+    desc: "Stage local agent consensus review packets"
+    cmds:
+      - npm run grinders-keep-consensus-packet
 
   validate:
     desc: "Lint and run workspace checks"
