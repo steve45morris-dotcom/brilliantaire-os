@@ -102,6 +102,8 @@
     "voice-safe-narration-approval-gate-help": "tsx scripts/voice-safe-narration-approval-gate-help.ts",
     "tts-ready-narration-export-queue": "tsx scripts/tts-ready-narration-export-queue.ts",
     "tts-ready-narration-export-queue-help": "tsx scripts/tts-ready-narration-export-queue-help.ts",
+    "offline-tts-dry-run-renderer": "tsx scripts/offline-tts-dry-run-renderer.ts",
+    "offline-tts-dry-run-renderer-help": "tsx scripts/offline-tts-dry-run-renderer-help.ts",
     "tts-brief-composer": "tsx scripts/tts-brief-composer.ts",
     "tts-brief-composer-help": "tsx scripts/tts-brief-composer-help.ts",
     "tts-queue-validator": "tsx scripts/tts-queue-validator.ts",

@@ -169,7 +169,8 @@
 - [x] Phase N5I: Build Voice Command Lifecycle Audit Timeline
 - [x] Phase N5J: Prepare Voice Ops Daily Report Generator
 - [x] Phase N5K: Voice Ops Scheduled Briefing Queue
-- [ ] Phase N5L: Briefing TTS Render Approval Flow
+- [x] Phase N5L: Briefing TTS Render Approval Flow
+- [ ] Phase N5M: Briefing Audio Playback Review Gate
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -375,7 +376,14 @@
 - [x] Phase 11X: Run ASR dry-run
 - [x] Phase 11X: Stage transcript placeholder
 - [x] Phase 11X: Confirm no transcription occurs
-- [ ] Phase 11X: Prepare ASR model placement only after readiness review
+- [x] Phase 11X: Prepare ASR model placement only after readiness review
+- [x] Phase 11Y: Build Offline ASR Model Acquisition Guide
+- [x] Phase 11Y: Generate ASR model acquisition guide
+- [x] Phase 11Y: Generate ASR model inventory
+- [x] Phase 11Y: Generate checksum review
+- [x] Phase 11Y: Generate ASR model readiness gate
+- [x] Phase 11Y: Confirm no transcription occurs
+- [x] Phase 11Y: Prepare ASR execution only after model and manual enable pass
 
 ## Do Next
 - [ ] Build Duplicate Cleanup Staging Gate
@@ -391,8 +399,11 @@
 - [x] Phase 11Q: Test gate checks with approved and rejected queue states
 - [x] Phase 11R: TTS-Ready Narration Export Queue
 - [x] Phase 11R: Export only approved voice-safe blocks to TTS format
-- [ ] Phase 11S: Offline TTS Dry-Run Renderer
-- [ ] Phase 11S: Simulate no-audio dry-run through TTS lifecycle
+- [x] Phase 11S: Offline TTS Dry-Run Renderer
+- [x] Phase 11S: Simulate no-audio dry-run through TTS lifecycle
+- [ ] Phase 11T: Offline TTS Render Approval Switch
+- [ ] Phase 11T: Gate Piper rendering using human-approved export tokens
+
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

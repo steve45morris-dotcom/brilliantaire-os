@@ -180,6 +180,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `narrator-voice-ops-daily-report` | `voice ops daily report`, `narrator voice ops daily report` | Knowledge Librarian | Medium | Yes | Summarize the day's local voice sessions, ASR transcripts, staged packets, approvals, bridge executions, rejections, blocked attempts, safety events, and dashboard status. |
 | `voice-ops-scheduled-briefing-help` | `scheduled briefing help`, `voice ops scheduled briefing help` | Knowledge Librarian | Low | Yes | Print help command menu for the scheduled briefing queue manager. |
 | `voice-ops-scheduled-briefing` | `scheduled briefing`, `voice ops scheduled briefing` | Knowledge Librarian | Medium | Yes | Stage, inspect, approve, reject daily briefing jobs, and compile TTS rendering queue requests. |
+| `briefing-tts-render-approval-help` | `briefing tts help`, `briefing tts render approval help` | Knowledge Librarian | Low | Yes | Print help command menu for the briefing TTS render approval manager. |
+| `briefing-tts-render-approval` | `briefing tts`, `briefing tts render approval` | Knowledge Librarian | Medium | Yes | Briefing TTS render request validation, queue submission, manual approval, and offline Piper rendering. |
+| `offline-tts-dry-run-renderer-help` | `tts dry run help`, `dry run help` | Workflow Auditor | Low | Yes | Print help command menu for offline TTS dry-run renderer simulation. |
+| `offline-tts-dry-run-renderer` | `tts dry run`, `dry run renderer` | Workflow Auditor | Medium | Yes | Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs. |
 
 
 ---

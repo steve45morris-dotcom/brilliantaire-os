@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 11R: TTS-Ready Narration Export Queue — COMPLETE
+- **Current Phase:** Phase 11S: Offline TTS Dry-Run Renderer — COMPLETE
 - **Last Verified:** 2026-06-01
 - **Build Status:** passing
 
@@ -63,8 +63,8 @@
 - **Grounded Narrator Review Queue (Phase 11P):** Local review queue script compiler that filters grounded index graph nodes against citations, compiles narration candidates, stages narrator-ready briefs, and flags excluded weak claims reports under safe offline constraints.
 - **Voice-Safe Narration Approval Gate (Phase 11Q):** Strict offline compiler validating grounded narrator review blocks against manual operator approval flags, weak claims, and risk markers, compiling approved and rejected manifests without external synthesis API or TTS invocations.
 - **TTS-Ready Narration Export Queue (Phase 11R):** Safe offline script and specification builder compiling approved voice-safe narrator blocks into timed, metadata-annotated TTS-ready files without calling external APIs or local synthesis rendering.
-- **Offline Local TTS Audio Synthesizer Scaffold (Phase 11S):** Local synthesizer config report compiling, local ONNX model presence checking, expected audio manifest generation, and synthesis dry-run simulations under safe offline constraints.
-- **Offline TTS Model Readiness Gate (Phase 11T):** Strict local verification scans verifying manual voice model placements, matching configuration profiles, environmental overrides, and model readiness checklists under safe offline constraints.
+- **Offline TTS Dry-Run Renderer (Phase 11S):** Offline simulation script that runs sentence-boundary chunking, voice routing based on suggested tone, duration estimation, narrator metadata validation, and output manifest generation under safe offline constraints.
+- **Offline TTS Render Approval Switch (Phase 11T):** Strict local verification scans and approval switch mapping approved voice-safe narrator blocks from simulation to actual local TTS rendering.
 - **Local Offline TTS Voice Model Placement and Activation Check (Phase 11U):** Local verification scans verifying manual voice model placements, matching configuration profiles, and environment variable flags to ensure all speech assets are fully validated before offline voice synthesis.
 - **Offline TTS Model Acquisition Guide and Placement Assistant (Phase 11V):** Local assistant compiling manual staging guides, model directory inventory reports, voice configuration pairing audits, and next-step roadmap checklists without external network queries.
 - **Offline Voice Session Recorder (Phase 11W):** Local scaffold initializing metadata sessions, manual drop check reports, recording inventory checks, and transcription staging records under strict scaffold-only constraints.
@@ -85,6 +85,7 @@
 - **Voice Command Lifecycle Audit Timeline (Phase N5I):** Safe local chronological lifecycle tracker (`scripts/narrator-voice-lifecycle-audit.ts`) indexing pipeline buffers and events to trace commands from ingestion to execution.
 - **Voice Ops Daily Report Generator (Phase N5J):** Safe read-only daily operational reporter (`scripts/narrator-voice-ops-daily-report.ts`) compiling local voice pipeline sessions, ASR stats, rejections, blocked attempts, and dashboard snapshot outputs under strict safety rules.
 - **Voice Ops Scheduled Briefing Queue (Phase N5K):** Safe local briefing queue (`scripts/voice-ops-scheduled-briefing.ts`) staging and inspection system compiling daily report summaries into approved jobs and enqueuing TTS rendering requests under strict manual approval gates.
+- **Briefing TTS Render Approval Flow (Phase N5L):** Safe briefing TTS request validation, queue submission, manual approval, and offline Piper rendering flow (`scripts/briefing-tts-render-approval.ts`) preventing unauthorized audio generation.
 - **Git Asset Guard and Pre-Push Safety Audit (Phase R3):** Safe local scans preventing repository pollution by auditing forbidden folders, file size tracking, sensitive credentials, merge conflict markers, and ignored staged assets before commits or pushes.
 - **Pre-Push Hook Installer (Phase R4):** Local pre-push hook configuration and installer scripts managing backup, activation status audits, template matching, and exact-name Command Router mappings.
 - **Duplicate Cleanup Staging Gate (Phase 12A):** Safe staging controls (`scripts/cleanup-gate.ts`) managing duplicate brief scans, quarantine staging plans, shell script restore rolls, and project matrix drift checks under the Workflow Auditor.

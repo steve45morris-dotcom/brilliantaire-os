@@ -1804,6 +1804,63 @@ The **Voice Ops Scheduled Briefing Queue** stages daily or manual briefing jobs 
 
 ---
 
+## 🧭 Phase N5L: Briefing TTS Render Approval Flow
+
+The **Briefing TTS Render Approval Flow** processes and validates briefing TTS render requests from the scheduled briefing queue, submits them to the main TTS queue, and handles manual approval and local Piper rendering.
+
+### 🛡️ Safety & Execution Rules
+1. **Manual Approval Gate**: Staging or submitting requests to the queue does not trigger automatic audio generation. Synthesis is blocked until the operator manually approves the request.
+2. **Offline Local Synthesis**: All voice rendering is handled locally via the Piper TTS engine using registered offline model assets. External Cloud TTS APIs are disabled.
+3. **No Automatic Playback**: Rendered audio remains silent and local. No player subprocesses are executed.
+
+### 💻 Command Examples
+* View briefing TTS render approval help:
+  ```bash
+  npm run command -- "briefing-tts-render-approval-help"
+  ```
+* Check flow safety flags, paths, and status counters:
+  ```bash
+  npm run command -- "briefing-tts-render-approval status"
+  ```
+* Scan generated briefing TTS request packets:
+  ```bash
+  npm run command -- "briefing-tts-render-approval scan-tts-requests"
+  ```
+* Inspect details of a specific briefing TTS request:
+  ```bash
+  npm run command -- "briefing-tts-render-approval inspect briefing_YYYY-MM-DD"
+  ```
+* Validate briefing approval status, text length, and formatting:
+  ```bash
+  npm run command -- "briefing-tts-render-approval validate briefing_YYYY-MM-DD"
+  ```
+* Submit the briefing TTS request to the Narrator TTS queue:
+  ```bash
+  npm run command -- "briefing-tts-render-approval submit-to-tts-queue briefing_YYYY-MM-DD"
+  ```
+* Authorize a submitted request for rendering:
+  ```bash
+  npm run command -- "briefing-tts-render-approval approve-tts-request briefing_YYYY-MM-DD"
+  ```
+* Render the approved request to local audio using Piper:
+  ```bash
+  npm run command -- "briefing-tts-render-approval render-approved briefing_YYYY-MM-DD"
+  ```
+* Track the trace state of a briefing rendering item:
+  ```bash
+  npm run command -- "briefing-tts-render-approval render-status briefing_YYYY-MM-DD"
+  ```
+* Compile queue performance metrics into a markdown report:
+  ```bash
+  npm run command -- "briefing-tts-render-approval queue-summary"
+  ```
+* Print recent briefing rendering event logs:
+  ```bash
+  npm run command -- "briefing-tts-render-approval render-log"
+  ```
+
+---
+
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -2083,75 +2140,36 @@ The **TTS-Ready Narration Export Queue** processes approved blocks from the appr
 ---
 
 
-## 🧭 Phase 11S: Offline Local TTS Audio Synthesizer Scaffold
+## 🧭 Phase 11S: Offline TTS Dry-Run Renderer
 
-The **Offline Local TTS Audio Synthesizer Scaffold** prepares Piper-style local speech synthesis configurations, checks for local voice model binaries manual placements, compiles manifest maps, and simulates offline voice compilation command previews via dry-runs without generating sound files.
+The **Offline TTS Dry-Run Renderer** simulates the complete offline TTS rendering lifecycle (including sentence-boundary chunking, voice routing based on suggested tone, duration estimation, narrator metadata validation, queue readiness, and output manifest generation) without generating audio files, invoking voice engines, or calling external APIs.
 
 ### 🛡️ Safety & Execution Rules
-1. **Scaffold-Only Mode:** Active boundaries verify engine settings, model presence, and parameter reports. It does not spawn actual Piper compilers.
-2. **No Audio Generation:** Sound rendering processes are locked. No `.wav` files are created.
-3. **No Automatic Model Downloads:** Voice models cannot be retrieved automatically from remote hubs over HTTP/HTTPS.
-4. **No External APIs:** Speech synthesis queries to cloud APIs are bypassed completely to prevent runtime state leakage.
+1. **Simulation-Only Mode:** Script checks and chunk/routing simulations only. No outbound audio generation is allowed.
+2. **Fail Closed Policy:** Rejects blocks with missing parameters or risk tiers exceeding safe thresholds.
+3. **Local Spec Staging:** Outputs plain-text script blocks chunks, JSON manifests, voice routing specs, timing estimates, and risk checklist files under `outputs/grounded_narrator/tts_dry_run/`.
+4. **Requires Exact Name:** Aliases are rejected under strict Command Router policy.
 
 ### 💻 Command Examples
-* View synthesizer help menu:
+* View dry-run renderer help menu:
   ```bash
-  npm run command -- "tts-synthesizer-help"
+  npm run command -- "offline-tts-dry-run-renderer-help"
   ```
-* Compile engine parameter configurations:
+* Run offline dry-run simulation:
   ```bash
-  npm run command -- "tts-synthesizer config-report"
-  ```
-* Inspect manual voice model ONNX placements:
-  ```bash
-  npm run command -- "tts-synthesizer model-check"
-  ```
-* Run offline synthesis dry-run simulation:
-  ```bash
-  npm run command -- "tts-synthesizer dry-run"
-  ```
-* Generate expected audio manifest:
-  ```bash
-  npm run command -- "tts-synthesizer manifest"
-  ```
-* Check synthesis capabilities status:
-  ```bash
-  npm run command -- "tts-synthesizer status"
+  npm run command -- "offline-tts-dry-run-renderer"
   ```
 
 ---
 
-## 🧭 Phase 11T: Offline TTS Model Readiness Gate
+## 🧭 Phase 11T: Offline TTS Render Approval Switch
 
-The **Offline TTS Model Readiness Gate** enforces strict verification checks to audit local voice model manual placements, matching configuration profiles, environment variables, and safety checklist records before any future voice compilation synthesis is enabled.
+The **Offline TTS Render Approval Switch** creates a human-controlled switch that allows selected dry-run-approved blocks to move from simulation into actual offline TTS rendering, while keeping audio generation disabled by default.
 
 ### 🛡️ Safety & Execution Rules
-1. **Model Gate-Only Verification:** Validates local directories, voice ONNX/JSON pairs, and override flags. No Piper compilation process is spawned.
-2. **No Audio Generation:** Real audio compiling and wave file creation are blocked.
-3. **No Automatic Model Downloads:** System does not perform remote HTTP/HTTPS queries to download models.
-4. **No External APIs:** Synthesis requests to cloud providers are completely disabled.
-
-### 💻 Command Examples
-* View model gate help menu:
-  ```bash
-  npm run command -- "tts-model-gate-help"
-  ```
-* Run model directory scan and configuration check:
-  ```bash
-  npm run command -- "tts-model-gate check"
-  ```
-* Compile model files checklist:
-  ```bash
-  npm run command -- "tts-model-gate checklist"
-  ```
-* Compile manual enable instructions:
-  ```bash
-  npm run command -- "tts-model-gate manual-enable"
-  ```
-* Check model readiness status:
-  ```bash
-  npm run command -- "tts-model-gate status"
-  ```
+1. **Approval-Switch Mode:** Gates real synthesis processes by checking user-approved export tokens.
+2. **Fail Closed Policy:** Non-approved blocks remain in staged simulation state indefinitely.
+3. **Local Control Only:** Runs completely offline without cloud calls.
 
 ---
 
@@ -2346,8 +2364,8 @@ The **ASR Model Gate** provides a manual model acquisition, inventory reporting,
 ---
 
 ## 🚀 Next Phase Recommendation
-* **Phase 11X: Local Offline Speech Synthesis Execution**
-  - Implement the offline speech synthesis runner executing sandboxed model generation after all readiness gates and verification scores achieve 100%.
+* **Phase 12A: Duplicate Cleanup Staging Gate**
+  - Implement the secure gating mechanism for staging duplicate brief cleanups and assessing project directory registry drift.
 
 ---
 

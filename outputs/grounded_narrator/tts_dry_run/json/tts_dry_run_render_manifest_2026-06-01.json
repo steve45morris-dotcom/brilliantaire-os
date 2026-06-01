@@ -1,0 +1,35 @@
+{
+  "manifestId": "tts_dry_run_2026-06-01",
+  "compiledAt": "2026-06-01T09:37:44.487Z",
+  "sourceExportQueue": "tts_ready_narration_export_queue_2026-06-01.json",
+  "counts": {
+    "imported": 1,
+    "accepted": 1,
+    "chunks": 1,
+    "rejected": 0
+  },
+  "timing": {
+    "defaultSpeechWPM": 140,
+    "totalDurationSeconds": 2
+  },
+  "simulatedChunks": [
+    {
+      "chunk_id": "export_block_1",
+      "export_id": "export_block_1",
+      "block_id": "narrator_block_3",
+      "chunk_text": "Offline query validation checklist verified.",
+      "word_count": 5,
+      "estimated_duration_seconds": 2,
+      "voice_route": "voice_profile_sovereign_en_v1",
+      "suggested_voice_tone": "Authoritative / Grounded",
+      "render_status": "dry_run_only",
+      "audio_generated": false,
+      "tts_called": false,
+      "external_service_called": false,
+      "readiness_status": "ready_for_tts_execution",
+      "risk_flags": "none",
+      "next_action": "none"
+    }
+  ],
+  "rejectedBlocks": []
+}

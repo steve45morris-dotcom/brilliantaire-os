@@ -1704,6 +1704,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'briefing-tts-render-approval-help',
+    aliases: ['briefing tts help', 'briefing tts render approval help'],
+    description: 'Print help command menu for the briefing TTS render approval manager',
+    npmScript: 'briefing-tts-render-approval-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'briefing-tts-render-approval',
+    aliases: ['briefing tts', 'briefing tts render approval'],
+    description: 'Briefing TTS render request validation, queue submission, manual approval, and offline Piper rendering',
+    npmScript: 'briefing-tts-render-approval',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'offline-tts-dry-run-renderer-help',
+    aliases: ['tts dry run help', 'dry run help'],
+    description: 'Print help command menu for offline TTS dry-run renderer simulation',
+    npmScript: 'offline-tts-dry-run-renderer-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'offline-tts-dry-run-renderer',
+    aliases: ['tts dry run', 'dry run renderer'],
+    description: 'Simulate complete offline TTS rendering lifecycle, chunking, voice routing, and duration estimation without audio outputs',
+    npmScript: 'offline-tts-dry-run-renderer',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

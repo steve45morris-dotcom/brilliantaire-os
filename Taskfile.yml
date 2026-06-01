@@ -461,6 +461,16 @@ tasks:
     cmds:
       - npm run tts-ready-narration-export-queue -- {{.CLI_ARGS}}
 
+  offline-tts-dry-run-renderer-help:
+    desc: "Print Offline TTS Dry-Run Renderer simulation manuals"
+    cmds:
+      - npm run offline-tts-dry-run-renderer-help
+
+  offline-tts-dry-run-renderer:
+    desc: "Run Offline TTS Dry-Run Renderer simulation safely"
+    cmds:
+      - npm run offline-tts-dry-run-renderer -- {{.CLI_ARGS}}
+
   grounded-narrator-review-help:
     desc: "Print Grounded Narrator Review Queue safety manuals"
     cmds:
