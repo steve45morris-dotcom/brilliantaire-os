@@ -73,3 +73,33 @@ Live safety report generated: notebooklm_live_mcp_safety_report_2026-05-31.md
 
 ### 📝 Notes
 Live execution blocked: Confirm flag --confirm missing, NOTEBOOKLM_MCP_ENABLED is not set to true
+
+---
+
+# 📋 Live Query Log Entry: 2026-05-31
+
+- **Timestamp:** 2026-06-01T00:55:48.463Z
+- **Command:** `execute`
+- **Query Type:** source-summary
+- **Confirmation Present:** true
+- **Readiness Score:** 100%
+- **Eligible:** YES
+- **Result:** BLOCKED
+
+### 📝 Notes
+Live execution blocked: NOTEBOOKLM_MCP_ENABLED is not set to true
+
+---
+
+# 📋 Live Query Log Entry: 2026-05-31
+
+- **Timestamp:** 2026-06-01T05:26:34.334Z
+- **Command:** `execute`
+- **Query Type:** source-summary
+- **Confirmation Present:** true
+- **Readiness Score:** 100%
+- **Eligible:** YES
+- **Result:** MANUAL_FALLBACK_STAGED
+
+### 📝 Notes
+Response record written to: notebooklm_live_response_source_summary_2026-05-31.md

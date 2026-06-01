@@ -47,6 +47,25 @@ function getSafeWritePath(dir: string, baseName: string, ext: string): string {
   return targetPath;
 }
 
+function loadEnvLocal(): void {
+  const envLocalPath = path.join(REPO_ROOT, '.env.local');
+  if (fs.existsSync(envLocalPath)) {
+    try {
+      const content = fs.readFileSync(envLocalPath, 'utf-8');
+      const lines = content.split('\n');
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+          const eqIndex = trimmed.indexOf('=');
+          const key = trimmed.substring(0, eqIndex).trim();
+          const val = trimmed.substring(eqIndex + 1).trim().replace(/^['"]|['"]$/g, '');
+          process.env[key] = val;
+        }
+      }
+    } catch (_) {}
+  }
+}
+
 function findLatestFile(dir: string, prefix: string): string {
   if (!fs.existsSync(dir)) return '';
   const files = fs.readdirSync(dir).filter(f => f.startsWith(prefix) && f.endsWith('.md')).sort();
@@ -389,6 +408,7 @@ async function handleStatus() {
 }
 
 async function run() {
+  loadEnvLocal();
   const args = process.argv.slice(2);
   let rawInput = args.join(' ');
   if (args.length === 1 && args[0].includes(' ')) {
