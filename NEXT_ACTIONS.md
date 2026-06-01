@@ -362,6 +362,15 @@
 - [ ] Phase 11W: Manually place Piper model files
 - [ ] Phase 11W: Rerun model gate after placement
 
+## Do Next
+- [ ] Build Duplicate Cleanup Staging Gate
+- [ ] Scan Obsidian duplicate briefs
+- [ ] Stage duplicate quarantine plan
+- [ ] Generate restore plan
+- [ ] Generate project registry drift report
+- [ ] Review 32 unregistered directories manually
+- [ ] Approve quarantine only after review
+
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
 - [ ] Build automated release pipeline integration for Tree Groove Records
