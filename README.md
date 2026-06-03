@@ -4170,6 +4170,82 @@ The **Manual Transcript Intake & Grounding Compiler** implements a safe local pi
   npm run command -- "transcript-intake" -- "status"
   ```
 
+---
+
+## 📖 Phase 13D: Workflow Idea Scoring Engine
+
+The **Workflow Idea Scoring Engine** parses grounded learning notes and NotebookLM source packs, extracts potential workflow ideas, rates them across a 10-dimension scorecard, and ranks them to output a weighted build recommendation.
+
+### 🔒 Guardrails Summary
+1. **SCORING_ONLY:** Strictly document-based scoring. External API calls, tasks, and Obsidian writes are blocked.
+2. **Weighted Scoring Criteria:** Rates ideas on fit, icy relevance, revenue, speed, difficulty, risk, reusability, automation, and audience.
+3. **Exact Command Name Routing:** Blocked command aliases to ensure router safety.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "workflow-idea-scoring-help"
+  ```
+* Extract workflow ideas:
+  ```bash
+  npm run command -- "workflow-idea-scoring" -- "extract"
+  ```
+* Generate scorecards:
+  ```bash
+  npm run command -- "workflow-idea-scoring" -- "score"
+  ```
+* Rank ideas:
+  ```bash
+  npm run command -- "workflow-idea-scoring" -- "rank"
+  ```
+* Generate build recommendations:
+  ```bash
+  npm run command -- "workflow-idea-scoring" -- "recommend"
+  ```
+
+---
+
+## 📖 Phase 13E: Pipeline Integration Stage Gate
+
+The **Pipeline Integration Stage Gate** compiles the top build recommendation from Phase 13D, maps target system dependencies, assigns council agents, compiles code specification prompts, and packages a structured checkbook for manual operator approval before execution.
+
+### 🔒 Guardrails Summary
+1. **STAGE_GATE_ONLY:** Safe document staging only. Command and script execution are strictly disabled.
+2. **Dependency Mapping:** Traces target modules, routing, I/O rules, and safety gates.
+3. **Agent Mapping:** Integrates OS council agents (Librarian, Auditor, Architect, Build Operator, etc.) and reviews roles.
+4. **Manual Approval Checkbook:** Collects references, risks, checklists, and final decisions into a staged file.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "pipeline-stage-gate-help"
+  ```
+* Stage build proposal:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "proposal"
+  ```
+* Generate dependency map:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "dependency-map"
+  ```
+* Map agent responsibilities:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "agent-map"
+  ```
+* Stage implementation prompt:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "implementation-prompt"
+  ```
+* Package approval checklist:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "approval-package"
+  ```
+* Review stage gate status:
+  ```bash
+  npm run command -- "pipeline-stage-gate" -- "status"
+  ```
+
+
 
 
 

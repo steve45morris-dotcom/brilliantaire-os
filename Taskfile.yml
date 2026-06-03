@@ -1606,3 +1606,13 @@ tasks:
     cmds:
       - npm run workflow-idea-scoring-help
 
+  pipeline-stage-gate:
+    desc: "Run Pipeline Integration Stage Gate CLI commands"
+    cmds:
+      - npm run pipeline-stage-gate -- {{.CLI_ARGS}}
+
+  pipeline-stage-gate-help:
+    desc: "Print help menu for Pipeline Integration Stage Gate CLI"
+    cmds:
+      - npm run pipeline-stage-gate-help
+

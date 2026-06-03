@@ -2258,6 +2258,72 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'asr-manual-asset-staging-operator-packet-help',
+    aliases: [],
+    description: 'Print help menu for ASR manual asset staging operator packet CLI',
+    npmScript: 'asr-manual-asset-staging-operator-packet-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-manual-asset-staging-operator-packet',
+    aliases: [],
+    description: 'Generate ASR manual asset staging operator instructions packet',
+    npmScript: 'asr-manual-asset-staging-operator-packet',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-operator-packet-completion-audit-help',
+    aliases: [],
+    description: 'Print help menu for ASR operator packet completion audit CLI',
+    npmScript: 'asr-operator-packet-completion-audit-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-operator-packet-completion-audit',
+    aliases: [],
+    description: 'Audit completion status of the staged Whisper model binaries and audio assets',
+    npmScript: 'asr-operator-packet-completion-audit',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-verification-rerun-trigger-packet-help',
+    aliases: [],
+    description: 'Print help menu for ASR verification rerun trigger packet CLI',
+    npmScript: 'asr-verification-rerun-trigger-packet-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-verification-rerun-trigger-packet',
+    aliases: [],
+    description: 'Verify preconditions and format validation rerun trigger command sequences',
+    npmScript: 'asr-verification-rerun-trigger-packet',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'project-registry-review-help',
     aliases: ['registry help', 'project drift help'],
     description: 'Print help menu for the local project registry drift review system',
@@ -2700,6 +2766,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-manual-evidence-action-board-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Manual Evidence Action Board commands',
+    npmScript: 'grinders-keep-manual-evidence-action-board-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-manual-evidence-action-board',
+    aliases: [],
+    description: 'Create prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander',
+    npmScript: 'grinders-keep-manual-evidence-action-board',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -2979,6 +3067,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: [],
     description: 'Builds and validates the final acceptance packet for Voice Ops from N5A to N5Y',
     npmScript: 'voice-ops-final-acceptance',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'pipeline-stage-gate-help',
+    aliases: ['pipeline gate help', 'stage gate help'],
+    description: 'Print help menu for Pipeline Integration Stage Gate CLI',
+    npmScript: 'pipeline-stage-gate-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'pipeline-stage-gate',
+    aliases: ['pipeline gate', 'stage gate'],
+    description: 'Execute Pipeline Integration Stage Gate CLI commands',
+    npmScript: 'pipeline-stage-gate',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',

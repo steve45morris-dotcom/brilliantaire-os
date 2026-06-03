@@ -615,6 +615,13 @@
 - [x] Generate build recommendations
 - [x] Generate workflow scoring summary
 - [x] Review build-now ideas manually
+- [x] Build Pipeline Integration Stage Gate
+- [x] Generate build proposal from top scored idea
+- [x] Generate dependency map
+- [x] Generate agent assignment report
+- [x] Generate implementation prompt
+- [x] Generate approval package
+- [ ] Review Pipeline Integration Stage Gate manually
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering

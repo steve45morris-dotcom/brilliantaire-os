@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 13C: Manual Transcript Intake & Grounding Compiler — COMPLETE
+- **Current Phase:** Phase 13E: Pipeline Integration Stage Gate — COMPLETE
 - **Last Verified:** 2026-06-03
 - **Build Status:** passing
 
@@ -131,6 +131,9 @@
 - **Knowledge Harvest Source Expansion (Phase 13A):** Safe local, manual-first creator source registry (`scripts/knowledge-source-registry.ts`) under the Knowledge Librarian for tracking approved sources, priority, transcript status, and workflow value.
 - **Creator YouTube URL Staging Gate (Phase 13B):** Safe manual staging system for approved creators (`scripts/creator-url-staging.ts`) under the Knowledge Librarian for staging video, playlist, and channel URLs, generating batch templates, and compiling staging reviews.
 - **Manual Transcript Intake & Grounding Compiler (Phase 13C):** Safe local transcript intake pipeline (`scripts/transcript-intake.ts`) under the Knowledge Librarian for validating, matching transcripts to staged URLs, compiling learning notes, and packaging NotebookLM source packs.
+- **Workflow Idea Scoring Engine (Phase 13D):** Safe document-based scoring system (`scripts/workflow-idea-scoring.ts`) under the Knowledge Librarian for extracting, score-carding, ranking, and recommending workflow ideas.
+- **Pipeline Integration Stage Gate (Phase 13E):** Safe staging gate pipeline (`scripts/pipeline-stage-gate.ts`) under the Workflow Auditor for compiling proposals, dependency maps, agent assignment matrices, implementation prompts, and manual approval packages.
+
 
 
 - **Grinders Keep Brief Engine (Phase 12B):** Local-first creative R&D engine (`scripts/grinders-keep-daily-brief.ts`) compiling daily briefs, lessons, gap scans, build suggestions, money moves, Google Ultra opportunities, content drafts, and consensus packets.

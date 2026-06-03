@@ -337,6 +337,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `transcript-intake` | `transcript`, `harvest transcript` | Knowledge Librarian | Medium | Yes | Execute Manual Transcript Intake & Grounding Compiler CLI commands. |
 | `workflow-idea-scoring-help` | `idea scoring help`, `workflow scoring help` | Knowledge Librarian | Low | No | Print help menu for Workflow Idea Scoring Engine CLI. |
 | `workflow-idea-scoring` | `idea scoring`, `workflow scoring` | Knowledge Librarian | Medium | Yes | Execute Workflow Idea Scoring Engine CLI commands. |
+| `pipeline-stage-gate-help` | `pipeline gate help`, `stage gate help` | Workflow Auditor | Low | No | Print help menu for Pipeline Integration Stage Gate CLI. |
+| `pipeline-stage-gate` | `pipeline gate`, `stage gate` | Workflow Auditor | Medium | Yes | Execute Pipeline Integration Stage Gate CLI commands. |
 
 
 
