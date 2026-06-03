@@ -681,6 +681,56 @@ tasks:
     cmds:
       - npm run asr-human-staged-asset-verification-pass-help
 
+  asr-gate-rerun-orchestrator:
+    desc: "Run Offline ASR Gate Rerun Orchestrator validation sweep"
+    cmds:
+      - npm run asr-gate-rerun-orchestrator -- {{.CLI_ARGS}}
+
+  asr-gate-rerun-orchestrator-help:
+    desc: "Print Offline ASR Gate Rerun Orchestrator help manual"
+    cmds:
+      - npm run asr-gate-rerun-orchestrator-help
+
+  asr-manual-asset-staging-operator-packet:
+    desc: "Generate Offline ASR Manual Staging Operator Packet instructions"
+    cmds:
+      - npm run asr-manual-asset-staging-operator-packet -- {{.CLI_ARGS}}
+
+  asr-manual-asset-staging-operator-packet-help:
+    desc: "Print Offline ASR Manual Staging Operator Packet help manual"
+    cmds:
+      - npm run asr-manual-asset-staging-operator-packet-help
+
+  asr-operator-packet-completion-audit:
+    desc: "Audit manual staging completion of Whisper model binaries and staged audio inputs"
+    cmds:
+      - npm run asr-operator-packet-completion-audit -- {{.CLI_ARGS}}
+
+  asr-operator-packet-completion-audit-help:
+    desc: "Print help menu for the offline ASR operator packet completion audit"
+    cmds:
+      - npm run asr-operator-packet-completion-audit-help
+
+  asr-verification-rerun-trigger-packet:
+    desc: "Generate verification rerun trigger packet for the validation chain sweep"
+    cmds:
+      - npm run asr-verification-rerun-trigger-packet -- {{.CLI_ARGS}}
+
+  asr-verification-rerun-trigger-packet-help:
+    desc: "Print help menu for the offline ASR verification rerun trigger packet"
+    cmds:
+      - npm run asr-verification-rerun-trigger-packet-help
+
+  asr-validation-chain-execution-report:
+    desc: "Validate and compile report of the full ASR validation chain execution status"
+    cmds:
+      - npm run asr-validation-chain-execution-report -- {{.CLI_ARGS}}
+
+  asr-validation-chain-execution-report-help:
+    desc: "Print help menu for the offline ASR validation chain execution report"
+    cmds:
+      - npm run asr-validation-chain-execution-report-help
+
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
     cmds:
@@ -994,6 +1044,56 @@ tasks:
     cmds:
       - npm run asr-human-staged-asset-verification-pass-help
 
+  asr-gate-rerun-orchestrator:
+    desc: "Run Offline ASR Gate Rerun Orchestrator validation sweep"
+    cmds:
+      - npm run asr-gate-rerun-orchestrator -- {{.CLI_ARGS}}
+
+  asr-gate-rerun-orchestrator-help:
+    desc: "Print Offline ASR Gate Rerun Orchestrator help manual"
+    cmds:
+      - npm run asr-gate-rerun-orchestrator-help
+
+  asr-manual-asset-staging-operator-packet:
+    desc: "Generate Offline ASR Manual Staging Operator Packet instructions"
+    cmds:
+      - npm run asr-manual-asset-staging-operator-packet -- {{.CLI_ARGS}}
+
+  asr-manual-asset-staging-operator-packet-help:
+    desc: "Print Offline ASR Manual Staging Operator Packet help manual"
+    cmds:
+      - npm run asr-manual-asset-staging-operator-packet-help
+
+  asr-operator-packet-completion-audit:
+    desc: "Audit manual staging completion of Whisper model binaries and staged audio inputs"
+    cmds:
+      - npm run asr-operator-packet-completion-audit -- {{.CLI_ARGS}}
+
+  asr-operator-packet-completion-audit-help:
+    desc: "Print help menu for the offline ASR operator packet completion audit"
+    cmds:
+      - npm run asr-operator-packet-completion-audit-help
+
+  asr-verification-rerun-trigger-packet:
+    desc: "Generate verification rerun trigger packet for the validation chain sweep"
+    cmds:
+      - npm run asr-verification-rerun-trigger-packet -- {{.CLI_ARGS}}
+
+  asr-verification-rerun-trigger-packet-help:
+    desc: "Print help menu for the offline ASR verification rerun trigger packet"
+    cmds:
+      - npm run asr-verification-rerun-trigger-packet-help
+
+  asr-validation-chain-execution-report:
+    desc: "Validate and compile report of the full ASR validation chain execution status"
+    cmds:
+      - npm run asr-validation-chain-execution-report -- {{.CLI_ARGS}}
+
+  asr-validation-chain-execution-report-help:
+    desc: "Print help menu for the offline ASR validation chain execution report"
+    cmds:
+      - npm run asr-validation-chain-execution-report-help
+
   asr-model-gate-help:
     desc: "Print Offline ASR Model Gate safety manuals"
     cmds:
@@ -1128,6 +1228,36 @@ tasks:
     desc: "Print help menu for the voice ops operator runbook"
     cmds:
       - npm run voice-ops-operator-runbook-help
+
+  voice-ops-recertification-scheduler:
+    desc: "Operator Recertification & Drill Rotation Scheduler (Phase N5X)"
+    cmds:
+      - npm run voice-ops-recertification-scheduler -- {{.CLI_ARGS}}
+
+  voice-ops-recertification-scheduler-help:
+    desc: "Print help menu for operator recertification scheduler"
+    cmds:
+      - npm run voice-ops-recertification-scheduler-help
+
+  voice-ops-final-system-index:
+    desc: "Voice Ops Final System Index (Phase N5Y)"
+    cmds:
+      - npm run voice-ops-final-system-index -- {{.CLI_ARGS}}
+
+  voice-ops-final-system-index-help:
+    desc: "Print help menu for voice ops final system index"
+    cmds:
+      - npm run voice-ops-final-system-index-help
+
+  voice-ops-final-acceptance:
+    desc: "Voice Ops Final Acceptance Packet (Phase N5Z)"
+    cmds:
+      - npm run voice-ops-final-acceptance -- {{.CLI_ARGS}}
+
+  voice-ops-final-acceptance-help:
+    desc: "Print help menu for voice ops final acceptance"
+    cmds:
+      - npm run voice-ops-final-acceptance-help
 
   cleanup-gate:
     desc: "Stage duplicate briefs cleanup plans and scan project registry drift"
@@ -1281,6 +1411,46 @@ tasks:
     cmds:
       - npm run grinders-keep-consensus-review-packet-deepener-help
 
+  grinders-keep-execution-approval-queue:
+    desc: "Run v0.1 Grinders Keep Execution Approval Queue sweep"
+    cmds:
+      - npm run grinders-keep-execution-approval-queue
+
+  grinders-keep-execution-approval-queue-help:
+    desc: "Print help documentation for Grinders Keep Execution Approval Queue"
+    cmds:
+      - npm run grinders-keep-execution-approval-queue-help
+
+  grinders-keep-final-human-launch-switch:
+    desc: "Run v0.1 Grinders Keep Final Human Launch Switch sweep"
+    cmds:
+      - npm run grinders-keep-final-human-launch-switch
+
+  grinders-keep-final-human-launch-switch-help:
+    desc: "Print help documentation for Grinders Keep Final Human Launch Switch"
+    cmds:
+      - npm run grinders-keep-final-human-launch-switch-help
+
+  grinders-keep-post-launch-review-ledger:
+    desc: "Run v0.1 Grinders Keep Post-Launch Review Ledger audit"
+    cmds:
+      - npm run grinders-keep-post-launch-review-ledger
+
+  grinders-keep-post-launch-review-ledger-help:
+    desc: "Print help documentation for Grinders Keep Post-Launch Review Ledger"
+    cmds:
+      - npm run grinders-keep-post-launch-review-ledger-help
+
+  grinders-keep-continuous-improvement-loop:
+    desc: "Run Grinders Keep Continuous Improvement Loop report generation"
+    cmds:
+      - npm run grinders-keep-continuous-improvement-loop
+
+  grinders-keep-continuous-improvement-loop-help:
+    desc: "Print help documentation for Grinders Keep Continuous Improvement Loop"
+    cmds:
+      - npm run grinders-keep-continuous-improvement-loop-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1375,3 +1545,14 @@ tasks:
     desc: "Print help menu for Knowledge Harvest Source Registry CLI"
     cmds:
       - npm run knowledge-source-registry-help
+
+  creator-url-staging:
+    desc: "Run Creator YouTube URL Staging Gate CLI commands"
+    cmds:
+      - npm run creator-url-staging -- {{.CLI_ARGS}}
+
+  creator-url-staging-help:
+    desc: "Print help menu for Creator YouTube URL Staging Gate CLI"
+    cmds:
+      - npm run creator-url-staging-help
+

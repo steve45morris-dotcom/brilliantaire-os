@@ -2429,8 +2429,93 @@ The **Voice Ops Operator Runbook** compiles system purpose, operational boundari
 
 ---
 
+## 🧭 Phase N5V: Voice Ops Operator Training Simulation Pack
 
+The **Voice Ops Operator Training Simulation Pack** provides automated mock scenarios to certify voice operations crew. It tracks scenarios like system drift, exact-name command bypass attempts, and emergency shutdown drills.
 
+### 💻 Command Examples
+* View training simulation help:
+  ```bash
+  npm run command -- "voice-ops-training-simulation-help"
+  ```
+* Run training status checks:
+  ```bash
+  npm run command -- "voice-ops-training-simulation status"
+  ```
+
+---
+
+## 🧭 Phase N5W: Operator Certification Ledger
+
+The **Operator Certification Ledger** registers certification credentials, safety grades, scenario completion score sheets, and issues tamper-proof local safety certificates.
+
+### 💻 Command Examples
+* View certification help menu:
+  ```bash
+  npm run command -- "voice-ops-certification-ledger-help"
+  ```
+* List safety certificates:
+  ```bash
+  npm run command -- "voice-ops-certification-ledger status"
+  ```
+
+---
+
+## 🧭 Phase N5X: Operator Recertification and Drill Rotation Scheduler
+
+The **Operator Recertification and Drill Rotation Scheduler** tracks expiry dates, schedules drill rotations across categories, stages renewal plans, and compiles compliance metrics.
+
+### 💻 Command Examples
+* View recertification help menu:
+  ```bash
+  npm run command -- "voice-ops-recertification-scheduler-help"
+  ```
+* Check recertification scheduler status:
+  ```bash
+  npm run command -- "voice-ops-recertification-scheduler status"
+  ```
+
+---
+
+## 🧭 Phase N5Y: Voice Ops Final System Index
+
+The **Voice Ops Final System Index** compiles the master index mapping modules, commands, reports, dashboard panels, and safety policies from N5A through N5X.
+
+### 💻 Command Examples
+* View system index help menu:
+  ```bash
+  npm run command -- "voice-ops-final-system-index-help"
+  ```
+* Check system index status:
+  ```bash
+  npm run command -- "voice-ops-final-system-index status"
+  ```
+* Generate master index files:
+  ```bash
+  npm run command -- "voice-ops-final-system-index generate-index"
+  ```
+
+---
+
+## 🧭 Phase N5Z: Final Voice Ops Acceptance Packet
+
+The **Final Voice Ops Acceptance Packet** builds, validates, and signs off on the Voice Ops chain (N5A through N5Y) locally and offline.
+
+### 💻 Command Examples
+* View acceptance help menu:
+  ```bash
+  npm run command -- "voice-ops-final-acceptance-help"
+  ```
+* Check acceptance status:
+  ```bash
+  npm run command -- "voice-ops-final-acceptance status"
+  ```
+* Generate final acceptance packet:
+  ```bash
+  npm run command -- "voice-ops-final-acceptance generate-packet"
+  ```
+
+---
 
 ## 🧭 Phase 11M: NotebookLM MCP Live Adapter Integration
 
@@ -3156,10 +3241,104 @@ The **ASR Asset Acquisition Ledger** creates a local-first human asset tracking 
 
 ---
 
+## 🧭 Phase 11Z-I: Human-Staged Asset Verification Pass
+
+The **Human-Staged Asset Verification Pass** cross-validates manual Whisper model binary staging under `models/asr/whisper/`, manifest cryptographic checks, and staged audio inputs against actual disk state offline.
+
+### 🛡️ Safety & Execution Rules
+1. **Verification Only:** Performs passive inspections without running ASR or downloading files.
+2. **Fail Closed:** Defaults to blocked if required files are missing or mismatching.
+
+### 💻 Command Examples
+* Run human staged verification check:
+  ```bash
+  npm run command -- "asr-human-staged-asset-verification-pass"
+  ```
+
+---
+
+## 🧭 Phase 11Z-J: ASR Gate Rerun Orchestrator
+
+The **ASR Gate Rerun Orchestrator** sequentially triggers the chain of offline validation gates to evaluate join readiness.
+
+### 💻 Command Examples
+* Run gate rerun orchestrator:
+  ```bash
+  npm run command -- "asr-gate-rerun-orchestrator"
+  ```
+
+---
+
+## 🧭 Phase 11Z-K: ASR Manual Asset Staging Operator Packet
+
+Generates operator instruction packets guiding manual placement of Whisper binaries, shasum capture commands, and manifest updates specifications.
+
+### 💻 Command Examples
+* Generate operator staging packet:
+  ```bash
+  npm run command -- "asr-manual-asset-staging-operator-packet"
+  ```
+
+---
+
+## 🧭 Phase 11Z-L: Operator Packet Completion Audit
+
+Audits whether the human operator has completed the manual staging tasks from Phase 11Z-K (model placement, manifest update, audio staging) before rerun validations are unblocked.
+
+### 💻 Command Examples
+* Run completion audit check:
+  ```bash
+  npm run command -- "asr-operator-packet-completion-audit"
+  ```
+
+---
+
+## 🧭 Phase 11Z-M: Verification Rerun Trigger Packet
+
+Generates the final local-first rerun trigger packet for the full ASR validation chain after operator packet completion is confirmed.
+
+### 🛡️ Safety & Execution Rules
+1. **Trigger Packet Only:** Performs read-only staging completeness checks without executing model downloads, auto-modifying manifests, running ASR, or transcribing audio files.
+2. **Fail Closed:** Reports `rerun_trigger_status: 'blocked'` if any validation prerequisites are missing or mismatched, preventing gate execution.
+3. **Phase 12A Lock:** Enforces that Phase 12A remains strictly locked.
+
+### 💻 Command Examples
+* View verification trigger packet help manual:
+  ```bash
+  npm run command -- "asr-verification-rerun-trigger-packet-help"
+  ```
+* Generate verification rerun trigger packet:
+  ```bash
+  npm run command -- "asr-verification-rerun-trigger-packet"
+  ```
+
+---
+
+## 🧭 Phase 11Z-N: Validation Chain Execution Report
+
+Validates and compiles a report showing whether the system reaches `dry_run_ready` without enabling transcription by running or reading outputs from the full ASR validation chain.
+
+### 🛡️ Safety & Execution Rules
+1. **Validation Gates Only:** Passive verification of ASR gate manifests without calling Whisper or mutating models/audio.
+2. **Fail Closed:** Reports `validation_chain_status: 'blocked'` and outputs a blocker-only report if any gate is incomplete, model files are missing, or safety checks fail.
+3. **No Execution:** Speech transcription engines and Whisper executables remain offline.
+
+### 💻 Command Examples
+* View validation chain execution report help manual:
+  ```bash
+  npm run command -- "asr-validation-chain-execution-report-help"
+  ```
+* Run validation chain execution report:
+  ```bash
+  npm run command -- "asr-validation-chain-execution-report"
+  ```
+
+---
+
 ## 🚀 Next Phase Recommendation
 
-* **Phase 11Z-I: Human-Staged Asset Verification Pass**
-  - After the human manually places model binaries, updates manifests, and stages audio, verify the ledger against actual disk state before rerunning full checksum and readiness gates.
+* **Phase 12A: Offline ASR Execution Approval Switch**
+  - Create a human-controlled approval switch for selected local audio files to move toward real offline ASR transcription once validation_chain_status equals dry_run_ready.
 
 ---
 
@@ -3415,6 +3594,39 @@ The **Grinders Keep Core Brief Engine Plus** is a local-first creative R&D engin
   ```bash
   npm run command -- "grinders-keep-consensus-review-packet-deepener-help"
   ```
+* Run Manual Review Intake Gate sweep:
+  ```bash
+  npm run command -- "grinders-keep-manual-review-intake-gate"
+  ```
+* Print Manual Review Intake Gate help menu:
+  ```bash
+  npm run command -- "grinders-keep-manual-review-intake-gate-help"
+  ```
+* Run Decision Synthesis Gate sweep:
+  ```bash
+  npm run command -- "grinders-keep-decision-synthesis-gate"
+  ```
+* Print Decision Synthesis Gate help menu:
+  ```bash
+  npm run command -- "grinders-keep-decision-synthesis-gate-help"
+  ```
+* Run Execution Approval Queue sweep:
+  ```bash
+  npm run command -- "grinders-keep-execution-approval-queue"
+  ```
+* Print Execution Approval Queue help menu:
+  ```bash
+  npm run command -- "grinders-keep-execution-approval-queue-help"
+  ```
+* Run Final Human Launch Switch sweep:
+  ```bash
+  npm run command -- "grinders-keep-final-human-launch-switch"
+  ```
+* Print Final Human Launch Switch help menu:
+  ```bash
+  npm run command -- "grinders-keep-final-human-launch-switch-help"
+  ```
+
 
 ---
 
@@ -3684,6 +3896,94 @@ The **Cleanup Approval Gate** reads duplicate cleanup reports and builds manual 
 
 ---
 
+## 🛡️ Phase 12J: Grinders Keep Execution Approval Queue
+
+The **Grinders Keep Execution Approval Queue** is a local-first staging queue that takes human-approved decisions from Phase 12I and converts them into safe, non-destructive execution tickets. It ensures absolute control by staging actions instead of running them automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Verification:** Strictly no external API calls, Google tools execution, or publishing.
+2. **Staging Only:** Creates execution tickets; does not execute commands or mutate registry files.
+3. **No Inventions:** Rejects mock approvals and enforces validation from real decision_synthesis/ data.
+4. **Command Routing Gating:** Enforces exact-name routing for medium-risk scripts and blocks aliases.
+
+### 💻 Command Examples
+* View queue help menu:
+  ```bash
+  npm run command -- "grinders-keep-execution-approval-queue-help"
+  ```
+* Process execution approval queue sweep:
+  ```bash
+  npm run command -- "grinders-keep-execution-approval-queue"
+  ```
+
+---
+
+## 🛡️ Phase 12K: Grinders Keep Final Human Launch Switch
+
+The **Grinders Keep Final Human Launch Switch** is the final human-controlled gateway that validates launch eligibility of execution tickets from Phase 12J, marks eligible ones as ready for manual execution, and compiles manual command sheets. It enforces strict safety parameters by staging manual instruction sheets and prohibiting any automatic command execution.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, or automated tools execution.
+2. **Execution Disabled:** Stages manual command instructions; does not execute any command.
+3. **No Inventions:** Restricts data validation to real local inputs; if missing, marks as missing/unavailable.
+4. **Command Routing Gating:** Requires exact-name command routing match. Aliases are blocked.
+
+### 💻 Command Examples
+* View launch switch help menu:
+  ```bash
+  npm run command -- "grinders-keep-final-human-launch-switch-help"
+  ```
+* Run final launch switch validation sweep:
+  ```bash
+  npm run command -- "grinders-keep-final-human-launch-switch"
+  ```
+
+---
+
+## 🛡️ Phase 12L: Grinders Keep Post-Launch Review Ledger
+
+The **Grinders Keep Post-Launch Review Ledger** is a local review ledger that records what Commander manually executed after Phase 12K, captures outcomes, verifies output files where possible, and feeds telemetry back into Grinders Keep without running commands automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, or builds.
+2. **Read-Only / Local Only:** Does not mutate source reports, publish, upload, or delete files.
+3. **No Inventions:** Restricts post-launch validation to real local inputs; if missing, reports that no records were found.
+4. **Command Routing Gating:** Requires exact-name command routing match. Aliases are blocked.
+
+### 💻 Command Examples
+* View post-launch review ledger help menu:
+  ```bash
+  npm run command -- "grinders-keep-post-launch-review-ledger-help"
+  ```
+* Run post-launch review ledger sweep:
+  ```bash
+  npm run command -- "grinders-keep-post-launch-review-ledger"
+  ```
+
+---
+
+## 🛡️ Phase 12M: Grinders Keep Continuous Improvement Loop
+
+The **Grinders Keep Continuous Improvement Loop** is a local improvement loop that reads post-launch ledger outcomes, recurring blockers, adaptive learning patterns, execution blockers, manual review intake status, decision synthesis status, and launch switch telemetry to recommend safe process improvements without applying them automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, or builds.
+2. **Read-Only / Local Only:** Does not mutate source reports, publish, upload, or delete files.
+3. **No Inventions:** Proposes upgrades based strictly on real observed data/telemetry.
+4. **Command Routing Gating:** Requires exact-name command routing match. Aliases are blocked.
+
+### 💻 Command Examples
+* View continuous improvement loop help menu:
+  ```bash
+  npm run command -- "grinders-keep-continuous-improvement-loop-help"
+  ```
+* Run continuous improvement loop:
+  ```bash
+  npm run command -- "grinders-keep-continuous-improvement-loop"
+  ```
+
+---
+
 ## 📖 Phase 13A: Knowledge Harvest Source Expansion
 
 The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.
@@ -3723,6 +4023,45 @@ The **Knowledge Harvest Source Expansion** implements a local, manual-first crea
   ```bash
   npm run command -- "knowledge-source-registry" -- "status"
   ```
+
+---
+
+## 📖 Phase 13B: Creator YouTube URL Staging Gate
+
+The **Creator YouTube URL Staging Gate** implements a safe, manual-first staging system for approved creators. It allows the operator to manually stage creator video, playlist, or channel URLs for later transcript processing, NotebookLM routing, and workflow idea extraction without scraping, downloading, or calling external APIs.
+
+### 🔒 Guardrails Summary
+1. **URL Staging Only:** Scrapers, crawlers, APIs, and video downloading are disabled.
+2. **Approved Creators only:** restricts intake to approved profiles (like Julian Goldie).
+3. **Manual Review Required:** Staged records are organized into status reports for operator review.
+4. **Command Routing Gating:** Enforces exact-name routing for medium-risk scripts and blocks aliases.
+
+### 💻 Command Examples
+* View staging help menu:
+  ```bash
+  npm run command -- "creator-url-staging-help"
+  ```
+* Stage a specific URL manually:
+  ```bash
+  npm run command -- "creator-url-staging" -- "stage julian <URL>"
+  ```
+* Generate a batch template:
+  ```bash
+  npm run command -- "creator-url-staging" -- "batch julian"
+  ```
+* Compile review report:
+  ```bash
+  npm run command -- "creator-url-staging" -- "review"
+  ```
+* Compile transcript next-steps report:
+  ```bash
+  npm run command -- "creator-url-staging" -- "transcript-next"
+  ```
+* Query current staging status dashboard:
+  ```bash
+  npm run command -- "creator-url-staging" -- "status"
+  ```
+
 
 
 

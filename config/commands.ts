@@ -2236,6 +2236,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'asr-validation-chain-execution-report-help',
+    aliases: [],
+    description: 'Print help menu for the offline ASR validation chain execution report',
+    npmScript: 'asr-validation-chain-execution-report-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-validation-chain-execution-report',
+    aliases: [],
+    description: 'Validate and compile report of the full ASR validation chain execution status',
+    npmScript: 'asr-validation-chain-execution-report',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'project-registry-review-help',
     aliases: ['registry help', 'project drift help'],
     description: 'Print help menu for the local project registry drift review system',
@@ -2524,6 +2546,94 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-execution-approval-queue-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Execution Approval Queue commands',
+    npmScript: 'grinders-keep-execution-approval-queue-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-execution-approval-queue',
+    aliases: [],
+    description: 'Process the Grinders Keep execution approval queue sweep and generate execution tickets',
+    npmScript: 'grinders-keep-execution-approval-queue',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-final-human-launch-switch-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Final Human Launch Switch commands',
+    npmScript: 'grinders-keep-final-human-launch-switch-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-final-human-launch-switch',
+    aliases: [],
+    description: 'Process the Grinders Keep final human launch switch, check eligibility and stage manual commands',
+    npmScript: 'grinders-keep-final-human-launch-switch',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-post-launch-review-ledger-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Post-Launch Review Ledger commands',
+    npmScript: 'grinders-keep-post-launch-review-ledger-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-post-launch-review-ledger',
+    aliases: [],
+    description: 'Process and audit manual execution records post-launch, verifying outcomes and telemetry',
+    npmScript: 'grinders-keep-post-launch-review-ledger',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-continuous-improvement-loop-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Continuous Improvement Loop commands',
+    npmScript: 'grinders-keep-continuous-improvement-loop-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-continuous-improvement-loop',
+    aliases: [],
+    description: 'Process and analyze post-launch telemetry, recurring blockers, and signals to recommend process upgrades',
+    npmScript: 'grinders-keep-continuous-improvement-loop',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -2672,6 +2782,94 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     description: 'Execute Knowledge Harvest Source Registry commands',
     npmScript: 'knowledge-source-registry',
     owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'creator-url-staging-help',
+    aliases: ['url staging help', 'creator url help'],
+    description: 'Print help menu for Creator YouTube URL Staging Gate CLI',
+    npmScript: 'creator-url-staging-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'creator-url-staging',
+    aliases: ['url staging', 'creator url'],
+    description: 'Execute Creator YouTube URL Staging Gate CLI commands',
+    npmScript: 'creator-url-staging',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-recertification-scheduler-help',
+    aliases: [],
+    description: 'Print help menu for the Voice Ops Recertification and Drill Rotation Scheduler',
+    npmScript: 'voice-ops-recertification-scheduler-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-recertification-scheduler',
+    aliases: [],
+    description: 'Tracks certification expiry, schedules mock drills, rotates categories, and stages renewal tasks',
+    npmScript: 'voice-ops-recertification-scheduler',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-final-system-index-help',
+    aliases: [],
+    description: 'Print help menu for the Voice Ops Final System Index CLI',
+    npmScript: 'voice-ops-final-system-index-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-final-system-index',
+    aliases: [],
+    description: 'Generates system index mapping modules, commands, reports, dashboard panels, and safety policies from N5A to N5X',
+    npmScript: 'voice-ops-final-system-index',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-final-acceptance-help',
+    aliases: [],
+    description: 'Print help menu for the Voice Ops Final Acceptance CLI',
+    npmScript: 'voice-ops-final-acceptance-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-final-acceptance',
+    aliases: [],
+    description: 'Builds and validates the final acceptance packet for Voice Ops from N5A to N5Y',
+    npmScript: 'voice-ops-final-acceptance',
+    owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',
     enabled: true,

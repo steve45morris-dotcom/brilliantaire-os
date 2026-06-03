@@ -177,7 +177,8 @@
 - [x] Phase N5U: Voice Ops Operator Runbook
 - [x] Phase N5V: Operator Training Simulation Pack
 - [x] Phase N5W: Operator Certification Ledger
-- [ ] Phase N5X: Operator Recertification and Drill Rotation Scheduler
+- [x] Phase N5X: Operator Recertification and Drill Rotation Scheduler
+- [x] Phase N5Z: Final Voice Ops Acceptance Packet
 
 ## Do Now
 - [x] Build Knowledge Harvest Engine v1
@@ -495,8 +496,30 @@
 - [x] Phase 11Z-K: Generate outputs under outputs/asr_operator_packet/ (9 markdown reports and 1 json manifest)
 - [x] Phase 11Z-K: Register exact command and help commands with requiresExactName constraint and alias blocking
 - [x] Phase 11Z-K: Adhere to strict safety rules (no ASR execution, no speech transcription, no automatic downloads, no external API calls, and no file mutations)
+- [x] Phase 11Z-L: Build ASR Operator Packet Completion Audit (Goal: audit human operator completion of manual staging instructions)
+- [x] Phase 11Z-L: Create configuration config/asr-operator-packet-completion-audit.ts
+- [x] Phase 11Z-L: Create main audit script scripts/asr-operator-packet-completion-audit.ts
+- [x] Phase 11Z-L: Create help utility scripts/asr-operator-packet-completion-audit-help.ts
+- [x] Phase 11Z-L: Create templates for completion audit, model placement, manifest completion, audio staging, rerun readiness, blockers, and summary
+- [x] Phase 11Z-L: Generate outputs under outputs/asr_operator_completion_audit/ (8 markdown reports and 1 json manifest)
+- [x] Phase 11Z-L: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [x] Phase 11Z-M: Build ASR Verification Rerun Trigger Packet (Goal: generate rerun trigger packet for validation chain sweep)
+- [x] Phase 11Z-M: Create configuration config/asr-verification-rerun-trigger-packet.ts
+- [x] Phase 11Z-M: Create main trigger script scripts/asr-verification-rerun-trigger-packet.ts
+- [x] Phase 11Z-M: Create help utility scripts/asr-verification-rerun-trigger-packet-help.ts
+- [x] Phase 11Z-M: Create templates for rerun trigger packet, preconditions, command sequence, blockers checklist, safety locks, expected outcomes, and summary
+- [x] Phase 11Z-M: Generate outputs under outputs/asr_rerun_trigger/ (8 markdown reports and 1 json manifest)
+- [x] Phase 11Z-M: Register exact command and help commands with requiresExactName constraint and alias blocking
 
 ## Do Next
+- [x] Phase 11Z-N: Validation Chain Execution Report (Trigger validation rerun chain and compile status report)
+- [x] Phase 11Z-N: Create configuration config/asr-validation-chain-execution-report.ts
+- [x] Phase 11Z-N: Create main validation chain reporter scripts/asr-validation-chain-execution-report.ts
+- [x] Phase 11Z-N: Create help utility scripts/asr-validation-chain-execution-report-help.ts
+- [x] Phase 11Z-N: Create templates for report, preconditions, step result, blocker, final status, safety locks, summary, and next actions
+- [x] Phase 11Z-N: Generate outputs under outputs/asr_validation_chain/ (8 markdown reports and 1 json manifest)
+- [x] Phase 11Z-N: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [ ] Phase 12A: Offline ASR Execution Approval Switch (Create human switch approval for offline ASR transcription)
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
@@ -570,7 +593,14 @@
 - [x] Generate transcript status report
 - [x] Generate workflow value report
 - [x] Generate source pack status report
-- [ ] Review next creator sources manually
+- [x] Review next creator sources manually
+- [x] Build Creator YouTube URL Staging Gate
+- [x] Stage first Julian Goldie URL manually
+- [x] Generate Julian batch URL template
+- [x] Generate URL staging review
+- [x] Generate transcript next-step report
+- [x] Review which URL should enter transcript intake first
+
 
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
@@ -635,8 +665,18 @@
 - [x] Phase 12G: Deepen the Google Ultra opportunity layer to map verified project needs to manual Gemini, NotebookLM, Flow, Whisk, Veo, Antigravity, Drive, Docs, Sheets, Gmail, YouTube, and Google Vids workflows without calling Google tools automatically
 - [x] Phase 12H: Grinders Keep Manual Review Intake Gate
 - [x] Phase 12H: Create a local intake gate for manually pasted responses from ChatGPT, Gemini, Claude, NotebookLM, and Google Ultra tool tests, parsing, scoring, and comparing them without inventing model feedback
-- [ ] Phase 12I: Grinders Keep Decision Synthesis Gate
-- [ ] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically
+- [x] Phase 12I: Grinders Keep Decision Synthesis Gate
+- [x] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically
+- [x] Phase 12J: Grinders Keep Execution Approval Queue
+- [x] Phase 12J: Process the Grinders Keep execution approval queue sweep and generate execution tickets
+- [x] Phase 12K: Grinders Keep Final Human Launch Switch
+- [x] Phase 12K: Validate launch eligibility of execution tickets from Phase 12J, mark eligible ones as ready for manual execution, and compile manual command sheets without automated execution
+- [x] Phase 12L: Grinders Keep Post-Launch Review Ledger
+- [x] Phase 12L: Record manually executed post-launch actions, outcomes, verifications, and compile telemetry without calling external tools or executing commands
+- [x] Phase 12M: Grinders Keep Continuous Improvement Loop
+- [x] Phase 12M: Analyze post-launch telemetry, blockers, and signals to recommend process upgrades without automatic execution
+- [ ] Phase 12N: Grinders Keep Evidence Collection Queue
+
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

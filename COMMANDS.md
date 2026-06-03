@@ -156,6 +156,16 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
 | `asr-human-staged-asset-verification-pass-help` | `asr human verify help`, `whisper human verify help` | Build Operator | Low | Yes | Print help menu for the offline ASR human-staged asset verification pass. |
 | `asr-human-staged-asset-verification-pass` | `asr human verify`, `whisper human verify` | Build Operator | Medium | Yes | Cross-validate manual Whisper model binary staging, manifest integrity, and staged audio inputs offline. |
+| `asr-gate-rerun-orchestrator-help` | `asr rerun help`, `whisper rerun help` | Build Operator | Low | Yes | Print help menu for the offline ASR gate rerun orchestrator. |
+| `asr-gate-rerun-orchestrator` | `asr rerun`, `whisper rerun` | Build Operator | Medium | Yes | Sequentially rerun offline validation gates chain to unblock dry-run readiness. |
+| `asr-manual-asset-staging-operator-packet-help` | `asr packet help`, `whisper packet help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual staging operator packet. |
+| `asr-manual-asset-staging-operator-packet` | `asr packet`, `whisper packet` | Build Operator | Medium | Yes | Generate manual staging operator instructions, macOS/Linux commands, and checksum updates specifications. |
+| `asr-operator-packet-completion-audit-help` | `asr completion help`, `whisper completion help` | Build Operator | Low | Yes | Print help menu for the offline ASR operator packet completion audit. |
+| `asr-operator-packet-completion-audit` | `asr completion`, `whisper completion` | Build Operator | Medium | Yes | Audit manual staging of Whisper model files, manifest checksum entries, and audio staging folders completeness. |
+| `asr-verification-rerun-trigger-packet-help` | `asr trigger help`, `whisper trigger help` | Build Operator | Low | Yes | Print help menu for the offline ASR verification rerun trigger packet. |
+| `asr-verification-rerun-trigger-packet` | `asr trigger`, `whisper trigger` | Build Operator | Medium | Yes | Generate verification rerun trigger packet for ASR validation gates chain. |
+| `asr-validation-chain-execution-report-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR validation chain execution report. |
+| `asr-validation-chain-execution-report` | None | Build Operator | Medium | Yes | Validate and compile report of the full ASR validation chain execution status. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -234,6 +244,16 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-asset-acquisition-ledger` | `asr ledger`, `whisper ledger` | Build Operator | Medium | Yes | Compile local manual Whisper model acquisition entries, checksum registries, staged audios, and human handoff checks. |
 | `asr-human-staged-asset-verification-pass-help` | `asr human verify help`, `whisper human verify help` | Build Operator | Low | Yes | Print help menu for the offline ASR human-staged asset verification pass. |
 | `asr-human-staged-asset-verification-pass` | `asr human verify`, `whisper human verify` | Build Operator | Medium | Yes | Cross-validate manual Whisper model binary staging, manifest integrity, and staged audio inputs offline. |
+| `asr-gate-rerun-orchestrator-help` | `asr rerun help`, `whisper rerun help` | Build Operator | Low | Yes | Print help menu for the offline ASR gate rerun orchestrator. |
+| `asr-gate-rerun-orchestrator` | `asr rerun`, `whisper rerun` | Build Operator | Medium | Yes | Sequentially rerun offline validation gates chain to unblock dry-run readiness. |
+| `asr-manual-asset-staging-operator-packet-help` | `asr packet help`, `whisper packet help` | Build Operator | Low | Yes | Print help menu for the offline ASR manual staging operator packet. |
+| `asr-manual-asset-staging-operator-packet` | `asr packet`, `whisper packet` | Build Operator | Medium | Yes | Generate manual staging operator instructions, macOS/Linux commands, and checksum updates specifications. |
+| `asr-operator-packet-completion-audit-help` | `asr completion help`, `whisper completion help` | Build Operator | Low | Yes | Print help menu for the offline ASR operator packet completion audit. |
+| `asr-operator-packet-completion-audit` | `asr completion`, `whisper completion` | Build Operator | Medium | Yes | Audit manual staging of Whisper model files, manifest checksum entries, and audio staging folders completeness. |
+| `asr-verification-rerun-trigger-packet-help` | `asr trigger help`, `whisper trigger help` | Build Operator | Low | Yes | Print help menu for the offline ASR verification rerun trigger packet. |
+| `asr-verification-rerun-trigger-packet` | `asr trigger`, `whisper trigger` | Build Operator | Medium | Yes | Generate verification rerun trigger packet for ASR validation gates chain. |
+| `asr-validation-chain-execution-report-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR validation chain execution report. |
+| `asr-validation-chain-execution-report` | None | Build Operator | Medium | Yes | Validate and compile report of the full ASR validation chain execution status. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -250,6 +270,12 @@ To ensure complete control and system safety, the router enforces the following 
 | `voice-ops-maintenance-scheduler` | None | Workflow Auditor | Medium | Yes | Stage, approve, reject, list, and sign off voice ops manual-first maintenance checklists (status, create-weekly, create-daily, create-health-check, create-dashboard-refresh, create-retention-review, create-drift-review, list-queue, inspect, approve, reject, mark-complete, maintenance-summary, latest, scheduler-log). |
 | `voice-ops-operator-runbook-help` | None | Workflow Auditor | Low | Yes | Print help menu for the voice ops operator runbook. |
 | `voice-ops-operator-runbook` | None | Workflow Auditor | Medium | Yes | Compile safety, daily, weekly checklists, major workflows, command index, and stop guide procedures (status, generate, command-index, safety-checklist, daily-checklist, weekly-checklist, workflow-map, troubleshooting, emergency-stop, latest, list-runbooks, runbook-summary, runbook-log). |
+| `voice-ops-recertification-scheduler-help` | None | Workflow Auditor | Low | Yes | Print help menu for the Voice Ops Recertification and Drill Rotation Scheduler. |
+| `voice-ops-recertification-scheduler` | None | Workflow Auditor | Medium | Yes | Tracks certification expiry, schedules mock drills, rotates scenario categories, stages renewal tasks, and produces readiness reports. (status, scan-certifications, inspect-certification, create-renewal-plan, list-renewal-queue, inspect-renewal, approve-renewal, reject-renewal, mark-renewal-complete, generate-drill-rotation, drill-calendar, renewal-readiness, latest, recertification-summary, recertification-log). |
+| `voice-ops-final-system-index-help` | None | Workflow Auditor | Low | Yes | Print help menu for the Voice Ops Final System Index CLI. |
+| `voice-ops-final-system-index` | None | Workflow Auditor | Medium | Yes | Generates system index mapping modules, commands, reports, dashboard panels, and safety policies from N5A to N5X. (status, scan-system, phase-index, command-index, report-index, dashboard-index, safety-index, certification-index, roadmap, generate-index, latest, list-indexes, index-summary, index-log). |
+| `voice-ops-final-acceptance-help` | None | Workflow Auditor | Low | Yes | Print help menu for the Voice Ops Final Acceptance CLI. |
+| `voice-ops-final-acceptance` | None | Workflow Auditor | Medium | Yes | Builds the final local acceptance packet for the completed Voice Ops system spanning N5A through N5Y. (status, scan-evidence, acceptance-checklist, safety-acceptance, certification-acceptance, dashboard-acceptance, artifact-acceptance, risk-register, generate-packet, verify-packet, latest, list-packets, acceptance-summary, acceptance-log). |
 | `project-registry-review-help` | `registry help`, `project drift help` | Workflow Auditor | Low | No | Print help command menu for the local project registry drift review system. |
 | `project-registry-review` | `registry review`, `project drift` | Workflow Auditor | Medium | Yes | Scan roots, classify project folders, score importance, and stage PROJECTS.md candidate entries. |
 | `project-registry-append-gate-help` | `registry append help`, `append gate help` | Workflow Auditor | Low | No | Print help command menu for the local project registry append gate. |
@@ -277,6 +303,18 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-content-drafting-lab-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Content Drafting Lab Deepener engine commands. |
 | `grinders-keep-consensus-review-packet-deepener` | *(none)* | Creative Revenue Strategist | Low | Yes | Run v0.1 Consensus Review Packet Deepener to package context into multi-model and multi-domain manual review prompts. |
 | `grinders-keep-consensus-review-packet-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Consensus Review Packet Deepener engine commands. |
+| `grinders-keep-manual-review-intake-gate` | *(none)* | Creative Revenue Strategist | Medium | Yes | Run v0.1 manual review intake gate to parse, validate, and compare manually pasted reviews. |
+| `grinders-keep-manual-review-intake-gate-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help menu for manual review intake gate. |
+| `grinders-keep-decision-synthesis-gate` | *(none)* | Creative Revenue Strategist | Medium | Yes | Run v0.1 decision synthesis gate to consolidate reviews into human-approved decisions, build/content approvals, and monetization experiments. |
+| `grinders-keep-decision-synthesis-gate-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help menu for decision synthesis gate. |
+| `grinders-keep-execution-approval-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process the Grinders Keep execution approval queue sweep and generate execution tickets. |
+| `grinders-keep-execution-approval-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Execution Approval Queue. |
+| `grinders-keep-final-human-launch-switch` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process the Grinders Keep final human launch switch, validate eligibility, and compile manual command sheets. |
+| `grinders-keep-final-human-launch-switch-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Final Human Launch Switch. |
+| `grinders-keep-post-launch-review-ledger` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process and audit manual execution records post-launch, verifying outcomes and telemetry. |
+| `grinders-keep-post-launch-review-ledger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Post-Launch Review Ledger. |
+| `grinders-keep-continuous-improvement-loop` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process and analyze post-launch telemetry, recurring blockers, and signals to recommend process upgrades. |
+| `grinders-keep-continuous-improvement-loop-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Continuous Improvement Loop. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
@@ -287,6 +325,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `maintenance-observation` | `observation`, `maintenance observation` | Workflow Auditor | Medium | Yes | Run quarantine countdown and expiration watch during daily check sweeps. |
 | `knowledge-source-registry-help` | `source registry help`, `harvest source help` | Knowledge Librarian | Low | No | Print help menu for Knowledge Harvest Source Registry CLI. |
 | `knowledge-source-registry` | `source registry`, `harvest source` | Knowledge Librarian | Medium | Yes | Execute Knowledge Harvest Source Registry commands. |
+| `creator-url-staging-help` | `url staging help`, `creator url help` | Knowledge Librarian | Low | No | Print help menu for Creator YouTube URL Staging Gate CLI. |
+| `creator-url-staging` | `url staging`, `creator url` | Knowledge Librarian | Medium | Yes | Execute Creator YouTube URL Staging Gate CLI commands. |
+
 
 ---
 
