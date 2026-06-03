@@ -3984,6 +3984,28 @@ The **Grinders Keep Continuous Improvement Loop** is a local improvement loop th
 
 ---
 
+## 🛡️ Phase 12N: Grinders Keep Evidence Collection Queue
+
+The **Grinders Keep Evidence Collection Queue** stages manual collection tasks for the Commander when evidence files, review packets, screenshots, outcome notes, or monetization proof is missing.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, uploads, or publishing.
+2. **Read-Only / Local Only:** Proposes collection tasks based strictly on real observed folder states; does not automate collection.
+3. **No Inventions:** Marks missing items as unavailable instead of inventing mock results.
+4. **Command Routing Gating:** Requires exact-name command routing match. Aliases are blocked.
+
+### 💻 Command Examples
+* View evidence collection queue help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-collection-queue-help"
+  ```
+* Run evidence collection queue:
+  ```bash
+  npm run command -- "grinders-keep-evidence-collection-queue"
+  ```
+
+---
+
 ## 📖 Phase 13A: Knowledge Harvest Source Expansion
 
 The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.
@@ -4061,6 +4083,49 @@ The **Creator YouTube URL Staging Gate** implements a safe, manual-first staging
   ```bash
   npm run command -- "creator-url-staging" -- "status"
   ```
+
+---
+
+## 📖 Phase 13C: Manual Transcript Intake & Grounding Compiler
+
+The **Manual Transcript Intake & Grounding Compiler** implements a safe local pipeline for processing operator-provided transcript files. It validates formatting, matches transcripts to staged creator URL records, compiles grounded learning notes, and packages NotebookLM-compatible source packs.
+
+### 🔒 Guardrails Summary
+1. **Manual Ingest Only:** Automated YouTube fetching and crawling are disabled.
+2. **Size Validation:** Enforces character limits (`MAX_TRANSCRIPT_CHARS = 60000`).
+3. **Citation & Grounding:** Generates structured learning notes mapping claims back to source records.
+4. **Command Routing Gating:** Enforces exact-name command routing rules and blocks aliases.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "transcript-intake-help"
+  ```
+* Intake a local transcript file:
+  ```bash
+  npm run command -- "transcript-intake" -- "intake test_inputs/julian_transcript_sample.txt"
+  ```
+* Run raw transcript validation checks:
+  ```bash
+  npm run command -- "transcript-intake" -- "validate"
+  ```
+* Match transcripts to staged URL records:
+  ```bash
+  npm run command -- "transcript-intake" -- "map-urls"
+  ```
+* Compile grounded learning notes:
+  ```bash
+  npm run command -- "transcript-intake" -- "grounded-note"
+  ```
+* Compile NotebookLM-compatible source packs:
+  ```bash
+  npm run command -- "transcript-intake" -- "source-pack"
+  ```
+* Query intake status dashboard:
+  ```bash
+  npm run command -- "transcript-intake" -- "status"
+  ```
+
 
 
 

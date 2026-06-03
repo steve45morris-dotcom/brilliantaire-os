@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase N5Z: Final Voice Ops Acceptance Packet — COMPLETE
+- **Current Phase:** Phase 13C: Manual Transcript Intake & Grounding Compiler — COMPLETE
 - **Last Verified:** 2026-06-03
 - **Build Status:** passing
 
@@ -130,6 +130,7 @@
 - **Continued Maintenance Observation (Phase 12J):** Safe continued observation layer (`scripts/maintenance-observation.ts`) tracking quarantine countdown metrics, expiration watch timelines, and reports snapshot verification under the Workflow Auditor.
 - **Knowledge Harvest Source Expansion (Phase 13A):** Safe local, manual-first creator source registry (`scripts/knowledge-source-registry.ts`) under the Knowledge Librarian for tracking approved sources, priority, transcript status, and workflow value.
 - **Creator YouTube URL Staging Gate (Phase 13B):** Safe manual staging system for approved creators (`scripts/creator-url-staging.ts`) under the Knowledge Librarian for staging video, playlist, and channel URLs, generating batch templates, and compiling staging reviews.
+- **Manual Transcript Intake & Grounding Compiler (Phase 13C):** Safe local transcript intake pipeline (`scripts/transcript-intake.ts`) under the Knowledge Librarian for validating, matching transcripts to staged URLs, compiling learning notes, and packaging NotebookLM source packs.
 
 
 - **Grinders Keep Brief Engine (Phase 12B):** Local-first creative R&D engine (`scripts/grinders-keep-daily-brief.ts`) compiling daily briefs, lessons, gap scans, build suggestions, money moves, Google Ultra opportunities, content drafts, and consensus packets.
@@ -144,6 +145,7 @@
 - **Grinders Keep Final Human Launch Switch (Phase 12K):** Local-first launch switch (`scripts/grinders-keep-final-human-launch-switch.ts`) validating launch eligibility of execution tickets from Phase 12J, marking eligible ones as ready for manual execution, and compiling manual command sheets without automated execution.
 - **Grinders Keep Post-Launch Review Ledger (Phase 12L):** Local-first review ledger (`scripts/grinders-keep-post-launch-review-ledger.ts`) recording manually executed post-launch actions, outcome reviews, output verifications, and compiling telemetry without calling external tools or executing commands.
 - **Grinders Keep Continuous Improvement Loop (Phase 12M):** Local-first improvement loop (`scripts/grinders-keep-continuous-improvement-loop.ts`) analyzing post-launch telemetry, blockers, and signals to recommend process upgrades without automatic execution.
+- **Grinders Keep Evidence Collection Queue (Phase 12N):** Local-first staging queue (`scripts/grinders-keep-evidence-collection-queue.ts`) mapping missing evidence, reviews, screenshots, notes, and monetization proof into concrete manual collection tasks for the Commander.
 - **Duplicate Cleanup Quarantine (Phase 12A):** Safe local duplicate and stale artifact cleanup system (`scripts/duplicate-cleanup.ts`) that scans outputs, detects duplicate timestamp variants, identifies stale reports, and stages recommendations without file deletion.
 - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
 

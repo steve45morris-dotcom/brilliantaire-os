@@ -1451,6 +1451,16 @@ tasks:
     cmds:
       - npm run grinders-keep-continuous-improvement-loop-help
 
+  grinders-keep-evidence-collection-queue:
+    desc: "Run Grinders Keep Evidence Collection Queue"
+    cmds:
+      - npm run grinders-keep-evidence-collection-queue
+
+  grinders-keep-evidence-collection-queue-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Queue"
+    cmds:
+      - npm run grinders-keep-evidence-collection-queue-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1556,3 +1566,12 @@ tasks:
     cmds:
       - npm run creator-url-staging-help
 
+  transcript-intake:
+    desc: "Run Manual Transcript Intake & Grounding Compiler CLI commands"
+    cmds:
+      - npm run transcript-intake -- {{.CLI_ARGS}}
+
+  transcript-intake-help:
+    desc: "Print help menu for Manual Transcript Intake & Grounding Compiler CLI"
+    cmds:
+      - npm run transcript-intake-help

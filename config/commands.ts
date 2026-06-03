@@ -2634,6 +2634,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-evidence-collection-queue-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Evidence Collection Queue commands',
+    npmScript: 'grinders-keep-evidence-collection-queue-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-evidence-collection-queue',
+    aliases: [],
+    description: 'Identify missing evidence and create concrete collection tasks for Commander',
+    npmScript: 'grinders-keep-evidence-collection-queue',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -2803,6 +2825,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['url staging', 'creator url'],
     description: 'Execute Creator YouTube URL Staging Gate CLI commands',
     npmScript: 'creator-url-staging',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'transcript-intake-help',
+    aliases: ['transcript help', 'harvest transcript help'],
+    description: 'Print help menu for Manual Transcript Intake & Grounding Compiler CLI',
+    npmScript: 'transcript-intake-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'transcript-intake',
+    aliases: ['transcript', 'harvest transcript'],
+    description: 'Execute Manual Transcript Intake & Grounding Compiler CLI commands',
+    npmScript: 'transcript-intake',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',

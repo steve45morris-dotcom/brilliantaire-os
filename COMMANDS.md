@@ -315,6 +315,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-post-launch-review-ledger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Post-Launch Review Ledger. |
 | `grinders-keep-continuous-improvement-loop` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process and analyze post-launch telemetry, recurring blockers, and signals to recommend process upgrades. |
 | `grinders-keep-continuous-improvement-loop-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Continuous Improvement Loop. |
+| `grinders-keep-evidence-collection-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Identify missing evidence and create concrete collection tasks for Commander. |
+| `grinders-keep-evidence-collection-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Queue. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
@@ -327,6 +329,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `knowledge-source-registry` | `source registry`, `harvest source` | Knowledge Librarian | Medium | Yes | Execute Knowledge Harvest Source Registry commands. |
 | `creator-url-staging-help` | `url staging help`, `creator url help` | Knowledge Librarian | Low | No | Print help menu for Creator YouTube URL Staging Gate CLI. |
 | `creator-url-staging` | `url staging`, `creator url` | Knowledge Librarian | Medium | Yes | Execute Creator YouTube URL Staging Gate CLI commands. |
+| `transcript-intake-help` | `transcript help`, `harvest transcript help` | Knowledge Librarian | Low | No | Print help menu for Manual Transcript Intake & Grounding Compiler CLI. |
+| `transcript-intake` | `transcript`, `harvest transcript` | Knowledge Librarian | Medium | Yes | Execute Manual Transcript Intake & Grounding Compiler CLI commands. |
+
 
 
 ---

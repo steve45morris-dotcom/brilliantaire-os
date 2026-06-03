@@ -1,0 +1,8 @@
+# Julian Goldie - AI Automation and Content Systems Tutorial
+
+[00:01] Julian: Hey guys, welcome back to the channel. Today we are talking about how to construct robust AI automation content systems.
+[00:15] Specifically, how we can use multi-agent councils to design before we action. This aligns with the "I build before burning" methodology.
+[01:10] Speaker 2: Yes, it's about minimizing crawling collisions and keeping strict boundaries.
+[02:00] Julian: Exactly. If you bypass safety gates, you introduce system crashes. So we use local manual staging paths for our URLs. Then, we validate transcripts before feeding them into tools like NotebookLM.
+[03:15] Let's make sure we map these transcripts to our staging logs so our OS has complete context trace.
+[04:00] Thanks for watching. Let's commit the block.
