@@ -2656,6 +2656,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-evidence-intake-validator-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Evidence Intake Validator commands',
+    npmScript: 'grinders-keep-evidence-intake-validator-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-evidence-intake-validator',
+    aliases: [],
+    description: 'Validate, classify, score manually collected evidence and stage downstream feeds',
+    npmScript: 'grinders-keep-evidence-intake-validator',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-downstream-feed-router-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Downstream Feed Router commands',
+    npmScript: 'grinders-keep-downstream-feed-router-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-downstream-feed-router',
+    aliases: [],
+    description: 'Discover validated evidence and stage routing configurations for downstream target phases',
+    npmScript: 'grinders-keep-downstream-feed-router',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -2847,6 +2891,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['transcript', 'harvest transcript'],
     description: 'Execute Manual Transcript Intake & Grounding Compiler CLI commands',
     npmScript: 'transcript-intake',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'workflow-idea-scoring-help',
+    aliases: ['idea scoring help', 'workflow scoring help'],
+    description: 'Print help menu for Workflow Idea Scoring Engine CLI',
+    npmScript: 'workflow-idea-scoring-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'workflow-idea-scoring',
+    aliases: ['idea scoring', 'workflow scoring'],
+    description: 'Execute Workflow Idea Scoring Engine CLI commands',
+    npmScript: 'workflow-idea-scoring',
     owningAgent: 'Knowledge Librarian',
     riskLevel: 'medium',
     outputType: 'files',

@@ -608,7 +608,13 @@
 - [x] Generate grounded learning note
 - [x] Generate grounded NotebookLM source pack
 - [x] Review first transcript for workflow ideas
-
+- [x] Build Workflow Idea Scoring Engine
+- [x] Extract ideas from grounded learning notes
+- [x] Score extracted ideas
+- [x] Rank workflow ideas
+- [x] Generate build recommendations
+- [x] Generate workflow scoring summary
+- [x] Review build-now ideas manually
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
@@ -684,7 +690,10 @@
 - [x] Phase 12M: Analyze post-launch telemetry, blockers, and signals to recommend process upgrades without automatic execution
 - [x] Phase 12N: Grinders Keep Evidence Collection Queue
 - [x] Phase 12N: Identify missing evidence, reviews, screenshots, notes, and monetization proof, create collection tasks, and stage intake folders without executing commands automatically
-
+- [x] Phase 12O: Grinders Keep Evidence Intake Validator
+- [x] Phase 12O: Validate metadata, classify evidence items, score evidence strength, and stage downstream feeds without executing actions or routing files automatically
+- [x] Phase 12P: Grinders Keep Downstream Feed Router
+- [x] Phase 12P: Discover validated evidence from Phase 12O, classify routing targets, stage downstream route manifests, and generate recommended actions without copying or moving files
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

@@ -4006,6 +4006,50 @@ The **Grinders Keep Evidence Collection Queue** stages manual collection tasks f
 
 ---
 
+## 🛡️ Phase 12O: Grinders Keep Evidence Intake Validator
+
+The **Grinders Keep Evidence Intake Validator** scans the folders containing evidence manually collected by the Commander, checks metadata constraints, validates file integrity, ranks evidence strength on a scorecard, and prepares downstream review, decision, and launch feeds without moving files or calling APIs automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, uploads, or publishing.
+2. **Read-Only / Local Only:** Stages validated evidence results for downstream ingestion; does not automate downstream feed routing.
+3. **No Inventions:** Marks missing metadata or files clearly and requires human validation.
+4. **Command Routing Gating:** Requires exact-name command routing match. Aliases are blocked.
+
+### 💻 Command Examples
+* View evidence intake validator help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-intake-validator-help"
+  ```
+* Run evidence intake validator:
+  ```bash
+  npm run command -- "grinders-keep-evidence-intake-validator"
+  ```
+
+---
+
+## 🛡️ Phase 12P: Grinders Keep Downstream Feed Router
+
+The **Grinders Keep Downstream Feed Router** discovers validated evidence from Phase 12O and stages routing configurations for downstream target phases (Manual Review, Decision Synthesis, Continuous Improvement, Launch Readiness) without copying or moving files or executing actions automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, uploads, or publishing.
+2. **Staged-Only Constraints:** No file copying, moving, renaming, or deletion. Generates route manifests and logs only.
+3. **No Inventions:** Scans only real validation manifest inputs and marks missing fields as blocked routes.
+4. **Safety Locked:** auto_route_allowed is always false, ensuring the Commander retains full manual routing approval.
+
+### 💻 Command Examples
+* View downstream feed router help menu:
+  ```bash
+  npm run command -- "grinders-keep-downstream-feed-router-help"
+  ```
+* Run downstream feed router:
+  ```bash
+  npm run command -- "grinders-keep-downstream-feed-router"
+  ```
+
+---
+
 ## 📖 Phase 13A: Knowledge Harvest Source Expansion
 
 The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.

@@ -317,6 +317,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-continuous-improvement-loop-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Continuous Improvement Loop. |
 | `grinders-keep-evidence-collection-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Identify missing evidence and create concrete collection tasks for Commander. |
 | `grinders-keep-evidence-collection-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Queue. |
+| `grinders-keep-evidence-intake-validator` | *(none)* | Creative Revenue Strategist | Medium | Yes | Validate, classify, score manually collected evidence and stage downstream feeds. |
+| `grinders-keep-evidence-intake-validator-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Intake Validator. |
+| `grinders-keep-downstream-feed-router` | *(none)* | Creative Revenue Strategist | Medium | Yes | Discover validated evidence and stage routing configurations for downstream target phases. |
+| `grinders-keep-downstream-feed-router-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Downstream Feed Router. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
@@ -331,6 +335,9 @@ To ensure complete control and system safety, the router enforces the following 
 | `creator-url-staging` | `url staging`, `creator url` | Knowledge Librarian | Medium | Yes | Execute Creator YouTube URL Staging Gate CLI commands. |
 | `transcript-intake-help` | `transcript help`, `harvest transcript help` | Knowledge Librarian | Low | No | Print help menu for Manual Transcript Intake & Grounding Compiler CLI. |
 | `transcript-intake` | `transcript`, `harvest transcript` | Knowledge Librarian | Medium | Yes | Execute Manual Transcript Intake & Grounding Compiler CLI commands. |
+| `workflow-idea-scoring-help` | `idea scoring help`, `workflow scoring help` | Knowledge Librarian | Low | No | Print help menu for Workflow Idea Scoring Engine CLI. |
+| `workflow-idea-scoring` | `idea scoring`, `workflow scoring` | Knowledge Librarian | Medium | Yes | Execute Workflow Idea Scoring Engine CLI commands. |
+
 
 
 

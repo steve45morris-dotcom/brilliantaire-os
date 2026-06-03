@@ -146,6 +146,8 @@
 - **Grinders Keep Post-Launch Review Ledger (Phase 12L):** Local-first review ledger (`scripts/grinders-keep-post-launch-review-ledger.ts`) recording manually executed post-launch actions, outcome reviews, output verifications, and compiling telemetry without calling external tools or executing commands.
 - **Grinders Keep Continuous Improvement Loop (Phase 12M):** Local-first improvement loop (`scripts/grinders-keep-continuous-improvement-loop.ts`) analyzing post-launch telemetry, blockers, and signals to recommend process upgrades without automatic execution.
 - **Grinders Keep Evidence Collection Queue (Phase 12N):** Local-first staging queue (`scripts/grinders-keep-evidence-collection-queue.ts`) mapping missing evidence, reviews, screenshots, notes, and monetization proof into concrete manual collection tasks for the Commander.
+- **Grinders Keep Evidence Intake Validator (Phase 12O):** Local-first validation gate (`scripts/grinders-keep-evidence-intake-validator.ts`) validating, classifying, and scoring manually collected evidence, and staging downstream review, decision, and launch feeds without moving files or executing actions automatically.
+- **Grinders Keep Downstream Feed Router (Phase 12P):** Local-first routing layer (`scripts/grinders-keep-downstream-feed-router.ts`) discovering validated evidence, classifying downstream target phases, preparing routing manifests, and generating next actions without moving files or calling APIs.
 - **Duplicate Cleanup Quarantine (Phase 12A):** Safe local duplicate and stale artifact cleanup system (`scripts/duplicate-cleanup.ts`) that scans outputs, detects duplicate timestamp variants, identifies stale reports, and stages recommendations without file deletion.
 - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
 
@@ -161,7 +163,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 12N: Grinders Keep Evidence Collection Queue**
+- **Phase 12P: Grinders Keep Downstream Feed Router**
 
 ## Obsidian Intelligence Snapshot
 

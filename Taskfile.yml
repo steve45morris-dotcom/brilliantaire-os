@@ -1461,6 +1461,26 @@ tasks:
     cmds:
       - npm run grinders-keep-evidence-collection-queue-help
 
+  grinders-keep-evidence-intake-validator:
+    desc: "Run Grinders Keep Evidence Intake Validator"
+    cmds:
+      - npm run grinders-keep-evidence-intake-validator
+
+  grinders-keep-evidence-intake-validator-help:
+    desc: "Print help documentation for Grinders Keep Evidence Intake Validator"
+    cmds:
+      - npm run grinders-keep-evidence-intake-validator-help
+
+  grinders-keep-downstream-feed-router:
+    desc: "Run Grinders Keep Downstream Feed Router"
+    cmds:
+      - npm run grinders-keep-downstream-feed-router
+
+  grinders-keep-downstream-feed-router-help:
+    desc: "Print help documentation for Grinders Keep Downstream Feed Router"
+    cmds:
+      - npm run grinders-keep-downstream-feed-router-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1575,3 +1595,14 @@ tasks:
     desc: "Print help menu for Manual Transcript Intake & Grounding Compiler CLI"
     cmds:
       - npm run transcript-intake-help
+
+  workflow-idea-scoring:
+    desc: "Run Workflow Idea Scoring Engine CLI commands"
+    cmds:
+      - npm run workflow-idea-scoring -- {{.CLI_ARGS}}
+
+  workflow-idea-scoring-help:
+    desc: "Print help menu for Workflow Idea Scoring Engine CLI"
+    cmds:
+      - npm run workflow-idea-scoring-help
+
