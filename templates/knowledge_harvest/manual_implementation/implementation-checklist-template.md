@@ -1,0 +1,13 @@
+# Manual Implementation Checklist - {{dateStr}}
+
+| Check | Status | Evidence | Risk | Next Action |
+|---|---|---|---|---|
+| Approved Implementation Packet Exists | {{packetStatus}} | {{packetEvidence}} | {{packetRisk}} | {{packetNextAction}} |
+| Target System Dependency Map Verified | {{dependencyStatus}} | {{dependencyEvidence}} | {{dependencyRisk}} | {{dependencyNextAction}} |
+| Final Build Prompt Generated | {{promptStatus}} | {{promptEvidence}} | {{promptRisk}} | {{promptNextAction}} |
+| Safety Rules Verified & Included | {{safetyStatus}} | {{safetyEvidence}} | {{safetyRisk}} | {{safetyNextAction}} |
+| Verification Tests Properly Cataloged | {{testsStatus}} | {{testsEvidence}} | {{testsRisk}} | {{testsNextAction}} |
+| No-Raw-Execution Guardrails Active | {{executionStatus}} | {{executionEvidence}} | {{executionRisk}} | {{executionNextAction}} |
+| Manual Review Trigger Point Ready | {{reviewStatus}} | {{reviewEvidence}} | {{reviewRisk}} | {{reviewNextAction}} |
+
+- **Approval Status:** {{approvalStatus}}

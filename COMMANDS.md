@@ -345,6 +345,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `pipeline-stage-gate` | `pipeline gate`, `stage gate` | Workflow Auditor | Medium | Yes | Execute Pipeline Integration Stage Gate CLI commands. |
 | `pipeline-approval-router-help` | `approval router help`, `pipeline approval help` | Workflow Auditor | Low | No | Print help menu for Pipeline Proposal Approval Router CLI. |
 | `pipeline-approval-router` | `approval router`, `pipeline approval` | Workflow Auditor | Medium | Yes | Execute Pipeline Proposal Approval Router CLI commands. |
+| `manual-implementation-packet-help` | `implementation packet help`, `manual packet help` | Workflow Auditor | Low | No | Print help menu for Manual Implementation Packet Compiler CLI. |
+| `manual-implementation-packet` | `implementation packet`, `manual packet` | Workflow Auditor | Medium | Yes | Execute Manual Implementation Packet Compiler CLI commands. |
 
 
 

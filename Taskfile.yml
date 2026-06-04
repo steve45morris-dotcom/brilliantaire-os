@@ -1501,6 +1501,16 @@ tasks:
     cmds:
       - npm run grinders-keep-evidence-completion-tracker-help
 
+  grinders-keep-evidence-revalidation-trigger:
+    desc: "Run Grinders Keep Evidence Revalidation Trigger"
+    cmds:
+      - npm run grinders-keep-evidence-revalidation-trigger
+
+  grinders-keep-evidence-revalidation-trigger-help:
+    desc: "Print help documentation for Grinders Keep Evidence Revalidation Trigger"
+    cmds:
+      - npm run grinders-keep-evidence-revalidation-trigger-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1645,5 +1655,16 @@ tasks:
     desc: "Print help menu for Pipeline Proposal Approval Router CLI"
     cmds:
       - npm run pipeline-approval-router-help
+
+  manual-implementation-packet:
+    desc: "Run Manual Implementation Packet Compiler CLI commands"
+    cmds:
+      - npm run manual-implementation-packet -- {{.CLI_ARGS}}
+
+  manual-implementation-packet-help:
+    desc: "Print help menu for Manual Implementation Packet Compiler CLI"
+    cmds:
+      - npm run manual-implementation-packet-help
+
 
 

@@ -134,6 +134,7 @@
 - **Workflow Idea Scoring Engine (Phase 13D):** Safe document-based scoring system (`scripts/workflow-idea-scoring.ts`) under the Knowledge Librarian for extracting, score-carding, ranking, and recommending workflow ideas.
 - **Pipeline Integration Stage Gate (Phase 13E):** Safe staging gate pipeline (`scripts/pipeline-stage-gate.ts`) under the Workflow Auditor for compiling proposals, dependency maps, agent assignment matrices, implementation prompts, and manual approval packages.
 - **Pipeline Proposal Approval Router (Phase 13F):** Safe validation and staging router (`scripts/pipeline-approval-router.ts`) under the Workflow Auditor for verifying stage gate packages, generating approved implementation packets, and outputting manual execution briefs.
+- **Manual Implementation Packet Compiler (Phase 13G):** Safe compile-time document router and staging compiler (`scripts/manual-implementation-packet.ts`) under the Workflow Auditor for aggregating approved implementation packets and manual execution briefs, compiling final build prompts, checklists, safety reviews, and handoff reports.
 
 
 
@@ -154,6 +155,7 @@
 - **Grinders Keep Downstream Feed Router (Phase 12P):** Local-first routing layer (`scripts/grinders-keep-downstream-feed-router.ts`) discovering validated evidence, classifying downstream target phases, preparing routing manifests, and generating next actions without moving files or calling APIs.
 - **Grinders Keep Manual Evidence Action Board (Phase 12Q):** Local-first action board (`scripts/grinders-keep-manual-evidence-action-board.ts`) compiling concrete, prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander without automated collection.
 - **Grinders Keep Evidence Completion Tracker (Phase 12R):** Local-first evidence completion tracker (`scripts/grinders-keep-evidence-completion-tracker.ts`) auditing Commander-facing evidence task files status, validating formats, computing SHA-256 metadata, and preparing intake validator ready manifests without collecting or creating files.
+- **Grinders Keep Evidence Revalidation Trigger (Phase 12S):** Local-first trigger planner (`scripts/grinders-keep-evidence-revalidation-trigger.ts`) reading validator-ready feeds, classifying revalidation targets, generating revalidation plans and command sheets without executing the validator or any commands automatically.
 - **Duplicate Cleanup Quarantine (Phase 12A):** Safe local duplicate and stale artifact cleanup system (`scripts/duplicate-cleanup.ts`) that scans outputs, detects duplicate timestamp variants, identifies stale reports, and stages recommendations without file deletion.
 - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
 

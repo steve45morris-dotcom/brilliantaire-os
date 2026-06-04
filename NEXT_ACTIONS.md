@@ -622,11 +622,17 @@
 - [x] Generate implementation prompt
 - [x] Generate approval package
 - [x] Review Pipeline Integration Stage Gate manually
-- [ ] Build Pipeline Proposal Approval Router
-- [ ] Validate latest approval package
-- [ ] Generate approved implementation packet
-- [ ] Generate manual execution brief
-- [ ] Review approved packet before any implementation work
+- [x] Build Pipeline Proposal Approval Router
+- [x] Validate latest approval package
+- [x] Generate approved implementation packet
+- [x] Generate manual execution brief
+- [x] Review approved packet before any implementation work
+- [ ] Build Manual Implementation Packet Compiler
+- [ ] Compile final manual build prompt
+- [ ] Generate implementation checklist
+- [ ] Generate safety review
+- [ ] Generate final handoff
+- [ ] Review final build prompt before implementation
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering

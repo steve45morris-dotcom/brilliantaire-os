@@ -2810,6 +2810,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-evidence-revalidation-trigger-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Evidence Revalidation Trigger commands',
+    npmScript: 'grinders-keep-evidence-revalidation-trigger-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-evidence-revalidation-trigger',
+    aliases: [],
+    description: 'Stage revalidation plans and commands to trigger evidence validation in Phase 12O',
+    npmScript: 'grinders-keep-evidence-revalidation-trigger',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -3133,6 +3155,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['approval router', 'pipeline approval'],
     description: 'Execute Pipeline Proposal Approval Router CLI commands',
     npmScript: 'pipeline-approval-router',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'manual-implementation-packet-help',
+    aliases: ['implementation packet help', 'manual packet help'],
+    description: 'Print help menu for Manual Implementation Packet Compiler CLI',
+    npmScript: 'manual-implementation-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'manual-implementation-packet',
+    aliases: ['implementation packet', 'manual packet'],
+    description: 'Execute Manual Implementation Packet Compiler CLI commands',
+    npmScript: 'manual-implementation-packet',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',

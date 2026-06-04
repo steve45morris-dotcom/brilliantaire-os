@@ -265,6 +265,8 @@
     "grinders-keep-manual-evidence-action-board-help": "tsx scripts/grinders-keep-manual-evidence-action-board-help.ts",
     "grinders-keep-evidence-completion-tracker": "tsx scripts/grinders-keep-evidence-completion-tracker.ts",
     "grinders-keep-evidence-completion-tracker-help": "tsx scripts/grinders-keep-evidence-completion-tracker-help.ts",
+    "grinders-keep-evidence-revalidation-trigger": "tsx scripts/grinders-keep-evidence-revalidation-trigger.ts",
+    "grinders-keep-evidence-revalidation-trigger-help": "tsx scripts/grinders-keep-evidence-revalidation-trigger-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",
@@ -296,7 +298,9 @@
     "pipeline-stage-gate": "tsx scripts/pipeline-stage-gate.ts",
     "pipeline-stage-gate-help": "tsx scripts/pipeline-stage-gate-help.ts",
     "pipeline-approval-router": "tsx scripts/pipeline-approval-router.ts",
-    "pipeline-approval-router-help": "tsx scripts/pipeline-approval-router-help.ts"
+    "pipeline-approval-router-help": "tsx scripts/pipeline-approval-router-help.ts",
+    "manual-implementation-packet": "tsx scripts/manual-implementation-packet.ts",
+    "manual-implementation-packet-help": "tsx scripts/manual-implementation-packet-help.ts"
   },
   "keywords": [
     "antigravity",
