@@ -4050,6 +4050,50 @@ The **Grinders Keep Downstream Feed Router** discovers validated evidence from P
 
 ---
 
+## 🛡️ Phase 12Q: Grinders Keep Manual Evidence Action Board
+
+The **Grinders Keep Manual Evidence Action Board** compiles concrete, prioritized Commander checklists of missing evidence, reports, and blocked routes, helping identify exactly what files need to be manually collected, pasted, or verified next.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API calls, model calls, automated tools execution, uploads, or publishing.
+2. **Staged-Only Constraints:** No file copying, moving, renaming, or deletion. Generates action checklists, manifests, and scorecards only.
+3. **No Inventions:** Scans only real local validation inputs and folders and marks missing items as unavailable instead of inventing mock results.
+4. **Safety Locked:** automatic_collection_allowed is always false, ensuring the Commander executes all collection steps manually.
+
+### 💻 Command Examples
+* View manual evidence action board help menu:
+  ```bash
+  npm run command -- "grinders-keep-manual-evidence-action-board-help"
+  ```
+* Run manual evidence action board:
+  ```bash
+  npm run command -- "grinders-keep-manual-evidence-action-board"
+  ```
+
+---
+
+## 🛡️ Phase 12R: Grinders Keep Evidence Completion Tracker
+
+The **Grinders Keep Evidence Completion Tracker** audits the local filesystem to check if required manual evidence files exist, validating format compatibility, checking sizes, and computing SHA-256 metadata to generate tracker reports, completion scorecards, validator feeds, and manifests for the downstream validator.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API queries, model calls, automated tools execution, uploads, or publishing.
+2. **Read-Only Constraints:** No file copying, moving, renaming, deletion, or creation of evidence. Updates only completion tracker outputs and frontpage metadata.
+3. **No Inventions:** Scans only real local folders and files, computing actual sizes and checksums, and failing closed if data is ambiguous.
+4. **Safety Locked:** auto_feed_allowed is always false, ensuring the Commander approves all ingested items.
+
+### 💻 Command Examples
+* View evidence completion tracker help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-completion-tracker-help"
+  ```
+* Run evidence completion tracker:
+  ```bash
+  npm run command -- "grinders-keep-evidence-completion-tracker"
+  ```
+
+---
+
 ## 📖 Phase 13A: Knowledge Harvest Source Expansion
 
 The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.
@@ -4244,6 +4288,41 @@ The **Pipeline Integration Stage Gate** compiles the top build recommendation fr
   ```bash
   npm run command -- "pipeline-stage-gate" -- "status"
   ```
+
+---
+
+## 📖 Phase 13F: Pipeline Proposal Approval Router
+
+The **Pipeline Proposal Approval Router** reads the latest pipeline approval package from Phase 13E, validates whether the recommendation is `approve`, creates an approved implementation packet, and prepares a manual execution brief to guide developers safely through the manual implementation execution phase.
+
+### 🔒 Guardrails Summary
+1. **APPROVAL_ROUTER_ONLY:** Operates strictly as a documentation and validation router. No script or command execution is allowed.
+2. **Approval Checks:** Enforces validation of recommended decisions, ensuring only authorized tasks are routed.
+3. **Staged Implementation Packets:** Stages full implementation specifications including scores, safety rules, assigned agents, and manual confirm instructions.
+4. **Manual Execution Brief:** Establishes a manual verification gate with detailed not-allowed rules and prompt references.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "pipeline-approval-router-help"
+  ```
+* Validate approval package:
+  ```bash
+  npm run command -- "pipeline-approval-router" -- "validate"
+  ```
+* Generate approved implementation packet:
+  ```bash
+  npm run command -- "pipeline-approval-router" -- "approve-packet"
+  ```
+* Generate manual execution brief:
+  ```bash
+  npm run command -- "pipeline-approval-router" -- "manual-brief"
+  ```
+* Check approval router status:
+  ```bash
+  npm run command -- "pipeline-approval-router" -- "status"
+  ```
+
 
 
 

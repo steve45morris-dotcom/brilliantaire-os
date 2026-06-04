@@ -621,7 +621,12 @@
 - [x] Generate agent assignment report
 - [x] Generate implementation prompt
 - [x] Generate approval package
-- [ ] Review Pipeline Integration Stage Gate manually
+- [x] Review Pipeline Integration Stage Gate manually
+- [ ] Build Pipeline Proposal Approval Router
+- [ ] Validate latest approval package
+- [ ] Generate approved implementation packet
+- [ ] Generate manual execution brief
+- [ ] Review approved packet before any implementation work
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
@@ -701,6 +706,10 @@
 - [x] Phase 12O: Validate metadata, classify evidence items, score evidence strength, and stage downstream feeds without executing actions or routing files automatically
 - [x] Phase 12P: Grinders Keep Downstream Feed Router
 - [x] Phase 12P: Discover validated evidence from Phase 12O, classify routing targets, stage downstream route manifests, and generate recommended actions without copying or moving files
+- [x] Phase 12Q: Grinders Keep Manual Evidence Action Board
+- [x] Phase 12Q: Extract action items, identify missing evidence targets, prioritize high-priority collection tasks, checklists, and next actions without automated collection
+- [x] Phase 12R: Grinders Keep Evidence Completion Tracker
+- [x] Phase 12R: Audit manual evidence tasks, verify file existence, validate formats and compute SHA-256 metadata, compile checklists and validator-ready manifests without mutating files or calling APIs
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later

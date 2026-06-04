@@ -261,6 +261,10 @@
     "grinders-keep-evidence-intake-validator-help": "tsx scripts/grinders-keep-evidence-intake-validator-help.ts",
     "grinders-keep-downstream-feed-router": "tsx scripts/grinders-keep-downstream-feed-router.ts",
     "grinders-keep-downstream-feed-router-help": "tsx scripts/grinders-keep-downstream-feed-router-help.ts",
+    "grinders-keep-manual-evidence-action-board": "tsx scripts/grinders-keep-manual-evidence-action-board.ts",
+    "grinders-keep-manual-evidence-action-board-help": "tsx scripts/grinders-keep-manual-evidence-action-board-help.ts",
+    "grinders-keep-evidence-completion-tracker": "tsx scripts/grinders-keep-evidence-completion-tracker.ts",
+    "grinders-keep-evidence-completion-tracker-help": "tsx scripts/grinders-keep-evidence-completion-tracker-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",
@@ -290,7 +294,9 @@
     "knowledge-source-registry": "tsx scripts/knowledge-source-registry.ts",
     "knowledge-source-registry-help": "tsx scripts/knowledge-source-registry-help.ts",
     "pipeline-stage-gate": "tsx scripts/pipeline-stage-gate.ts",
-    "pipeline-stage-gate-help": "tsx scripts/pipeline-stage-gate-help.ts"
+    "pipeline-stage-gate-help": "tsx scripts/pipeline-stage-gate-help.ts",
+    "pipeline-approval-router": "tsx scripts/pipeline-approval-router.ts",
+    "pipeline-approval-router-help": "tsx scripts/pipeline-approval-router-help.ts"
   },
   "keywords": [
     "antigravity",

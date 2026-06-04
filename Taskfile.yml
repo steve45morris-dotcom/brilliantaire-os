@@ -1481,6 +1481,26 @@ tasks:
     cmds:
       - npm run grinders-keep-downstream-feed-router-help
 
+  grinders-keep-manual-evidence-action-board:
+    desc: "Run Grinders Keep Manual Evidence Action Board"
+    cmds:
+      - npm run grinders-keep-manual-evidence-action-board
+
+  grinders-keep-manual-evidence-action-board-help:
+    desc: "Print help documentation for Grinders Keep Manual Evidence Action Board"
+    cmds:
+      - npm run grinders-keep-manual-evidence-action-board-help
+
+  grinders-keep-evidence-completion-tracker:
+    desc: "Run Grinders Keep Evidence Completion Tracker"
+    cmds:
+      - npm run grinders-keep-evidence-completion-tracker
+
+  grinders-keep-evidence-completion-tracker-help:
+    desc: "Print help documentation for Grinders Keep Evidence Completion Tracker"
+    cmds:
+      - npm run grinders-keep-evidence-completion-tracker-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1615,4 +1635,15 @@ tasks:
     desc: "Print help menu for Pipeline Integration Stage Gate CLI"
     cmds:
       - npm run pipeline-stage-gate-help
+
+  pipeline-approval-router:
+    desc: "Run Pipeline Proposal Approval Router CLI commands"
+    cmds:
+      - npm run pipeline-approval-router -- {{.CLI_ARGS}}
+
+  pipeline-approval-router-help:
+    desc: "Print help menu for Pipeline Proposal Approval Router CLI"
+    cmds:
+      - npm run pipeline-approval-router-help
+
 

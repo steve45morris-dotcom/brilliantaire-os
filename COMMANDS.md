@@ -321,6 +321,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-evidence-intake-validator-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Intake Validator. |
 | `grinders-keep-downstream-feed-router` | *(none)* | Creative Revenue Strategist | Medium | Yes | Discover validated evidence and stage routing configurations for downstream target phases. |
 | `grinders-keep-downstream-feed-router-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Downstream Feed Router. |
+| `grinders-keep-manual-evidence-action-board` | *(none)* | Creative Revenue Strategist | Medium | Yes | Create prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander. |
+| `grinders-keep-manual-evidence-action-board-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Manual Evidence Action Board. |
+| `grinders-keep-evidence-completion-tracker` | *(none)* | Creative Revenue Strategist | Medium | Yes | Audit local filesystem evidence check status, validation states, and build manifests for validator. |
+| `grinders-keep-evidence-completion-tracker-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Completion Tracker. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
@@ -339,6 +343,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `workflow-idea-scoring` | `idea scoring`, `workflow scoring` | Knowledge Librarian | Medium | Yes | Execute Workflow Idea Scoring Engine CLI commands. |
 | `pipeline-stage-gate-help` | `pipeline gate help`, `stage gate help` | Workflow Auditor | Low | No | Print help menu for Pipeline Integration Stage Gate CLI. |
 | `pipeline-stage-gate` | `pipeline gate`, `stage gate` | Workflow Auditor | Medium | Yes | Execute Pipeline Integration Stage Gate CLI commands. |
+| `pipeline-approval-router-help` | `approval router help`, `pipeline approval help` | Workflow Auditor | Low | No | Print help menu for Pipeline Proposal Approval Router CLI. |
+| `pipeline-approval-router` | `approval router`, `pipeline approval` | Workflow Auditor | Medium | Yes | Execute Pipeline Proposal Approval Router CLI commands. |
 
 
 

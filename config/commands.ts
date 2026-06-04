@@ -2788,6 +2788,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-evidence-completion-tracker-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Evidence Completion Tracker commands',
+    npmScript: 'grinders-keep-evidence-completion-tracker-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-evidence-completion-tracker',
+    aliases: [],
+    description: 'Audit local filesystem evidence check status, validation states, and build manifests for validator',
+    npmScript: 'grinders-keep-evidence-completion-tracker',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',
@@ -3089,6 +3111,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['pipeline gate', 'stage gate'],
     description: 'Execute Pipeline Integration Stage Gate CLI commands',
     npmScript: 'pipeline-stage-gate',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'pipeline-approval-router-help',
+    aliases: ['approval router help', 'pipeline approval help'],
+    description: 'Print help menu for Pipeline Proposal Approval Router CLI',
+    npmScript: 'pipeline-approval-router-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'pipeline-approval-router',
+    aliases: ['approval router', 'pipeline approval'],
+    description: 'Execute Pipeline Proposal Approval Router CLI commands',
+    npmScript: 'pipeline-approval-router',
     owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',
