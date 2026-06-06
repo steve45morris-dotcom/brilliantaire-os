@@ -21,8 +21,8 @@ def run_daemon(tmp_path: Path, line: str = "") -> list[str]:
             [
                 "ENABLED=true",
                 "PROFILE=build",
-                "VOICE_QUIET_START=01:00",
-                "VOICE_QUIET_END=02:00",
+                "VOICE_QUIET_START=00:00",
+                "VOICE_QUIET_END=00:00",
                 "VOICE_DIGEST_SIZE=3",
                 "VOICE_DIGEST_MAX_WAIT_SECONDS=300",
                 "VOICE_DUPLICATE_WINDOW_HOURS=24",
@@ -72,6 +72,13 @@ def fresh_line(text: str) -> str:
 def test_daemon_does_not_speak_expired_or_routine_reports(tmp_path):
     assert run_daemon(tmp_path, "2020-01-01 00:00:00 - ERROR expired") == []
     assert run_daemon(tmp_path, fresh_line("Signal clean")) == []
+
+
+def test_daemon_skips_policy_process_when_queue_and_digest_are_empty(tmp_path):
+    assert run_daemon(tmp_path) == []
+
+    daemon_log = (tmp_path / "daemon.log").read_text()
+    assert "Intelligence action" not in daemon_log
 
 
 def test_daemon_speaks_critical_report_once(tmp_path):

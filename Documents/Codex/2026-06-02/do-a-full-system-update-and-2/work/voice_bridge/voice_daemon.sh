@@ -6,9 +6,12 @@ MUTE_MARKER="${VOICE_MUTE_MARKER:-/tmp/.supernova_voice_muted}"
 VOICE_CONF="${VOICE_CONF:-/Users/alexanderanthony/.claude/voice/voice.conf}"
 INTELLIGENCE_ENGINE="${VOICE_INTELLIGENCE_ENGINE:-/Users/alexanderanthony/scripts/voice_intelligence.py}"
 POLICY_PYTHON="${VOICE_POLICY_PYTHON:-/usr/bin/python3}"
+DIGEST_STATE="${VOICE_DIGEST_STATE:-/tmp/.supernova_voice_digest.json}"
 LOCK="${VOICE_DAEMON_LOCK:-/tmp/voice_daemon.lock}"
 LOG="${VOICE_DAEMON_LOG:-/Users/alexanderanthony/supernova/logs/voice_daemon.log}"
 RUN_ONCE="${VOICE_DAEMON_ONCE:-0}"
+IDLE_POLL_SECONDS="${VOICE_IDLE_POLL_SECONDS:-10}"
+ACTIVE_POLL_SECONDS="${VOICE_ACTIVE_POLL_SECONDS:-2}"
 
 mkdir -p "$(dirname "$LOG")"
 echo "[$(date)] Voice Daemon starting..." >> "$LOG"
@@ -27,10 +30,28 @@ trap 'rm -f "$LOCK"' EXIT
 voice_is_muted() {
     [[ -f "$MUTE_MARKER" ]] && return 0
     [[ -f "$VOICE_CONF" ]] || return 1
-    local enabled profile
-    enabled=$(awk -F= '/^ENABLED=/{print tolower($2); exit}' "$VOICE_CONF")
-    profile=$(awk -F= '/^PROFILE=/{print tolower($2); exit}' "$VOICE_CONF")
-    [[ "$enabled" != "true" || "$profile" == "silent" || "$profile" == "focus" ]]
+    local enabled="" profile="" key value
+    while IFS='=' read -r key value; do
+        case "$key" in
+            ENABLED) enabled="$value" ;;
+            PROFILE) profile="$value" ;;
+        esac
+    done < "$VOICE_CONF"
+    case "$enabled" in
+        [Tt][Rr][Uu][Ee]) ;;
+        *) return 0 ;;
+    esac
+    case "$profile" in
+        [Ss][Ii][Ll][Ee][Nn][Tt]|[Ff][Oo][Cc][Uu][Ss]) return 0 ;;
+    esac
+    return 1
+}
+
+has_pending_digest() {
+    [[ -f "$DIGEST_STATE" ]] || return 1
+    local payload
+    payload=$(<"$DIGEST_STATE")
+    [[ -n "$payload" && "$payload" != "[]" ]]
 }
 
 archive_muted_reports() {
@@ -71,7 +92,7 @@ record_spoken() {
     VOICE_CONF="$VOICE_CONF" \
     VOICE_BUFFER="$BUFFER" \
     VOICE_INTELLIGENCE_STATE="${VOICE_INTELLIGENCE_STATE:-/tmp/.supernova_voice_intelligence.json}" \
-    VOICE_DIGEST_STATE="${VOICE_DIGEST_STATE:-/tmp/.supernova_voice_digest.json}" \
+    VOICE_DIGEST_STATE="$DIGEST_STATE" \
     VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-/Users/alexanderanthony/.agents/voice_intelligence_archives}" \
         "$POLICY_PYTHON" "$INTELLIGENCE_ENGINE" spoken "$speech" "${digests[@]}" >> "$LOG" 2>&1
 }
@@ -97,7 +118,7 @@ evaluate_policy() {
     VOICE_CONF="$VOICE_CONF" \
     VOICE_BUFFER="$BUFFER" \
     VOICE_INTELLIGENCE_STATE="${VOICE_INTELLIGENCE_STATE:-/tmp/.supernova_voice_intelligence.json}" \
-    VOICE_DIGEST_STATE="${VOICE_DIGEST_STATE:-/tmp/.supernova_voice_digest.json}" \
+    VOICE_DIGEST_STATE="$DIGEST_STATE" \
     VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-/Users/alexanderanthony/.agents/voice_intelligence_archives}" \
         "$POLICY_PYTHON" "$INTELLIGENCE_ENGINE" "$command" "$@"
 }
@@ -116,20 +137,22 @@ process_decision() {
 }
 
 while true; do
+    POLL_SECONDS="$IDLE_POLL_SECONDS"
     if voice_is_muted; then
         archive_muted_reports
     elif [[ -f "$BUFFER" && -s "$BUFFER" ]]; then
+        POLL_SECONDS="$ACTIVE_POLL_SECONDS"
         LINE=$(head -n 1 "$BUFFER")
         if [[ -n "$LINE" ]]; then
             DECISION=$(evaluate_policy evaluate "$LINE")
             remove_first_queue_line
             process_decision "$DECISION"
         fi
-    else
+    elif has_pending_digest; then
         DECISION=$(evaluate_policy flush)
         process_decision "$DECISION"
     fi
 
     [[ "$RUN_ONCE" == "1" ]] && break
-    sleep 2
+    sleep "$POLL_SECONDS"
 done
