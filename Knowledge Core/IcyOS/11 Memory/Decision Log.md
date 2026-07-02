@@ -168,12 +168,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 9 execution
+| DEC-SP9-20260702-01 | 2026-07-02 | Deployed ApprovalPanel controls mapping states transitions: draft, generated, approved, locked. | [[apps/web/src/components/timeline/approval-panel.tsx]] | Accepted |
+| DEC-SP9-20260702-02 | 2026-07-02 | Created hook useTimelineApproval wrapping api calls and preventing duplicates. | [[apps/web/src/hooks/use-timeline-approval.ts]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 10 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP9-20260702-01 | 2026-07-02 | Deployed ApprovalPanel controls mapping states transitions: draft, generated, approved, locked. | [[apps/web/src/components/timeline/approval-panel.tsx]] | Accepted |
-| DEC-SP9-20260702-02 | 2026-07-02 | Created hook useTimelineApproval wrapping api calls and preventing duplicates. | [[apps/web/src/hooks/use-timeline-approval.ts]] | Accepted |
+| DEC-SP10-20260702-01 | 2026-07-02 | Developed custom hooks and countdown interfaces managing focus session running and overruns. | [[apps/web/src/hooks/use-focus-session.ts]] | Accepted |
+| DEC-SP10-20260702-02 | 2026-07-02 | Created Protected Buffer countdown cards auto-consuming remaining durations during overruns. | [[apps/web/src/components/focus/protected-buffer-card.tsx]] | Accepted |
+
 
 
 

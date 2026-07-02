@@ -164,3 +164,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 9 Lessons
 - Splitting approval action buttons (Approve, Reject, Regenerate) into distinct subcomponents makes the parent panel layout modular.
 - Locking client controls optimistic states after timeline approval prevents duplicate network actions and keeps states transitions clean.
+
+---
+
+## 2026-07-02 Sprint 10 Lessons
+- Binding useEffect hooks directly to states transitions ensures countdown intervals clear cleanly during pauses.
+- Appending transition events asynchronously to historical event arrays guarantees operators can audit exact target execution sequences.
