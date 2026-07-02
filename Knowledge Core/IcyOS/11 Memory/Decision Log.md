@@ -153,12 +153,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 6 execution
+| DEC-SP6-20260702-01 | 2026-07-02 | Scaffolded Next.js AppShell layout containing Sidebar and responsive navigations. | [[apps/web/src/components/layout/app-shell.tsx]] | Accepted |
+| DEC-SP6-20260702-02 | 2026-07-02 | Created placeholder route pages mapping the 7 workspace section views. | [[apps/web/src/app/(dashboard)/dashboard/page.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 7 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP6-20260702-01 | 2026-07-02 | Scaffolded Next.js AppShell layout containing Sidebar and responsive navigations. | [[apps/web/src/components/layout/app-shell.tsx]] | Accepted |
-| DEC-SP6-20260702-02 | 2026-07-02 | Created placeholder route pages mapping the 7 workspace section views. | [[apps/web/src/app/(dashboard)/dashboard/page.tsx]] | Accepted |
+| DEC-SP7-20260702-01 | 2026-07-02 | Developed custom hooks and unified fetch utilities to communicate with Next.js App Router endpoints. | [[apps/web/src/hooks/use-inbox-capture.ts]] | Accepted |
+| DEC-SP7-20260702-02 | 2026-07-02 | Deployed interactive inbox text capturing fields displaying validation and success result boundaries. | [[apps/web/src/components/inbox/inbox-capture-box.tsx]] | Accepted |
+
 
 
 

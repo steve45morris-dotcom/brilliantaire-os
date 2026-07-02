@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.19.0` | `Status: Locked`
+`Version: 1.20.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-02**: Executed Sprint 7: Inbox Capture. Built `inbox-capture-box.tsx`, `inbox-result-card.tsx`, `use-inbox-capture.ts` hooks, and linked route triggers under `apps/web/src/app/(dashboard)/inbox/`.
 - **2026-07-02**: Executed Sprint 6: Shell Architecture. Created AppShell navigation coordinates, Top/Bottom layouts, desktop Sidebar, and 7 view placeholders inside `apps/web`.
 - **2026-07-02**: Executed Sprint 5.5: Frontend Foundation. Integrated Tailwind CSS, dark-first global theme system, and core UI primitives inside `apps/web`.
 - **2026-07-02**: Executed Sprint 5: API Route Boundaries. Created 12 typed Next.js route handlers exposing application services coordinates under `apps/web/src/app/api/`.
@@ -33,6 +34,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.19.0
+- **Version**: 1.20.0
 
 *I build before burning.*

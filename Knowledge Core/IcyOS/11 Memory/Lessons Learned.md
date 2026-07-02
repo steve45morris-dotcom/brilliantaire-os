@@ -146,3 +146,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 6 Lessons
 - Using route groups (e.g. `(dashboard)`) inside Next.js App Router keeps layout structures cleanly mapped without nesting path segments.
 - Implementing desktop sidebars and mobile bottom navigations as separate components optimizes layout responsiveness.
+
+---
+
+## 2026-07-02 Sprint 7 Lessons
+- Mocking the fetch wrapper client and envelope format directly inside Vitest unit tests avoids needing active local Node servers during unit checks.
+- Placing error validations and loadings status variables inside single unified custom hooks keeps visual page view components clean and logic-free.

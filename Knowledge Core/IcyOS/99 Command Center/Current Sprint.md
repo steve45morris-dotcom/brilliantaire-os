@@ -41,11 +41,12 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-125**: Run Sprint 5 API controllers and route boundary implementation.
 - [x] **TSK-126**: Run Sprint 5.5 frontend foundation implementation.
 - [x] **TSK-127**: Run Sprint 6 shell architecture implementation.
+- [x] **TSK-128**: Run Sprint 7 inbox capture implementation.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.17.0
+- **Version**: 1.18.0
 
 *I build before burning.*
