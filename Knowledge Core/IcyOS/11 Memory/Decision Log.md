@@ -141,6 +141,16 @@ tags:
 | DEC-SP4-20260702-01 | 2026-07-02 | Scaffolded @icyos/services package mapping service coordinators and use cases. | [[packages/services/package.json]] | Accepted |
 | DEC-SP4-20260702-02 | 2026-07-02 | Implemented 7 core services coordinating data validation, mapping rules, and repository persistence. | [[packages/services/src/planning/index.ts]] | Accepted |
 
+---
+
+## 2026-07-02 Sprint 5 execution
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-SP5-20260702-01 | 2026-07-02 | Built 12 Next.js App Router route handlers exposing application services endpoints. | [[apps/web/src/app/api]] | Accepted |
+| DEC-SP5-20260702-02 | 2026-07-02 | Created api error handling and validation wrappers inside apps/web/src/lib/api. | [[apps/web/src/lib/api/response.ts]] | Accepted |
+
+
 
 
 

@@ -122,3 +122,15 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 3 Lessons
 - Keeping data mapping configurations isolated inside dedicated static mappers prevents database schema changes from leaking into the domain layer.
 - Enforcing that database connections can only occur through repository abstractions limits runtime side-effects in client code.
+
+---
+
+## 2026-07-02 Sprint 4 Lessons
+- Placing unit test files directly inside the services packages bounds configurations limits resolution errors.
+- Enforcing services coordination maps isolates transactional validation logic from database persistence layers.
+
+---
+
+## 2026-07-02 Sprint 5 Lessons
+- Enforcing that all API controllers return standard `ApiResponseEnvelope` prevents contract deviations.
+- Counting relative path nestings from nested route handlers is prone to drift; using consistent paths patterns resolves compiling type issues.

@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.16.0` | `Status: Locked`
+`Version: 1.17.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-02**: Executed Sprint 5: API Route Boundaries. Created 12 typed Next.js route handlers exposing application services coordinates under `apps/web/src/app/api/`.
 - **2026-07-02**: Executed Sprint 4: Service Layer. Created `@icyos/services` package coordinating repository handlers and use cases.
 - **2026-07-02**: Executed Sprint 3: Repository Layer. Created `@icyos/database` package containing repositories mappers and typescript interfaces.
 - **2026-07-02**: Executed Sprint 2: Supabase local setup. Validated the 13 staged database SQL migrations under `supabase/migrations/` on local PostgreSQL.
@@ -30,6 +31,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.16.0
+- **Version**: 1.17.0
 
 *I build before burning.*
