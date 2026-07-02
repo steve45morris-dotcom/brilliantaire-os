@@ -170,3 +170,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 10 Lessons
 - Binding useEffect hooks directly to states transitions ensures countdown intervals clear cleanly during pauses.
 - Appending transition events asynchronously to historical event arrays guarantees operators can audit exact target execution sequences.
+
+---
+
+## 2026-07-02 Sprint 11 Lessons
+- Wrapping navigator mediaDevice requests in try-catch bounds prevents runtime exceptions on machines lacking microphone hardware.
+- Presenting extracted learning signals using tag badges makes focus blockers and wins scannable under one minute.

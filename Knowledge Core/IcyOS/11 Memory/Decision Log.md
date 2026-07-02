@@ -173,12 +173,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 10 execution
+| DEC-SP10-20260702-01 | 2026-07-02 | Developed custom hooks and countdown interfaces managing focus session running and overruns. | [[apps/web/src/hooks/use-focus-session.ts]] | Accepted |
+| DEC-SP10-20260702-02 | 2026-07-02 | Created Protected Buffer countdown cards auto-consuming remaining durations during overruns. | [[apps/web/src/components/focus/protected-buffer-card.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 11 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP10-20260702-01 | 2026-07-02 | Developed custom hooks and countdown interfaces managing focus session running and overruns. | [[apps/web/src/hooks/use-focus-session.ts]] | Accepted |
-| DEC-SP10-20260702-02 | 2026-07-02 | Created Protected Buffer countdown cards auto-consuming remaining durations during overruns. | [[apps/web/src/components/focus/protected-buffer-card.tsx]] | Accepted |
+| DEC-SP11-20260702-01 | 2026-07-02 | Scaffolded Reflection page layouts supporting rating selection scales and microphone request checks. | [[apps/web/src/components/review/voice-reflection.tsx]] | Accepted |
+| DEC-SP11-20260702-02 | 2026-07-02 | Wrote extracted learning signal widgets rendering structured wins, blocker lists and lessons. | [[apps/web/src/components/review/learning-signal-card.tsx]] | Accepted |
+
 
 
 
