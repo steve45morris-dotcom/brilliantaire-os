@@ -114,6 +114,36 @@ tags:
 | DEC-ST2-20260702-01 | 2026-07-02 | Integrated Zod package inside shared monorepo package. | [[packages/shared/package.json]] | Accepted |
 | DEC-ST2-20260702-02 | 2026-07-02 | Declared validation schemas for primitives, payloads, envelopes, and RPC bounds under packages/shared/src/validation. | [[packages/shared/src/validation/index.ts]] | Accepted |
 
+---
+
+## 2026-07-02 Sprint 2 execution
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-SP2-20260702-01 | 2026-07-02 | Set up and validated 13 SQL schema rollout migrations locally on PostgreSQL server. | [[Database Local Setup]] | Accepted |
+| DEC-SP2-20260702-02 | 2026-07-02 | Introduced a local PostgreSQL mock auth schema to validate Supabase RLS security policies configurations locally. | [[01_extensions.sql]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 3 execution
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-SP3-20260702-01 | 2026-07-02 | Scaffolded @icyos/database package mapping mappers and repositories logic. | [[packages/database/package.json]] | Accepted |
+| DEC-SP3-20260702-02 | 2026-07-02 | Enforced static mapping algorithms isolating application logic from raw database query records. | [[packages/database/src/mappers/index.ts]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 4 execution
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-SP4-20260702-01 | 2026-07-02 | Scaffolded @icyos/services package mapping service coordinators and use cases. | [[packages/services/package.json]] | Accepted |
+| DEC-SP4-20260702-02 | 2026-07-02 | Implemented 7 core services coordinating data validation, mapping rules, and repository persistence. | [[packages/services/src/planning/index.ts]] | Accepted |
+
+
+
+
 
 
 

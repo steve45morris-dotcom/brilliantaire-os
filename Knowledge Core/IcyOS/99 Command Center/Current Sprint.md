@@ -36,11 +36,13 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-120**: Run Sprint 0 repository and project scaffold preparation configurations.
 - [x] **TSK-121**: Run Sprint 1 shared compile-time types declarations (Story 1.1).
 - [x] **TSK-122**: Run Sprint 1 Zod validation schemas declarations (Story 1.2).
+- [x] **TSK-123**: Run Sprint 2 database local setup and migration validations.
+- [x] **TSK-124**: Run Sprint 3 repository and data access layer implementation.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.12.0
+- **Version**: 1.14.0
 
 *I build before burning.*

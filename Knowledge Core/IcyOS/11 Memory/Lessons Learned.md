@@ -110,3 +110,15 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Story 1.2 Lessons
 - Enforcing UUID format checks on payload strings at the schema validation boundary catches identifier errors early.
 - Placing unit test files in locations matching test configurations patterns (e.g. `src/validation/validation.test.ts`) prevents folder resolution issues.
+
+---
+
+## 2026-07-02 Sprint 2 Lessons
+- Introducing a mock `auth` schema locally prevents SQL errors during RLS policy creation when validating migrations on default Postgres environments.
+- Splitting migrations logically into identity, workspaces, projects, and triggers limits validation errors during schema rollout.
+
+---
+
+## 2026-07-02 Sprint 3 Lessons
+- Keeping data mapping configurations isolated inside dedicated static mappers prevents database schema changes from leaking into the domain layer.
+- Enforcing that database connections can only occur through repository abstractions limits runtime side-effects in client code.

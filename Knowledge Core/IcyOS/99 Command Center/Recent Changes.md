@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.13.0` | `Status: Locked`
+`Version: 1.16.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,9 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-02**: Executed Sprint 4: Service Layer. Created `@icyos/services` package coordinating repository handlers and use cases.
+- **2026-07-02**: Executed Sprint 3: Repository Layer. Created `@icyos/database` package containing repositories mappers and typescript interfaces.
+- **2026-07-02**: Executed Sprint 2: Supabase local setup. Validated the 13 staged database SQL migrations under `supabase/migrations/` on local PostgreSQL.
 - **2026-07-02**: Executed Story 1.2: Zod Validation. Implemented Zod validation schemas and unit tests.
 - **2026-07-02**: Executed Sprint 1: Shared Types & Validation. Implemented static TS type definitions under `@icyos/shared`.
 - **2026-07-02**: Executed Sprint 0: Repo and Project Scaffold. Mapped monorepo configurations (`package.json`, `pnpm-workspace.yaml`, `turbo.json`, `tsconfig.base.json`) and Next.js workspace setup.
@@ -27,6 +30,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.13.0
+- **Version**: 1.16.0
 
 *I build before burning.*
