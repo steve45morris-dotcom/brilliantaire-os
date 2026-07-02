@@ -39,11 +39,12 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-123**: Run Sprint 2 database local setup and migration validations.
 - [x] **TSK-124**: Run Sprint 3 repository and data access layer implementation.
 - [x] **TSK-125**: Run Sprint 5 API controllers and route boundary implementation.
+- [x] **TSK-126**: Run Sprint 5.5 frontend foundation implementation.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.15.0
+- **Version**: 1.16.0
 
 *I build before burning.*

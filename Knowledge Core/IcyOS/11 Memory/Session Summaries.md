@@ -77,12 +77,16 @@ Chronological log of completed developer and agent sessions, tracking deliverabl
 
 ### 2026-07-02: Sprint 5 Execution
 - **Delivered**: Scaffolded 12 typed Next.js App Router API route handlers and responses/errors wrappers inside `apps/web`. Checked type safety and verified Vitest route controller checks.
+- **Commit Reference**: Complete.
+
+### 2026-07-02: Sprint 5.5 Execution
+- **Delivered**: Configured Tailwind CSS, dark-first global CSS variable tokens, ThemeProvider, and 6 core UI component primitives (Button, Card, Input, Badge, Spinner, Modal shell). Verified Next.js optimization build.
 - **Commit Reference**: Pending.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Record historical session summaries.
-- **Version**: 1.16.0
+- **Version**: 1.17.0
 
 *I build before burning.*

@@ -1,18 +1,24 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import "../styles/globals.css";
+import { ThemeProvider } from "../providers/theme-provider";
 
 export const metadata: Metadata = {
-  title: 'IcyOS Dashboard',
-  description: 'AI Operating System intent loop console',
+  title: "IcyOS Console",
+  description: "Autonomous Agentic Orchestration OS Console",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body style={{ margin: 0 }}>{children}</body>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

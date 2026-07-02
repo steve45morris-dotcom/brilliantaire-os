@@ -134,3 +134,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 5 Lessons
 - Enforcing that all API controllers return standard `ApiResponseEnvelope` prevents contract deviations.
 - Counting relative path nestings from nested route handlers is prone to drift; using consistent paths patterns resolves compiling type issues.
+
+---
+
+## 2026-07-02 Sprint 5.5 Lessons
+- Declaring dark-first color variables in CSS variables ensures consistent style behavior across both Tailwind and standard vanilla classes.
+- Consolidating base UI primitives (Button, Card, Input) into isolated folders separates design tokens configurations from application business components.

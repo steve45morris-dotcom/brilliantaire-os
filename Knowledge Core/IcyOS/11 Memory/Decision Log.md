@@ -143,12 +143,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 5 execution
+| DEC-SP5-20260702-01 | 2026-07-02 | Built 12 Next.js App Router route handlers exposing application services endpoints. | [[apps/web/src/app/api]] | Accepted |
+| DEC-SP5-20260702-02 | 2026-07-02 | Created api error handling and validation wrappers inside apps/web/src/lib/api. | [[apps/web/src/lib/api/response.ts]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 5.5 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP5-20260702-01 | 2026-07-02 | Built 12 Next.js App Router route handlers exposing application services endpoints. | [[apps/web/src/app/api]] | Accepted |
-| DEC-SP5-20260702-02 | 2026-07-02 | Created api error handling and validation wrappers inside apps/web/src/lib/api. | [[apps/web/src/lib/api/response.ts]] | Accepted |
+| DEC-SP55-20260702-01 | 2026-07-02 | Integrated Tailwind CSS, PostCSS, Autoprefixer, and Lucide Icons inside web app. | [[apps/web/package.json]] | Accepted |
+| DEC-SP55-20260702-02 | 2026-07-02 | Designed dark-first theme token rules and wrote 6 base UI component primitives. | [[apps/web/src/components/ui/button.tsx]] | Accepted |
+
 
 
 
