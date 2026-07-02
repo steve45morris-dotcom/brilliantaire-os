@@ -61,6 +61,8 @@ Manage and execute operations using the following `task` commands:
 | `task icyflamze-core-episode-1-help` | `npm run icyflamze-core-episode-1-help` | Print ICYFLAMZE CORE Episode 1 Trailer production package CLI help |
 | `task icyflamze-core-episode-1-asset-queue` | `npm run icyflamze-core-episode-1-asset-queue -- <CLI_ARGS>` | Run ICYFLAMZE CORE Episode 1 Trailer Asset Queue compilation safely |
 | `task icyflamze-core-episode-1-asset-queue-help` | `npm run icyflamze-core-episode-1-asset-queue-help` | Print ICYFLAMZE CORE Episode 1 Trailer Asset Queue CLI help |
+| `task icyflamze-core-episode-1-render-intake` | `npm run icyflamze-core-episode-1-render-intake -- <CLI_ARGS>` | Run ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation safely |
+| `task icyflamze-core-episode-1-render-intake-help` | `npm run icyflamze-core-episode-1-render-intake-help` | Print ICYFLAMZE CORE Episode 1 Trailer Render Intake CLI help |
 | `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
 | `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
@@ -4680,6 +4682,60 @@ The **Episode 1 Asset Generation Queue** maps every required asset from the Epis
   ```bash
   npm run command -- "icyflamze-core-episode-1-asset-queue" -- "status"
   ```
+
+---
+
+## 📖 Phase 14E: Episode 1 Manual Render Intake & Assembly Tracker
+
+The **Episode 1 Manual Render Intake & Assembly Tracker** tracks manually generated images, video clips, voiceovers, sound design files, cover art, captions, and editing project files, then generates validation reports, review checklists, and assembly readiness reports.
+
+### 🔒 Guardrails Summary
+1. **RENDER_INTAKE_ONLY:** Local file compilation only. Direct Obsidian writes are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`).
+2. **No-Generation Boundary:** No automated audio rendering, image generations, or video compile calls are executed (`ALLOW_IMAGE_GENERATION = false`, `ALLOW_AUDIO_GENERATION = false`, `ALLOW_VIDEO_GENERATION = false`).
+3. **Command Router Gating:** All subcommands run under strict command router configurations with exact matching.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake-help"
+  ```
+* Scan incoming files:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "scan"
+  ```
+* Validate file names and formats:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "validate"
+  ```
+* Compile visual continuity checklist:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "visual-review"
+  ```
+* Compile audio review checklist:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "audio-review"
+  ```
+* Compile assembly readiness report:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "assembly-readiness"
+  ```
+* Generate revision log:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "revision-log"
+  ```
+* Stage Obsidian staging note:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "obsidian-stage"
+  ```
+* Compile package generation report:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "report"
+  ```
+* Display latest compiled output paths:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-render-intake" -- "status"
+  ```
+
 
 
 

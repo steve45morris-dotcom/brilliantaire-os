@@ -34,6 +34,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `icyflamze-core-episode-1` | `episode 1`, `core episode` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer production package subcommands. |
 | `icyflamze-core-episode-1-asset-queue-help` | `episode asset help`, `core asset help` | Creative Architect | Low | No | Prints available commands for the ICYFLAMZE CORE Episode 1 Trailer Asset Queue compiler. |
 | `icyflamze-core-episode-1-asset-queue` | `episode asset`, `core asset` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer Asset Queue compilation subcommands. |
+| `icyflamze-core-episode-1-render-intake-help` | `render intake help`, `episode render help` | Creative Architect | Low | No | Prints available commands for the ICYFLAMZE CORE Episode 1 Trailer Render Intake compiler. |
+| `icyflamze-core-episode-1-render-intake` | `render intake`, `episode render` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation subcommands. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |

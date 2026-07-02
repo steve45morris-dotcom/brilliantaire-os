@@ -121,6 +121,16 @@ tasks:
     cmds:
       - npm run icyflamze-core-episode-1-asset-queue-help
 
+  icyflamze-core-episode-1-render-intake:
+    desc: "Run ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation safely"
+    cmds:
+      - npm run icyflamze-core-episode-1-render-intake -- {{.CLI_ARGS}}
+
+  icyflamze-core-episode-1-render-intake-help:
+    desc: "Print ICYFLAMZE CORE Episode 1 Trailer Render Intake CLI help"
+    cmds:
+      - npm run icyflamze-core-episode-1-render-intake-help
+
   voice-queue:
     desc: "Process text-based voice commands queue safely"
     cmds:

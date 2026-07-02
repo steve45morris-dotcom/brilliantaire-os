@@ -111,6 +111,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'icyflamze-core-episode-1-render-intake-help',
+    aliases: ['render intake help', 'episode render help'],
+    description: 'Print available commands for the ICYFLAMZE CORE Episode 1 Trailer Render Intake compiler',
+    npmScript: 'icyflamze-core-episode-1-render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'icyflamze-core-episode-1-render-intake',
+    aliases: ['render intake', 'episode render'],
+    description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation subcommands',
+    npmScript: 'icyflamze-core-episode-1-render-intake',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'brief',
     aliases: ['report', 'summary'],
     description: 'Compile and print a clean operational summary brief',

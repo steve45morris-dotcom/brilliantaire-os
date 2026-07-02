@@ -1,0 +1,10 @@
+[2026-07-02T17:19:17.145Z] Generated render intake scan at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_render_intake_scan_2026-07-02.md
+[2026-07-02T17:19:46.418Z] Generated asset validation report at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_asset_validation_2026-07-02.md
+[2026-07-02T17:20:15.109Z] Generated visual review checklist at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/checklists/episode_1_visual_continuity_review_2026-07-02.md
+[2026-07-02T17:20:44.648Z] Generated audio review checklist at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/checklists/episode_1_audio_review_2026-07-02.md
+[2026-07-02T17:21:13.483Z] Generated assembly readiness report at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_assembly_readiness_2026-07-02.md
+[2026-07-02T17:21:42.113Z] Generated revision log at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_revision_log_2026-07-02.md
+[2026-07-02T17:22:10.779Z] Generated Obsidian staged note at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/obsidian_staging/ICYFLAMZE_CORE_EPISODE_1_RENDER_INTAKE_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T17:22:10.780Z] Copied Obsidian note to write-gateway: /Users/alexanderanthony/outputs/write_staging/ICYFLAMZE_CORE_EPISODE_1_RENDER_INTAKE_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T17:22:39.690Z] Compiled render intake report at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_render_intake_report_2026-07-02.md
+[2026-07-02T17:23:07.750Z] Printed status menu.

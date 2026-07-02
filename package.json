@@ -36,6 +36,8 @@
     "icyflamze-core-episode-1-help": "tsx scripts/icyflamze-core-episode-1-help.ts",
     "icyflamze-core-episode-1-asset-queue": "tsx scripts/icyflamze-core-episode-1-asset-queue.ts",
     "icyflamze-core-episode-1-asset-queue-help": "tsx scripts/icyflamze-core-episode-1-asset-queue-help.ts",
+    "icyflamze-core-episode-1-render-intake": "tsx scripts/icyflamze-core-episode-1-render-intake.ts",
+    "icyflamze-core-episode-1-render-intake-help": "tsx scripts/icyflamze-core-episode-1-render-intake-help.ts",
     "voice-queue": "tsx scripts/voice-queue.ts",
     "voice-help": "tsx scripts/voice-help.ts",
     "voice-pending": "tsx scripts/voice-pending.ts",
