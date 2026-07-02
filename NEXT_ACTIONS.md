@@ -1,12 +1,13 @@
 # 🎯 Next Actions
 
 ## Do Now
-- [ ] Register ICYFLAMZE CORE project
-- [ ] Stage Obsidian vault note
-- [ ] Generate Season 1 summary
-- [ ] Generate sync report
+- [x] Register ICYFLAMZE CORE project (Phase 14A)
+- [x] Stage Obsidian vault note (Phase 14A)
+- [x] Generate Season 1 summary (Phase 14A)
+- [x] Generate sync report (Phase 14A)
+- [x] Remote sync recovery (Phase 14A-R)
 - [ ] Review staged Obsidian note manually
-- [ ] Prepare Season 1 IP Bible
+- [ ] Queue Phase 14B: Season 1 IP Bible
 - [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
 - [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
 - [x] Add operational intelligence scripts (audit, brief, next)
