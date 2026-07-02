@@ -26,6 +26,8 @@ To ensure complete control and system safety, the router enforces the following 
 | Command | Aliases | Owning Agent | Risk Level | Exact Name Required | Description |
 |---|---|---|---|---|---|
 | `audit` | `check`, `verify` | Workflow Auditor | Low | No | Runs workspace structural checks and verification checks. |
+| `icyflamze-core-help` | `icy core help`, `core help` | Creative Architect | Low | No | Prints list of available ICYFLAMZE CORE engine tasks. |
+| `icyflamze-core` | `icy core`, `core` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE project registry & staging actions. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |
@@ -166,6 +168,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-verification-rerun-trigger-packet` | `asr trigger`, `whisper trigger` | Build Operator | Medium | Yes | Generate verification rerun trigger packet for ASR validation gates chain. |
 | `asr-validation-chain-execution-report-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR validation chain execution report. |
 | `asr-validation-chain-execution-report` | None | Build Operator | Medium | Yes | Validate and compile report of the full ASR validation chain execution status. |
+| `asr-offline-execution-approval-switch-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR execution approval switch. |
+| `asr-offline-execution-approval-switch` | None | Build Operator | Medium | Yes | Generates the human-controlled approval switch for authorizing local audio files for offline ASR. |
 | `git-asset-help` | `git asset help`, `repo asset help` | Build Operator | Low | No | Print help menu and policies for Git Asset Guard. |
 | `git-asset-audit` | `asset audit`, `repo audit` | Build Operator | Low | No | Run Git Asset Guard scan and policy compliance check. |
 | `git-prepush-check` | `prepush check`, `push check` | Build Operator | Low | No | Run prepush TypeScript compiler compile, systems audit, and Git asset checks sequentially. |
@@ -254,6 +258,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `asr-verification-rerun-trigger-packet` | `asr trigger`, `whisper trigger` | Build Operator | Medium | Yes | Generate verification rerun trigger packet for ASR validation gates chain. |
 | `asr-validation-chain-execution-report-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR validation chain execution report. |
 | `asr-validation-chain-execution-report` | None | Build Operator | Medium | Yes | Validate and compile report of the full ASR validation chain execution status. |
+| `asr-offline-execution-approval-switch-help` | None | Build Operator | Low | Yes | Print help menu for the offline ASR execution approval switch. |
+| `asr-offline-execution-approval-switch` | None | Build Operator | Medium | Yes | Generates the human-controlled approval switch for authorizing local audio files for offline ASR. |
 | `briefing-delivery-package-exporter-help` | `briefing delivery help`, `exporter help` | Workflow Auditor | Low | Yes | Print help command menu for the briefing delivery package exporter. |
 | `briefing-delivery-package-exporter` | `briefing delivery`, `delivery exporter` | Workflow Auditor | Medium | Yes | Package approved briefing audio, source daily reports, review metadata, and checksums into local folders. |
 | `manual-delivery-handoff-help` | `manual delivery help`, `handoff help` | Workflow Auditor | Low | Yes | Print help command menu for the manual delivery handoff and checklist manager. |
@@ -325,6 +331,42 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-manual-evidence-action-board-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Manual Evidence Action Board. |
 | `grinders-keep-evidence-completion-tracker` | *(none)* | Creative Revenue Strategist | Medium | Yes | Audit local filesystem evidence check status, validation states, and build manifests for validator. |
 | `grinders-keep-evidence-completion-tracker-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Completion Tracker. |
+| `grinders-keep-evidence-revalidation-trigger` | *(none)* | Creative Revenue Strategist | Medium | Yes | Stage revalidation plans and commands to trigger evidence validation in Phase 12O. |
+| `grinders-keep-evidence-revalidation-trigger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Revalidation Trigger. |
+| `grinders-keep-evidence-loop-closure-auditor` | *(none)* | Workflow Auditor | Medium | Yes | Audit the end-to-end evidence loop and generate closure readiness reports. |
+| `grinders-keep-evidence-loop-closure-auditor-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Loop Closure Auditor. |
+| `grinders-keep-evidence-pack-builder` | *(none)* | Workflow Auditor | Medium | Yes | Gathers unresolved evidence tasks and packages them into one Commander collection packet. |
+| `grinders-keep-evidence-pack-builder-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Builder. |
+| `grinders-keep-evidence-pack-completion-importer` | *(none)* | Workflow Auditor | Medium | Yes | Scans target folders for manually placed evidence completions and stages them for tracker sync. |
+| `grinders-keep-evidence-pack-completion-importer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Completion Importer. |
+| `grinders-keep-evidence-tracker-sync-adapter` | *(none)* | Workflow Auditor | Medium | Yes | Sync adapter mapping imported Phase 12V outputs to expected Phase 12R tracker input files. |
+| `grinders-keep-evidence-tracker-sync-adapter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Sync Adapter. |
+| `grinders-keep-evidence-tracker-manual-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Manual rerun planner evaluating sync outputs and preparing Phase 12R manual execution sheets. |
+| `grinders-keep-evidence-tracker-manual-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Manual Rerun Planner. |
+| `grinders-keep-evidence-collection-workbench` | *(none)* | Workflow Auditor | Medium | Yes | Centralized commander-facing evidence collection workbench for staging manual proofs. |
+| `grinders-keep-evidence-collection-workbench-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Workbench. |
+| `grinders-keep-evidence-collection-intake-lock` | *(none)* | Workflow Auditor | Medium | Yes | Local intake lock freezing task definitions and target paths from Phase 12Y. |
+| `grinders-keep-evidence-collection-intake-lock-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Intake Lock. |
+| `grinders-keep-evidence-collection-execution-guide` | *(none)* | Workflow Auditor | Medium | Yes | Generate copy-pasteable manual collection steps and prompt packs for frozen targets. |
+| `grinders-keep-evidence-collection-execution-guide-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Execution Guide. |
+| `grinders-keep-evidence-collection-session-logger` | *(none)* | Workflow Auditor | Medium | Yes | Local session logger aggregating manual evidence collection attempts and blockers. |
+| `grinders-keep-evidence-collection-session-logger-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Session Logger. |
+| `grinders-keep-evidence-session-import-bridge` | *(none)* | Workflow Auditor | Medium | Yes | Local session import bridge mapping manual evidence attempts to importer items. |
+| `grinders-keep-evidence-session-import-bridge-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Session Import Bridge. |
+| `grinders-keep-evidence-proof-review-board` | *(none)* | Workflow Auditor | Medium | Yes | Local Commander-facing proof review board dashboard summarizing attempts, bridges, and status. |
+| `grinders-keep-evidence-proof-review-board-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Proof Review Board. |
+| `grinders-keep-evidence-first-item-collection-packet` | *(none)* | Workflow Auditor | Medium | Yes | Focused manual collection packet for the highest-priority locked evidence task. |
+| `grinders-keep-evidence-first-item-collection-packet-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence First-Item Collection Packet. |
+| `grinders-keep-first-evidence-attempt-reviewer` | *(none)* | Workflow Auditor | Medium | Yes | Local reviewer auditing manual first evidence collection attempt and target file presence. |
+| `grinders-keep-first-evidence-attempt-reviewer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Attempt Reviewer. |
+| `grinders-keep-first-evidence-importer-gate` | *(none)* | Workflow Auditor | Medium | Yes | Local gate deciding manual handoff eligibility for first evidence item completed by Commander. |
+| `grinders-keep-first-evidence-importer-gate-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Importer Gate. |
+| `grinders-keep-first-evidence-manual-completion-loop` | *(none)* | Workflow Auditor | Medium | Yes | One-page checklist and manual sequence for completing the blocked first evidence task. |
+| `grinders-keep-first-evidence-manual-completion-loop-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Manual Completion Loop. |
+| `grinders-keep-first-evidence-completion-detector` | *(none)* | Workflow Auditor | Medium | Yes | Scan local folders and check if manual evidence steps are completed. |
+| `grinders-keep-first-evidence-completion-detector-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Completion Detector. |
+| `grinders-keep-local-verification-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Compile manual rerun instructions for the evidence verification workflow after manual completion. |
+| `grinders-keep-local-verification-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Local Verification Rerun Planner. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
 | `duplicate-cleanup` | `cleanup`, `duplicate scan` | Workflow Auditor | Medium | Yes | Scan allowed roots, detect duplicate timestamp variants and stale reports, and stage recommendations. |
 | `cleanup-approval-help` | `cleanup approval help`, `quarantine approval help` | Workflow Auditor | Low | No | Print help menu for the duplicate cleanup approval gate. |
@@ -381,3 +423,51 @@ To ensure complete control and system safety, the router enforces the following 
 ## 5. Preparation for Voice Control (VibeVoice Bridge)
 
 By centralizing execution into a normalized command parser, the OS is fully prepared for future voice integration. Once active, the VibeVoice ASR voice bridge can transcribe spoken audio commands (e.g. *"Show daily brief"*), map the normalized text to the Command Router, and execute tasks hands-free safely within pre-defined security boundaries.
+
+---
+
+## 6. Voice Bus Verification & Stress Testing (v3)
+
+To verify the integrity of the Centralized Voice Bus and prevent regressions, use the following validation suite commands:
+
+* **Voice Bus Audit:**
+  ```bash
+  npm run voice:bus:audit
+  # or
+  task voice:bus:audit
+  ```
+  Scans scripts across key directories to ensure no direct `/usr/bin/say` invocations are made, verifies that no unsafe backgrounding exists, and audits emergency kill logic to ensure it targets only Voice Bus owned PIDs.
+
+* **Voice Bus Stress Test:**
+  ```bash
+  npm run voice:bus:stress
+  # or
+  task voice:bus:stress
+  ```
+  Triggers concurrent speech requests of mixed priorities and sizes to verify serialization constraints (active say processes strictly $\le 1$), cooperative preemption between sentence chunks, emergency overrides, FIFO queue ordering, log validity, and report archiving.
+
+* **Voice Bus Queue Status:**
+  ```bash
+  npm run voice:bus:queue-status
+  # or
+  task voice:bus:queue-status
+  ```
+  Checks and prints the current status of the queue directory, lock state, active say processes, active job ID/priority/chunk, policy, and deferred/waiting counts.
+
+* **Voice Bus Cleanup:**
+  ```bash
+  npm run voice:bus:cleanup
+  # or
+  task voice:bus:cleanup
+  ```
+  Prunes completed queue files, rotates logs, and deletes stale deferred jobs, orphaned chunk files, and interrupted state files older than 24 hours (preserving KEEP-marked files).
+
+* **Voice Bus Complete Validation:**
+  ```bash
+  npm run voice:bus:validate
+  # or
+  task voice:bus:validate
+  ```
+  Executes the compliance audit, priority queue stress test, and downstream ASR validation chain sequentially.
+
+*Note: Voice Bus v3 supports safe cooperative preemption (between sentence chunks) and emergency preemption (destructively terminating the active Voice Bus owned say PID if requested by a P1 emergency job).*

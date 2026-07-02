@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { COMMAND_REGISTRY, CommandDefinition } from '../config/commands.js';
 import { REPO_ROOT } from '../config/paths.js';
 import { announcePhrase, announceIntent, announceCompletion } from './vnp.js';
+import { AgentRouter } from '../src/agent-upgrade/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -180,10 +181,14 @@ async function runCommand() {
 
   console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
 
+  const router = new AgentRouter();
+  const decision = router.inspectAndRoute(`cmd-${Date.now()}`, rawInput);
+  console.log(`🤖 [Router] Dynamic Agent Assignment: ${decision.agentAssignment} | Required Skills: ${decision.requiredSkills.join(', ') || 'None'}`);
+
   // ROUTER INITIALIZED: Fire phrase 23
   await announcePhrase("Street map loaded. Routing without permission.");
 
-  const isWriteCommand = ['approve-write', 'stage-write', 'sync-status', 'ingest', 'campaign', 'campaign-scheduler', 'mesh-telemetry', 'dashboard-export', 'platform-adapter', 'manual-release'].includes(matchedCmd.name);
+  const isWriteCommand = ['approve-write', 'stage-write', 'sync-status', 'ingest', 'campaign', 'campaign-scheduler', 'mesh-telemetry', 'dashboard-export', 'platform-adapter', 'manual-release', 'icyflamze-core'].includes(matchedCmd.name);
   const isBuildCommand = ['build', 'dashboard-build'].includes(matchedCmd.name);
   const isDaemonCommand = ['background-run', 'voice-queue'].includes(matchedCmd.name);
 

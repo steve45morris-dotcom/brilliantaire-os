@@ -53,6 +53,8 @@ Manage and execute operations using the following `task` commands:
 | `task command-help` | `npm run command-help` | Print registry of all allowed command router configurations |
 | `task campaign` | `npm run campaign -- <CLI_ARGS>` | Run campaign template actions safely |
 | `task campaign-help` | `npm run campaign-help` | Print campaign CLI help |
+| `task icyflamze-core` | `npm run icyflamze-core -- <CLI_ARGS>` | Run ICYFLAMZE CORE registry & staging actions safely |
+| `task icyflamze-core-help` | `npm run icyflamze-core-help` | Print ICYFLAMZE CORE CLI help |
 | `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
 | `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
@@ -4094,6 +4096,93 @@ The **Grinders Keep Evidence Completion Tracker** audits the local filesystem to
 
 ---
 
+## 🛡️ Phase 12S: Grinders Keep Evidence Revalidation Trigger
+
+The **Grinders Keep Evidence Revalidation Trigger** processes validator-ready feeds from Phase 12R and stages revalidation plans and command sheets for Phase 12O (Intake Validator) without running the validator or executing commands automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API queries, model calls, automated tools execution, uploads, or publishing.
+2. **Read-Only Constraints:** No file copying, moving, renaming, deletion, or creation of evidence. Writes only revalidation outputs and frontpage metadata.
+3. **No Inventions:** Scans only real validator-ready feed items and completion manifests, listing blocked targets for missing elements.
+4. **Safety Gated:** revalidation_allowed and command_execution_allowed are locked to false.
+
+### 💻 Command Examples
+* View evidence revalidation trigger help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-revalidation-trigger-help"
+  ```
+* Run evidence revalidation trigger:
+  ```bash
+  npm run command -- "grinders-keep-evidence-revalidation-trigger"
+  ```
+
+---
+
+## 🛡️ Phase 12T: Grinders Keep Evidence Loop Closure Auditor
+
+The **Grinders Keep Evidence Loop Closure Auditor** evaluates whether the complete evidence revalidation loop is functioning end-to-end (from collection queue to revalidation trigger) and generates closure readiness scorecards without executing any phase automatically.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API queries, model calls, automated tools execution, uploads, or publishing.
+2. **Read-Only Constraints:** No file copying, moving, renaming, deletion, or creation of evidence. Writes only loop closure auditor outputs and frontpage metadata.
+3. **No Inventions:** Audits real local data and reports missing files/gaps clearly without generating mock traces or inventing approvals.
+4. **Safety Gated:** auto_execution_allowed is locked to false.
+
+### 💻 Command Examples
+* View evidence loop closure auditor help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-loop-closure-auditor-help"
+  ```
+* Run evidence loop closure auditor:
+  ```bash
+  npm run command -- "grinders-keep-evidence-loop-closure-auditor"
+  ```
+
+---
+
+## 🛡️ Phase 12U: Grinders Keep Evidence Pack Builder
+
+The **Grinders Keep Evidence Pack Builder** compiles all unresolved evidence tasks, missing proofs, and blocked loop traces, then packages them into a single consolidated Commander-facing evidence collection packet to unblock loop closure.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API queries, automated model calls, publishing, or uploading.
+2. **Read-Only Constraints:** Gathers unresolved tasks and writes pack outputs without creating or modifying evidence files.
+3. **Safety Gated:** evidence_creation_allowed and command_execution_allowed are locked to false.
+
+### 💻 Command Examples
+* View evidence pack builder help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-pack-builder-help"
+  ```
+* Run evidence pack builder:
+  ```bash
+  npm run command -- "grinders-keep-evidence-pack-builder"
+  ```
+
+---
+
+## 📥 Phase 12V: Grinders Keep Evidence Pack Completion Importer
+
+The **Grinders Keep Evidence Pack Completion Importer** scans target folders for manually placed evidence completions from Phase 12U. It stages ready items for tracker sync, registers blocked imports, computes scorecards, and logs results without copy, move, or delete mutations.
+
+### 🔒 Guardrails Summary
+1. **Local-First Constraints:** No external API queries, automated model calls, or publishing.
+2. **Read-Only Scans:** Strictly scans target paths for manually gathered evidence. Does not copy, move, delete, or validate the files' internal content.
+3. **Safety Gated:** `evidence_creation_allowed`, `file_move_allowed`, `file_copy_allowed`, and `auto_feed_allowed` are strictly locked to `false`.
+
+### 💻 Command Examples
+* View completion importer help menu:
+  ```bash
+  npm run command -- "grinders-keep-evidence-pack-completion-importer-help"
+  ```
+* Run completion importer:
+  ```bash
+  npm run command -- "grinders-keep-evidence-pack-completion-importer"
+  ```
+
+---
+
+
 ## 📖 Phase 13A: Knowledge Harvest Source Expansion
 
 The **Knowledge Harvest Source Expansion** implements a local, manual-first creator source registry and reporting layer under the Knowledge Librarian. It organizes approved creators, topic categories, priority labels, transcript statuses, NotebookLM staging, and OS workflow idea value scoring.
@@ -4359,6 +4448,44 @@ The **Manual Implementation Packet Compiler** reads the approved implementation 
 * Check compiler status:
   ```bash
   npm run command -- "manual-implementation-packet" -- "status"
+  ```
+
+---
+
+## 📖 Phase 14A: ICYFLAMZE CORE Project Registry & Obsidian Sync Gate
+
+The **ICYFLAMZE CORE Project Registry & Obsidian Sync Gate** integrates the ICYFLAMZE CORE universe (under the Street Scholar Futurism niche) into the Brilliantaire OS active capability registry. It establishes localized templates, a command router interface, and a safe staging layer for manual validation before copying files to active Obsidian vaults.
+
+### 🔒 Guardrails Summary
+1. **PROJECT_REGISTRY_ONLY:** Local registry and report generation only. Direct Obsidian writes are strictly disabled by default (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`).
+2. **Staging Gateway:** Staging files must be generated and verified locally in the `outputs/icyflamze_core/obsidian_staging/` and `outputs/write_staging/` directories.
+3. **No Deletions or Overwrites:** Prevents deleting or overriding files without timestamp date suffixes.
+4. **No External APIs:** No external API requests, scraping, or automated publishing are executed.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "icyflamze-core-help"
+  ```
+* Generate project registry markdown:
+  ```bash
+  npm run command -- "icyflamze-core" -- "registry"
+  ```
+* Stage Obsidian notes for manual write:
+  ```bash
+  npm run command -- "icyflamze-core" -- "obsidian-stage"
+  ```
+* Generate Season 1 summary report:
+  ```bash
+  npm run command -- "icyflamze-core" -- "season-summary"
+  ```
+* Generate integration sync status report:
+  ```bash
+  npm run command -- "icyflamze-core" -- "sync-report"
+  ```
+* Check compiler status:
+  ```bash
+  npm run command -- "icyflamze-core" -- "status"
   ```
 
 

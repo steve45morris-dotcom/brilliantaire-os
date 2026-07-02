@@ -81,6 +81,16 @@ tasks:
     cmds:
       - npm run campaign-help
 
+  icyflamze-core:
+    desc: "Run ICYFLAMZE CORE registry & staging actions safely"
+    cmds:
+      - npm run icyflamze-core -- {{.CLI_ARGS}}
+
+  icyflamze-core-help:
+    desc: "Print ICYFLAMZE CORE CLI help"
+    cmds:
+      - npm run icyflamze-core-help
+
   voice-queue:
     desc: "Process text-based voice commands queue safely"
     cmds:
@@ -730,6 +740,16 @@ tasks:
     desc: "Print help menu for the offline ASR validation chain execution report"
     cmds:
       - npm run asr-validation-chain-execution-report-help
+
+  asr-offline-execution-approval-switch:
+    desc: "Generate the human-controlled approval switch for offline ASR transcription"
+    cmds:
+      - npm run asr-offline-execution-approval-switch -- {{.CLI_ARGS}}
+
+  asr-offline-execution-approval-switch-help:
+    desc: "Print help menu for the offline ASR execution approval switch"
+    cmds:
+      - npm run asr-offline-execution-approval-switch-help
 
   git-asset-help:
     desc: "Print Git Asset Guard policy manual"
@@ -1511,6 +1531,179 @@ tasks:
     cmds:
       - npm run grinders-keep-evidence-revalidation-trigger-help
 
+  grinders-keep-evidence-loop-closure-auditor:
+    desc: "Run Grinders Keep Evidence Loop Closure Auditor"
+    cmds:
+      - npm run grinders-keep-evidence-loop-closure-auditor
+
+  grinders-keep-evidence-loop-closure-auditor-help:
+    desc: "Print help documentation for Grinders Keep Evidence Loop Closure Auditor"
+    cmds:
+      - npm run grinders-keep-evidence-loop-closure-auditor-help
+
+  grinders-keep-evidence-pack-builder:
+    desc: "Run Grinders Keep Evidence Pack Builder"
+    cmds:
+      - npm run grinders-keep-evidence-pack-builder
+
+  grinders-keep-evidence-pack-builder-help:
+    desc: "Print help documentation for Grinders Keep Evidence Pack Builder"
+    cmds:
+      - npm run grinders-keep-evidence-pack-builder-help
+
+  grinders-keep-evidence-pack-completion-importer:
+    desc: "Run Grinders Keep Evidence Pack Completion Importer"
+    cmds:
+      - npm run grinders-keep-evidence-pack-completion-importer
+
+  grinders-keep-evidence-pack-completion-importer-help:
+    desc: "Print help documentation for Grinders Keep Evidence Pack Completion Importer"
+    cmds:
+      - npm run grinders-keep-evidence-pack-completion-importer-help
+
+  grinders-keep-evidence-tracker-sync-adapter:
+    desc: "Run Grinders Keep Evidence Tracker Sync Adapter"
+    cmds:
+      - npm run grinders-keep-evidence-tracker-sync-adapter
+
+  grinders-keep-evidence-tracker-sync-adapter-help:
+    desc: "Print help documentation for Grinders Keep Evidence Tracker Sync Adapter"
+    cmds:
+      - npm run grinders-keep-evidence-tracker-sync-adapter-help
+
+  grinders-keep-evidence-tracker-manual-rerun-planner:
+    desc: "Run Grinders Keep Evidence Tracker Manual Rerun Planner"
+    cmds:
+      - npm run grinders-keep-evidence-tracker-manual-rerun-planner
+
+  grinders-keep-evidence-tracker-manual-rerun-planner-help:
+    desc: "Print help documentation for Grinders Keep Evidence Tracker Manual Rerun Planner"
+    cmds:
+      - npm run grinders-keep-evidence-tracker-manual-rerun-planner-help
+
+  grinders-keep-evidence-collection-workbench:
+    desc: "Run Grinders Keep Evidence Collection Workbench"
+    cmds:
+      - npm run grinders-keep-evidence-collection-workbench
+
+  grinders-keep-evidence-collection-workbench-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Workbench"
+    cmds:
+      - npm run grinders-keep-evidence-collection-workbench-help
+
+  grinders-keep-evidence-collection-intake-lock:
+    desc: "Run Grinders Keep Evidence Collection Intake Lock"
+    cmds:
+      - npm run grinders-keep-evidence-collection-intake-lock
+
+  grinders-keep-evidence-collection-intake-lock-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Intake Lock"
+    cmds:
+      - npm run grinders-keep-evidence-collection-intake-lock-help
+
+  grinders-keep-evidence-collection-execution-guide:
+    desc: "Run Grinders Keep Evidence Collection Execution Guide"
+    cmds:
+      - npm run grinders-keep-evidence-collection-execution-guide
+
+  grinders-keep-evidence-collection-execution-guide-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Execution Guide"
+    cmds:
+      - npm run grinders-keep-evidence-collection-execution-guide-help
+
+  grinders-keep-evidence-collection-session-logger:
+    desc: "Run Grinders Keep Evidence Collection Session Logger"
+    cmds:
+      - npm run grinders-keep-evidence-collection-session-logger
+
+  grinders-keep-evidence-collection-session-logger-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Session Logger"
+    cmds:
+      - npm run grinders-keep-evidence-collection-session-logger-help
+
+  grinders-keep-evidence-session-import-bridge:
+    desc: "Run Grinders Keep Evidence Session Import Bridge"
+    cmds:
+      - npm run grinders-keep-evidence-session-import-bridge
+
+  grinders-keep-evidence-session-import-bridge-help:
+    desc: "Print help documentation for Grinders Keep Evidence Session Import Bridge"
+    cmds:
+      - npm run grinders-keep-evidence-session-import-bridge-help
+
+  grinders-keep-evidence-proof-review-board:
+    desc: "Run Grinders Keep Evidence Collection Proof Review Board"
+    cmds:
+      - npm run grinders-keep-evidence-proof-review-board
+
+  grinders-keep-evidence-proof-review-board-help:
+    desc: "Print help documentation for Grinders Keep Evidence Collection Proof Review Board"
+    cmds:
+      - npm run grinders-keep-evidence-proof-review-board-help
+
+  grinders-keep-evidence-first-item-collection-packet:
+    desc: "Run Grinders Keep Evidence First-Item Collection Packet"
+    cmds:
+      - npm run grinders-keep-evidence-first-item-collection-packet
+
+  grinders-keep-evidence-first-item-collection-packet-help:
+    desc: "Print help documentation for Grinders Keep Evidence First-Item Collection Packet"
+    cmds:
+      - npm run grinders-keep-evidence-first-item-collection-packet-help
+
+  grinders-keep-first-evidence-attempt-reviewer:
+    desc: "Run Grinders Keep First Evidence Attempt Reviewer"
+    cmds:
+      - npm run grinders-keep-first-evidence-attempt-reviewer
+
+  grinders-keep-first-evidence-attempt-reviewer-help:
+    desc: "Print help documentation for Grinders Keep First Evidence Attempt Reviewer"
+    cmds:
+      - npm run grinders-keep-first-evidence-attempt-reviewer-help
+
+  grinders-keep-first-evidence-importer-gate:
+    desc: "Run Grinders Keep First Evidence Importer Gate"
+    cmds:
+      - npm run grinders-keep-first-evidence-importer-gate
+
+  grinders-keep-first-evidence-importer-gate-help:
+    desc: "Print help documentation for Grinders Keep First Evidence Importer Gate"
+    cmds:
+      - npm run grinders-keep-first-evidence-importer-gate-help
+
+  grinders-keep-first-evidence-manual-completion-loop:
+    desc: "Run Grinders Keep First Evidence Manual Completion Loop"
+    cmds:
+      - npm run grinders-keep-first-evidence-manual-completion-loop
+
+  grinders-keep-first-evidence-manual-completion-loop-help:
+    desc: "Print help documentation for Grinders Keep First Evidence Manual Completion Loop"
+    cmds:
+      - npm run grinders-keep-first-evidence-manual-completion-loop-help
+
+  grinders-keep-first-evidence-completion-detector:
+    desc: "Run Grinders Keep First Evidence Completion Detector"
+    cmds:
+      - npm run grinders-keep-first-evidence-completion-detector
+
+  grinders-keep-first-evidence-completion-detector-help:
+    desc: "Print help documentation for Grinders Keep First Evidence Completion Detector"
+    cmds:
+      - npm run grinders-keep-first-evidence-completion-detector-help
+
+  grinders-keep-local-verification-rerun-planner:
+    desc: "Run Grinders Keep Local Verification Rerun Planner"
+    cmds:
+      - npm run grinders-keep-local-verification-rerun-planner
+
+  grinders-keep-local-verification-rerun-planner-help:
+    desc: "Print help documentation for Grinders Keep Local Verification Rerun Planner"
+    cmds:
+      - npm run grinders-keep-local-verification-rerun-planner-help
+
+
+
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
@@ -1530,6 +1723,31 @@ tasks:
     desc: "Announce completion via Voice Narrative Protocol"
     cmds:
       - bash -c 'source /Users/alexanderanthony/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
+
+  voice:bus:audit:
+    desc: "Run grep audit to check for direct say commands"
+    cmds:
+      - npm run voice:bus:audit
+
+  voice:bus:stress:
+    desc: "Run central voice bus stress test"
+    cmds:
+      - npm run voice:bus:stress
+
+  voice:bus:validate:
+    desc: "Validate voice bus: audit and stress test"
+    cmds:
+      - npm run voice:bus:validate
+
+  voice:bus:queue-status:
+    desc: "Check current voice bus queue status"
+    cmds:
+      - npm run voice:bus:queue-status
+
+  voice:bus:cleanup:
+    desc: "Clean up old voice bus artifacts and rotate logs"
+    cmds:
+      - npm run voice:bus:cleanup
 
   sentinel:safety:
     desc: "Run Sentinel safety gate configuration checks"

@@ -1,14 +1,14 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 13E: Pipeline Integration Stage Gate — COMPLETE
-- **Last Verified:** 2026-06-03
+- **Current Phase:** Phase 14A: ICYFLAMZE CORE Project Registry & Obsidian Sync Gate — COMPLETE
+- **Last Verified:** 2026-07-02
 - **Build Status:** passing
 
 ## 🔋 Active Capabilities
 - **Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).
 - **Build Pipeline:** Structured task runner via `Taskfile.yml`.
-- **Audit Trails:** Voice Narrative Protocol (VNP) expanded to 32 active phrases (including 8 new trigger configurations), logging to `voice_buffer.txt`.
+- **Audit Trails & Priority Queue Voice Bus v3:** Voice Narrative Protocol (VNP) and Memory Guardian upgraded to a centralized Priority Queue Voice Bus v3 (`.agents/speak_serialized.sh`) using a microsecond-precision queue directory (`/tmp/voice_bus_queue/`) and a 120s directory lock. It enforces strict serialization (concurrency $\le 1$), prioritizes urgent alerts (P1-P4) ahead of waiting jobs, preserves FIFO order, auto-archives long narration >1,000 characters, and implements safe cooperative sentence-boundary interruption and emergency override preemption for P1 urgent alerts.
 - **GitHub Sync:** Remote origin linked and tracking `main`.
 - **Obsidian Read-Only Gateway:** Recursively scans and parses local vaults in read-only mode.
 - **Self-Audit Automation:** Verified core files and local skill structures.
@@ -86,6 +86,7 @@
 - **Operator Packet Completion Audit (Phase 11Z-L):** Local-first staging completion audit script checking disk asset presence, manifest properties configured with Whisper model details, and staged audio inputs discovery without command execution, model downloads, or audio transcription.
 - **ASR Verification Rerun Trigger Packet (Phase 11Z-M):** Local-first verification trigger packet generator checking staging completion audit state, checking precondition constraints, and formatting rerun command sequences or blockers sheets under strict safety rules.
 - **ASR Validation Chain Execution Report (Phase 11Z-N):** Local-first validation chain execution report script validating and compiling status of all validation gates, verifying safety parameters, and compiling a unified JSON manifest and master report under dry-run constraints.
+- **Offline ASR Execution Approval Switch (Phase 12A):** Human-controlled approval switch (`scripts/asr-offline-execution-approval-switch.ts`) authorizing selected local audio files for future offline ASR transcription under strict safety rules, keeping ASR execution disabled by default.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
 - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
@@ -135,9 +136,7 @@
 - **Pipeline Integration Stage Gate (Phase 13E):** Safe staging gate pipeline (`scripts/pipeline-stage-gate.ts`) under the Workflow Auditor for compiling proposals, dependency maps, agent assignment matrices, implementation prompts, and manual approval packages.
 - **Pipeline Proposal Approval Router (Phase 13F):** Safe validation and staging router (`scripts/pipeline-approval-router.ts`) under the Workflow Auditor for verifying stage gate packages, generating approved implementation packets, and outputting manual execution briefs.
 - **Manual Implementation Packet Compiler (Phase 13G):** Safe compile-time document router and staging compiler (`scripts/manual-implementation-packet.ts`) under the Workflow Auditor for aggregating approved implementation packets and manual execution briefs, compiling final build prompts, checklists, safety reviews, and handoff reports.
-
-
-
+- **ICYFLAMZE CORE / Street Scholar Futurism (Phase 14A):** Staged registry and integration gate for the ICYFLAMZE CORE universe under the Creative Architect. Supports local project registries, Obsidian staged note generation, Season 1 summaries, and sync status checks under strict offline validation gates.
 - **Grinders Keep Brief Engine (Phase 12B):** Local-first creative R&D engine (`scripts/grinders-keep-daily-brief.ts`) compiling daily briefs, lessons, gap scans, build suggestions, money moves, Google Ultra opportunities, content drafts, and consensus packets.
 - **Grinders Keep Gap Hunter (Phase 12C):** Local-first project audit sweep (`scripts/grinders-keep-gap-hunter.ts`) scanning project telemetry to identify missing gates, stale outputs, duplicate reports, blocked phases, weak docs, unverified metrics, command routing gaps, and monetization opportunities.
 - **Grinders Keep Adaptive Learning Deepener (Phase 12D):** Local-first history deepener (`scripts/grinders-keep-adaptive-learning-deepener.ts`) comparing Gap Hunter manifests, scanning CLI command logs for alias attempts, recommending operating habits, and staging configuration adjustments.
@@ -156,9 +155,23 @@
 - **Grinders Keep Manual Evidence Action Board (Phase 12Q):** Local-first action board (`scripts/grinders-keep-manual-evidence-action-board.ts`) compiling concrete, prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander without automated collection.
 - **Grinders Keep Evidence Completion Tracker (Phase 12R):** Local-first evidence completion tracker (`scripts/grinders-keep-evidence-completion-tracker.ts`) auditing Commander-facing evidence task files status, validating formats, computing SHA-256 metadata, and preparing intake validator ready manifests without collecting or creating files.
 - **Grinders Keep Evidence Revalidation Trigger (Phase 12S):** Local-first trigger planner (`scripts/grinders-keep-evidence-revalidation-trigger.ts`) reading validator-ready feeds, classifying revalidation targets, generating revalidation plans and command sheets without executing the validator or any commands automatically.
+- **Grinders Keep Evidence Loop Closure Auditor (Phase 12T):** Local-first audit planner (`scripts/grinders-keep-evidence-loop-closure-auditor.ts`) that audits the full evidence revalidation loop status, traces pipeline connections, checks telemetry consistency, audits path alignment, and compiles loop closure readiness reports without executing commands.
+- **Grinders Keep Evidence Pack Builder (Phase 12U):** Local-first evidence packet manager (`scripts/grinders-keep-evidence-pack-builder.ts`) that compiles unresolved evidence tasks, identifies target folders, and stages Commander evidence collection packets without faking or generating evidence automatically.
+- **Grinders Keep Evidence Pack Completion Importer (Phase 12V):** Local-first importer script (`scripts/grinders-keep-evidence-pack-completion-importer.ts`) that scans target folders for manually placed evidence completions, stages ready items for Phase 12R tracker sync, compiles import status scorecards, and logs results without copy/move actions or faked file creation.
+- **Grinders Keep Evidence Tracker Sync Adapter (Phase 12W):** Local-first sync adapter (`scripts/grinders-keep-evidence-tracker-sync-adapter.ts`) mapping imported completion status ready items to expected Phase 12R tracker structures, verifying paths, and generating tracker-readable secondary input files.
+- **Grinders Keep Evidence Tracker Manual Rerun Planner (Phase 12X):** Local-first rerun planner (`scripts/grinders-keep-evidence-tracker-manual-rerun-planner.ts`) evaluating sync manifest ready status, performing preflight checklist checks, scoring rerun readiness, and staging manual command sheets without automated executions.
+- **Grinders Keep Evidence Collection Workbench (Phase 12Y):** Local-first Commander-facing evidence collection workbench (`scripts/grinders-keep-evidence-collection-workbench.ts`) organizing missing manual proof collection checklists, mapping target directories, ranking collection tasks, and updating frontpage telemetry without faking or moving files.
+- **Grinders Keep Evidence Collection Intake Lock (Phase 12Z):** Local-first intake lock (`scripts/grinders-keep-evidence-collection-intake-lock.ts`) freezing evidence collection task definitions and target directories from Phase 12Y, assigning stable lock IDs, and auditing safety compliance checklist metrics without file mutations.
+- **Grinders Keep Evidence Collection Execution Guide (Phase 13A):** Local-first manual collection guide (`scripts/grinders-keep-evidence-collection-execution-guide.ts`) generating execution step cards, copy-pasteable prompts for models, Google Ultra manual tasks, safety checklists, and file naming templates without automated collection.
+- **Grinders Keep Evidence Collection Session Logger (Phase 13B):** Local-first session logger (`scripts/grinders-keep-evidence-collection-session-logger.ts`) aggregating manual evidence collection attempt logs, blockers, and file references without automated validation.
+- **Grinders Keep Evidence Session Import Bridge (Phase 13C):** Local-first session import bridge (`scripts/grinders-keep-evidence-session-import-bridge.ts`) mapping manual evidence attempt file references to Phase 12V importer items and preparing secondary source records without automated validation, copying, moving, or importing.
+- **Grinders Keep Evidence Collection Proof Review Board (Phase 13D):** Local-first Commander-facing proof review board (`scripts/grinders-keep-evidence-proof-review-board.ts`) consolidating manually logged attempts, session bridge maps, importer status, and rerun planner states into a single dashboard without faking or copying files.
+- **Grinders Keep Evidence First-Item Collection Packet (Phase 13E):** Local-first manual collection packet compiler (`scripts/grinders-keep-evidence-first-item-collection-packet.ts`) staging ChatGPT/Gemini/Claude/NotebookLM prompt copy-pastes, path checks, privacy requirements, attempt logging formats, and rerun guides for the highest-priority locked evidence task.
+- **Grinders Keep First Evidence Attempt Reviewer (Phase 13F):** Local-first manual attempt metadata reviewer (`scripts/grinders-keep-first-evidence-attempt-reviewer.ts`) evaluating attempt log presence, target file filesystem metadata, and path folder alignment parameters without parsing content.
+- **Grinders Keep First Evidence Importer Gate (Phase 13G):** Local-first gate (`scripts/grinders-keep-first-evidence-importer-gate.ts`) deciding manual handoff eligibility for the first evidence item completed by the Commander, without importing, moving, copying, or validating content automatically.
+- **Grinders Keep First Evidence Manual Completion Loop (Phase 13H):** Local manual completion loop compiler (`scripts/grinders-keep-first-evidence-manual-completion-loop.ts`) generating one-page checklist, copy-paste prompts, save rules, logging guidelines, rerun commands lists, and safety checklists without automated model calls or command executions.
 - **Duplicate Cleanup Quarantine (Phase 12A):** Safe local duplicate and stale artifact cleanup system (`scripts/duplicate-cleanup.ts`) that scans outputs, detects duplicate timestamp variants, identifies stale reports, and stages recommendations without file deletion.
 - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
-
 
 
 
@@ -171,7 +184,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 12P: Grinders Keep Downstream Feed Router**
+- **Phase 13J: Grinders Keep Local Verification Rerun Planner**
 
 ## Obsidian Intelligence Snapshot
 

@@ -1,6 +1,14 @@
 # 🎯 Next Actions
 
 ## Do Now
+- [ ] Register ICYFLAMZE CORE project
+- [ ] Stage Obsidian vault note
+- [ ] Generate Season 1 summary
+- [ ] Generate sync report
+- [ ] Review staged Obsidian note manually
+- [ ] Prepare Season 1 IP Bible
+- [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
+- [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
 - [x] Add operational intelligence scripts (audit, brief, next)
 - [x] Create self-audit command
 - [x] Create project brief command
@@ -518,8 +526,14 @@
 - [x] Phase 11Z-N: Create help utility scripts/asr-validation-chain-execution-report-help.ts
 - [x] Phase 11Z-N: Create templates for report, preconditions, step result, blocker, final status, safety locks, summary, and next actions
 - [x] Phase 11Z-N: Generate outputs under outputs/asr_validation_chain/ (8 markdown reports and 1 json manifest)
-- [x] Phase 11Z-N: Register exact command and help commands with requiresExactName constraint and alias blocking
-- [ ] Phase 12A: Offline ASR Execution Approval Switch (Create human switch approval for offline ASR transcription)
+- [x] Phase 12A: Offline ASR Execution Approval Switch (Create human switch approval for offline ASR transcription)
+- [x] Phase 12A: Create configuration config/asr-offline-execution-approval-switch.ts
+- [x] Phase 12A: Create main approval switch script scripts/asr-offline-execution-approval-switch.ts
+- [x] Phase 12A: Create help utility scripts/asr-offline-execution-approval-switch-help.ts
+- [x] Phase 12A: Create templates for switch report, approved/rejected candidates, manifest, locks, checklists, and next actions
+- [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
+- [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
+- [ ] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
@@ -716,6 +730,43 @@
 - [x] Phase 12Q: Extract action items, identify missing evidence targets, prioritize high-priority collection tasks, checklists, and next actions without automated collection
 - [x] Phase 12R: Grinders Keep Evidence Completion Tracker
 - [x] Phase 12R: Audit manual evidence tasks, verify file existence, validate formats and compute SHA-256 metadata, compile checklists and validator-ready manifests without mutating files or calling APIs
+- [x] Phase 12S: Grinders Keep Evidence Revalidation Trigger
+- [x] Phase 12S: Read validator-ready feeds, classify revalidation targets, and generate revalidation plans and manual command sheets without automated execution
+- [x] Phase 12T: Grinders Keep Evidence Loop Closure Auditor
+- [x] Phase 12T: Audit end-to-end evidence loop, trace connections, verify link check telemetry, and generate closure readiness scorecard without automated execution
+- [x] Phase 12U: Grinders Keep Evidence Pack Builder
+- [x] Phase 12U: Gather unresolved evidence tasks, construct collection packet and sub-packets, design metadata cards, and update frontpage file without automated execution
+- [x] Phase 12V: Grinders Keep Evidence Pack Completion Importer
+- [x] Phase 12V: Scan target folders for manually placed evidence completions, stage ready items for tracker sync, compile scorecard, and generate reports without automated copy/move/create actions
+- [x] Phase 12W: Grinders Keep Evidence Tracker Sync Adapter
+- [x] Phase 12W: Create sync adapter to map imported ready items, verify paths, register blocked items, compute scorecard, and generate reports without automated moves/copies/execution
+- [x] Phase 12X: Grinders Keep Evidence Tracker Manual Rerun Planner
+- [x] Phase 12X: Create rerun planner to verify sync manifest outputs, perform preflight checks, map risks, rank scorecards, and generate manual command sheets without automated execution
+- [x] Phase 12Y: Grinders Keep Evidence Collection Workbench
+- [x] Phase 12Y: Create local Commander-facing evidence collection workbench, folders mapping, checklists, next actions, and frontpage update telemetry without file moves or copy mutations
+- [x] Phase 12Z: Grinders Keep Evidence Collection Intake Lock
+- [x] Phase 12Z: Create a local intake lock that freezes the current evidence collection target list from Phase 12Y, assigns stable IDs, and prevents downstream definition drift
+- [x] Phase 13A: Grinders Keep Evidence Collection Execution Guide
+- [x] Phase 13A: Create Commander-facing execution guide with step-by-step locked task manual verification prompts for models and Google Ultra tools
+- [x] Phase 13B: Grinders Keep Evidence Collection Session Logger
+- [x] Phase 13B: Create a local session logger that lets Commander record manual evidence collection attempts, timestamps, saved file paths, blockers, and next actions after using the Phase 13A execution guide, without validating or moving evidence automatically
+- [x] Phase 13C: Grinders Keep Evidence Session Import Bridge
+- [x] Phase 13C: Create a local bridge that lets Phase 12V Evidence Pack Completion Importer read real logged session file references from Phase 13B as an additional manual completion source, without moving, copying, validating, or creating evidence automatically
+- [x] Phase 13D: Grinders Keep Evidence Collection Proof Review Board
+- [x] Phase 13D: Create a local review board that summarizes all manually logged attempts, session bridge status, importer readiness, and remaining blockers into a single Commander-facing proof review dashboard before any validation or tracker rerun is considered.
+- [x] Phase 13E: Grinders Keep Evidence First-Item Collection Packet
+- [x] Phase 13E: Create a focused manual collection packet for only the highest-priority locked evidence task, including exact prompt text, save path, filename, privacy checklist, and post-save logging steps, so Commander can complete one proof item without being buried under all 17 tasks.
+- [x] Phase 13F: Grinders Keep First Evidence Attempt Reviewer
+- [x] Phase 13F: Create a local reviewer that reads the first-item session log after Commander manually completes one item, checks whether a saved file path was logged and whether the file exists, then prepares a manual importer-readiness note without validating file contents.
+- [x] Phase 13G: Grinders Keep First Evidence Importer Gate
+- [x] Phase 13G: Create a local gate that decides whether the reviewed first evidence attempt is eligible to be handed to the Phase 12V importer as a manual secondary source, without importing, moving, copying, or validating content automatically.
+- [x] Phase 13H: Grinders Keep First Evidence Manual Completion Loop
+- [x] Phase 13H: Create a local manual completion loop that gives Commander a tiny one-page checklist for completing the blocked first evidence task, saving the markdown file, logging the attempt, and rerunning only the required review/gate commands in the correct order.
+- [x] Phase 13I: Grinders Keep First Evidence Completion Detector
+- [x] Phase 13I: Create a local detector that runs after Commander manually follows the Phase 13H loop, checking whether the expected session log and markdown file now exist, without reading or validating evidence content.
+- [ ] Phase 13J: Grinders Keep Local Verification Rerun Planner
+- [ ] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
+
 
 ## Schedule
 - [ ] Prepare Obsidian sync layer later
