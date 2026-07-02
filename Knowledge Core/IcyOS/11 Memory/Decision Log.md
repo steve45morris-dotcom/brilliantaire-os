@@ -178,12 +178,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 11 execution
+| DEC-SP11-20260702-01 | 2026-07-02 | Scaffolded Reflection page layouts supporting rating selection scales and microphone request checks. | [[apps/web/src/components/review/voice-reflection.tsx]] | Accepted |
+| DEC-SP11-20260702-02 | 2026-07-02 | Wrote extracted learning signal widgets rendering structured wins, blocker lists and lessons. | [[apps/web/src/components/review/learning-signal-card.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 12 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP11-20260702-01 | 2026-07-02 | Scaffolded Reflection page layouts supporting rating selection scales and microphone request checks. | [[apps/web/src/components/review/voice-reflection.tsx]] | Accepted |
-| DEC-SP11-20260702-02 | 2026-07-02 | Wrote extracted learning signal widgets rendering structured wins, blocker lists and lessons. | [[apps/web/src/components/review/learning-signal-card.tsx]] | Accepted |
+| DEC-SP12-20260702-01 | 2026-07-02 | Configured the local package @icyos/learning calculate metrics values, overrun ratios and user profiles. | [[packages/learning/src/profile/index.ts]] | Accepted |
+| DEC-SP12-20260702-02 | 2026-07-02 | Created recommendations engines recommending target sprint reductions based on completions scores. | [[packages/learning/src/recommendations/index.ts]] | Accepted |
+
 
 
 

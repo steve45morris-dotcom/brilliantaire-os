@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.24.0` | `Status: Locked`
+`Version: 1.25.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-02**: Executed Sprint 12: Learning Engine v1. Created local `@icyos/learning` workspace package containing profile analyzers, metrics calculations, recommendations templates and Vitest checks.
 - **2026-07-02**: Executed Sprint 11: Reflection Engine. Scaffolded rating selectors, voice micro-perm fallback alerts, text forms, AI summaries and learning signals dashboards under `apps/web/src/app/(dashboard)/review/`.
 - **2026-07-02**: Executed Sprint 10: Focus Execution Engine. Scaffolded `focus-session-card.tsx`, `session-timer.tsx`, custom `use-focus-session.ts` hook, event logging arrays, and countdown timers under `apps/web/src/app/(dashboard)/focus/`.
 - **2026-07-02**: Executed Sprint 9: Timeline Approval. Developed `approval-panel.tsx`, sub-buttons components, custom `use-timeline-approval.ts` hooks, and linked integration page triggers under `apps/web/src/app/(dashboard)/timeline/`.
@@ -38,6 +39,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.24.0
+- **Version**: 1.25.0
 
 *I build before burning.*
