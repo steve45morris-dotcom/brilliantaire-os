@@ -1,0 +1,19 @@
+{
+  "name": "@icyos/shared",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^0.30.0"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}
