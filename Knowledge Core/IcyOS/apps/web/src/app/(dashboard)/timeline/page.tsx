@@ -1,22 +1,34 @@
 'use client';
 
-import { Card } from '../../../components/ui/card';
-import { Badge } from '../../../components/ui/badge';
+import { useGenerateDailyPlan } from '../../../hooks/use-generate-daily-plan';
+import { GeneratePlanButton } from '../../../components/timeline/generate-plan-button';
+import { TimelineView } from '../../../components/timeline/timeline-view';
+import { TimelineEmptyState } from '../../../components/timeline/timeline-empty-state';
 
 export default function TimelinePage() {
+  const { blocks, loading, error, generatePlan } = useGenerateDailyPlan();
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Timeline</h1>
-          <p className="text-zinc-500 text-sm">Daily hourly scheduler and timelines approval.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Daily Timeline</h1>
+          <p className="text-zinc-500 text-sm">Generate hourly focus schedules aligned with workspace priorities.</p>
         </div>
-        <Badge>Placeholder</Badge>
+        <GeneratePlanButton onGenerate={generatePlan} loading={loading} />
       </div>
-      <Card className="border-dashed border-zinc-800 bg-zinc-950/20 py-20 flex flex-col items-center justify-center gap-2">
-        <span className="text-sm font-semibold text-zinc-400">Section Content Pipeline Ready</span>
-        <span className="text-xs text-zinc-600">Awaiting database model connections</span>
-      </Card>
+
+      {error && (
+        <div className="p-4 border border-red-900 bg-red-950/10 text-xs font-semibold text-red-500 rounded-lg">
+          {error}
+        </div>
+      )}
+
+      {blocks.length === 0 ? (
+        <TimelineEmptyState />
+      ) : (
+        <TimelineView blocks={blocks} />
+      )}
     </div>
   );
 }

@@ -152,3 +152,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 7 Lessons
 - Mocking the fetch wrapper client and envelope format directly inside Vitest unit tests avoids needing active local Node servers during unit checks.
 - Placing error validations and loadings status variables inside single unified custom hooks keeps visual page view components clean and logic-free.
+
+---
+
+## 2026-07-02 Sprint 8 Lessons
+- Passing timeZone options (like `'UTC'`) inside client formatting utilities avoids timezone mismatch errors across different test runner machines.
+- Sorting lists of blocks by start time chronological order on the client hook layer guarantees a consistent render experience regardless of database order.

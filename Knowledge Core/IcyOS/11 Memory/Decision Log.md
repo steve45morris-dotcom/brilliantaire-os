@@ -158,12 +158,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 7 execution
+| DEC-SP7-20260702-01 | 2026-07-02 | Developed custom hooks and unified fetch utilities to communicate with Next.js App Router endpoints. | [[apps/web/src/hooks/use-inbox-capture.ts]] | Accepted |
+| DEC-SP7-20260702-02 | 2026-07-02 | Deployed interactive inbox text capturing fields displaying validation and success result boundaries. | [[apps/web/src/components/inbox/inbox-capture-box.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 8 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP7-20260702-01 | 2026-07-02 | Developed custom hooks and unified fetch utilities to communicate with Next.js App Router endpoints. | [[apps/web/src/hooks/use-inbox-capture.ts]] | Accepted |
-| DEC-SP7-20260702-02 | 2026-07-02 | Deployed interactive inbox text capturing fields displaying validation and success result boundaries. | [[apps/web/src/components/inbox/inbox-capture-box.tsx]] | Accepted |
+| DEC-SP8-20260702-01 | 2026-07-02 | Wrote custom plan generation hook Sorting block objects chronologically. | [[apps/web/src/hooks/use-generate-daily-plan.ts]] | Accepted |
+| DEC-SP8-20260702-02 | 2026-07-02 | Designed interactive timeline generators displaying proposed block durations. | [[apps/web/src/components/timeline/timeline-block.tsx]] | Accepted |
+
 
 
 
