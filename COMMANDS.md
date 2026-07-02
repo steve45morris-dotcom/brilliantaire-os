@@ -30,6 +30,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `icyflamze-core` | `icy core`, `core` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE project registry & staging actions. |
 | `icyflamze-core-ip-bible-help` | `ip bible help`, `icy bible help` | Creative Architect | Low | No | Prints available commands for the ICYFLAMZE CORE Season 1 IP Bible compiler. |
 | `icyflamze-core-ip-bible` | `ip bible`, `icy bible` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Season 1 IP Bible compilation subcommands. |
+| `icyflamze-core-episode-1-help` | `episode 1 help`, `core episode help` | Creative Architect | Low | No | Prints available commands for the ICYFLAMZE CORE Episode 1 Trailer production package. |
+| `icyflamze-core-episode-1` | `episode 1`, `core episode` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer production package subcommands. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |

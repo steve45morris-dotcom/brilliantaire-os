@@ -57,6 +57,8 @@ Manage and execute operations using the following `task` commands:
 | `task icyflamze-core-help` | `npm run icyflamze-core-help` | Print ICYFLAMZE CORE CLI help |
 | `task icyflamze-core-ip-bible` | `npm run icyflamze-core-ip-bible -- <CLI_ARGS>` | Run ICYFLAMZE CORE Season 1 IP Bible compilation safely |
 | `task icyflamze-core-ip-bible-help` | `npm run icyflamze-core-ip-bible-help` | Print ICYFLAMZE CORE Season 1 IP Bible CLI help |
+| `task icyflamze-core-episode-1` | `npm run icyflamze-core-episode-1 -- <CLI_ARGS>` | Run ICYFLAMZE CORE Episode 1 Trailer production package safely |
+| `task icyflamze-core-episode-1-help` | `npm run icyflamze-core-episode-1-help` | Print ICYFLAMZE CORE Episode 1 Trailer production package CLI help |
 | `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
 | `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
@@ -4550,6 +4552,76 @@ The **Season 1 IP Bible** establishes the definitive narrative, character, visua
   ```bash
   npm run command -- "icyflamze-core-ip-bible" -- "status"
   ```
+
+---
+
+## 📖 Phase 14C: Episode 1 Trailer Package Production
+
+The **Episode 1 Trailer Package Production** compiles all physical production blueprints, shot lists, audio cues, copy-paste AI text prompts (Sora/Veo/Runway/Midjourney compatible), social captions, and rollout checklists for Episode 1: *The Core Wakes*.
+
+### 🔒 Guardrails Summary
+1. **EPISODE_PACKAGE_ONLY:** Local file compilation only. Direct Obsidian writes are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`).
+2. **No-Generation Boundary:** No automated audio rendering, image generations, or video compile calls are executed (`ALLOW_IMAGE_GENERATION = false`, `ALLOW_AUDIO_GENERATION = false`, `ALLOW_VIDEO_GENERATION = false`).
+3. **Command Router Gating:** All subcommands run under strict command router configurations with exact matching.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-help"
+  ```
+* Generate trailer script:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "trailer-script"
+  ```
+* Generate 30-second voiceover guide:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "voiceover"
+  ```
+* Generate 15-second teaser:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "teaser"
+  ```
+* Generate cinematography shot list:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "shot-list"
+  ```
+* Generate image prompt pack:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "image-prompts"
+  ```
+* Generate animation prompt pack:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "animation-prompts"
+  ```
+* Generate audio direction:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "audio-direction"
+  ```
+* Generate cover art direction:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "cover-art"
+  ```
+* Generate social captions:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "captions"
+  ```
+* Generate marketing rollout checklist:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "rollout"
+  ```
+* Stage Obsidian staging note:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "obsidian-stage"
+  ```
+* Compile package generation report:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "report"
+  ```
+* Display latest compiled output paths:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1" -- "status"
+  ```
+
 
 
 

@@ -32,6 +32,8 @@
     "icyflamze-core-help": "tsx scripts/icyflamze-core-help.ts",
     "icyflamze-core-ip-bible": "tsx scripts/icyflamze-core-ip-bible.ts",
     "icyflamze-core-ip-bible-help": "tsx scripts/icyflamze-core-ip-bible-help.ts",
+    "icyflamze-core-episode-1": "tsx scripts/icyflamze-core-episode-1.ts",
+    "icyflamze-core-episode-1-help": "tsx scripts/icyflamze-core-episode-1-help.ts",
     "voice-queue": "tsx scripts/voice-queue.ts",
     "voice-help": "tsx scripts/voice-help.ts",
     "voice-pending": "tsx scripts/voice-pending.ts",

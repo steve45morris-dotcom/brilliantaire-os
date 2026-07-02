@@ -101,6 +101,16 @@ tasks:
     cmds:
       - npm run icyflamze-core-ip-bible-help
 
+  icyflamze-core-episode-1:
+    desc: "Run ICYFLAMZE CORE Episode 1 Trailer production package safely"
+    cmds:
+      - npm run icyflamze-core-episode-1 -- {{.CLI_ARGS}}
+
+  icyflamze-core-episode-1-help:
+    desc: "Print ICYFLAMZE CORE Episode 1 Trailer production package CLI help"
+    cmds:
+      - npm run icyflamze-core-episode-1-help
+
   voice-queue:
     desc: "Process text-based voice commands queue safely"
     cmds:

@@ -1,0 +1,15 @@
+[2026-07-02T16:24:11.367Z] Status queried
+[2026-07-02T16:25:29.716Z] Generated Trailer script at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/scripts/episode_1_trailer_script_2026-07-02.md
+[2026-07-02T16:25:30.827Z] Generated 30s Voiceover at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/scripts/episode_1_30_second_voiceover_2026-07-02.md
+[2026-07-02T16:25:31.879Z] Generated 15s Teaser at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/scripts/episode_1_15_second_teaser_2026-07-02.md
+[2026-07-02T16:25:32.833Z] Generated Shot list at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/shot_lists/episode_1_trailer_shot_list_2026-07-02.md
+[2026-07-02T16:25:33.747Z] Generated Image prompts pack at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/image_prompts/episode_1_image_prompt_pack_2026-07-02.md
+[2026-07-02T16:25:34.776Z] Generated Animation prompts pack at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/animation_prompts/episode_1_animation_prompt_pack_2026-07-02.md
+[2026-07-02T16:25:35.927Z] Generated Audio direction at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/audio/episode_1_audio_direction_2026-07-02.md
+[2026-07-02T16:25:36.939Z] Generated Cover art direction at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/cover_art/episode_1_cover_art_direction_2026-07-02.md
+[2026-07-02T16:25:38.038Z] Generated Caption pack at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/captions/episode_1_caption_pack_2026-07-02.md
+[2026-07-02T16:25:39.092Z] Generated Rollout checklist at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/rollout/episode_1_rollout_checklist_2026-07-02.md
+[2026-07-02T16:25:40.098Z] Generated Obsidian staged note at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/obsidian_staging/ICYFLAMZE_CORE_EPISODE_1_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T16:25:40.100Z] Copied Obsidian staged note to write_staging folder
+[2026-07-02T16:25:41.087Z] Generated Production package report at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/reports/episode_1_package_report_2026-07-02.md
+[2026-07-02T16:25:42.093Z] Status queried
