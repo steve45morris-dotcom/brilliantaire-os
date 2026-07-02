@@ -1,0 +1,11 @@
+[2026-07-02T16:46:54.468Z] Generated master asset queue at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/episode_1_master_asset_queue_2026-07-02.md
+[2026-07-02T16:47:26.402Z] Generated image asset queue at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/image_assets/episode_1_image_asset_queue_2026-07-02.md
+[2026-07-02T16:48:25.186Z] Generated video asset queue at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/video_assets/episode_1_video_asset_queue_2026-07-02.md
+[2026-07-02T16:48:48.806Z] Generated audio asset queue at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/audio_assets/episode_1_audio_asset_queue_2026-07-02.md
+[2026-07-02T16:49:43.950Z] Generated cover art asset queue at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/cover_art_assets/episode_1_cover_art_asset_queue_2026-07-02.md
+[2026-07-02T16:50:08.570Z] Generated assembly checklist at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/checklists/episode_1_assembly_checklist_2026-07-02.md
+[2026-07-02T16:50:38.258Z] Generated manual generation guide at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/episode_1_manual_generation_guide_2026-07-02.md
+[2026-07-02T16:51:07.614Z] Generated Obsidian staged note at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/obsidian_staging/ICYFLAMZE_CORE_EPISODE_1_ASSET_QUEUE_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T16:51:07.617Z] Copied Obsidian note to write-gateway: /Users/alexanderanthony/outputs/write_staging/ICYFLAMZE_CORE_EPISODE_1_ASSET_QUEUE_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T16:51:41.784Z] Compiled asset queue report at /Users/alexanderanthony/outputs/icyflamze_core/episode_1/asset_queue/reports/episode_1_asset_queue_report_2026-07-02.md
+[2026-07-02T16:52:21.383Z] Printed status menu.

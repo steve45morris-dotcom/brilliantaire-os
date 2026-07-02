@@ -89,6 +89,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'icyflamze-core-episode-1-asset-queue-help',
+    aliases: ['episode asset help', 'core asset help'],
+    description: 'Print available commands for the ICYFLAMZE CORE Episode 1 Trailer Asset Queue compiler',
+    npmScript: 'icyflamze-core-episode-1-asset-queue-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'icyflamze-core-episode-1-asset-queue',
+    aliases: ['episode asset', 'core asset'],
+    description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Asset Queue compilation subcommands',
+    npmScript: 'icyflamze-core-episode-1-asset-queue',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'brief',
     aliases: ['report', 'summary'],
     description: 'Compile and print a clean operational summary brief',

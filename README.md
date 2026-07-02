@@ -59,6 +59,8 @@ Manage and execute operations using the following `task` commands:
 | `task icyflamze-core-ip-bible-help` | `npm run icyflamze-core-ip-bible-help` | Print ICYFLAMZE CORE Season 1 IP Bible CLI help |
 | `task icyflamze-core-episode-1` | `npm run icyflamze-core-episode-1 -- <CLI_ARGS>` | Run ICYFLAMZE CORE Episode 1 Trailer production package safely |
 | `task icyflamze-core-episode-1-help` | `npm run icyflamze-core-episode-1-help` | Print ICYFLAMZE CORE Episode 1 Trailer production package CLI help |
+| `task icyflamze-core-episode-1-asset-queue` | `npm run icyflamze-core-episode-1-asset-queue -- <CLI_ARGS>` | Run ICYFLAMZE CORE Episode 1 Trailer Asset Queue compilation safely |
+| `task icyflamze-core-episode-1-asset-queue-help` | `npm run icyflamze-core-episode-1-asset-queue-help` | Print ICYFLAMZE CORE Episode 1 Trailer Asset Queue CLI help |
 | `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
 | `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
@@ -4621,6 +4623,64 @@ The **Episode 1 Trailer Package Production** compiles all physical production bl
   ```bash
   npm run command -- "icyflamze-core-episode-1" -- "status"
   ```
+
+---
+
+## 📖 Phase 14D: Episode 1 Asset Generation Queue
+
+The **Episode 1 Asset Generation Queue** maps every required asset from the Episode 1 trailer package into manual generation tasks for image, video, voiceover, sound design, cover art, captions, and final assembly preparation.
+
+### 🔒 Guardrails Summary
+1. **ASSET_QUEUE_ONLY:** Local file compilation only. Direct Obsidian writes are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`).
+2. **No-Generation Boundary:** No automated audio rendering, image generations, or video compile calls are executed (`ALLOW_IMAGE_GENERATION = false`, `ALLOW_AUDIO_GENERATION = false`, `ALLOW_VIDEO_GENERATION = false`).
+3. **Command Router Gating:** All subcommands run under strict command router configurations with exact matching.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue-help"
+  ```
+* Generate master asset queue:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "queue"
+  ```
+* Generate image asset queue:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "image-assets"
+  ```
+* Generate video asset queue:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "video-assets"
+  ```
+* Generate audio asset queue:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "audio-assets"
+  ```
+* Generate cover art asset queue:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "cover-art-assets"
+  ```
+* Generate trailer assembly checklist:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "assembly-checklist"
+  ```
+* Generate manual generation guide:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "manual-guide"
+  ```
+* Stage Obsidian staging note:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "obsidian-stage"
+  ```
+* Compile package generation report:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "report"
+  ```
+* Display latest compiled output paths:
+  ```bash
+  npm run command -- "icyflamze-core-episode-1-asset-queue" -- "status"
+  ```
+
 
 
 
