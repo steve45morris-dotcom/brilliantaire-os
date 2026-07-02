@@ -158,3 +158,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 8 Lessons
 - Passing timeZone options (like `'UTC'`) inside client formatting utilities avoids timezone mismatch errors across different test runner machines.
 - Sorting lists of blocks by start time chronological order on the client hook layer guarantees a consistent render experience regardless of database order.
+
+---
+
+## 2026-07-02 Sprint 9 Lessons
+- Splitting approval action buttons (Approve, Reject, Regenerate) into distinct subcomponents makes the parent panel layout modular.
+- Locking client controls optimistic states after timeline approval prevents duplicate network actions and keeps states transitions clean.

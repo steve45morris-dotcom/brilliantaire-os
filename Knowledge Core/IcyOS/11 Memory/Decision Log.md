@@ -163,12 +163,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 8 execution
+| DEC-SP8-20260702-01 | 2026-07-02 | Wrote custom plan generation hook Sorting block objects chronologically. | [[apps/web/src/hooks/use-generate-daily-plan.ts]] | Accepted |
+| DEC-SP8-20260702-02 | 2026-07-02 | Designed interactive timeline generators displaying proposed block durations. | [[apps/web/src/components/timeline/timeline-block.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 9 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP8-20260702-01 | 2026-07-02 | Wrote custom plan generation hook Sorting block objects chronologically. | [[apps/web/src/hooks/use-generate-daily-plan.ts]] | Accepted |
-| DEC-SP8-20260702-02 | 2026-07-02 | Designed interactive timeline generators displaying proposed block durations. | [[apps/web/src/components/timeline/timeline-block.tsx]] | Accepted |
+| DEC-SP9-20260702-01 | 2026-07-02 | Deployed ApprovalPanel controls mapping states transitions: draft, generated, approved, locked. | [[apps/web/src/components/timeline/approval-panel.tsx]] | Accepted |
+| DEC-SP9-20260702-02 | 2026-07-02 | Created hook useTimelineApproval wrapping api calls and preventing duplicates. | [[apps/web/src/hooks/use-timeline-approval.ts]] | Accepted |
+
 
 
 

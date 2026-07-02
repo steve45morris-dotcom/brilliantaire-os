@@ -1,12 +1,12 @@
 # 📊 Current State: Live Telemetry & Baseline
-`Version: 1.23.0` | `Status: Locked` | `Scope: Global`
+`Version: 1.24.0` | `Status: Locked` | `Scope: Global`
 
 This document details the live setup status, activated packages, and current baseline configuration of **IcyOS**.
 
 ---
 
 ## 🚦 Systems Health Index
-- **Current Development Phase**: `Sprint 8: Daily Plan Generation — COMPLETE`
+- **Current Development Phase**: `Sprint 9: Timeline Approval — COMPLETE`
 - **Knowledge Core Structure**: 🟩 Locked. Upgraded to 22 standard ICOS directories.
 - **Repository Structure**: 🟩 Locked. Subfolders (`apps` to `deployment`) exist.
 - **Boot Documentation**: 🟩 Locked. Ingest sequence, indexes, and relations established.
@@ -33,6 +33,7 @@ This document details the live setup status, activated packages, and current bas
 - **Sprint 6 Shell Architecture**: 🟩 Complete. AppShell routing layout containing desktop sidebar, top/bottom navigation, breadcrumbs, and 7 section placeholders.
 - **Sprint 7 Inbox Capture**: 🟩 Complete. Interactive capture flow with custom use-inbox-capture hooks and apiFetch clients.
 - **Sprint 8 Daily Plan Generation**: 🟩 Complete. Timeline plan generation box components, formatting utilities, and blocks sorting hooks inside `apps/web/src/app/(dashboard)/timeline/`.
+- **Sprint 9 Timeline Approval**: 🟩 Complete. Interactive approval controls panel, status pills transitions, and use-timeline-approval hooks inside `apps/web/src/app/(dashboard)/timeline/`.
 
 ---
 
