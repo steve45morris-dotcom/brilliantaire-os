@@ -148,12 +148,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 5.5 execution
+| DEC-SP55-20260702-01 | 2026-07-02 | Integrated Tailwind CSS, PostCSS, Autoprefixer, and Lucide Icons inside web app. | [[apps/web/package.json]] | Accepted |
+| DEC-SP55-20260702-02 | 2026-07-02 | Designed dark-first theme token rules and wrote 6 base UI component primitives. | [[apps/web/src/components/ui/button.tsx]] | Accepted |
+
+---
+
+## 2026-07-02 Sprint 6 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP55-20260702-01 | 2026-07-02 | Integrated Tailwind CSS, PostCSS, Autoprefixer, and Lucide Icons inside web app. | [[apps/web/package.json]] | Accepted |
-| DEC-SP55-20260702-02 | 2026-07-02 | Designed dark-first theme token rules and wrote 6 base UI component primitives. | [[apps/web/src/components/ui/button.tsx]] | Accepted |
+| DEC-SP6-20260702-01 | 2026-07-02 | Scaffolded Next.js AppShell layout containing Sidebar and responsive navigations. | [[apps/web/src/components/layout/app-shell.tsx]] | Accepted |
+| DEC-SP6-20260702-02 | 2026-07-02 | Created placeholder route pages mapping the 7 workspace section views. | [[apps/web/src/app/(dashboard)/dashboard/page.tsx]] | Accepted |
+
 
 
 

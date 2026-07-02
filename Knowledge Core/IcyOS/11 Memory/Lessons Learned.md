@@ -140,3 +140,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 5.5 Lessons
 - Declaring dark-first color variables in CSS variables ensures consistent style behavior across both Tailwind and standard vanilla classes.
 - Consolidating base UI primitives (Button, Card, Input) into isolated folders separates design tokens configurations from application business components.
+
+---
+
+## 2026-07-02 Sprint 6 Lessons
+- Using route groups (e.g. `(dashboard)`) inside Next.js App Router keeps layout structures cleanly mapped without nesting path segments.
+- Implementing desktop sidebars and mobile bottom navigations as separate components optimizes layout responsiveness.
