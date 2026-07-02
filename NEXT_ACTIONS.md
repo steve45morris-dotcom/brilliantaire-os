@@ -7,7 +7,16 @@
 - [x] Generate sync report (Phase 14A)
 - [x] Remote sync recovery (Phase 14A-R)
 - [ ] Review staged Obsidian note manually
-- [ ] Queue Phase 14B: Season 1 IP Bible
+- [ ] Build Season 1 IP Bible (Phase 14B)
+- [ ] Generate character profile (Phase 14B)
+- [ ] Generate episode arc guide (Phase 14B)
+- [ ] Generate visual language guide (Phase 14B)
+- [ ] Generate symbol system (Phase 14B)
+- [ ] Generate voiceover style guide (Phase 14B)
+- [ ] Generate music tie-ins (Phase 14B)
+- [ ] Generate rollout plan (Phase 14B)
+- [ ] Stage Obsidian-ready IP Bible note (Phase 14B)
+- [ ] Prepare Episode 1 trailer package (Phase 14C)
 - [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
 - [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
 - [x] Add operational intelligence scripts (audit, brief, next)

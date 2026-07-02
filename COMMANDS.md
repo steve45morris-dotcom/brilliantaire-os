@@ -28,6 +28,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `audit` | `check`, `verify` | Workflow Auditor | Low | No | Runs workspace structural checks and verification checks. |
 | `icyflamze-core-help` | `icy core help`, `core help` | Creative Architect | Low | No | Prints list of available ICYFLAMZE CORE engine tasks. |
 | `icyflamze-core` | `icy core`, `core` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE project registry & staging actions. |
+| `icyflamze-core-ip-bible-help` | `ip bible help`, `icy bible help` | Creative Architect | Low | No | Prints available commands for the ICYFLAMZE CORE Season 1 IP Bible compiler. |
+| `icyflamze-core-ip-bible` | `ip bible`, `icy bible` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Season 1 IP Bible compilation subcommands. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |

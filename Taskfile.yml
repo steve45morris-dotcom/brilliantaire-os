@@ -91,6 +91,16 @@ tasks:
     cmds:
       - npm run icyflamze-core-help
 
+  icyflamze-core-ip-bible:
+    desc: "Run ICYFLAMZE CORE Season 1 IP Bible compilation safely"
+    cmds:
+      - npm run icyflamze-core-ip-bible -- {{.CLI_ARGS}}
+
+  icyflamze-core-ip-bible-help:
+    desc: "Print ICYFLAMZE CORE Season 1 IP Bible CLI help"
+    cmds:
+      - npm run icyflamze-core-ip-bible-help
+
   voice-queue:
     desc: "Process text-based voice commands queue safely"
     cmds:

@@ -55,6 +55,8 @@ Manage and execute operations using the following `task` commands:
 | `task campaign-help` | `npm run campaign-help` | Print campaign CLI help |
 | `task icyflamze-core` | `npm run icyflamze-core -- <CLI_ARGS>` | Run ICYFLAMZE CORE registry & staging actions safely |
 | `task icyflamze-core-help` | `npm run icyflamze-core-help` | Print ICYFLAMZE CORE CLI help |
+| `task icyflamze-core-ip-bible` | `npm run icyflamze-core-ip-bible -- <CLI_ARGS>` | Run ICYFLAMZE CORE Season 1 IP Bible compilation safely |
+| `task icyflamze-core-ip-bible-help` | `npm run icyflamze-core-ip-bible-help` | Print ICYFLAMZE CORE Season 1 IP Bible CLI help |
 | `task voice-queue` | `npm run voice-queue` | Process text-based voice commands queue safely |
 | `task voice-help` | `npm run voice-help` | Print voice commands mapping table registry |
 | `task voice-pending` | `npm run voice-pending` | List voice commands pending confirmation review |
@@ -4487,6 +4489,68 @@ The **ICYFLAMZE CORE Project Registry & Obsidian Sync Gate** integrates the ICYF
   ```bash
   npm run command -- "icyflamze-core" -- "status"
   ```
+
+---
+
+## 📖 Phase 14B: ICYFLAMZE CORE Season 1 IP Bible
+
+The **Season 1 IP Bible** establishes the definitive narrative, character, visual, symbolic, and marketing rollout properties for the `ICYFLAMZE CORE: Rise of the Street Scholar` universe under the Street Scholar Futurism niche.
+
+### 🔒 Guardrails Summary
+1. **IP_BIBLE_ONLY:** Local file compilation only. Direct Obsidian writes are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`).
+2. **Offline Compile Gate:** No automated image generations or external API queries are initiated (`ALLOW_IMAGE_GENERATION = false`, `ALLOW_EXTERNAL_API_CALLS = false`).
+3. **Command Router Verification:** Execution is strictly gated under pre-approved Command Router configurations with exact command matching.
+
+### 💻 Command Examples
+* View help menu:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible-help"
+  ```
+* Generate IP Bible document:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "bible"
+  ```
+* Generate character profile:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "character"
+  ```
+* Generate episode arc mapping:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "episodes"
+  ```
+* Generate visual style rules:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "visuals"
+  ```
+* Generate symbol system guidelines:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "symbols"
+  ```
+* Generate voiceover scripts:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "voiceover"
+  ```
+* Generate music release strategy:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "music-tie-ins"
+  ```
+* Generate marketing rollout plan:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "rollout"
+  ```
+* Stage Obsidian staging note:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "obsidian-stage"
+  ```
+* Compile compilation audit report:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "report"
+  ```
+* Display latest compiled output paths:
+  ```bash
+  npm run command -- "icyflamze-core-ip-bible" -- "status"
+  ```
+
 
 
 

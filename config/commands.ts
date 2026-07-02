@@ -45,6 +45,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'icyflamze-core-ip-bible-help',
+    aliases: ['ip bible help', 'icy bible help'],
+    description: 'Print available commands for the ICYFLAMZE CORE Season 1 IP Bible compiler',
+    npmScript: 'icyflamze-core-ip-bible-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'icyflamze-core-ip-bible',
+    aliases: ['ip bible', 'icy bible'],
+    description: 'Execute ICYFLAMZE CORE Season 1 IP Bible compilation subcommands',
+    npmScript: 'icyflamze-core-ip-bible',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'brief',
     aliases: ['report', 'summary'],
     description: 'Compile and print a clean operational summary brief',

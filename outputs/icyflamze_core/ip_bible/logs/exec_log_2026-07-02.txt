@@ -1,0 +1,13 @@
+[2026-07-02T16:07:43.761Z] Generated IP Bible doc at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md
+[2026-07-02T16:07:44.741Z] Generated Character profile at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/characters/icyflamze_character_profile_2026-07-02.md
+[2026-07-02T16:07:45.966Z] Generated Episode arc at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/episodes/season_1_episode_arc_2026-07-02.md
+[2026-07-02T16:07:46.947Z] Generated Visual language at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/visual_language/visual_language_2026-07-02.md
+[2026-07-02T16:07:47.883Z] Generated Symbol system guide at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/visual_language/symbol_system_2026-07-02.md
+[2026-07-02T16:07:48.816Z] Generated Voiceover style guide at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/documents/voiceover_style_2026-07-02.md
+[2026-07-02T16:07:49.832Z] Generated Music tie-ins at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/documents/music_tie_ins_2026-07-02.md
+[2026-07-02T16:07:50.854Z] Generated Rollout plan at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/rollout/season_1_rollout_plan_2026-07-02.md
+[2026-07-02T16:07:51.802Z] Generated Obsidian staged note at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/obsidian_staging/ICYFLAMZE_CORE_SEASON_1_IP_BIBLE_OBSIDIAN_STAGE_2026-07-02.md
+[2026-07-02T16:07:51.803Z] Copied Obsidian staged note to write_staging folder
+[2026-07-02T16:07:52.842Z] Generated Generation report at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/reports/ip_bible_generation_report_2026-07-02.md
+[2026-07-02T16:07:54.129Z] Status queried
+[2026-07-02T16:09:56.292Z] Generated IP Bible doc at /Users/alexanderanthony/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md
