@@ -188,3 +188,14 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-03 Sprint 13 Lessons
 - Keeping plan metadata fully explainable in the UI increases operator confidence in automated timeline adjustments.
 - Enforcing "AI suggests, Human Approves" ensures the planning system remains a tool of leverage rather than automation friction.
+
+---
+
+## 2026-07-03 Sprint 14 Lessons
+- Standardizing categories payloads inside provider-agnostic request definitions decouples core application routing rules from external LLM vendors models.
+
+---
+
+## 2026-07-03 Architecture Review Lessons
+- Using parameterless default service dependencies initialization solves route package leaking while preserving modular testing capabilities.
+

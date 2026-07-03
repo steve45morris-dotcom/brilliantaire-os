@@ -1,7 +1,10 @@
 import { UUID } from '@icyos/shared';
 import { TimelineRepository } from '@icyos/database';
 export class TimelineService {
-  constructor(private timelineRepo: TimelineRepository) {}
+  private timelineRepo: TimelineRepository;
+  constructor(timelineRepo?: TimelineRepository) {
+    this.timelineRepo = timelineRepo || new TimelineRepository();
+  }
   async approveTimeline(timelineId: UUID, userId: UUID): Promise<boolean> {
     return this.timelineRepo.approveTimeline(timelineId, userId);
   }

@@ -1,7 +1,10 @@
 import { UUID, Session } from '@icyos/shared';
 import { SessionRepository } from '@icyos/database';
 export class SessionService {
-  constructor(private sessionRepo: SessionRepository) {}
+  private sessionRepo: SessionRepository;
+  constructor(sessionRepo?: SessionRepository) {
+    this.sessionRepo = sessionRepo || new SessionRepository();
+  }
   async startSession(workspaceId: UUID): Promise<Session> {
     return this.sessionRepo.startSession(workspaceId);
   }

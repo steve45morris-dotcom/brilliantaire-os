@@ -49,11 +49,12 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-133**: Run Sprint 12 learning engine v1 implementation.
 - [x] **TSK-134**: Run Sprint 13 adaptive planner v1 implementation.
 - [x] **TSK-135**: Run Sprint 14 decision engine & AI orchestrator implementation.
+- [x] **TSK-136**: Execute Architecture Review Milestone package audit.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.24.0
+- **Version**: 1.25.0
 
 *I build before burning.*

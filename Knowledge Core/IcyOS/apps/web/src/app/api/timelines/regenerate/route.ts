@@ -4,10 +4,9 @@ import { jsonResponse } from '../../../../lib/api/response';
 import { handleApiError } from '../../../../lib/api/errors';
 import { validatePayload } from '../../../../lib/api/validation';
 import { TimelineService } from '@icyos/services';
-import { TimelineRepository } from '@icyos/database';
 import { z } from 'zod';
 
-const timelineService = new TimelineService(new TimelineRepository());
+const timelineService = new TimelineService();
 const schema = z.object({
   timelineId: z.string().uuid(),
   reason: z.string().optional()

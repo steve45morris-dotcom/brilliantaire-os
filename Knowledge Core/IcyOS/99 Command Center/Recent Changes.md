@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.27.0` | `Status: Locked`
+`Version: 1.28.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-03**: Executed Architecture Review Milestone. Decoupled `@icyos/database` packages repository dependencies from all Next.js API routes handlers, modified services constructors to support parameterless default instantiations, and audited monorepo package boundaries.
 - **2026-07-03**: Executed Sprint 14: Decision Engine & AI Orchestrator. Created local `@icyos/decision` package evaluating deterministic rules, routing queries locally, or escalating to LLMs with provider-agnostic request definitions and Vitest checks.
 - **2026-07-03**: Executed Sprint 13: Adaptive Planner v1. Upgraded PlanningService to consume historical profile recommendations, integrated explainable metadata displays cards on Daily Timeline routing pages, and verified Vitest checks.
 - **2026-07-02**: Executed Sprint 12: Learning Engine v1. Created local `@icyos/learning` workspace package containing profile analyzers, metrics calculations, recommendations templates and Vitest checks.
@@ -41,6 +42,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.27.0
+- **Version**: 1.28.0
 
 *I build before burning.*

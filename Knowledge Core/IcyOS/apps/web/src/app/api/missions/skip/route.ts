@@ -4,10 +4,9 @@ import { jsonResponse } from '../../../../lib/api/response';
 import { handleApiError } from '../../../../lib/api/errors';
 import { validatePayload } from '../../../../lib/api/validation';
 import { MissionService } from '@icyos/services';
-import { MissionRepository } from '@icyos/database';
 import { z } from 'zod';
 
-const missionService = new MissionService(new MissionRepository());
+const missionService = new MissionService();
 const schema = z.object({
   missionId: z.string().uuid(),
   reason: z.string().min(1)

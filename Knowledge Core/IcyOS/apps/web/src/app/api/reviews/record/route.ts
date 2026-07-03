@@ -4,10 +4,9 @@ import { jsonResponse } from '../../../../lib/api/response';
 import { handleApiError } from '../../../../lib/api/errors';
 import { validatePayload } from '../../../../lib/api/validation';
 import { ReviewService } from '@icyos/services';
-import { ReviewRepository } from '@icyos/database';
 import { z } from 'zod';
 
-const reviewService = new ReviewService(new ReviewRepository());
+const reviewService = new ReviewService();
 const schema = z.object({
   sessionId: z.string().uuid(),
   score: z.number().min(0).max(10)

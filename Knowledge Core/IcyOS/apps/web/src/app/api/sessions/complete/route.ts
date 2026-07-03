@@ -4,10 +4,9 @@ import { jsonResponse } from '../../../../lib/api/response';
 import { handleApiError } from '../../../../lib/api/errors';
 import { validatePayload } from '../../../../lib/api/validation';
 import { SessionService } from '@icyos/services';
-import { SessionRepository } from '@icyos/database';
 import { z } from 'zod';
 
-const sessionService = new SessionService(new SessionRepository());
+const sessionService = new SessionService();
 const schema = z.object({
   sessionId: z.string().uuid(),
   score: z.number().min(0).max(10)

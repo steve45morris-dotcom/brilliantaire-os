@@ -188,12 +188,18 @@ tags:
 
 ---
 
-## 2026-07-03 Sprint 13 execution
+| DEC-SP13-20260703-01 | 2026-07-03 | Upgraded PlanningService to consume historical profiles data from @icyos/learning. | [[packages/services/src/planning/index.ts]] | Accepted |
+| DEC-SP13-20260703-02 | 2026-07-03 | Created AdaptiveInsightCard rendering suggestions reasons and confidence ratings metrics. | [[apps/web/src/components/timeline/adaptive-insight-card.tsx]] | Accepted |
+
+---
+
+## 2026-07-03 Architecture Review Milestone
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP13-20260703-01 | 2026-07-03 | Upgraded PlanningService to consume historical profiles data from @icyos/learning. | [[packages/services/src/planning/index.ts]] | Accepted |
-| DEC-SP13-20260703-02 | 2026-07-03 | Created AdaptiveInsightCard rendering suggestions reasons and confidence ratings metrics. | [[apps/web/src/components/timeline/adaptive-insight-card.tsx]] | Accepted |
+| DEC-AR-20260703-01 | 2026-07-03 | Refactored services constructors to allow parameterless default initialization of repositories. | [[packages/services/src/]] | Accepted |
+| DEC-AR-20260703-02 | 2026-07-03 | Decoupled web apps API route handlers from importing @icyos/database repositories directly. | [[apps/web/src/app/api/]] | Accepted |
+
 
 
 
