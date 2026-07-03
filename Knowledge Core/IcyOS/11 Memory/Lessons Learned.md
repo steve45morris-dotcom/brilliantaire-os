@@ -205,4 +205,11 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 - Implementing race-timeout policies directly inside provider-agnostic runtime layers prevents hanging API connections if external vendor services become unresponsive.
 - Designing simulated latency mock adapters enables robust local validation of fallback and timeout policies without hitting paid AI APIs.
 
+---
+
+## 2026-07-03 Phase 2 Lessons
+- Integrating the Decision Engine with the AI Runtime within services ensures standard and escalated pathways are processed seamlessly under one interface contract.
+- Freezing Release 0.1 plan specifications inside a structured management directory (`30 Release Management/`) establishes a baseline that tracks performance budgets alongside functional matrices.
+
+
 

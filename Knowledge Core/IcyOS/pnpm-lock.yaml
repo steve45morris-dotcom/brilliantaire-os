@@ -130,9 +130,15 @@ importers:
 
   packages/services:
     dependencies:
+      '@icyos/ai':
+        specifier: workspace:*
+        version: link:../ai
       '@icyos/database':
         specifier: workspace:*
         version: link:../database
+      '@icyos/decision':
+        specifier: workspace:*
+        version: link:../decision
       '@icyos/learning':
         specifier: workspace:*
         version: link:../learning

@@ -1,5 +1,7 @@
 import { UUID } from '@icyos/shared';
 import { generatePerformanceProfile, generateRecommendations, ExecutionDayData } from '@icyos/learning';
+import { DecisionEngine } from '@icyos/decision';
+import { AiRuntime, MockProvider } from '@icyos/ai';
 
 export interface TimelineBlockData {
   id: string;
@@ -23,7 +25,35 @@ export interface AdaptivePlanResponse {
 }
 
 export class PlanningService {
+  private decisionEngine = new DecisionEngine();
+  private aiRuntime = new AiRuntime();
+
+  constructor() {
+    this.aiRuntime.registerProvider(new MockProvider());
+  }
+
   async captureInboxInput(input: string): Promise<string> {
+    const decision = this.decisionEngine.evaluate({
+      category: 'inbox_parsing',
+      input
+    });
+
+    if (decision.llm_required && decision.orchestration_request) {
+      const response = await this.aiRuntime.execute({
+        request_id: 'inbox-capture-ai-req',
+        capability: 'fast',
+        confidence_required: 0.8,
+        latency_target: 0,
+        cost_target: 10,
+        fallback_policy: 'failover',
+        payload: {
+          input,
+          prompt_template_id: decision.orchestration_request.prompt_template_id
+        }
+      });
+      return response.text;
+    }
+
     return `Captured: ${input}`;
   }
 
