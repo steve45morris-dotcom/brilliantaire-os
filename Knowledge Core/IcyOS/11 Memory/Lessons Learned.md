@@ -199,3 +199,10 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-03 Architecture Review Lessons
 - Using parameterless default service dependencies initialization solves route package leaking while preserving modular testing capabilities.
 
+---
+
+## 2026-07-03 Sprint 15 Lessons
+- Implementing race-timeout policies directly inside provider-agnostic runtime layers prevents hanging API connections if external vendor services become unresponsive.
+- Designing simulated latency mock adapters enables robust local validation of fallback and timeout policies without hitting paid AI APIs.
+
+

@@ -195,10 +195,19 @@ tags:
 
 ## 2026-07-03 Architecture Review Milestone
 
-| ID | Date | Decision | Reference | Status |
-|---|---|---|---|---|
 | DEC-AR-20260703-01 | 2026-07-03 | Refactored services constructors to allow parameterless default initialization of repositories. | [[packages/services/src/]] | Accepted |
 | DEC-AR-20260703-02 | 2026-07-03 | Decoupled web apps API route handlers from importing @icyos/database repositories directly. | [[apps/web/src/app/api/]] | Accepted |
+
+---
+
+## 2026-07-03 Sprint 15 Execution
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-SP15-20260703-01 | 2026-07-03 | Implemented provider-agnostic @icyos/ai workspace package enclosing unified runtime interface. | [[packages/ai/src/runtime/]] | Accepted |
+| DEC-SP15-20260703-02 | 2026-07-03 | Scaffolded OpenAI, Anthropic, Gemini, Ollama, and simulated Mock providers adapters. | [[packages/ai/src/providers/]] | Accepted |
+| DEC-SP15-20260703-03 | 2026-07-03 | Implemented failover fallback policies and timeout racing limit controls. | [[packages/ai/src/runtime/index.ts]] | Accepted |
+
 
 
 
