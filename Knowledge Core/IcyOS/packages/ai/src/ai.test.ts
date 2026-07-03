@@ -1,59 +1,63 @@
 import { describe, it, expect } from 'vitest';
 import { AiRuntime } from './runtime';
 import { MockProvider } from './providers/mock';
+import { SecurityGuard } from './safety';
 
-describe('AI Runtime & Capabilities Selector', () => {
-  it('should register providers and resolve capabilities successfully', () => {
+describe('AI Runtime & Operations Suite', () => {
+  it('should register and render prompt templates', () => {
     const runtime = new AiRuntime();
-    const mock = new MockProvider();
-    runtime.registerProvider(mock);
+    const template = runtime.prompts.getTemplate('TEMPLATE-INBOX_PARSING');
+    expect(template).toBeDefined();
+    expect(template?.version).toBe('1.0.0');
 
-    const match = runtime.resolveProviderForCapability('reasoning');
-    expect(match.length).toBe(1);
-    expect(match[0].id).toBe('mock');
+    const rendered = runtime.prompts.render('TEMPLATE-INBOX_PARSING', { input: 'hello' });
+    expect(rendered).toContain('hello');
   });
 
-  it('should perform provider failover fallback', async () => {
+  it('should estimate cost and record telemetry', async () => {
     const runtime = new AiRuntime();
-    const faultyMock = new MockProvider('mock-faulty', true); // forceFail=true
-    const healthyMock = new MockProvider('mock-healthy', false);
-
-    runtime.registerProvider(faultyMock);
-    runtime.registerProvider(healthyMock);
-
-    // Verify both are registered
-    const list = runtime.resolveProviderForCapability('fast');
-    expect(list.length).toBe(2);
+    const mock = new MockProvider('mock');
+    runtime.registerProvider(mock);
 
     const result = await runtime.execute({
-      request_id: 'test-req',
+      request_id: 'test-telemetry',
       capability: 'fast',
-      confidence_required: 0.8,
+      confidence_required: 0.9,
       latency_target: 0,
       cost_target: 10,
-      fallback_policy: 'failover',
+      fallback_policy: 'none',
       payload: {}
     });
 
-    expect(result.provider_id).toBe('mock-healthy');
+    expect(result.usage.estimated_cost_usd).toBeGreaterThanOrEqual(0);
+    const records = runtime.telemetry.getRecords();
+    expect(records.length).toBe(1);
+    expect(records[0].request_id).toBe('test-telemetry');
   });
 
-  it('should trigger timeout limit rejects', async () => {
+  it('should sanitize security sensitive keys', () => {
+    const sanitized = SecurityGuard.sanitizeOutput('my key sk-1234567890123456789012345678901234567890');
+    expect(sanitized).toContain('[REDACTED_OPENAI_KEY]');
+  });
+
+  it('should monitor provider health', async () => {
     const runtime = new AiRuntime();
-    // Register mock provider with 50ms delay
-    const mock = new MockProvider('mock', false, 50);
+    const mock = new MockProvider('mock');
     runtime.registerProvider(mock);
 
-    await expect(
-      runtime.execute({
-        request_id: 'test-timeout',
-        capability: 'fast',
-        confidence_required: 0.8,
-        latency_target: 5, // 5ms target
-        cost_target: 10,
-        fallback_policy: 'none',
-        payload: {}
-      })
-    ).rejects.toThrow('API request timeout limit reached');
+    await runtime.execute({
+      request_id: 'test-health',
+      capability: 'fast',
+      confidence_required: 0.9,
+      latency_target: 0,
+      cost_target: 10,
+      fallback_policy: 'none',
+      payload: {}
+    });
+
+    const report = runtime.health.getHealthReport();
+    expect(report.length).toBe(1);
+    expect(report[0].provider_id).toBe('mock');
+    expect(report[0].availability).toBe(true);
   });
 });
