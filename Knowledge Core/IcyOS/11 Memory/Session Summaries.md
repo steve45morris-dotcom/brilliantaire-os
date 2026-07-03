@@ -113,12 +113,16 @@ Chronological log of completed developer and agent sessions, tracking deliverabl
 
 ### 2026-07-03: Sprint 13 Execution
 - **Delivered**: Configured Adaptive Planner v1 including PlanningService modifications to parse historical profile recommendations, integrated explainable metadata display cards on Daily Timeline routes views, and verified monorepo compilation outputs and Vitest checks.
+- **Commit Reference**: Complete.
+
+### 2026-07-03: Sprint 14 Execution
+- **Delivered**: Created the `@icyos/decision` package routing requests deterministically or escalating to provider-agnostic LLM model requests. Verified monorepo typescript compile targets and Vitest test suites.
 - **Commit Reference**: Pending.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Record historical session summaries.
-- **Version**: 1.25.0
+- **Version**: 1.26.0
 
 *I build before burning.*

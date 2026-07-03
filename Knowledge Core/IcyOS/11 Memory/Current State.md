@@ -1,12 +1,12 @@
 # 📊 Current State: Live Telemetry & Baseline
-`Version: 1.28.0` | `Status: Locked` | `Scope: Global`
+`Version: 1.29.0` | `Status: Locked` | `Scope: Global`
 
 This document details the live setup status, activated packages, and current baseline configuration of **IcyOS**.
 
 ---
 
 ## 🚦 Systems Health Index
-- **Current Development Phase**: `Sprint 13: Adaptive Planner v1 — COMPLETE`
+- **Current Development Phase**: `Sprint 14: Decision Engine & AI Orchestrator — COMPLETE`
 - **Knowledge Core Structure**: 🟩 Locked. Upgraded to 22 standard ICOS directories.
 - **Repository Structure**: 🟩 Locked. Subfolders (`apps` to `deployment`) exist.
 - **Boot Documentation**: 🟩 Locked. Ingest sequence, indexes, and relations established.
@@ -38,6 +38,7 @@ This document details the live setup status, activated packages, and current bas
 - **Sprint 11 Reflection Engine**: 🟩 Complete. Reflection dashboard containing ratings scale selectors, microphone voice recording fallback, and extracted AI learning signals.
 - **Sprint 12 Learning Engine v1**: 🟩 Complete. Local `@icyos/learning` library calculating completion aggregates, confidence factors, and schedules adaptation recommendations.
 - **Sprint 13 Adaptive Planner v1**: 🟩 Complete. Planning systems upgrading suggested plans coordinates with explainable metadata and confidence ratings cards displays.
+- **Sprint 14 Decision Engine & AI Orchestrator**: 🟩 Complete. Local `@icyos/decision` library routing requests locally via deterministic rules, or escalating to LLM with provider-agnostic orchestration requests.
 
 ---
 
