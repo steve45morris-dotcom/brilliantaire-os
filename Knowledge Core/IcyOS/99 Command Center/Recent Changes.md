@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.31.0` | `Status: Locked`
+`Version: 1.32.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-03**: Executed Release 0.3: Personal OS Integration. Implemented Google Calendar & Obsidian connectors framework, focus-aware notifications schedulers, launch kits, and deployed 10 OS operations files under `32 Personal OS/`.
 - **2026-07-03**: Executed Release 0.2: Real Intelligence Integration. Deployed Prompts Library, Telemetry trackers, health metrics monitors, RegEx output key sanitizers inside `@icyos/ai` runtime, and created 10 AI operations documents under `31 AI Runtime Operations/`.
 - **2026-07-03**: Executed Phase 2: Release 0.1 Integration & Product Validation. Integrated DecisionEngine and AiRuntime mock providers inside real web route execution paths, verified the end-to-end user flows, and compiled release metrics assets inside `30 Release Management/`.
 - **2026-07-03**: Executed Sprint 15: AI Runtime & Provider Integration. Scaffolded local `@icyos/ai` monorepo package exposing provider-agnostic AI Runtime interfaces, registry capabilities selectors, retry policies, and simulated mocks provider.

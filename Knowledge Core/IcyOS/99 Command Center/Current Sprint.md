@@ -53,11 +53,12 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-137**: Run Sprint 15 AI runtime & provider integration implementation.
 - [x] **TSK-138**: Run Phase 2 Release 0.1 Integration & Product Validation.
 - [x] **TSK-139**: Run Release 0.2 Real Intelligence Integration.
+- [x] **TSK-140**: Run Release 0.3 Personal OS Integration.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.28.0
+- **Version**: 1.29.0
 
 *I build before burning.*

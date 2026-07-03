@@ -215,6 +215,17 @@ tags:
 | DEC-PH2-20260703-01 | 2026-07-03 | Connected DecisionEngine and AiRuntime mock providers inside real web route execution paths. | [[packages/services/src/planning/index.ts]] | Accepted |
 | DEC-PH2-20260703-02 | 2026-07-03 | Setup Release Management templates, plans, and metrics registers inside 30 Release Management folder. | [[30 Release Management/]] | Accepted |
 
+---
+
+## 2026-07-03 Release 0.3 Personal OS Integration Milestone
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-PH3-20260703-01 | 2026-07-03 | Created GoogleCalendarConnector and ObsidianConnector framework modules. | [[packages/services/src/integrations/]] | Accepted |
+| DEC-PH3-20260703-02 | 2026-07-03 | Created NotificationEngine scheduling local reminders based on active focus status. | [[packages/services/src/notifications/]] | Accepted |
+| DEC-PH3-20260703-03 | 2026-07-03 | Created LaunchKit opening URLs and files upon starting focus countdown. | [[packages/services/src/launchkit/]] | Accepted |
+
+
 
 
 
