@@ -225,6 +225,17 @@ tags:
 | DEC-PH3-20260703-02 | 2026-07-03 | Created NotificationEngine scheduling local reminders based on active focus status. | [[packages/services/src/notifications/]] | Accepted |
 | DEC-PH3-20260703-03 | 2026-07-03 | Created LaunchKit opening URLs and files upon starting focus countdown. | [[packages/services/src/launchkit/]] | Accepted |
 
+---
+
+## 2026-07-03 Release 0.4 Mission Workspace Milestone
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-PH4-20260703-01 | 2026-07-03 | Configured Recording, Writing, and Coding templates inside MissionKitRegistry. | [[packages/services/src/missionkits/]] | Accepted |
+| DEC-PH4-20260703-02 | 2026-07-03 | Implemented ContextEngine automatically pulling related notes, decisions, and signals. | [[packages/services/src/contextengine/]] | Accepted |
+| DEC-PH4-20260703-03 | 2026-07-03 | Integrated context retrieval memory caches with 60-second TTL. | [[packages/services/src/contextengine/]] | Accepted |
+
+
 
 
 

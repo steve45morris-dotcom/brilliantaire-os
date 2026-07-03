@@ -217,6 +217,13 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 - Standardizing connector connection interfaces connects external tools cleanly without exposing internal service logic.
 - Building focus-aware reminders prevents notification alert noise while users are running active focus blocks.
 
+---
+
+## 2026-07-03 Release 0.4 Lessons
+- Pre-configuring reusable templates inside a registry makes adding new workflow types (Recording, Coding) extremely structured.
+- caching dynamic context assembly queries in memory under short TTL limits prevents repetitive disk lookups during focused sessions.
+
+
 
 
 
