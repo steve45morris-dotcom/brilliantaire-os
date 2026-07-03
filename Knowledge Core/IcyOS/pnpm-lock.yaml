@@ -104,6 +104,9 @@ importers:
       '@icyos/database':
         specifier: workspace:*
         version: link:../database
+      '@icyos/learning':
+        specifier: workspace:*
+        version: link:../learning
       '@icyos/shared':
         specifier: workspace:*
         version: link:../shared

@@ -11,8 +11,17 @@ export interface TimelineBlockData {
   confidence?: number;
 }
 
+export interface AdaptiveMetadata {
+  recommended_time_window: string;
+  confidence_score: number;
+  reason: string;
+  historical_pattern: string;
+  buffer_recommendation: string;
+}
+
 export function useGenerateDailyPlan() {
   const [blocks, setBlocks] = useState<TimelineBlockData[]>([]);
+  const [metadata, setMetadata] = useState<AdaptiveMetadata | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,7 +29,7 @@ export function useGenerateDailyPlan() {
     setLoading(true);
     setError(null);
     try {
-      const response = await apiFetch<{ blocks: TimelineBlockData[] }>('/api/timelines/generate', {
+      const response = await apiFetch<{ blocks: TimelineBlockData[]; metadata: AdaptiveMetadata }>('/api/timelines/generate', {
         method: 'POST',
         body: JSON.stringify({}),
       });
@@ -30,6 +39,7 @@ export function useGenerateDailyPlan() {
           (a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
         );
         setBlocks(sorted);
+        setMetadata(response.data.metadata);
       } else {
         setError(response.error?.message || 'Failed to generate plan coordinates');
       }
@@ -42,6 +52,7 @@ export function useGenerateDailyPlan() {
 
   return {
     blocks,
+    metadata,
     loading,
     error,
     generatePlan,

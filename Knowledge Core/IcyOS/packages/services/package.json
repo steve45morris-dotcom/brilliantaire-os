@@ -11,6 +11,7 @@
   "dependencies": {
     "@icyos/shared": "workspace:*",
     "@icyos/database": "workspace:*",
+    "@icyos/learning": "workspace:*",
     "zod": "^3.22.0"
   },
   "devDependencies": {

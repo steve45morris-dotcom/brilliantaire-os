@@ -183,12 +183,18 @@ tags:
 
 ---
 
-## 2026-07-02 Sprint 12 execution
+| DEC-SP12-20260702-01 | 2026-07-02 | Configured the local package @icyos/learning calculate metrics values, overrun ratios and user profiles. | [[packages/learning/src/profile/index.ts]] | Accepted |
+| DEC-SP12-20260702-02 | 2026-07-02 | Created recommendations engines recommending target sprint reductions based on completions scores. | [[packages/learning/src/recommendations/index.ts]] | Accepted |
+
+---
+
+## 2026-07-03 Sprint 13 execution
 
 | ID | Date | Decision | Reference | Status |
 |---|---|---|---|---|
-| DEC-SP12-20260702-01 | 2026-07-02 | Configured the local package @icyos/learning calculate metrics values, overrun ratios and user profiles. | [[packages/learning/src/profile/index.ts]] | Accepted |
-| DEC-SP12-20260702-02 | 2026-07-02 | Created recommendations engines recommending target sprint reductions based on completions scores. | [[packages/learning/src/recommendations/index.ts]] | Accepted |
+| DEC-SP13-20260703-01 | 2026-07-03 | Upgraded PlanningService to consume historical profiles data from @icyos/learning. | [[packages/services/src/planning/index.ts]] | Accepted |
+| DEC-SP13-20260703-02 | 2026-07-03 | Created AdaptiveInsightCard rendering suggestions reasons and confidence ratings metrics. | [[apps/web/src/components/timeline/adaptive-insight-card.tsx]] | Accepted |
+
 
 
 

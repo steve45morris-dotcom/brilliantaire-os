@@ -1,5 +1,5 @@
 # Recent Changes
-`Version: 1.25.0` | `Status: Locked`
+`Version: 1.26.0` | `Status: Locked`
 
 Track of recent updates to documentation, layout re-organizations, and specification versions.
 
@@ -7,6 +7,7 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📅 Recent Log
 
+- **2026-07-03**: Executed Sprint 13: Adaptive Planner v1. Upgraded PlanningService to consume historical profile recommendations, integrated explainable metadata displays cards on Daily Timeline routing pages, and verified Vitest checks.
 - **2026-07-02**: Executed Sprint 12: Learning Engine v1. Created local `@icyos/learning` workspace package containing profile analyzers, metrics calculations, recommendations templates and Vitest checks.
 - **2026-07-02**: Executed Sprint 11: Reflection Engine. Scaffolded rating selectors, voice micro-perm fallback alerts, text forms, AI summaries and learning signals dashboards under `apps/web/src/app/(dashboard)/review/`.
 - **2026-07-02**: Executed Sprint 10: Focus Execution Engine. Scaffolded `focus-session-card.tsx`, `session-timer.tsx`, custom `use-focus-session.ts` hook, event logging arrays, and countdown timers under `apps/web/src/app/(dashboard)/focus/`.
@@ -39,6 +40,6 @@ Track of recent updates to documentation, layout re-organizations, and specifica
 
 ## 📋 Document Metadata
 - **Purpose**: Record recent changes across documentation.
-- **Version**: 1.25.0
+- **Version**: 1.26.0
 
 *I build before burning.*

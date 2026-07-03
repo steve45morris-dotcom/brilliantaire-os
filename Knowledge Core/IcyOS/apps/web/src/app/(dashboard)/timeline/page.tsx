@@ -6,9 +6,10 @@ import { GeneratePlanButton } from '../../../components/timeline/generate-plan-b
 import { TimelineView } from '../../../components/timeline/timeline-view';
 import { TimelineEmptyState } from '../../../components/timeline/timeline-empty-state';
 import { ApprovalPanel } from '../../../components/timeline/approval-panel';
+import { AdaptiveInsightCard } from '../../../components/timeline/adaptive-insight-card';
 
 export default function TimelinePage() {
-  const { blocks, loading: genLoading, error: genError, generatePlan, setBlocks } = useGenerateDailyPlan();
+  const { blocks, metadata, loading: genLoading, error: genError, generatePlan, setBlocks } = useGenerateDailyPlan();
   const { status, loading: appLoading, error: appError, approveTimeline, rejectTimeline, regenerateTimeline, lockTimeline, setStatus } = useTimelineApproval('draft');
 
   const handleGenerate = async () => {
@@ -45,6 +46,10 @@ export default function TimelinePage() {
         <div className="p-4 border border-red-900 bg-red-950/10 text-xs font-semibold text-red-500 rounded-lg">
           {error}
         </div>
+      )}
+
+      {metadata && (
+        <AdaptiveInsightCard metadata={metadata} />
       )}
 
       {blocks.length > 0 && (

@@ -182,3 +182,9 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 ## 2026-07-02 Sprint 12 Lessons
 - Dividing historical analysis items into older vs newer blocks halves helps calculate buffer trends directions (increasing vs decreasing) cleanly.
 - Computing confidence values on deterministic calculations prevents statistical feedback loops when generating adaptive recommendation thresholds.
+
+---
+
+## 2026-07-03 Sprint 13 Lessons
+- Keeping plan metadata fully explainable in the UI increases operator confidence in automated timeline adjustments.
+- Enforcing "AI suggests, Human Approves" ensures the planning system remains a tool of leverage rather than automation friction.
