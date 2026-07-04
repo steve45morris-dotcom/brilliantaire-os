@@ -55,11 +55,13 @@ This board tracks the active sprint targets, task statuses, and completion metri
 - [x] **TSK-139**: Run Release 0.2 Real Intelligence Integration.
 - [x] **TSK-140**: Run Release 0.3 Personal OS Integration.
 - [x] **TSK-141**: Run Release 0.4 Mission Kits & Context Engine.
+- [x] **TSK-142**: Run Phase 5 Production Engineering & Operational Excellence.
+- [x] **TSK-143**: Run IcyOS Codex v1.0 Consolidation.
 
 ---
 
 ## 📋 Document Metadata
 - **Purpose**: Manage active sprint tasks.
-- **Version**: 1.30.0
+- **Version**: 1.31.0
 
 *I build before burning.*

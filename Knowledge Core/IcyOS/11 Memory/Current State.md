@@ -1,12 +1,12 @@
 # 📊 Current State: Live Telemetry & Baseline
-`Version: 1.35.0` | `Status: Locked` | `Scope: Global`
+`Version: 1.36.0` | `Status: Locked` | `Scope: Global`
 
 This document details the live setup status, activated packages, and current baseline configuration of **IcyOS**.
 
 ---
 
 ## 🚦 Systems Health Index
-- **Current Development Phase**: `Release 0.4: Mission Kits & Context Engine — COMPLETE`
+- **Current Development Phase**: `IcyOS Codex v1.0 — COMPLETE`
 - **Knowledge Core Structure**: 🟩 Locked. Upgraded to 22 standard ICOS directories.
 - **Repository Structure**: 🟩 Locked. Subfolders (`apps` to `deployment`) exist.
 - **Boot Documentation**: 🟩 Locked. Ingest sequence, indexes, and relations established.
@@ -45,6 +45,7 @@ This document details the live setup status, activated packages, and current bas
 - **Release 0.2 Real Intelligence**: 🟩 Complete. Expanded AI Runtime operations package with prompt matrix libraries, health stats dashboards, and security scrubbers registered inside `31 AI Runtime Operations/`.
 - **Release 0.3 Personal OS Integration**: 🟩 Complete. Integrated calendar interfaces, Obsidian notes synchronizers, focus-aware notifications engines, and app launch kits under `32 Personal OS/`.
 - **Release 0.4 Mission Kits**: 🟩 Complete. Created Recording/Coding/Writing templates, checklist schemas, and dynamic context caching pipelines under `33 Mission Kits/`.
+- **IcyOS Codex v1.0**: 🟩 Complete. Consolidated complete architectural, AI runtime, and UX guidelines under `34 IcyOS Codex/` and generated the master living constitution.
 
 ---
 

@@ -223,6 +223,13 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 - Pre-configuring reusable templates inside a registry makes adding new workflow types (Recording, Coding) extremely structured.
 - caching dynamic context assembly queries in memory under short TTL limits prevents repetitive disk lookups during focused sessions.
 
+---
+
+## 2026-07-04 Phase 5 & Codex Lessons
+- Logging standard specifications prevent unformatted messages and unify tracing down stream processes.
+- Consolidation of directories into a single source Codex mitigates conflicting specifications and guarantees AI startup speed.
+
+
 
 
 

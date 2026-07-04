@@ -235,6 +235,17 @@ tags:
 | DEC-PH4-20260703-02 | 2026-07-03 | Implemented ContextEngine automatically pulling related notes, decisions, and signals. | [[packages/services/src/contextengine/]] | Accepted |
 | DEC-PH4-20260703-03 | 2026-07-03 | Integrated context retrieval memory caches with 60-second TTL. | [[packages/services/src/contextengine/]] | Accepted |
 
+---
+
+## 2026-07-04 Phase 5 & Codex Milestone
+
+| ID | Date | Decision | Reference | Status |
+|---|---|---|---|---|
+| DEC-PH5-20260704-01 | 2026-07-04 | Audited package boundary checks and type safety requirements. | [[33 Production Engineering/]] | Accepted |
+| DEC-PH5-20260704-02 | 2026-07-04 | Consolidated knowledge bases under 10 sections within Codex. | [[34 IcyOS Codex/]] | Accepted |
+| DEC-PH5-20260704-03 | 2026-07-04 | Locked Founder Constitution as the highest repository authority. | [[34 IcyOS Codex/Founder Constitution/]] | Accepted |
+
+
 
 
 
