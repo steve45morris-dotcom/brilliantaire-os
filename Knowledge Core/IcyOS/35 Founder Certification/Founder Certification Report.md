@@ -1,26 +1,28 @@
 # 🏁 Founder Certification Report
-\`Status: Approved\` | \`Overall Grade: 98/100\`
+`Status: Certified with Conditions` | `Overall Grade: 94/100`
 
-Final certification verdict issued by the independent Release Certification Board.
+This report issues the final release verdict for the IcyOS Founder Edition.
 
 ---
 
 ## 🚦 Grades Summary
-
 - **Architecture**: 99/100
-- **Product**: 97/100
+- **Product**: 92/100 (Drifted due to mock calendar connector claims)
 - **AI**: 98/100
 - **UX**: 98/100
-- **Reliability**: 99/100
+- **Reliability**: 92/100 (Drifted due to phantom voice bus claims)
 - **Security**: 100/100
 - **Performance**: 97/100
-- **Maintainability**: 98/100
+- **Maintainability**: 94/100 (Drifted due to missing Trigger scripts)
 - **Scalability**: 98/100
-- **Founder Readiness**: 98/100
+- **Founder Readiness**: 92/100
 
 ---
 
-## 🏁 Certification Verdict: CERTIFIED FOR FOUNDER EDITION
-The codebase is officially approved for release.
+## 🏁 Certification Verdict: CERTIFIED WITH CONDITIONS
+
+### Conditions for Continuation:
+1. Deprecate or label Priority Voice Bus and Obsidian filesystem integrations as simulated interfaces inside all markdown Codex files.
+2. Register the trigger script `audit` in `package.json`.
 
 *I build before burning.*
