@@ -1,0 +1,50 @@
+name: IcyOS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Coverage
+        run: pnpm test -- --coverage.enabled --coverage.provider=v8
+        continue-on-error: true
+
+      - name: Install Playwright browsers
+        run: cd apps/web && npx playwright install --with-deps chromium
+
+      - name: E2E tests
+        run: cd apps/web && npx playwright test
+        continue-on-error: true
+
+      - name: Security audit
+        run: pnpm audit --audit-level=high
+        continue-on-error: true

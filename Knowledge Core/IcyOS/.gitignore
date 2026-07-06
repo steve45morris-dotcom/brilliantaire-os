@@ -22,3 +22,14 @@ coverage/
 # Logs
 *.log
 logs/
+
+# Turbo cache
+.turbo/
+
+# IDE configs
+.vscode/
+.idea/
+
+# Playwright
+test-results/
+playwright-report/

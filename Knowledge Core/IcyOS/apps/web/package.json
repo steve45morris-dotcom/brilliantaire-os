@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "^15.5.16",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@icyos/shared": "workspace:*",
     "@icyos/services": "workspace:*",
     "@icyos/database": "workspace:*",
@@ -24,8 +25,9 @@
   },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "@types/react": "^18.2.0",
+    "@types/react": "^19.1.0",
     "@types/node": "^20.0.0",
-    "vitest": "^0.30.0"
+    "vitest": "^3.2.6",
+    "@playwright/test": "^1.52.0"
   }
 }

@@ -32,35 +32,21 @@ For a full directory of all system files and their cross-links, see:
 
 ```
 IcyOS/
-├── 00 Founder/           # Mission, Vision, and North Star
-├── 01 Constitution/      # Sovereign rules and ethical guide rails
-├── 02 Product/           # Product Requirement Documents (PRD)
-├── 03 Architecture/      # System Diagrams, Blueprints, Technical Design
-├── 04 AI/                # Specifications for the 17 AI Engines
-├── 05 Database/          # Schema designs, Migrations, Postgres specs
-├── 06 API/               # API endpoints, JSON contracts, interface guidelines
-├── 07 Frontend/          # UI architecture, state management, mobile/web views
-├── 08 Backend/           # Server configurations, queue workers, job dispatchers
-├── 09 Design System/     # Visual tokens, styles, layout rules (Supernova)
-├── 10 Engineering/       # Repository guidelines, Standards, Testing, Deployment
-├── 11 Memory/            # Live telemetry, Lessons, Current Sprint, Decision Logs
-├── 12 Research/          # Technology evaluations, Exa-search reports
-├── 13 Decisions/         # Architectural Decision Records (ADRs)
-├── 14 Roadmap/           # Phased evolution plans
-├── 15 Daily Notes/       # Developer journal entries, daily retros
-├── 16 Meetings/          # Syncs, brainstorm sessions, feedback
-├── 17 Archive/           # Legacy systems and deprecated files
-└── Repository/           # Execution Layer (Hands)
-    ├── apps/             # Application instances (Web, Desktop, CLI)
-    ├── packages/         # Shared utility libraries and npm components
-    ├── frontend/         # Frontend web application source files
-    ├── backend/          # API, orchestration node server files
-    ├── database/         # SQL migrations and seed data
-    ├── api/              # Protocol schemas, protobuf, or tRPC files
-    ├── integrations/     # Custom platform SDK adapters (Obsidian, Calendar)
-    ├── scripts/          # Narrative voice bridge, sync utilities, automation
-    ├── tests/            # Test suite definitions
-    └── deployment/       # Dockerfiles, CI pipelines, configurations
+├── apps/
+│   └── web/              # Next.js web application
+├── packages/
+│   ├── ai/               # AI provider abstraction
+│   ├── database/         # Database client & repositories
+│   ├── decision/         # Decision engine & routing
+│   ├── learning/         # Learning metrics & recommendations
+│   ├── services/         # Application services layer
+│   └── shared/           # Shared types, entities, validation
+├── supabase/
+│   ├── migrations/       # SQL migration files
+│   └── docs/             # Database documentation
+├── docs/                 # Documentation
+├── 00-49 */              # Knowledge Core directories
+└── 99 Command Center/
 ```
 
 ---
