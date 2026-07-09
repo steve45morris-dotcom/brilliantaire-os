@@ -2568,6 +2568,50 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'platform-observability-collector',
+    aliases: ['obs-run'],
+    description: 'Collect CPU, memory, event queue depths, and execution frequency metrics',
+    npmScript: 'platform-observability-collector',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'production-readiness-evaluator',
+    aliases: ['prod-run'],
+    description: 'Verify build, lint, docs, and governance score against the quality threshold',
+    npmScript: 'production-readiness-evaluator',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'dependency-intelligence-analyzer',
+    aliases: ['dep-run'],
+    description: 'Map scripts import dependencies, detect cycles and orphaned files',
+    npmScript: 'dependency-intelligence-analyzer',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'executive-intelligence-consolidator',
+    aliases: ['exec-run'],
+    description: 'Merge all telemetry and metrics to stage the consolidated summary',
+    npmScript: 'executive-intelligence-consolidator',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',

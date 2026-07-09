@@ -1301,6 +1301,26 @@ tasks:
     cmds:
       - npm run system-governance-help
 
+  platform-observability-collector:
+    desc: "Collect platform performance, queue, and execution logs"
+    cmds:
+      - npm run platform-observability-collector
+
+  production-readiness-evaluator:
+    desc: "Verify compilation, test coverage, and documentation readiness scores"
+    cmds:
+      - npm run production-readiness-evaluator
+
+  dependency-intelligence-analyzer:
+    desc: "Map script dependency import graphs and check for cycle anomalies"
+    cmds:
+      - npm run dependency-intelligence-analyzer
+
+  executive-intelligence-consolidator:
+    desc: "Consolidate active parameters to compile the executive briefing"
+    cmds:
+      - npm run executive-intelligence-consolidator
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
