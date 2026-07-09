@@ -2524,6 +2524,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'grinders-keep-google-ultra-opportunity-scanner',
+    aliases: [],
+    description: 'Run v0.1 Grinders Keep Google Ultra Opportunity Scanner to scan project telemetry and map to manual workflows',
+    npmScript: 'grinders-keep-google-ultra-opportunity-scanner',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-google-ultra-opportunity-scanner-help',
+    aliases: [],
+    description: 'Print help documentation for Grinders Keep Google Ultra Opportunity Scanner',
+    npmScript: 'grinders-keep-google-ultra-opportunity-scanner-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',

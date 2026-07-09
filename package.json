@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint . --ext .ts --ignore-pattern 'local_assets/'",
     "test": "vitest run",
     "audit": "tsx scripts/audit.ts",
     "brief": "tsx scripts/brief.ts",
@@ -231,6 +231,8 @@
     "grinders-keep-content-drafting-lab-deepener-help": "tsx scripts/grinders-keep-content-drafting-lab-deepener-help.ts",
     "grinders-keep-consensus-review-packet-deepener": "tsx scripts/grinders-keep-consensus-review-packet-deepener.ts",
     "grinders-keep-consensus-review-packet-deepener-help": "tsx scripts/grinders-keep-consensus-review-packet-deepener-help.ts",
+    "grinders-keep-google-ultra-opportunity-scanner": "tsx scripts/grinders-keep-google-ultra-opportunity-scanner.ts",
+    "grinders-keep-google-ultra-opportunity-scanner-help": "tsx scripts/grinders-keep-google-ultra-opportunity-scanner-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",

@@ -1281,6 +1281,16 @@ tasks:
     cmds:
       - npm run grinders-keep-consensus-review-packet-deepener-help
 
+  grinders-keep-google-ultra-opportunity-scanner:
+    desc: "Run v0.1 Grinders Keep Google Ultra Opportunity Scanner sweep"
+    cmds:
+      - npm run grinders-keep-google-ultra-opportunity-scanner
+
+  grinders-keep-google-ultra-opportunity-scanner-help:
+    desc: "Print help documentation for Grinders Keep Google Ultra Opportunity Scanner"
+    cmds:
+      - npm run grinders-keep-google-ultra-opportunity-scanner-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
