@@ -233,6 +233,8 @@
     "grinders-keep-consensus-review-packet-deepener-help": "tsx scripts/grinders-keep-consensus-review-packet-deepener-help.ts",
     "grinders-keep-google-ultra-opportunity-scanner": "tsx scripts/grinders-keep-google-ultra-opportunity-scanner.ts",
     "grinders-keep-google-ultra-opportunity-scanner-help": "tsx scripts/grinders-keep-google-ultra-opportunity-scanner-help.ts",
+    "system-governance-engine": "tsx scripts/system-governance-engine.ts",
+    "system-governance-help": "tsx scripts/system-governance-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",

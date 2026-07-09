@@ -2546,6 +2546,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'system-governance-engine',
+    aliases: ['gov-run'],
+    description: 'Run the System Governance Engine to scan architecture compliance',
+    npmScript: 'system-governance-engine',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'system-governance-help',
+    aliases: ['gov-help'],
+    description: 'Print help documentation for System Governance Engine',
+    npmScript: 'system-governance-help',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',

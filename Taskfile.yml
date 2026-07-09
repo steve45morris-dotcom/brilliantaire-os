@@ -1291,6 +1291,16 @@ tasks:
     cmds:
       - npm run grinders-keep-google-ultra-opportunity-scanner-help
 
+  system-governance-engine:
+    desc: "Run the System Governance Engine scan"
+    cmds:
+      - npm run system-governance-engine
+
+  system-governance-help:
+    desc: "Print help documentation for System Governance Engine"
+    cmds:
+      - npm run system-governance-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:
