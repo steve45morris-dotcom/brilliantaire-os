@@ -12,6 +12,10 @@ LOG="${VOICE_DAEMON_LOG:-/Users/alexanderanthony/supernova/logs/voice_daemon.log
 RUN_ONCE="${VOICE_DAEMON_ONCE:-0}"
 IDLE_POLL_SECONDS="${VOICE_IDLE_POLL_SECONDS:-10}"
 ACTIVE_POLL_SECONDS="${VOICE_ACTIVE_POLL_SECONDS:-2}"
+VIBEVOICE_CLIENT="${VIBEVOICE_CLIENT:-/Users/alexanderanthony/scripts/vibevoice_client.py}"
+VIBEVOICE_PYTHON="${VIBEVOICE_PYTHON:-/Users/alexanderanthony/venv_stable/bin/python}"
+VIBEVOICE_TIMEOUT="${VIBEVOICE_TIMEOUT:-45}"
+VOICE_FALLBACK_MODE="${VOICE_FALLBACK_MODE:-none}"
 
 mkdir -p "$(dirname "$LOG")"
 echo "[$(date)] Voice Daemon starting..." >> "$LOG"
@@ -104,12 +108,14 @@ speak_text() {
         "$VOICE_SPEAK_COMMAND" "$speech"
         return $?
     fi
-    if /Users/alexanderanthony/venv_stable/bin/python \
-        /Users/alexanderanthony/scripts/vv_speak.py "$speech" --play >> "$LOG" 2>&1; then
+    if "$VIBEVOICE_PYTHON" "$VIBEVOICE_CLIENT" \
+        "$speech" \
+        --timeout "$VIBEVOICE_TIMEOUT" \
+        --fallback "$VOICE_FALLBACK_MODE" >> "$LOG" 2>&1; then
         return 0
     fi
-    voice_is_muted && return 1
-    /usr/bin/say "$speech"
+    echo "[$(date)] Speech request failed; fallback=$VOICE_FALLBACK_MODE" >> "$LOG"
+    return 1
 }
 
 evaluate_policy() {

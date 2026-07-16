@@ -65,6 +65,34 @@ def run_daemon(tmp_path: Path, line: str = "") -> list[str]:
     return speech_log.read_text().splitlines()
 
 
+def run_daemon_with_failed_worker(tmp_path: Path, line: str) -> str:
+    client = tmp_path / "failed-client.sh"
+    client.write_text("#!/bin/bash\nexit 1\n")
+    client.chmod(0o755)
+    env = os.environ.copy()
+    buffer_path = tmp_path / "voice_buffer.txt"
+    buffer_path.write_text(line + "\n")
+    config_path = tmp_path / "voice.conf"
+    config_path.write_text("ENABLED=true\nPROFILE=build\nVOICE_QUIET_START=00:00\nVOICE_QUIET_END=00:00\n")
+    env.update(
+        {
+            "VOICE_BUFFER": str(buffer_path),
+            "VOICE_CONF": str(config_path),
+            "VOICE_MUTE_MARKER": str(tmp_path / "missing-mute"),
+            "VOICE_DAEMON_LOCK": str(tmp_path / "daemon.lock"),
+            "VOICE_DAEMON_LOG": str(tmp_path / "daemon.log"),
+            "VOICE_INTELLIGENCE_ENGINE": str(ENGINE),
+            "VOICE_INTELLIGENCE_STATE": str(tmp_path / "state.json"),
+            "VOICE_DIGEST_STATE": str(tmp_path / "digest.json"),
+            "VOICE_INTELLIGENCE_ARCHIVES": str(tmp_path / "archives"),
+            "VIBEVOICE_CLIENT": str(client),
+            "VOICE_DAEMON_ONCE": "1",
+        }
+    )
+    subprocess.run(["/bin/bash", str(DAEMON)], check=True, env=env, timeout=10)
+    return (tmp_path / "daemon.log").read_text()
+
+
 def fresh_line(text: str) -> str:
     return f"{datetime.now().astimezone():%Y-%m-%d %H:%M:%S} - {text}"
 
@@ -106,3 +134,13 @@ def test_daemon_speaks_one_digest_after_three_reports(tmp_path):
     assert second == []
     assert len(third) == 1
     assert third[0].startswith("Voice digest.")
+
+
+def test_daemon_does_not_switch_to_system_voice_when_worker_fails(tmp_path):
+    log = run_daemon_with_failed_worker(
+        tmp_path,
+        fresh_line("ERROR worker unavailable"),
+    )
+
+    assert "Speech request failed" in log
+    assert "recorded" not in log

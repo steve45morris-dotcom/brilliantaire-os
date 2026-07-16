@@ -1,11 +1,14 @@
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from voice_vibe import (
     archive_pending_reports,
     consume_show_request,
     read_intelligence_state,
+    read_live_state,
+    read_worker_state,
     request_show,
+    set_live_off,
+    set_live_on,
     set_off,
     set_on,
     watchdog_summary,
@@ -46,31 +49,26 @@ def test_watchdog_summary_names_first_failed_service():
 
 
 def test_set_off_stops_current_narration():
-    marker = MagicMock()
-    with patch("voice_vibe.MASTER_MUTE_MARKER", marker), patch(
+    with patch("voice_vibe.authority_set_mode") as authority_set_mode, patch(
         "voice_vibe.write_config"
     ) as write_config, patch(
-        "voice_vibe.stop_current_narration"
-    ) as stop_current_narration, patch(
         "voice_vibe.archive_pending_reports"
-    ) as archive_reports:
+    ) as archive_reports, patch("voice_vibe.update_state"):
         set_off()
 
-    marker.write_text.assert_called_once()
-    stop_current_narration.assert_called_once_with()
+    authority_set_mode.assert_called_once_with("off")
     archive_reports.assert_called_once_with()
-    write_config.assert_called_once_with({"ENABLED": "false", "PROFILE": "silent"})
+    write_config.assert_called_once_with({"LIVE_ENABLED": "false"})
 
 
 def test_set_on_clears_master_mute():
-    marker = MagicMock()
-    with patch("voice_vibe.MASTER_MUTE_MARKER", marker), patch(
-        "voice_vibe.write_config"
+    with patch("voice_vibe.authority_set_mode") as authority_set_mode, patch(
+        "voice_vibe.update_state"
     ), patch("voice_vibe.archive_pending_reports") as archive_reports:
         set_on()
 
     archive_reports.assert_called_once_with()
-    marker.unlink.assert_called_once_with()
+    authority_set_mode.assert_called_once_with("on")
 
 
 def test_archive_pending_reports_preserves_and_clears_queue(tmp_path):
@@ -125,3 +123,78 @@ def test_read_intelligence_state_recovers_from_corrupt_json(tmp_path):
     assert state["queue_size"] == 0
     assert state["digest_size"] == 0
     assert state["quiet_hours_active"] is False
+
+
+def test_read_worker_state_exposes_runtime_health(tmp_path):
+    state_path = tmp_path / "worker.json"
+    state_path.write_text(
+        '{"status":"ready","queue_depth":0,"load_ms":228000,'
+        '"last_generation_ms":23000,"last_error":"","last_played_at":"now"}'
+    )
+
+    state = read_worker_state(state_path)
+
+    assert state["vibevoice_status"] == "ready"
+    assert state["vibevoice_load_ms"] == 228000
+    assert state["vibevoice_generation_ms"] == 23000
+
+
+def test_read_worker_state_recovers_from_corrupt_json(tmp_path):
+    state_path = tmp_path / "worker.json"
+    state_path.write_text("{broken")
+
+    state = read_worker_state(state_path)
+
+    assert state["vibevoice_status"] == "offline"
+    assert state["vibevoice_queue_depth"] == 0
+
+
+def test_read_live_state_returns_safe_fields(tmp_path):
+    state_path = tmp_path / "live.json"
+    state_path.write_text(
+        '{"status":"listening","transcript":"hello",'
+        '"response_transcript":"ready","error":"",'
+        '"latest_latency_ms":145,"vision_capture_active":true,'
+        '"sovereign_mode":"cloud","cloud_circuit_open":false,'
+        '"acoustic_threshold_rms":320,"acoustic_noise_floor_rms":90,'
+        '"mission_store_enabled":true}'
+    )
+
+    state = read_live_state(state_path)
+
+    assert state["live_status"] == "listening"
+    assert state["live_transcript"] == "hello"
+    assert state["live_response_transcript"] == "ready"
+    assert state["live_latency_ms"] == 145
+    assert state["live_vision_capture_active"] is True
+    assert state["live_sovereign_mode"] == "cloud"
+    assert state["live_cloud_circuit_open"] is False
+    assert state["live_acoustic_threshold_rms"] == 320
+    assert state["live_acoustic_noise_floor_rms"] == 90
+    assert state["live_mission_store_enabled"] is True
+
+
+def test_read_live_state_recovers_from_corrupt_json(tmp_path):
+    state_path = tmp_path / "live.json"
+    state_path.write_text("{broken")
+    assert read_live_state(state_path)["live_status"] == "dormant"
+
+
+def test_live_on_enables_live_authority():
+    with patch("voice_vibe.authority_set_mode") as authority_set_mode, patch(
+        "voice_vibe.write_config"
+    ) as write_config, patch("voice_vibe.update_state"):
+        set_live_on()
+
+    authority_set_mode.assert_called_once_with("on")
+    write_config.assert_called_once_with({"LIVE_ENABLED": "true"})
+
+
+def test_live_off_disables_live_without_enabling_reporting():
+    with patch("voice_vibe.write_config") as write_config, patch(
+        "voice_vibe.stop_current_narration"
+    ) as stop_current_narration, patch("voice_vibe.update_state"):
+        set_live_off()
+
+    stop_current_narration.assert_called_once_with()
+    write_config.assert_called_once_with({"LIVE_ENABLED": "false"})
