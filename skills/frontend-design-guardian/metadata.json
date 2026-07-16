@@ -1,0 +1,14 @@
+{
+  "name": "frontend-design-guardian",
+  "owner": "Design Review Agent",
+  "version": "0.1.0",
+  "status": "experimental",
+  "category": "design",
+  "dependencies": ["completion-verifier"],
+  "lastUsed": null,
+  "usageCount": 0,
+  "successRate": 0,
+  "failureNotes": [],
+  "retirementCandidate": false,
+  "verificationNotes": "Experimental. Manual invocation and independent visual verification required; never auto-activate."
+}

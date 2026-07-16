@@ -1,7 +1,7 @@
 # Frontend Design Guardian Consolidated Audit and Pilot Design
 
 Date: 2026-07-16  
-Status: Awaiting written-spec review  
+Status: Approved controlling specification  
 Branch: `feature/frontend-design-guardian`
 
 ## Objective
