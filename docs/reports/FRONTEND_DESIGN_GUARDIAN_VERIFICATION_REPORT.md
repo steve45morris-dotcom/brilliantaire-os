@@ -120,4 +120,4 @@ Intentionally excluded from staging:
 
 ## Commit
 
-Promotion commit hash: pending focused commit creation at report write time. This report must be updated with the final hash after the checkpoint commit is created.
+Promotion commit hash: `89d4b63` (`chore: promote Frontend Design Guardian to verified`)
