@@ -1,6 +1,6 @@
 # Frontend Design Guardian Implementation Report
 
-Date: 2026-07-16. Branch: `feature/frontend-design-guardian`. Status: experimental and manually invoked.
+Date: 2026-07-16; maturity verified 2026-07-17. Branch: `feature/frontend-design-guardian`. Status: Verified and manually invoked.
 
 ## Delivered Capability
 
@@ -8,7 +8,7 @@ Date: 2026-07-16. Branch: `feature/frontend-design-guardian`. Status: experiment
 - Read-only review of six external design/component sources; no external code executed.
 - Twenty-section DESIGN.md standard and reusable template.
 - 100-point visual rubric with 80/85/90 thresholds and evidence gates.
-- Experimental `frontend-design-guardian` skill with review/checklist protocols.
+- Verified `frontend-design-guardian` skill with review/checklist protocols.
 - Lean Design Review Agent and Frontend Visual Quality Workflow.
 - Eight brand-autonomous project profiles and governed component source registry.
 - Structured `design:*` command family with Live Operations events.
@@ -19,7 +19,7 @@ Date: 2026-07-16. Branch: `feature/frontend-design-guardian`. Status: experiment
 
 New design logic is isolated under `src/design`. Existing systems are reused through narrow adapters: Skill Registry, agent/workflow registries, Live Operations, Action Router, package command conventions, and the Skills dashboard. Kernel, Runtime, Executive Layer, Operations Intelligence, Knowledge Graph, Universal Integration Framework, Constitution, and Architecture Freeze were not redesigned.
 
-The skill is registered at `skills/frontend-design-guardian` with status `experimental`, success rate 0, no auto-activation, and a required independent verification pass. The registry loader supports root-level governed skill paths while preserving category-path fallback. `src/design/PilotVerification.ts` is the single scored pilot record consumed by the CLI and dashboard, preventing those surfaces from independently inventing an acceptance score.
+The skill is registered at `skills/frontend-design-guardian` with status `verified`, one successful pilot, no auto-activation, and a required independent verification pass. The registry loader supports root-level governed skill paths while preserving category-path fallback. `src/design/PilotVerification.ts` is the single scored pilot record consumed by the CLI and dashboard, preventing those surfaces from independently inventing an acceptance score.
 
 ## Security and Governance
 
@@ -51,4 +51,4 @@ The production route sweep confirmed that Joy Beauty Studio is isolated and clea
 
 ## Verdict
 
-**ACCEPTED.** The Frontend Design Guardian is experimental and manually invoked. Joy Beauty Studio is the only redesigned frontend and passes the 85-point gate at 91/100 with direct desktop, mobile, interaction, production-build, and console evidence. The empty unrelated test file remains a documented repository-level blocker to a fully green unfiltered `npm test`.
+**ACCEPTED AND PROMOTED TO VERIFIED.** Joy Beauty Studio is the only redesigned frontend and passes the 85-point gate at 91/100 with direct desktop, mobile, interaction, production-build, and console evidence. The skill is not Operational; two additional successful pilots on different projects are required. The empty unrelated test file remains a documented repository-level blocker to a fully green unfiltered `npm test`.

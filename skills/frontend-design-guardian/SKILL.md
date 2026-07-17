@@ -1,6 +1,6 @@
 ---
 name: frontend-design-guardian
-description: Create and validate DESIGN.md, audit frontend hierarchy and tokens, inspect desktop/mobile screenshots, detect generic AI design patterns, calculate evidenced visual acceptance scores, and produce prioritized revisions. Use for landing-page, dashboard, responsive, accessibility, or visual acceptance work. Experimental; invoke manually and require an independent verification pass.
+description: Create and validate DESIGN.md, audit frontend hierarchy and tokens, inspect desktop/mobile screenshots, detect generic AI design patterns, calculate evidenced visual acceptance scores, and produce prioritized revisions. Use for landing-page, dashboard, responsive, accessibility, or visual acceptance work. Verified; invoke manually and require an independent verification pass.
 ---
 
 # Frontend Design Guardian

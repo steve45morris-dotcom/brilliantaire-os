@@ -45,7 +45,7 @@ export const DesignQuality: React.FC<{ onNotify: (message: string, type: 'info' 
       <div className="pilot-section-heading">
         <div>
           <h3 id="design-quality-title" className="cyber-title" style={{ color: '#ffb000' }}>Design Quality</h3>
-          <span className="data-source-label">Frontend Design Guardian / experimental</span>
+          <span className="data-source-label">Frontend Design Guardian / verified</span>
         </div>
         <div className="pilot-summary-strip"><span>8 projects</span><span>1 accepted</span><span>pilot +{joyScore - joyVerification.baselineScore}</span></div>
       </div>

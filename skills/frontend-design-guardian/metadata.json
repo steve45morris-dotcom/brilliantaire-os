@@ -1,14 +1,14 @@
 {
   "name": "frontend-design-guardian",
   "owner": "Design Review Agent",
-  "version": "0.1.0",
-  "status": "experimental",
+  "version": "0.2.0",
+  "status": "verified",
   "category": "design",
   "dependencies": ["completion-verifier"],
-  "lastUsed": null,
-  "usageCount": 0,
-  "successRate": 0,
+  "lastUsed": "2026-07-16",
+  "usageCount": 1,
+  "successRate": 1,
   "failureNotes": [],
   "retirementCandidate": false,
-  "verificationNotes": "Experimental. Manual invocation and independent visual verification required; never auto-activate."
+  "verificationNotes": "Verified through the Joy Beauty Studio pilot: 10/100 baseline, 91/100 final, 85/100 threshold, independent desktop/mobile/browser acceptance, 168/168 relevant tests, typecheck, root build, and dashboard build. Not Operational; two additional successful pilots on different projects are required."
 }

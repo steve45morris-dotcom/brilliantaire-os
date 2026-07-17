@@ -5,6 +5,12 @@ export interface PilotVerificationRecord {
   reviewer: string;
   reviewedAt: string;
   baselineScore: number;
+  acceptanceThreshold: number;
+  maturityDecision: {
+    previous: 'Experimental';
+    current: 'Verified';
+    decision: 'Promote to Verified';
+  };
   categories: VisualScoreCategories;
   evidence: {
     desktop: string;
@@ -35,6 +41,12 @@ export const PILOT_VERIFICATIONS: Record<string, PilotVerificationRecord> = {
     reviewer: 'Design Review Agent',
     reviewedAt: '2026-07-16',
     baselineScore: 10,
+    acceptanceThreshold: 85,
+    maturityDecision: {
+      previous: 'Experimental',
+      current: 'Verified',
+      decision: 'Promote to Verified',
+    },
     categories: {
       brandDistinction: 9,
       typography: 9,

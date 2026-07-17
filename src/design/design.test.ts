@@ -122,9 +122,9 @@ describe('Frontend Design Guardian', () => {
     }
   });
 
-  it('registers the experimental skill, lean review agent, and visual workflow', () => {
+  it('registers the verified skill, lean review agent, and visual workflow', () => {
     const skill = new SkillRegistryManager().loadFullSkill('frontend-design-guardian');
-    expect(skill).toMatchObject({ name: 'frontend-design-guardian', status: 'experimental' });
+    expect(skill).toMatchObject({ name: 'frontend-design-guardian', status: 'verified' });
     expect(CORE_AGENTS['design-review-agent']).toMatchObject({
       skills: ['frontend-design-guardian'],
     });
