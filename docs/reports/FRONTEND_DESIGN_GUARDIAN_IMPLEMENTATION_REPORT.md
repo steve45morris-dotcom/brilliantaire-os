@@ -1,6 +1,6 @@
 # Frontend Design Guardian Implementation Report
 
-Date: 2026-07-16; maturity verified 2026-07-17. Branch: `feature/frontend-design-guardian`. Status: Verified and manually invoked.
+Date: 2026-07-19. Branch: `feature/frontend-design-guardian`. Status: Verified and manually invoked.
 
 ## Delivered Capability
 
@@ -13,7 +13,7 @@ Date: 2026-07-16; maturity verified 2026-07-17. Branch: `feature/frontend-design
 - Eight brand-autonomous project profiles and governed component source registry.
 - Structured `design:*` command family with Live Operations events.
 - Design Quality dashboard view with seven meaningful actions.
-- Joy Beauty Studio measured redesign pilot with fresh independent acceptance at 91/100.
+- Joy Beauty Studio measured redesign pilot with clean committed-head acceptance at 91/100.
 
 ## Architecture
 
@@ -23,7 +23,7 @@ The skill is registered at `skills/frontend-design-guardian` with status `verifi
 
 ## Security and Governance
 
-No API keys were read, written, or committed. Magic MCP was not installed. External repositories were reviewed through read-only public metadata/pages. Component imports require source, license, ref, file, dependency, accessibility, customization, and usage records. Screenshot evidence remains outside tracked source folders under `/private/tmp`.
+No API keys were read, written, or committed. Magic MCP was not installed. No untrusted repository code was executed. External repositories were reviewed through read-only public metadata/pages. Component imports require source, license, ref, file, dependency, accessibility, customization, and usage records. Screenshot evidence remains outside tracked source folders under `/private/tmp`.
 
 ## Verification Contract
 
@@ -31,24 +31,22 @@ Automated coverage includes DESIGN.md validation, forbidden patterns, score calc
 
 ## Final Verification
 
-Directly executed on 2026-07-16:
+Clean committed-head verification executed on 2026-07-19 at `8c79de3`:
 
 | Verification | Result |
 |---|---|
 | `npx vitest run src/design/design.test.ts src/design/pilot-route.test.ts` | PASS — 2 files, 11 tests |
-| `npx vitest run --exclude src/icyos-hardening.test.ts` | PASS — 30 files, 168 tests |
-| `npm test` | 168 tests passed, but command exits non-green because the pre-existing empty `src/icyos-hardening.test.ts` has no test suite |
-| `npm run typecheck` | PASS |
+| `npx tsc --noEmit` | PASS |
 | Root `npm run build` | PASS |
-| Dashboard `npm run build` | PASS — production single-file bundle generated |
-| `npm run design:score -- joy-beauty-studio` | PASS — 91/100, threshold 85, no blockers |
-| Production pilot browser verification | PASS — HTTP 200, correct title/H1, no overflow, clean console, service selection and confirmation work |
-| Eight-route production sweep | COMPLETE — all returned HTTP 200; the seven audit-only routes preserved existing behavior |
+| Dashboard `npm run build` | PASS — production bundle generated |
+| Independent score confirmation | PASS — `PilotVerification.ts` remains 91/100 against threshold 85 and the clean browser pass matched the committed implementation |
+| Clean pilot browser verification | PASS — HTTP 200, correct title/H1, no overflow, zero console errors, service selection and confirmation work at 1440×1000 and 390×844 |
+| CI / remote checks | NOT CONFIGURED — no PR checks are defined for this repository |
 
-The production route sweep confirmed that Joy Beauty Studio is isolated and clean. `/projects/icyflamze` and the other non-pilot nested routes still expose their pre-existing relative telemetry JSON error and Icyflamze fallthrough; `/dashboard` still renders Icyflamze identity. These are maturity-audit findings outside the locked one-page redesign scope.
+The clean browser pass confirmed that Joy Beauty Studio is isolated and clean at `/projects/joy-beauty-studio`. This repair did not re-audit or redesign the other seven routes.
 
-`git diff --check` reported trailing whitespace only in unrelated pre-existing sections of the heavily modified `dashboard/src/App.tsx`. Those lines were not normalized because the task requires preservation of unrelated dirty work.
+The unrelated `Documents/Codex/.../voice_bridge/*` payload has been removed from this branch scope.
 
 ## Verdict
 
-**ACCEPTED AND PROMOTED TO VERIFIED.** Joy Beauty Studio is the only redesigned frontend and passes the 85-point gate at 91/100 with direct desktop, mobile, interaction, production-build, and console evidence. The skill is not Operational; two additional successful pilots on different projects are required. The empty unrelated test file remains a documented repository-level blocker to a fully green unfiltered `npm test`.
+**ACCEPTED AND VERIFIED FROM THE CLEAN COMMITTED PR HEAD.** Joy Beauty Studio is the only redesigned frontend and passes the 85-point gate at 91/100 with direct desktop, mobile, interaction, production-build, and zero-console-error evidence. The skill is not Operational; two additional successful pilots on different projects are required.

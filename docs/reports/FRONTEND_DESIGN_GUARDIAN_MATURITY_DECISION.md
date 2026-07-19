@@ -1,6 +1,6 @@
 # Frontend Design Guardian Maturity Decision
 
-Date: 2026-07-17  
+Date: 2026-07-19  
 Reviewer: Codex, validating the independent Design Review Agent record  
 Related checkpoint: `ec3925a`
 
@@ -24,13 +24,15 @@ Related checkpoint: `ec3925a`
 - Mobile acceptance: Passed.
 - Browser acceptance: Passed.
 - Console verification: Passed with zero pilot errors.
-- Relevant tests: 168/168 passed.
-- Typecheck: Passed.
+- Relevant tests: 11/11 passed from the clean committed branch head.
+- Typecheck: Passed via `npx tsc --noEmit`.
 - Root build: Passed.
 - Dashboard build: Passed.
-- Route preservation: Passed for the pilot and the seven audit-only routes.
+- Route preservation: Passed for the pilot route.
 - Magic MCP: Not installed.
 - External source handling: Read-only review; no untrusted repository code executed.
+- Clean-checkout verification: Passed at committed head `8c79de3`.
+- Voice bridge scope contamination: Removed from this PR before final verification.
 
 ## Known Limitations
 

@@ -1,9 +1,10 @@
 # Frontend Design Guardian Verification Report
 
-Date: 2026-07-17  
+Date: 2026-07-19  
 Reviewer: Codex  
 Branch: `feature/frontend-design-guardian`  
-Checkpoint inspected: `ec3925a`
+Checkpoint inspected: `ec3925a`  
+Verified clean committed head: `8c79de3`
 
 ## Context Restored
 
@@ -11,25 +12,26 @@ Checkpoint inspected: `ec3925a`
 - Confirmed `ec3925a` exists in commit history as `checkpoint: verify frontend design guardian pilot`.
 - Confirmed the controlling specification at `docs/superpowers/specs/2026-07-16-frontend-design-guardian-pilot-design.md`.
 - Confirmed the implementation, pilot, maturity audit, and source review reports exist.
-- Confirmed the Frontend Design Guardian skill files, dashboard status surface, and pilot verification record exist in the current working tree.
-- Preserved all unrelated dirty tracked and untracked files outside the focused maturity scope.
+- Confirmed the Frontend Design Guardian skill files, dashboard status surface, and pilot verification record exist in the committed branch.
+- Performed release verification from a clean clone of the committed branch head, not the dirty home workspace.
 
 ## Evidence Verification
 
 - Eight-frontends maturity audit: confirmed.
 - Joy Beauty Studio selected as the weakest eligible pilot: confirmed.
 - Baseline score: `10/100`, confirmed in the audit and pilot report.
-- Final independent score: `91/100`, confirmed in the pilot report, pilot verification record, and live `design:score` output.
+- Final independent score: `91/100`, confirmed in the pilot report, the committed `PilotVerification.ts` record, and the clean browser recapture.
 - Acceptance threshold: `85/100`, confirmed.
 - Independent review: documented and passed.
 - Browser acceptance: documented and passed.
-- Route preservation: documented and passed for the pilot route and seven audit-only routes.
+- Route preservation: documented and passed for the pilot route.
 - Console verification: documented and passed with zero pilot errors.
-- Desktop screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-beauty-studio-desktop.png`.
-- Mobile screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-beauty-studio-mobile.png`.
-- Confirmation/regression screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-beauty-studio-confirmation-desktop.png` and `/private/tmp/frontend-design-guardian-joy-beauty-studio-confirmation-mobile.png`.
+- Desktop screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-desktop.png`.
+- Mobile screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-mobile.png`.
+- Confirmation/regression screenshot evidence: present at `/private/tmp/frontend-design-guardian-joy-desktop-confirmation.png` and `/private/tmp/frontend-design-guardian-joy-mobile-confirmation.png`.
 - Magic MCP installation: not present at the root package level.
 - Untrusted external code execution: not performed; source review remained read-only.
+- Voice bridge scope contamination: removed from the PR branch before final verification.
 
 Limitation: the original baseline screenshot files referenced by the 2026-07-16 report are no longer present under `/private/tmp` after the restart. The baseline `10/100` score remains supported by the committed audit, pilot report, and checkpoint history.
 
@@ -71,53 +73,35 @@ Confirmed constraints:
 - Typecheck: pass
 - Root build: pass
 - Dashboard build: pass
-- Relevant tests: 168/168
-- Unfiltered tests: pre-existing non-green
+- Relevant tests: 11/11
+- Unfiltered tests: not used for release verification
 - Browser verification: pass
 - Console verification: 0 errors
 - Desktop acceptance: pass
 - Mobile acceptance: pass
+- CI status: not configured
 
-Commands verified from `package.json` and `dashboard/package.json`:
+Commands verified from the clean committed branch head:
 
-- `npm run typecheck`
+- `npx tsc --noEmit`
 - `npm run build`
 - `npm run build` in `dashboard/`
-- `npx vitest run --exclude src/icyos-hardening.test.ts`
 - `npx vitest run src/design/design.test.ts src/design/pilot-route.test.ts`
-- `npm run design:score -- joy-beauty-studio`
+- Clean desktop/mobile browser recapture at 1440×1000 and 390×844
 
-Unfiltered `npm test` remains non-green only because the pre-existing `src/icyos-hardening.test.ts` file contains no test suite. The file currently contains only:
+The branch does not define `npm run typecheck` or `npm run design:score`. Release verification used the direct TypeScript and committed-score equivalents above rather than inventing remote CI or reusing dirty-worktree results.
 
-```ts
-// Deprecated in favor of sentinel-os/lib/icyos-hardening.test.ts
-export {};
-```
-
-Finding: the file is an obsolete or deprecated compatibility stub rather than an intentional reserved suite. Cleanup, if desired, should be handled in a separate commit after verifying the replacement coverage path.
-
-## Files Modified For Promotion
+## Files Modified For Release Repair
 
 - `dashboard/src/components/DesignQuality.tsx`
 - `docs/reports/FRONTEND_DESIGN_GUARDIAN_IMPLEMENTATION_REPORT.md`
 - `docs/reports/FRONTEND_DESIGN_GUARDIAN_VERIFICATION_REPORT.md`
 - `docs/reports/FRONTEND_DESIGN_PILOT_REPORT.md`
 - `docs/reports/FRONTEND_DESIGN_GUARDIAN_MATURITY_DECISION.md`
-- `skills/frontend-design-guardian/SKILL.md`
-- `skills/frontend-design-guardian/changelog.md`
-- `skills/frontend-design-guardian/metadata.json`
-- `skills/registry.json`
-- `src/agent-upgrade/types.ts`
-- `src/design/PilotVerification.ts`
-- `src/design/design.test.ts`
-
-Intentionally excluded from staging:
-
-- unrelated tracked dirty files
-- unrelated untracked reports and workspace files
-- `src/icyos-hardening.test.ts`
-- `docs/DOCUMENTATION_INDEX.md`
+- `dashboard/index.html`
+- `dashboard/public/favicon.svg`
+- `Documents/Codex/2026-06-02/do-a-full-system-update-and-2/work/voice_bridge/*` removed from scope
 
 ## Commit
 
-Promotion commit hash: `89d4b63` (`chore: promote Frontend Design Guardian to verified`)
+Latest clean verification head: `8c79de3`

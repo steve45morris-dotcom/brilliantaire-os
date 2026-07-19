@@ -66,7 +66,14 @@ Final evidence:
 - `/private/tmp/frontend-design-guardian-joy-beauty-studio-confirmation-desktop.png`
 - `/private/tmp/frontend-design-guardian-joy-beauty-studio-confirmation-mobile.png`
 
-2026-07-17 verification note: the final desktop, mobile, and confirmation screenshots above were recaptured after the Codex restart and revalidated against the live production preview. The original baseline screenshot files referenced earlier in this report were not present under `/private/tmp` after the restart, but the baseline 10/100 score remains supported by the committed audit and checkpoint history.
+2026-07-19 clean-checkout verification note: the committed PR head was revalidated from a clean clone. Fresh desktop, mobile, and confirmation screenshots were recaptured at:
+
+- `/private/tmp/frontend-design-guardian-joy-desktop.png`
+- `/private/tmp/frontend-design-guardian-joy-mobile.png`
+- `/private/tmp/frontend-design-guardian-joy-desktop-confirmation.png`
+- `/private/tmp/frontend-design-guardian-joy-mobile-confirmation.png`
+
+The clean browser pass matched the committed implementation, confirmed zero normal-navigation console errors, and preserved the 91/100 score already encoded in the committed pilot verification record. The original baseline screenshot files referenced earlier in this report were not present under `/private/tmp` after the restart, but the baseline 10/100 score remains supported by the committed audit and checkpoint history.
 
 Runtime contract at 1440×1000 and 390×844: correct route and title, `horizontalOverflow=false`, `errors=[]`, `undersizedTargets=[]`, visible focus outline, selected service `Protective style consultation`, and `confirmationVisible=true`.
 
