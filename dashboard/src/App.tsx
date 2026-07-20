@@ -7,13 +7,16 @@ import { VoiceActivityCard } from './components/VoiceActivityCard.jsx';
 import { VoiceLoopDashboardPanel } from './components/VoiceLoopDashboardPanel.jsx';
 import { NextActionsCard } from './components/NextActionsCard.jsx';
 import { TelemetryFilesCard } from './components/TelemetryFilesCard.jsx';
+import { JoyBeautyStudio } from './components/JoyBeautyStudio.jsx';
 
 export const App: React.FC = () => {
+  const isJoyBeautyStudioRoute = typeof window !== 'undefined' && window.location.pathname === '/projects/joy-beauty-studio';
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (isJoyBeautyStudioRoute) return;
     fetchDashboardData()
       .then((payload) => {
         setData(payload);
@@ -24,7 +27,11 @@ export const App: React.FC = () => {
         setError(err.message || 'Failed to load telemetry data. Make sure "npm run dashboard:export" has been run.');
         setLoading(false);
       });
-  }, []);
+  }, [isJoyBeautyStudioRoute]);
+
+  if (isJoyBeautyStudioRoute) {
+    return <JoyBeautyStudio />;
+  }
 
   if (loading) {
     return (
