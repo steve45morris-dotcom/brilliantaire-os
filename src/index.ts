@@ -1,4 +1,5 @@
 import process from "node:process";
+export * from './study/index.js';
 
 /**
  * Brilliantaire OS Core Entrypoint
