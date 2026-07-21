@@ -1,11 +1,15 @@
-import { describe, it, expect } from 'vitest';
-import { GraphStore } from './knowledge/GraphStore.js';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { GraphStore, globalGraphStore } from './knowledge/GraphStore.js';
 import { GraphTraversal } from './knowledge/GraphTraversal.js';
 import { RecommendationEngine } from './knowledge/RecommendationEngine.js';
 
 describe('Knowledge Graph Tests', () => {
+  beforeEach(() => {
+    globalGraphStore.clear();
+  });
   it('should create nodes and edges within graph store correctly', () => {
     const store = new GraphStore();
+    store.clear();
     store.addNode('node-1', 'Project', { label: 'OS Core' });
     store.addNode('node-2', 'Agent', { label: 'Planner' });
     store.addEdge('node-2', 'node-1', 'USES');

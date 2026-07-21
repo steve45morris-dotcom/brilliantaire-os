@@ -6,15 +6,64 @@ import { globalContentMachine } from './icyflamze/Content.js';
 import { globalRevenueCenter } from './icyflamze/Revenue.js';
 import { globalGoalConnector } from './icyflamze/Goals.js';
 import { globalIcyflamzeDashboard } from './icyflamze/Dashboard.js';
+import { getDB } from '../db.js';
 
 export class WorkspaceRegistry {
   private workspaces: Map<string, WorkspaceDataRecord> = new Map();
 
   constructor() {
-    // Populate with mock data
-    Object.entries(mockWorkspacesData).forEach(([id, data]) => {
-      this.workspaces.set(id, data);
-    });
+    this.initPersistence();
+  }
+
+  private initPersistence(): void {
+    const db = getDB();
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS custom_workspaces (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        description TEXT NOT NULL,
+        tag TEXT NOT NULL,
+        overview TEXT NOT NULL,
+        data_json TEXT NOT NULL,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    const rows = db.prepare(`SELECT * FROM custom_workspaces`).all() as any[];
+
+    if (rows.length === 0) {
+      const insertStmt = db.prepare(`
+        INSERT INTO custom_workspaces (id, name, description, tag, overview, data_json)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `);
+
+      Object.entries(mockWorkspacesData).forEach(([id, data]) => {
+        this.workspaces.set(id, data);
+        insertStmt.run(id, data.name, data.description, data.tag, data.overview, JSON.stringify(data));
+      });
+    } else {
+      for (const r of rows) {
+        this.workspaces.set(r.id, JSON.parse(r.data_json));
+      }
+    }
+  }
+
+  public registerWorkspace(workspace: WorkspaceDataRecord): void {
+    this.workspaces.set(workspace.id, workspace);
+
+    const db = getDB();
+    db.prepare(`
+      INSERT INTO custom_workspaces (id, name, description, tag, overview, data_json)
+      VALUES (?, ?, ?, ?, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET name = excluded.name, description = excluded.description, tag = excluded.tag, overview = excluded.overview, data_json = excluded.data_json
+    `).run(
+      workspace.id,
+      workspace.name,
+      workspace.description,
+      workspace.tag,
+      workspace.overview,
+      JSON.stringify(workspace)
+    );
   }
 
   public getWorkspace(id: string): WorkspaceDataRecord | null {
@@ -73,4 +122,3 @@ export class WorkspaceRegistry {
 }
 
 export const globalWorkspaceRegistry = new WorkspaceRegistry();
-

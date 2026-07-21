@@ -13,6 +13,8 @@ describe('Icyflamze song and lyric association', () => {
   beforeEach(() => {
     songs = new SongManager();
     lyrics = new LyricWorkspace();
+    songs.clear();
+    lyrics.clear();
     globalEventBus.clearHistory();
     globalLiveOperationsStore.clear();
     globalGraphStore.clear();

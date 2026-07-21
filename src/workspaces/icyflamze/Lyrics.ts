@@ -3,6 +3,7 @@ import { globalNodeRegistry } from '../../knowledge/NodeRegistry.js';
 import { globalEdgeRegistry } from '../../knowledge/EdgeRegistry.js';
 import { globalTaskTracker } from '../../kernel/live/TaskTracker.js';
 import type { SongManager } from './Music.js';
+import { getDB } from '../../db.js';
 
 export interface LyricItem {
   id: string;
@@ -24,49 +25,114 @@ export interface SongLyricLinkResult {
   reassigned: boolean;
 }
 
+const DEFAULT_LYRICS: LyricItem[] = [
+  {
+    id: 'lyric-1',
+    title: 'Street Scholar Theme',
+    content: 'I strike Mr. 2 Lighter in the midnight rain / Formulas and algorithms running through my veins / Chessboard alignment, matching strategy with pain / I build before burning, concrete under system reign.',
+    type: 'Notebook',
+    status: 'Approved',
+    theme: 'Street Scholar Futurism',
+    version: 'v1.0.0',
+    references: ['chess', 'lighters', 'formulas'],
+    history: [
+      { timestamp: '2026-07-20T00:00:00.000Z', content: 'Initial draft with basic rhyme mapping...', version: 'v0.1.0' },
+      { timestamp: '2026-07-21T00:00:00.000Z', content: 'Refined rhythm cadence and Street Scholar imagery.', version: 'v1.0.0' }
+    ]
+  },
+  {
+    id: 'lyric-2',
+    title: 'Lagos Pressure Hook',
+    content: 'Lagos pressure cook a diamond out of clay / Under golden sun we find a better way / Mr. 2 Lighter spark the flame, ignite the play / Strategic moves, we never run away.',
+    type: 'Hook',
+    status: 'Draft',
+    theme: 'Lagos Roots',
+    version: 'v0.2.0',
+    references: ['lighters', 'golden sun'],
+    history: [
+      { timestamp: '2026-07-21T00:00:00.000Z', content: 'First hook draft for Lagos pressure theme.', version: 'v0.1.0' }
+    ]
+  },
+  {
+    id: 'lyric-3',
+    title: 'Double Lighter Bars',
+    content: 'Survival protocol is chess, not luck / Under pressure we adapt, never getting stuck / Mr. 2 Lighter ready, double flame ignite / From the Lagos delta to the digital height.',
+    type: 'Verse',
+    status: 'Recorded',
+    theme: 'Ignition / Tech',
+    version: 'v1.1.0',
+    references: ['lighters', 'chess'],
+    history: [
+      { timestamp: '2026-07-21T00:00:00.000Z', content: 'Recorded version locked.', version: 'v1.1.0' }
+    ]
+  }
+];
+
 export class LyricWorkspace {
-  private lyrics: LyricItem[] = [
-    {
-      id: 'lyric-1',
-      title: 'Street Scholar Theme',
-      content: 'I strike Mr. 2 Lighter in the midnight rain / Formulas and algorithms running through my veins / Chessboard alignment, matching strategy with pain / I build before burning, concrete under system reign.',
-      type: 'Notebook',
-      status: 'Approved',
-      theme: 'Street Scholar Futurism',
-      version: 'v1.0.0',
-      references: ['chess', 'lighters', 'formulas'],
-      history: [
-        { timestamp: new Date(Date.now() - 24 * 3600 * 1000).toISOString(), content: 'Initial draft with basic rhyme mapping...', version: 'v0.1.0' },
-        { timestamp: new Date().toISOString(), content: 'Refined rhythm cadence and Street Scholar imagery.', version: 'v1.0.0' }
-      ]
-    },
-    {
-      id: 'lyric-2',
-      title: 'Lagos Pressure Hook',
-      content: 'Lagos pressure cook a diamond out of clay / Under golden sun we find a better way / Mr. 2 Lighter spark the flame, ignite the play / Strategic moves, we never run away.',
-      type: 'Hook',
-      status: 'Draft',
-      theme: 'Lagos Roots',
-      version: 'v0.2.0',
-      references: ['lighters', 'golden sun'],
-      history: [
-        { timestamp: new Date().toISOString(), content: 'First hook draft for Lagos pressure theme.', version: 'v0.1.0' }
-      ]
-    },
-    {
-      id: 'lyric-3',
-      title: 'Double Lighter Bars',
-      content: 'Survival protocol is chess, not luck / Under pressure we adapt, never getting stuck / Mr. 2 Lighter ready, double flame ignite / From the Lagos delta to the digital height.',
-      type: 'Verse',
-      status: 'Recorded',
-      theme: 'Ignition / Tech',
-      version: 'v1.1.0',
-      references: ['lighters', 'chess'],
-      history: [
-        { timestamp: new Date().toISOString(), content: 'Recorded version locked.', version: 'v1.1.0' }
-      ]
+  private lyrics: LyricItem[] = [];
+
+  constructor() {
+    this.initPersistence();
+  }
+
+  private initPersistence(): void {
+    const db = getDB();
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS icyflamze_lyrics (
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        type TEXT NOT NULL,
+        status TEXT NOT NULL,
+        theme TEXT NOT NULL,
+        version TEXT NOT NULL,
+        references_json TEXT NOT NULL,
+        history_json TEXT NOT NULL,
+        song_id TEXT,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    const rows = db.prepare(`SELECT * FROM icyflamze_lyrics`).all() as any[];
+
+    if (rows.length === 0) {
+      // Seed default lyrics into SQLite database on first initialization
+      const insertStmt = db.prepare(`
+        INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `);
+
+      for (const lyric of DEFAULT_LYRICS) {
+        insertStmt.run(
+          lyric.id,
+          lyric.title,
+          lyric.content,
+          lyric.type,
+          lyric.status,
+          lyric.theme,
+          lyric.version,
+          JSON.stringify(lyric.references),
+          JSON.stringify(lyric.history),
+          lyric.songId || null
+        );
+      }
+      this.lyrics = JSON.parse(JSON.stringify(DEFAULT_LYRICS));
+    } else {
+      // Load existing records from SQLite database
+      this.lyrics = rows.map(r => ({
+        id: r.id,
+        title: r.title,
+        content: r.content,
+        type: r.type,
+        status: r.status,
+        theme: r.theme,
+        version: r.version,
+        references: JSON.parse(r.references_json || '[]'),
+        history: JSON.parse(r.history_json || '[]'),
+        songId: r.song_id || undefined
+      }));
     }
-  ];
+  }
 
   public getLyrics(): LyricItem[] {
     return [...this.lyrics];
@@ -83,8 +149,12 @@ export class LyricWorkspace {
     songs.linkLyric(songId, lyricId);
     lyric.songId = songId;
 
+    // Persist link update to SQLite using bound parameters
+    const db = getDB();
+    db.prepare(`UPDATE icyflamze_lyrics SET song_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(songId, lyricId);
+
     globalNodeRegistry.registerNode(song.id, 'Document', { title: song.title, type: 'Song', status: song.status });
-    globalNodeRegistry.registerNode(lyric.id, 'Document', { title: lyric.title, type: 'Lyric', status: lyric.status });
+    globalNodeRegistry.registerNode(lyric.id, 'Document', { title: lyric.title, type: lyric.type, status: lyric.status });
     globalEdgeRegistry.registerEdge(lyric.id, song.id, 'RELATED_TO', { relationship: 'LYRIC_FOR_SONG' });
 
     const reassigned = Boolean(previousSongId && previousSongId !== songId);
@@ -104,18 +174,32 @@ export class LyricWorkspace {
     };
     this.lyrics.push(lyric);
 
-    // Register to Knowledge Graph
+    // Persist new lyric to SQLite database using bound parameters
+    const db = getDB();
+    db.prepare(`
+      INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      lyric.id,
+      lyric.title,
+      lyric.content,
+      lyric.type,
+      lyric.status,
+      lyric.theme,
+      lyric.version,
+      JSON.stringify(lyric.references),
+      JSON.stringify(lyric.history),
+      lyric.songId || null
+    );
+
     globalNodeRegistry.registerNode(lyric.id, 'Document', {
       title: lyric.title,
-      type: 'Lyric',
-      lyricType: lyric.type,
+      type: lyric.type,
       theme: lyric.theme,
       status: lyric.status
     });
 
     globalEdgeRegistry.registerEdge(lyric.id, 'system-core', 'RELATED_TO');
-
-    // Notify EventBus
     globalEventBus.publish('IcyflamzeLyricAdded', { lyricId: lyric.id, title: lyric.title, type: lyric.type });
 
     return lyric;
@@ -141,16 +225,32 @@ export class LyricWorkspace {
 
     Object.assign(lyric, updates);
 
-    // Update Knowledge Graph node
+    // Persist updated lyric to SQLite database using bound parameters
+    const db = getDB();
+    db.prepare(`
+      UPDATE icyflamze_lyrics
+      SET title = ?, content = ?, type = ?, status = ?, theme = ?, version = ?, references_json = ?, history_json = ?, song_id = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(
+      lyric.title,
+      lyric.content,
+      lyric.type,
+      lyric.status,
+      lyric.theme,
+      lyric.version,
+      JSON.stringify(lyric.references),
+      JSON.stringify(lyric.history),
+      lyric.songId || null,
+      lyric.id
+    );
+
     globalNodeRegistry.registerNode(id, 'Document', {
       title: lyric.title,
-      type: 'Lyric',
-      lyricType: lyric.type,
+      type: lyric.type,
       theme: lyric.theme,
       status: lyric.status
     });
 
-    // Notify EventBus
     globalEventBus.publish('IcyflamzeLyricUpdated', { lyricId: id, title: lyric.title, version: lyric.version });
 
     return lyric;
@@ -168,7 +268,6 @@ export class LyricWorkspace {
   }
 
   public askAssistant(prompt: string, type: 'rhyme' | 'hook' | 'theme'): string {
-    // Mock AI writing assistant output returning Street Scholar lyrics
     const cleanPrompt = prompt.toLowerCase();
     if (type === 'rhyme') {
       if (cleanPrompt.includes('chess') || cleanPrompt.includes('board')) {
@@ -180,6 +279,13 @@ export class LyricWorkspace {
     } else {
       return "Suggested Theme: 'Strategic Rebirth' - Focus on the chessboard symbol paired with blue-gold lighters, contrasting Lagos delta struggle with clean terminal room lines.";
     }
+  }
+
+  public clear(): void {
+    const db = getDB();
+    db.exec(`DELETE FROM icyflamze_lyrics;`);
+    this.lyrics = [];
+    this.initPersistence();
   }
 }
 
