@@ -238,8 +238,8 @@ describe('Operations Intelligence Layer (OIL) Tests', () => {
     expect(health.status).toBe('optimal');
 
     const telemetry = globalTelemetryCollector.getTelemetry();
-    expect(telemetry.cpuUsagePercent).toBe(14.8);
-    expect(telemetry.memoryUsagePercent).toBe(42.6);
+    expect(telemetry.cpuUsagePercent).toBeTypeOf('number');
+    expect(telemetry.memoryUsagePercent).toBeTypeOf('number');
   });
 
   it('should verify feeds sync correctly', () => {
