@@ -1,38 +1,35 @@
-import { LyricWorkspace } from '../src/workspaces/icyflamze/Lyrics.js';
-import { SongManager } from '../src/workspaces/icyflamze/Music.js';
-import { GoalManager } from '../src/executive/GoalManager.js';
-import { GraphStore } from '../src/knowledge/GraphStore.js';
-import { LiveOperationsStore } from '../src/kernel/live/LiveOperationsStore.js';
-import { WorkspaceRegistry } from '../src/workspaces/WorkspaceRegistry.js';
+import { globalLyricWorkspace } from '../src/workspaces/icyflamze/Lyrics.js';
+import { globalSongManager } from '../src/workspaces/icyflamze/Music.js';
+import { globalGoalManager } from '../src/executive/GoalManager.js';
+import { globalNodeRegistry } from '../src/knowledge/NodeRegistry.js';
+import { globalEdgeRegistry } from '../src/knowledge/EdgeRegistry.js';
+import { globalGraphStore } from '../src/knowledge/GraphStore.js';
+import { globalLiveOperationsStore } from '../src/kernel/live/LiveOperationsStore.js';
+import { globalWorkspaceRegistry } from '../src/workspaces/WorkspaceRegistry.js';
 
 const isVerifyMode = process.argv.includes('--verify');
 
 async function runTest() {
   if (!isVerifyMode) {
     console.log('====================================================');
-    console.log('🔄 STAGE 1: Writing Test Records to SQLite Database');
+    console.log('🔄 STAGE 1: Writing Test Records via Production Singletons');
     console.log('====================================================');
 
-    const lyrics = new LyricWorkspace();
-    const songs = new SongManager();
-    const goals = new GoalManager();
-    const graph = new GraphStore();
-    const liveOps = new LiveOperationsStore();
-    const workspaces = new WorkspaceRegistry();
-
-    const createdLyric = lyrics.addLyric({
-      title: 'PERSISTENCE_TEST_LYRIC_1001',
-      content: 'Testing process restart survival under SQLite WAL mode.',
+    // 1. Call globalLyricWorkspace.addLyric()
+    const createdLyric = globalLyricWorkspace.addLyric({
+      title: 'PERSISTENCE_TEST_LYRIC_PROD_999',
+      content: 'Testing process restart survival through globalLyricWorkspace production singleton.',
       type: 'Punchline',
       status: 'Approved',
       theme: 'Persistence Test',
       version: 'v1.0.0',
-      references: ['sqlite', 'wal']
+      references: ['production', 'singleton']
     });
-    console.log(`[Stage 1] Created Lyric: ${createdLyric.id} -> "${createdLyric.title}"`);
+    console.log(`[Stage 1] Created Lyric via globalLyricWorkspace: ${createdLyric.id} -> "${createdLyric.title}"`);
 
-    const createdSong = songs.addSong({
-      title: 'PERSISTENCE_TEST_SONG_2002',
+    // 2. Call globalSongManager.addSong()
+    const createdSong = globalSongManager.addSong({
+      title: 'PERSISTENCE_TEST_SONG_PROD_888',
       status: 'Recorded',
       genre: 'Tech Hip-Hop',
       bpm: 120,
@@ -47,35 +44,40 @@ async function runTest() {
       releaseDate: '2026-10-10',
       publishingStatus: 'Unpublished'
     });
-    console.log(`[Stage 1] Created Song: ${createdSong.id} -> "${createdSong.title}"`);
+    console.log(`[Stage 1] Created Song via globalSongManager: ${createdSong.id} -> "${createdSong.title}"`);
 
-    const createdGoal = goals.addGoal('PERSISTENCE_TEST_GOAL_3003', 'Persistence Verification');
-    console.log(`[Stage 1] Created Goal: ${createdGoal.id} -> "${createdGoal.title}"`);
+    // 3. Call globalGoalManager.addGoal()
+    const createdGoal = globalGoalManager.addGoal('PERSISTENCE_TEST_GOAL_PROD_777', 'Production Persistence Verification');
+    console.log(`[Stage 1] Created Goal via globalGoalManager: ${createdGoal.id} -> "${createdGoal.title}"`);
 
-    graph.addNode('node-test-4004', 'Goal', { title: 'PERSISTENCE_TEST_NODE_4004' });
-    console.log(`[Stage 1] Created Graph Node: "node-test-4004"`);
+    // 4. Call globalNodeRegistry.registerNode() and globalEdgeRegistry.registerEdge()
+    globalNodeRegistry.registerNode('node-prod-666', 'Goal', { title: 'PERSISTENCE_TEST_NODE_PROD_666' });
+    globalEdgeRegistry.registerEdge('node-prod-666', 'system-core', 'RELATED_TO');
+    console.log(`[Stage 1] Created Node/Edge via globalNodeRegistry/globalEdgeRegistry: "node-prod-666"`);
 
-    liveOps.addTask({
-      id: 'task-test-5005',
-      sessionId: 'sess-restart-1',
+    // 5. Call globalLiveOperationsStore.addTask()
+    globalLiveOperationsStore.addTask({
+      id: 'task-prod-555',
+      sessionId: 'sess-prod-1',
       type: 'workflow_step',
-      name: 'PERSISTENCE_TEST_TASK_5005',
+      name: 'PERSISTENCE_TEST_TASK_PROD_555',
       status: 'running',
       projectId: 'Supernova',
       startedAt: new Date().toISOString(),
       endedAt: null,
-      durationMs: 0,
-      progress: 50,
-      attentionRequired: false,
-      lastEventId: 'evt-test'
+      durationMs: 2500,
+      progress: 65,
+      attentionRequired: true,
+      lastEventId: 'evt-prod-555'
     });
-    console.log(`[Stage 1] Created Live Task: "task-test-5005"`);
+    console.log(`[Stage 1] Created Live Task via globalLiveOperationsStore: "task-prod-555"`);
 
-    workspaces.registerWorkspace({
-      id: 'ws-test-6006',
-      name: 'PERSISTENCE_TEST_WORKSPACE_6006',
+    // 6. Call globalWorkspaceRegistry.registerWorkspace()
+    globalWorkspaceRegistry.registerWorkspace({
+      id: 'ws-prod-444',
+      name: 'PERSISTENCE_TEST_WORKSPACE_PROD_444',
       description: 'Restart test workspace',
-      tag: 'Test',
+      tag: 'Production',
       overview: 'Overview text',
       goals: [],
       workflows: [],
@@ -85,7 +87,7 @@ async function runTest() {
       recentActivity: [],
       reports: []
     });
-    console.log(`[Stage 1] Registered Workspace: "ws-test-6006"`);
+    console.log(`[Stage 1] Registered Workspace via globalWorkspaceRegistry: "ws-prod-444"`);
 
     console.log('\n✅ Stage 1 Complete. Terminating process completely...');
     process.exit(0);
@@ -94,20 +96,12 @@ async function runTest() {
     console.log('🔍 STAGE 2: Verifying Reload After Complete Process Restart');
     console.log('====================================================');
 
-    // Instantiate fresh objects from scratch in a brand new Node process
-    const lyrics = new LyricWorkspace();
-    const songs = new SongManager();
-    const goals = new GoalManager();
-    const graph = new GraphStore();
-    const liveOps = new LiveOperationsStore();
-    const workspaces = new WorkspaceRegistry();
-
-    const foundLyric = lyrics.getLyrics().find(l => l.title === 'PERSISTENCE_TEST_LYRIC_1001');
-    const foundSong = songs.getSongs().find(s => s.title === 'PERSISTENCE_TEST_SONG_2002');
-    const foundGoal = goals.getGoals().find(g => g.title === 'PERSISTENCE_TEST_GOAL_3003');
-    const foundNode = graph.getNodeById('node-test-4004');
-    const foundTask = liveOps.getTask('task-test-5005');
-    const foundWorkspace = workspaces.getWorkspace('ws-test-6006');
+    const foundLyric = globalLyricWorkspace.getLyrics().find(l => l.title === 'PERSISTENCE_TEST_LYRIC_PROD_999');
+    const foundSong = globalSongManager.getSongs().find(s => s.title === 'PERSISTENCE_TEST_SONG_PROD_888');
+    const foundGoal = globalGoalManager.getGoals().find(g => g.title === 'PERSISTENCE_TEST_GOAL_PROD_777');
+    const foundNode = globalGraphStore.getNodeById('node-prod-666');
+    const foundTask = globalLiveOperationsStore.getTask('task-prod-555');
+    const foundWorkspace = globalWorkspaceRegistry.getWorkspace('ws-prod-444');
 
     console.log('\n--- RAW RETRIEVED RECORDS FROM RESTARTED PROCESS ---');
     console.log('1. Lyric Record:', JSON.stringify(foundLyric, null, 2));

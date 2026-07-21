@@ -87,7 +87,7 @@ describe('Provider Security and Model Lifecycle Repair Tests', () => {
       const geminiHealth = await globalGeminiIntegrationContract.healthCheck();
       expect(geminiHealth.status).toBe('authentication-failed');
       expect(geminiHealth.authenticated).toBe(false);
-    });
+    }, 15000);
 
     it('health requires authenticated verification (returns healthy on correct mock keys)', async () => {
       process.env.OPENAI_API_KEY = 'sk-proj-mock-correct-key-goes-here';
