@@ -31,7 +31,12 @@ export class LiveOperationsStore {
         status TEXT NOT NULL,
         project_id TEXT NOT NULL,
         started_at DATETIME,
-        ended_at DATETIME
+        ended_at DATETIME,
+        duration_ms INTEGER DEFAULT 0,
+        progress INTEGER DEFAULT 0,
+        attention_required INTEGER DEFAULT 0,
+        last_event_id TEXT,
+        details_json TEXT
       );
     `);
 
@@ -39,6 +44,11 @@ export class LiveOperationsStore {
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN description TEXT;`); } catch {}
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN started_at DATETIME;`); } catch {}
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN ended_at DATETIME;`); } catch {}
+    try { db.exec(`ALTER TABLE live_tasks ADD COLUMN duration_ms INTEGER DEFAULT 0;`); } catch {}
+    try { db.exec(`ALTER TABLE live_tasks ADD COLUMN progress INTEGER DEFAULT 0;`); } catch {}
+    try { db.exec(`ALTER TABLE live_tasks ADD COLUMN attention_required INTEGER DEFAULT 0;`); } catch {}
+    try { db.exec(`ALTER TABLE live_tasks ADD COLUMN last_event_id TEXT;`); } catch {}
+    try { db.exec(`ALTER TABLE live_tasks ADD COLUMN details_json TEXT;`); } catch {}
 
     const sessionRows = db.prepare(`SELECT * FROM live_sessions`).all() as any[];
     for (const r of sessionRows) {
@@ -53,6 +63,7 @@ export class LiveOperationsStore {
 
     const taskRows = db.prepare(`SELECT * FROM live_tasks`).all() as any[];
     for (const r of taskRows) {
+      const parsedDetails = r.details_json ? JSON.parse(r.details_json) : {};
       this.tasks.set(r.id, {
         id: r.id,
         sessionId: r.session_id,
@@ -62,10 +73,11 @@ export class LiveOperationsStore {
         projectId: r.project_id,
         startedAt: r.started_at || new Date().toISOString(),
         endedAt: r.ended_at || null,
-        durationMs: 0,
-        progress: r.status === 'completed' ? 100 : 0,
-        attentionRequired: false,
-        lastEventId: 'evt-init'
+        durationMs: r.duration_ms ?? parsedDetails.durationMs ?? 0,
+        progress: r.progress ?? parsedDetails.progress ?? (r.status === 'completed' ? 100 : 0),
+        attentionRequired: Boolean(r.attention_required ?? parsedDetails.attentionRequired ?? false),
+        lastEventId: r.last_event_id || parsedDetails.lastEventId || 'evt-init',
+        ...parsedDetails
       });
     }
   }
@@ -96,9 +108,18 @@ export class LiveOperationsStore {
 
     const db = getDB();
     db.prepare(`
-      INSERT INTO live_tasks (id, session_id, type, name, description, status, project_id, started_at, ended_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      ON CONFLICT(id) DO UPDATE SET name = excluded.name, description = excluded.description, status = excluded.status, ended_at = excluded.ended_at
+      INSERT INTO live_tasks (id, session_id, type, name, description, status, project_id, started_at, ended_at, duration_ms, progress, attention_required, last_event_id, details_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        name = excluded.name,
+        description = excluded.description,
+        status = excluded.status,
+        ended_at = excluded.ended_at,
+        duration_ms = excluded.duration_ms,
+        progress = excluded.progress,
+        attention_required = excluded.attention_required,
+        last_event_id = excluded.last_event_id,
+        details_json = excluded.details_json
     `).run(
       task.id,
       task.sessionId,
@@ -108,7 +129,12 @@ export class LiveOperationsStore {
       task.status,
       task.projectId,
       task.startedAt || new Date().toISOString(),
-      task.endedAt || null
+      task.endedAt || null,
+      task.durationMs || 0,
+      task.progress || 0,
+      task.attentionRequired ? 1 : 0,
+      task.lastEventId || 'evt-init',
+      JSON.stringify(task)
     );
   }
 
