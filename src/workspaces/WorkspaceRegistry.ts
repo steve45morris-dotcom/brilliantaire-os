@@ -29,9 +29,9 @@ export class WorkspaceRegistry {
       );
     `);
 
-    const rows = db.prepare(`SELECT * FROM custom_workspaces`).all() as any[];
+    const initialRows = db.prepare(`SELECT * FROM custom_workspaces`).all() as any[];
 
-    if (rows.length === 0) {
+    if (initialRows.length === 0) {
       const insertStmt = db.prepare(`
         INSERT INTO custom_workspaces (id, name, description, tag, overview, data_json)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -39,13 +39,15 @@ export class WorkspaceRegistry {
       `);
 
       Object.entries(mockWorkspacesData).forEach(([id, data]) => {
-        this.workspaces.set(id, data);
         insertStmt.run(id, data.name, data.description, data.tag, data.overview, JSON.stringify(data));
       });
-    } else {
-      for (const r of rows) {
-        this.workspaces.set(r.id, JSON.parse(r.data_json));
-      }
+    }
+
+    // Unconditionally load existing records from SQLite database so both winning and losing processes hydrate from DB rows
+    const rows = db.prepare(`SELECT * FROM custom_workspaces`).all() as any[];
+    this.workspaces.clear();
+    for (const r of rows) {
+      this.workspaces.set(r.id, JSON.parse(r.data_json));
     }
   }
 

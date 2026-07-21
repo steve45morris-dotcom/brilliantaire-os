@@ -108,9 +108,9 @@ export class SongManager {
       );
     `);
 
-    const rows = db.prepare(`SELECT * FROM icyflamze_songs`).all() as any[];
+    const initialRows = db.prepare(`SELECT * FROM icyflamze_songs`).all() as any[];
 
-    if (rows.length === 0) {
+    if (initialRows.length === 0) {
       const insertStmt = db.prepare(`
         INSERT INTO icyflamze_songs (id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -137,27 +137,28 @@ export class SongManager {
           JSON.stringify(song.linkedLyricIds || [])
         );
       }
-      this.songs = JSON.parse(JSON.stringify(DEFAULT_SONGS));
-    } else {
-      this.songs = rows.map(r => ({
-        id: r.id,
-        title: r.title,
-        status: r.status,
-        genre: r.genre,
-        bpm: r.bpm,
-        mood: r.mood,
-        producer: r.producer,
-        version: r.version,
-        lyrics: r.lyrics,
-        recording: r.recording,
-        mix: r.mix,
-        master: r.master,
-        artwork: r.artwork,
-        releaseDate: r.release_date,
-        publishingStatus: r.publishing_status,
-        linkedLyricIds: JSON.parse(r.linked_lyric_ids_json || '[]')
-      }));
     }
+
+    // Unconditionally load existing records from SQLite database so both winning and losing processes hydrate from DB rows
+    const rows = db.prepare(`SELECT * FROM icyflamze_songs`).all() as any[];
+    this.songs = rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      status: r.status,
+      genre: r.genre,
+      bpm: r.bpm,
+      mood: r.mood,
+      producer: r.producer,
+      version: r.version,
+      lyrics: r.lyrics,
+      recording: r.recording,
+      mix: r.mix,
+      master: r.master,
+      artwork: r.artwork,
+      releaseDate: r.release_date,
+      publishingStatus: r.publishing_status,
+      linkedLyricIds: JSON.parse(r.linked_lyric_ids_json || '[]')
+    }));
   }
 
   public getSongs(): Song[] {

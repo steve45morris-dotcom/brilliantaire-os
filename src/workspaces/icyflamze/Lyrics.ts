@@ -93,9 +93,9 @@ export class LyricWorkspace {
       );
     `);
 
-    const rows = db.prepare(`SELECT * FROM icyflamze_lyrics`).all() as any[];
+    const initialRows = db.prepare(`SELECT * FROM icyflamze_lyrics`).all() as any[];
 
-    if (rows.length === 0) {
+    if (initialRows.length === 0) {
       // Seed default lyrics into SQLite database on first initialization
       const insertStmt = db.prepare(`
         INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
@@ -117,22 +117,22 @@ export class LyricWorkspace {
           lyric.songId || null
         );
       }
-      this.lyrics = JSON.parse(JSON.stringify(DEFAULT_LYRICS));
-    } else {
-      // Load existing records from SQLite database
-      this.lyrics = rows.map(r => ({
-        id: r.id,
-        title: r.title,
-        content: r.content,
-        type: r.type,
-        status: r.status,
-        theme: r.theme,
-        version: r.version,
-        references: JSON.parse(r.references_json || '[]'),
-        history: JSON.parse(r.history_json || '[]'),
-        songId: r.song_id || undefined
-      }));
     }
+
+    // Unconditionally load existing records from SQLite database so both winning and losing processes hydrate from DB rows
+    const rows = db.prepare(`SELECT * FROM icyflamze_lyrics`).all() as any[];
+    this.lyrics = rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      content: r.content,
+      type: r.type,
+      status: r.status,
+      theme: r.theme,
+      version: r.version,
+      references: JSON.parse(r.references_json || '[]'),
+      history: JSON.parse(r.history_json || '[]'),
+      songId: r.song_id || undefined
+    }));
   }
 
   public getLyrics(): LyricItem[] {

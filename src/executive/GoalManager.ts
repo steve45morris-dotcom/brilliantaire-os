@@ -31,9 +31,9 @@ export class GoalManager {
       );
     `);
 
-    const rows = db.prepare(`SELECT * FROM executive_goals`).all() as any[];
+    const initialRows = db.prepare(`SELECT * FROM executive_goals`).all() as any[];
 
-    if (rows.length === 0) {
+    if (initialRows.length === 0) {
       const insertStmt = db.prepare(`
         INSERT INTO executive_goals (id, title, project, status)
         VALUES (?, ?, ?, ?)
@@ -42,15 +42,16 @@ export class GoalManager {
       for (const goal of DEFAULT_GOALS) {
         insertStmt.run(goal.id, goal.title, goal.project, goal.status);
       }
-      this.goals = [...DEFAULT_GOALS];
-    } else {
-      this.goals = rows.map(r => ({
-        id: r.id,
-        title: r.title,
-        project: r.project,
-        status: r.status
-      }));
     }
+
+    // Unconditionally load existing records from SQLite database so both winning and losing processes hydrate from DB rows
+    const rows = db.prepare(`SELECT * FROM executive_goals`).all() as any[];
+    this.goals = rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      project: r.project,
+      status: r.status as any
+    }));
   }
 
   public getGoals(): GoalItem[] {
