@@ -9,6 +9,19 @@ export interface UserSession {
   expiresAt: number;
 }
 
+/**
+ * Timing-safe string comparison guarding against length mismatch exceptions.
+ */
+function timingSafeCompare(a?: string, b?: string): boolean {
+  if (!a || !b) return false;
+  const bufA = Buffer.from(a, 'utf-8');
+  const bufB = Buffer.from(b, 'utf-8');
+  if (bufA.length !== bufB.length) {
+    return false;
+  }
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
 export class SecurityManager {
   private activeSession: UserSession | null = null;
   private sessionStore: Map<string, UserSession> = new Map();
@@ -34,7 +47,7 @@ export class SecurityManager {
 
   /**
    * Explicit authentication to produce a UserSession.
-   * Requires validating credentials against environment secrets for privileged roles (Administrator/Operator).
+   * Requires validating credentials against environment secrets for privileged roles using timingSafeEqual.
    */
   public authenticate(
     username: string,
@@ -46,16 +59,16 @@ export class SecurityManager {
       return null;
     }
 
-    // Credential verification for privileged roles
+    // Credential verification using timingSafeEqual for privileged roles
     if (requestedRole === 'Administrator') {
       const adminSecret = process.env.ADMIN_SECRET_KEY;
-      if (!adminSecret || credential !== adminSecret) {
+      if (!adminSecret || !timingSafeCompare(credential, adminSecret)) {
         console.warn(`[SecurityManager] Unauthorized attempt to authenticate as Administrator for user "${username}".`);
         return null;
       }
     } else if (requestedRole === 'Operator') {
       const operatorSecret = process.env.OPERATOR_SECRET_KEY || process.env.ADMIN_SECRET_KEY;
-      if (!operatorSecret || credential !== operatorSecret) {
+      if (!operatorSecret || !timingSafeCompare(credential, operatorSecret)) {
         console.warn(`[SecurityManager] Unauthorized attempt to authenticate as Operator for user "${username}".`);
         return null;
       }
@@ -74,7 +87,7 @@ export class SecurityManager {
   }
 
   /**
-   * Re-authenticates an active session with a new role upon credential verification.
+   * Re-authenticates an active session with a new role upon timing-safe credential verification.
    */
   public reauthenticateRole(token: string, newRole: PermissionRole, credential?: string): boolean {
     const session = this.sessionStore.get(token);
@@ -82,15 +95,15 @@ export class SecurityManager {
       return false;
     }
 
-    // Credential verification for role escalation
+    // Credential verification for role escalation using timingSafeEqual
     if (newRole === 'Administrator') {
       const adminSecret = process.env.ADMIN_SECRET_KEY;
-      if (!adminSecret || credential !== adminSecret) {
+      if (!adminSecret || !timingSafeCompare(credential, adminSecret)) {
         return false;
       }
     } else if (newRole === 'Operator') {
       const operatorSecret = process.env.OPERATOR_SECRET_KEY || process.env.ADMIN_SECRET_KEY;
-      if (!operatorSecret || credential !== operatorSecret) {
+      if (!operatorSecret || !timingSafeCompare(credential, operatorSecret)) {
         return false;
       }
     }
