@@ -1,5 +1,6 @@
 import { globalLearningEngine } from './LearningEngine.js';
 import { globalIntelligenceRegistry } from './IntelligenceRegistry.js';
+import { globalHealthMonitor } from '../kernel/monitoring/HealthMonitor.js';
 
 export interface TelemetrySnapshot {
   uptimeSeconds: number;
@@ -35,10 +36,12 @@ export class TelemetryCollector {
     // Accuracy derived from historical predictions compared to actual outcomes
     const predictionAccuracy = 97.4;
 
+    const health = globalHealthMonitor.collectReport();
+
     return {
       uptimeSeconds: Math.floor((Date.now() - this.startTime) / 1000),
-      cpuUsagePercent: 14.8,
-      memoryUsagePercent: 42.6,
+      cpuUsagePercent: health.cpuUsagePercent,
+      memoryUsagePercent: health.memoryUsagePercent,
       workflowExecutionCount: workflowCount || 24,
       queueThroughput,
       recommendationAcceptanceRate,

@@ -1,6 +1,7 @@
 import { globalStateManager } from '../state/StateManager.js';
 import { globalModuleRegistry } from '../registry/ModuleRegistry.js';
 import { globalPluginManager } from '../plugins/PluginManager.js';
+import os from 'node:os';
 
 export interface SystemHealthReport {
   cpuUsagePercent: number;
@@ -36,9 +37,26 @@ export class HealthMonitor {
     const healthyPlugins = plugins.filter(p => p.status === 'active').length;
     const pluginScore = plugins.length > 0 ? (healthyPlugins / plugins.length) * 100 : 100;
 
+    // Calculate real CPU usage from cpu times
+    const cpus = os.cpus();
+    let totalIdle = 0;
+    let totalTick = 0;
+    for (const cpu of cpus) {
+      for (const type in cpu.times) {
+        totalTick += (cpu.times as any)[type];
+      }
+      totalIdle += cpu.times.idle;
+    }
+    const cpuUsagePercent = totalTick > 0 ? parseFloat((((totalTick - totalIdle) / totalTick) * 100).toFixed(1)) : 0.0;
+
+    // Calculate real memory usage from os freemem and totalmem
+    const totalMem = os.totalmem();
+    const freeMem = os.freemem();
+    const memoryUsagePercent = totalMem > 0 ? parseFloat((((totalMem - freeMem) / totalMem) * 100).toFixed(1)) : 0.0;
+
     return {
-      cpuUsagePercent: 12.4, // Placeholder metric
-      memoryUsagePercent: 34.8, // Placeholder metric
+      cpuUsagePercent,
+      memoryUsagePercent,
       queueSize: state.runningJobsCount,
       uptimeSeconds: this.getUptime(),
       agentHealthScore: 98.4,
