@@ -9,9 +9,14 @@ export class MCPResourceRegistry {
       {
         uri: 'system://health',
         name: 'System Health Status',
-        description: 'Current logical and database health parameters.',
+        description: 'Current logical and database health parameters. Requires valid session token.',
         mimeType: 'application/json',
         read: async (token) => {
+          const auth = MCPAuth.isValidToken(token);
+          MCPAuth.auditAccess('resource:system://health', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            throw new Error('Authentication Required.');
+          }
           const health = globalHealthMonitor.collectReport();
           return JSON.stringify(health);
         }

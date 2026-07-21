@@ -12,10 +12,20 @@ export class MCPToolRegistry {
       'get_system_health',
       {
         name: 'get_system_health',
-        description: 'Get current system and subservice health status.',
-        inputSchema: { type: 'object', properties: {} },
+        description: 'Get current system and subservice health status. Requires valid authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            token: { type: 'string', description: 'MCP Auth Session Token' }
+          }
+        },
         handler: async (args, token) => {
-          MCPAuth.auditAccess('get_system_health', true);
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_system_health', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return globalHealthMonitor.collectReport();
         }
       }
@@ -32,8 +42,9 @@ export class MCPToolRegistry {
           }
         },
         handler: async (args, token) => {
-          const auth = MCPAuth.isValidToken(args.token || token);
-          MCPAuth.auditAccess('get_workspace_list', auth);
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_workspace_list', auth, auth ? 'Valid session token' : 'Invalid or missing token');
           if (!auth) {
             return { error: 'Authentication Required.' };
           }
@@ -55,8 +66,9 @@ export class MCPToolRegistry {
           required: ['workspaceId']
         },
         handler: async (args, token) => {
-          const auth = MCPAuth.isValidToken(args.token || token);
-          MCPAuth.auditAccess('get_workspace_status', auth);
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_workspace_status', auth, auth ? 'Valid session token' : 'Invalid or missing token');
           if (!auth) {
             return { error: 'Authentication Required.' };
           }
@@ -69,10 +81,18 @@ export class MCPToolRegistry {
       'get_project_goals',
       {
         name: 'get_project_goals',
-        description: 'Retrieve current active roadmap targets.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_project_goals', true);
+        description: 'Retrieve current active roadmap targets. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_project_goals', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return globalGoalManager.getGoals();
         }
       }
@@ -81,10 +101,18 @@ export class MCPToolRegistry {
       'get_executive_brief',
       {
         name: 'get_executive_brief',
-        description: 'View daily executive brief summary.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_executive_brief', true);
+        description: 'View daily executive brief summary. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_executive_brief', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return {
             todayFocus: 'Integrate OpenAI provider and realtime voice capabilities.',
             narratorStatus: 'Stable',
@@ -97,10 +125,18 @@ export class MCPToolRegistry {
       'get_intelligence_brief',
       {
         name: 'get_intelligence_brief',
-        description: 'Scan system logs and alerts summary.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_intelligence_brief', true);
+        description: 'Scan system logs and alerts summary. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_intelligence_brief', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return { status: 'nominal', alertsCount: 0 };
         }
       }
@@ -109,10 +145,18 @@ export class MCPToolRegistry {
       'get_skill_registry',
       {
         name: 'get_skill_registry',
-        description: 'List installed developer skills.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_skill_registry', true);
+        description: 'List installed developer skills. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_skill_registry', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return { skills: ['lint-and-validate', 'systematic-debugging', 'plan-writing'] };
         }
       }
@@ -121,10 +165,18 @@ export class MCPToolRegistry {
       'get_workflow_status',
       {
         name: 'get_workflow_status',
-        description: 'List running task sessions.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_workflow_status', true);
+        description: 'List running task sessions. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_workflow_status', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return globalLiveOperationsStore.getTasks().filter(t => t.status === 'running');
         }
       }
@@ -133,14 +185,19 @@ export class MCPToolRegistry {
       'search_knowledge',
       {
         name: 'search_knowledge',
-        description: 'Search entities in global Knowledge Graph.',
+        description: 'Search entities in global Knowledge Graph. Requires authentication.',
         inputSchema: {
           type: 'object',
-          properties: { query: { type: 'string' } },
+          properties: { query: { type: 'string' }, token: { type: 'string' } },
           required: ['query']
         },
-        handler: async (args) => {
-          MCPAuth.auditAccess('search_knowledge', true);
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('search_knowledge', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           const nodes = globalGraphStore.getNodes().filter(n =>
             n.id.includes(args.query) || JSON.stringify(n.properties).includes(args.query)
           );
@@ -152,10 +209,18 @@ export class MCPToolRegistry {
       'get_reports',
       {
         name: 'get_reports',
-        description: 'Retrieve generated reports list.',
-        inputSchema: { type: 'object', properties: {} },
-        handler: async () => {
-          MCPAuth.auditAccess('get_reports', true);
+        description: 'Retrieve generated reports list. Requires authentication.',
+        inputSchema: {
+          type: 'object',
+          properties: { token: { type: 'string' } }
+        },
+        handler: async (args, token) => {
+          const authToken = args?.token || token;
+          const auth = MCPAuth.isValidToken(authToken);
+          MCPAuth.auditAccess('get_reports', auth, auth ? 'Valid session token' : 'Invalid or missing token');
+          if (!auth) {
+            return { error: 'Authentication Required.' };
+          }
           return { files: ['ICYFLAMZE_OS.md', 'SYSTEM_STATUS.md'] };
         }
       }
