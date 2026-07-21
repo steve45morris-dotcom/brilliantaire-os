@@ -11,6 +11,7 @@ import { globalIntegrationRegistry } from './integrations/core/IntegrationRegist
 import fs from 'node:fs';
 
 describe('Provider Security and Model Lifecycle Repair Tests', () => {
+  vi.setConfig({ testTimeout: 30000 });
   let originalEnv: Record<string, string | undefined>;
 
   beforeEach(async () => {

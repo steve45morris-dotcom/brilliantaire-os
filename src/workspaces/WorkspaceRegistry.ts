@@ -35,6 +35,7 @@ export class WorkspaceRegistry {
       const insertStmt = db.prepare(`
         INSERT INTO custom_workspaces (id, name, description, tag, overview, data_json)
         VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO NOTHING
       `);
 
       Object.entries(mockWorkspacesData).forEach(([id, data]) => {

@@ -114,6 +114,7 @@ export class SongManager {
       const insertStmt = db.prepare(`
         INSERT INTO icyflamze_songs (id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO NOTHING
       `);
 
       for (const song of DEFAULT_SONGS) {

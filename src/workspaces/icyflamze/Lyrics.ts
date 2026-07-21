@@ -100,6 +100,7 @@ export class LyricWorkspace {
       const insertStmt = db.prepare(`
         INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO NOTHING
       `);
 
       for (const lyric of DEFAULT_LYRICS) {
