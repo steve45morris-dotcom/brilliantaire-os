@@ -33,13 +33,38 @@ export class SecurityManager {
   }
 
   /**
-   * Explicit authentication to produce a UserSession with runtime-generated token and expiry.
+   * Explicit authentication to produce a UserSession.
+   * Requires validating credentials against environment secrets for privileged roles (Administrator/Operator).
    */
-  public authenticate(username: string, role: PermissionRole, durationMs = 3600000): UserSession {
+  public authenticate(
+    username: string,
+    credential?: string,
+    requestedRole: PermissionRole = 'Viewer',
+    durationMs = 3600000
+  ): UserSession | null {
+    if (!username || username.trim().length === 0) {
+      return null;
+    }
+
+    // Credential verification for privileged roles
+    if (requestedRole === 'Administrator') {
+      const adminSecret = process.env.ADMIN_SECRET_KEY;
+      if (!adminSecret || credential !== adminSecret) {
+        console.warn(`[SecurityManager] Unauthorized attempt to authenticate as Administrator for user "${username}".`);
+        return null;
+      }
+    } else if (requestedRole === 'Operator') {
+      const operatorSecret = process.env.OPERATOR_SECRET_KEY || process.env.ADMIN_SECRET_KEY;
+      if (!operatorSecret || credential !== operatorSecret) {
+        console.warn(`[SecurityManager] Unauthorized attempt to authenticate as Operator for user "${username}".`);
+        return null;
+      }
+    }
+
     const token = `session_${crypto.randomBytes(24).toString('hex')}`;
     const session: UserSession = {
       username,
-      role,
+      role: requestedRole,
       token,
       expiresAt: Date.now() + durationMs
     };
@@ -49,13 +74,27 @@ export class SecurityManager {
   }
 
   /**
-   * Re-authenticates an active session with a new role upon valid token verification.
+   * Re-authenticates an active session with a new role upon credential verification.
    */
-  public reauthenticateRole(token: string, newRole: PermissionRole): boolean {
+  public reauthenticateRole(token: string, newRole: PermissionRole, credential?: string): boolean {
     const session = this.sessionStore.get(token);
     if (!session || session.expiresAt <= Date.now()) {
       return false;
     }
+
+    // Credential verification for role escalation
+    if (newRole === 'Administrator') {
+      const adminSecret = process.env.ADMIN_SECRET_KEY;
+      if (!adminSecret || credential !== adminSecret) {
+        return false;
+      }
+    } else if (newRole === 'Operator') {
+      const operatorSecret = process.env.OPERATOR_SECRET_KEY || process.env.ADMIN_SECRET_KEY;
+      if (!operatorSecret || credential !== operatorSecret) {
+        return false;
+      }
+    }
+
     session.role = newRole;
     if (this.activeSession?.token === token) {
       this.activeSession.role = newRole;
