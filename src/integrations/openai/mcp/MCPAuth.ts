@@ -33,7 +33,7 @@ export class MCPAuth {
     // 1. Check if caller has an active SecurityManager session with sufficient role
     const session = globalSecurityManager.getSession();
     if (session && callerTokenOrSecret && timingSafeCompare(session.token, callerTokenOrSecret)) {
-      if (globalSecurityManager.checkPermission('mcp:issue_token', 'Operator')) {
+      if (globalSecurityManager.checkPermission('mcp:issue_token')) {
         authorized = true;
       }
     }
