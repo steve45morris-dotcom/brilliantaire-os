@@ -12,7 +12,7 @@ export interface UserSession {
 /**
  * Timing-safe string comparison guarding against length mismatch exceptions.
  */
-function timingSafeCompare(a?: string, b?: string): boolean {
+export function timingSafeCompare(a?: string, b?: string): boolean {
   if (!a || !b) return false;
   const bufA = Buffer.from(a, 'utf-8');
   const bufB = Buffer.from(b, 'utf-8');
@@ -25,6 +25,14 @@ function timingSafeCompare(a?: string, b?: string): boolean {
 export class SecurityManager {
   private activeSession: UserSession | null = null;
   private sessionStore: Map<string, UserSession> = new Map();
+
+  private actionPolicies: Record<string, PermissionRole> = {
+    'mcp:issue_token': 'Operator',
+    'admin:system_reset': 'Administrator',
+    'admin:configure_secret': 'Administrator',
+    'operator:manage_tasks': 'Operator',
+    'viewer:read_status': 'Viewer'
+  };
 
   constructor() {
     // Zero default sessions: initial state is strictly unauthenticated
@@ -122,11 +130,14 @@ export class SecurityManager {
     }
   }
 
-  public checkPermission(action: string, requiredRole: PermissionRole): boolean {
+  public checkPermission(action: string, requiredRole?: PermissionRole): boolean {
     const session = this.getSession();
     if (!session) {
       return false;
     }
+
+    // Wire action into per-action policy lookup
+    const minRequiredRole: PermissionRole = requiredRole || this.actionPolicies[action] || 'Administrator';
 
     const roleHierarchy: Record<PermissionRole, number> = {
       'Administrator': 3,
@@ -135,7 +146,7 @@ export class SecurityManager {
     };
 
     const userWeight = roleHierarchy[session.role] ?? 0;
-    const requiredWeight = roleHierarchy[requiredRole] ?? 999;
+    const requiredWeight = roleHierarchy[minRequiredRole] ?? 999;
 
     return userWeight >= requiredWeight;
   }
