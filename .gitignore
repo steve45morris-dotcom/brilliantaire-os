@@ -83,6 +83,7 @@ dist/
 .mcp.local.json
 mcp_secrets/
 scratch/
+.skillopt-sleep/
 runs/
 
 # Audio and Piper Staging Cache
