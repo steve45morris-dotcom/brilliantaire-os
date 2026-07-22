@@ -1,7 +1,26 @@
 import { LiveTask } from './LiveOperationsTypes.js';
 import { globalLiveOperationsStore } from './LiveOperationsStore.js';
 import { globalEventBus } from '../events/EventBus.js';
-import { exec } from 'node:child_process';
+import { execFile } from 'node:child_process';
+import fs from 'node:fs';
+
+const VOICE_BUFFER = '/Users/alexanderanthony/.agents/voice_buffer.txt';
+const SPEAK_SCRIPT = '/Users/alexanderanthony/.agents/speak_serialized.sh';
+
+function speak(msg: string, priority = 'P3'): void {
+  const dateStr = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  try {
+    fs.appendFileSync(VOICE_BUFFER, `${dateStr} - ${msg}\n`);
+  } catch (e) {
+    console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
+  }
+  
+  execFile(SPEAK_SCRIPT, [msg, priority], (err) => {
+    if (err) {
+      console.warn(`[VNP Error] Speech execution failed: ${err.message}`);
+    }
+  });
+}
 
 export class TaskTracker {
   public startTask(
@@ -34,12 +53,8 @@ export class TaskTracker {
       session.activeTaskIds.push(id);
     }
 
-    // Call voice_narrative.sh announce_intent
-    const announceScript = '/Users/alexanderanthony/.agents/voice_narrative.sh';
-    const cleanName = name.replace(/"/g, '\\"');
-    exec(`"${announceScript}" "${cleanName}"`, (err) => {
-      if (err) console.warn(`[VNP Error] startTask announce failed: ${err.message}`);
-    });
+    // Call voice narrative start hook safely
+    speak(`Am ready to ignite the lighter. Initializing task: ${name}`, 'P3');
 
     return task;
   }
@@ -52,13 +67,8 @@ export class TaskTracker {
       task.durationMs = Date.now() - new Date(task.startedAt).getTime();
       task.progress = 100;
 
-      // Call voice_narrative.sh announce_completion
-      const announceScript = '/Users/alexanderanthony/.agents/voice_narrative.sh';
-      const cleanName = task.name.replace(/"/g, '\\"');
-      const cmd = `bash -c "source '${announceScript}' && announce_completion '${cleanName}' '10'"`;
-      exec(cmd, (err) => {
-        if (err) console.warn(`[VNP Error] completeTask announce failed: ${err.message}`);
-      });
+      // Call voice narrative completion hook safely
+      speak(`Task Complete. ${task.name}. System sovereignty increased by 10 percent.`, 'P2');
     }
   }
 
@@ -73,14 +83,8 @@ export class TaskTracker {
 
       globalEventBus.publish('LiveOperationsTaskFailed', { taskId: id, reason });
 
-      // Call voice_narrative.sh speak failure
-      const announceScript = '/Users/alexanderanthony/.agents/voice_narrative.sh';
-      const cleanName = task.name.replace(/"/g, '\\"');
-      const cleanReason = reason.replace(/"/g, '\\"');
-      const cmd = `bash -c "source '${announceScript}' && speak 'Task ${cleanName} failed due to ${cleanReason}' 'P2'"`;
-      exec(cmd, (err) => {
-        if (err) console.warn(`[VNP Error] failTask announce failed: ${err.message}`);
-      });
+      // Call voice narrative failure hook safely
+      speak(`Task ${task.name} failed due to ${reason}`, 'P2');
     }
   }
 
@@ -93,14 +97,8 @@ export class TaskTracker {
 
       globalEventBus.publish('LiveOperationsTaskBlocked', { taskId: id, reason });
 
-      // Call voice_narrative.sh speak blocked
-      const announceScript = '/Users/alexanderanthony/.agents/voice_narrative.sh';
-      const cleanName = task.name.replace(/"/g, '\\"');
-      const cleanReason = reason.replace(/"/g, '\\"');
-      const cmd = `bash -c "source '${announceScript}' && speak 'Task ${cleanName} is blocked: ${cleanReason}' 'P2'"`;
-      exec(cmd, (err) => {
-        if (err) console.warn(`[VNP Error] blockTask announce failed: ${err.message}`);
-      });
+      // Call voice narrative blocked hook safely
+      speak(`Task ${task.name} is blocked: ${reason}`, 'P2');
     }
   }
 }

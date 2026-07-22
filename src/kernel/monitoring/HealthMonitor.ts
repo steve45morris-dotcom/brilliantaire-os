@@ -25,6 +25,19 @@ export class HealthMonitor {
     return Math.floor((Date.now() - this.startTime) / 1000);
   }
 
+  private getCpuTimes(): { idle: number; total: number } {
+    const cpus = os.cpus();
+    let idle = 0;
+    let total = 0;
+    for (const cpu of cpus) {
+      for (const type in cpu.times) {
+        total += (cpu.times as any)[type];
+      }
+      idle += cpu.times.idle;
+    }
+    return { idle, total };
+  }
+
   public collectReport(): SystemHealthReport {
     const state = globalStateManager.getState();
     const modules = globalModuleRegistry.getModules();
@@ -37,17 +50,17 @@ export class HealthMonitor {
     const healthyPlugins = plugins.filter(p => p.status === 'active').length;
     const pluginScore = plugins.length > 0 ? (healthyPlugins / plugins.length) * 100 : 100;
 
-    // Calculate real CPU usage from cpu times
-    const cpus = os.cpus();
-    let totalIdle = 0;
-    let totalTick = 0;
-    for (const cpu of cpus) {
-      for (const type in cpu.times) {
-        totalTick += (cpu.times as any)[type];
-      }
-      totalIdle += cpu.times.idle;
+    // Calculate delta CPU usage over 50ms delay
+    const startCpu = this.getCpuTimes();
+    const endSleep = Date.now() + 50;
+    while (Date.now() < endSleep) {
+      // spin loop
     }
-    const cpuUsagePercent = totalTick > 0 ? parseFloat((((totalTick - totalIdle) / totalTick) * 100).toFixed(1)) : 0.0;
+    const endCpu = this.getCpuTimes();
+
+    const idleDiff = endCpu.idle - startCpu.idle;
+    const totalDiff = endCpu.total - startCpu.total;
+    const cpuUsagePercent = totalDiff > 0 ? parseFloat((((totalDiff - idleDiff) / totalDiff) * 100).toFixed(1)) : 0.0;
 
     // Calculate real memory usage from os freemem and totalmem
     const totalMem = os.totalmem();
