@@ -13,7 +13,9 @@ export const APPROVED_SOURCES = [
   "outputs/manual_release/checklists/",
   "outputs/manual_release/runbooks/",
   "outputs/knowledge_harvest/workflow_ideas/",
-  "outputs/notebooklm_bridge/workflow_ideas/"
+  "outputs/notebooklm_bridge/workflow_ideas/",
+  "outputs/higgsfield_ai/logs/",
+  "outputs/higgsfield_ai/narrator_sync/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

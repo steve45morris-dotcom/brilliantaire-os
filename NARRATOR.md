@@ -29,6 +29,8 @@ The Narrator is strictly restricted to reading the following approved source fil
 - `outputs/manual_release/runbooks/`
 - `outputs/knowledge_harvest/workflow_ideas/`
 - `outputs/notebooklm_bridge/workflow_ideas/`
+- `outputs/higgsfield_ai/logs/`
+- `outputs/higgsfield_ai/narrator_sync/`
 
 ## 4. Flow Architecture
 

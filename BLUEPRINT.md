@@ -58,6 +58,7 @@ graph TD
   * **VibeVoice TTS/ASR Engine** for hands-free vocalization.
   * **GitHub CLI (`gh`)** for automated remote repository syncing.
   * **Postgres** (connected to the primary `supernova` schema).
+  * **Higgsfield AI Bridge** for AI video generation in the ICYFLAMZE CORE pipeline.
 
 ---
 

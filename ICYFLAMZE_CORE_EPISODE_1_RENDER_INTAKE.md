@@ -16,7 +16,7 @@ To maintain absolute local system safety and offline sandboxing constraints, the
 
 1. **NO AUTOMATED IMAGES:** All visual assets must be generated manually by the creator.
 2. **NO AUTOMATED AUDIO:** All voice tracks and SFX stems must be recorded or generated manually.
-3. **NO AUTOMATED VIDEO:** No video renders or loops are run from CLI scripts.
+3. **NO AUTOMATED VIDEO:** No video renders or loops (including Higgsfield AI) are run from CLI scripts.
 4. **NO DIRECT VAULT WRITES:** Direct writes to Obsidian vaults are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`). Notes are staged in `outputs/write_staging/`.
 5. **NO PUBLISHING:** No automated publishing to social platforms, YouTube, or Tree Groove Records distribution occurs.
 6. **NO DELETIONS:** No local output files or assets are deleted or overwritten.

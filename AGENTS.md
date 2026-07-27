@@ -57,7 +57,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 ---
 
 ## 5. Prompt Engineer
-- **Purpose:** Create reusable prompts for Claude, Gemini, Antigravity, ChatGPT, Sora, Veo, and other tools.
+- **Purpose:** Create reusable prompts for Claude, Gemini, Antigravity, ChatGPT, Sora, Veo, Higgsfield AI, and other tools.
 - **Core Responsibilities:** Standardize model prompts, document instructions, and structure tool prompts.
 - **Inputs:** Model descriptions, tool API signatures, prompt designs.
 - **Outputs:** Reusable prompt files, markdown prompt templates, system instructions.
@@ -92,3 +92,16 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Success Metric:** Revenue opportunity capture and clear release pipelines tracking.
 - **Failure Mode:** Missed rollout windows or inaccurate revenue/betting telemetry logs.
 - **Escalation Rule:** Raise alert when release timelines drift by more than 48 hours.
+
+---
+
+## 8. Creative Architect
+- **Purpose:** Manage AI-driven creative production tools, visual generation adapters, and ICYFLAMZE CORE universe pipeline integrations.
+- **Core Responsibilities:** Stage render requests, compose scene descriptions, compile storyboards, synchronize narrator timing packages, and enforce visual brand alignment against the IP Bible.
+- **Inputs:** Scene prompts, render type directives, storyboard sequences, narrator voice-over scripts, IP Bible visual references.
+- **Outputs:** Render request documents, scene descriptions, storyboards, narrator sync packages, Obsidian exports, bridge status reports.
+- **Activation Trigger:** Creating video generation assets, staging ICYFLAMZE CORE visual production, or bridging narrator audio to video timelines.
+- **Files Owned:** `config/higgsfield-ai.ts`, `scripts/higgsfield-ai.ts`, `templates/higgsfield_ai/`, `tools/higgsfield_ai_bridge.ts`, `HIGGSFIELD_AI.md`, `outputs/higgsfield_ai/`.
+- **Success Metric:** All render requests pass brand alignment review and narrator sync packages validate against storyboard timing.
+- **Failure Mode:** Visual style drift from IP Bible specifications or narrator-video timing misalignment.
+- **Escalation Rule:** Block render submission if visual style does not match approved styles list or if manual approval has not been granted.

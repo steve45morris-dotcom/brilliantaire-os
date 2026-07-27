@@ -41,6 +41,8 @@ The active voice phrases are defined in [config/voice-commands.ts](file:///Users
 | `create sporty calendar` | `create sporty calendar` | `campaign calendar sporty` | Creative Revenue Strategist | Medium | Yes |
 | `create sporty street script` | `create sporty street script` | `campaign street-script sporty` | Creative Revenue Strategist | Medium | Yes |
 | `create sporty checklist` | `create sporty checklist` | `campaign checklist sporty` | Creative Revenue Strategist | Medium | Yes |
+| `show higgsfield status` | `show higgsfield status` | `higgsfield-ai status` | Creative Architect | Low | No |
+| `show higgsfield help` | `show higgsfield help` | `higgsfield-ai-help` | Creative Architect | Low | No |
 
 ---
 
