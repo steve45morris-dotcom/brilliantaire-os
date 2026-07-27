@@ -24,3 +24,7 @@ export interface StateSnapshot {
   repo: RepoIdentity;
   recordedAt: string;
 }
+
+export type RepoStateComparisonResult =
+  | { status: 'MATCH' }
+  | { status: 'DRIFT'; reasons: string[] };
