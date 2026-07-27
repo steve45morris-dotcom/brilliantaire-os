@@ -8,6 +8,7 @@ dist/
 .mcp.local.json
 mcp_secrets/
 scratch/
+runs/
 
 
 

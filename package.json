@@ -15,6 +15,7 @@
     "lint": "eslint . --ext .ts",
     "test": "vitest run",
     "test:orchestrator:phase0": "vitest run --config orchestrator/vitest.phase0.config.ts",
+    "orchestrator": "tsx scripts/orchestrator-cli.ts",
     "audit": "tsx scripts/audit.ts",
     "brief": "tsx scripts/brief.ts",
     "next": "tsx scripts/next.ts",
