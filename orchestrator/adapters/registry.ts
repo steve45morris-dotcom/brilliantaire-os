@@ -2,6 +2,7 @@ import type { AgentAdapter } from './types.js';
 import { createShellAdapter } from './shell.js';
 import { createGeminiAdapter } from './gemini.js';
 import { createCodexAdapter } from './codex.js';
+import { createClaudeAdapter } from './claude.js';
 import { ADAPTER_REGISTRY_CONFIG } from '../../config/orchestrator-adapters.js';
 
 export function resolveAdapter(name: string): AgentAdapter {
@@ -23,6 +24,8 @@ export function resolveAdapter(name: string): AgentAdapter {
       return createGeminiAdapter();
     case 'codex':
       return createCodexAdapter();
+    case 'claude':
+      return createClaudeAdapter();
     default:
       throw new Error(`adapter kind "${entry.kind}" is not registered yet — see Task 6/7`);
   }

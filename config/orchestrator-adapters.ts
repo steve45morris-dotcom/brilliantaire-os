@@ -7,4 +7,5 @@ export const ADAPTER_REGISTRY_CONFIG: AdapterRegistryConfig[] = [
   { name: 'shell', kind: 'shell' },
   { name: 'gemini', kind: 'gemini' },
   { name: 'codex', kind: 'codex' },
+  { name: 'claude', kind: 'claude' },
 ];
