@@ -1924,5 +1924,14 @@ tasks:
     cmds:
       - npm run manual-implementation-packet-help
 
+  higgsfield-ai:
+    desc: "Run Higgsfield AI Bridge CLI commands"
+    cmds:
+      - npm run higgsfield-ai -- {{.CLI_ARGS}}
+
+  higgsfield-ai-help:
+    desc: "Print help menu for Higgsfield AI Bridge CLI"
+    cmds:
+      - npm run higgsfield-ai-help
 
 

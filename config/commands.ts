@@ -3710,6 +3710,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'higgsfield-ai-help',
+    aliases: ['higgs help', 'higgsfield help', 'video ai help'],
+    description: 'Print help menu for the Higgsfield AI Bridge CLI',
+    npmScript: 'higgsfield-ai-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'higgsfield-ai',
+    aliases: ['higgs', 'higgsfield', 'video ai'],
+    description: 'Execute Higgsfield AI Bridge render staging and scene management commands',
+    npmScript: 'higgsfield-ai',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

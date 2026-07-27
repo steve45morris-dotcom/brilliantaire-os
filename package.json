@@ -365,7 +365,9 @@
     "generate-outcome-report": "tsx scripts/generate-outcome-report.ts",
     "generate-memory-summary": "tsx scripts/generate-memory-summary.ts",
     "archive-skill": "tsx scripts/archive-skill.ts",
-    "inspect-router-decision": "tsx scripts/inspect-router-decision.ts"
+    "inspect-router-decision": "tsx scripts/inspect-router-decision.ts",
+    "higgsfield-ai": "tsx scripts/higgsfield-ai.ts",
+    "higgsfield-ai-help": "tsx scripts/higgsfield-ai-help.ts"
   },
   "keywords": [
     "antigravity",
