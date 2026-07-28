@@ -22,6 +22,60 @@ interface Phase1Overrides {
 
 const UNTRUSTED_BANNER = 'UNTRUSTED INTERPRETATION';
 
+// The Auditor's claims.json must conform to the strict ClaimsFile schema
+// (orchestrator/claims/schema.ts) or Phase 1 fail-closes with CLAIMS_SCHEMA_INVALID.
+// This spells that contract out explicitly — it constrains the OUTPUT FORMAT only,
+// never what the Auditor investigates or concludes. Without it, schema conformance is
+// left to chance and the harness rejects otherwise-good audits non-deterministically.
+function buildAuditorInstruction(runDir: string): string {
+  const claimsPath = path.join(runDir, 'claims.json');
+  const narrativePath = path.join(runDir, 'narrative.md');
+  const example = {
+    claims: [
+      {
+        claim_id: 'C001',
+        claim: 'A single, checkable factual statement about the repository.',
+        evidence: ['relative/path/or/note'],
+        verification: [
+          { type: 'file_contains', path: 'orchestrator/claims/validate.ts', pattern: 'isSafeProcessArg', is_regex: false },
+        ],
+      },
+    ],
+  };
+  return [
+    'You are the Auditor for this repository. Investigate using read-only, diagnostic operations only.',
+    'Do not write anywhere except the two output files named below. Do not modify any file in this repository.',
+    '',
+    `Write your findings as structured claims to: ${claimsPath}`,
+    `Write your narrative interpretation to: ${narrativePath} — begin that file with the line "${UNTRUSTED_BANNER}".`,
+    '',
+    'claims.json MUST conform EXACTLY to this schema, or it will be rejected:',
+    '- Top-level object: { "claims": [ ... ] }.',
+    '- Each claim: { "claim_id", "claim", "evidence", "verification" } and optionally "depends_on", "justification".',
+    '  - claim_id: string matching ^C\\d{3,}$  (e.g. "C001", "C002"). NOT "C-001".',
+    '  - claim: non-empty string, one checkable factual statement.',
+    '  - evidence: array of strings (paths or short references).',
+    '  - depends_on: array of other claim_ids (optional; default []).',
+    '  - justification: string, REQUIRED only if every verification instruction is not-testable.',
+    '  - verification: NON-EMPTY array of typed instruction objects. Every material claim MUST carry',
+    '    at least one independently-executable verification instruction — a claim the harness cannot',
+    '    re-run is worthless. Allowed instruction types (discriminated by "type"):',
+    '      { "type": "process", "executable": <one of: ls cat wc comm diff grep shasum sha256sum>, "args": [<repo-relative paths only; no absolute or ".." paths>] }',
+    '      { "type": "file_exists", "path": <repo-relative> }',
+    '      { "type": "file_absent", "path": <repo-relative> }',
+    '      { "type": "file_hash", "path": <repo-relative>, "expected_hash": <optional sha256 hex> }',
+    '      { "type": "file_contains", "path": <repo-relative>, "pattern": <string>, "is_regex": <bool> }',
+    '      { "type": "git_diff", "args": [<informational flags only, e.g. --stat, --name-only>] }',
+    '      { "type": "git_status" }',
+    '      { "type": "test" } | { "type": "typecheck" } | { "type": "build" }',
+    '',
+    'Minimal valid example:',
+    '```json',
+    JSON.stringify(example, null, 2),
+    '```',
+  ].join('\n');
+}
+
 export async function runAuditorPhase(
   runDir: string,
   repoRoot: string,
@@ -41,15 +95,7 @@ export async function runAuditorPhase(
     : resolveAdapter(adapterName);
 
   const instructionPath = path.join(runDir, 'instruction.md');
-  fs.writeFileSync(
-    instructionPath,
-    [
-      'You are the Auditor for this repository. Investigate using read-only, diagnostic operations only.',
-      `Write your findings as structured claims to: ${path.join(runDir, 'claims.json')}`,
-      `Write your narrative interpretation to: ${path.join(runDir, 'narrative.md')} — begin that file with the line "${UNTRUSTED_BANNER}".`,
-      'Do not write anywhere else. Do not modify any file in this repository.',
-    ].join('\n')
-  );
+  fs.writeFileSync(instructionPath, buildAuditorInstruction(runDir));
 
   const result = await adapter.run({ runDir, repoRoot, promptOrInstructionPath: instructionPath });
 
