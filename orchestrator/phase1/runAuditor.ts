@@ -3,6 +3,7 @@ import path from 'node:path';
 import { resolveAdapter } from '../adapters/registry.js';
 import { createShellAdapter } from '../adapters/shell.js';
 import { captureRawEvidence } from '../evidence/capture.js';
+import { sealEvidence } from '../evidence/seal.js';
 import { validateClaimsFile } from '../claims/validate.js';
 import { captureRepoIdentity, compareRepoIdentity } from '../core/repoState.js';
 import type { StateSnapshot } from '../core/types.js';
@@ -86,6 +87,10 @@ export async function runAuditorPhase(
   if (comparison.status === 'DRIFT') {
     return { status: 'REPOSITORY_STATE_DRIFT', reasons: comparison.reasons };
   }
+
+  // Seal raw/ evidence now that Phase 1 collection is finished — Phase 2 and Phase 3
+  // both re-verify against this seal rather than trusting a bare per-file re-hash.
+  sealEvidence(runDir);
 
   return { status: 'success' };
 }

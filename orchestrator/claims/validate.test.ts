@@ -47,6 +47,72 @@ describe('validateClaimsFile', () => {
     }
   });
 
+  it('accepts a git_diff claim using only safe informational flags', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'git_diff', args: ['--stat', '--unified=3', 'HEAD~1'] }],
+      }],
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects a git_diff claim that tries to smuggle a write via --output', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'git_diff', args: ['--output=/tmp/pwned.txt'] }],
+      }],
+    });
+    expect(result.valid).toBe(false);
+    if (!result.valid) {
+      expect(result.errors.some(e => e.includes('--output') && e.includes('allowlist'))).toBe(true);
+    }
+  });
+
+  it('rejects a git_diff claim using -O to read an arbitrary orderfile', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'git_diff', args: ['-O/etc/passwd'] }],
+      }],
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it('rejects a process instruction whose arg is an absolute path outside the repo', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'process', executable: 'cat', args: ['/etc/passwd'] }],
+      }],
+    });
+    expect(result.valid).toBe(false);
+    if (!result.valid) {
+      expect(result.errors.some(e => e.includes('/etc/passwd') && e.includes('escapes the repository root'))).toBe(true);
+    }
+  });
+
+  it('rejects a process instruction whose arg is a parent-traversal path', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'process', executable: 'cat', args: ['../../etc/passwd'] }],
+      }],
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it('accepts a process instruction with a repo-relative path arg and flags', () => {
+    const result = validateClaimsFile({
+      claims: [{
+        claim_id: 'C001', claim: 'x', evidence: [],
+        verification: [{ type: 'process', executable: 'wc', args: ['-l', 'src/index.ts'] }],
+      }],
+    });
+    expect(result.valid).toBe(true);
+  });
+
   it('rejects an unknown dependency ID with a diagnostic', () => {
     const result = validateClaimsFile({
       claims: [{ claim_id: 'C001', claim: 'x', evidence: [], depends_on: ['C999'], verification: [{ type: 'git_status' }] }],

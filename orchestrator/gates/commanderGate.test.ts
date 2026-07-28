@@ -3,12 +3,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { runCommanderGate } from './commanderGate.js';
+import { captureRawEvidence } from '../evidence/capture.js';
+import { sealEvidence } from '../evidence/seal.js';
 
 describe('runCommanderGate', () => {
   let runDir: string;
 
   beforeEach(() => {
     runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'orch-gate-'));
+    captureRawEvidence(runDir, 'placeholder.txt', 'evidence');
+    sealEvidence(runDir);
     fs.writeFileSync(path.join(runDir, 'reconciliation.json'), JSON.stringify([
       { claim_id: 'C001', claim: 'a', depends_on: [], status: 'VERIFIED' },
       { claim_id: 'C002', claim: 'b', depends_on: ['C001'], status: 'VERIFIED_WITH_CONDITIONS' },
@@ -51,5 +55,15 @@ describe('runCommanderGate', () => {
     const result = await runCommanderGate(runDir, async () => 'reject');
     expect(result.decision).toBe('reject');
     expect(fs.existsSync(path.join(runDir, 'approved_claims.json'))).toBe(false);
+  });
+
+  it('refuses to present the gate when raw/ was modified after sealing', async () => {
+    fs.writeFileSync(path.join(runDir, 'raw', 'placeholder.txt'), 'tampered after seal');
+    await expect(runCommanderGate(runDir, async () => 'approve-all-verified')).rejects.toThrow(/EVIDENCE_INTEGRITY_VIOLATION/);
+  });
+
+  it('refuses to present the gate when no evidence seal exists', async () => {
+    fs.rmSync(path.join(runDir, 'evidence-seal.json'));
+    await expect(runCommanderGate(runDir, async () => 'approve-all-verified')).rejects.toThrow(/EVIDENCE_INTEGRITY_VIOLATION/);
   });
 });

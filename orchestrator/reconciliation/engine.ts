@@ -44,10 +44,38 @@ function isWithinRoot(target: string, root: string): boolean {
   return target === resolvedRoot || target.startsWith(`${resolvedRoot}${path.sep}`);
 }
 
+function realpathOrResolve(p: string): string {
+  try {
+    return fs.realpathSync(p);
+  } catch {
+    return path.resolve(p);
+  }
+}
+
 function resolveWithinRepo(repoRoot: string, relativePath: string, additionalAllowedRoot?: string): string | null {
+  const roots = additionalAllowedRoot !== undefined ? [repoRoot, additionalAllowedRoot] : [repoRoot];
   const resolvedTarget = path.resolve(path.resolve(repoRoot), relativePath);
-  const allowed = isWithinRoot(resolvedTarget, repoRoot) || (additionalAllowedRoot !== undefined && isWithinRoot(resolvedTarget, additionalAllowedRoot));
-  return allowed ? resolvedTarget : null;
+
+  // 1. Lexical containment — rejects absolute escapes and `../` traversal before any
+  //    filesystem access, and is the only check that applies to a target that doesn't
+  //    exist (file_absent / a missing file_exists), where there is no data to leak.
+  if (!roots.some(root => isWithinRoot(resolvedTarget, root))) {
+    return null;
+  }
+
+  // 2. Symlink-aware containment — a symlink INSIDE the repo can point at data OUTSIDE
+  //    it; lexical containment can't see through it. When the target actually exists,
+  //    resolve symlinks fully and re-verify the real path is still within an allowed
+  //    (also symlink-resolved) root before any read follows the link.
+  if (fs.existsSync(resolvedTarget)) {
+    const realTarget = realpathOrResolve(resolvedTarget);
+    const realWithin = roots.some(root => isWithinRoot(realTarget, realpathOrResolve(root)));
+    if (!realWithin) {
+      return null;
+    }
+  }
+
+  return resolvedTarget;
 }
 
 export async function executeInstruction(instruction: VerificationInstruction, repoRoot: string, additionalAllowedRoot?: string): Promise<InstructionResult> {

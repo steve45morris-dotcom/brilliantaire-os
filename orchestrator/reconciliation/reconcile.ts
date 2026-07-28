@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { executeInstruction } from './engine.js';
-import { verifyEvidenceIntegrity } from '../evidence/capture.js';
+import { verifySeal } from '../evidence/seal.js';
+import { validateClaimsFile } from '../claims/validate.js';
 import { captureRepoIdentity, compareRepoIdentity } from '../core/repoState.js';
-import type { ClaimsFile, Claim } from '../claims/schema.js';
-import type { StateSnapshot, RepoIdentity } from '../core/types.js';
+import type { Claim } from '../claims/schema.js';
+import type { StateSnapshot } from '../core/types.js';
 
 export type ReconciliationStatus = 'VERIFIED' | 'VERIFIED_WITH_CONDITIONS' | 'NOT_VERIFIED' | 'CONTRADICTED' | 'NOT_TESTABLE';
 
@@ -26,7 +27,8 @@ export interface ReconciliationEntry {
 export type Phase2Result =
   | { status: 'success' }
   | { status: 'EVIDENCE_INTEGRITY_VIOLATION'; violations: string[] }
-  | { status: 'REPOSITORY_STATE_DRIFT'; reasons: string[] };
+  | { status: 'REPOSITORY_STATE_DRIFT'; reasons: string[] }
+  | { status: 'CLAIMS_SCHEMA_INVALID'; errors: string[] };
 
 function resolveVerificationTargets(verification: Claim['verification'], repoRoot: string): string[] {
   return verification.flatMap(instruction => {
@@ -50,9 +52,9 @@ function classify(hints: Array<'pass' | 'fail' | 'not_testable'>, selfSpecified:
 }
 
 export async function runReconciliationPhase(runDir: string, repoRoot: string): Promise<Phase2Result> {
-  const integrity = verifyEvidenceIntegrity(runDir);
-  if (integrity.status === 'VIOLATION') {
-    return { status: 'EVIDENCE_INTEGRITY_VIOLATION', violations: integrity.violations };
+  const seal = verifySeal(runDir);
+  if (seal.status === 'VIOLATION') {
+    return { status: 'EVIDENCE_INTEGRITY_VIOLATION', violations: seal.violations };
   }
 
   const phase1State = JSON.parse(fs.readFileSync(path.join(runDir, 'state', 'phase-1.json'), 'utf-8')) as StateSnapshot;
@@ -62,7 +64,17 @@ export async function runReconciliationPhase(runDir: string, repoRoot: string): 
     return { status: 'REPOSITORY_STATE_DRIFT', reasons: comparison.reasons };
   }
 
-  const claimsFile = JSON.parse(fs.readFileSync(path.join(runDir, 'claims.json'), 'utf-8')) as ClaimsFile;
+  // Re-validate claims.json before executing it. The seal (verified above) already
+  // proves the file is byte-identical to what Phase 1 validated, so this is
+  // defense-in-depth — but it means Phase 2 never executes an instruction it hasn't
+  // itself schema-checked and allowlist-checked, independent of any assumption about
+  // seal/validation ordering elsewhere in the pipeline.
+  const rawClaims = JSON.parse(fs.readFileSync(path.join(runDir, 'claims.json'), 'utf-8'));
+  const validation = validateClaimsFile(rawClaims);
+  if (!validation.valid) {
+    return { status: 'CLAIMS_SCHEMA_INVALID', errors: validation.errors };
+  }
+  const claimsFile = validation.claims;
   const entries: ReconciliationEntry[] = [];
 
   for (const claim of claimsFile.claims) {

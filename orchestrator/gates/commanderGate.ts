@@ -3,6 +3,7 @@ import path from 'node:path';
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { summarizeReconciliation } from '../reporting/summarize.js';
+import { verifySeal } from '../evidence/seal.js';
 import type { ReconciliationEntry } from '../reconciliation/reconcile.js';
 
 export interface GateResult {
@@ -56,6 +57,14 @@ export async function runCommanderGate(
   runDir: string,
   decisionSource: (entries: ReconciliationEntry[]) => Promise<string> = defaultDecisionSource
 ): Promise<GateResult> {
+  // Re-verify the evidence seal immediately before presenting the gate — evidence
+  // integrity is not a one-time check at Phase 2, it's re-checked at every recheck
+  // point up to the point Commander's decision is recorded.
+  const seal = verifySeal(runDir);
+  if (seal.status === 'VIOLATION') {
+    throw new Error(`EVIDENCE_INTEGRITY_VIOLATION: ${seal.violations.join('; ')}`);
+  }
+
   const entries = JSON.parse(fs.readFileSync(path.join(runDir, 'reconciliation.json'), 'utf-8')) as ReconciliationEntry[];
   const byId = new Map(entries.map(entry => [entry.claim_id, entry]));
   const alreadyApprovedIds = loadApprovedClaimIds(runDir);

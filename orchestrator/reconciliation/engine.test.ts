@@ -59,6 +59,25 @@ describe('executeInstruction', () => {
     expect(result.actual_result).toBe('path escapes repository root');
   });
 
+  it('file_contains: a symlink INSIDE the repo pointing at an outside file is rejected (C003 — lexical containment cannot see through it)', async () => {
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'orch-engine-outside-'));
+    const secret = path.join(outsideDir, 'secret.txt');
+    fs.writeFileSync(secret, 'TOP SECRET\n');
+    fs.symlinkSync(secret, path.join(repo, 'link-to-secret'));
+    try {
+      const result = await executeInstruction({ type: 'file_contains', path: 'link-to-secret', pattern: 'SECRET', is_regex: false }, repo);
+      expect(result.status_hint).toBe('fail');
+      expect(result.actual_result).toBe('path escapes repository root');
+    } finally {
+      fs.rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it('file_exists: a real in-repo file still passes under the symlink-aware check (no false positive)', async () => {
+    const result = await executeInstruction({ type: 'file_exists', path: 'a.txt' }, repo);
+    expect(result.status_hint).toBe('pass');
+  });
+
   it('file_exists: passes when the file exists, fails when it does not', async () => {
     const present = await executeInstruction({ type: 'file_exists', path: 'a.txt' }, repo);
     expect(present.status_hint).toBe('pass');
