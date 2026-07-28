@@ -73,7 +73,7 @@ export async function runReconciliationPhase(runDir: string, repoRoot: string): 
     const resolvedTargets = resolveVerificationTargets(claim.verification, repoRoot);
     const selfSpecified = resolvedTargets.some(target => isWithinAgentWritableOutputPath(target, runDir));
     for (const instruction of claim.verification) {
-      const outcome = await executeInstruction(instruction, repoRoot);
+      const outcome = await executeInstruction(instruction, repoRoot, runDir);
       hints.push(outcome.status_hint);
       actualResults.push(outcome.actual_result);
       lastExitCode = outcome.exit_code;

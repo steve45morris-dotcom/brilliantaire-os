@@ -12,36 +12,72 @@ interface InstructionResult {
   status_hint: 'pass' | 'fail' | 'not_testable';
 }
 
+// An unspecified expected exit code defaults to 0 ("the command ran successfully"),
+// not "any exit code passes" — a claim must not be able to mark a crashing or
+// erroring command as verified just by omitting `expected`.
+function classifyExitCode(exitCode: number, expectedExitCode?: number): 'pass' | 'fail' {
+  return exitCode === (expectedExitCode ?? 0) ? 'pass' : 'fail';
+}
+
 async function runProcess(executable: string, args: string[], cwd: string, timeoutMs: number, expectedExitCode?: number): Promise<InstructionResult> {
   try {
     const { stdout } = await execFileAsync(executable, args, { cwd, timeout: timeoutMs });
     const exitCode = 0;
-    return { actual_result: stdout, exit_code: exitCode, status_hint: expectedExitCode === undefined || expectedExitCode === exitCode ? 'pass' : 'fail' };
+    return { actual_result: stdout, exit_code: exitCode, status_hint: classifyExitCode(exitCode, expectedExitCode) };
   } catch (error) {
     const err = error as NodeJS.ErrnoException & { stdout?: string; stderr?: string; code?: number };
     const exitCode = typeof err.code === 'number' ? err.code : 1;
     const output = (err.stdout ?? '') + (err.stderr ?? '');
-    return { actual_result: output, exit_code: exitCode, status_hint: expectedExitCode === undefined || expectedExitCode === exitCode ? 'pass' : 'fail' };
+    return { actual_result: output, exit_code: exitCode, status_hint: classifyExitCode(exitCode, expectedExitCode) };
   }
 }
 
-export async function executeInstruction(instruction: VerificationInstruction, repoRoot: string): Promise<InstructionResult> {
+// Claim verification paths come from the untrusted Auditor. Reject anything that
+// resolves outside repoRoot and outside the current run's own directory (e.g.
+// "../../../../etc/passwd") instead of reading it. The run directory is a second
+// legitimate root — not a bypass — so that reconcile.ts's self-specified-evidence
+// detection can still execute (and then cap, rather than hard-reject) a claim that
+// points at the Auditor's own output; the containment check's job is only to stop
+// escapes to arbitrary filesystem locations outside both known roots.
+function isWithinRoot(target: string, root: string): boolean {
+  const resolvedRoot = path.resolve(root);
+  return target === resolvedRoot || target.startsWith(`${resolvedRoot}${path.sep}`);
+}
+
+function resolveWithinRepo(repoRoot: string, relativePath: string, additionalAllowedRoot?: string): string | null {
+  const resolvedTarget = path.resolve(path.resolve(repoRoot), relativePath);
+  const allowed = isWithinRoot(resolvedTarget, repoRoot) || (additionalAllowedRoot !== undefined && isWithinRoot(resolvedTarget, additionalAllowedRoot));
+  return allowed ? resolvedTarget : null;
+}
+
+export async function executeInstruction(instruction: VerificationInstruction, repoRoot: string, additionalAllowedRoot?: string): Promise<InstructionResult> {
   switch (instruction.type) {
     case 'process':
       return runProcess(instruction.executable, instruction.args, repoRoot, instruction.timeout_ms, instruction.expected?.exit_code);
 
     case 'file_exists': {
-      const exists = fs.existsSync(path.join(repoRoot, instruction.path));
+      const filePath = resolveWithinRepo(repoRoot, instruction.path, additionalAllowedRoot);
+      if (filePath === null) {
+        return { actual_result: 'path escapes repository root', exit_code: 1, status_hint: 'fail' };
+      }
+      const exists = fs.existsSync(filePath);
       return { actual_result: exists ? 'exists' : 'missing', exit_code: exists ? 0 : 1, status_hint: exists ? 'pass' : 'fail' };
     }
 
     case 'file_absent': {
-      const exists = fs.existsSync(path.join(repoRoot, instruction.path));
+      const filePath = resolveWithinRepo(repoRoot, instruction.path, additionalAllowedRoot);
+      if (filePath === null) {
+        return { actual_result: 'path escapes repository root', exit_code: 1, status_hint: 'fail' };
+      }
+      const exists = fs.existsSync(filePath);
       return { actual_result: exists ? 'exists' : 'absent', exit_code: exists ? 1 : 0, status_hint: exists ? 'fail' : 'pass' };
     }
 
     case 'file_hash': {
-      const filePath = path.join(repoRoot, instruction.path);
+      const filePath = resolveWithinRepo(repoRoot, instruction.path, additionalAllowedRoot);
+      if (filePath === null) {
+        return { actual_result: 'path escapes repository root', exit_code: 1, status_hint: 'fail' };
+      }
       if (!fs.existsSync(filePath)) {
         return { actual_result: 'file missing', exit_code: 1, status_hint: 'fail' };
       }
@@ -55,7 +91,10 @@ export async function executeInstruction(instruction: VerificationInstruction, r
     }
 
     case 'file_contains': {
-      const filePath = path.join(repoRoot, instruction.path);
+      const filePath = resolveWithinRepo(repoRoot, instruction.path, additionalAllowedRoot);
+      if (filePath === null) {
+        return { actual_result: 'path escapes repository root', exit_code: 1, status_hint: 'fail' };
+      }
       if (!fs.existsSync(filePath)) {
         return { actual_result: 'file missing', exit_code: 1, status_hint: 'fail' };
       }

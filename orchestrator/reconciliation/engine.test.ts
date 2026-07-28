@@ -35,6 +35,30 @@ describe('executeInstruction', () => {
     expect(result.status_hint).toBe('fail');
   });
 
+  it('process: a non-zero exit reports status_hint fail even when expected is omitted (defaults to exit_code 0, not "any code passes")', async () => {
+    const result = await executeInstruction({ type: 'process', executable: 'cat', args: ['does-not-exist.txt'], cwd: 'repo', timeout_ms: 5000 }, repo);
+    expect(result.exit_code).not.toBe(0);
+    expect(result.status_hint).toBe('fail');
+  });
+
+  it('git_diff: fails when git itself errors, not just when there is no diff', async () => {
+    const result = await executeInstruction({ type: 'git_diff', args: ['--nonexistent-flag'] }, repo);
+    expect(result.exit_code).not.toBe(0);
+    expect(result.status_hint).toBe('fail');
+  });
+
+  it('file_exists: a path that escapes the repo root fails instead of reading the real file', async () => {
+    const result = await executeInstruction({ type: 'file_exists', path: '../../../../etc/passwd' }, repo);
+    expect(result.status_hint).toBe('fail');
+    expect(result.actual_result).toBe('path escapes repository root');
+  });
+
+  it('file_contains: a path that escapes the repo root fails instead of reading the real file', async () => {
+    const result = await executeInstruction({ type: 'file_contains', path: '../../../../etc/passwd', pattern: 'root', is_regex: false }, repo);
+    expect(result.status_hint).toBe('fail');
+    expect(result.actual_result).toBe('path escapes repository root');
+  });
+
   it('file_exists: passes when the file exists, fails when it does not', async () => {
     const present = await executeInstruction({ type: 'file_exists', path: 'a.txt' }, repo);
     expect(present.status_hint).toBe('pass');
