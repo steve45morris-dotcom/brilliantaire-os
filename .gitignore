@@ -1,3 +1,78 @@
+# ============================================================================
+# DENY-BY-DEFAULT BOUNDARY — this repository is rooted at $HOME.
+#
+# Rationale: see docs/reports/HOME_ROOT_REPOSITORY_RISK.md, which recommended
+# this (Option C) and deferred it. Adopted 2026-07-31 after an audit found
+# .claude.json (OAuth account + 6 MCP servers carrying env/headers),
+# .codex/auth.json, .gemini/oauth_creds.json, .config/gh/hosts.yml,
+# .config/gcloud and .zsh_history were all untracked-but-NOT-ignored in a
+# repository whose remote is public.
+#
+# The previous model was allow-by-default with an explicit deny list. That can
+# only ever protect against tools that already existed when the list was
+# written — every new AI CLI or credential store dropped into $HOME landed
+# inside the repo boundary by default. This inverts it: the root is ignored,
+# and real project directories are re-allowed explicitly below.
+#
+# IMPORTANT: .gitignore never untracks already-tracked files. All 132
+# currently-tracked top-level entries remain tracked and their modifications
+# still appear in `git status`. This only governs what NEW files git picks up.
+#
+# To deliberately add a NEW file at the repository root:
+#     git add -f <path>
+# To add a NEW top-level project directory, give it an allow-line below.
+# ============================================================================
+
+/*
+
+# --- Re-allowed project directories (the 25 with tracked content) ---
+!/.agents/
+!/bin/
+!/brilliantaire-briefs/
+!/config/
+!/dashboard/
+!/docs/
+!/hooks/
+!/Knowledge Core/
+!/orchestrator/
+!/outputs/
+!/reports/
+!/scratch/
+!/scripts/
+!/sentinel-os/
+!/skills/
+!/src/
+!/staging/
+!/templates/
+!/test_inputs/
+!/tools/
+!/voice_input/
+!/voice_queue/
+!/voice_sessions/
+
+# --- Partially-allowed directories ---
+# macOS is case-insensitive, so tracked `projects/` and personal `Projects/`
+# are the SAME directory: a blanket allow-line would re-admit 41 personal
+# repo checkouts. Allow only the subdirectory that has tracked content.
+!/projects/
+/projects/*
+!/projects/brilliantier-web/
+
+# Documents/ holds 10 tracked files (Codex/.../voice_bridge/*) among ~500
+# personal files. Those 10 stay tracked regardless — .gitignore never
+# untracks — so ignoring the directory hides only NEW personal files, which
+# is the desired behavior for a personal folder. To add one: git add -f
+/Documents/
+
+# --- Repository metadata that must stay visible ---
+!/.gitignore
+!/.env.example
+
+# ============================================================================
+# Rules below apply WITHIN the re-allowed directories above.
+# Ordering matters: these come after the re-allows so they still take effect.
+# ============================================================================
+
 node_modules/
 dist/
 .DS_Store
@@ -10,8 +85,6 @@ mcp_secrets/
 scratch/
 runs/
 
-
-
 # Audio and Piper Staging Cache
 local_assets/
 outputs/narrator/tts_queue/models/
@@ -22,6 +95,9 @@ outputs/narrator/tts_queue/bin/
 *.tar.gz
 test.wav
 .zsh_secrets
+
+# Next.js build output
+sentinel-os/.next/
 
 # Quarantine storage
 .quarantine/
@@ -43,10 +119,12 @@ venv_stable/
 verify-output.txt
 verify-governance-output.txt
 
-# --- Security containment: home-root repository boundary (added 2026-07-20) ---
-# This repository is intentionally rooted at $HOME (see docs/reports/HOME_ROOT_REPOSITORY_RISK.md).
-# Every path below was verified via `git ls-files` to have zero currently-tracked
-# content before being added — see docs/reports/GITIGNORE_SECURITY_BASELINE.md.
+# ============================================================================
+# Defense in depth. Every path below is already covered by the `/*` boundary
+# above; they are retained deliberately so that if a future allow-line ever
+# widens the boundary, these still never become trackable.
+# Original containment pass 2026-07-20: docs/reports/GITIGNORE_SECURITY_BASELINE.md
+# ============================================================================
 
 # Credentials — must never be tracked
 .ssh/
@@ -59,10 +137,23 @@ verify-governance-output.txt
 .npmrc
 .pypirc
 
+# Agent-CLI credential stores (2026-07-31 audit findings)
+.claude.json
+.claude.json.*
+.codex/
+.gemini/
+.antigravity.json
+.antigravityrules
+.config/
+.cursor/
+.hermes/
+
+# Shell history and git identity — routinely contain pasted secrets
+.zsh_history
+.bash_history
+.gitconfig
+
 # OS and user-local data
-# NOTE: Documents/ is deliberately NOT listed here. It has 10 legitimately
-# tracked files (Documents/Codex/.../voice_bridge/*). Ignoring it would
-# silently hide any new file added under Documents/ from `git status`.
 Library/
 Applications/
 Desktop/
@@ -80,4 +171,3 @@ Public/
 .local/
 .vscode/
 .idea/
-
