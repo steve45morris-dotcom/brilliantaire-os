@@ -16,7 +16,19 @@
 - `runs/` is added to `.gitignore` — these are runtime evidence artifacts, not source.
 - Only `orchestrator/evidence/capture.ts` may open a write handle targeting a path under `<runDir>/raw/`. No other module holds a writable reference to that path.
 - `manifest.json` is written exactly once per run, in Phase 0, and never reopened for writing.
+- Phase 0 is fail-closed for commit, branch, and `git status --porcelain=v1`. No configured `origin` is valid and records `remote: null`; a configured-but-unreadable origin hard-fails. Do not copy `scripts/generate-evidence.ts:25-28`, which warns and continues without complete repository identity.
+- Phase 2 resolves verification targets before execution. A target inside the agent-writable output path is recorded as `SELF_SPECIFIED` and caps the entry at `VERIFIED_WITH_CONDITIONS`.
+- Claims carry `depends_on: string[]`; validation rejects unknown IDs. Phase 3 evaluates dependencies recursively against approved claim IDs. `NOT_TESTABLE` requires an agent-supplied claim justification and is excluded from bulk approval.
+- `process` verification allowlist: `ls`, `cat`, `wc`, `comm`, `diff`, `grep`, `shasum`, `sha256sum`. Do not allow `git` or `find`; use typed `git_diff` and `git_status` instructions instead.
 - Tests never touch the real `/Users/alexanderanthony` repo — fixture repos are created in `os.tmpdir()` per test and cleaned up after.
+
+## Reuse decisions
+
+| Existing artifact | Decision | Recorded reason |
+|---|---|---|
+| `scripts/subagent_orchestrator.py` | **Supersede** | It synthesizes code at `:162-164`, writes it at `:166-167`, executes it at `:171-180`, and captures child output at `:182-206`. It remains unchanged as a legacy tool because the new harness must never execute synthesized code; its process/session/capture pattern is reference only. |
+| `scripts/generate-evidence.ts` | **Extend / port** | Use its timestamped evidence-run, manifest, and log-capture concepts for Phase 0/2. Do not port its warning-and-continue metadata behavior at lines 25-28; incomplete repo state is a hard stop. |
+| `PHANTOM_CLAIMS_REGISTER.md` | **Supersede as non-infrastructure** | C4 is ABSENT: it is an agent scratch artifact, not executable structured claim-record infrastructure. Phase 2 remains new work. |
 
 ---
 
@@ -32,7 +44,7 @@
 - Test: `orchestrator/core/manifest.test.ts`
 
 **Interfaces:**
-- Produces: `RepoIdentity`, `RunManifest`, `StateSnapshot`, `RepoStateComparisonResult`, `Phase` types; `createRunDir(kind: string, now?: Date): string`; `captureRepoIdentity(repoRoot: string): Promise<RepoIdentity>`; `compareRepoIdentity(baseline: RepoIdentity, current: RepoIdentity): RepoStateComparisonResult`; `writePhase0Manifest(repoRoot: string, runKind: string): Promise<{ runDir: string; manifest: RunManifest }>`.
+- Produces: `RepoIdentity`, `RunManifest`, `StateSnapshot`, `RepoStateComparisonResult`, `Phase` types; `createRunDir(kind: string, now?: Date): string`; `captureRepoIdentity(repoRoot: string): Promise<RepoIdentity>` that rejects when commit, branch, porcelain status, or a configured origin URL cannot be captured, but records `remote: null` when no origin exists; `compareRepoIdentity(baseline: RepoIdentity, current: RepoIdentity): RepoStateComparisonResult`; `writePhase0Manifest(repoRoot: string, runKind: string): Promise<{ runDir: string; manifest: RunManifest }>`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -89,6 +101,7 @@ function initFixtureRepo(): string {
   execFileSync('git', ['init', '-q'], { cwd: dir });
   execFileSync('git', ['config', 'user.email', 'test@example.com'], { cwd: dir });
   execFileSync('git', ['config', 'user.name', 'Test'], { cwd: dir });
+  execFileSync('git', ['remote', 'add', 'origin', 'https://example.invalid/orch-fixture.git'], { cwd: dir });
   fs.writeFileSync(path.join(dir, 'README.md'), 'hello\n');
   execFileSync('git', ['add', 'README.md'], { cwd: dir });
   execFileSync('git', ['commit', '-q', '-m', 'init'], { cwd: dir });
@@ -106,11 +119,18 @@ describe('captureRepoIdentity / compareRepoIdentity', () => {
     fs.rmSync(repo, { recursive: true, force: true });
   });
 
-  it('captures branch, commit, and a clean working-tree status hash', async () => {
+  it('captures branch, commit, origin remote, and a clean working-tree status hash', async () => {
     const identity = await captureRepoIdentity(repo);
     expect(identity.commit).toMatch(/^[0-9a-f]{40}$/);
     expect(identity.repoRoot).toBe(repo);
+    expect(identity.remote).toBe('https://example.invalid/orch-fixture.git');
     expect(identity.workingTreeStatusHash).toMatch(/^[0-9a-f]{64}$/);
+  });
+
+  it('records remote null when the fixture has no origin', async () => {
+    execFileSync('git', ['remote', 'remove', 'origin'], { cwd: repo });
+    const identity = await captureRepoIdentity(repo);
+    expect(identity.remote).toBeNull();
   });
 
   it('compares two identical snapshots as MATCH', async () => {
@@ -162,6 +182,7 @@ describe('writePhase0Manifest', () => {
     execFileSync('git', ['init', '-q'], { cwd: repo });
     execFileSync('git', ['config', 'user.email', 'test@example.com'], { cwd: repo });
     execFileSync('git', ['config', 'user.name', 'Test'], { cwd: repo });
+    execFileSync('git', ['remote', 'add', 'origin', 'https://example.invalid/orch-fixture.git'], { cwd: repo });
     fs.writeFileSync(path.join(repo, 'README.md'), 'hello\n');
     execFileSync('git', ['add', 'README.md'], { cwd: repo });
     execFileSync('git', ['commit', '-q', '-m', 'init'], { cwd: repo });
@@ -283,12 +304,10 @@ export async function captureRepoIdentity(repoRoot: string): Promise<RepoIdentit
   const branch = await git(['rev-parse', '--abbrev-ref', 'HEAD'], repoRoot);
   const commit = await git(['rev-parse', 'HEAD'], repoRoot);
 
-  let remote: string | null = null;
-  try {
-    remote = await git(['remote', 'get-url', 'origin'], repoRoot);
-  } catch {
-    remote = null;
-  }
+  const remotes = await git(['remote'], repoRoot);
+  const remote = remotes.split('\n').includes('origin')
+    ? await git(['remote', 'get-url', 'origin'], repoRoot)
+    : null;
 
   const statusOutput = await git(['status', '--porcelain=v1'], repoRoot);
   const workingTreeStatusHash = crypto.createHash('sha256').update(statusOutput).digest('hex');
@@ -783,7 +802,7 @@ describe('ClaimsFile schema', () => {
   it('accepts each of the 9 instruction types', () => {
     const base = { claim_id: 'C001', claim: 'x', evidence: [] };
     const instructions = [
-      { type: 'process', executable: 'git', args: ['status'] },
+      { type: 'process', executable: 'cat', args: ['README.md'] },
       { type: 'file_exists', path: 'a.ts' },
       { type: 'file_absent', path: 'b.ts' },
       { type: 'file_hash', path: 'a.ts' },
@@ -818,8 +837,22 @@ describe('ClaimsFile schema', () => {
     const result = ClaimsFile.safeParse({
       claims: [{
         claim_id: 'C001', claim: 'x', evidence: [],
-        verification: [{ type: 'process', executable: 'git', args: [], cwd: '/etc' }],
+        verification: [{ type: 'process', executable: 'cat', args: [], cwd: '/etc' }],
       }],
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepts claim dependencies that use claim IDs', () => {
+    const result = ClaimsFile.safeParse({
+      claims: [{ claim_id: 'C002', claim: 'x', evidence: [], depends_on: ['C001'], verification: [{ type: 'git_status' }] }],
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects an empty agent-supplied justification', () => {
+    const result = ClaimsFile.safeParse({
+      claims: [{ claim_id: 'C001', claim: 'x', evidence: [], justification: '', verification: [{ type: 'git_status' }] }],
     });
     expect(result.success).toBe(false);
   });
@@ -836,7 +869,7 @@ describe('validateClaimsFile', () => {
     const result = validateClaimsFile({
       claims: [{
         claim_id: 'C001', claim: 'x', evidence: [],
-        verification: [{ type: 'process', executable: 'git', args: ['status'] }],
+        verification: [{ type: 'process', executable: 'cat', args: ['README.md'] }],
       }],
     });
     expect(result.valid).toBe(true);
@@ -866,6 +899,23 @@ describe('validateClaimsFile', () => {
       ],
     });
     expect(result.valid).toBe(false);
+  });
+
+  it('rejects git and find as process executables', () => {
+    for (const executable of ['git', 'find']) {
+      const result = validateClaimsFile({
+        claims: [{ claim_id: 'C001', claim: 'unsafe generic process', evidence: [], verification: [{ type: 'process', executable, args: [] }] }],
+      });
+      expect(result.valid).toBe(false);
+    }
+  });
+
+  it('rejects an unknown dependency ID with a diagnostic', () => {
+    const result = validateClaimsFile({
+      claims: [{ claim_id: 'C001', claim: 'x', evidence: [], depends_on: ['C999'], verification: [{ type: 'git_status' }] }],
+    });
+    expect(result.valid).toBe(false);
+    if (!result.valid) expect(result.errors).toContain('claim C001: unknown dependency "C999"');
   });
 });
 ```
@@ -928,6 +978,8 @@ export const Claim = z.object({
   claim_id: z.string().regex(/^C\d{3,}$/),
   claim: z.string().min(1),
   evidence: z.array(z.string()),
+  depends_on: z.array(z.string().regex(/^C\d{3,}$/)).default([]),
+  justification: z.string().min(1).optional(),
   verification: z.array(VerificationInstruction).min(1),
 });
 export type Claim = z.infer<typeof Claim>;
@@ -941,7 +993,7 @@ export type ClaimsFile = z.infer<typeof ClaimsFile>;
 import { ClaimsFile, type Claim } from './schema.js';
 
 export const AUDITOR_DIAGNOSTIC_ALLOWLIST = [
-  'git', 'ls', 'cat', 'wc', 'comm', 'diff', 'grep', 'find', 'shasum', 'sha256sum',
+  'ls', 'cat', 'wc', 'comm', 'diff', 'grep', 'shasum', 'sha256sum',
 ] as const;
 
 function checkExecutableAllowlist(claim: Claim): string[] {
@@ -967,6 +1019,16 @@ export function validateClaimsFile(
   const allowlistErrors = parsed.data.claims.flatMap(checkExecutableAllowlist);
   if (allowlistErrors.length > 0) {
     return { valid: false, errors: allowlistErrors };
+  }
+
+  const claimIds = new Set(parsed.data.claims.map(claim => claim.claim_id));
+  const dependencyErrors = parsed.data.claims.flatMap(claim =>
+    claim.depends_on
+      .filter(dependencyId => !claimIds.has(dependencyId))
+      .map(dependencyId => `claim ${claim.claim_id}: unknown dependency "${dependencyId}"`)
+  );
+  if (dependencyErrors.length > 0) {
+    return { valid: false, errors: dependencyErrors };
   }
 
   return { valid: true, claims: parsed.data };
@@ -2011,6 +2073,19 @@ describe('runReconciliationPhase', () => {
     const result = await runReconciliationPhase(runDir, repo);
     expect(result.status).toBe('REPOSITORY_STATE_DRIFT');
   });
+
+  it('caps a claim that targets the agent-writable run output at VERIFIED_WITH_CONDITIONS and marks it SELF_SPECIFIED', async () => {
+    fs.writeFileSync(path.join(runDir, 'claims.json'), JSON.stringify({ claims: [{
+      claim_id: 'C003', claim: 'agent output exists', evidence: [], depends_on: [],
+      verification: [{ type: 'file_exists', path: path.relative(repo, path.join(runDir, 'narrative.md')) }],
+    }] }));
+    fs.writeFileSync(path.join(runDir, 'narrative.md'), 'agent-created');
+    const result = await runReconciliationPhase(runDir, repo);
+    expect(result.status).toBe('success');
+    const [entry] = JSON.parse(fs.readFileSync(path.join(runDir, 'reconciliation.json'), 'utf-8'));
+    expect(entry.self_specified).toBe(true);
+    expect(entry.status).toBe('VERIFIED_WITH_CONDITIONS');
+  });
 });
 ```
 
@@ -2047,7 +2122,7 @@ import path from 'node:path';
 import { executeInstruction } from './engine.js';
 import { verifyEvidenceIntegrity } from '../evidence/capture.js';
 import { captureRepoIdentity, compareRepoIdentity } from '../core/repoState.js';
-import type { ClaimsFile } from '../claims/schema.js';
+import type { ClaimsFile, Claim } from '../claims/schema.js';
 import type { StateSnapshot, RepoIdentity } from '../core/types.js';
 
 export type ReconciliationStatus = 'VERIFIED' | 'VERIFIED_WITH_CONDITIONS' | 'NOT_VERIFIED' | 'CONTRADICTED' | 'NOT_TESTABLE';
@@ -2055,11 +2130,15 @@ export type ReconciliationStatus = 'VERIFIED' | 'VERIFIED_WITH_CONDITIONS' | 'NO
 export interface ReconciliationEntry {
   claim_id: string;
   claim: string;
+  depends_on: string[];
   verification_procedure: string;
   expected_result?: string;
   actual_result: string;
   exit_code: number;
   evidence: string[];
+  self_specified: boolean;
+  resolved_targets: string[];
+  justification?: string;
   status: ReconciliationStatus;
 }
 
@@ -2068,8 +2147,21 @@ export type Phase2Result =
   | { status: 'EVIDENCE_INTEGRITY_VIOLATION'; violations: string[] }
   | { status: 'REPOSITORY_STATE_DRIFT'; reasons: string[] };
 
-function classify(instructionCount: number, hints: Array<'pass' | 'fail' | 'not_testable'>): ReconciliationStatus {
+function resolveVerificationTargets(verification: Claim['verification'], repoRoot: string): string[] {
+  return verification.flatMap(instruction => {
+    if ('path' in instruction) return [path.resolve(repoRoot, instruction.path)];
+    return [];
+  });
+}
+
+function isWithinAgentWritableOutputPath(target: string, runDir: string): boolean {
+  const outputRoot = path.resolve(runDir);
+  return target === outputRoot || target.startsWith(`${outputRoot}${path.sep}`);
+}
+
+function classify(hints: Array<'pass' | 'fail' | 'not_testable'>, selfSpecified: boolean): ReconciliationStatus {
   if (hints.every(h => h === 'not_testable')) return 'NOT_TESTABLE';
+  if (selfSpecified && !hints.includes('fail')) return 'VERIFIED_WITH_CONDITIONS';
   if (hints.every(h => h === 'pass')) return 'VERIFIED';
   if (hints.some(h => h === 'pass') && hints.some(h => h === 'not_testable') && !hints.includes('fail')) return 'VERIFIED_WITH_CONDITIONS';
   if (hints.every(h => h === 'fail')) return 'CONTRADICTED';
@@ -2097,6 +2189,8 @@ export async function runReconciliationPhase(runDir: string, repoRoot: string): 
     const actualResults: string[] = [];
     let lastExitCode = 0;
 
+    const resolvedTargets = resolveVerificationTargets(claim.verification, repoRoot);
+    const selfSpecified = resolvedTargets.some(target => isWithinAgentWritableOutputPath(target, runDir));
     for (const instruction of claim.verification) {
       const outcome = await executeInstruction(instruction, repoRoot);
       hints.push(outcome.status_hint);
@@ -2107,12 +2201,20 @@ export async function runReconciliationPhase(runDir: string, repoRoot: string): 
     entries.push({
       claim_id: claim.claim_id,
       claim: claim.claim,
+      depends_on: claim.depends_on,
       verification_procedure: JSON.stringify(claim.verification),
       actual_result: actualResults.join('\n---\n'),
       exit_code: lastExitCode,
       evidence: claim.evidence,
-      status: classify(claim.verification.length, hints),
+      self_specified: selfSpecified,
+      resolved_targets: resolvedTargets,
+      justification: hints.every(h => h === 'not_testable') ? claim.justification : undefined,
+      status: classify(hints, selfSpecified),
     });
+  }
+
+  if (entries.some(entry => entry.status === 'NOT_TESTABLE' && !entry.justification?.trim())) {
+    throw new Error('NOT_TESTABLE_WITHOUT_JUSTIFICATION');
   }
 
   fs.writeFileSync(path.join(runDir, 'reconciliation.json'), JSON.stringify(entries, null, 2));
@@ -2190,9 +2292,10 @@ describe('runCommanderGate', () => {
   beforeEach(() => {
     runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'orch-gate-'));
     fs.writeFileSync(path.join(runDir, 'reconciliation.json'), JSON.stringify([
-      { claim_id: 'C001', claim: 'a', status: 'VERIFIED' },
-      { claim_id: 'C002', claim: 'b', status: 'VERIFIED_WITH_CONDITIONS' },
-      { claim_id: 'C003', claim: 'c', status: 'CONTRADICTED' },
+      { claim_id: 'C001', claim: 'a', depends_on: [], status: 'VERIFIED' },
+      { claim_id: 'C002', claim: 'b', depends_on: ['C001'], status: 'VERIFIED_WITH_CONDITIONS' },
+      { claim_id: 'C003', claim: 'c', depends_on: [], status: 'CONTRADICTED' },
+      { claim_id: 'C004', claim: 'd', depends_on: [], status: 'NOT_TESTABLE', justification: 'fixture has no test script' },
     ]));
   });
 
@@ -2200,11 +2303,11 @@ describe('runCommanderGate', () => {
     fs.rmSync(runDir, { recursive: true, force: true });
   });
 
-  it('"approve-all-verified" writes approved_claims.json with only VERIFIED and VERIFIED_WITH_CONDITIONS claims', async () => {
+  it('"approve-all-verified" writes approved_claims.json with only VERIFIED claims', async () => {
     const result = await runCommanderGate(runDir, async () => 'approve-all-verified');
     expect(result.decision).toBe('approve-all-verified');
     const approved = JSON.parse(fs.readFileSync(path.join(runDir, 'approved_claims.json'), 'utf-8'));
-    expect(approved.approved_claim_ids.sort()).toEqual(['C001', 'C002']);
+    expect(approved.approved_claim_ids.sort()).toEqual(['C001']);
   });
 
   it('"select:C001" approves only the named claim', async () => {
@@ -2216,6 +2319,14 @@ describe('runCommanderGate', () => {
 
   it('rejects an attempt to select a CONTRADICTED claim by ID', async () => {
     await expect(runCommanderGate(runDir, async () => 'select:C003')).rejects.toThrow(/CONTRADICTED/);
+  });
+
+  it('requires dependencies recursively against selected or already-approved IDs and excludes NOT_TESTABLE from bulk approval', async () => {
+    await expect(runCommanderGate(runDir, async () => 'select:C002')).rejects.toThrow(/dependency/i);
+    const selected = await runCommanderGate(runDir, async () => 'select:C001,C002');
+    expect(selected.approvedClaimIds).toEqual(['C001', 'C002']);
+    const result = await runCommanderGate(runDir, async () => 'approve-all-verified');
+    expect(result.approvedClaimIds).not.toContain('C004');
   });
 
   it('"reject" writes no approved_claims.json', async () => {
@@ -2247,7 +2358,31 @@ export interface GateResult {
   approvedClaimIds: string[];
 }
 
-const APPROVABLE_STATUSES = new Set(['VERIFIED', 'VERIFIED_WITH_CONDITIONS']);
+const APPROVABLE_STATUSES = new Set(['VERIFIED']);
+const SELECTIVELY_APPROVABLE_STATUSES = new Set(['VERIFIED', 'VERIFIED_WITH_CONDITIONS']);
+
+function dependenciesApprovedRecursively(
+  entry: ReconciliationEntry,
+  byId: Map<string, ReconciliationEntry>,
+  approvedIds: Set<string>,
+  visiting = new Set<string>(),
+): boolean {
+  if (visiting.has(entry.claim_id)) return false;
+  const nextVisiting = new Set(visiting).add(entry.claim_id);
+  return (entry.depends_on ?? []).every(dependencyId => {
+    const dependency = byId.get(dependencyId);
+    return dependency !== undefined
+      && approvedIds.has(dependencyId)
+      && dependenciesApprovedRecursively(dependency, byId, approvedIds, nextVisiting);
+  });
+}
+
+function loadApprovedClaimIds(runDir: string): Set<string> {
+  const approvalPath = path.join(runDir, 'approved_claims.json');
+  if (!fs.existsSync(approvalPath)) return new Set();
+  const prior = JSON.parse(fs.readFileSync(approvalPath, 'utf-8')) as { approved_claim_ids?: string[] };
+  return new Set(prior.approved_claim_ids ?? []);
+}
 
 async function defaultDecisionSource(entries: ReconciliationEntry[]): Promise<string> {
   const summary = summarizeReconciliation(entries);
@@ -2270,6 +2405,8 @@ export async function runCommanderGate(
   decisionSource: (entries: ReconciliationEntry[]) => Promise<string> = defaultDecisionSource
 ): Promise<GateResult> {
   const entries = JSON.parse(fs.readFileSync(path.join(runDir, 'reconciliation.json'), 'utf-8')) as ReconciliationEntry[];
+  const byId = new Map(entries.map(entry => [entry.claim_id, entry]));
+  const alreadyApprovedIds = loadApprovedClaimIds(runDir);
   const rawDecision = (await decisionSource(entries)).trim();
 
   if (rawDecision === 'reject') {
@@ -2277,9 +2414,17 @@ export async function runCommanderGate(
   }
 
   if (rawDecision === 'approve-all-verified') {
-    const approvedClaimIds = entries.filter(e => APPROVABLE_STATUSES.has(e.status)).map(e => e.claim_id);
-    fs.writeFileSync(path.join(runDir, 'approved_claims.json'), JSON.stringify({ approved_claim_ids: approvedClaimIds, decided_at: new Date().toISOString() }, null, 2));
-    return { decision: 'approve-all-verified', approvedClaimIds };
+    const bulkCandidateIds = new Set([
+      ...alreadyApprovedIds,
+      ...entries.filter(e => APPROVABLE_STATUSES.has(e.status)).map(e => e.claim_id),
+    ]);
+    const approvedClaimIds = entries
+      .filter(e => APPROVABLE_STATUSES.has(e.status))
+      .filter(e => dependenciesApprovedRecursively(e, byId, bulkCandidateIds))
+      .map(e => e.claim_id);
+    const cumulativeApprovedIds = [...new Set([...alreadyApprovedIds, ...approvedClaimIds])];
+    fs.writeFileSync(path.join(runDir, 'approved_claims.json'), JSON.stringify({ approved_claim_ids: cumulativeApprovedIds, decided_at: new Date().toISOString() }, null, 2));
+    return { decision: 'approve-all-verified', approvedClaimIds: cumulativeApprovedIds };
   }
 
   if (rawDecision.startsWith('select:')) {
@@ -2289,12 +2434,17 @@ export async function runCommanderGate(
       if (!entry) {
         throw new Error(`unknown claim_id in selection: ${id}`);
       }
-      if (!APPROVABLE_STATUSES.has(entry.status)) {
-        throw new Error(`cannot approve claim ${id} — its reconciliation status is ${entry.status}, not VERIFIED or VERIFIED_WITH_CONDITIONS`);
+      if (!SELECTIVELY_APPROVABLE_STATUSES.has(entry.status)) {
+        throw new Error(`cannot approve claim ${id} — its reconciliation status is ${entry.status}; CONTRADICTED, NOT_VERIFIED, and NOT_TESTABLE have no Phase 0-3 override path`);
+      }
+      const approvedForDecision = new Set([...alreadyApprovedIds, ...requestedIds]);
+      if (!dependenciesApprovedRecursively(entry, byId, approvedForDecision)) {
+        throw new Error(`cannot approve claim ${id} — UNSATISFIED_DEPENDENCY`);
       }
     }
-    fs.writeFileSync(path.join(runDir, 'approved_claims.json'), JSON.stringify({ approved_claim_ids: requestedIds, decided_at: new Date().toISOString() }, null, 2));
-    return { decision: 'select', approvedClaimIds: requestedIds };
+    const cumulativeApprovedIds = [...new Set([...alreadyApprovedIds, ...requestedIds])];
+    fs.writeFileSync(path.join(runDir, 'approved_claims.json'), JSON.stringify({ approved_claim_ids: cumulativeApprovedIds, decided_at: new Date().toISOString() }, null, 2));
+    return { decision: 'select', approvedClaimIds: cumulativeApprovedIds };
   }
 
   throw new Error(`unrecognized decision: "${rawDecision}"`);
@@ -2511,3 +2661,26 @@ git commit -m "feat(orchestrator): add CLI entrypoint, wire audit/gate commands,
 - **Spec coverage:** every numbered section of the design doc (§1 boundaries → §12 acceptance criteria) maps to a task above except Builder/Verifier/Publisher (§4's `build/`, `verify/`, `publish/` type-only directories), which are explicitly out of scope per Commander decision #10 and are not created by this plan — they remain a future plan.
 - **Type consistency:** `AgentAdapter`/`AgentInvocation`/`AdapterResult` (Task 5) are the exact shapes consumed unchanged by Tasks 6, 7, and 9. `VerificationInstruction`/`Claim`/`ClaimsFile` (Task 4) are the exact shapes consumed unchanged by Tasks 8, 9, and 10. `ReconciliationEntry` (Task 10) is the exact shape consumed unchanged by Tasks 10's own summarizer and Task 11's gate.
 - **Known-uncertain steps flagged, not hidden:** Task 6 Step 1 and Task 7 Step 1 require running `codex --help`/`claude --help` against the real installed binaries and correcting `buildArgs()` if reality differs from the documented-convention defaults I wrote. This is called out explicitly in both tasks and again in Task 12 Step 5's manual smoke test, rather than presented as settled.
+
+### Task 13: Post-implementation review — evidence seal, and closing a `git_diff` write-primitive gap
+
+Applied after Tasks 1–12 were already committed, in response to a second-opinion review of the original spec. Two of the review's four locks were already satisfied by the shipped implementation (harness-captured transcript as canonical evidence over agent self-report; runtime Publisher authority never implemented, so no conflict with development-workflow commits exists). The other two required real changes:
+
+**13a — `git_diff` argument allowlist (closes a live write-primitive, not just a spec gap).**
+
+While verifying the review's "executable + operation + path confinement" lock against the code (not just the spec prose), found that `orchestrator/reconciliation/engine.ts`'s `git_diff` case passed the claim's agent-supplied `args` array straight to `execFile('git', ['diff', ...args], ...)` with no filtering. `git diff --output=<path>` is a real git flag that writes arbitrary file content to a path resolved by git itself — a write primitive inside an instruction type the spec classifies as read-only diagnostic (§2 trust model), and one that never passed through `resolveWithinRepo()` the way path-bearing instructions do.
+
+- **Files:** `orchestrator/claims/validate.ts` (added `GIT_DIFF_SAFE_FLAGS` allowlist + `isSafeGitDiffArg()`, wired into `checkExecutableAllowlist()`), `orchestrator/claims/validate.test.ts` (3 new tests: safe flags accepted, `--output=` rejected, `-O` orderfile-read rejected).
+- Enforced at validation time, matching the existing `AUDITOR_DIAGNOSTIC_ALLOWLIST` pattern (§5) — a claim with a disallowed `git_diff` arg fails `CLAIMS_SCHEMA_INVALID`/allowlist validation before Phase 2 ever calls `execFile`.
+- Non-flag args (refs, pathspecs) are still permitted freely — they filter what `git diff` shows, they don't change what it can do.
+
+**13b — Evidence seal (spec §7 gap, and the review's Lock 3).**
+
+Spec §7 already specified re-checking evidence integrity "immediately before Phase 2" and "again immediately before the Phase 3 gate is presented," but only the Phase 2 check existed in code — there was no re-check before `runCommanderGate()`. The review's evidence-seal proposal (hash-of-the-index + file count, sealed once at the end of Phase 1) closes both the missing pre-gate check and a category of tamper that a bare re-hash can miss: a file added to `raw/` post-hoc with a correctly-computed index entry passes a per-file hash comparison, since every file on disk still matches its own index entry — only a count/index-hash lock against a point-in-time seal catches it.
+
+- **New file:** `orchestrator/evidence/seal.ts` — `sealEvidence(runDir)` writes `evidence-seal.json` (`evidence_index_sha256` of the canonical sorted-key-JSON index, `sealed_at`, `file_count`); `verifySeal(runDir)` recomputes and compares both, and additionally calls the existing `verifyEvidenceIntegrity()` so seal verification is a strict superset of the old bare integrity check, not a parallel one.
+- **Test:** `orchestrator/evidence/seal.test.ts` — 6 tests, including one asserting the seal is order-independent (an index re-serialized in different key order still hashes identically) and one asserting a smuggled-in file with a *correctly computed* hash is still caught (proving the count/index-hash check catches what a per-file check alone would not).
+- **Wired in:** `orchestrator/phase1/runAuditor.ts` calls `sealEvidence(runDir)` once, at the end of a successful Phase 1, after all `raw/` capture is finished. `orchestrator/reconciliation/reconcile.ts`'s Phase 2 entry check now calls `verifySeal()` instead of the bare `verifyEvidenceIntegrity()` (same `EVIDENCE_INTEGRITY_VIOLATION` result shape — no caller-visible API change). `orchestrator/gates/commanderGate.ts` now calls `verifySeal()` at the top of `runCommanderGate()`, before reading `reconciliation.json`, and throws `EVIDENCE_INTEGRITY_VIOLATION: ...` on failure — the gate is never presented against unsealed or since-modified evidence.
+- **Test fixtures updated:** `orchestrator/reconciliation/reconcile.test.ts` and `orchestrator/gates/commanderGate.test.ts` now seal their fixture evidence in `beforeEach`, since both phases require an existing seal (its absence is itself a violation, not a silent pass) — matching the fail-loud convention used everywhere else in this spec.
+
+Verified: full suite green (`npx vitest run --config orchestrator/vitest.all.config.ts` — 20 files, 79 tests, up from 19/69) including the real Phase 0→1→2→3 integration test exercising the actual `sealEvidence`/`verifySeal` wiring end to end, not just unit-level. `npx tsc --noEmit` clean for `orchestrator/`.

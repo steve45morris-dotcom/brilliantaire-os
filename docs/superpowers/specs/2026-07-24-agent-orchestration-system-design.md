@@ -1,6 +1,6 @@
 # Local Multi-Agent Orchestration System — Architecture Specification
 
-**Status:** Approved with required revisions (Commander decisions locked below). Phase 0–3 scoped for first implementation.
+**Status:** Phase 0–3 implemented (Tasks 1–12) and committed. Post-implementation review (Task 13) closed a `git_diff` arg-injection gap and added the evidence seal specified in §7 but not originally wired up — see §5 and §7 for what changed and why.
 
 ## Governing principle
 
@@ -128,7 +128,7 @@ export interface RepoIdentity {
   repoRoot: string;
   branch: string;
   commit: string;
-  remote: string | null;
+  remote: string | null;             // null only when the repository has no origin configured
   workingTreeStatusHash: string;   // sha256 of `git status --porcelain=v1` output
   capturedAt: string;               // ISO 8601
 }
@@ -287,6 +287,8 @@ export const Claim = z.object({
   claim_id: z.string().regex(/^C\d{3,}$/),
   claim: z.string().min(1),
   evidence: z.array(z.string()),             // must reference paths under raw/ — checked separately against evidence-index.json
+  depends_on: z.array(z.string().regex(/^C\d{3,}$/)).default([]),
+  justification: z.string().min(1).optional(), // agent-supplied; required when reconciliation is NOT_TESTABLE
   verification: z.array(VerificationInstruction).min(1),
 });
 export type Claim = z.infer<typeof Claim>;
@@ -299,11 +301,19 @@ export type ClaimsFile = z.infer<typeof ClaimsFile>;
 
 ```typescript
 export const AUDITOR_DIAGNOSTIC_ALLOWLIST = [
-  'git', 'ls', 'cat', 'wc', 'comm', 'diff', 'grep', 'find', 'shasum', 'sha256sum',
+  'ls', 'cat', 'wc', 'comm', 'diff', 'grep', 'shasum', 'sha256sum',
 ] as const;
 ```
 
-An instruction whose `executable` is not on this list fails validation with `VERIFICATION_INSTRUCTION_INVALID` before Phase 2 ever attempts to run it — this is enforced at validation time, not execution time, so a bad claim never reaches `execFile`.
+`git` and `find` are deliberately excluded: `git_diff` and `git_status` are typed instruction variants, while `git -c alias.x='!cmd'` and `find -exec` are arbitrary-execution primitives even when invoked through `execFile`. An instruction whose `executable` is not on this list fails validation with `VERIFICATION_INSTRUCTION_INVALID` before Phase 2 ever attempts to run it — this is enforced at validation time, not execution time, so a bad claim never reaches `execFile`.
+
+**`git_diff` has its own arg allowlist — closed post-implementation, Task 13a.** Being a typed instruction is not by itself sufficient scoping: `GitDiffInstruction.args` is still an agent-supplied `string[]` passed to `execFile('git', ['diff', ...args], ...)`. `git diff --output=<path>` writes arbitrary content to a path git resolves itself — a write primitive inside an instruction the trust model (§2) classifies as read-only diagnostic, and one `resolveWithinRepo()` never sees since it isn't a `path`-bearing instruction type. `orchestrator/claims/validate.ts`'s `GIT_DIFF_SAFE_FLAGS` allowlist (`--stat`, `--numstat`, `--shortstat`, `--name-only`, `--name-status`, `--no-color`, `--color=never`, `--cached`, `--staged`, `--minimal`, `--patch`, `--no-patch`, `--unified=N`) rejects any other flag-shaped arg at validation time; non-flag args (refs, pathspecs) pass through freely since they filter the diff rather than change what it can do.
+
+### 5.1 Reconciliation safety rules
+
+- The reconciliation engine resolves every verification target before reading or executing it. If a target resolves inside the agent-writable output path for that run, the entry is marked `SELF_SPECIFIED`; its status is capped at `VERIFIED_WITH_CONDITIONS`, even if all instructions pass. The reconciliation record includes `self_specified: true` and the resolved target paths.
+- Claim dependencies are explicit through `depends_on: string[]`; validation rejects a dependency ID that does not resolve to a claim in the same file. At the gate, dependency satisfaction is recursive and is evaluated against approved claim IDs, not reconciliation status. This permits a deliberately selected `VERIFIED_WITH_CONDITIONS` parent to authorize its descendants while preventing an unapproved ancestor from doing so.
+- `NOT_TESTABLE` is permitted only when the agent supplied a non-empty `Claim.justification`; it is copied into the reconciliation entry and is never included by bulk approval.
 
 **No shell strings, ever.** `type: 'process'` instructions execute via `execFile(executable, args, { cwd, timeout })` — argv array, no `shell: true`, no `exec()`, no `bash -lc`/`sh -c`. This is a hard constraint on `reconciliation/engine.ts`, not a convention — there is exactly one function in the codebase permitted to spawn a process for verification, and it only accepts `(executable: string, args: string[])`.
 
@@ -328,6 +338,7 @@ Covered in §4 (`permissions/`). Summary of the two-stage check every capability
   - A file whose hash no longer matches the index → `EVIDENCE_INTEGRITY_VIOLATION` (mutation detected).
   - A file in the index but missing from `raw/` → `EVIDENCE_INTEGRITY_VIOLATION` (deletion detected).
   - Any of the above halts execution; it is not a warning.
+- **Evidence seal — added post-implementation, Task 13b, to actually deliver the "re-check ... again immediately before the Phase 3 gate" requirement above.** `orchestrator/evidence/seal.ts`'s `sealEvidence(runDir)` runs once, at the end of a successful Phase 1, after all `raw/` capture is finished: it canonically serializes `evidence-index.json` (sorted keys, so capture order never affects the result), sha256-hashes that string, and writes `evidence-seal.json` with `{ evidence_index_sha256, sealed_at, file_count }`. `verifySeal(runDir)` — called at the start of Phase 2 and again at the start of the Phase 3 gate, superseding the bare `verifyEvidenceIntegrity()` call at both points — re-derives the index hash and file count and compares against the seal, in addition to running the same per-file re-hash described above. The seal step exists because a per-file re-hash alone cannot catch every tamper: a file added to `raw/` after Phase 1, together with a correctly-computed hash entry added to `evidence-index.json` for it, passes a bare per-file comparison (every file on disk matches its own index entry) — only a point-in-time lock on the index's overall hash and file count catches the addition itself. A missing `evidence-seal.json` is itself `EVIDENCE_INTEGRITY_VIOLATION`, not a silent pass — matching this section's "never a warning" rule, and covering the specific known failure mode of a run directory carried into Phase 2/3 having never been through Phase 1's sealing step.
 
 ## 8. Repository-state transition model
 
@@ -338,6 +349,7 @@ Covered in §4 (`permissions/`). Summary of the two-stage check every capability
   - `state/phase-2.json` — captured immediately after reconciliation completes, before the Phase 3 gate is presented.
 - **Recheck points, per Commander decision #4** (at minimum, before): audit (this *is* phase-0, the baseline — nothing to compare yet), reconciliation (compare phase-1 snapshot against phase-0 — Auditor is mutation-blocked, so these must be identical), and — specified for the full system, not exercised here — builder execution, build verification, and publication.
 - **Comparison function** (`repoState.ts`): compares `branch`, `commit`, `remote`, and `workingTreeStatusHash`. In Phase 0-3, since nothing in this scope is permitted to mutate the repo, **any** difference at any recheck point is drift — there is no "expected change" case to special-case yet (that distinction matters starting at Phase 4, where a commit-hash change *after* the Builder runs is expected and a *pre*-Builder change is still drift — out of scope here, noted for the future spec revision).
+- **Phase 0 is fail-closed for repository identity.** Capture of repository root, commit, branch, and working-tree status must each succeed before creating a run directory or writing a manifest. Origin is handled separately: no configured `origin` is valid and records `remote: null`; if `origin` is configured but `git remote get-url origin` fails, Phase 0 hard-stops. This explicitly does not reuse `scripts/generate-evidence.ts:25-28`, whose warning-and-continue path can emit evidence without a traceable repository state.
 - **On drift:** emit `REPOSITORY_STATE_DRIFT` with the specific reasons (e.g. `["commit changed: abc123 -> def456", "working tree status hash changed"]`), write it to the run directory as `state/drift-<phase>.json`, and halt with a non-zero exit code. Never continue silently.
 
 ## 9. Agent adapter contract
@@ -358,7 +370,7 @@ $ npx tsx scripts/orchestrator-cli.ts audit
    - Resolve repo root (`git rev-parse --show-toplevel`), branch, commit, remote, `git status --porcelain=v1` (hashed).
    - Create `runs/audit-YYYYMMDD-HHMMSS/` — if that exact path exists (practically impossible but checked), append `-2`, `-3`, ... rather than overwrite.
    - Write `manifest.json` and `state/phase-0.json` (identical `RepoIdentity` content, separate files per §8).
-   - Exit 0 on success; any failure to resolve git state is a hard stop (no manifest = no run).
+   - Exit 0 on success; failure to resolve commit, branch, or working-tree status is a hard stop. No configured `origin` records `remote: null`; a configured-but-unreadable origin is a hard stop (no manifest = no run).
 
 2. **Phase 1 — Auditor**
    - Resolve the Auditor adapter from `config/orchestrator-adapters.ts` (default: `codex`).
@@ -372,14 +384,15 @@ $ npx tsx scripts/orchestrator-cli.ts audit
 
 3. **Phase 2 — Independent Reconciliation**
    - Re-hash everything in `raw/` against `evidence-index.json` (§7) before proceeding — any mismatch halts with `EVIDENCE_INTEGRITY_VIOLATION`.
-   - For each claim, for each `VerificationInstruction`: execute independently via `reconciliation/engine.ts` (harness-owned `execFile`, never the Auditor's process). Record `actual_result`, `exit_code`, and classify against `expected` (if present) into one of the five allowed statuses — no free-form labels, enforced by the Zod-validated output type.
+   - For each claim, for each `VerificationInstruction`: resolve the target, execute independently via `reconciliation/engine.ts` (harness-owned `execFile`, never the Auditor's process), and record `actual_result`, `exit_code`, resolved targets, and classification. A target inside the agent-writable output path is `SELF_SPECIFIED` and caps the claim at `VERIFIED_WITH_CONDITIONS`.
+   - A `NOT_TESTABLE` result copies the agent-supplied non-empty `Claim.justification`; otherwise Phase 2 halts with `NOT_TESTABLE_WITHOUT_JUSTIFICATION`. Dependencies are recorded but are enforced by the gate, not treated as evidence.
    - Write `reconciliation.json`.
    - Capture `state/phase-2.json`, compare against `state/phase-1.json` — any drift halts here.
 
 4. **Phase 3 — COMMANDER GATE**
    - `npx tsx scripts/orchestrator-cli.ts gate <runId>` (a separate invocation — a real process hop, not a continuation of the `audit` command).
    - Print the reconciliation summary (§ Reporting: total / verified / verified-with-conditions / contradicted / not-verified / not-testable counts).
-   - Interactive terminal prompt (Node built-in `readline/promises` — no new dependency): approve all verified, approve selected claim IDs, or reject the audit.
+   - Interactive terminal prompt (Node built-in `readline/promises` — no new dependency): approve all verified, approve selected claim IDs, or reject the audit. Bulk approval includes only `VERIFIED`. Selective approval may include `VERIFIED` or `VERIFIED_WITH_CONDITIONS`; it recursively requires each dependency to be present in the already-approved IDs or in the same selection. `CONTRADICTED`, `NOT_VERIFIED`, and `NOT_TESTABLE` are never approvable; no override path exists in Phase 0–3.
    - Write `approved_claims.json` listing the approved claim IDs and the decision metadata (who/when — `who` is just "Commander" since this is a single-operator local tool, `when` is a real timestamp).
    - This is the terminal state for this implementation. No Builder is invoked.
 
@@ -392,6 +405,9 @@ $ npx tsx scripts/orchestrator-cli.ts audit
 | `ADAPTER_EXECUTION_FAILURE` | Auditor process crashes, times out, or exits non-zero unexpectedly | Halt Phase 1, no `claims.json` is trusted even if partially written |
 | `CLAIMS_SCHEMA_INVALID` | `claims.json` fails top-level Zod parse | Halt Phase 1 |
 | `VERIFICATION_INSTRUCTION_INVALID` | A claim's verification instruction fails schema validation or fails the executable allowlist check | Halt Phase 1 — the whole claims file is rejected, not filtered down silently |
+| `UNKNOWN_DEPENDENCY` | A `depends_on` ID has no matching claim in `claims.json` | Halt Phase 1 with the claim ID and unknown dependency ID |
+| `UNSATISFIED_DEPENDENCY` | A Phase 3 approval lacks a recursively approved dependency | Refuse that approval; do not write it to `approved_claims.json` |
+| `NOT_TESTABLE_WITHOUT_JUSTIFICATION` | Reconciliation emits `NOT_TESTABLE` without justification | Halt Phase 2 before writing an invalid reconciliation record |
 | `GATE_REJECTED` | Commander selects "reject the audit" at Phase 3 | Clean exit; no `approved_claims.json` is written; run directory is preserved as-is for record-keeping |
 | `RUN_COLLISION` | A run directory for the resolved timestamp already exists | Append a numeric suffix rather than overwrite; this should be unreachable in practice (second-resolution timestamps) but is handled, not assumed away |
 
@@ -405,17 +421,19 @@ $ npx tsx scripts/orchestrator-cli.ts audit
 6. Manually editing a file inside a completed run's `raw/` directory and then re-running Phase 2 against that run produces `EVIDENCE_INTEGRITY_VIOLATION`, not a silently-accepted result.
 7. Manually checking out a different branch between Phase 1 and Phase 2 produces `REPOSITORY_STATE_DRIFT`, not a silently-continued reconciliation.
 8. `reconciliation.json` contains only the five allowed status values — verified by schema, not by convention.
-9. `orchestrator gate` presents the correct summary counts, accepts "approve all verified" / "approve selected IDs" / "reject" as the only three decision paths, and `approved_claims.json` only ever contains claim IDs that were actually `VERIFIED` or `VERIFIED_WITH_CONDITIONS` in `reconciliation.json` (the gate cannot approve a `CONTRADICTED` or `NOT_VERIFIED` claim by ID selection — attempting to select one is rejected with a clear message, not silently accepted).
-10. No test, no run, no code path in this implementation ever calls `exec()`, passes `shell: true`, or constructs a `bash -lc`/`sh -c` invocation. Enforced by a lint rule or a grep-based test over `orchestrator/` — see test strategy.
+9. `orchestrator gate` presents the correct summary counts, accepts "approve all verified" / "approve selected IDs" / "reject" as the only three decision paths. Bulk approval includes only `VERIFIED`; selective approval may include `VERIFIED_WITH_CONDITIONS` when every dependency is recursively present in approved IDs or the same selection. `CONTRADICTED`, `NOT_VERIFIED`, and `NOT_TESTABLE` are never approvable.
+10. A verification target inside the agent-writable output path is recorded as `SELF_SPECIFIED` and cannot receive a status above `VERIFIED_WITH_CONDITIONS`.
+11. Every `NOT_TESTABLE` reconciliation entry has a non-empty justification.
+12. No test, no run, no code path in this implementation ever calls `exec()`, passes `shell: true`, or constructs a `bash -lc`/`sh -c` invocation. Enforced by a lint rule or a grep-based test over `orchestrator/` — see test strategy.
 
 ## 13. Test strategy
 
 - **Unit tests** (vitest, matching repo convention), one file per module:
   - `capabilities`/`roles`/`policy` — grant matrix is exactly as specified; `Publisher` has no `fs:write`; `Auditor` has no git-mutation capability; `requiresApproval()` returns true only for the three specified capabilities.
-  - `claims/schema` — valid claims pass, each of the 9 instruction-type malformations individually fails, an `executable` outside the allowlist fails `validate.ts` even though it'd pass the bare Zod schema.
+  - `claims/schema` — valid claims pass, each of the 9 instruction-type malformations individually fails, an `executable` outside the allowlist fails `validate.ts` even though it'd pass the bare Zod schema; dependency IDs parse as claim IDs.
   - `evidence/hashing` — round-trip write→hash→verify; a tampered file is detected; an unexplained file is detected; a deleted-but-indexed file is detected.
   - `core/repoState` — identical snapshots compare `MATCH`; a changed commit, changed branch, or changed working-tree-status-hash each independently produce `DRIFT` with the correct reason string.
-  - `reconciliation/engine` — each of the 9 instruction types executed against small fixture files/repos in a scratch temp directory (never the real repo), correct status classification for exit-code-matches, exit-code-mismatches, and not-testable cases (e.g. a `test`/`build` instruction where the fixture repo has no such script).
+  - `reconciliation/engine` — each of the 9 instruction types executed against small fixture files/repos in a scratch temp directory (never the real repo), correct status classification for exit-code-matches, exit-code-mismatches, and not-testable cases (e.g. a `test`/`build` instruction where the fixture repo has no such script); self-specified targets cap at `VERIFIED_WITH_CONDITIONS` and `NOT_TESTABLE` requires justification.
 - **Static/grep test** — a dedicated test asserts no file under `orchestrator/` contains the strings `exec(`, `shell: true`, `bash -lc`, or `sh -c`, satisfying acceptance criterion #10 mechanically rather than by review alone.
 - **Integration test** — the full Phase 0→1→2 flow run against a disposable fixture git repository created in a temp directory for the test (never the real `/Users/alexanderanthony` repo), using the `shell` adapter configured to run a trivial fixed script instead of Codex (so the integration test doesn't require Codex CLI to be installed/network-reachable in CI), asserting the full artifact set from acceptance criterion #1 exists and validates.
 - **Phase 3 gate**, being interactive, is tested by injecting a non-interactive decision source for test mode only (e.g. `ORCHESTRATOR_TEST_DECISION` env var read instead of `readline` when set) — clearly documented as test-only, never read in a real Commander-facing invocation path without that env var explicitly set.
@@ -431,10 +449,12 @@ $ npx tsx scripts/orchestrator-cli.ts audit
 | `scripts/*.ts` + `*-help.ts` + `package.json` script entry convention | **Convention followed** for `scripts/orchestrator-cli.ts` / `scripts/orchestrator-cli-help.ts`. |
 | `scripts/pipeline-stage-gate.ts`, `scripts/asr-*-gate.ts`, `scripts/grinders-keep-*-gate.ts` | **Not reused — explicitly avoided as an anti-pattern.** These generate templated markdown with hardcoded fictional role names and perform no real verification; they were the closest *name* match but the wrong architecture entirely. |
 | `scripts/platform-adapter.ts`, `scripts/agents.ts`, `scripts/gemini-cli.ts` | **Not reused — false positives.** Marketing-content templating, static roster printing, and a Gemini *API* health-check respectively; none execute or adapt an external agent CLI process. |
-| `scripts/subagent_orchestrator.py` | **Not reused** — Python, and solves code-synthesis-sandboxing rather than named-CLI routing. Confirms `session_id`/JSON-output/sandbox-dir are pre-existing conventions elsewhere in the repo, informationally. |
+| `scripts/subagent_orchestrator.py` | **Supersede.** Dynamic synthesis occurs at `scripts/subagent_orchestrator.py:162-164`; the generated script is written at `:166-167` and executed in its session sandbox at `:171-180`; child stdout/stderr are captured at `:182-206`. The new harness must not execute synthesized code, so it cannot extend this file safely. The Python file remains unchanged as a legacy tool; its subprocess/session/output-capture pattern is documented reference only. |
+| `scripts/generate-evidence.ts` | **Extend / port as the Phase 0/2 foundation.** Reuse its timestamped evidence directory, per-stage log naming, manifest, and command-output capture concepts (`:8-17`, `:56-112`). Supersede its metadata capture implementation at `:25-28`: Phase 0 must hard-fail on missing commit, branch, or working-tree state and distinguish an absent origin from a configured-but-unreadable origin. |
+| `PHANTOM_CLAIMS_REGISTER.md` | **Not reused; C4 is ABSENT.** This is an agent scratch artifact, not claim-record infrastructure. It does not partially satisfy Phase 2; the `Claim` schema and reconciliation record remain new implementation work. |
 | Zod (TypeScript coding-style rule, not yet a dependency) | **Adopted, new dependency.** Matches the project's own stated schema-validation preference. |
 
 ## 15. Open items requiring your confirmation before/during implementation
 
 1. **Codex CLI non-interactive invocation shape** — exact flags for sandbox mode, output format, and instruction-passing mechanism will be confirmed empirically against `codex --help` as implementation step 1, per §9. If Codex's actual behavior doesn't fit the "writes claims.json/narrative.md to told paths, harness captures whole-transcript stdout" model, I'll surface the discrepancy before proceeding rather than silently adapting the architecture.
-2. **Executable allowlist for `process` verification instructions** (§5) — this is my addition beyond your explicit spec; confirm the proposed list (`git, ls, cat, wc, comm, diff, grep, find, shasum, sha256sum`) is the right scope, or tell me what to add/remove.
+2. **Executable allowlist for `process` verification instructions** (§5) — locked scope: `ls, cat, wc, comm, diff, grep, shasum, sha256sum`. `git` and `find` are excluded; typed `git_diff`/`git_status` cover Git reads. `git_diff`'s own `args` are additionally scoped by `GIT_DIFF_SAFE_FLAGS` (§5, Task 13a) — being a typed instruction was not by itself sufficient, since its `args` were still an unfiltered agent-supplied array.
