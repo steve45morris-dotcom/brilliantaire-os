@@ -3,10 +3,12 @@ dist/
 .DS_Store
 *.log
 .env*
+!.env.example
 .env.local
 .mcp.local.json
 mcp_secrets/
 scratch/
+runs/
 
 
 
@@ -19,3 +21,63 @@ outputs/narrator/tts_queue/bin/
 *.mp3
 *.tar.gz
 test.wav
+.zsh_secrets
+
+# Quarantine storage
+.quarantine/
+
+# Python environment and caches
+__pycache__/
+venv_stable/
+*.pyc
+.pytest_cache/
+
+# Linter caches
+.eslintcache
+
+# Local backup files
+*.bak
+*.tmp
+
+# Verification output logs
+verify-output.txt
+verify-governance-output.txt
+
+# --- Security containment: home-root repository boundary (added 2026-07-20) ---
+# This repository is intentionally rooted at $HOME (see docs/reports/HOME_ROOT_REPOSITORY_RISK.md).
+# Every path below was verified via `git ls-files` to have zero currently-tracked
+# content before being added — see docs/reports/GITIGNORE_SECURITY_BASELINE.md.
+
+# Credentials — must never be tracked
+.ssh/
+.aws/
+.gnupg/
+.kube/
+.docker/
+.git-credentials
+.netrc
+.npmrc
+.pypirc
+
+# OS and user-local data
+# NOTE: Documents/ is deliberately NOT listed here. It has 10 legitimately
+# tracked files (Documents/Codex/.../voice_bridge/*). Ignoring it would
+# silently hide any new file added under Documents/ from `git status`.
+Library/
+Applications/
+Desktop/
+Downloads/
+Movies/
+Music/
+Pictures/
+Public/
+
+# Common local caches and tooling
+.cache/
+.npm/
+.pnpm-store/
+.yarn/
+.local/
+.vscode/
+.idea/
+
