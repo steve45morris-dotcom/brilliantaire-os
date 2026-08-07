@@ -31,7 +31,7 @@ This document provides image generation prompts and negative prompts for promoti
 
 ---
 
-## 🏙️ Chessboard City Prompt
+## 🏙️ Circuit Skyline Prompt
 - **Prompt:** Overhead wide pan view of a neon cyberpunk city streets mapping like a circuit board grid, gold and blue illumination, wet asphalt reflections, anime.
 - **Negative Prompt:** Spaceships, generic fantasy, daytime, bright sun.
 - **Aspect Ratio:** 16:9
