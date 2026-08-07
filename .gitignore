@@ -119,6 +119,13 @@ venv_stable/
 verify-output.txt
 verify-governance-output.txt
 
+# ICYFLAMZE CORE Episode 1 — render intake generated artifacts.
+# Regenerated in full on every `icyflamze-core-episode-1-render-intake` run,
+# one timestamped set per invocation. checklists/ is deliberately NOT listed:
+# visual-continuity and audio reviews are annotated by hand.
+outputs/icyflamze_core/episode_1/render_intake/logs/
+outputs/icyflamze_core/episode_1/render_intake/reports/
+
 # ============================================================================
 # Defense in depth. Every path below is already covered by the `/*` boundary
 # above; they are retained deliberately so that if a future allow-line ever
