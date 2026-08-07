@@ -2,6 +2,23 @@
 
 This document lists all animation and video clip assets to be manually generated.
 
+> **Reading this queue — two things you cannot infer from the slot numbers.**
+>
+> **1. VID numbers are not shot numbers past VID-06.** VID-01 through VID-06
+> map to Shots 1-6. `VID-07: Lighter beats flick` is B-roll with no shot-list
+> entry. `VID-08: Empire Overlook` is **Shot 7**. Shot 8 (Title Card) has no
+> clip here — it is a held still composited in the edit, which is why the
+> trailer script places the throne and the title reveal in the same 0:25-0:30
+> block.
+>
+> **2. For the 21.5-30.0s Resolution block, this queue's ordering is
+> authoritative, not the shot list's.** This queue puts the throne at
+> 26.0-30.0s, matching the script's Resolution block; the shot list puts it at
+> 21.5-25.5s, which does not. Both documents total exactly 30.0s — VID-07
+> absorbs the 4.5s the shot list assigns to the title card. Use the shot list
+> for *which shots exist*; use this queue for *ordering in the final ten
+> seconds*.
+
 ## 🎬 Video Asset Ledger
 
 | Video Clip | Prompt Source | Recommended Tool | Duration | Motion Description | Camera Movement | Continuity Rules | Review Criteria | Status |
