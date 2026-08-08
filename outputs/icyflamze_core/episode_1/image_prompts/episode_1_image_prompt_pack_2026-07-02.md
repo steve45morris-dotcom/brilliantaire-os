@@ -2,6 +2,30 @@
 
 This document provides image generation prompts and negative prompts for promotional materials.
 
+> **MANDATORY — applies to every prompt in this pack.**
+>
+> Required by `identity_lock.txt`. Append verbatim to any prompt that renders
+> the character (Empire Overlook, Eyes Close-up, and cover art):
+>
+> "Use the locked Icyflamze avatar reference image for facial identity.
+> Maintain exact facial likeness and glasses."
+>
+> Pass the anchor as `--cref`:
+> `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
+>
+> **Canonical exclusions** — from Visual Language Do-Not-Use rules, which the
+> per-shot negative prompts below implement only partially. Add to every prompt:
+> no capes, no spandex, no superhero costume, no space helmets, no spacecraft,
+> no space suits, no tribal masks or patterns, no random wires, no meaningless
+> buttons or tech clutter.
+>
+> **Wardrobe:** tactical straps are part of the Season 1 outfit spec
+> (Visual Language → Outfit Rules) and are absent from every prompt below.
+>
+> ⚠️ **Character frames are BLOCKED** pending the visual-style conflict recorded
+> in the IP Bible's Authority Map: `identity_lock.txt` disallows anime and
+> cyberpunk; this pack specifies both.
+
 ---
 
 ## 🎨 Hero Poster Prompt
