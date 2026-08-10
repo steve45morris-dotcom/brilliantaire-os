@@ -49,7 +49,16 @@ If a generator reinterprets the character, reject the prompt and regenerate.
 
 The `--cref` input for every character frame:
 `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
-sha256 `fc69fdcb…` · 3,568,376 bytes · 2026-04-24
+3,568,376 bytes · 2026-04-24
+sha256 `7594b33211f8754724e2a211474de9157824bac63f100bbf0506e03600646abb`
+sha1 &nbsp;&nbsp;`fc69fdcb1f5028ea…`
+
+**Corrected 2026-08-10.** This line previously read ``sha256 `fc69fdcb…` `` — that
+value is the file's **SHA-1**, not its SHA-256. Verifying the anchor with the
+algorithm the document named produced a mismatch and read as a corrupted identity
+anchor; the file is intact (size and mtime unchanged since 2026-04-24, primary and
+`~/Desktop/icyflamze-reference-backup/` byte-identical). Full digests are written
+out here rather than truncated so the check cannot be ambiguous again.
 
 Verified backup (6/6 files sha256-matched 2026-08-07):
 `~/Desktop/icyflamze-reference-backup/`
@@ -66,11 +75,18 @@ aggressive. Wardrobe surface — gold engraving, neon-blue lining, tactical
 straps — is treatment, not identity: the lock lists "Clothing variations" as
 ALLOWED. See `## 🎨 Visual Language` for palette specifics.
 
-**Recorded reading (not stated by the lock):** the lock lists "Glasses style
-(black frame)" as must-remain-identical, while Episode 1 specifies cybernetic
-specs with terminal readouts. Read as compatible — frame style is locked, the
-readout overlay is a "Cinematic effect", which is ALLOWED. This is an
-interpretation. If wrong, the locked frame style wins.
+**Ratified 2026-08-08 — glasses compatibility.** The identity lock's "Glasses
+style (black frame)" invariant and the Outfit Rules' "cybernetic specs
+displaying command diagnostics in neon-blue overlays" are compatible: the frame
+is the locked invariant; the diagnostic overlay is a cinematic effect, which the
+lock explicitly permits as an allowed variation. The locked frame style wins if
+these ever conflict in a specific render.
+
+This supersedes the previous entry here, which recorded the same reading as an
+unratified interpretation. Note that the overlays were never in doubt on their
+own — `## 🎨 Visual Language` → Outfit Rules is canonical for outfit surface per
+the Authority Map and already specified them. Only the compatibility statement
+was open.
 
 ### Authority Map
 
@@ -86,27 +102,43 @@ resolve by whoever read a document last.
 | Which shots exist | Episode 1 shot list |
 | Ordering, 21.5–30.0s | Episode 1 video queue |
 | Slot inventory | Episode 1 asset queues |
-| **Overall visual style** | **UNRESOLVED — see below** |
+| **Overall visual style, Season 1** | **This section — Season 1 Style Exception (ratified 2026-08-08)** |
+| **Overall visual style, all other work** | `identity_lock.txt` |
 
-**UNRESOLVED — visual style.** `identity_lock.txt` (2026-04-24) lists "Anime
-reinterpretation" and "Cyberpunk redesign" as DISALLOWED and requires "a simple
-premium 3D animated version of the reference image, not a futuristic cyberpunk
-or anime character." Episode 1 (2026-07-02) specifies cinematic anime across 22
-files and cyberpunk across 5. Both are deliberate. No precedence is set.
+**RESOLVED — Season 1 Style Exception.** Ratified by Commander 2026-08-08.
 
-*Proposed reading, not yet ratified:* the lock's **facial** section is
-universal and travels to any medium; its **style** section is scoped to the 3D
-avatar deliverable it ships with. Supporting evidence: (a) the lock's own
-mandatory prompt line asks only for facial identity and glasses, never style —
-if it governed aesthetic everywhere, the line it requires would say so; (b) the
-Episode 1 aesthetic postdates the lock by over two months across 22 files,
-which reads as a deliberate later decision rather than drift. Under this
-reading `--cref` stays valid for Episode 1: the reference image carries facial
-features while the prompt carries style.
+There was a real conflict, and this is a ruling on it — not a finding that none
+existed. `identity_lock.txt` (2026-04-24) lists "Anime reinterpretation" and
+"Cyberpunk redesign" as DISALLOWED and requires "a simple premium 3D animated
+version of the reference image, not a futuristic cyberpunk or anime character."
+Its PURPOSE line claims scope over "all generated images, scenes, and videos" —
+so it did govern Episode 1 on its own terms. Episode 1 (2026-07-02) specifies
+exactly what the lock disallows. Both were deliberate.
 
-Whichever reading is adopted must be written back into `identity_lock.txt`, or
-the next person hits this same wall. Until then, treat character-frame
-generation as blocked.
+**The ruling:** a later deliberate decision overrides the earlier lock, for
+Season 1 only. The lock's **style** section is suspended across ICYFLAMZE CORE
+Season 1. It remains in full force everywhere else — above all the
+`Icyflamze_3D_Avatar_Pipeline`, which it was written for.
+
+**Scope is Season 1, not Episode 1.** Verified on disk 2026-08-08: the aesthetic
+appears in 21 files carrying "anime" and 9 carrying "cyberpunk" across
+`outputs/icyflamze_core/`, of which 11 sit outside `episode_1/` — including
+`episode_2/creative_brief.md`, `episode_2/reports/episode_2_preflight_contract.md`,
+`ip_bible/visual_language/`, `ip_bible/episodes/season_1_episode_arc`,
+`ip_bible/rollout/season_1_rollout_plan`, and `ip_bible/documents/music_tie_ins`.
+An Episode-1-scoped exception would have left those in conflict and Episode 2
+would have hit this wall on its first character frame. (The "22 files / 5 files"
+figure previously recorded here did not reproduce and is superseded.)
+
+**Unchanged by this ruling.** The lock's **facial** section is universal and
+travels to every medium. `--cref` against `icyflamze_reference_MASTER.jpeg`
+applies to every character frame in Season 1. Facial structure, jawline, nose
+shape, eye spacing, skin tone, short fade, black-frame glasses, facial hair,
+head proportions and overall likeness are not touched by this exception. The
+mandatory prompt line is still required verbatim on every prompt.
+
+**Season 2 does not inherit this.** The exception is scoped to Season 1 by name.
+Any later season re-opens the question against `identity_lock.txt` as written.
 
 ## 🎨 Visual Language
 - Palette: Black, Metallic Gold, and Neon Blue.

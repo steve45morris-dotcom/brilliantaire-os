@@ -1,0 +1,573 @@
+{
+  "project_name": "ICYFLAMZE CORE",
+  "season_title": "Rise of the Street Scholar",
+  "episode_number": 1,
+  "episode_title": "The Core Wakes",
+  "universe_direction": "Street Scholar Futurism",
+  "assets": [
+    {
+      "id": "IMG-01",
+      "category": "image",
+      "role": "Hero Poster",
+      "tool": "Midjourney",
+      "prefix": "IMG-01",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "9:16",
+      "description": "A strategic artist-founder in matte black technical coat with gold engravings, cybernetic glasses displaying code readouts, standing on server grid.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-02",
+      "category": "image",
+      "role": "Eyes Close-up",
+      "tool": "Midjourney",
+      "prefix": "IMG-02",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Extreme macro close-up of eyes behind cyber spectacles, neon-blue and gold diagnostic terminal codes reflecting on the lenses.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-03",
+      "category": "image",
+      "role": "Lighter Spark",
+      "tool": "Midjourney",
+      "prefix": "IMG-03",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "A matte gold lighter striking in pitch black darkness, detailed slow-motion sparks, igniting a blue-gold flame.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-04",
+      "category": "image",
+      "role": "Circuit Skyline",
+      "tool": "Midjourney",
+      "prefix": "IMG-04",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Overhead wide pan view of a neon cyberpunk city streets mapping like a circuit board grid, gold and blue illumination, wet asphalt reflections.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-05",
+      "category": "image",
+      "role": "Lyrics as Equations",
+      "tool": "Midjourney",
+      "prefix": "IMG-05",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Inside a dark recording studio booth, glowing neon-blue holographic lyric lines and math formulas float in the air like code equations.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-06",
+      "category": "image",
+      "role": "Books / AI Panels",
+      "tool": "Midjourney",
+      "prefix": "IMG-06",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Detailed anime shot of leather-bound books, soundwave graphs, and floating transparent terminal screens orbiting around Icyflamze - calm, matte black tactical coat with gold engraving and minimalist tactical straps, black-frame cybernetic specs, goatee, expressive eyes.",
+      "dependencies": []
+    },
+    {
+      "id": "IMG-07",
+      "category": "image",
+      "role": "Title Card",
+      "tool": "Canva",
+      "prefix": "IMG-07",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Typography design reading 'ICYFLAMZE CORE - Rise of the Street Scholar', gold foil lettering, neon-blue gridlines on black background.",
+      "dependencies": []
+    },
+    {
+      "id": "COV-01",
+      "category": "cover_art",
+      "role": "Main Cover Art",
+      "tool": "Midjourney",
+      "prefix": "COV-01",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "1:1",
+      "description": "High-contrast cover art featuring a strategic artist-founder seated on server throne, hands clasped, black matte coat, gold details, neon-blue grid lines background.",
+      "dependencies": [
+        "IMG-01"
+      ]
+    },
+    {
+      "id": "AUD-01",
+      "category": "audio",
+      "role": "30s Voiceover Narration",
+      "tool": "ElevenLabs",
+      "prefix": "AUD-01",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 30.0,
+      "description": "Calm, strategic cadence voiceover track with philosophical boom-bap narration.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-02",
+      "category": "audio",
+      "role": "15s Teaser Narration",
+      "tool": "ElevenLabs",
+      "prefix": "AUD-02",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 15.0,
+      "description": "Teaser narration audio for the 15-second visual teaser cut.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-03",
+      "category": "audio",
+      "role": "Trailer Music Bed",
+      "tool": "Premiere Pro",
+      "prefix": "AUD-03",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 30.0,
+      "description": "Loop and trim main record instrumental track at 80 BPM.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-04",
+      "category": "audio",
+      "role": "Lighter Spark SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-04",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 1.5,
+      "description": "Sound stem detailing metallic lighter click and spark ignition whoosh.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-05",
+      "category": "audio",
+      "role": "City Hum SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-05",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 30.0,
+      "description": "Background city ambience sound effect layer.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-06",
+      "category": "audio",
+      "role": "AI Interface SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-06",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 2.0,
+      "description": "Digital interface typing and activation sounds pack.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-07",
+      "category": "audio",
+      "role": "Chess Impact SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-07",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 1.0,
+      "description": "Deep concrete impact sound effect for chess piece placement.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-08",
+      "category": "audio",
+      "role": "Title Reveal Hit SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-08",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 3.0,
+      "description": "Synthesizer stab and bass drops for title outro placement.",
+      "dependencies": []
+    },
+    {
+      "id": "AUD-09",
+      "category": "audio",
+      "role": "Outro Ambience SFX",
+      "tool": "DaVinci Resolve",
+      "prefix": "AUD-09",
+      "allowed_extensions": [
+        ".wav",
+        ".mp3",
+        ".m4a"
+      ],
+      "duration": 5.0,
+      "description": "Outro soundscape decay.",
+      "dependencies": []
+    },
+    {
+      "id": "VID-01",
+      "category": "video",
+      "role": "Cyber Lens Close-up",
+      "tool": "Sora",
+      "prefix": "VID-01",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 3.0,
+      "description": "Shot 1: Cybernetic specs lens zoom.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-02"
+      ]
+    },
+    {
+      "id": "VID-02",
+      "category": "video",
+      "role": "Circuit Skyline",
+      "tool": "Sora",
+      "prefix": "VID-02",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 3.5,
+      "description": "Shot 2: Cityscape panning sequence.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-04"
+      ]
+    },
+    {
+      "id": "VID-03",
+      "category": "video",
+      "role": "Gold Lighter Ignition",
+      "tool": "Sora",
+      "prefix": "VID-03",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 4.0,
+      "description": "Shot 3: Metallic gold lighter striking sparks.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-03"
+      ]
+    },
+    {
+      "id": "VID-04",
+      "category": "video",
+      "role": "Equation Microphone",
+      "tool": "Veo",
+      "prefix": "VID-04",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 3.5,
+      "description": "Shot 4: Orbiting equation visual overlays.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-05"
+      ]
+    },
+    {
+      "id": "VID-05",
+      "category": "video",
+      "role": "Chess King Drop",
+      "tool": "Runway",
+      "prefix": "VID-05",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 3.0,
+      "description": "Shot 5: Chess king thud on concrete.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-06"
+      ]
+    },
+    {
+      "id": "VID-06",
+      "category": "video",
+      "role": "Orbiting Library",
+      "tool": "Veo",
+      "prefix": "VID-06",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 4.5,
+      "description": "Shot 6: Orbiting library books.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-06"
+      ]
+    },
+    {
+      "id": "VID-07",
+      "category": "video",
+      "role": "Lighter Beats Flick",
+      "tool": "Sora",
+      "prefix": "VID-07",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 4.5,
+      "description": "Shot 7: Fingers striking lighters on rhythm beat.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-03"
+      ]
+    },
+    {
+      "id": "VID-08",
+      "category": "video",
+      "role": "Empire Overlook",
+      "tool": "Veo",
+      "prefix": "VID-08",
+      "allowed_extensions": [
+        ".mp4",
+        ".mov",
+        ".webm"
+      ],
+      "dimensions": "16:9",
+      "duration": 4.0,
+      "description": "Shot 8: Character overlooking neon city server layout.",
+      "dependencies": [
+        "AUD-01",
+        "IMG-01"
+      ]
+    },
+    {
+      "id": "CAP-01",
+      "category": "caption",
+      "role": "Subtitle SRT file",
+      "tool": "CapCut",
+      "prefix": "CAP-01",
+      "allowed_extensions": [
+        ".srt",
+        ".vtt",
+        ".txt",
+        ".md"
+      ],
+      "description": "Subtitle captions tracks timed to the master narration.",
+      "dependencies": [
+        "VID-01",
+        "VID-02",
+        "VID-03",
+        "VID-04",
+        "VID-05",
+        "VID-06",
+        "VID-07",
+        "VID-08",
+        "AUD-01"
+      ]
+    },
+    {
+      "id": "ASM-01",
+      "category": "assembly",
+      "role": "Trailer Edit Project",
+      "tool": "DaVinci Resolve",
+      "prefix": "ASM-01",
+      "allowed_extensions": [
+        ".capcut",
+        ".drp",
+        ".prproj",
+        ".fcpxml",
+        ".xml"
+      ],
+      "description": "Master Resolve/Premiere timeline backup file.",
+      "dependencies": [
+        "VID-01",
+        "VID-02",
+        "VID-03",
+        "VID-04",
+        "VID-05",
+        "VID-06",
+        "VID-07",
+        "VID-08",
+        "AUD-01",
+        "AUD-03",
+        "AUD-04",
+        "AUD-05",
+        "AUD-06",
+        "AUD-07",
+        "AUD-08",
+        "AUD-09",
+        "CAP-01"
+      ]
+    },
+    {
+      "id": "IMG-08",
+      "category": "image",
+      "role": "Chess King Drop",
+      "tool": "Midjourney",
+      "prefix": "IMG-08",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "Low angle close-up of a metallic gold chess king standing on a chalk-drawn chessboard grid on wet, rain-slicked cracked concrete. Pavement reflecting gold streetlights and neon-blue signs, reflections pooling around the base of the piece. Camera tilts upward from near-ground level, rain visible in the air. No figure, no face, no character.",
+      "dependencies": []
+    },
+    {
+      "id": "COV-02",
+      "category": "cover_art",
+      "role": "Vertical Story Crop",
+      "tool": "Canva",
+      "prefix": "COV-02",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "9:16",
+      "description": "Vertical Story Crop derived from the Main Cover Art master.",
+      "dependencies": [
+        "COV-01"
+      ]
+    },
+    {
+      "id": "COV-03",
+      "category": "cover_art",
+      "role": "YouTube Thumbnail Crop",
+      "tool": "Canva",
+      "prefix": "COV-03",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "16:9",
+      "description": "YouTube Thumbnail Crop derived from the Main Cover Art master.",
+      "dependencies": [
+        "COV-01"
+      ]
+    },
+    {
+      "id": "COV-04",
+      "category": "cover_art",
+      "role": "Title Typography Variant",
+      "tool": "Canva",
+      "prefix": "COV-04",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "1:1",
+      "description": "Title Typography Variant derived from the Main Cover Art master.",
+      "dependencies": [
+        "COV-01"
+      ]
+    },
+    {
+      "id": "COV-05",
+      "category": "cover_art",
+      "role": "No-Text Variant",
+      "tool": "Canva",
+      "prefix": "COV-05",
+      "allowed_extensions": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+      ],
+      "dimensions": "1:1",
+      "description": "No-Text Variant derived from the Main Cover Art master.",
+      "dependencies": [
+        "COV-01"
+      ]
+    }
+  ]
+}

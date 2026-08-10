@@ -78,6 +78,35 @@ function scanFolderFiles(dirPath: string): string[] {
   return fs.readdirSync(dirPath).filter(f => !f.startsWith('.'));
 }
 
+// Required counts are derived from the production manifest, never hardcoded. They were
+// hardcoded until 2026-08-08, and had drifted: the gate demanded 8 images and 5 cover art
+// while the manifest defined 7 and 1. A flawless render run could not clear readiness,
+// because it filled every slot that existed and the gate waited on slots that did not.
+const REQUIRED_BY_CATEGORY: Record<string, number> = (() => {
+  const manifestPath = path.join(REPO_ROOT, 'config', 'episode_1_production_manifest.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+  return manifest.assets.reduce((counts: Record<string, number>, asset: { category: string }) => {
+    counts[asset.category] = (counts[asset.category] ?? 0) + 1;
+    return counts;
+  }, {});
+})();
+
+const required = (category: string): number => REQUIRED_BY_CATEGORY[category] ?? 0;
+
+function getAssemblyReadinessState() {
+  const ready =
+    scanFolderFiles(incomingImages).length >= required('image') &&
+    scanFolderFiles(incomingVideos).length >= required('video') &&
+    scanFolderFiles(incomingAudio).length >= required('audio') &&
+    scanFolderFiles(incomingCoverArt).length >= required('cover_art') &&
+    scanFolderFiles(incomingCaptions).length >= required('caption') &&
+    scanFolderFiles(incomingEditProjects).length >= required('assembly');
+
+  return ready
+    ? { percentage: '100%', status: 'ready', nextPhase: 'Phase 14F: Episode 1 Trailer Assembly and Mastering' }
+    : { percentage: '0%', status: 'not_ready', nextPhase: 'Phase 14E: Render Intake — blocked until required assets are present' };
+}
+
 // 1. scan command
 function handleScan(dateStr: string) {
   ensureDirectories();
@@ -216,13 +245,18 @@ function handleAssemblyReadiness(dateStr: string) {
   const captionsList = scanFolderFiles(incomingCaptions);
   const editProjectsList = scanFolderFiles(incomingEditProjects);
 
+  const readinessRow = (label: string, category: string, found: number, note: string): string => {
+    const need = required(category);
+    return `| ${label} | ${need} | ${found} | ${found >= need ? "ready" : "not_ready"} | ${note} |`;
+  };
+
   const readinessRows = [
-    `| Image Assets | 8 | ${imagesList.length} | ${imagesList.length >= 8 ? "ready" : "not_ready"} | Awaiting manual visual assets compilation |`,
-    `| Video Clips | 8 | ${videosList.length} | ${videosList.length >= 8 ? "ready" : "not_ready"} | Awaiting manual Sora/Veo rendering |`,
-    `| Audio Assets | 9 | ${audioList.length} | ${audioList.length >= 9 ? "ready" : "not_ready"} | Awaiting manual narration and sound FX Stems |`,
-    `| Cover Art Assets | 5 | ${coverList.length} | ${coverList.length >= 5 ? "ready" : "not_ready"} | Awaiting Canva cover Crops |`,
-    `| Captions / Subtitles | 1 | ${captionsList.length} | ${captionsList.length >= 1 ? "ready" : "not_ready"} | Awaiting reel subtitle files |`,
-    `| Edit Projects Backup | 1 | ${editProjectsList.length} | ${editProjectsList.length >= 1 ? "ready" : "not_ready"} | Awaiting premiere/resolve project file |`
+    readinessRow('Image Assets', 'image', imagesList.length, 'Awaiting manual visual assets compilation'),
+    readinessRow('Video Clips', 'video', videosList.length, 'Awaiting manual Sora/Veo rendering'),
+    readinessRow('Audio Assets', 'audio', audioList.length, 'Awaiting manual narration and sound FX Stems'),
+    readinessRow('Cover Art Assets', 'cover_art', coverList.length, 'Awaiting Canva cover Crops'),
+    readinessRow('Captions / Subtitles', 'caption', captionsList.length, 'Awaiting reel subtitle files'),
+    readinessRow('Edit Projects Backup', 'assembly', editProjectsList.length, 'Awaiting premiere/resolve project file')
   ].join('\n');
 
   content = content
@@ -388,6 +422,7 @@ function handleReport(dateStr: string) {
 // 9. status command
 function handleStatus(dateStr: string) {
   ensureDirectories();
+  const readiness = getAssemblyReadinessState();
   const latestScan = getLatestFile(reportsDir, 'episode_1_render_intake_scan_');
   const latestVal = getLatestFile(reportsDir, 'episode_1_asset_validation_');
   const latestVis = getLatestFile(checklistsDir, 'episode_1_visual_continuity_review_');
@@ -408,10 +443,10 @@ function handleStatus(dateStr: string) {
 - Latest Revision Log:       ${latestRev}
 - Latest Obsidian Staged:    ${latestStage}
 - Latest Report:             ${latestReport}
-- Readiness Percentage:      0%
-- Readiness Status:          not_ready
+- Readiness Percentage:      ${readiness.percentage}
+- Readiness Status:          ${readiness.status}
 - Direct Obsidian Write:     No (Blocked)
-- Next Recommended Phase:    Phase 14F: Episode 1 Trailer Assembly and Mastering
+- Next Recommended Phase:    ${readiness.nextPhase}
 =========================================`);
   writeLog(`Printed status menu.`);
 }
