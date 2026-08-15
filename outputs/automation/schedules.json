@@ -1,0 +1,26 @@
+[
+  {
+    "name": "daily-audit",
+    "routine": "daily-check",
+    "frequency": "daily",
+    "status": "active",
+    "lastRun": "2026-05-30T14:47:53.660Z",
+    "nextRun": "2026-05-31T14:47:53.657Z"
+  },
+  {
+    "name": "campaign-monitor",
+    "routine": "campaign-check",
+    "frequency": "weekly",
+    "status": "active",
+    "lastRun": "2026-05-30T14:43:28.854Z",
+    "nextRun": "2026-06-06T14:43:28.853Z"
+  },
+  {
+    "name": "voice-announcement-check",
+    "routine": "voice-check",
+    "frequency": "custom cron (* * * * *)",
+    "status": "paused",
+    "lastRun": null,
+    "nextRun": "2026-05-30T14:39:34.376Z"
+  }
+]

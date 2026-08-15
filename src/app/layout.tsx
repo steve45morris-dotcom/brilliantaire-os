@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Figtree, Unbounded, Space_Mono } from "next/font/google";
+import { Figtree, Unbounded, Space_Mono, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const figtree = Figtree({
   variable: "--font-figtree",
@@ -32,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${figtree.variable} ${unbounded.variable} ${spaceMono.variable} h-full antialiased font-sans`}
+      className={cn("h-full", "antialiased", figtree.variable, unbounded.variable, spaceMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-ink-bg text-bone-white">
         {children}
