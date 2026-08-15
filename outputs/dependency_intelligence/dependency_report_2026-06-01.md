@@ -1,7 +1,7 @@
 # 🧭 Dependency Intelligence Report - 2026-06-01
 
-- **Scanned Modules count:** 196
-- **Orphaned Modules detected:** 187
+- **Scanned Modules count:** 203
+- **Orphaned Modules detected:** 194
 - **Circular References detected:** 5
 
 ## 🚨 Critical Architecture Violations
@@ -14,6 +14,7 @@
 ## 🍂 Orphaned Modules Checklist
 - **agents** is not imported by any local script
 - **approve-obsidian-write** is not imported by any local script
+- **architecture-certifier** is not imported by any local script
 - **asr-dry-run-transcription-gate-help** is not imported by any local script
 - **asr-dry-run-transcription-gate** is not imported by any local script
 - **asr-model-gate-help** is not imported by any local script
@@ -48,6 +49,8 @@
 - **creator-url-staging** is not imported by any local script
 - **daily-brief** is not imported by any local script
 - **dependency-intelligence-analyzer** is not imported by any local script
+- **digital-twin-help** is not imported by any local script
+- **digital-twin-simulator** is not imported by any local script
 - **distribution-metrics-help** is not imported by any local script
 - **distribution-metrics** is not imported by any local script
 - **duplicate-cleanup-help** is not imported by any local script
@@ -151,6 +154,8 @@
 - **notebooklm-response-intelligence** is not imported by any local script
 - **offline-tts-dry-run-renderer-help** is not imported by any local script
 - **offline-tts-dry-run-renderer** is not imported by any local script
+- **operational-excellence-help** is not imported by any local script
+- **operational-excellence-runner** is not imported by any local script
 - **platform-adapter-help** is not imported by any local script
 - **platform-adapter** is not imported by any local script
 - **platform-observability-collector** is not imported by any local script
@@ -166,6 +171,8 @@
 - **quarantine-monitoring** is not imported by any local script
 - **scheduler** is not imported by any local script
 - **stage-obsidian-write** is not imported by any local script
+- **supernova-help** is not imported by any local script
+- **supernova-strategy-engine** is not imported by any local script
 - **sync-status** is not imported by any local script
 - **system-governance-engine** is not imported by any local script
 - **system-governance-help** is not imported by any local script
@@ -205,6 +212,7 @@
 |---|---|---|---|
 | **agents** | None | None | Yes |
 | **approve-obsidian-write** | None | None | Yes |
+| **architecture-certifier** | vnp, canonical-registry | None | Yes |
 | **asr-dry-run-transcription-gate-help** | None | None | Yes |
 | **asr-dry-run-transcription-gate** | vnp | None | Yes |
 | **asr-model-gate-help** | None | None | Yes |
@@ -239,6 +247,8 @@
 | **creator-url-staging** | vnp | None | Yes |
 | **daily-brief** | paths | None | Yes |
 | **dependency-intelligence-analyzer** | vnp | None | Yes |
+| **digital-twin-help** | None | None | Yes |
+| **digital-twin-simulator** | vnp | None | Yes |
 | **distribution-metrics-help** | None | None | Yes |
 | **distribution-metrics** | distribution-metrics | distribution-metrics | Yes |
 | **duplicate-cleanup-help** | commands | None | Yes |
@@ -343,6 +353,8 @@
 | **notebooklm-response-intelligence** | vnp | None | Yes |
 | **offline-tts-dry-run-renderer-help** | None | None | Yes |
 | **offline-tts-dry-run-renderer** | vnp | None | Yes |
+| **operational-excellence-help** | None | None | Yes |
+| **operational-excellence-runner** | vnp, operational-excellence | None | Yes |
 | **platform-adapter-help** | platform-adapters | None | Yes |
 | **platform-adapter** | platform-adapters | None | Yes |
 | **platform-observability-collector** | vnp | None | Yes |
@@ -365,6 +377,8 @@
 | **quarantine-monitoring** | quarantine-monitoring-help, vnp | None | Yes |
 | **scheduler** | None | None | Yes |
 | **stage-obsidian-write** | None | None | Yes |
+| **supernova-help** | None | None | Yes |
+| **supernova-strategy-engine** | vnp | None | Yes |
 | **sync-status** | paths | None | Yes |
 | **system-governance-engine** | vnp, canonical-registry | None | Yes |
 | **system-governance-help** | None | None | Yes |
@@ -386,7 +400,7 @@
 | **vibevoice-listener** | vnp | None | Yes |
 | **vibevoice-test** | vibevoice | None | Yes |
 | **vibevoice-transcript** | None | None | Yes |
-| **vnp** | None | asr-dry-run-transcription-gate, asr-model-gate, asr-orchestrator, audio-drop-verification, command, creator-url-staging, dependency-intelligence-analyzer, executive-intelligence-consolidator, grinders-keep-google-ultra-opportunity-scanner, grounded-intelligence-index, grounded-narrator-review-queue, grounded-narrator-review, knowledge-harvest, knowledge-source-registry, maintenance-check, maintenance-observation, notebooklm-bridge, notebooklm-mcp-auth, notebooklm-mcp-completion-review, notebooklm-mcp-correction-pack, notebooklm-mcp-detect, notebooklm-mcp-execute, notebooklm-mcp-fix-cycle, notebooklm-mcp-harden, notebooklm-mcp-live, notebooklm-mcp-local-secrets, notebooklm-mcp-readiness-gate, notebooklm-mcp-secrets, notebooklm-mcp-setup-guide, notebooklm-mcp-verify-loop, notebooklm-obsidian-dashboard-sync, notebooklm-response-intelligence, offline-tts-dry-run-renderer, platform-observability-collector, production-readiness-evaluator, quarantine-deletion-readiness, quarantine-monitoring, system-governance-engine, tts-brief-composer, tts-model-acquisition, tts-model-activation, tts-model-gate, tts-queue-validator, tts-ready-narration-export-queue, tts-synthesizer, vibevoice-listener, voice-safe-narration-approval-gate, voice-session-recorder | No |
+| **vnp** | None | architecture-certifier, asr-dry-run-transcription-gate, asr-model-gate, asr-orchestrator, audio-drop-verification, command, creator-url-staging, dependency-intelligence-analyzer, digital-twin-simulator, executive-intelligence-consolidator, grinders-keep-google-ultra-opportunity-scanner, grounded-intelligence-index, grounded-narrator-review-queue, grounded-narrator-review, knowledge-harvest, knowledge-source-registry, maintenance-check, maintenance-observation, notebooklm-bridge, notebooklm-mcp-auth, notebooklm-mcp-completion-review, notebooklm-mcp-correction-pack, notebooklm-mcp-detect, notebooklm-mcp-execute, notebooklm-mcp-fix-cycle, notebooklm-mcp-harden, notebooklm-mcp-live, notebooklm-mcp-local-secrets, notebooklm-mcp-readiness-gate, notebooklm-mcp-secrets, notebooklm-mcp-setup-guide, notebooklm-mcp-verify-loop, notebooklm-obsidian-dashboard-sync, notebooklm-response-intelligence, offline-tts-dry-run-renderer, operational-excellence-runner, platform-observability-collector, production-readiness-evaluator, quarantine-deletion-readiness, quarantine-monitoring, supernova-strategy-engine, system-governance-engine, tts-brief-composer, tts-model-acquisition, tts-model-activation, tts-model-gate, tts-queue-validator, tts-ready-narration-export-queue, tts-synthesizer, vibevoice-listener, voice-safe-narration-approval-gate, voice-session-recorder | No |
 | **voice-confirm** | paths | None | Yes |
 | **voice-deny** | paths | None | Yes |
 | **voice-help** | voice-commands | None | Yes |

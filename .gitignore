@@ -19,3 +19,8 @@ outputs/narrator/tts_queue/bin/
 *.mp3
 *.tar.gz
 test.wav
+
+# Coldspark telemetry — derived from shell history, may capture secrets.
+# Trailing glob is deliberate: it must also cover -wal/-shm sidecars and
+# .bak/.orig snapshots, which carry the same content as the database itself.
+data/*.db*

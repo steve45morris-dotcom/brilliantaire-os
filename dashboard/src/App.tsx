@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { fetchDashboardData, DashboardData } from './lib/readTelemetry.js';
+import React, { useEffect } from 'react';
+import { useDashboardStore } from './store/useDashboardStore.js';
 import { SystemStatusCard } from './components/SystemStatusCard.jsx';
 import { CampaignReadinessCard } from './components/CampaignReadinessCard.jsx';
 import { CommandActivityCard } from './components/CommandActivityCard.jsx';
@@ -9,22 +9,11 @@ import { NextActionsCard } from './components/NextActionsCard.jsx';
 import { TelemetryFilesCard } from './components/TelemetryFilesCard.jsx';
 
 export const App: React.FC = () => {
-  const [data, setData] = useState<DashboardData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, loading, error, fetchTelemetry } = useDashboardStore();
 
   useEffect(() => {
-    fetchDashboardData()
-      .then((payload) => {
-        setData(payload);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err.message || 'Failed to load telemetry data. Make sure "npm run dashboard:export" has been run.');
-        setLoading(false);
-      });
-  }, []);
+    fetchTelemetry();
+  }, [fetchTelemetry]);
 
   if (loading) {
     return (

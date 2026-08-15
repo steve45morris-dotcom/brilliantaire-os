@@ -8,5 +8,65 @@
     "queueLatencyMs": 45,
     "eventThroughput": 0,
     "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-09T23:15:39.685Z",
+    "memoryUsagePercentage": 99,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-09T23:15:40.169Z",
+    "memoryUsagePercentage": 100,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-10T17:26:53.648Z",
+    "memoryUsagePercentage": 98,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-10T17:26:53.851Z",
+    "memoryUsagePercentage": 99,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-10T17:27:29.557Z",
+    "memoryUsagePercentage": 96,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
+  },
+  {
+    "timestamp": "2026-07-10T23:35:46.533Z",
+    "memoryUsagePercentage": 99,
+    "cpuUsagePercentage": 8,
+    "commandExecutionCount": 0,
+    "voiceCommandCount": 0,
+    "queueLatencyMs": 45,
+    "eventThroughput": 0,
+    "errorRate": 0
   }
 ]

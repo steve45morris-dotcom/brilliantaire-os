@@ -1,0 +1,40 @@
+{
+  "schedules": [
+    {
+      "name": "Daily Audit Check",
+      "routine": "daily-check",
+      "frequency": "daily",
+      "cronExpression": "0 9 * * *",
+      "status": "active",
+      "lastRun": null,
+      "nextRun": null
+    },
+    {
+      "name": "Campaign Check",
+      "routine": "campaign-check",
+      "frequency": "weekly",
+      "cronExpression": "0 15 * * 1",
+      "status": "active",
+      "lastRun": null,
+      "nextRun": null
+    },
+    {
+      "name": "Voice Check",
+      "routine": "voice-check",
+      "frequency": "cron",
+      "cronExpression": "*/5 * * * *",
+      "status": "active",
+      "lastRun": null,
+      "nextRun": null
+    }
+  ],
+  "health": {
+    "successfulRuns": 2,
+    "failedRuns": 0,
+    "skippedRuns": 0,
+    "totalRuntimeMs": 187
+  },
+  "todayRunsCount": 0,
+  "lastRunsResetDate": "2026-07-10",
+  "concurrentExecutionState": "Idle"
+}

@@ -2612,6 +2612,83 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'architecture-certifier',
+    aliases: ['cert-run'],
+    description: 'Run the automated Architecture Certification Pipeline to validate v1.0 parameters',
+    npmScript: 'architecture-certifier',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'digital-twin-simulator',
+    aliases: ['twin-run', 'twin-simulate'],
+    description: 'Perform a read-only simulation audit on current changes against the v1.0 baseline',
+    npmScript: 'digital-twin-simulator',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'digital-twin-help',
+    aliases: ['twin-help'],
+    description: 'Print help menu for the Digital Twin simulation engine',
+    npmScript: 'digital-twin-help',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'operational-excellence-runner',
+    aliases: ['ops-run', 'excellence-run'],
+    description: 'Trigger validation engines, compile Platform Health Index, prioritize backlog, and stage briefings',
+    npmScript: 'operational-excellence-runner',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'operational-excellence-help',
+    aliases: ['ops-help'],
+    description: 'Print help menu for the Operational Excellence validation runner',
+    npmScript: 'operational-excellence-help',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'supernova-strategy-engine',
+    aliases: ['supernova-run', 'strategy-run'],
+    description: 'Trigger strategy audits, rank prioritized initiatives, and output executive briefs',
+    npmScript: 'supernova-strategy-engine',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'supernova-help',
+    aliases: ['supernova-help-menu'],
+    description: 'Print help menu for the Supernova strategic intelligence CLI',
+    npmScript: 'supernova-help',
+    owningAgent: 'OS Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'voice-ops-maintenance-scheduler-help',
     aliases: [],
     description: 'Print help menu for the Voice Ops Maintenance Mode Scheduler',

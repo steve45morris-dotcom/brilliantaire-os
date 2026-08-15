@@ -2336,5 +2336,590 @@
     "source": "command_log_2026-06-01",
     "status": "SUCCESS",
     "details": "Matched Command: \"voice-ops-scheduled-briefing\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:30:39.329Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:31:33.768Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate check --test-approve narrator_block_3\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:32:07.894Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice approval\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:40:21.097Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"asr-orchestrator-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"asr-orchestrator-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:41:19.094Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:41:40.563Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"asr-orchestrator readiness\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"asr-orchestrator\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:42:07.284Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:42:14.018Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate check --test-approve narrator_block_3\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T08:42:21.923Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"voice approval\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:42:25.687Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"whisper\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"asr-orchestrator\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T08:42:59.818Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"voice-safe-narration-approval-gate check --test-approve narrator_block_3\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"voice-safe-narration-approval-gate\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T09:05:16.389Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-ready-narration-export-queue-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-ready-narration-export-queue-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T09:06:08.470Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"tts-ready-narration-export-queue\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"tts-ready-narration-export-queue\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T09:06:47.083Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"tts export\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"tts-ready-narration-export-queue\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T19:19:54.091Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:20:18.648Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:20:54.136Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:21:15.380Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:21:36.237Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:21:57.719Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"project-registry-health-monitor status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"project-registry-health-monitor\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:22:38.184Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-monitoring status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-monitoring\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:23:18.288Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-deletion-readiness status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-deletion-readiness\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:23:57.055Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-check status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-check\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:24:18.458Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:24:47.332Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-check-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-check-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:26:10.185Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-check status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-check\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:26:55.102Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"maintenance\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"maintenance-check\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T19:43:59.032Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:44:17.898Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:44:36.499Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:44:56.862Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:45:17.596Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:45:38.040Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"project-registry-health-monitor status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"project-registry-health-monitor\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:46:25.540Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-monitoring status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-monitoring\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:47:11.620Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-deletion-readiness status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-deletion-readiness\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:47:52.085Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-check status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-check\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:48:31.118Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-observation status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-observation\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:48:52.430Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:49:26.193Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-observation-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-observation-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:52:29.399Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"audit\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"audit\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:52:56.661Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"brief\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"brief\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:53:06.145Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"observation\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"maintenance-observation\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T19:53:33.658Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"next\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"next\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:53:36.476Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-observation snapshot\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-observation\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:54:01.418Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry snapshot\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:54:25.734Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"mesh-telemetry report\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"mesh-telemetry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:54:50.110Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"project-registry-health-monitor status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"project-registry-health-monitor\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:55:38.261Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-monitoring status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-monitoring\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:56:28.778Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"quarantine-deletion-readiness status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"quarantine-deletion-readiness\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:57:16.069Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-check status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-check\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:58:04.543Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"maintenance-observation status\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"maintenance-observation\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T19:58:37.030Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"dashboard-export\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"dashboard-export\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:07:05.903Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"knowledge-source-registry-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"knowledge-source-registry-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:07:18.750Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"source registry\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"knowledge-source-registry\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T22:07:38.076Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"knowledge-source-registry add-source julian\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"knowledge-source-registry\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:34:45.733Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"url staging\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"creator-url-staging\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T22:34:49.783Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"creator-url-staging-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"creator-url-staging-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:35:33.711Z",
+    "type": "execution_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"creator-url-staging stage julian https://www.youtube.com/watch?v=TEST_VIDEO_ID\" rejected. Reason: Failed",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"creator-url-staging\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T22:39:26.433Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"creator-url-staging stage julian https://www.youtube.com/watch?v=TEST_VIDEO_ID\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"creator-url-staging\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:45:05.381Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"url staging\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-06-01",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"creator-url-staging\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-06-01T22:46:12.002Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"creator-url-staging-help\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"creator-url-staging-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-06-01T22:47:15.885Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"creator-url-staging stage julian https://www.youtube.com/watch?v=TEST_VIDEO_ID\"",
+    "source": "command_log_2026-06-01",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"creator-url-staging\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-07-10T17:25:49.506Z",
+    "type": "fuzzy_command_blocked",
+    "sessionId": "None",
+    "description": "Safety Blocked: Command \"supernova-help-menu\" rejected. Reason: Blocked: Alias Used for Exact Name",
+    "source": "command_log_2026-07-10",
+    "status": "BLOCKED",
+    "details": "Matched Command: \"supernova-help\" | Exit Code: 1"
+  },
+  {
+    "timestamp": "2026-07-10T17:25:51.106Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"supernova-help\"",
+    "source": "command_log_2026-07-10",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"supernova-help\" | Exit Code: 0"
+  },
+  {
+    "timestamp": "2026-07-10T17:27:37.849Z",
+    "type": "command_executed",
+    "sessionId": "None",
+    "description": "Command execution completed: \"supernova-strategy-engine\"",
+    "source": "command_log_2026-07-10",
+    "status": "SUCCESS",
+    "details": "Matched Command: \"supernova-strategy-engine\" | Exit Code: 0"
   }
 ]

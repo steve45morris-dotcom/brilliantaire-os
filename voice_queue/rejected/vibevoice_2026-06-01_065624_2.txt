@@ -1,0 +1,4 @@
+Original Phrase: delete everything now
+Normalized: delete everything now
+Status: Rejected
+Reason: Unknown voice phrase

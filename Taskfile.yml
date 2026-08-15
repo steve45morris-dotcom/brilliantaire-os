@@ -1321,6 +1321,41 @@ tasks:
     cmds:
       - npm run executive-intelligence-consolidator
 
+  architecture-certifier:
+    desc: "Run the Architecture Certification Pipeline validation gates"
+    cmds:
+      - npm run architecture-certifier
+
+  digital-twin-simulator:
+    desc: "Perform a read-only simulation audit on current changes"
+    cmds:
+      - npm run digital-twin-simulator
+
+  digital-twin-help:
+    desc: "Print help documentation for the Digital Twin simulation engine"
+    cmds:
+      - npm run digital-twin-help
+
+  operational-excellence-runner:
+    desc: "Run the Operational Excellence Diagnostic cycle"
+    cmds:
+      - npm run operational-excellence-runner
+
+  operational-excellence-help:
+    desc: "Print help documentation for the Operational Excellence validation runner"
+    cmds:
+      - npm run operational-excellence-help
+
+  supernova-strategy-engine:
+    desc: "Run the Supernova strategic priority audit and rank initiatives"
+    cmds:
+      - npm run supernova-strategy-engine
+
+  supernova-help:
+    desc: "Print help documentation for the Supernova strategic intelligence CLI"
+    cmds:
+      - npm run supernova-help
+
   validate:
     desc: "Lint and run workspace checks"
     cmds:

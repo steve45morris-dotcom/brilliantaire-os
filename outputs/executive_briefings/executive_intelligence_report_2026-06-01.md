@@ -9,15 +9,15 @@
 
 ## 📊 Observability Telemetry
 - **CPU Usage:** 8%
-- **Memory Allocation:** 100%
+- **Memory Allocation:** 99%
 - **Total Command Routings:** 0 executions
 - **Voice Commands Captured:** 0 packages
 - **Vocal Dispatch Latency:** 45ms
 
 ## 🧭 Dependency Intelligence
-- **Total Scanned Scripts:** 196 ts modules
+- **Total Scanned Scripts:** 203 ts modules
 - **Circular Loops:** 5 cycles found
-- **Orphaned Scripts:** 187 modules
+- **Orphaned Scripts:** 194 modules
 
 ## ⚙️ Kernel & Services Status
 - **Brilliantaire Execution Kernel:** PASS

@@ -1,0 +1,12 @@
+{
+  "latestBriefingId": "briefing_2026-05-31",
+  "generatedTtsRequestCount": 1,
+  "submittedRequestCount": 0,
+  "approvedRequestCount": 1,
+  "renderedAudioCount": 1,
+  "blockedRequestCount": 1,
+  "latestRenderedAudioPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/rendered_audio/narrator_audio_briefing_2026-05-31.mp3",
+  "cloudTtsStatus": "disabled",
+  "autoPlaybackStatus": "disabled",
+  "manualApprovalRequired": true
+}

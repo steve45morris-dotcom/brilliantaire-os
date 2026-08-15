@@ -5,6 +5,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "coldspark:observe": "tsx scripts/coldspark/observe.ts",
+    "coldspark:scout": "tsx scripts/coldspark/scout.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts --ignore-pattern 'local_assets/'",
@@ -239,6 +241,13 @@
     "production-readiness-evaluator": "tsx scripts/production-readiness-evaluator.ts",
     "dependency-intelligence-analyzer": "tsx scripts/dependency-intelligence-analyzer.ts",
     "executive-intelligence-consolidator": "tsx scripts/executive-intelligence-consolidator.ts",
+    "architecture-certifier": "tsx scripts/architecture-certifier.ts",
+    "digital-twin-simulator": "tsx scripts/digital-twin-simulator.ts",
+    "digital-twin-help": "tsx scripts/digital-twin-help.ts",
+    "operational-excellence-runner": "tsx scripts/operational-excellence-runner.ts",
+    "operational-excellence-help": "tsx scripts/operational-excellence-help.ts",
+    "supernova-strategy-engine": "tsx scripts/supernova-strategy-engine.ts",
+    "supernova-help": "tsx scripts/supernova-help.ts",
     "voice-ops-freeze-snapshot": "tsx scripts/voice-ops-freeze-snapshot.ts",
     "voice-ops-freeze-snapshot-help": "tsx scripts/voice-ops-freeze-snapshot-help.ts",
     "voice-ops-post-freeze-health": "tsx scripts/voice-ops-post-freeze-health.ts",
@@ -258,7 +267,10 @@
     "knowledge-source-registry": "tsx scripts/knowledge-source-registry.ts",
     "knowledge-source-registry-help": "tsx scripts/knowledge-source-registry-help.ts",
     "creator-url-staging": "tsx scripts/creator-url-staging.ts",
-    "creator-url-staging-help": "tsx scripts/creator-url-staging-help.ts"
+    "creator-url-staging-help": "tsx scripts/creator-url-staging-help.ts",
+    "provider:health": "tsx scripts/provider-health.ts",
+    "provider:verify-credentials": "tsx scripts/provider-verify-credentials.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "antigravity",
@@ -272,5 +284,8 @@
     "tsx": "^4.22.3",
     "typescript": "^5.3.3",
     "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
   }
 }
