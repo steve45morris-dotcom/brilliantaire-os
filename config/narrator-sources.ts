@@ -15,7 +15,9 @@ export const APPROVED_SOURCES = [
   "outputs/knowledge_harvest/workflow_ideas/",
   "outputs/notebooklm_bridge/workflow_ideas/",
   "outputs/higgsfield_ai/logs/",
-  "outputs/higgsfield_ai/narrator_sync/"
+  "outputs/higgsfield_ai/narrator_sync/",
+  "outputs/local_inference/logs/",
+  "outputs/local_inference/prompt_staging/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

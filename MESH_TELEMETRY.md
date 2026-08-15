@@ -54,6 +54,7 @@ The engine dynamically compiles statistics by scanning files within:
 5. `outputs/write_logs/` — Auditing approved Obsidian write gates.
 6. `outputs/campaigns/simulations/` & `outputs/campaigns/validation_reports/` — Extracting campaign readiness scores.
 7. `outputs/higgsfield_ai/logs/` & `outputs/higgsfield_ai/render_requests/` — Tracking AI video render request staging and approval status.
+8. `outputs/local_inference/logs/` & `outputs/local_inference/chat_requests/` — Tracking local inference server chat request staging and prompt management.
 
 ---
 

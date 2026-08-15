@@ -13,6 +13,8 @@ export const ALLOW_NOTEBOOKLM_EXECUTION = false;
 export const ALLOW_OBSIDIAN_DIRECT_WRITE = false;
 export const ALLOW_HIGGSFIELD_API_EXECUTION = false;
 export const ALLOW_AUTONOMOUS_RENDER = false;
+export const ALLOW_LOCAL_INFERENCE_EXECUTION = false;
+export const ALLOW_AUTONOMOUS_INFERENCE = false;
 export const REQUIRE_STAGING_FOR_KNOWLEDGE = true;
 
 export const RISK_LEVELS = {

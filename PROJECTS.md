@@ -13,6 +13,7 @@
 | **Prompt Vault** | Central repository for verified LLM system prompts | Active | Medium | Update React 19 app-router patterns | Obsidian | Versioned developer prompt catalog |
 | **Visual Identity System** | Cyberpunk styling and premium frontend design patterns | Active | High | Catalog theme color tokens (HSL) | CSS, Vite | Core design tokens repository |
 | **Open Higgsfield AI** | AI video generation adapter for ICYFLAMZE CORE tool stacks | Active | High | Stage first render request and validate narrator sync pipeline | tsx, markdown | Phase 15A Higgsfield AI Bridge integrated \| Manual-first bridge mode \| ICYFLAMZE CORE pipeline connected \| Narrator sync adapter configured \| 7 render types supported \| 7 visual styles approved |
+| **Local Inference Server** | OpenAI-compatible local LLM inference endpoint for Claude Code | Active | High | Verify server health and stage first chat request via bridge | tsx, markdown | Phase 15B Local Inference Bridge integrated \| Manual-first bridge mode \| Zero-credential localhost:20128 \| MCP config guide generated \| 6 approved use cases \| Claude Code integration target |
 
 ## Obsidian Intelligence Snapshot
 

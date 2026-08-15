@@ -57,7 +57,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 ---
 
 ## 5. Prompt Engineer
-- **Purpose:** Create reusable prompts for Claude, Gemini, Antigravity, ChatGPT, Sora, Veo, Higgsfield AI, and other tools.
+- **Purpose:** Create reusable prompts for Claude, Gemini, Antigravity, ChatGPT, Sora, Veo, Higgsfield AI, Local Inference Server, and other tools.
 - **Core Responsibilities:** Standardize model prompts, document instructions, and structure tool prompts.
 - **Inputs:** Model descriptions, tool API signatures, prompt designs.
 - **Outputs:** Reusable prompt files, markdown prompt templates, system instructions.

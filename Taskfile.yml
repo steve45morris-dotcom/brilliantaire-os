@@ -1934,4 +1934,14 @@ tasks:
     cmds:
       - npm run higgsfield-ai-help
 
+  local-inference:
+    desc: "Run Local Inference Server Bridge CLI commands"
+    cmds:
+      - npm run local-inference -- {{.CLI_ARGS}}
+
+  local-inference-help:
+    desc: "Print help menu for Local Inference Server Bridge CLI"
+    cmds:
+      - npm run local-inference-help
+
 

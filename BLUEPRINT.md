@@ -59,6 +59,7 @@ graph TD
   * **GitHub CLI (`gh`)** for automated remote repository syncing.
   * **Postgres** (connected to the primary `supernova` schema).
   * **Higgsfield AI Bridge** for AI video generation in the ICYFLAMZE CORE pipeline.
+  * **Local Inference Server Bridge** for OpenAI-compatible local model inference via Claude Code.
 
 ---
 

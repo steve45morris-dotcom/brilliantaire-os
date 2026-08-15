@@ -134,5 +134,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show inference status',
+    normalizedCommand: 'show inference status',
+    routerCommand: 'local-inference status',
+    owningAgent: 'Prompt Engineer',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show inference help',
+    normalizedCommand: 'show inference help',
+    routerCommand: 'local-inference-help',
+    owningAgent: 'Prompt Engineer',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

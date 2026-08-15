@@ -46,6 +46,20 @@
 
 ---
 
+## 🖥️ Module 15B: Local Inference Server Bridge — Claude Code Integration
+**Goal:** Install a local OpenAI-compatible inference server (localhost:20128) into Claude Code as a manual-first bridge with MCP configuration support.
+
+- [x] **Task 15B.1:** Config layer with safety flags, server endpoint, model settings, and output paths. ✅ COMPLETE
+- [x] **Task 15B.2:** CLI script with 6 commands (status, health-check, chat, stage-prompt, mcp-config, obsidian-export). ✅ COMPLETE
+- [x] **Task 15B.3:** Template system (chat request staging, MCP configuration guide). ✅ COMPLETE
+- [x] **Task 15B.4:** Tool bridge API and report generator. ✅ COMPLETE
+- [x] **Task 15B.5:** Command registry, Taskfile, package.json wiring. ✅ COMPLETE
+- [x] **Task 15B.6:** MCP server example configuration (.mcp.local-inference.example.json). ✅ COMPLETE
+- [x] **Task 15B.7:** Full documentation with architecture diagram (LOCAL_INFERENCE.md). ✅ COMPLETE
+- [x] **Task 15B.8:** Global system update (AGENTS, BLUEPRINT, COMMANDS, NARRATOR, SENTINEL, TELEMETRY, VOICE, DASHBOARD). ✅ COMPLETE
+
+---
+
 ## 🧬 Handoff Spec: Phase 14 → Phase 15
 - Annual Recurring Revenue (ARR): $1,500,000 (Venture Backed)
 - Mesh Footprint: 26 Core Nodes + Global Partners

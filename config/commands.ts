@@ -3732,6 +3732,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'local-inference-help',
+    aliases: ['inference help', 'local llm help'],
+    description: 'Print help menu for the Local Inference Server Bridge CLI',
+    npmScript: 'local-inference-help',
+    owningAgent: 'Prompt Engineer',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'local-inference',
+    aliases: ['inference', 'local llm'],
+    description: 'Execute Local Inference Server Bridge commands (chat staging, health check, MCP config)',
+    npmScript: 'local-inference',
+    owningAgent: 'Prompt Engineer',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

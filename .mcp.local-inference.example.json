@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "local-inference": {
+      "command": "node",
+      "args": [
+        "dist/scripts/local-inference.js"
+      ],
+      "env": {
+        "LOCAL_INFERENCE_ENABLED": "${LOCAL_INFERENCE_ENABLED}",
+        "LOCAL_INFERENCE_URL": "${LOCAL_INFERENCE_URL}",
+        "LOCAL_INFERENCE_MODEL": "${LOCAL_INFERENCE_MODEL}"
+      }
+    }
+  }
+}

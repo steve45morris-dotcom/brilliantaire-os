@@ -367,7 +367,9 @@
     "archive-skill": "tsx scripts/archive-skill.ts",
     "inspect-router-decision": "tsx scripts/inspect-router-decision.ts",
     "higgsfield-ai": "tsx scripts/higgsfield-ai.ts",
-    "higgsfield-ai-help": "tsx scripts/higgsfield-ai-help.ts"
+    "higgsfield-ai-help": "tsx scripts/higgsfield-ai-help.ts",
+    "local-inference": "tsx scripts/local-inference.ts",
+    "local-inference-help": "tsx scripts/local-inference-help.ts"
   },
   "keywords": [
     "antigravity",
