@@ -1,0 +1,67 @@
+{
+  "projects": [
+    {
+      "id": "brilliantaire-os",
+      "name": "Brilliantaire OS",
+      "lane": "Labs",
+      "status": "building",
+      "priority": "high",
+      "next_action": "Build dashboard and local data layer",
+      "output": "Private dashboard, Obsidian brain, public landing page"
+    },
+    {
+      "id": "creator-rollout-system",
+      "name": "Creator systems",
+      "lane": "Strategy",
+      "status": "draft",
+      "priority": "high",
+      "next_action": "Package first offer",
+      "output": "Service package and template"
+    },
+    {
+      "id": "chain-sequence",
+      "name": "Music signal",
+      "lane": "Tree Groove Records",
+      "status": "draft",
+      "priority": "medium",
+      "next_action": "Map first campaign",
+      "output": "Freestyle series and campaign"
+    },
+    {
+      "id": "build-in-public",
+      "name": "Visual identity",
+      "lane": "Media",
+      "status": "draft",
+      "priority": "medium",
+      "next_action": "Define repeatable content formats",
+      "output": "Content series"
+    },
+    {
+      "id": "core-concept",
+      "name": "Brand doctrine",
+      "lane": "Core",
+      "status": "building",
+      "priority": "medium",
+      "next_action": "Tighten positioning and public bio",
+      "output": "Synchronized from Obsidian Center"
+    },
+    {
+      "id": "academy-concept",
+      "name": "Education engine",
+      "lane": "Academy",
+      "status": "concept",
+      "priority": "medium",
+      "next_action": "Turn lessons into content series",
+      "output": "Synchronized from Obsidian Center"
+    },
+    {
+      "id": "ventures-concept",
+      "name": "Monetization",
+      "lane": "Ventures",
+      "status": "draft",
+      "priority": "medium",
+      "next_action": "Pick first revenue experiment",
+      "output": "Synchronized from Obsidian Center"
+    }
+  ]
+}

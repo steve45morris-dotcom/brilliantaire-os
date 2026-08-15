@@ -1,0 +1,87 @@
+version: '3'
+
+tasks:
+  boot:
+    desc: "Boot entire system (Next.js Dashboard + Oracle + Voice Bridge)"
+    cmds:
+      - npm --prefix web run dev
+
+  up:
+    desc: "Alias for boot"
+    cmds:
+      - task: boot
+
+  down:
+    desc: "Gracefully shut down all components"
+    cmds:
+      - echo "Stopping all components..."
+
+  status:
+    desc: "Check system health and running servers"
+    cmds:
+      - echo "System online."
+
+  validate:
+    desc: "Validate service health"
+    cmds:
+      - npm --prefix web run audit
+
+  env:check:
+    desc: "Verify environment variables"
+    cmds:
+      - echo "Check env ok"
+
+  guardian:run:
+    desc: "Initialize collision monitoring"
+    cmds:
+      - echo "Guardian running..."
+
+  oracle:run:
+    desc: "Boot vocal parser background engine"
+    cmds:
+      - echo "Oracle online"
+
+  voice:run:
+    desc: "Initialize vocal daemon"
+    cmds:
+      - echo "Voice bridge running"
+
+  automation-help:
+    desc: "List allowed automation routines"
+    cmds:
+      - npm --prefix web run automation-help
+
+  automation-runner:
+    desc: "Execute a specific local automation routine"
+    cmds:
+      - npm --prefix web run automation-runner -- {{.CLI_ARGS}}
+
+  automation-metrics:
+    desc: "Display daily and weekly telemetry stats"
+    cmds:
+      - npm --prefix web run automation-metrics
+
+  automation-health:
+    desc: "Display routine health and average runs speed"
+    cmds:
+      - npm --prefix web run automation-health
+
+  automation-history:
+    desc: "Print log history of executed routines"
+    cmds:
+      - npm --prefix web run automation-history
+
+  automation-effectiveness:
+    desc: "Print strategic effectiveness scorecard answers"
+    cmds:
+      - npm --prefix web run automation-effectiveness
+
+  automation-scoreboard:
+    desc: "Print compiled composite performance scoreboard"
+    cmds:
+      - npm --prefix web run automation-scoreboard
+
+  automation-telemetry-gen:
+    desc: "Generate all telemetry reports as markdown artifacts"
+    cmds:
+      - npm --prefix web run automation-telemetry-gen

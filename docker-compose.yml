@@ -1,0 +1,8 @@
+services:
+  brilliantaire-os:
+    build: .
+    ports:
+      - "8791:8791"
+    volumes:
+      - .:/app
+    restart: unless-stopped

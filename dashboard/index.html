@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brilliantaire OS Dashboard</title>
+    <meta name="description" content="Private operating dashboard for ICYFLAMZE The Brilliantaire.">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="mark" href="#command">
+        <strong>Brilliantaire OS</strong>
+        <span>Private Command</span>
+      </a>
+      <nav aria-label="Dashboard">
+        <a href="#command">Command</a>
+        <a href="#modules">Modules</a>
+        <a href="#projects">Projects</a>
+        <a href="#weekly">Weekly</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="command" class="hero">
+        <div class="system-noise" aria-hidden="true"></div>
+        <p class="eyebrow">Core operating screen</p>
+        <h1>ICYFLAMZE The Brilliantaire</h1>
+        <p class="lead">
+          Systems first. Music as signal. Technology as expansion. Culture as impact.
+        </p>
+        <div class="status-rail" aria-label="System status">
+          <span>Brain online</span>
+          <span>Labs building</span>
+          <span>Strategy drafting</span>
+          <span>Media warming</span>
+        </div>
+        <div class="command-grid">
+          <article>
+            <span>Mission</span>
+            <p>Turn raw ideas into identity, influence, income, and impact.</p>
+          </article>
+          <article>
+            <span>Pipeline</span>
+            <p>Observe -> Capture -> Structure -> Prototype -> Package -> Publish -> Measure -> Scale.</p>
+          </article>
+          <article>
+            <span>Rule</span>
+            <p>If an idea matters, route it into the OS and give it a next action.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="modules" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Operating lanes</p>
+          <h2>Modules</h2>
+        </div>
+        <div class="module-grid" id="moduleGrid"></div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Execution queue</p>
+          <h2>Projects</h2>
+        </div>
+        <div class="project-list" id="projectList"></div>
+      </section>
+
+      <section id="weekly" class="section weekly">
+        <div class="section-head">
+          <p class="eyebrow">This week</p>
+          <h2>Outcomes</h2>
+        </div>
+        <div class="weekly-grid">
+          <div>
+            <h3>Three Outcomes</h3>
+            <ol id="outcomeList"></ol>
+          </div>
+          <div>
+            <h3>Metrics</h3>
+            <dl id="metricList"></dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section matrix">
+        <div class="section-head">
+          <p class="eyebrow">Execution architecture</p>
+          <h2>Idea To Impact Matrix</h2>
+        </div>
+        <div class="matrix-grid">
+          <span>Observe</span>
+          <span>Capture</span>
+          <span>Route</span>
+          <span>Build</span>
+          <span>Publish</span>
+          <span>Measure</span>
+          <span>Package</span>
+          <span>Scale</span>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

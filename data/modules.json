@@ -1,0 +1,51 @@
+{
+  "brand": {
+    "name": "ICYFLAMZE The Brilliantaire",
+    "category": "Creative technology, multimedia strategy, and cultural systems",
+    "thesis": "Brilliance is the capital. Systems are the engine. Culture is the output. Impact is the goal."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "name": "Brilliantaire Core",
+      "purpose": "Identity, philosophy, principles, taste, standards, and long-term direction.",
+      "outputs": ["brand doctrine", "bio", "positioning", "voice", "personal principles"]
+    },
+    {
+      "id": "labs",
+      "name": "Brilliantaire Labs",
+      "purpose": "AI, software, automation, product experiments, prototypes, and creative tools.",
+      "outputs": ["apps", "dashboards", "workflows", "automation scripts", "product demos"]
+    },
+    {
+      "id": "media",
+      "name": "Brilliantaire Media",
+      "purpose": "Visual storytelling, short-form series, documentaries, campaigns, and cinematic identity.",
+      "outputs": ["videos", "campaign assets", "documentaries", "visual systems", "interviews"]
+    },
+    {
+      "id": "strategy",
+      "name": "Brilliantaire Strategy",
+      "purpose": "Brand systems, rollout planning, artist development, content engines, and consulting.",
+      "outputs": ["brand systems", "rollout maps", "creator audits", "strategy decks", "offers"]
+    },
+    {
+      "id": "music",
+      "name": "Tree Groove Records",
+      "purpose": "Music releases, artist development, performances, sound, and release campaigns.",
+      "outputs": ["songs", "freestyles", "rollouts", "performance clips", "artist campaigns"]
+    },
+    {
+      "id": "academy",
+      "name": "Brilliantaire Academy",
+      "purpose": "Education for artists, builders, creators, and young creative technologists.",
+      "outputs": ["lessons", "templates", "guides", "workshops", "content series"]
+    },
+    {
+      "id": "ventures",
+      "name": "Brilliantaire Ventures",
+      "purpose": "Products, platforms, partnerships, monetization, and business expansion.",
+      "outputs": ["offers", "digital products", "partnerships", "platform concepts", "revenue experiments"]
+    }
+  ]
+}
