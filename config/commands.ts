@@ -133,6 +133,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'render-intake-help',
+    aliases: ['render intake manual help', 'manual render help'],
+    description: 'Print available commands for the Episode 1 Manual Render Intake system',
+    npmScript: 'render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'render-intake',
+    aliases: ['manual render intake', 'render scan'],
+    description: 'Execute Episode 1 Manual Render Intake scan, validate, and readiness subcommands',
+    npmScript: 'render-intake',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'brief',
     aliases: ['report', 'summary'],
     description: 'Compile and print a clean operational summary brief',
@@ -3750,28 +3772,6 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     description: 'Execute Local Inference Server Bridge commands (chat staging, health check, MCP config)',
     npmScript: 'local-inference',
     owningAgent: 'Prompt Engineer',
-    riskLevel: 'medium',
-    outputType: 'files',
-    enabled: true,
-    requiresExactName: true
-  },
-  {
-    name: 'grinders-keep-verification-rerun-planner-help',
-    aliases: ['verification rerun help', 'rerun planner help'],
-    description: 'Print help menu for the Grinders Keep Local Verification Rerun Planner CLI',
-    npmScript: 'grinders-keep-verification-rerun-planner-help',
-    owningAgent: 'Workflow Auditor',
-    riskLevel: 'low',
-    outputType: 'console',
-    enabled: true,
-    requiresExactName: false
-  },
-  {
-    name: 'grinders-keep-verification-rerun-planner',
-    aliases: ['verification rerun', 'rerun planner'],
-    description: 'Execute Grinders Keep Local Verification Rerun Planner commands (compile plans, command sheets, scheduling)',
-    npmScript: 'grinders-keep-verification-rerun-planner',
-    owningAgent: 'Workflow Auditor',
     riskLevel: 'medium',
     outputType: 'files',
     enabled: true,
