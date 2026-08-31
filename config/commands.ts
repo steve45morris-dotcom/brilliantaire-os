@@ -3754,6 +3754,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'grinders-keep-verification-rerun-planner-help',
+    aliases: ['verification rerun help', 'rerun planner help'],
+    description: 'Print help menu for the Grinders Keep Local Verification Rerun Planner CLI',
+    npmScript: 'grinders-keep-verification-rerun-planner-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'grinders-keep-verification-rerun-planner',
+    aliases: ['verification rerun', 'rerun planner'],
+    description: 'Execute Grinders Keep Local Verification Rerun Planner commands (compile plans, command sheets, scheduling)',
+    npmScript: 'grinders-keep-verification-rerun-planner',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

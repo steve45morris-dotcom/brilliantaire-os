@@ -371,7 +371,9 @@
     "higgsfield-ai": "tsx scripts/higgsfield-ai.ts",
     "higgsfield-ai-help": "tsx scripts/higgsfield-ai-help.ts",
     "local-inference": "tsx scripts/local-inference.ts",
-    "local-inference-help": "tsx scripts/local-inference-help.ts"
+    "local-inference-help": "tsx scripts/local-inference-help.ts",
+    "grinders-keep-verification-rerun-planner": "tsx scripts/grinders-keep-verification-rerun-planner.ts",
+    "grinders-keep-verification-rerun-planner-help": "tsx scripts/grinders-keep-verification-rerun-planner-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -1944,4 +1944,14 @@ tasks:
     cmds:
       - npm run local-inference-help
 
+  grinders-keep-verification-rerun-planner:
+    desc: "Run Grinders Keep Local Verification Rerun Planner CLI commands"
+    cmds:
+      - npm run grinders-keep-verification-rerun-planner -- {{.CLI_ARGS}}
+
+  grinders-keep-verification-rerun-planner-help:
+    desc: "Print help menu for Grinders Keep Local Verification Rerun Planner CLI"
+    cmds:
+      - npm run grinders-keep-verification-rerun-planner-help
+
 
