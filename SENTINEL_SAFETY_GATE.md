@@ -8,7 +8,7 @@ To maintain architectural separation, secure execution boundaries, and absolute 
 ## 🔒 Safety Assertions
 1. **Public Tunnel Lockdown:** All public tunneling processes default to disabled. Manual user confirmation via UI or CLI is mandatory for session start. No automated script can initiate a session bypass.
 2. **Voice Control Air-gap:** Voice commands are restricted to L0 and L1 levels of risk (read-only diagnostic requests or local reports). Voice dispatcher cannot start tunnels, execute high-risk operations, or modify credentials.
-3. **Knowledge Ingestion Quarantine:** Direct database writes, YouTube scrapers, Obsidian vault modifications, and NotebookLM sidecar API executions are locked. Intake resources must be staged in dedicated folders with human review gates.
+3. **Knowledge Ingestion Quarantine:** Direct database writes, YouTube scrapers, Obsidian vault modifications, NotebookLM sidecar API executions, Higgsfield AI API calls, and Local Inference autonomous calls are locked. Intake resources must be staged in dedicated folders with human review gates.
 4. **Collision Protection (CIP):** Any namespace or path collision between local agent skills and global configuration assets triggers a validation failure, halting bootstrap routines until resolved.
 
 ---

@@ -16,7 +16,7 @@ To maintain absolute local system safety and offline sandboxing constraints, the
 
 1. **NO AUTOMATED IMAGES:** No calls are made to Midjourney, ChatGPT Image, DALL-E, or other visual APIs. All prompts must be copied and run manually.
 2. **NO AUTOMATED AUDIO:** No automated TTS models (ElevenLabs, Piper) are executed by scripts. All narration and SFX are manually tracked.
-3. **NO AUTOMATED VIDEO:** No Sora, Veo, Runway, Kling, or Pika renders are executed automatically.
+3. **NO AUTOMATED VIDEO:** No Sora, Veo, Runway, Kling, Pika, or Higgsfield AI renders are executed automatically.
 4. **NO DIRECT VAULT WRITES:** Direct writes to Obsidian vaults are strictly disabled (`ALLOW_OBSIDIAN_DIRECT_WRITE = false`). Notes are staged in `outputs/write_staging/`.
 5. **NO PUBLISHING:** No automated publishing to social platforms, YouTube, or Tree Groove Records distribution occurs.
 6. **NO DELETIONS:** No local output files are deleted or overwritten without appropriate timestamp tracking.

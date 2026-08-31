@@ -397,6 +397,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `pipeline-approval-router` | `approval router`, `pipeline approval` | Workflow Auditor | Medium | Yes | Execute Pipeline Proposal Approval Router CLI commands. |
 | `manual-implementation-packet-help` | `implementation packet help`, `manual packet help` | Workflow Auditor | Low | No | Print help menu for Manual Implementation Packet Compiler CLI. |
 | `manual-implementation-packet` | `implementation packet`, `manual packet` | Workflow Auditor | Medium | Yes | Execute Manual Implementation Packet Compiler CLI commands. |
+| `higgsfield-ai-help` | `higgs help`, `higgsfield help`, `video ai help` | Creative Architect | Low | No | Print help menu for the Higgsfield AI Bridge CLI. |
+| `higgsfield-ai` | `higgs`, `higgsfield`, `video ai` | Creative Architect | Medium | Yes | Execute Higgsfield AI Bridge render staging and scene management commands. |
+| `local-inference-help` | `inference help`, `local inference help` | Prompt Engineer | Low | No | Print help menu for the Local Inference Server Bridge CLI. |
+| `local-inference` | `inference`, `local inference` | Prompt Engineer | Medium | Yes | Execute Local Inference Server Bridge chat staging and prompt management commands. |
 
 
 

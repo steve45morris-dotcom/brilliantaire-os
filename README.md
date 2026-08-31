@@ -72,6 +72,10 @@ Manage and execute operations using the following `task` commands:
 | `task knowledge-harvest` | `npm run knowledge-harvest -- <CLI_ARGS>` | Run knowledge harvest task commands safely |
 | `task notebooklm-bridge-help` | `npm run notebooklm-bridge-help` | Print NotebookLM MCP Sidecar Bridge safety manuals |
 | `task notebooklm-bridge` | `npm run notebooklm-bridge -- <CLI_ARGS>` | Run NotebookLM MCP Sidecar Bridge tasks safely |
+| `task higgsfield-ai-help` | `npm run higgsfield-ai-help` | Print Higgsfield AI Bridge CLI help |
+| `task higgsfield-ai` | `npm run higgsfield-ai -- <CLI_ARGS>` | Run Higgsfield AI Bridge commands safely |
+| `task local-inference-help` | `npm run local-inference-help` | Print Local Inference Server Bridge CLI help |
+| `task local-inference` | `npm run local-inference -- <CLI_ARGS>` | Run Local Inference Server Bridge commands safely |
 
 ---
 
