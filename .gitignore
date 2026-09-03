@@ -67,6 +67,9 @@
 # --- Repository metadata that must stay visible ---
 !/.gitignore
 !/.env.example
+!/CLAUDE.md
+!/.claude/
+!/requirements.txt
 
 # ============================================================================
 # Rules below apply WITHIN the re-allowed directories above.
