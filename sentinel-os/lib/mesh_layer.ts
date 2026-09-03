@@ -9,6 +9,10 @@ const execFileAsync = promisify(execFile);
 const DB_PATH = "/Users/alexanderanthony/supernova.db";
 const SIM_LOG_PATH = path.join(os.homedir(), ".sentinel-os", "mesh_sim_logs.jsonl");
 
+function sqlParam(value: string): string {
+  return value.replace(/'/g, "''");
+}
+
 export interface MeshNode {
   id: string;
   clientId: string;
@@ -26,7 +30,6 @@ export interface MeshNode {
 
 export async function getMeshNodes(): Promise<MeshNode[]> {
   try {
-    // Dynamically fetch client mappings from DB
     const clientMap: Record<string, string> = {};
     try {
       const { stdout: clientStdout } = await execFileAsync("/usr/bin/sqlite3", [
@@ -86,7 +89,6 @@ export async function getMeshNodes(): Promise<MeshNode[]> {
       if (name === "NexTech_Global") return "US-East (Virginia)";
       if (name === "Quantum_Creative") return "EU-Central (Frankfurt)";
       if (name === "SecureBase_Inc") return "AP-Southeast (Singapore)";
-      // Generate a regional deployment mapping based on client name hashing
       const regions = ["US-West (Oregon)", "EU-West (Ireland)", "AP-Northeast (Tokyo)", "US-East (Ohio)"];
       const code = name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
       return regions[code % regions.length];
@@ -136,7 +138,6 @@ export async function getMeshNodes(): Promise<MeshNode[]> {
   }
 }
 
-// ZKP Handshake validation logic
 export async function verifyZKPIdentity(nodeId: string, proof: string): Promise<{
   verified: boolean;
   trustScore: number;
@@ -146,13 +147,11 @@ export async function verifyZKPIdentity(nodeId: string, proof: string): Promise<
     return { verified: false, trustScore: 0, error: "NodeID and ZKP cryptographic proof required" };
   }
 
-  // Verification rule: proof must be a valid mock hex hash
   const isValidHex = /^[0-9a-fA-F]{32,64}$/.test(proof);
   if (!isValidHex) {
     return { verified: false, trustScore: 0, error: "Invalid ZKP proof format" };
   }
 
-  // Simulate proof verification calculations
   const seed = nodeId.split("").reduce((acc: number, val: string) => acc + val.charCodeAt(0), 0);
   const trustScore = 98 + (seed % 3);
 
@@ -162,7 +161,6 @@ export async function verifyZKPIdentity(nodeId: string, proof: string): Promise<
   };
 }
 
-// Digital Twin Failover Simulation
 export interface MeshSimulationResult {
   timestamp: string;
   scenario: string;
@@ -174,9 +172,8 @@ export interface MeshSimulationResult {
 }
 
 export async function runDigitalTwinSimulation(): Promise<MeshSimulationResult> {
-  // Simulate active P2P cluster state transition (Baseline -> Node Failure -> Failover routing)
   const baselineDiscoveryMs = 120 + Math.floor(Math.random() * 30);
-  const failoverConvergenceMs = 540 + Math.floor(Math.random() * 110); // Target < 750ms heartbeat threshold, < 2.0s EH limit
+  const failoverConvergenceMs = 540 + Math.floor(Math.random() * 110);
   const routingTableSize = 9;
   const tenantBleedBlocked = true;
 
@@ -190,7 +187,6 @@ export async function runDigitalTwinSimulation(): Promise<MeshSimulationResult> 
     status: (failoverConvergenceMs < 2000 && tenantBleedBlocked) ? "PASS" : "FAIL"
   };
 
-  // Append simulation run to JSONL for audit checks
   await fs.mkdir(path.dirname(SIM_LOG_PATH), { recursive: true });
   await fs.appendFile(SIM_LOG_PATH, `${JSON.stringify(result)}\n`, "utf8");
 
@@ -228,13 +224,11 @@ export async function provisionNewHub(clientName: string, tier = "ACTIVE"): Prom
   ];
 
   try {
-    // Insert into enterprise_clients using mrr_usd column
-    const sqlClient = `INSERT INTO enterprise_clients (id, name, status, mrr_usd, created_at) VALUES ('${clientId}', '${cleanName}', '${tier}', 2500.0, datetime('now'));`;
+    const sqlClient = `INSERT INTO enterprise_clients (id, name, status, mrr_usd, created_at) VALUES ('${sqlParam(clientId)}', '${sqlParam(cleanName)}', '${sqlParam(tier)}', 2500.0, datetime('now'));`;
     await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlClient]);
 
-    // Insert into fleet_nodes
     for (const node of nodes) {
-      const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${node.id}', '${clientId}', '${node.type}', 'ONLINE', datetime('now'), datetime('now'));`;
+      const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${sqlParam(node.id)}', '${sqlParam(clientId)}', '${sqlParam(node.type)}', 'ONLINE', datetime('now'), datetime('now'));`;
       await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlNode]);
     }
 
@@ -268,19 +262,18 @@ export interface ConsensusResult {
 export async function simulateRaftConsensus(proposalId: string, proposalData: string): Promise<ConsensusResult> {
   const nodes = await getMeshNodes();
   const votes: ConsensusVote[] = [];
-  
+
   let yesCount = 0;
   let noCount = 0;
   let timeoutCount = 0;
 
   for (const node of nodes) {
     let vote: "YES" | "NO" | "TIMEOUT" = "YES";
-    
+
     if (node.status !== "ONLINE") {
       vote = "TIMEOUT";
       timeoutCount++;
     } else {
-      // Simulate minor variance (10% chance of NO for validation balance)
       const isYes = (Math.random() * 100) > 10;
       if (isYes) {
         vote = "YES";
@@ -309,7 +302,7 @@ export async function simulateRaftConsensus(proposalId: string, proposalData: st
   }).replace(/'/g, "''");
 
   try {
-    const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('CONSENSUS_PROPOSAL', 'Consensus voting for proposal ${proposalId}', '${ledgerStatus}', '${ledgerDetail}', datetime('now'));`;
+    const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('CONSENSUS_PROPOSAL', 'Consensus voting for proposal ${sqlParam(proposalId)}', '${sqlParam(ledgerStatus)}', '${sqlParam(ledgerDetail)}', datetime('now'));`;
     await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
   } catch (dbErr) {
     console.error("Failed to write proposal to sovereign_ledger:", dbErr);
@@ -425,10 +418,14 @@ export async function getSalesLedger(): Promise<SalesLedgerEntry[]> {
 }
 
 export async function simulateStripeInvoicePayment(clientId: string): Promise<{ ok: boolean; error?: string }> {
+  if (!/^client-[0-9a-f]{8}$/.test(clientId)) {
+    return { ok: false, error: "Invalid client ID format" };
+  }
+
   try {
     const { stdout: clientNameStdout } = await execFileAsync("/usr/bin/sqlite3", [
       DB_PATH,
-      `SELECT name FROM enterprise_clients WHERE id = '${clientId}' LIMIT 1;`
+      `SELECT name FROM enterprise_clients WHERE id = '${sqlParam(clientId)}' LIMIT 1;`
     ]);
     const clientName = clientNameStdout.trim();
     if (!clientName) {
@@ -437,23 +434,23 @@ export async function simulateStripeInvoicePayment(clientId: string): Promise<{ 
 
     const { stdout: nodesCountStdout } = await execFileAsync("/usr/bin/sqlite3", [
       DB_PATH,
-      `SELECT COUNT(*) FROM fleet_nodes WHERE client_id = '${clientId}';`
+      `SELECT COUNT(*) FROM fleet_nodes WHERE client_id = '${sqlParam(clientId)}';`
     ]);
     const nodesCount = parseInt(nodesCountStdout.trim()) || 1;
     const computedMRR = nodesCount * 1250.0;
 
     const stripeId = `sub_${Math.random().toString(36).substring(2, 10)}${Math.random().toString(36).substring(2, 10)}`;
-    
+
     const { stdout: existing } = await execFileAsync("/usr/bin/sqlite3", [
       DB_PATH,
-      `SELECT id FROM sales_ledger WHERE target_name = '${clientName}' LIMIT 1;`
+      `SELECT id FROM sales_ledger WHERE target_name = '${sqlParam(clientName)}' LIMIT 1;`
     ]);
 
     if (existing.trim()) {
-      const sqlUpdate = `UPDATE sales_ledger SET subscription_status = 'active', status = 'PAID', stripe_id = '${stripeId}', last_contact = datetime('now'), notes = 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes' WHERE target_name = '${clientName}';`;
+      const sqlUpdate = `UPDATE sales_ledger SET subscription_status = 'active', status = 'PAID', stripe_id = '${sqlParam(stripeId)}', last_contact = datetime('now'), notes = 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes' WHERE target_name = '${sqlParam(clientName)}';`;
       await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlUpdate]);
     } else {
-      const sqlInsert = `INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status) VALUES ('${clientName}', 'Sentinel-OS Mesh', 'PAID', datetime('now'), 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes', '${stripeId}', 'active');`;
+      const sqlInsert = `INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status) VALUES ('${sqlParam(clientName)}', 'Sentinel-OS Mesh', 'PAID', datetime('now'), 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes', '${sqlParam(stripeId)}', 'active');`;
       await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlInsert]);
     }
 
@@ -476,12 +473,13 @@ export async function registerEdgeDevice(deviceId: string, deviceType: string, c
     return { ok: false, error: "Device ID is invalid." };
   }
 
-  // Lookup client ID from database
-  let clientId = "client-3c136c8c"; // NexTech default
+  const cleanType = deviceType.trim().replace(/[^a-zA-Z0-9_-]/g, "_");
+
+  let clientId = "client-3c136c8c";
   try {
     const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
       DB_PATH,
-      `SELECT id FROM enterprise_clients WHERE name = '${clientName}' LIMIT 1;`
+      `SELECT id FROM enterprise_clients WHERE name = '${sqlParam(clientName)}' LIMIT 1;`
     ]);
     if (stdout.trim()) {
       clientId = stdout.trim();
@@ -490,12 +488,12 @@ export async function registerEdgeDevice(deviceId: string, deviceType: string, c
     // Keep default
   }
 
-  const nodeId = `edge-${deviceType.toLowerCase()}-${Math.random().toString(16).slice(2, 8)}`;
+  const nodeId = `edge-${cleanType.toLowerCase()}-${Math.random().toString(16).slice(2, 8)}`;
 
   try {
-    const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${nodeId}', '${clientId}', 'EDGE-${deviceType.toUpperCase()}', 'ONLINE', datetime('now'), datetime('now'));`;
+    const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${sqlParam(nodeId)}', '${sqlParam(clientId)}', 'EDGE-${sqlParam(cleanType.toUpperCase())}', 'ONLINE', datetime('now'), datetime('now'));`;
     await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlNode]);
-    
+
     return {
       ok: true,
       deviceId: cleanId,
@@ -524,7 +522,6 @@ export async function getOracleBids(): Promise<OracleBidEntry[]> {
     const content = await fs.readFile(BIDS_PATH, "utf8");
     return JSON.parse(content);
   } catch {
-    // Default initial compute bids
     const defaults: OracleBidEntry[] = [
       { id: "bid-1", clientId: "client-3c136c8c", clientName: "NexTech_Global", bidPrice: 0.12, threadCount: 16, orderType: "BUY", timestamp: new Date().toISOString() },
       { id: "bid-2", clientId: "client-b2c0f84a", clientName: "Quantum_Creative", bidPrice: 0.15, threadCount: 32, orderType: "BUY", timestamp: new Date().toISOString() },
@@ -538,12 +535,11 @@ export async function getOracleBids(): Promise<OracleBidEntry[]> {
 export async function submitOracleBid(clientId: string, bidPrice: number, threadCount: number, orderType: "BUY" | "SELL"): Promise<OracleBidEntry> {
   const bids = await getOracleBids();
 
-  // Get client name
   let clientName = "Sovereign Provider";
   try {
     const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
       DB_PATH,
-      `SELECT name FROM enterprise_clients WHERE id = '${clientId}' LIMIT 1;`
+      `SELECT name FROM enterprise_clients WHERE id = '${sqlParam(clientId)}' LIMIT 1;`
     ]);
     if (stdout.trim()) {
       clientName = stdout.trim();
@@ -622,14 +618,14 @@ export async function getMicroProducts(): Promise<MicroProduct[]> {
 export async function deployMicroProduct(name: string, template: string): Promise<MicroProduct> {
   const cleanName = name.trim().replace(/[^a-zA-Z0-9_-]/g, "_");
   const deploymentUrl = `https://supernova-mesh-${cleanName.toLowerCase()}.vercel.app`;
-  
+
   const detail = JSON.stringify({
     name: cleanName,
     template,
     deploymentUrl
   }).replace(/'/g, "''");
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('MICRO_PRODUCT_DEPLOY', 'Deploy micro-agent product ${cleanName}', 'LIVE', '${detail}', datetime('now'));`;
+  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('MICRO_PRODUCT_DEPLOY', 'Deploy micro-agent product ${sqlParam(cleanName)}', 'LIVE', '${sqlParam(detail)}', datetime('now'));`;
   await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
 
   return {
@@ -654,7 +650,7 @@ export interface SettlementReceipt {
 
 export async function clearCrossChainSettlement(clientId: string, amount: number, sourceBridge: string, destBridge: string): Promise<SettlementReceipt> {
   const txHash = `0x${Math.random().toString(16).slice(2, 10)}${Math.random().toString(16).slice(2, 10)}${Math.random().toString(16).slice(2, 10)}`;
-  
+
   const detail = JSON.stringify({
     clientId,
     amount,
@@ -663,7 +659,7 @@ export async function clearCrossChainSettlement(clientId: string, amount: number
     txHash
   }).replace(/'/g, "''");
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('FINANCIAL_SETTLEMENT', 'Clear settlement bridge swap $${amount}', 'SUCCESS', '${detail}', datetime('now'));`;
+  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('FINANCIAL_SETTLEMENT', 'Clear settlement bridge swap $${amount}', 'SUCCESS', '${sqlParam(detail)}', datetime('now'));`;
   await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
 
   return {
@@ -686,7 +682,7 @@ export interface ZKAuditResult {
 
 export async function runZKAuditSweep(): Promise<ZKAuditResult> {
   const rows = await getSovereignLedgerHistory();
-  
+
   let currentHash = crypto.createHash("sha256").update("SOVEREIGN_ROOT_SEED").digest("hex");
   for (const row of rows) {
     const rowContent = `${row.id}-${row.category}-${row.status}-${row.timestamp}`;
@@ -698,7 +694,7 @@ export async function runZKAuditSweep(): Promise<ZKAuditResult> {
     rootHash: currentHash
   }).replace(/'/g, "''");
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('ZK_AUDIT_VERIFY', 'ZK-Proof audit verification sweep over ${rows.length} blocks', 'PASS', '${detail}', datetime('now'));`;
+  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('ZK_AUDIT_VERIFY', 'ZK-Proof audit verification sweep over ${rows.length} blocks', 'PASS', '${sqlParam(detail)}', datetime('now'));`;
   await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
 
   return {
@@ -708,5 +704,3 @@ export async function runZKAuditSweep(): Promise<ZKAuditResult> {
     timestamp: new Date().toISOString()
   };
 }
-
-
