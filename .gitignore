@@ -67,6 +67,9 @@
 # --- Repository metadata that must stay visible ---
 !/.gitignore
 !/.env.example
+!/CLAUDE.md
+!/.claude/
+!/requirements.txt
 
 # ============================================================================
 # Rules below apply WITHIN the re-allowed directories above.
@@ -82,7 +85,9 @@ dist/
 .env.local
 .mcp.local.json
 mcp_secrets/
+.claude/settings.local.json
 scratch/
+.skillopt-sleep/
 runs/
 
 # Audio and Piper Staging Cache

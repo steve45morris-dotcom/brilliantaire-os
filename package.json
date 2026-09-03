@@ -379,7 +379,7 @@
     "agentic-mesh"
   ],
   "author": "Icyflamze",
-  "license": "MIT",
+  "license": "SEE LICENSE IN Knowledge Core/IcyOS/LICENSE",
   "dependencies": {
     "openai": "^6.46.0",
     "zod": "^4.4.3"
