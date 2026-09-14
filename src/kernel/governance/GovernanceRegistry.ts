@@ -11,7 +11,7 @@ export const CANONICAL_REGISTRY: Record<string, CanonicalEntity> = {
   'brilliantaire-os': { id: 'brilliantaire-os', name: 'Brilliantaire OS', type: 'platform' },
 
   // Layers & Runtimes
-  'supernova': { id: 'supernova', name: 'Supernova Runtime', type: 'component', path: 'src/runtime' },
+  'kernel-runtime': { id: 'kernel-runtime', name: 'Kernel Runtime', type: 'component', path: 'src/runtime' },
   'kernel': { id: 'kernel', name: 'Brilliantaire Execution Kernel', type: 'component', path: 'src/kernel' },
   'executive': { id: 'executive', name: 'Executive Layer', type: 'component', path: 'src/executive' },
   'intelligence': { id: 'intelligence', name: 'Operations Intelligence Layer', type: 'component', path: 'src/intelligence' },

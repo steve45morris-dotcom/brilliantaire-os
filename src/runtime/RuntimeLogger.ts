@@ -16,7 +16,7 @@ export class RuntimeLogger {
       context
     };
     this.logs.push(entry);
-    console.log(`[Supernova ${level.toUpperCase()}] (${context}) ${message}`);
+    console.log(`[Kernel ${level.toUpperCase()}] (${context}) ${message}`);
   }
 
   public getLogs(): RuntimeLogEntry[] {

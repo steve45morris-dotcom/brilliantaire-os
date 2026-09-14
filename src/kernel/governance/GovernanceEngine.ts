@@ -74,7 +74,7 @@ export class GovernanceEngine {
         this.issues.push({
           type: 'deprecated',
           componentId: dep,
-          details: `Deprecated component "${dep}" is active at path. ${isSentinel ? 'Bypasses standard Supernova/Kernel boundaries with independent Next.js scheduler.' : ''}`,
+          details: `Deprecated component "${dep}" is active at path. ${isSentinel ? 'Bypasses standard Kernel boundaries with independent Next.js scheduler.' : ''}`,
           severity: isSentinel ? 'high' : 'medium'
         });
       }

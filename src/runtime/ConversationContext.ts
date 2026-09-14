@@ -14,7 +14,7 @@ export class ConversationContext {
     // Initial logs
     this.history.push({
       sender: 'system',
-      content: 'Supernova Runtime active. Operating shell mapped to Kernel layers.',
+      content: 'Kernel Runtime active. Operating shell mapped to Kernel layers.',
       timestamp: new Date().toISOString()
     });
   }
