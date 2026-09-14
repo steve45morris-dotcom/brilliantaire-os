@@ -90,6 +90,11 @@ scratch/
 .skillopt-sleep/
 runs/
 
+# Runtime-generated files
+.agents/voice_buffer.txt
+config/amoc_settings.json
+skills/bundles.json
+
 # Audio and Piper Staging Cache
 local_assets/
 outputs/narrator/tts_queue/models/
