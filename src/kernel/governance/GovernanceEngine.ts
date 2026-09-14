@@ -166,4 +166,4 @@ export class GovernanceEngine {
     return Math.max(0, score);
   }
 }
-export const globalGovernanceEngine = new GovernanceEngine('/Users/alexanderanthony');
+export const globalGovernanceEngine = new GovernanceEngine(process.cwd());

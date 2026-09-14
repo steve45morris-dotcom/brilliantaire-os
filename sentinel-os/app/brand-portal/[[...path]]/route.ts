@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const DIST_DIR = "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/projects/brilliantier-web/dist";
+const DIST_DIR = process.env.BRAND_PORTAL_DIST_DIR || path.join(process.cwd(), "projects", "brilliantier-web", "dist");
 
 function getMimeType(filePath: string): string {
   const ext = path.extname(filePath).toLowerCase();

@@ -9,10 +9,10 @@ describe('Events Runtime System', () => {
     const callback = vi.fn();
     EventSubscriber.subscribe('WorkspaceOpened', callback);
 
-    EventPublisher.publish('WorkspaceOpened', { workspacePath: '/Users/alexanderanthony' });
+    EventPublisher.publish('WorkspaceOpened', { workspacePath: '/workspace' });
 
     expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback.mock.calls[0][0].payload.workspacePath).toBe('/Users/alexanderanthony');
+    expect(callback.mock.calls[0][0].payload.workspacePath).toBe('/workspace');
 
     EventSubscriber.unsubscribe('WorkspaceOpened', callback);
   });

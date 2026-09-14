@@ -18,7 +18,7 @@ import {
 } from '../config/project-registry-health-monitor.js';
 import { printHelp } from './project-registry-health-monitor-help.js';
 
-const REPO_ROOT = '/Users/alexanderanthony';
+const REPO_ROOT = process.cwd();
 
 // Consistent scan date YYYY-MM-DD
 function getScanDate(): string {

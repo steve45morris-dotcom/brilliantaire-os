@@ -4,9 +4,10 @@ export const ALLOW_FOLDER_MOVE = false;
 export const ALLOW_FOLDER_DELETE = false;
 export const REQUIRE_MANUAL_APPROVAL = true;
 
+const HOME = process.env.HOME || process.env.USERPROFILE || '';
 export const SCAN_ROOTS = [
-  '/Users/alexanderanthony/Projects/',
-  '/Users/alexanderanthony/TreeGrooveProjects/'
+  `${HOME}/Projects/`,
+  `${HOME}/TreeGrooveProjects/`
 ];
 
 export const REGISTRY_SOURCE = 'PROJECTS.md';

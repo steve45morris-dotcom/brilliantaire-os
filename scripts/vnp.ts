@@ -1,7 +1,8 @@
 import { exec } from 'child_process';
 import fs from 'fs';
+import path from 'path';
 
-const VNP_BRIDGE_PATH = '/Users/alexanderanthony/.agents/voice_narrative.sh';
+const VNP_BRIDGE_PATH = path.join(process.cwd(), '.agents', 'voice_narrative.sh');
 
 export function announceIntent(message: string): Promise<void> {
   return new Promise((resolve) => {
@@ -47,7 +48,7 @@ export function announcePhrase(phrase: string): Promise<void> {
     }
     
     // Write to buffer for audit trail and speak on macOS
-    const VOICE_BUFFER = "/Users/alexanderanthony/.agents/voice_buffer.txt";
+    const VOICE_BUFFER = path.join(process.cwd(), '.agents', 'voice_buffer.txt');
     const cleanPhrase = phrase.replace(/"/g, '\\"');
     
     // We append to the voice buffer and speak the phrase
@@ -58,7 +59,7 @@ export function announcePhrase(phrase: string): Promise<void> {
       console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
     }
     
-    const cmd = `/Users/alexanderanthony/.agents/speak_serialized.sh "${cleanPhrase}" "P3"`;
+    const cmd = `${path.join(process.cwd(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
     exec(cmd, { timeout: 3000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);

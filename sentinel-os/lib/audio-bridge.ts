@@ -3,8 +3,8 @@ import path from "node:path";
 import fs from "node:fs";
 
 let daemonProcess: ChildProcess | null = null;
-const PYTHON_PATH = "/Users/alexanderanthony/venv_stable/bin/python";
-const DAEMON_SCRIPT = "/Users/alexanderanthony/scripts/whisper_daemon.py";
+const PYTHON_PATH = process.env.PYTHON_PATH || "python";
+const DAEMON_SCRIPT = path.join(process.cwd(), "scripts", "whisper_daemon.py");
 
 export function startAudioBridge(): boolean {
   if (daemonProcess) {
@@ -13,8 +13,8 @@ export function startAudioBridge(): boolean {
   }
 
   // Ensure directories exist
-  const voiceInput = "/Users/alexanderanthony/voice_input";
-  const voiceInbox = "/Users/alexanderanthony/voice_queue/inbox";
+  const voiceInput = path.join(process.cwd(), "voice_input");
+  const voiceInbox = path.join(process.cwd(), "voice_queue", "inbox");
   [voiceInput, voiceInbox].forEach((dir) => {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });

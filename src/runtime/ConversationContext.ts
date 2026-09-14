@@ -6,7 +6,7 @@ export interface ChatMessage {
 
 export class ConversationContext {
   private currentProject = 'The One System';
-  private currentWorkspace = '/Users/alexanderanthony';
+  private currentWorkspace = process.cwd();
   private history: ChatMessage[] = [];
   private goals: string[] = [];
 
