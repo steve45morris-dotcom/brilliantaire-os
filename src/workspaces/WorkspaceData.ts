@@ -20,8 +20,8 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Run security checks on local providers'
     ],
     knowledgeLinks: [
-      { label: 'System Constitution', url: 'file:///Users/alexanderanthony/docs/constitution/THE_ONE_SYSTEM_CONSTITUTION.md' },
-      { label: 'Operating Playbook', url: 'file:///Users/alexanderanthony/docs/playbook/THE_ONE_SYSTEM_PLAYBOOK.md' }
+      { label: 'System Constitution', url: 'docs/docs/constitution/THE_ONE_SYSTEM_CONSTITUTION.md' },
+      { label: 'Operating Playbook', url: 'docs/docs/playbook/THE_ONE_SYSTEM_PLAYBOOK.md' }
     ],
     revenueStatus: '$0.00 (Core Operations)',
     recentActivity: [
@@ -52,8 +52,8 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Track campaign ad spend benchmarks'
     ],
     knowledgeLinks: [
-      { label: 'Creative IP Bible', url: 'file:///Users/alexanderanthony/ICYFLAMZE_CORE_SEASON_1_IP_BIBLE.md' },
-      { label: 'Content Machine Spec', url: 'file:///Users/alexanderanthony/ICYFLAMZE_CONTENT_MACHINE_SPEC.md' }
+      { label: 'Creative IP Bible', url: 'docs/ICYFLAMZE_CORE_SEASON_1_IP_BIBLE.md' },
+      { label: 'Content Machine Spec', url: 'docs/ICYFLAMZE_CONTENT_MACHINE_SPEC.md' }
     ],
     revenueStatus: '$4,280.00 (Active Campaigns)',
     recentActivity: [
@@ -80,7 +80,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Ingest Obsidian bet telemetry logs'
     ],
     knowledgeLinks: [
-      { label: 'Obsidian Notes Ingest', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Obsidian Notes Ingest', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$8,450.00 (Monthly Sports Yield)',
     recentActivity: [
@@ -107,7 +107,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Verify royalties balance sheet'
     ],
     knowledgeLinks: [
-      { label: 'Catalog Registry', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Catalog Registry', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$2,090.00 (Royalties Net)',
     recentActivity: [
@@ -134,7 +134,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Generate weekly client reports'
     ],
     knowledgeLinks: [
-      { label: 'Salon Operating Guide', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Salon Operating Guide', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$0.00 (Pending Integrations)',
     recentActivity: [
@@ -161,7 +161,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Preview assets in browser'
     ],
     knowledgeLinks: [
-      { label: 'Render Guides', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Render Guides', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$0.00 (Internal R&D)',
     recentActivity: [
@@ -188,7 +188,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Approve narrative brief summaries'
     ],
     knowledgeLinks: [
-      { label: 'Audio Pipeline Schema', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Audio Pipeline Schema', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$0.00 (Internal R&D)',
     recentActivity: [
@@ -215,7 +215,7 @@ export const mockWorkspacesData: Record<string, WorkspaceDataRecord> = {
       'Audit document index structure'
     ],
     knowledgeLinks: [
-      { label: 'Tutorial Template', url: 'file:///Users/alexanderanthony/docs/specifications/WORKSPACE_REGISTRY.md' }
+      { label: 'Tutorial Template', url: 'docs/docs/specifications/WORKSPACE_REGISTRY.md' }
     ],
     revenueStatus: '$0.00 (Developer Relations)',
     recentActivity: [

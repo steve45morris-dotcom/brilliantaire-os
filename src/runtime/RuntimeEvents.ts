@@ -3,7 +3,7 @@ import { globalRuntimeLogger } from './RuntimeLogger.js';
 
 export class RuntimeEvents {
   public bindEvents(): void {
-    globalEventBus.subscribe('SupernovaPromptReceived', (event) => {
+    globalEventBus.subscribe('KernelPromptReceived', (event) => {
       globalRuntimeLogger.log(`Received user query prompt: "${event.payload.promptText}"`, 'info', 'EventBus');
     });
 

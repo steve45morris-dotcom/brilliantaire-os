@@ -9,8 +9,8 @@
 - [x] Proprietary license applied (replaces MIT)
 
 ## Required Before Client Delivery
-- [ ] Authentication layer (Supabase Auth or NextAuth)
-- [ ] Role-based access control (admin, editor, viewer)
+- [x] Authentication layer (Supabase Auth with SSR middleware)
+- [x] Role-based access control (admin, editor, viewer)
 - [ ] API rate limiting and abuse protection
 - [ ] Stripe billing integration
 - [ ] Client onboarding flow

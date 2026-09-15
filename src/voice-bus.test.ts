@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { describe, it, expect, beforeAll } from "vitest";
 
-const REPO_ROOT = "/Users/alexanderanthony";
+const REPO_ROOT = path.resolve(__dirname, "..");
 const SPEAK_SCRIPT = path.join(REPO_ROOT, ".agents", "speak_serialized.sh");
 const NARRATE_SCRIPT = path.join(REPO_ROOT, ".agents", "voice_narrative.sh");
 

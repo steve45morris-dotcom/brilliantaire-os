@@ -3,7 +3,7 @@ import { TaskRole } from './ModelRoutingTypes.js';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const CONFIG_FILE_PATH = '/Users/alexanderanthony/config/routing_settings.json';
+const CONFIG_FILE_PATH = path.join(process.cwd(), 'config', 'routing_settings.json');
 
 export interface RoutingPolicySettings {
   routingMode: 'automatic' | 'manual';

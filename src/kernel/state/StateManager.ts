@@ -17,7 +17,7 @@ export class StateManager {
   constructor() {
     this.state = {
       currentUser: 'Icyflamze',
-      currentWorkspace: '/Users/alexanderanthony',
+      currentWorkspace: process.cwd(),
       currentProject: 'The One System',
       systemStatus: 'booting',
       runningJobsCount: 0,

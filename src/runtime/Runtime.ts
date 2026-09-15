@@ -14,7 +14,7 @@ export interface RuntimeExecutionResult {
   message: string;
 }
 
-export class SupernovaRuntime {
+export class KernelRuntime {
   constructor() {
     try {
       globalCommandDispatcher.registerHandler('Generic Command', async (cmd) => {
@@ -52,7 +52,7 @@ export class SupernovaRuntime {
 
   public async handlePrompt(promptText: string): Promise<RuntimeExecutionResult> {
     globalConversationContext.addMessage('user', promptText);
-    globalEventBus.publish('SupernovaPromptReceived', { promptText });
+    globalEventBus.publish('KernelPromptReceived', { promptText });
 
     // 1. Intent Parsing
     const intent = globalIntentParser.parse(promptText);
@@ -79,7 +79,7 @@ export class SupernovaRuntime {
     // 5. Dispatch via Kernel
     const dispatchResult = await globalCommandDispatcher.dispatch(
       commandPayload.commandName,
-      'SupernovaRuntime',
+      'KernelRuntime',
       commandPayload.payload
     );
 
@@ -95,5 +95,5 @@ export class SupernovaRuntime {
   }
 }
 
-export const globalSupernovaRuntime = new SupernovaRuntime();
-export default globalSupernovaRuntime;
+export const globalKernelRuntime = new KernelRuntime();
+export default globalKernelRuntime;

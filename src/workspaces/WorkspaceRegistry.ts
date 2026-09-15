@@ -96,9 +96,9 @@ export class WorkspaceRegistry {
         ],
         recommendedActions: recommendations,
         knowledgeLinks: [
-          { label: 'Creative IP Bible', url: 'file:///Users/alexanderanthony/ICYFLAMZE_CORE_SEASON_1_IP_BIBLE.md' },
-          { label: 'Content Machine Spec', url: 'file:///Users/alexanderanthony/ICYFLAMZE_CONTENT_MACHINE_SPEC.md' },
-          { label: 'Workspace Spec', url: 'file:///Users/alexanderanthony/ICYFLAMZE_WORKSPACE_SPEC.md' }
+          { label: 'Creative IP Bible', url: 'docs/ICYFLAMZE_CORE_SEASON_1_IP_BIBLE.md' },
+          { label: 'Content Machine Spec', url: 'docs/ICYFLAMZE_CONTENT_MACHINE_SPEC.md' },
+          { label: 'Workspace Spec', url: 'docs/ICYFLAMZE_WORKSPACE_SPEC.md' }
         ],
         revenueStatus: `$${profit.totalIncome.toLocaleString()} Income / $${profit.totalExpenses.toLocaleString()} Expenses (Net: $${profit.netProfit.toLocaleString()})`,
         recentActivity,

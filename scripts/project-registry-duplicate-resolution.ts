@@ -17,7 +17,7 @@ import {
 } from '../config/project-registry-duplicate-resolution.js';
 import { printHelp } from './project-registry-duplicate-resolution-help.js';
 
-const REPO_ROOT = '/Users/alexanderanthony';
+const REPO_ROOT = process.cwd();
 
 function getScanDate(): string {
   return '2026-06-01';

@@ -41,7 +41,7 @@ export class PresenceStateManager {
       suggestedAction: suggestions.action,
       recommendedFocus: suggestions.focus
     });
-    globalEventBus.publish('SupernovaContextSwitched', { projectId });
+    globalEventBus.publish('PresenceContextSwitched', { projectId });
   }
 
   public updateAlertCount(count: number): void {

@@ -20,7 +20,7 @@ import {
 import { printHelp } from './quarantine-monitoring-help.js';
 import { announceIntent, announceCompletion } from './vnp.js';
 
-const REPO_ROOT = '/Users/alexanderanthony';
+const REPO_ROOT = process.cwd();
 
 function getScanDate(): string {
   return '2026-06-01';

@@ -6,7 +6,7 @@ import os from "node:os";
 import crypto from "node:crypto";
 
 const execFileAsync = promisify(execFile);
-const DB_PATH = "/Users/alexanderanthony/supernova.db";
+const DB_PATH = process.env.SUPERNOVA_DB_PATH || path.join(os.homedir(), "supernova.db");
 const SIM_LOG_PATH = path.join(os.homedir(), ".sentinel-os", "mesh_sim_logs.jsonl");
 
 function sqlParam(value: string): string {

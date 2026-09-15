@@ -3,6 +3,7 @@ import { MCPAuth } from './MCPAuth.js';
 import { globalHealthMonitor } from '../../../kernel/monitoring/HealthMonitor.js';
 import { globalWorkspaceRegistry } from '../../../workspaces/WorkspaceRegistry.js';
 import fs from 'node:fs';
+import path from 'node:path';
 import { globalGoalManager } from '../../../executive/GoalManager.js';
 import { globalLiveOperationsStore } from '../../../kernel/live/LiveOperationsStore.js';
 import { globalGraphStore } from '../../../knowledge/GraphStore.js';
@@ -170,7 +171,7 @@ export class MCPToolRegistry {
             return { error: 'Authentication Required.' };
           }
           try {
-            const manifestPath = '/Users/alexanderanthony/skills_index.json';
+            const manifestPath = path.join(process.cwd(), 'skills_index.json');
             if (fs.existsSync(manifestPath)) {
               const content = fs.readFileSync(manifestPath, 'utf8');
               const index = JSON.parse(content);
@@ -256,7 +257,7 @@ export class MCPToolRegistry {
             return { error: 'Authentication Required.' };
           }
           try {
-            const reportsDir = '/Users/alexanderanthony/reports';
+            const reportsDir = path.join(process.cwd(), 'reports');
             if (fs.existsSync(reportsDir)) {
               const files = fs.readdirSync(reportsDir);
               return { files };

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as fs from 'fs';
+import * as path from 'path';
 import { globalEventBus } from '../events/EventBus.js';
 import { EventPublisher } from '../events/Publisher.js';
 import { EventSubscriber } from '../events/Subscriber.js';
@@ -9,7 +10,7 @@ import { globalAlertEngine } from './AlertEngine.js';
 import { globalPredictionEngine } from './PredictionEngine.js';
 
 describe('End-to-End Observability Integration', () => {
-  const testDbFile = '/Users/alexanderanthony/.gemini/telemetry/telemetry_db_test_2.jsonl';
+  const testDbFile = path.join(process.cwd(), '.gemini', 'telemetry', 'telemetry_db_test_2.jsonl');
   let originalContent = '';
 
   beforeEach(() => {

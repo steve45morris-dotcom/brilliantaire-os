@@ -4,7 +4,7 @@ import { AMOCConfig, ModelAssignments, ModelRole, ModelStatus, ModelProvider } f
 import { globalModelEventService } from './ModelEvents.js';
 
 
-const CONFIG_PATH = '/Users/alexanderanthony/config/amoc_settings.json';
+const CONFIG_PATH = path.join(process.cwd(), 'config', 'amoc_settings.json');
 
 export const recommendedDefaults: ModelAssignments = {
   'Builder': 'gemini-1.5-pro',

@@ -15,7 +15,7 @@ export interface TestResultSummary {
 
 export class TestOrchestrator {
   private static instance: TestOrchestrator;
-  private reportsDir = '/Users/alexanderanthony/memory';
+  private reportsDir = path.join(process.cwd(), 'memory');
   private reportPath = path.join(this.reportsDir, 'test_runs.json');
 
   private constructor() {}

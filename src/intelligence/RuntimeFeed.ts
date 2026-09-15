@@ -79,7 +79,7 @@ export class RuntimeFeed {
 * **Acceptance Rate:** ${health.telemetry.recommendationAcceptanceRate.toFixed(1)}%`;
     }
 
-    return `Supernova Intent Parser: Direct query processed. Use phrases like "timeline", "revenue decline", "what should I work on first", or "summarize health".`;
+    return `Kernel Intent Parser: Direct query processed. Use phrases like "timeline", "revenue decline", "what should I work on first", or "summarize health".`;
   }
 }
 
