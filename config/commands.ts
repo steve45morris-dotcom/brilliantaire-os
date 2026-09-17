@@ -133,6 +133,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: true
   },
   {
+    name: 'render-intake-help',
+    aliases: ['render intake manual help', 'manual render help'],
+    description: 'Print available commands for the Episode 1 Manual Render Intake system',
+    npmScript: 'render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'render-intake',
+    aliases: ['manual render intake', 'render scan'],
+    description: 'Execute Episode 1 Manual Render Intake scan, validate, and readiness subcommands',
+    npmScript: 'render-intake',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
     name: 'brief',
     aliases: ['report', 'summary'],
     description: 'Compile and print a clean operational summary brief',

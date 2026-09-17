@@ -1,0 +1,81 @@
+import { COMMAND_REGISTRY } from '../config/commands.js';
+
+function printVerificationRerunPlannerHelp() {
+  console.log("=========================================");
+  console.log("GRINDERS KEEP LOCAL VERIFICATION RERUN PLANNER - HELP");
+  console.log("=========================================");
+  console.log("This module reads evidence collection state from earlier phases (12V, 12W, 12X, 13I),");
+  console.log("compiles verification rerun command sequences, generates scheduling recommendations,");
+  console.log("and produces manual command sheets -- all WITHOUT executing any commands automatically.");
+  console.log("\nCore Safety Rules Enforced:");
+  console.log("  1. No Automated Execution: ALLOW_AUTOMATED_EXECUTION = false");
+  console.log("  2. No Scheduled Runs: ALLOW_SCHEDULED_RUNS = false");
+  console.log("  3. No External API Calls: ALLOW_EXTERNAL_API_CALLS = false");
+  console.log("  4. Human Approval Required: REQUIRE_HUMAN_APPROVAL = true");
+  console.log("  5. Manual Commands Only: REQUIRE_MANUAL_COMMAND_EXECUTION = true");
+  console.log("  6. Read-Only Staging: All output is advisory and read-only");
+  console.log("\n-----------------------------------------");
+  console.log("  COMMANDS:");
+  console.log("-----------------------------------------");
+  console.log("\n  status");
+  console.log("    Print planner configuration, safety flags,");
+  console.log("    evidence source states, and output directory");
+  console.log("    inventory.");
+  console.log("\n  compile-plan");
+  console.log("    Read evidence states from Phase 12V, 12W,");
+  console.log("    12X, and 13I and compile a full verification");
+  console.log("    rerun plan document.");
+  console.log("\n  command-sheet");
+  console.log("    Generate a manual command execution sheet");
+  console.log("    with exact CLI commands for the human");
+  console.log("    operator to run.");
+  console.log("\n  schedule");
+  console.log("    Generate scheduling recommendations for");
+  console.log("    automated checks (advisory only, no actual");
+  console.log("    scheduling is created).");
+  console.log("\n  verification-status");
+  console.log("    Summarize current verification state across");
+  console.log("    all evidence tasks and phases.");
+  console.log("\n  obsidian-export");
+  console.log("    Stage a rerun planner summary for Obsidian");
+  console.log("    export via the Approved Write Gateway.");
+  console.log("\n-----------------------------------------");
+  console.log("  EXAMPLES:");
+  console.log("-----------------------------------------");
+  console.log("\n  npm run grinders-keep-verification-rerun-planner -- \"status\"");
+  console.log("  npm run grinders-keep-verification-rerun-planner -- \"compile-plan\"");
+  console.log("  npm run grinders-keep-verification-rerun-planner -- \"command-sheet\"");
+  console.log("  npm run grinders-keep-verification-rerun-planner -- \"schedule\"");
+  console.log("  npm run grinders-keep-verification-rerun-planner -- \"verification-status\"");
+  console.log("  npm run grinders-keep-verification-rerun-planner -- \"obsidian-export\"");
+  console.log("\n-----------------------------------------");
+  console.log("  SAFETY:");
+  console.log("-----------------------------------------");
+  console.log("  - No automated command execution");
+  console.log("  - No scheduled task creation");
+  console.log("  - No external API calls");
+  console.log("  - All output is read-only staging");
+  console.log("  - Command sheets are for HUMAN manual execution only");
+  console.log("  - Schedule recommendations are advisory only");
+  console.log("\n-----------------------------------------");
+  console.log("  EVIDENCE SOURCES:");
+  console.log("-----------------------------------------");
+  console.log("  - Phase 12V: outputs/evidence_pack_completion_importer/");
+  console.log("  - Phase 12W: outputs/evidence_tracker_sync/");
+  console.log("  - Phase 12X: outputs/evidence_tracker_rerun_planner/");
+  console.log("  - Phase 13I: outputs/evidence_completion_detector/");
+
+  console.log("\n-----------------------------------------");
+  console.log("  REGISTERED COMMANDS:");
+  console.log("-----------------------------------------");
+  const targetCmds = COMMAND_REGISTRY.filter(c => c.name.includes('grinders-keep-verification-rerun-planner'));
+  for (const cmd of targetCmds) {
+    console.log(`\n  Command: npm run command -- "${cmd.name}"`);
+    console.log(`   Description: ${cmd.description}`);
+    console.log(`   Owning Agent: ${cmd.owningAgent}`);
+    console.log(`   Risk Level:   ${cmd.riskLevel.toUpperCase()}`);
+  }
+  console.log("\n=========================================");
+}
+
+printVerificationRerunPlannerHelp();

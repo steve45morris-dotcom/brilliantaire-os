@@ -371,7 +371,9 @@
     "higgsfield-ai": "tsx scripts/higgsfield-ai.ts",
     "higgsfield-ai-help": "tsx scripts/higgsfield-ai-help.ts",
     "local-inference": "tsx scripts/local-inference.ts",
-    "local-inference-help": "tsx scripts/local-inference-help.ts"
+    "local-inference-help": "tsx scripts/local-inference-help.ts",
+    "render-intake": "tsx scripts/render-intake.ts",
+    "render-intake-help": "tsx scripts/render-intake-help.ts"
   },
   "keywords": [
     "antigravity",

@@ -1944,4 +1944,14 @@ tasks:
     cmds:
       - npm run local-inference-help
 
+  render-intake:
+    desc: "Run Episode 1 Manual Render Intake CLI commands"
+    cmds:
+      - npm run render-intake -- {{.CLI_ARGS}}
+
+  render-intake-help:
+    desc: "Print help menu for Episode 1 Manual Render Intake CLI"
+    cmds:
+      - npm run render-intake-help
+
 
