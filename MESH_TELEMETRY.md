@@ -55,6 +55,9 @@ The engine dynamically compiles statistics by scanning files within:
 6. `outputs/campaigns/simulations/` & `outputs/campaigns/validation_reports/` — Extracting campaign readiness scores.
 7. `outputs/higgsfield_ai/logs/` & `outputs/higgsfield_ai/render_requests/` — Tracking AI video render request staging and approval status.
 8. `outputs/local_inference/logs/` & `outputs/local_inference/chat_requests/` — Tracking local inference server chat request staging and prompt management.
+9. `outputs/render_intake/logs/` & `outputs/render_intake/scans/` — Tracking Episode 1 render asset intake scanning, validation, and assembly readiness.
+10. `outputs/grinders_keep_verification_rerun/logs/` & `outputs/grinders_keep_verification_rerun/rerun_plans/` — Tracking evidence verification rerun planning and scheduling.
+11. `outputs/manual_implementation_packet/logs/` & `outputs/manual_implementation_packet/build_prompts/` — Tracking pipeline implementation packet compilation and handoff staging.
 
 ---
 

@@ -401,6 +401,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `higgsfield-ai` | `higgs`, `higgsfield`, `video ai` | Creative Architect | Medium | Yes | Execute Higgsfield AI Bridge render staging and scene management commands. |
 | `local-inference-help` | `inference help`, `local inference help` | Prompt Engineer | Low | No | Print help menu for the Local Inference Server Bridge CLI. |
 | `local-inference` | `inference`, `local inference` | Prompt Engineer | Medium | Yes | Execute Local Inference Server Bridge chat staging and prompt management commands. |
+| `render-intake-help` | `render intake help`, `intake help` | Creative Architect | Low | No | Print help menu for the Episode 1 Manual Render Intake CLI. |
+| `render-intake` | `render intake`, `intake` | Creative Architect | Medium | Yes | Execute Episode 1 Manual Render Intake scanning, validation, and readiness commands. |
+| `grinders-keep-verification-rerun-planner-help` | `rerun planner help`, `verification rerun help` | Workflow Auditor | Low | No | Print help menu for the Verification Rerun Planner CLI. |
+| `grinders-keep-verification-rerun-planner` | `rerun planner`, `verification rerun` | Workflow Auditor | Medium | Yes | Execute Verification Rerun Planner commands for evidence collection task scheduling. |
 
 
 
