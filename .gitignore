@@ -189,3 +189,4 @@ Public/
 .local/
 .vscode/
 .idea/
+.claude/worktrees/
