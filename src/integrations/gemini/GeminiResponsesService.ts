@@ -1,4 +1,4 @@
-import { globalGeminiClient } from './GeminiClient.js';
+import { globalGeminiClient, NormalizedGeminiError } from './GeminiClient.js';
 import { getGeminiConfig } from './GeminiConfig.js';
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalEyeStateManager } from '../../ui/eye/EyeStateManager.js';
@@ -8,8 +8,13 @@ export interface GeminiRequestPayload {
   requestId?: string;
   selectedModel: string;
   prompt: string;
+  systemInstruction?: string;
   temperature?: number;
   maxOutputTokens?: number;
+  responseMimeType?: string;
+  responseSchema?: Record<string, any>;
+  timeoutMs?: number;
+  maxRetries?: number;
   workspaceId?: string;
 }
 
@@ -18,17 +23,20 @@ export interface GeminiResponsePayload {
   requestId: string;
   provider: string;
   model: string;
-  output: { message: string } | null;
+  output: { message: string; data?: any } | null;
   usage: {
     inputTokens: number;
     outputTokens: number;
     totalTokens: number;
   };
   latencyMs: number;
+  finishReason?: string;
   status: 'completed' | 'failed';
   error?: {
     code: string;
     message: string;
+    statusCode?: number;
+    isTransient?: boolean;
   };
 }
 
@@ -36,7 +44,8 @@ export class GeminiResponsesService {
   public async executeRequest(payload: GeminiRequestPayload): Promise<GeminiResponsePayload> {
     const startTime = Date.now();
     const requestId = payload.requestId || `req-${Date.now()}`;
-    const modelName = payload.selectedModel || 'gemini-1.5-pro';
+    const config = getGeminiConfig();
+    const modelName = payload.selectedModel || config.defaultModel || 'gemini-2.5-flash';
 
     globalEyeStateManager.setState('observing');
     globalPresenceStateManager.setState('observing');
@@ -52,7 +61,12 @@ export class GeminiResponsesService {
         payload.prompt,
         {
           temperature: payload.temperature,
-          maxOutputTokens: payload.maxOutputTokens
+          maxOutputTokens: payload.maxOutputTokens,
+          systemInstruction: payload.systemInstruction,
+          responseMimeType: payload.responseMimeType,
+          responseSchema: payload.responseSchema,
+          timeoutMs: payload.timeoutMs,
+          maxRetries: payload.maxRetries
         }
       );
 
@@ -67,24 +81,38 @@ export class GeminiResponsesService {
       globalEyeStateManager.setState('idle');
       globalPresenceStateManager.setState('idle');
 
+      let parsedData: any = undefined;
+      if (payload.responseMimeType === 'application/json' || payload.responseSchema) {
+        try {
+          parsedData = JSON.parse(response.text);
+        } catch {
+          // If JSON parse fails, preserve text output without hard crash
+        }
+      }
+
       return {
         success: true,
         requestId,
         provider: 'gemini',
         model: modelName,
-        output: { message: response.text },
+        output: { message: response.text, data: parsedData },
         usage: response.usage,
+        finishReason: response.finishReason,
         latencyMs,
         status: 'completed'
       };
-    } catch (err) {
+    } catch (err: any) {
       const latencyMs = Date.now() - startTime;
-      const errMsg = (err as Error).message;
+      const errMsg = err?.message || 'Unknown Gemini error';
+      const errCode = (err as NormalizedGeminiError)?.code || 'GEMINI_EXECUTION_FAILED';
+      const statusCode = (err as NormalizedGeminiError)?.statusCode || 500;
+      const isTransient = (err as NormalizedGeminiError)?.isTransient ?? false;
 
       globalEventBus.publish('GeminiRequestFailed', {
         requestId,
         model: modelName,
-        error: errMsg
+        error: errMsg,
+        code: errCode
       });
 
       globalEyeStateManager.setState('error');
@@ -100,8 +128,10 @@ export class GeminiResponsesService {
         latencyMs,
         status: 'failed',
         error: {
-          code: 'gemini_error',
-          message: errMsg
+          code: errCode,
+          message: errMsg,
+          statusCode,
+          isTransient
         }
       };
     }
