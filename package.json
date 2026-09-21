@@ -373,7 +373,9 @@
     "local-inference": "tsx scripts/local-inference.ts",
     "local-inference-help": "tsx scripts/local-inference-help.ts",
     "render-intake": "tsx scripts/render-intake.ts",
-    "render-intake-help": "tsx scripts/render-intake-help.ts"
+    "render-intake-help": "tsx scripts/render-intake-help.ts",
+    "asr-human-approval-selection-packet": "tsx scripts/asr-human-approval-selection-packet.ts",
+    "asr-human-approval-selection-packet-help": "tsx scripts/asr-human-approval-selection-packet-help.ts"
   },
   "keywords": [
     "antigravity",

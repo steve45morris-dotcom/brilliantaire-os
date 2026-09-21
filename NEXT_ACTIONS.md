@@ -577,7 +577,7 @@
 - [x] Phase 12A: Create templates for switch report, approved/rejected candidates, manifest, locks, checklists, and next actions
 - [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
 - [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
-- [ ] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
+- [x] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
