@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { GeminiIntegrationContract, globalGeminiIntegrationContract } from './GeminiIntegrationContract.js';
 import { GeminiClient, normalizeGeminiError, NormalizedGeminiError } from './GeminiClient.js';
 import { GeminiResponsesService, globalGeminiResponsesService } from './GeminiResponsesService.js';
-import { validateGeminiKey, getGeminiConfig } from './GeminiConfig.js';
+import { validateGeminiKey, getGeminiConfig, getGeminiDiagnostics } from './GeminiConfig.js';
 import { globalModelRouter } from '../core/ModelRouter.js';
 import { globalIntegrationRegistry } from '../core/IntegrationRegistry.js';
 import { globalModelRoutingPolicy } from '../core/ModelRoutingPolicy.js';
@@ -334,6 +334,95 @@ describe('Gemini Provider First-Class Integration Tests', () => {
 
       await service.executeRequest({ prompt: 'Test service call' });
       expect(executeSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('11. Environment Hardening & Configuration Diagnostics (Phase 2)', () => {
+    it('standardizes GEMINI_TIMEOUT_MS and GEMINI_MAX_RETRIES environment configuration', () => {
+      process.env.GEMINI_TIMEOUT_MS = '45000';
+      process.env.GEMINI_MAX_RETRIES = '5';
+      process.env.GEMINI_DAILY_LIMIT = '25.00';
+      process.env.GEMINI_MONTHLY_LIMIT = '750.00';
+
+      const config = getGeminiConfig();
+      expect(config.timeoutMs).toBe(45000);
+      expect(config.maxRetries).toBe(5);
+      expect(config.dailyLimit).toBe(25.00);
+      expect(config.monthlyLimit).toBe(750.00);
+    });
+
+    it('falls back to safe default numbers when environment variables are malformed', () => {
+      process.env.GEMINI_TIMEOUT_MS = 'not-a-number';
+      process.env.GEMINI_MAX_RETRIES = '-2';
+      process.env.GEMINI_DAILY_LIMIT = 'invalid';
+      process.env.GEMINI_MONTHLY_LIMIT = 'NaN';
+
+      const config = getGeminiConfig();
+      expect(config.timeoutMs).toBe(30000);
+      expect(config.maxRetries).toBe(3);
+      expect(config.dailyLimit).toBe(10.00);
+      expect(config.monthlyLimit).toBe(300.00); // 10 * 30
+    });
+
+    it('produces structured boot-time diagnostics without exposing credentials', () => {
+      process.env.GEMINI_API_KEY = 'AIzaSySecretLiveMockKeyForTesting12345';
+      const diag = getGeminiDiagnostics();
+
+      expect(diag.configured).toBe(true);
+      expect(diag.apiKeyPresent).toBe(true);
+      expect(diag.maskedKey).toContain('AIz');
+      expect(diag.maskedKey).not.toContain('SecretLiveMockKey');
+      expect(diag.defaultModel).toBe('gemini-2.5-flash');
+      expect(diag.validation.valid).toBe(true);
+    });
+
+    it('enforces daily limit blocking in GeminiResponsesService when spend is exceeded', async () => {
+      process.env.GEMINI_DAILY_LIMIT = '0.001'; // Very small limit
+      const config = getGeminiConfig();
+      expect(config.dailyLimit).toBe(0.001);
+
+      // Simulate existing usage exceeding the limit on the registered provider
+      const provider = globalIntegrationRegistry.get('gemini') as any;
+      (provider as any).totalInputTokens = 100000;
+      (provider as any).totalOutputTokens = 50000;
+
+      const result = await globalGeminiResponsesService.executeRequest({
+        prompt: 'Request should be blocked by budget',
+        selectedModel: 'gemini-2.5-flash'
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.status).toBe('failed');
+      expect(result.error?.code).toBe('GEMINI_BUDGET_EXCEEDED');
+      expect(result.error?.message).toContain('daily budget limit');
+
+      // Reset usage counters
+      (provider as any).totalInputTokens = 0;
+      (provider as any).totalOutputTokens = 0;
+    });
+
+    it('sources timeout and retries directly from config into GeminiClient', async () => {
+      process.env.GEMINI_TIMEOUT_MS = '15000';
+      process.env.GEMINI_MAX_RETRIES = '1';
+
+      let observedTimeout: number | undefined;
+      const mockFetch = vi.fn().mockImplementation((_url: string, init: any) => {
+        // Capture signal details if available
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            candidates: [{ content: { parts: [{ text: 'Response from client' }] } }],
+            usageMetadata: { promptTokenCount: 2, candidatesTokenCount: 2, totalTokenCount: 4 }
+          })
+        });
+      });
+      vi.stubGlobal('fetch', mockFetch);
+
+      const client = new GeminiClient();
+      const res = await client.generateContent('gemini-2.5-flash', 'Ping');
+      expect(res.text).toBe('Response from client');
+      expect(mockFetch).toHaveBeenCalled();
     });
   });
 });

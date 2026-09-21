@@ -1,5 +1,6 @@
 import { globalGeminiClient, NormalizedGeminiError } from './GeminiClient.js';
 import { getGeminiConfig } from './GeminiConfig.js';
+import { globalIntegrationRegistry } from '../core/IntegrationRegistry.js';
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalEyeStateManager } from '../../ui/eye/EyeStateManager.js';
 import { globalPresenceStateManager } from '../../ui/supernova/PresenceStateManager.js';
@@ -50,6 +51,37 @@ export class GeminiResponsesService {
     globalEyeStateManager.setState('observing');
     globalPresenceStateManager.setState('observing');
     globalEventBus.publish('GeminiRequestStarted', { requestId, model: modelName });
+
+    // Enforce daily budget limit check if configured
+    const geminiProvider = globalIntegrationRegistry.get('gemini') as any;
+    const currentSpend = geminiProvider?.usage?.dailySpend ?? 0;
+    if (config.dailyLimit > 0 && currentSpend >= config.dailyLimit) {
+      const errReason = `Gemini daily budget limit of $${config.dailyLimit.toFixed(2)} exceeded (current spend: $${currentSpend.toFixed(4)}).`;
+      globalEventBus.publish('GeminiRequestFailed', {
+        requestId,
+        model: modelName,
+        error: errReason,
+        code: 'GEMINI_BUDGET_EXCEEDED'
+      });
+      globalEyeStateManager.setState('error');
+      globalPresenceStateManager.setState('error');
+      return {
+        success: false,
+        requestId,
+        provider: 'gemini',
+        model: modelName,
+        output: null,
+        usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+        latencyMs: Date.now() - startTime,
+        status: 'failed',
+        error: {
+          code: 'GEMINI_BUDGET_EXCEEDED',
+          message: errReason,
+          statusCode: 429,
+          isTransient: false
+        }
+      };
+    }
 
     try {
       // Transition UI to executing

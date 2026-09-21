@@ -87,8 +87,8 @@ export class GeminiClient {
         }
       ],
       generationConfig: {
-        temperature: options.temperature ?? 0.7,
-        maxOutputTokens: options.maxOutputTokens ?? 2048
+        temperature: options.temperature ?? config.temperature ?? 0.7,
+        maxOutputTokens: options.maxOutputTokens ?? config.maxOutputTokens ?? 2048
       }
     };
 
@@ -108,8 +108,8 @@ export class GeminiClient {
       body.generationConfig.responseSchema = options.responseSchema;
     }
 
-    const maxRetries = options.maxRetries ?? 3;
-    const timeoutMs = options.timeoutMs ?? 30000;
+    const maxRetries = options.maxRetries ?? config.maxRetries ?? 3;
+    const timeoutMs = options.timeoutMs ?? config.timeoutMs ?? 30000;
     let attempt = 0;
     let lastError: any = null;
 
