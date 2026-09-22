@@ -19,8 +19,8 @@ export function maskAPIKey(keyName: string, keyValue: string | null): string {
 export function maskSensitiveText(text: string): string {
   if (!text) return text;
   return text
-    .replace(/AIzaSy[a-zA-Z0-9_-]{20,}/g, 'AIz••••••••')
-    .replace(/sk-[a-zA-Z0-9_-]{20,}/g, 'sk-••••••••')
+    .replace(/AIzaSy[a-zA-Z0-9_-]{10,}/g, 'AIz••••••••')
+    .replace(/sk-[a-zA-Z0-9_-]{10,}/g, 'sk-••••••••')
     .replace(/Bearer\s+[a-zA-Z0-9_.-]+/gi, 'Bearer ••••••••');
 }
 

@@ -6,6 +6,10 @@ import { globalServiceRegistry } from '../../kernel/registry/ServiceRegistry.js'
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalDeprecatedOverrideManager } from '../../models/ModelSelection.js';
 import { maskSensitiveText } from './SecretMasker.js';
+import { globalProviderHealthTracker } from './ProviderHealthTracker.js';
+
+// Auto-initialize runtime health tracking (idempotent)
+globalProviderHealthTracker.initialize();
 
 export class ModelRouter {
   public registerService(): void {
@@ -40,6 +44,16 @@ export class ModelRouter {
         valid: false, 
         reason: `Provider "${providerId}" health check failed: status is "${health.status}". Message: ${health.message}`, 
         suggestedProvider: configured?.id 
+      };
+    }
+
+    if (health.cooldownUntil && Date.now() < health.cooldownUntil) {
+      const configured = this.findConfiguredProvider(request, providerId);
+      const remainingSec = Math.ceil((health.cooldownUntil - Date.now()) / 1000);
+      return {
+        valid: false,
+        reason: `Provider "${providerId}" is in temporary cooldown (${remainingSec}s remaining). Message: ${health.message}`,
+        suggestedProvider: configured?.id
       };
     }
 
@@ -495,6 +509,9 @@ export class ModelRouter {
     }
     const health = provider.health;
     if (health.status !== 'healthy' && health.status !== 'degraded') {
+      return false;
+    }
+    if (health.cooldownUntil && Date.now() < health.cooldownUntil) {
       return false;
     }
     if (provider.costControls.dailyLimit > 0 && provider.usage.dailySpend >= provider.costControls.dailyLimit) {

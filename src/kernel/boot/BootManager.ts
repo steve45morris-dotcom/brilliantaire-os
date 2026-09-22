@@ -17,6 +17,7 @@ import { getGeminiDiagnostics } from '../../integrations/gemini/GeminiConfig.js'
 import { globalAnthropicIntegrationContract } from '../../integrations/anthropic/AnthropicIntegrationContract.js';
 import { globalLocalIntegrationContract } from '../../integrations/core/LocalIntegrationContract.js';
 import { globalModelRouter } from '../../integrations/core/ModelRouter.js';
+import { globalProviderHealthTracker } from '../../integrations/core/ProviderHealthTracker.js';
 import { globalIntelligenceService } from '../../intelligence/IntelligenceService.js';
 
 import { globalObservationEngine } from '../../intelligence/ObservationEngine.js';
@@ -62,6 +63,8 @@ export class BootManager {
     globalOpenAIIntegration.registerService();
     globalGeminiIntegration.registerService();
     globalModelRouter.registerService();
+    globalProviderHealthTracker.initialize();
+    globalServiceRegistry.register('ProviderHealthTracker', globalProviderHealthTracker);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalGitHubIntegrationContract);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalOpenAIIntegrationContract);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalGeminiIntegrationContract);
