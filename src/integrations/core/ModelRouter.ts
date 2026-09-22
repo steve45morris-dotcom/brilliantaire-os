@@ -5,6 +5,7 @@ import { ModelRoutingRequest, ModelRoutingResult, TaskRole } from './ModelRoutin
 import { globalServiceRegistry } from '../../kernel/registry/ServiceRegistry.js';
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalDeprecatedOverrideManager } from '../../models/ModelSelection.js';
+import { maskSensitiveText } from './SecretMasker.js';
 
 export class ModelRouter {
   public registerService(): void {
@@ -144,6 +145,18 @@ export class ModelRouter {
 
       const requiresApproval = this.checkBudgetExceeded(provider, model);
 
+      globalEventBus.publish('ModelRouterSelection', {
+        taskRole,
+        providerId,
+        model,
+        fallbackActive: false,
+        fallbackEligibility: provider?.fallbackEligibility ?? false,
+        requiresApproval,
+        routingMode: 'manual',
+        explanation: maskSensitiveText(`Manual Mode locked. User selected provider: ${providerId}, model: ${model}.`),
+        timestamp: new Date().toISOString()
+      });
+
       return {
         providerId,
         model,
@@ -187,6 +200,18 @@ export class ModelRouter {
           // If fallback switch requires approval
           if (policy.requireApprovalBeforeProviderSwitch) {
             explanation += ` Fallback provider "${fallbackProviderId}" found, awaiting switch approval.`;
+            globalEventBus.publish('ModelRouterSelection', {
+              taskRole,
+              providerId: preferredProviderId,
+              model: chosenModel || 'default-model',
+              fallbackActive: true,
+              fallbackProviderId,
+              fallbackEligibility: true,
+              requiresApproval: true,
+              routingMode: 'automatic',
+              explanation: maskSensitiveText(explanation),
+              timestamp: new Date().toISOString()
+            });
             // Block execute and require approval, do not silently switch
             return {
               providerId: preferredProviderId,
@@ -208,6 +233,17 @@ export class ModelRouter {
           }
         } else {
           explanation += ` No viable fallback providers found.`;
+          globalEventBus.publish('ModelRouterSelection', {
+            taskRole,
+            providerId: preferredProviderId,
+            model: chosenModel || 'default-model',
+            fallbackActive: false,
+            fallbackEligibility: false,
+            requiresApproval: true,
+            routingMode: 'automatic',
+            explanation: maskSensitiveText(explanation),
+            timestamp: new Date().toISOString()
+          });
           return {
             providerId: preferredProviderId,
             model: chosenModel || 'default-model',
@@ -220,6 +256,17 @@ export class ModelRouter {
         }
       } else {
         explanation += ` Fallback is disabled.`;
+        globalEventBus.publish('ModelRouterSelection', {
+          taskRole,
+          providerId: preferredProviderId,
+          model: chosenModel || 'default-model',
+          fallbackActive: false,
+          fallbackEligibility: false,
+          requiresApproval: true,
+          routingMode: 'automatic',
+          explanation: maskSensitiveText(explanation),
+          timestamp: new Date().toISOString()
+        });
         return {
           providerId: preferredProviderId,
           model: chosenModel || 'default-model',
@@ -249,7 +296,11 @@ export class ModelRouter {
       model: chosenModel,
       fallbackActive: isFallbackActive,
       fallbackProviderId,
-      explanation
+      fallbackEligibility: provider?.fallbackEligibility ?? false,
+      requiresApproval: requiresApproval || isFallbackActive,
+      routingMode: policy.routingMode,
+      explanation: maskSensitiveText(explanation),
+      timestamp: new Date().toISOString()
     });
 
     console.log(`[ModelRouter] Selected: ${chosenProviderId} | Model: ${chosenModel} | Reason: ${explanation}`);
@@ -267,9 +318,19 @@ export class ModelRouter {
   }
 
   public async executeRoutedRequest(request: ModelRoutingRequest, requestPayload: any): Promise<any> {
+    const startTime = Date.now();
     const routeResult = this.route(request);
 
     if (routeResult.validationFailed) {
+      globalEventBus.publish('ModelRouterExecutionBlocked', {
+        providerId: routeResult.providerId,
+        model: routeResult.model,
+        role: routeResult.role,
+        reason: maskSensitiveText(routeResult.reason),
+        requiresApproval: routeResult.requiresApproval,
+        suggestedProviderId: routeResult.suggestedProviderId,
+        timestamp: new Date().toISOString()
+      });
       return {
         success: false,
         status: 'validation-failed',
@@ -281,11 +342,27 @@ export class ModelRouter {
     const provider = this.resolveModelProvider(routeResult.providerId);
 
     if (!provider) {
+      globalEventBus.publish('ModelRouterExecutionFailed', {
+        providerId: routeResult.providerId,
+        role: routeResult.role,
+        error: `Provider "${routeResult.providerId}" not resolved.`,
+        latencyMs: Date.now() - startTime,
+        success: false,
+        timestamp: new Date().toISOString()
+      });
       throw new Error(`Routing execution failed: Provider "${routeResult.providerId}" not resolved.`);
     }
 
     // Enforce cost limits check
     if (routeResult.requiresApproval && requestPayload.approvalStatus !== 'approved') {
+      globalEventBus.publish('ModelRouterExecutionBlocked', {
+        providerId: routeResult.providerId,
+        model: routeResult.model,
+        role: routeResult.role,
+        reason: maskSensitiveText(routeResult.reason),
+        requiresApproval: true,
+        timestamp: new Date().toISOString()
+      });
       return {
         success: false,
         status: 'approval-required',
@@ -293,6 +370,14 @@ export class ModelRouter {
         route: routeResult
       };
     }
+
+    globalEventBus.publish('ModelRouterExecutionStarted', {
+      providerId: routeResult.providerId,
+      model: routeResult.model,
+      role: routeResult.role,
+      capability: request.requiredCapability || 'text',
+      timestamp: new Date().toISOString()
+    });
 
     try {
       const capability = request.requiredCapability || 'text';
@@ -312,14 +397,33 @@ export class ModelRouter {
         executionResult = await provider.executeText({ ...requestPayload, selectedModel: routeResult.model });
       }
 
+      const latencyMs = Date.now() - startTime;
+      globalEventBus.publish('ModelRouterExecutionCompleted', {
+        providerId: routeResult.providerId,
+        model: routeResult.model,
+        role: routeResult.role,
+        latencyMs,
+        success: executionResult?.success ?? true,
+        timestamp: new Date().toISOString()
+      });
+
       return {
         ...executionResult,
         route: routeResult
       };
     } catch (err) {
+      const primaryErrorMsg = (err as Error).message;
       if (routeResult.fallbackProviderId && globalModelRoutingPolicy.getSettings().allowProviderFallback) {
         console.warn(`[ModelRouter] Request to ${routeResult.providerId} failed. Retrying fallback: ${routeResult.fallbackProviderId}`);
         
+        globalEventBus.publish('ModelRouterFallbackTriggered', {
+          primaryProviderId: routeResult.providerId,
+          fallbackProviderId: routeResult.fallbackProviderId,
+          primaryModel: routeResult.model,
+          error: maskSensitiveText(primaryErrorMsg),
+          timestamp: new Date().toISOString()
+        });
+
         const fallbackProvider = this.resolveModelProvider(routeResult.fallbackProviderId);
         if (fallbackProvider) {
           try {
@@ -328,6 +432,18 @@ export class ModelRouter {
               ...requestPayload,
               selectedModel: fallbackModel
             });
+
+            const latencyMs = Date.now() - startTime;
+            globalEventBus.publish('ModelRouterExecutionCompleted', {
+              providerId: routeResult.fallbackProviderId,
+              model: fallbackModel,
+              role: routeResult.role,
+              latencyMs,
+              success: fallbackResult?.success ?? true,
+              fallbackRecovered: true,
+              timestamp: new Date().toISOString()
+            });
+
             return {
               ...fallbackResult,
               route: {
@@ -338,10 +454,29 @@ export class ModelRouter {
               }
             };
           } catch (fallbackErr) {
-            throw new Error(`Primary execution failed: ${(err as Error).message}. Fallback also failed: ${(fallbackErr as Error).message}`);
+            const fallbackErrorMsg = (fallbackErr as Error).message;
+            globalEventBus.publish('ModelRouterExecutionFailed', {
+              providerId: routeResult.fallbackProviderId,
+              primaryProviderId: routeResult.providerId,
+              role: routeResult.role,
+              error: maskSensitiveText(`Primary failed: ${primaryErrorMsg}. Fallback failed: ${fallbackErrorMsg}`),
+              latencyMs: Date.now() - startTime,
+              success: false,
+              timestamp: new Date().toISOString()
+            });
+            throw new Error(`Primary execution failed: ${primaryErrorMsg}. Fallback also failed: ${fallbackErrorMsg}`);
           }
         }
       }
+
+      globalEventBus.publish('ModelRouterExecutionFailed', {
+        providerId: routeResult.providerId,
+        role: routeResult.role,
+        error: maskSensitiveText(primaryErrorMsg),
+        latencyMs: Date.now() - startTime,
+        success: false,
+        timestamp: new Date().toISOString()
+      });
       throw err;
     }
   }

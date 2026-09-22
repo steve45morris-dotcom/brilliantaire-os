@@ -412,7 +412,35 @@ export class GeminiIntegrationContract implements IntegrationContract, ModelProv
   }
 
   public async executeStreaming(payload: any): Promise<any> {
-    return this.executeText(payload);
+    this.requestCount++;
+    try {
+      const prompt = payload.prompt || payload.userIntent || payload.query || '';
+      const res = await globalGeminiResponsesService.executeStreamingRequest({
+        selectedModel: payload.selectedModel || this.configuration.defaultModel,
+        prompt,
+        systemInstruction: payload.systemInstruction,
+        temperature: payload.temperature,
+        maxOutputTokens: payload.maxOutputTokens,
+        timeoutMs: payload.timeoutMs,
+        maxRetries: payload.maxRetries,
+        workspaceId: payload.workspaceId,
+        onChunk: payload.onChunk,
+        signal: payload.signal
+      });
+      if (res.success) {
+        this.successCount++;
+        if (res.usage) {
+          this.totalInputTokens += res.usage.inputTokens || 0;
+          this.totalOutputTokens += res.usage.outputTokens || 0;
+        }
+      } else {
+        this.failureCount++;
+      }
+      return res;
+    } catch (e) {
+      this.failureCount++;
+      throw e;
+    }
   }
 
   public async executeVoice(payload: any): Promise<any> {

@@ -10,6 +10,7 @@ import { globalServiceRegistry } from '../../kernel/registry/ServiceRegistry.js'
 import { globalGeminiIntegration } from './GeminiIntegration.js';
 import { globalModelRegistry } from '../../models/ModelRegistry.js';
 import { globalOpenAIIntegrationContract } from '../openai/OpenAIIntegrationContract.js';
+import { globalEventBus } from '../../kernel/events/EventBus.js';
 
 describe('Gemini Provider First-Class Integration Tests', () => {
   let originalEnv: Record<string, string | undefined>;
@@ -701,6 +702,552 @@ describe('Gemini Provider First-Class Integration Tests', () => {
       });
       expect(unsupportedCapabilityCheck.valid).toBe(false);
       expect(unsupportedCapabilityCheck.reason).toContain('does not support capability "voice"');
+    });
+  });
+
+  describe('13. Provider Telemetry, Streaming & Error Resilience (Phase 4)', () => {
+    // 1. Streaming Chunk Integrity
+    it('verifies streaming chunk arrival order, index monotonicity, and non-duplication', async () => {
+      const sseStream = [
+        'data: {"candidates":[{"content":{"parts":[{"text":"Hello "}]}}]}\n\n',
+        'data: {"candidates":[{"content":{"parts":[{"text":"world "}]}}]}\n\n',
+        'data: {"candidates":[{"content":{"parts":[{"text":"from Gemini."}]},"finishReason":"STOP"}],"usageMetadata":{"promptTokenCount":5,"candidatesTokenCount":4,"totalTokenCount":9}}\n\n'
+      ];
+
+      const encoder = new TextEncoder();
+      const mockStream = new ReadableStream({
+        start(controller) {
+          for (const chunk of sseStream) {
+            controller.enqueue(encoder.encode(chunk));
+          }
+          controller.close();
+        }
+      });
+
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        body: mockStream
+      }));
+
+      const client = new GeminiClient();
+      const receivedChunks: any[] = [];
+      const result = await client.streamContent('gemini-2.5-flash', 'Say hello', {
+        onChunk: (chunk) => {
+          receivedChunks.push(chunk);
+        }
+      });
+
+      expect(receivedChunks.length).toBe(3);
+      expect(receivedChunks.map(c => c.index)).toEqual([0, 1, 2]);
+      expect(receivedChunks.map(c => c.text)).toEqual(['Hello ', 'world ', 'from Gemini.']);
+      expect(receivedChunks[2].isFinal).toBe(true);
+      expect(result.text).toBe('Hello world from Gemini.');
+      expect(result.completed).toBe(true);
+      expect(result.usage.totalTokens).toBe(9);
+    });
+
+    it('handles empty chunks correctly without breaking sequence or stream state', async () => {
+      const sseStream = [
+        'data: {"candidates":[{"content":{"parts":[{"text":"Chunk1"}]}}]}\n\n',
+        'data: {"candidates":[{"content":{"parts":[{"text":""}]}}]}\n\n',
+        'data: {"candidates":[{"content":{"parts":[{"text":"Chunk2"}]},"finishReason":"STOP"}]}\n\n'
+      ];
+
+      const encoder = new TextEncoder();
+      const mockStream = new ReadableStream({
+        start(controller) {
+          for (const chunk of sseStream) {
+            controller.enqueue(encoder.encode(chunk));
+          }
+          controller.close();
+        }
+      });
+
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        body: mockStream
+      }));
+
+      const client = new GeminiClient();
+      const receivedChunks: any[] = [];
+      const result = await client.streamContent('gemini-2.5-flash', 'Empty test', {
+        onChunk: (c) => receivedChunks.push(c)
+      });
+
+      expect(receivedChunks.map(c => c.index)).toEqual([0, 1, 2]);
+      expect(result.text).toBe('Chunk1Chunk2');
+      expect(result.completed).toBe(true);
+    });
+
+    it('ensures provider errors do not masquerade as successful completion', async () => {
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+        ok: false,
+        status: 503,
+        text: async () => JSON.stringify({ error: { message: 'Upstream unavailable' } })
+      }));
+
+      const res = await globalGeminiResponsesService.executeStreamingRequest({
+        selectedModel: 'gemini-2.5-flash',
+        prompt: 'Should fail cleanly',
+        maxRetries: 0
+      });
+
+      expect(res.success).toBe(false);
+      expect(res.status).toBe('failed');
+      expect(res.status).not.toBe('completed');
+      expect(res.error?.code).toBe('GEMINI_SERVER_ERROR');
+      expect(res.output).toBeNull();
+    });
+
+    it('identifies and preserves partial output when a stream fails mid-transmission', async () => {
+      const encoder = new TextEncoder();
+      let chunkCount = 0;
+      const mockStream = new ReadableStream({
+        pull(controller) {
+          if (chunkCount === 0) {
+            controller.enqueue(encoder.encode('data: {"candidates":[{"content":{"parts":[{"text":"Part 1, "}]}}]}\n\n'));
+            chunkCount++;
+          } else if (chunkCount === 1) {
+            controller.enqueue(encoder.encode('data: {"candidates":[{"content":{"parts":[{"text":"Part 2. "}]}}]}\n\n'));
+            chunkCount++;
+          } else {
+            controller.error(new Error('Connection terminated mid-stream'));
+          }
+        }
+      });
+
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        body: mockStream
+      }));
+
+      const res = await globalGeminiResponsesService.executeStreamingRequest({
+        selectedModel: 'gemini-2.5-flash',
+        prompt: 'Partial test'
+      });
+
+      expect(res.success).toBe(false);
+      expect(res.status).toBe('failed');
+      expect(res.partialOutput).toBe('Part 1, Part 2. ');
+      expect(res.error?.code).toBe('GEMINI_STREAMING_ERROR');
+    });
+
+    it('propagates stream cancellation and halts chunk emission immediately', async () => {
+      const controller = new AbortController();
+      controller.abort();
+
+      const res = await globalGeminiResponsesService.executeStreamingRequest({
+        selectedModel: 'gemini-2.5-flash',
+        prompt: 'Cancelled test',
+        signal: controller.signal
+      });
+
+      expect(res.success).toBe(false);
+      expect(res.status).toBe('failed');
+      expect(res.error?.code).toBe('GEMINI_CANCELLED');
+    });
+
+    it('prevents retry duplication when failure occurs after chunks have already been emitted', async () => {
+      let fetchCount = 0;
+      const encoder = new TextEncoder();
+
+      vi.stubGlobal('fetch', vi.fn().mockImplementation(() => {
+        fetchCount++;
+        let pullCount = 0;
+        const stream = new ReadableStream({
+          pull(ctrl) {
+            if (pullCount === 0) {
+              ctrl.enqueue(encoder.encode('data: {"candidates":[{"content":{"parts":[{"text":"Emitted Chunk "}]}}]}\n\n'));
+              pullCount++;
+            } else {
+              ctrl.error(new Error('Network drop after first chunk'));
+            }
+          }
+        });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          body: stream
+        });
+      }));
+
+      const client = new GeminiClient();
+      let emittedCount = 0;
+
+      await expect(
+        client.streamContent('gemini-2.5-flash', 'Test retry barrier', {
+          maxRetries: 3,
+          onChunk: () => { emittedCount++; }
+        })
+      ).rejects.toThrow();
+
+      // Because a chunk was already sent to the consumer, it must NOT retry and duplicate tokens
+      expect(fetchCount).toBe(1);
+      expect(emittedCount).toBe(1);
+    });
+
+    // 2. Telemetry Validation (ModelRouterSelection & Secret Protection)
+    it('captures complete reconstructible metadata in ModelRouterSelection and protects secrets', () => {
+      let capturedEvent: any = null;
+      const listener = (event: any) => {
+        if (event.type === 'ModelRouterSelection') {
+          capturedEvent = event.payload;
+        }
+      };
+      globalEventBus.subscribe('ModelRouterSelection', listener);
+
+      globalModelRouter.route({
+        taskDescription: 'Fast query with simulated key sk-proj-1234567890abcdef1234567890 in text',
+        taskType: 'fast',
+        selectedProvider: 'gemini'
+      });
+
+      globalEventBus.unsubscribe('ModelRouterSelection', listener);
+
+      expect(capturedEvent).toBeDefined();
+      expect(capturedEvent.taskRole).toBe('fast');
+      expect(capturedEvent.providerId).toBe('gemini');
+      expect(capturedEvent.model).toBe('gemini-2.5-flash');
+      expect(capturedEvent.fallbackActive).toBe(false);
+      expect(capturedEvent.fallbackEligibility).toBe(true);
+      expect(capturedEvent.requiresApproval).toBe(false);
+      expect(capturedEvent.timestamp).toBeDefined();
+      expect(capturedEvent.explanation).toBeDefined();
+
+      // Verify no secrets leaked in explanation
+      expect(capturedEvent.explanation).not.toContain('1234567890abcdef1234567890');
+    });
+
+    it('emits structured ModelRouter execution lifecycle events (Started, Completed, Failed)', async () => {
+      const events: string[] = [];
+      const listener = (event: any) => {
+        if (event.type.startsWith('ModelRouterExecution')) {
+          events.push(event.type);
+        }
+      };
+      globalEventBus.subscribe('ModelRouterExecutionStarted', listener);
+      globalEventBus.subscribe('ModelRouterExecutionCompleted', listener);
+      globalEventBus.subscribe('ModelRouterExecutionFailed', listener);
+
+      vi.spyOn(globalGeminiIntegrationContract, 'executeText').mockResolvedValueOnce({
+        success: true,
+        output: { text: 'Execution success' }
+      });
+
+      await globalModelRouter.executeRoutedRequest(
+        { taskDescription: 'Test execution lifecycle', taskType: 'fast', selectedProvider: 'gemini' },
+        { prompt: 'Ping' }
+      );
+
+      globalEventBus.unsubscribe('ModelRouterExecutionStarted', listener);
+      globalEventBus.unsubscribe('ModelRouterExecutionCompleted', listener);
+      globalEventBus.unsubscribe('ModelRouterExecutionFailed', listener);
+
+      expect(events).toContain('ModelRouterExecutionStarted');
+      expect(events).toContain('ModelRouterExecutionCompleted');
+      expect(events).not.toContain('ModelRouterExecutionFailed');
+    });
+
+    // 3. Error Taxonomy & Classification
+    it('classifies all failure modes into architectural error taxonomy with preserved context', () => {
+      const err400 = normalizeGeminiError(new Error('Invalid maxOutputTokens'), 400);
+      expect(err400.category).toBe('configuration');
+      expect(err400.code).toBe('GEMINI_INVALID_ARGUMENT');
+
+      const err401 = normalizeGeminiError(new Error('Bad API Key'), 401);
+      expect(err401.category).toBe('authentication');
+      expect(err401.code).toBe('GEMINI_AUTHENTICATION_ERROR');
+
+      const err429 = normalizeGeminiError(new Error('Resource exhausted'), 429);
+      expect(err429.category).toBe('rate-limit');
+      expect(err429.code).toBe('GEMINI_RATE_LIMITED');
+
+      const errTimeout = normalizeGeminiError(new Error('Operation aborted due to timeout'), 408);
+      expect(errTimeout.category).toBe('timeout');
+      expect(errTimeout.code).toBe('GEMINI_TIMEOUT');
+
+      const errNetwork = normalizeGeminiError(new Error('fetch failed with ENOTFOUND'), 500);
+      expect(errNetwork.category).toBe('network');
+      expect(errNetwork.code).toBe('GEMINI_NETWORK_ERROR');
+
+      const errServer = normalizeGeminiError(new Error('Internal server error'), 503);
+      expect(errServer.category).toBe('provider-unavailable');
+      expect(errServer.code).toBe('GEMINI_SERVER_ERROR');
+
+      const errCancel = normalizeGeminiError(new Error('user abort requested'), 499);
+      expect(errCancel.category).toBe('cancellation');
+      expect(errCancel.code).toBe('GEMINI_CANCELLED');
+
+      const errStream = normalizeGeminiError(new Error('stream delimiter broken'), 500);
+      expect(errStream.category).toBe('streaming');
+      expect(errStream.code).toBe('GEMINI_STREAMING_ERROR');
+    });
+
+    // 4. Retry & Fallback Observability (Scenarios A through F)
+    it('observes Scenario A: primary success with zero fallback events', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+      globalOpenAIIntegrationContract.status = 'active';
+      await globalOpenAIIntegrationContract.healthCheck();
+
+      const observedEvents: any[] = [];
+      const listener = (event: any) => observedEvents.push(event);
+      globalEventBus.subscribe('ModelRouterSelection', listener);
+      globalEventBus.subscribe('ModelRouterExecutionCompleted', listener);
+
+      vi.spyOn(globalOpenAIIntegrationContract, 'executeText').mockResolvedValueOnce({
+        success: true,
+        output: { text: 'OpenAI primary success' }
+      });
+
+      globalModelRoutingPolicy.updateSettings({ preferredProvider: 'openai' });
+
+      const res = await globalModelRouter.executeRoutedRequest(
+        { taskDescription: 'General task', taskType: 'fast' },
+        { prompt: 'Run' }
+      );
+
+      globalEventBus.unsubscribe('ModelRouterSelection', listener);
+      globalEventBus.unsubscribe('ModelRouterExecutionCompleted', listener);
+
+      expect(res.success).toBe(true);
+      expect(res.route.providerId).toBe('openai');
+      const selection = observedEvents.find(e => e.type === 'ModelRouterSelection');
+      expect(selection.payload.fallbackActive).toBe(false);
+    });
+
+    it('observes Scenario B: primary failure with fallback disabled', () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+      globalOpenAIIntegrationContract.status = 'suspended';
+
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        allowProviderFallback: false
+      });
+
+      const route = globalModelRouter.route({
+        taskDescription: 'Failure without fallback',
+        taskType: 'fast'
+      });
+
+      expect(route.validationFailed).toBe(true);
+      expect(route.requiresApproval).toBe(true);
+      expect(route.reason).toContain('Fallback is disabled');
+    });
+
+    it('observes Scenario C: primary failure followed by approved fallback execution', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+      globalOpenAIIntegrationContract.status = 'suspended';
+      globalGeminiIntegrationContract.status = 'active';
+      globalGeminiIntegrationContract.fallbackEligibility = true;
+
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        allowProviderFallback: true,
+        requireApprovalBeforeProviderSwitch: true
+      });
+
+      // 1. Unapproved call is blocked
+      const blockedRes = await globalModelRouter.executeRoutedRequest(
+        { taskDescription: 'Needs switch approval', taskType: 'fast' },
+        { prompt: 'Do work', approvalStatus: 'pending' }
+      );
+      expect(blockedRes.status).toBe('validation-failed');
+      expect(blockedRes.route.fallbackProviderId).toBe('gemini');
+
+      // 2. Approved call succeeds on fallback Gemini
+      const geminiSpy = vi.spyOn(globalGeminiIntegrationContract, 'executeText').mockResolvedValueOnce({
+        success: true,
+        output: { text: 'Approved fallback execution on Gemini' }
+      });
+
+      const approvedRes = await globalModelRouter.executeRoutedRequest(
+        { taskDescription: 'Needs switch approval', taskType: 'fast', selectedProvider: 'gemini' },
+        { prompt: 'Do work', approvalStatus: 'approved' }
+      );
+
+      expect(approvedRes.success).toBe(true);
+      expect(approvedRes.output.text).toBe('Approved fallback execution on Gemini');
+      expect(geminiSpy).toHaveBeenCalled();
+    });
+
+    it('observes Scenario D: primary failure followed by automatic fallback', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+      globalOpenAIIntegrationContract.status = 'suspended';
+      globalGeminiIntegrationContract.status = 'active';
+      globalGeminiIntegrationContract.fallbackEligibility = true;
+
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        allowProviderFallback: true,
+        requireApprovalBeforeProviderSwitch: false
+      });
+
+      const route = globalModelRouter.route({
+        taskDescription: 'Automatic fallback test',
+        taskType: 'fast'
+      });
+
+      expect(route.providerId).toBe('gemini');
+      expect(route.confidence).toBe(0.7);
+      expect(route.reason).toContain('Auto-switched to fallback provider "gemini"');
+    });
+
+    it('observes Scenario E: fallback failure after primary execution failure', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+
+      const mockRouteResult: any = {
+        providerId: 'openai',
+        model: 'gpt-4o',
+        role: 'fast',
+        reason: 'Simulated primary with fallback wired',
+        confidence: 0.7,
+        fallbackProviderId: 'gemini',
+        fallbackModel: 'gemini-2.5-flash',
+        requiresApproval: false
+      };
+
+      vi.spyOn(globalModelRouter, 'route').mockReturnValueOnce(mockRouteResult);
+      vi.spyOn(globalOpenAIIntegrationContract, 'executeText').mockRejectedValueOnce(new Error('OpenAI primary crash'));
+      vi.spyOn(globalGeminiIntegrationContract, 'executeText').mockRejectedValueOnce(new Error('Gemini fallback crash'));
+
+      await expect(
+        globalModelRouter.executeRoutedRequest(
+          { taskDescription: 'Both fail test', taskType: 'fast' },
+          { prompt: 'Ping', approvalStatus: 'approved' }
+        )
+      ).rejects.toThrow('Primary execution failed: OpenAI primary crash. Fallback also failed: Gemini fallback crash');
+    });
+
+    it('observes Scenario F: streaming failure after partial output', async () => {
+      const encoder = new TextEncoder();
+      let pullCount = 0;
+      const mockStream = new ReadableStream({
+        pull(controller) {
+          if (pullCount === 0) {
+            controller.enqueue(encoder.encode('data: {"candidates":[{"content":{"parts":[{"text":"Chunk 1. "}]}}]}\n\n'));
+            pullCount++;
+          } else {
+            controller.error(new Error('Socket disconnected'));
+          }
+        }
+      });
+
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        body: mockStream
+      }));
+
+      const events: any[] = [];
+      const listener = (event: any) => {
+        if (event.type.startsWith('GeminiStream')) {
+          events.push(event);
+        }
+      };
+      globalEventBus.subscribe('GeminiStreamStarted', listener);
+      globalEventBus.subscribe('GeminiStreamChunk', listener);
+      globalEventBus.subscribe('GeminiStreamFailed', listener);
+
+      const res = await globalGeminiResponsesService.executeStreamingRequest({
+        selectedModel: 'gemini-2.5-flash',
+        prompt: 'Scenario F test'
+      });
+
+      globalEventBus.unsubscribe('GeminiStreamStarted', listener);
+      globalEventBus.unsubscribe('GeminiStreamChunk', listener);
+      globalEventBus.unsubscribe('GeminiStreamFailed', listener);
+
+      expect(res.success).toBe(false);
+      expect(res.status).toBe('failed');
+      expect(res.partialOutput).toBe('Chunk 1. ');
+      expect(events.map(e => e.type)).toEqual(['GeminiStreamStarted', 'GeminiStreamChunk', 'GeminiStreamFailed']);
+      expect(events.find(e => e.type === 'GeminiStreamFailed')?.payload.partialLength).toBe(9);
+    });
+
+    // 5. Approval Gate Preservation
+    it('preserves approval gate and blocks unapproved switch when requireApprovalBeforeProviderSwitch is true', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+      globalOpenAIIntegrationContract.status = 'suspended';
+      globalGeminiIntegrationContract.status = 'active';
+
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        allowProviderFallback: true,
+        requireApprovalBeforeProviderSwitch: true
+      });
+
+      const route = globalModelRouter.route({
+        taskDescription: 'Critical production query',
+        taskType: 'fast'
+      });
+
+      expect(route.requiresApproval).toBe(true);
+      expect(route.validationFailed).toBe(true);
+      expect(route.fallbackProviderId).toBe('gemini');
+      expect(globalModelRoutingPolicy.getSettings().preferredProvider).toBe('openai');
+    });
+
+    // 6. Live/Simulated Load Resilience
+    it('maintains integrity under simulated concurrent streaming and transient failures', async () => {
+      let callCount = 0;
+      const encoder = new TextEncoder();
+
+      vi.stubGlobal('fetch', vi.fn().mockImplementation(() => {
+        callCount++;
+        const shouldFail = callCount % 3 === 0;
+        if (shouldFail) {
+          return Promise.resolve({
+            ok: false,
+            status: 429,
+            text: async () => JSON.stringify({ error: { message: 'Transient rate limit under load' } })
+          });
+        }
+        const stream = new ReadableStream({
+          start(ctrl) {
+            ctrl.enqueue(encoder.encode(`data: {"candidates":[{"content":{"parts":[{"text":"Response ${callCount}"}]},"finishReason":"STOP"}]}\n\n`));
+            ctrl.close();
+          }
+        });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          body: stream
+        });
+      }));
+
+      const promises = Array.from({ length: 6 }, (_, i) =>
+        globalGeminiResponsesService.executeStreamingRequest({
+          selectedModel: 'gemini-2.5-flash',
+          prompt: `Load query ${i}`,
+          maxRetries: 0
+        })
+      );
+
+      const results = await Promise.all(promises);
+      expect(results.length).toBe(6);
+
+      const successes = results.filter(r => r.success);
+      const failures = results.filter(r => !r.success);
+
+      expect(successes.length).toBe(4);
+      expect(failures.length).toBe(2);
+      expect(failures[0].error?.code).toBe('GEMINI_RATE_LIMITED');
+      expect(failures[0].status).toBe('failed');
     });
   });
 });
