@@ -7,6 +7,7 @@ import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalDeprecatedOverrideManager } from '../../models/ModelSelection.js';
 import { maskSensitiveText } from './SecretMasker.js';
 import { globalProviderHealthTracker } from './ProviderHealthTracker.js';
+import { projectGovernedSwitchEvidence } from './ProviderHealthProjection.js';
 
 // Auto-initialize runtime health tracking (idempotent)
 globalProviderHealthTracker.initialize();
@@ -333,9 +334,33 @@ export class ModelRouter {
 
   public async executeRoutedRequest(request: ModelRoutingRequest, requestPayload: any): Promise<any> {
     const startTime = Date.now();
+
+    // Check explicit Commander DENY first
+    if (requestPayload?.approvalStatus === 'denied' || requestPayload?.approvalStatus === 'rejected') {
+      const routeResult = this.route(request);
+      return {
+        success: false,
+        status: 'approval-denied',
+        message: 'Execution aborted by Commander approval denial.',
+        route: routeResult
+      };
+    }
+
+    // Handle single-request approved fallback override without mutating policy
+    if (requestPayload?.approvalStatus === 'approved' && requestPayload?.providerOverride && !request.selectedProvider) {
+      request = { ...request, selectedProvider: requestPayload.providerOverride };
+    }
+
     const routeResult = this.route(request);
 
     if (routeResult.validationFailed) {
+      const approvalEvidence = projectGovernedSwitchEvidence(
+        routeResult.providerId,
+        routeResult.suggestedProviderId || '',
+        routeResult.fallbackModel || routeResult.model,
+        request.requiredCapability
+      );
+
       globalEventBus.publish('ModelRouterExecutionBlocked', {
         providerId: routeResult.providerId,
         model: routeResult.model,
@@ -343,13 +368,15 @@ export class ModelRouter {
         reason: maskSensitiveText(routeResult.reason),
         requiresApproval: routeResult.requiresApproval,
         suggestedProviderId: routeResult.suggestedProviderId,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        approvalEvidence
       });
       return {
         success: false,
         status: 'validation-failed',
         message: `Routing validation failed: ${routeResult.reason}. Human approval required.`,
-        route: routeResult
+        route: routeResult,
+        approvalEvidence
       };
     }
 

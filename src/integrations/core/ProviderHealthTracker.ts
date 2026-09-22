@@ -76,6 +76,10 @@ export class ProviderHealthTracker {
   private states = new Map<string, RuntimeProviderHealthState>();
   private history = new Map<string, HealthWindowEntry[]>();
 
+  public get initialized(): boolean {
+    return this.isInitialized;
+  }
+
   // Bound event handlers for clean subscribe/unsubscribe
   private handleExecutionCompleted = (event: KernelEvent): void => {
     const payload = event.payload;
