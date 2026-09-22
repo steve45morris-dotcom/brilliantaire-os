@@ -95,47 +95,57 @@ export class GeminiIntegrationContract implements IntegrationContract, ModelProv
   public events = [];
   public commands = [];
 
-  public async discoverModels(): Promise<string[]> {
+  public async discoverModels(options?: { force?: boolean }): Promise<string[]> {
     const config = getGeminiConfig();
     const validation = validateGeminiKey(config.apiKey);
-    if (!config.apiKey || !validation.valid || process.env.VITEST === 'true') {
+    if (!config.apiKey || !validation.valid) {
+      return this.models;
+    }
+    if (process.env.VITEST === 'true' && !options?.force && process.env.GEMINI_DISCOVERY_TEST !== 'true') {
       return this.models;
     }
     try {
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${config.apiKey}`, {
-        signal: AbortSignal.timeout(5000)
+        signal: AbortSignal.timeout(config.timeoutMs || 5000)
       });
       if (response.ok) {
         const data = await response.json();
         if (data.models && Array.isArray(data.models)) {
-          const discovered = data.models.map((m: any) => m.name.replace('models/', ''));
-          for (const mId of discovered) {
+          const { globalModelRegistry } = await import('../../models/ModelRegistry.js');
+          for (const m of data.models) {
+            const rawName = typeof m === 'string' ? m : (m.name || '');
+            const mId = rawName.replace('models/', '');
+            if (!mId) continue;
             if (!this.models.includes(mId)) {
               this.models.push(mId);
             }
-          }
-          
-          const { globalModelRegistry } = await import('../../models/ModelRegistry.js');
-          for (const mId of discovered) {
             if (!globalModelRegistry.getModel(mId)) {
+              const isPro = mId.includes('pro');
+              const displayName = (typeof m === 'object' && m.displayName) 
+                ? m.displayName 
+                : mId.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+              const inputLimit = (typeof m === 'object' && m.inputTokenLimit) 
+                ? m.inputTokenLimit 
+                : (isPro ? 2000000 : 1000000);
+
               globalModelRegistry.registerModel({
                 id: mId,
                 provider: 'Google Gemini',
-                displayName: mId.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-                version: 'discovered',
+                displayName,
+                version: (typeof m === 'object' && m.version) ? m.version : 'discovered',
                 status: 'Available',
-                contextWindow: 1000000,
+                contextWindow: inputLimit,
                 supportsVision: true,
                 supportsVoice: true,
-                supportsReasoning: mId.includes('pro'),
+                supportsReasoning: isPro,
                 supportsCoding: true,
-                supportsResearch: mId.includes('pro'),
-                supportsAgents: mId.includes('pro'),
+                supportsResearch: isPro,
+                supportsAgents: isPro,
                 supportsStreaming: true,
                 supportsFunctionCalling: true,
-                estimatedSpeed: mId.includes('pro') ? 'medium' : 'fast',
-                estimatedCost: mId.includes('pro') ? 'medium' : 'low',
-                recommendedTasks: mId.includes('pro') ? ['Research', 'Builder'] : ['Conversation'],
+                estimatedSpeed: isPro ? 'medium' : 'fast',
+                estimatedCost: isPro ? 'medium' : 'low',
+                recommendedTasks: isPro ? ['Research', 'Builder'] : ['Conversation'],
                 supported: true,
                 deprecated: false,
                 capabilities: ['text', 'vision', 'voice', 'coding', 'streaming', 'function-calling'],

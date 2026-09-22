@@ -8,6 +8,8 @@ import { globalIntegrationRegistry } from '../core/IntegrationRegistry.js';
 import { globalModelRoutingPolicy } from '../core/ModelRoutingPolicy.js';
 import { globalServiceRegistry } from '../../kernel/registry/ServiceRegistry.js';
 import { globalGeminiIntegration } from './GeminiIntegration.js';
+import { globalModelRegistry } from '../../models/ModelRegistry.js';
+import { globalOpenAIIntegrationContract } from '../openai/OpenAIIntegrationContract.js';
 
 describe('Gemini Provider First-Class Integration Tests', () => {
   let originalEnv: Record<string, string | undefined>;
@@ -425,4 +427,281 @@ describe('Gemini Provider First-Class Integration Tests', () => {
       expect(mockFetch).toHaveBeenCalled();
     });
   });
+
+  describe('12. Gemini Model Discovery & Role-Based Routing (Phase 3)', () => {
+    it('discovers models dynamically from API and registers them into ModelRegistry', async () => {
+      const mockDiscoveryData = {
+        models: [
+          {
+            name: 'models/gemini-2.5-flash',
+            version: '001',
+            displayName: 'Gemini 2.5 Flash',
+            inputTokenLimit: 1000000,
+            supportedGenerationMethods: ['generateContent']
+          },
+          {
+            name: 'models/gemini-2.5-pro',
+            version: '001',
+            displayName: 'Gemini 2.5 Pro',
+            inputTokenLimit: 2000000,
+            supportedGenerationMethods: ['generateContent']
+          },
+          {
+            name: 'models/gemini-experimental-preview',
+            version: '002',
+            displayName: 'Gemini Experimental Preview',
+            inputTokenLimit: 2000000,
+            supportedGenerationMethods: ['generateContent']
+          }
+        ]
+      };
+
+      const mockFetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => mockDiscoveryData
+      });
+      vi.stubGlobal('fetch', mockFetch);
+
+      const preDiscoveryPolicy = globalModelRoutingPolicy.getSettings();
+      expect(preDiscoveryPolicy.preferredProvider).toBe('openai');
+
+      const discovered = await globalGeminiIntegrationContract.discoverModels({ force: true });
+
+      expect(discovered).toContain('gemini-experimental-preview');
+      expect(globalGeminiIntegrationContract.listModels()).toContain('gemini-experimental-preview');
+
+      const registered = globalModelRegistry.getModel('gemini-experimental-preview');
+      expect(registered).toBeDefined();
+      expect(registered?.provider).toBe('Google Gemini');
+      expect(registered?.displayName).toBe('Gemini Experimental Preview');
+      expect(registered?.status).toBe('Available');
+      expect(registered?.capabilities).toContain('text');
+      expect(registered?.capabilities).toContain('streaming');
+
+      // Configuration sovereignty assertion: discovery must NOT mutate global routing policy
+      const postDiscoveryPolicy = globalModelRoutingPolicy.getSettings();
+      expect(postDiscoveryPolicy.preferredProvider).toBe('openai');
+      expect(postDiscoveryPolicy.routingMode).toBe('automatic');
+    });
+
+    it('routes explicit fast role to gemini-2.5-flash without mutating global preferences', () => {
+      // 1. Explicit request with selectedProvider: 'gemini' and taskType: 'fast'
+      const route = globalModelRouter.route({
+        taskDescription: 'Generate snappy UI helper text',
+        taskType: 'fast',
+        selectedProvider: 'gemini'
+      });
+
+      expect(route.providerId).toBe('gemini');
+      expect(route.model).toBe('gemini-2.5-flash');
+      expect(route.role).toBe('fast');
+
+      // 2. Inferred role from task description
+      const inferredRoute = globalModelRouter.route({
+        taskDescription: 'simple quick chat response',
+        selectedProvider: 'gemini'
+      });
+      expect(inferredRoute.providerId).toBe('gemini');
+      expect(inferredRoute.model).toBe('gemini-2.5-flash');
+      expect(inferredRoute.role).toBe('fast');
+
+      // 3. Explicit fast provider policy configuration while preferredProvider remains 'openai'
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        preferredFastProvider: 'gemini'
+      });
+
+      const policyRoute = globalModelRouter.route({
+        taskDescription: 'Generate quick notification badge',
+        taskType: 'fast'
+      });
+
+      expect(policyRoute.providerId).toBe('gemini');
+      expect(policyRoute.model).toBe('gemini-2.5-flash');
+      expect(globalModelRoutingPolicy.getSettings().preferredProvider).toBe('openai');
+    });
+
+    it('routes explicit reasoning role to gemini-2.5-pro without mutating global preferences', () => {
+      // 1. Explicit request with selectedProvider: 'gemini' and taskType: 'reasoning'
+      const route = globalModelRouter.route({
+        taskDescription: 'Deconstruct complex multi-agent synchronization failure',
+        taskType: 'reasoning',
+        selectedProvider: 'gemini'
+      });
+
+      expect(route.providerId).toBe('gemini');
+      expect(route.model).toBe('gemini-2.5-pro');
+      expect(route.role).toBe('reasoning');
+
+      // 2. Inferred role from task description
+      const inferredRoute = globalModelRouter.route({
+        taskDescription: 'reason and plan architectural migration',
+        selectedProvider: 'gemini'
+      });
+      expect(inferredRoute.providerId).toBe('gemini');
+      expect(inferredRoute.model).toBe('gemini-2.5-pro');
+      expect(inferredRoute.role).toBe('reasoning');
+
+      // 3. Explicit reasoning provider policy configuration while preferredProvider remains 'openai'
+      globalModelRoutingPolicy.updateSettings({
+        preferredProvider: 'openai',
+        preferredReasoningProvider: 'gemini'
+      });
+
+      const policyRoute = globalModelRouter.route({
+        taskDescription: 'Deep logical deduction',
+        taskType: 'reasoning'
+      });
+
+      expect(policyRoute.providerId).toBe('gemini');
+      expect(policyRoute.model).toBe('gemini-2.5-pro');
+      expect(globalModelRoutingPolicy.getSettings().preferredProvider).toBe('openai');
+    });
+
+    it('routes coding task role to gemini-2.5-pro on Gemini', () => {
+      const route = globalModelRouter.route({
+        taskDescription: 'Refactor TypeScript generic interface',
+        taskType: 'coding',
+        selectedProvider: 'gemini'
+      });
+
+      expect(route.providerId).toBe('gemini');
+      expect(route.model).toBe('gemini-2.5-pro');
+      expect(route.role).toBe('coding');
+    });
+
+    it('triggers fallback to Gemini with approval gate when preferred provider fails health check', async () => {
+      globalOpenAIIntegrationContract.status = 'suspended';
+      globalGeminiIntegrationContract.status = 'active';
+      globalGeminiIntegrationContract.fallbackEligibility = true;
+
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+
+      globalModelRoutingPolicy.updateSettings({
+        routingMode: 'automatic',
+        preferredProvider: 'openai',
+        preferredFastProvider: 'openai',
+        allowProviderFallback: true,
+        requireApprovalBeforeProviderSwitch: true
+      });
+
+      const route = globalModelRouter.route({
+        taskDescription: 'Generate daily brief summary',
+        taskType: 'fast'
+      });
+
+      expect(route.fallbackProviderId).toBe('gemini');
+      expect(route.fallbackModel).toBe('gemini-2.5-flash');
+      expect(route.requiresApproval).toBe(true);
+      expect(route.validationFailed).toBe(true);
+      expect(route.suggestedProviderId).toBe('gemini');
+
+      // Assert configuration sovereignty is preserved
+      expect(globalModelRoutingPolicy.getSettings().preferredProvider).toBe('openai');
+    });
+
+    it('auto-switches to Gemini fallback when approval gate is disabled in routing policy', async () => {
+      globalOpenAIIntegrationContract.status = 'suspended';
+      globalGeminiIntegrationContract.status = 'active';
+      globalGeminiIntegrationContract.fallbackEligibility = true;
+
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+
+      globalModelRoutingPolicy.updateSettings({
+        routingMode: 'automatic',
+        preferredProvider: 'openai',
+        preferredReasoningProvider: 'openai',
+        allowProviderFallback: true,
+        requireApprovalBeforeProviderSwitch: false
+      });
+
+      const route = globalModelRouter.route({
+        taskDescription: 'Evaluate system vulnerability vectors',
+        taskType: 'reasoning'
+      });
+
+      expect(route.providerId).toBe('gemini');
+      expect(route.model).toBe('gemini-2.5-pro');
+      expect(route.reason).toContain('Auto-switched to fallback provider "gemini"');
+      expect(globalModelRoutingPolicy.getSettings().preferredProvider).toBe('openai');
+    });
+
+    it('executes routed request to Gemini successfully', async () => {
+      const geminiSpy = vi.spyOn(globalGeminiIntegrationContract, 'executeText').mockResolvedValueOnce({
+        success: true,
+        output: { text: 'Gemini direct routed execution completed.' }
+      });
+
+      const result = await globalModelRouter.executeRoutedRequest(
+        {
+          taskDescription: 'Generate executive summary',
+          taskType: 'fast',
+          selectedProvider: 'gemini'
+        },
+        { prompt: 'Provide status' }
+      );
+
+      expect(result.success).toBe(true);
+      expect(result.output.text).toBe('Gemini direct routed execution completed.');
+      expect(geminiSpy).toHaveBeenCalled();
+    });
+
+    it('recovers dynamically via execution-time fallback retry when primary provider throws', async () => {
+      if (!globalIntegrationRegistry.get('openai')) {
+        globalIntegrationRegistry.register(globalOpenAIIntegrationContract);
+      }
+
+      const mockRouteResult: any = {
+        providerId: 'openai',
+        model: 'gpt-4o',
+        role: 'fast',
+        reason: 'Simulated primary with fallback wired',
+        confidence: 0.7,
+        fallbackProviderId: 'gemini',
+        fallbackModel: 'gemini-2.5-flash',
+        requiresApproval: false
+      };
+
+      vi.spyOn(globalModelRouter, 'route').mockReturnValueOnce(mockRouteResult);
+      vi.spyOn(globalOpenAIIntegrationContract, 'executeText').mockRejectedValueOnce(new Error('OpenAI upstream 503 unavailable'));
+      const geminiSpy = vi.spyOn(globalGeminiIntegrationContract, 'executeText').mockResolvedValueOnce({
+        success: true,
+        output: { text: 'Gemini fallback execution completed successfully.' }
+      });
+
+      const result = await globalModelRouter.executeRoutedRequest(
+        {
+          taskDescription: 'Fast fallback test',
+          taskType: 'fast'
+        },
+        { prompt: 'Fast prompt', approvalStatus: 'approved' }
+      );
+
+      expect(result.success).toBe(true);
+      expect(result.output.text).toBe('Gemini fallback execution completed successfully.');
+      expect(result.route.providerId).toBe('gemini');
+      expect(geminiSpy).toHaveBeenCalled();
+    });
+
+    it('rejects unsupported capabilities or non-existent models on Gemini without affecting other providers', () => {
+      const nonExistentModelCheck = globalModelRouter.validateRoute('gemini', 'gpt-4o-unknown', {
+        taskDescription: 'Test non-existent model'
+      });
+      expect(nonExistentModelCheck.valid).toBe(false);
+      expect(nonExistentModelCheck.reason).toContain('is not available on provider "gemini"');
+
+      const unsupportedCapabilityCheck = globalModelRouter.validateRoute('gemini', 'gemini-2.5-flash', {
+        taskDescription: 'Voice synthesis test',
+        requiredCapability: 'voice'
+      });
+      expect(unsupportedCapabilityCheck.valid).toBe(false);
+      expect(unsupportedCapabilityCheck.reason).toContain('does not support capability "voice"');
+    });
+  });
 });
+
