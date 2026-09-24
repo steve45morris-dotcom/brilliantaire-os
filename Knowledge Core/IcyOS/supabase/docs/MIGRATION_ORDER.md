@@ -20,5 +20,6 @@ Conceptual migration execution order:
 16. **16_fix_rls_identity.sql**: Rewrite the `12_rls_policies.sql` read policies to match users through `auth_id`, and add the missing `sprints` and `missions` policies.
 17. **17_enable_rls_remaining_tables.sql**: Enable RLS on the 19 remaining tables: owner-only reads where a table links to a user, admin-only reads where it has no owner column.
 18. **18_add_owner_columns.sql**: Add a nullable `user_id` to the 12 tables without an owner (`blueprint_steps` follows its blueprint). Make `knowledge_assets.path` and `architecture_decisions.adr_id` unique per user, and switch their reads to owner-only; ownerless legacy rows stay admin-only.
+19. **19_billing.sql**: Add per-user `subscriptions`, kept in sync by the Stripe webhook, and `billing_events` for webhook idempotency. Signup now starts a 14-day trial, and existing users are backfilled with one.
 
 *I build before burning.*

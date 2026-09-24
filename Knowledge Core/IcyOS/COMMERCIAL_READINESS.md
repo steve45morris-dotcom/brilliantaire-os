@@ -12,7 +12,7 @@
 - [x] Authentication layer (Supabase Auth with SSR middleware)
 - [x] Role-based access control (admin, editor, viewer)
 - [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; in-memory store — swap in a shared store such as Redis before running multiple instances)
-- [ ] Stripe billing integration
+- [x] Stripe billing integration (Starter/Pro/Team, 14-day trial then paywall, Checkout + Customer Portal + signed webhooks; setup in `apps/web/BILLING.md`)
 - [ ] Client onboarding flow
 - [ ] Remove internal/personal references from codebase — app code, packages, seed data and START_HERE done; ~137 internal planning docs (numbered folders) still contain absolute personal paths and should be excluded from client deliverables
 - [ ] Environment variable documentation for clients
