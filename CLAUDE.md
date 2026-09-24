@@ -54,9 +54,10 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- `sentinel-os/lib/mesh_layer.ts` has SQL injection vulnerabilities (string interpolation) — must be fixed before any client deployment
-- No authentication layer exists yet — required before SaaS launch
-- MIT license is currently on IP intended for commercial sale — needs relicensing
+- **SQL in `sentinel-os/lib/mesh_layer.ts`:** queries run through the `sqlite3` CLI (`execFile`), which has no bound parameters, so SQL is still built as strings. Every string value goes through `sqlParam()` (quote escaping, added in #3). `clearCrossChainSettlement` still interpolates `amount` unescaped; it is typed `number` and has no callers today. Before client deployment, validate numbers with `Number.isFinite` or move to a driver with bound parameters.
+- **Authentication:** IcyOS has Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4). `sentinel-os` has none: its `/api/mesh/*` routes are open. Required before SaaS launch.
+- **Rate limiting:** IcyOS `/api/*` is limited per IP and per user (`apps/web/src/lib/api/rate-limit.ts`). Counters are in memory, one set per server instance, so use a shared store (e.g. Redis) before running more than one. `sentinel-os` has none.
+- **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
 ## Installed Tools
 
@@ -100,5 +101,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Deploy `sentinel-os/` without fixing SQL injection
+- Deploy `sentinel-os/` to clients before it has authentication and bound-parameter SQL
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
