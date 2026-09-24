@@ -1964,4 +1964,14 @@ tasks:
     cmds:
       - npm run asr-human-approval-selection-packet-help
 
+  zk-webhook-verification:
+    desc: "Run Zero-Knowledge Webhook Transaction Verification Proofs CLI commands"
+    cmds:
+      - npm run zk-webhook-verification -- {{.CLI_ARGS}}
+
+  zk-webhook-verification-help:
+    desc: "Print help menu for Zero-Knowledge Webhook Transaction Verification Proofs CLI"
+    cmds:
+      - npm run zk-webhook-verification-help
+
 

@@ -3798,6 +3798,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification-help',
+    aliases: ['zk webhook help', 'zkw help'],
+    description: 'Print help menu for Zero-Knowledge Webhook Transaction Verification Proofs',
+    npmScript: 'zk-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification',
+    aliases: ['zk webhook', 'zkw'],
+    description: 'Compile and verify ZK proofs for webhook transaction payloads under strict offline safety constraints',
+    npmScript: 'zk-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
