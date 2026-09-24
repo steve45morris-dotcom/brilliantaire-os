@@ -35,6 +35,7 @@
 !/hooks/
 !/inputs/
 !/Knowledge Core/
+!/.github/
 !/orchestrator/
 !/outputs/
 !/reports/

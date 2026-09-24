@@ -29,10 +29,13 @@ export async function getOptimalInferenceNode(): Promise<{ selectedNode: Compute
   // Log allocation choice to system logs table
   try {
     const timestamp = new Date().toISOString();
-    await runExecute(`
-      INSERT INTO system_logs (level, msg, created_at, service)
-      VALUES ('INFO', 'Routed inference model task to solar-aligned cluster: ${selectedNode.region} (Renewable ratio: ${(selectedNode.solarRatio * 100).toFixed(1)}%)', '${timestamp}', 'SOLAR-SCHEDULER');
-    `);
+    await runExecute(
+      "INSERT INTO system_logs (level, msg, created_at, service) VALUES ('INFO', ?, ?, 'SOLAR-SCHEDULER');",
+      [
+        `Routed inference model task to solar-aligned cluster: ${selectedNode.region} (Renewable ratio: ${(selectedNode.solarRatio * 100).toFixed(1)}%)`,
+        timestamp,
+      ]
+    );
   } catch (err) {
     console.error("Failed to write solar scheduler log into SQLite:", err);
   }

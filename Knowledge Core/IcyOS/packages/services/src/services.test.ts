@@ -72,7 +72,7 @@ describe('Application Services Validation', () => {
     const kit = new LaunchKit();
     const success = await kit.execute({
       type: 'url',
-      target: 'https://icyos.brilliantaire.com'
+      target: 'https://app.example.com'
     });
     expect(success).toBe(true);
   });

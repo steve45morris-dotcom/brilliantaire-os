@@ -4,9 +4,9 @@
 -- Safety Notes: Enforces idempotent inserts.
 
 INSERT INTO users (id, name, timezone)
-VALUES ('748805f1-3561-42e7-a9a3-d0adbb267389', 'Icyflamze', 'Africa/Lagos')
+VALUES ('748805f1-3561-42e7-a9a3-d0adbb267389', 'Workspace Owner', 'UTC')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO workspaces (id, user_id, root_path)
-VALUES ('31f137eb-d1eb-4b2a-874f-40c265696d59', '748805f1-3561-42e7-a9a3-d0adbb267389', '/Users/alexanderanthony/Knowledge Core/IcyOS')
+VALUES ('31f137eb-d1eb-4b2a-874f-40c265696d59', '748805f1-3561-42e7-a9a3-d0adbb267389', '/workspace/icyos')
 ON CONFLICT (id) DO NOTHING;

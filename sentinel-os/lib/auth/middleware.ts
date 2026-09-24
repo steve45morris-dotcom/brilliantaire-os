@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { hasRole, isApiRoute, requiredRole, roleFromAppMetadata } from "./policy";
 import {
   MemoryRateLimitStore,
   RATE_LIMIT_RULES,
@@ -9,15 +10,12 @@ import {
   isRateLimited,
   rateLimitResponse,
   resolveTier,
-} from "../api/rate-limit";
-
-const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm"];
+} from "../rate-limit";
 
 const rateLimitStore = new MemoryRateLimitStore();
 
 export async function updateSession(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const limitApi = isRateLimited(pathname);
+  const limitApi = isRateLimited(request.nextUrl.pathname);
 
   // Throttle by IP before the Supabase lookup so floods never reach auth.
   if (limitApi) {
@@ -40,9 +38,7 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          );
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           supabaseResponse = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
@@ -52,27 +48,42 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
+  // getUser() revalidates the token with Supabase; never trust getSession() here.
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isPublicRoute = PUBLIC_ROUTES.some((route) =>
-    request.nextUrl.pathname.startsWith(route)
-  );
+  const { pathname, search } = request.nextUrl;
+  const minimum = requiredRole(pathname, request.method);
 
-  if (!user && !isPublicRoute) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
+  if (minimum === null) {
+    if (user && pathname === "/login") {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+    return supabaseResponse;
+  }
+
+  if (!user) {
+    if (isApiRoute(pathname)) {
+      return NextResponse.json({ ok: false, error: "Authentication required" }, { status: 401 });
+    }
+    const url = new URL("/login", request.url);
+    url.searchParams.set("next", `${pathname}${search}`);
     return NextResponse.redirect(url);
   }
 
-  if (user && request.nextUrl.pathname === "/login") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
+  const role = roleFromAppMetadata(user.app_metadata);
+  if (!hasRole(role, minimum)) {
+    if (isApiRoute(pathname)) {
+      return NextResponse.json(
+        { ok: false, error: `This action requires the ${minimum} role` },
+        { status: 403 }
+      );
+    }
+    return NextResponse.redirect(new URL("/?error=insufficient_permissions", request.url));
   }
 
-  if (limitApi && user) {
+  if (limitApi) {
     const tier = resolveTier(pathname, request.method);
     const userResult = await checkRateLimit(
       rateLimitStore,

@@ -54,9 +54,19 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- `sentinel-os/lib/mesh_layer.ts` has SQL injection vulnerabilities (string interpolation) — must be fixed before any client deployment
-- No authentication layer exists yet — required before SaaS launch
-- MIT license is currently on IP intended for commercial sale — needs relicensing
+- **SQL in `sentinel-os`:** every query uses bound parameters.
+  - **`lib/settlement-bridge.ts` and `lib/solar-scheduler.ts`:** go through `runQuery`/`runExecute` in `lib/db.ts`.
+  - **`lib/mesh_layer.ts`:** uses its own `better-sqlite3` connection. It no longer shells out to the `sqlite3` CLI.
+  - **Database path:** `mesh_layer.ts` defaults to `~/supernova.db`, but `lib/db.ts` falls back to a path based on the working directory. Set `SUPERNOVA_DB_PATH` so both use the same file.
+  - **History:** settlement-bridge had an open injection reachable from `POST /api/mesh/settle` (fixed).
+- **Authentication:**
+  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
+  - **`sentinel-os`:** Supabase Auth, enforced in `sentinel-os/middleware.ts`, with the rules in `lib/auth/policy.ts`. Pages and GET requests need a signed-in viewer. Mesh POSTs need editor. Billing, settle and provision need admin. Roles are read from Supabase `app_metadata.role`, which users cannot edit. There is no self-signup: admins invite operators.
+- **Rate limiting:** both apps limit `/api/*` per IP (300/min, checked before auth) and per user, by tier.
+  - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
+  - **`sentinel-os`** (`lib/rate-limit.ts`): billing, settle and provision 10/min, other writes 60/min, reads 120/min.
+  - **Limitation:** counters are in memory, one set per server instance. Use a shared store (e.g. Redis) before running more than one instance.
+- **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
 ## Installed Tools
 
@@ -100,5 +110,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Deploy `sentinel-os/` without fixing SQL injection
+- Build SQL from strings in `sentinel-os/`: always pass values as bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
