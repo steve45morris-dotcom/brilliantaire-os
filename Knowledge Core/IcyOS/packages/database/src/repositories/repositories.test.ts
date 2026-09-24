@@ -16,6 +16,6 @@ describe('Repository Layer Mappings', () => {
     const ws = await workspaceRepo.getById('f47ac10b-58cc-4372-a567-0e02b2c3d479');
 
     expect(ws).not.toBeNull();
-    expect(ws?.root_path).toBe('/users/alex');
+    expect(ws?.root_path).toBe('/workspace/icyos');
   });
 });
