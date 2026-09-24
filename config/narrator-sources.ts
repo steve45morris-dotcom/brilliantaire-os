@@ -25,7 +25,8 @@ export const APPROVED_SOURCES = [
   "outputs/asr_human_approval_selection/logs/",
   "outputs/stripe_webhook_verification/logs/",
   "outputs/zk_webhook_verification/logs/",
-  "outputs/micro_product_tree_groove/logs/"
+  "outputs/micro_product_tree_groove/logs/",
+  "outputs/live_microphone_audio_streamer/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

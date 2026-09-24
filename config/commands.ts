@@ -3864,6 +3864,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'live-microphone-audio-streamer-help',
+    aliases: ['audio streamer help', 'lmas help'],
+    description: 'Print help menu for Live Microphone Audio Streamer Daemon Expansion',
+    npmScript: 'live-microphone-audio-streamer-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'live-microphone-audio-streamer',
+    aliases: ['audio streamer', 'lmas'],
+    description: 'Stage and manage live microphone audio streamer daemon expansion with local audio processing models',
+    npmScript: 'live-microphone-audio-streamer',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
