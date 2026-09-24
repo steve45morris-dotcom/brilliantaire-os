@@ -15,6 +15,9 @@
 -- The (SELECT ...) wrappers let Postgres evaluate the identity once per query
 -- instead of once per row.
 --
+-- Policies are scoped TO authenticated: anon matches none and sees no rows,
+-- rather than failing on the identity helpers, which anon may not execute (15).
+--
 -- Read access only, as in 12. Writes stay denied for signed-in users until
 -- the app needs them; server code using the service role is unaffected.
 
@@ -27,20 +30,20 @@ DROP POLICY IF EXISTS projects_owner_select ON projects;
 DROP POLICY IF EXISTS sprints_owner_select ON sprints;
 DROP POLICY IF EXISTS missions_owner_select ON missions;
 
-CREATE POLICY users_self_select ON users FOR SELECT
+CREATE POLICY users_self_select ON users FOR SELECT TO authenticated
     USING (auth_id = (SELECT auth.uid()));
 
-CREATE POLICY workspaces_owner_select ON workspaces FOR SELECT
+CREATE POLICY workspaces_owner_select ON workspaces FOR SELECT TO authenticated
     USING (user_id = (SELECT current_app_user_id()));
 
-CREATE POLICY projects_owner_select ON projects FOR SELECT
+CREATE POLICY projects_owner_select ON projects FOR SELECT TO authenticated
     USING (EXISTS (
         SELECT 1 FROM workspaces w
         WHERE w.id = projects.workspace_id
           AND w.user_id = (SELECT current_app_user_id())
     ));
 
-CREATE POLICY sprints_owner_select ON sprints FOR SELECT
+CREATE POLICY sprints_owner_select ON sprints FOR SELECT TO authenticated
     USING (EXISTS (
         SELECT 1 FROM projects p
         JOIN workspaces w ON w.id = p.workspace_id
@@ -48,7 +51,7 @@ CREATE POLICY sprints_owner_select ON sprints FOR SELECT
           AND w.user_id = (SELECT current_app_user_id())
     ));
 
-CREATE POLICY missions_owner_select ON missions FOR SELECT
+CREATE POLICY missions_owner_select ON missions FOR SELECT TO authenticated
     USING (EXISTS (
         SELECT 1 FROM sprints s
         JOIN projects p ON p.id = s.project_id

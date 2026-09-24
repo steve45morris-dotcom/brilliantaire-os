@@ -82,16 +82,16 @@ DROP POLICY IF EXISTS user_roles_admin_update ON user_roles;
 DROP POLICY IF EXISTS user_roles_admin_delete ON user_roles;
 
 -- Users read their own role; admins read every role.
-CREATE POLICY user_roles_select ON user_roles FOR SELECT
+CREATE POLICY user_roles_select ON user_roles FOR SELECT TO authenticated
     USING (user_id = current_app_user_id() OR is_admin());
 
 -- Only admins assign or revoke roles.
-CREATE POLICY user_roles_admin_insert ON user_roles FOR INSERT
+CREATE POLICY user_roles_admin_insert ON user_roles FOR INSERT TO authenticated
     WITH CHECK (is_admin());
 
-CREATE POLICY user_roles_admin_update ON user_roles FOR UPDATE
+CREATE POLICY user_roles_admin_update ON user_roles FOR UPDATE TO authenticated
     USING (is_admin())
     WITH CHECK (is_admin());
 
-CREATE POLICY user_roles_admin_delete ON user_roles FOR DELETE
+CREATE POLICY user_roles_admin_delete ON user_roles FOR DELETE TO authenticated
     USING (is_admin());
