@@ -206,5 +206,59 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show stripe webhook status',
+    normalizedCommand: 'show stripe webhook status',
+    routerCommand: 'stripe-webhook-verification status',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show stripe webhook help',
+    normalizedCommand: 'show stripe webhook help',
+    routerCommand: 'stripe-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show zk proof status',
+    normalizedCommand: 'show zk proof status',
+    routerCommand: 'zk-webhook-verification status',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show zk proof help',
+    normalizedCommand: 'show zk proof help',
+    routerCommand: 'zk-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show tree groove status',
+    normalizedCommand: 'show tree groove status',
+    routerCommand: 'micro-product-tree-groove-connector status',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show tree groove help',
+    normalizedCommand: 'show tree groove help',
+    routerCommand: 'micro-product-tree-groove-connector-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

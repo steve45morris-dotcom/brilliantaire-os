@@ -22,7 +22,10 @@ export const APPROVED_SOURCES = [
   "outputs/render_intake/scans/",
   "outputs/grinders_keep_verification_rerun/logs/",
   "outputs/manual_implementation_packet/logs/",
-  "outputs/asr_human_approval_selection/logs/"
+  "outputs/asr_human_approval_selection/logs/",
+  "outputs/stripe_webhook_verification/logs/",
+  "outputs/zk_webhook_verification/logs/",
+  "outputs/micro_product_tree_groove/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

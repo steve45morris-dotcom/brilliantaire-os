@@ -407,8 +407,12 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-verification-rerun-planner` | `rerun planner`, `verification rerun` | Workflow Auditor | Medium | Yes | Execute Verification Rerun Planner commands for evidence collection task scheduling. |
 | `asr-human-approval-selection-packet-help` | `asr approval help`, `asr selection help` | Workflow Auditor | Low | No | Print help menu for the Offline ASR Human Approval Selection Packet CLI. |
 | `asr-human-approval-selection-packet` | `asr approval`, `asr selection` | Workflow Auditor | Medium | Yes | Stage and manage offline ASR candidate evaluation, model selection, and human approval decisions. |
-
-
+| `stripe-webhook-verification-help` | `stripe help`, `webhook help` | Build Operator | Low | No | Print help menu for the Stripe Webhook Signature Verification Gate CLI. |
+| `stripe-webhook-verification` | `stripe webhook`, `webhook verify` | Build Operator | Medium | Yes | Audit mock Stripe events, compile transition plans, and simulate webhook signature verification. |
+| `zk-webhook-verification-help` | `zk webhook help`, `zk proof help` | Build Operator | Low | No | Print help menu for the Zero-Knowledge Webhook Verification Proofs CLI. |
+| `zk-webhook-verification` | `zk webhook`, `zk proof` | Build Operator | Medium | Yes | Compile and verify ZK proofs for webhook transaction payloads. |
+| `micro-product-tree-groove-connector-help` | `tree groove help`, `micro product help` | Creative Revenue Strategist | Low | No | Print help menu for the Micro-Product Tree Groove Records Connector CLI. |
+| `micro-product-tree-groove-connector` | `tree groove`, `micro product` | Creative Revenue Strategist | Medium | Yes | Map micro-product ledger entries to Tree Groove Records release catalog and stage distribution plans. |
 
 
 ---
