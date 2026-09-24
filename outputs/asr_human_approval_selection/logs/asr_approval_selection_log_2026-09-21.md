@@ -1,0 +1,7 @@
+- [2026-09-21T19:50:05.099Z] **STATUS**: Status report generated
+- [2026-09-21T19:50:10.939Z] **LIST_CANDIDATES**: Candidate review HASP-20260921-7709: 12 candidates across 4 sources → candidate_review_2026-09-21.md
+- [2026-09-21T19:50:11.965Z] **LIST_MODELS**: Model review HASP-20260921-2683: 5 families documented → model_review_2026-09-21.md
+- [2026-09-21T19:50:12.979Z] **STAGE_SELECTION**: Selection packet staged HASP-20260921-2312: selection_packet_2026-09-21.md
+- [2026-09-21T19:50:18.727Z] **APPROVE**: Approval recorded HASP-20260921-4015 for packet selection_packet_2026-09-21.md: approval_record_2026-09-21.md
+- [2026-09-21T19:50:19.754Z] **REJECT**: Rejection recorded HASP-20260921-7579 for packet selection_packet_2026-09-21.md: rejection_record_2026-09-21.md
+- [2026-09-21T19:50:20.740Z] **OBSIDIAN_EXPORT**: Obsidian export staged: asr_approval_selection_obsidian_export_2026-09-21.md

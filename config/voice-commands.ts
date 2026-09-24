@@ -152,5 +152,59 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show render intake status',
+    normalizedCommand: 'show render intake status',
+    routerCommand: 'render-intake status',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show render intake help',
+    normalizedCommand: 'show render intake help',
+    routerCommand: 'render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show rerun planner status',
+    normalizedCommand: 'show rerun planner status',
+    routerCommand: 'grinders-keep-verification-rerun-planner status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show rerun planner help',
+    normalizedCommand: 'show rerun planner help',
+    routerCommand: 'grinders-keep-verification-rerun-planner-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show asr approval status',
+    normalizedCommand: 'show asr approval status',
+    routerCommand: 'asr-human-approval-selection-packet status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show asr approval help',
+    normalizedCommand: 'show asr approval help',
+    routerCommand: 'asr-human-approval-selection-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

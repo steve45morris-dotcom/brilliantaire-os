@@ -1954,4 +1954,14 @@ tasks:
     cmds:
       - npm run render-intake-help
 
+  asr-human-approval-selection-packet:
+    desc: "Run Offline ASR Human Approval Selection Packet CLI commands"
+    cmds:
+      - npm run asr-human-approval-selection-packet -- {{.CLI_ARGS}}
+
+  asr-human-approval-selection-packet-help:
+    desc: "Print help menu for Offline ASR Human Approval Selection Packet CLI"
+    cmds:
+      - npm run asr-human-approval-selection-packet-help
+
 

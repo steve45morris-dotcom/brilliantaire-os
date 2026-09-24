@@ -26,14 +26,14 @@
 - [x] Generate assembly checklist (Phase 14D)
 - [x] Generate manual generation guide (Phase 14D)
 - [x] Stage Episode 1 asset queue Obsidian note (Phase 14D)
-- [ ] Build Episode 1 Manual Render Intake (Phase 14E)
-- [ ] Scan incoming rendered assets (Phase 14E)
-- [ ] Validate incoming assets (Phase 14E)
-- [ ] Generate visual continuity checklist (Phase 14E)
-- [ ] Generate audio review checklist (Phase 14E)
-- [ ] Generate assembly readiness report (Phase 14E)
-- [ ] Generate revision log (Phase 14E)
-- [ ] Stage render intake Obsidian note (Phase 14E)
+- [x] Build Episode 1 Manual Render Intake (Phase 14E)
+- [x] Scan incoming rendered assets (Phase 14E)
+- [x] Validate incoming assets (Phase 14E)
+- [x] Generate visual continuity checklist (Phase 14E)
+- [x] Generate audio review checklist (Phase 14E)
+- [x] Generate assembly readiness report (Phase 14E)
+- [x] Generate revision log (Phase 14E)
+- [x] Stage render intake Obsidian note (Phase 14E)
 - [ ] Prepare manual assembly once readiness passes (Phase 14E)
 - [ ] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
 - [ ] Manually generate Batch 1 audio assets (Phase 14E-R)
@@ -42,9 +42,9 @@
 - [x] Integrate Higgsfield AI Bridge into tool stacks (Phase 15A)
 - [x] Wire Higgsfield AI into command registry, Taskfile, and package.json (Phase 15A)
 - [x] Connect Higgsfield AI to ICYFLAMZE CORE and Narrator pipelines (Phase 15A)
-- [ ] Stage first production render request via Higgsfield AI Bridge (Phase 15A)
-- [ ] Validate narrator sync pipeline end-to-end with storyboard (Phase 15A)
-- [ ] Review render requests against IP Bible visual specifications (Phase 15A)
+- [x] Stage first production render request via Higgsfield AI Bridge (Phase 15A)
+- [x] Validate narrator sync pipeline end-to-end with storyboard (Phase 15A)
+- [x] Review render requests against IP Bible visual specifications (Phase 15A)
 - [x] Integrate Local Inference Server Bridge into tool stacks (Phase 15B)
 - [x] Wire Local Inference Server into command registry, Taskfile, and package.json (Phase 15B)
 - [x] Generate MCP configuration guide for Claude Code installation (Phase 15B)
@@ -577,7 +577,7 @@
 - [x] Phase 12A: Create templates for switch report, approved/rejected candidates, manifest, locks, checklists, and next actions
 - [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
 - [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
-- [ ] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
+- [x] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
@@ -685,11 +685,11 @@
 - [x] Generate approved implementation packet
 - [x] Generate manual execution brief
 - [x] Review approved packet before any implementation work
-- [ ] Build Manual Implementation Packet Compiler
-- [ ] Compile final manual build prompt
-- [ ] Generate implementation checklist
-- [ ] Generate safety review
-- [ ] Generate final handoff
+- [x] Build Manual Implementation Packet Compiler
+- [x] Compile final manual build prompt
+- [x] Generate implementation checklist
+- [x] Generate safety review
+- [x] Generate final handoff
 - [ ] Review final build prompt before implementation
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
@@ -808,8 +808,8 @@
 - [x] Phase 13H: Create a local manual completion loop that gives Commander a tiny one-page checklist for completing the blocked first evidence task, saving the markdown file, logging the attempt, and rerunning only the required review/gate commands in the correct order.
 - [x] Phase 13I: Grinders Keep First Evidence Completion Detector
 - [x] Phase 13I: Create a local detector that runs after Commander manually follows the Phase 13H loop, checking whether the expected session log and markdown file now exist, without reading or validating evidence content.
-- [ ] Phase 13J: Grinders Keep Local Verification Rerun Planner
-- [ ] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
+- [x] Phase 13J: Grinders Keep Local Verification Rerun Planner
+- [x] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
 
 
 ## Schedule

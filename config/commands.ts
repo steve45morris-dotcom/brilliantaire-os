@@ -3776,6 +3776,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'asr-human-approval-selection-packet-help',
+    aliases: ['asr approval help', 'asr selection help'],
+    description: 'Print help menu for offline ASR human approval selection packet',
+    npmScript: 'asr-human-approval-selection-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-human-approval-selection-packet',
+    aliases: ['asr approval', 'asr selection'],
+    description: 'Stage and manage offline ASR candidate evaluation, model selection, and human approval decisions',
+    npmScript: 'asr-human-approval-selection-packet',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
