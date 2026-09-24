@@ -3820,6 +3820,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector-help',
+    aliases: ['micro product help', 'tree groove connector help'],
+    description: 'Print help menu for the Micro-Product Factory Tree Groove Records Connector',
+    npmScript: 'micro-product-tree-groove-connector-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector',
+    aliases: ['micro product connector', 'tree groove connector'],
+    description: 'Bridge micro-product factory ledger entries to Tree Groove Records release catalog with offline staging',
+    npmScript: 'micro-product-tree-groove-connector',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

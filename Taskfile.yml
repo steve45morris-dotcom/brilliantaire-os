@@ -1974,4 +1974,14 @@ tasks:
     cmds:
       - npm run zk-webhook-verification-help
 
+  micro-product-tree-groove-connector:
+    desc: "Run Micro-Product Factory Tree Groove Records Connector CLI commands"
+    cmds:
+      - npm run micro-product-tree-groove-connector -- {{.CLI_ARGS}}
+
+  micro-product-tree-groove-connector-help:
+    desc: "Print help menu for Micro-Product Factory Tree Groove Records Connector CLI"
+    cmds:
+      - npm run micro-product-tree-groove-connector-help
+
 
