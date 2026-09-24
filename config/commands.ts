@@ -3842,6 +3842,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification-help',
+    aliases: ['stripe webhook help', 'swv help'],
+    description: 'Print help menu for Stripe Webhook Signature Verification Gate',
+    npmScript: 'stripe-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification',
+    aliases: ['stripe webhook', 'swv'],
+    description: 'Stage and manage Stripe webhook signature verification transition from mock to live',
+    npmScript: 'stripe-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

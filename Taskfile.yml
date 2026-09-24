@@ -1984,4 +1984,14 @@ tasks:
     cmds:
       - npm run micro-product-tree-groove-connector-help
 
+  stripe-webhook-verification:
+    desc: "Run Stripe Webhook Signature Verification Gate CLI commands"
+    cmds:
+      - npm run stripe-webhook-verification -- {{.CLI_ARGS}}
+
+  stripe-webhook-verification-help:
+    desc: "Print help menu for Stripe Webhook Signature Verification Gate CLI"
+    cmds:
+      - npm run stripe-webhook-verification-help
+
 
