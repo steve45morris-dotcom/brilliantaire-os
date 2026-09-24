@@ -260,5 +260,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show audio streamer status',
+    normalizedCommand: 'show audio streamer status',
+    routerCommand: 'live-microphone-audio-streamer status',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show audio streamer help',
+    normalizedCommand: 'show audio streamer help',
+    routerCommand: 'live-microphone-audio-streamer-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

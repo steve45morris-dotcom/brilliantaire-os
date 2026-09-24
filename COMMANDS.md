@@ -413,6 +413,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `zk-webhook-verification` | `zk webhook`, `zk proof` | Build Operator | Medium | Yes | Compile and verify ZK proofs for webhook transaction payloads. |
 | `micro-product-tree-groove-connector-help` | `tree groove help`, `micro product help` | Creative Revenue Strategist | Low | No | Print help menu for the Micro-Product Tree Groove Records Connector CLI. |
 | `micro-product-tree-groove-connector` | `tree groove`, `micro product` | Creative Revenue Strategist | Medium | Yes | Map micro-product ledger entries to Tree Groove Records release catalog and stage distribution plans. |
+| `live-microphone-audio-streamer-help` | `audio streamer help`, `lmas help` | Creative Architect | Low | No | Print help menu for the Live Microphone Audio Streamer Daemon Expansion CLI. |
+| `live-microphone-audio-streamer` | `audio streamer`, `lmas` | Creative Architect | Medium | Yes | Stage daemon configs, scan audio models, validate pipeline, and simulate audio streaming parameters. |
 
 
 ---

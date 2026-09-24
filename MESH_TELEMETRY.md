@@ -62,6 +62,7 @@ The engine dynamically compiles statistics by scanning files within:
 13. `outputs/stripe_webhook_verification/logs/` & `outputs/stripe_webhook_verification/signature_audits/` — Tracking Stripe webhook signature verification audits, mock event logs, and transition planning.
 14. `outputs/zk_webhook_verification/logs/` & `outputs/zk_webhook_verification/proof_compilations/` — Tracking zero-knowledge webhook transaction proof compilations and integrity verification chains.
 15. `outputs/micro_product_tree_groove/logs/` & `outputs/micro_product_tree_groove/catalog_mappings/` — Tracking micro-product factory to Tree Groove Records catalog mapping and release staging.
+16. `outputs/live_microphone_audio_streamer/logs/` & `outputs/live_microphone_audio_streamer/daemon_configs/` — Tracking live microphone audio streamer daemon expansion configuration staging, model scanning, pipeline validation, and stream simulation parameters.
 
 ---
 

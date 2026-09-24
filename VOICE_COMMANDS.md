@@ -57,6 +57,8 @@ The active voice phrases are defined in [config/voice-commands.ts](file:///Users
 | `show zk proof help` | `show zk proof help` | `zk-webhook-verification-help` | Build Operator | Low | No |
 | `show tree groove status` | `show tree groove status` | `micro-product-tree-groove-connector status` | Creative Revenue Strategist | Low | No |
 | `show tree groove help` | `show tree groove help` | `micro-product-tree-groove-connector-help` | Creative Revenue Strategist | Low | No |
+| `show audio streamer status` | `show audio streamer status` | `live-microphone-audio-streamer status` | Creative Architect | Low | No |
+| `show audio streamer help` | `show audio streamer help` | `live-microphone-audio-streamer-help` | Creative Architect | Low | No |
 
 ---
 

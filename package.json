@@ -381,7 +381,9 @@
     "micro-product-tree-groove-connector": "tsx scripts/micro-product-tree-groove-connector.ts",
     "micro-product-tree-groove-connector-help": "tsx scripts/micro-product-tree-groove-connector-help.ts",
     "stripe-webhook-verification": "tsx scripts/stripe-webhook-verification.ts",
-    "stripe-webhook-verification-help": "tsx scripts/stripe-webhook-verification-help.ts"
+    "stripe-webhook-verification-help": "tsx scripts/stripe-webhook-verification-help.ts",
+    "live-microphone-audio-streamer": "tsx scripts/live-microphone-audio-streamer.ts",
+    "live-microphone-audio-streamer-help": "tsx scripts/live-microphone-audio-streamer-help.ts"
   },
   "keywords": [
     "antigravity",
