@@ -15,5 +15,7 @@ Conceptual migration execution order:
 11. **11_triggers_functions.sql**: Deploy trigger hooks and PL/pgSQL stored procedures.
 12. **12_rls_policies.sql**: Deploy Row Level Security (RLS) policies.
 13. **13_seed_data.sql**: Seed default user configurations.
+14. **14_auth_roles.sql**: Link users to Supabase Auth; add `user_roles` and the signup trigger.
+15. **15_fix_role_resolution.sql**: Resolve identity and role in `SECURITY DEFINER` functions (`current_app_user_id()`, `current_user_role()`, `is_admin()`) and replace 14's recursive `user_roles` policies.
 
 *I build before burning.*
