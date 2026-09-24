@@ -3798,6 +3798,72 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification-help',
+    aliases: ['zk webhook help', 'zkw help'],
+    description: 'Print help menu for Zero-Knowledge Webhook Transaction Verification Proofs',
+    npmScript: 'zk-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification',
+    aliases: ['zk webhook', 'zkw'],
+    description: 'Compile and verify ZK proofs for webhook transaction payloads under strict offline safety constraints',
+    npmScript: 'zk-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector-help',
+    aliases: ['micro product help', 'tree groove connector help'],
+    description: 'Print help menu for the Micro-Product Factory Tree Groove Records Connector',
+    npmScript: 'micro-product-tree-groove-connector-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector',
+    aliases: ['micro product connector', 'tree groove connector'],
+    description: 'Bridge micro-product factory ledger entries to Tree Groove Records release catalog with offline staging',
+    npmScript: 'micro-product-tree-groove-connector',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification-help',
+    aliases: ['stripe webhook help', 'swv help'],
+    description: 'Print help menu for Stripe Webhook Signature Verification Gate',
+    npmScript: 'stripe-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification',
+    aliases: ['stripe webhook', 'swv'],
+    description: 'Stage and manage Stripe webhook signature verification transition from mock to live',
+    npmScript: 'stripe-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

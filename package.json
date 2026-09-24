@@ -375,7 +375,13 @@
     "render-intake": "tsx scripts/render-intake.ts",
     "render-intake-help": "tsx scripts/render-intake-help.ts",
     "asr-human-approval-selection-packet": "tsx scripts/asr-human-approval-selection-packet.ts",
-    "asr-human-approval-selection-packet-help": "tsx scripts/asr-human-approval-selection-packet-help.ts"
+    "asr-human-approval-selection-packet-help": "tsx scripts/asr-human-approval-selection-packet-help.ts",
+    "zk-webhook-verification": "tsx scripts/zk-webhook-verification.ts",
+    "zk-webhook-verification-help": "tsx scripts/zk-webhook-verification-help.ts",
+    "micro-product-tree-groove-connector": "tsx scripts/micro-product-tree-groove-connector.ts",
+    "micro-product-tree-groove-connector-help": "tsx scripts/micro-product-tree-groove-connector-help.ts",
+    "stripe-webhook-verification": "tsx scripts/stripe-webhook-verification.ts",
+    "stripe-webhook-verification-help": "tsx scripts/stripe-webhook-verification-help.ts"
   },
   "keywords": [
     "antigravity",
