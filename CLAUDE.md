@@ -54,8 +54,14 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- **SQL in `sentinel-os/lib/mesh_layer.ts`:** queries run through the `sqlite3` CLI (`execFile`), which has no bound parameters, so SQL is still built as strings. Every string value goes through `sqlParam()` (quote escaping, added in #3). `clearCrossChainSettlement` still interpolates `amount` unescaped; it is typed `number` and has no callers today. Before client deployment, validate numbers with `Number.isFinite` or move to a driver with bound parameters.
-- **Authentication:** IcyOS has Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4). `sentinel-os` has none: its `/api/mesh/*` routes are open. Required before SaaS launch.
+- **SQL in `sentinel-os`:** still built as strings in three files.
+  - **`lib/settlement-bridge.ts` (open injection):** `processMicroAgentSettlement` interpolates `clientName`, `platformName` and `licenseKey` with no escaping, and `POST /api/mesh/settle` passes request-body values straight in. Fix before any deployment.
+  - **`lib/mesh_layer.ts`:** runs SQL through the `sqlite3` CLI. String values go through `sqlParam()` (quote escaping, #3), but `clearCrossChainSettlement` still interpolates `amount` unescaped (typed `number`, no callers today).
+  - **`lib/solar-scheduler.ts`:** interpolates only values from its own node config.
+  - **Fix:** `lib/db.ts` already wraps `better-sqlite3`, and its `runQuery(sql, params)` supports bound parameters. Move all three files onto it.
+- **Authentication:**
+  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
+  - **`sentinel-os`:** Supabase Auth, enforced in `sentinel-os/middleware.ts`, with the rules in `lib/auth/policy.ts`. Pages and GET requests need a signed-in viewer. Mesh POSTs need editor. Billing, settle and provision need admin. Roles are read from Supabase `app_metadata.role`, which users cannot edit. There is no self-signup: admins invite operators.
 - **Rate limiting:** IcyOS `/api/*` is limited per IP and per user (`apps/web/src/lib/api/rate-limit.ts`). Counters are in memory, one set per server instance, so use a shared store (e.g. Redis) before running more than one. `sentinel-os` has none.
 - **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
@@ -101,5 +107,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Deploy `sentinel-os/` to clients before it has authentication and bound-parameter SQL
+- Deploy `sentinel-os/` to clients before its SQL uses bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
