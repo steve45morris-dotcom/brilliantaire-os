@@ -33,6 +33,14 @@ The Narrator is strictly restricted to reading the following approved source fil
 - `outputs/higgsfield_ai/narrator_sync/`
 - `outputs/local_inference/logs/`
 - `outputs/local_inference/prompt_staging/`
+- `outputs/render_intake/logs/`
+- `outputs/render_intake/scans/`
+- `outputs/grinders_keep_verification_rerun/logs/`
+- `outputs/manual_implementation_packet/logs/`
+- `outputs/asr_human_approval_selection/logs/`
+- `outputs/stripe_webhook_verification/logs/`
+- `outputs/zk_webhook_verification/logs/`
+- `outputs/micro_product_tree_groove/logs/`
 
 ## 4. Flow Architecture
 

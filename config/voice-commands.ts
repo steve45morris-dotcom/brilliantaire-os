@@ -152,5 +152,113 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show render intake status',
+    normalizedCommand: 'show render intake status',
+    routerCommand: 'render-intake status',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show render intake help',
+    normalizedCommand: 'show render intake help',
+    routerCommand: 'render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show rerun planner status',
+    normalizedCommand: 'show rerun planner status',
+    routerCommand: 'grinders-keep-verification-rerun-planner status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show rerun planner help',
+    normalizedCommand: 'show rerun planner help',
+    routerCommand: 'grinders-keep-verification-rerun-planner-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show asr approval status',
+    normalizedCommand: 'show asr approval status',
+    routerCommand: 'asr-human-approval-selection-packet status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show asr approval help',
+    normalizedCommand: 'show asr approval help',
+    routerCommand: 'asr-human-approval-selection-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show stripe webhook status',
+    normalizedCommand: 'show stripe webhook status',
+    routerCommand: 'stripe-webhook-verification status',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show stripe webhook help',
+    normalizedCommand: 'show stripe webhook help',
+    routerCommand: 'stripe-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show zk proof status',
+    normalizedCommand: 'show zk proof status',
+    routerCommand: 'zk-webhook-verification status',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show zk proof help',
+    normalizedCommand: 'show zk proof help',
+    routerCommand: 'zk-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show tree groove status',
+    normalizedCommand: 'show tree groove status',
+    routerCommand: 'micro-product-tree-groove-connector status',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show tree groove help',
+    normalizedCommand: 'show tree groove help',
+    routerCommand: 'micro-product-tree-groove-connector-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

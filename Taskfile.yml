@@ -1954,4 +1954,44 @@ tasks:
     cmds:
       - npm run render-intake-help
 
+  asr-human-approval-selection-packet:
+    desc: "Run Offline ASR Human Approval Selection Packet CLI commands"
+    cmds:
+      - npm run asr-human-approval-selection-packet -- {{.CLI_ARGS}}
+
+  asr-human-approval-selection-packet-help:
+    desc: "Print help menu for Offline ASR Human Approval Selection Packet CLI"
+    cmds:
+      - npm run asr-human-approval-selection-packet-help
+
+  zk-webhook-verification:
+    desc: "Run Zero-Knowledge Webhook Transaction Verification Proofs CLI commands"
+    cmds:
+      - npm run zk-webhook-verification -- {{.CLI_ARGS}}
+
+  zk-webhook-verification-help:
+    desc: "Print help menu for Zero-Knowledge Webhook Transaction Verification Proofs CLI"
+    cmds:
+      - npm run zk-webhook-verification-help
+
+  micro-product-tree-groove-connector:
+    desc: "Run Micro-Product Factory Tree Groove Records Connector CLI commands"
+    cmds:
+      - npm run micro-product-tree-groove-connector -- {{.CLI_ARGS}}
+
+  micro-product-tree-groove-connector-help:
+    desc: "Print help menu for Micro-Product Factory Tree Groove Records Connector CLI"
+    cmds:
+      - npm run micro-product-tree-groove-connector-help
+
+  stripe-webhook-verification:
+    desc: "Run Stripe Webhook Signature Verification Gate CLI commands"
+    cmds:
+      - npm run stripe-webhook-verification -- {{.CLI_ARGS}}
+
+  stripe-webhook-verification-help:
+    desc: "Print help menu for Stripe Webhook Signature Verification Gate CLI"
+    cmds:
+      - npm run stripe-webhook-verification-help
+
 

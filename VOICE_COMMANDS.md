@@ -45,6 +45,18 @@ The active voice phrases are defined in [config/voice-commands.ts](file:///Users
 | `show higgsfield help` | `show higgsfield help` | `higgsfield-ai-help` | Creative Architect | Low | No |
 | `show inference status` | `show inference status` | `local-inference status` | Prompt Engineer | Low | No |
 | `show inference help` | `show inference help` | `local-inference-help` | Prompt Engineer | Low | No |
+| `show render intake status` | `show render intake status` | `render-intake status` | Creative Architect | Low | No |
+| `show render intake help` | `show render intake help` | `render-intake-help` | Creative Architect | Low | No |
+| `show rerun planner status` | `show rerun planner status` | `grinders-keep-verification-rerun-planner status` | Workflow Auditor | Low | No |
+| `show rerun planner help` | `show rerun planner help` | `grinders-keep-verification-rerun-planner-help` | Workflow Auditor | Low | No |
+| `show asr approval status` | `show asr approval status` | `asr-human-approval-selection-packet status` | Workflow Auditor | Low | No |
+| `show asr approval help` | `show asr approval help` | `asr-human-approval-selection-packet-help` | Workflow Auditor | Low | No |
+| `show stripe webhook status` | `show stripe webhook status` | `stripe-webhook-verification status` | Build Operator | Low | No |
+| `show stripe webhook help` | `show stripe webhook help` | `stripe-webhook-verification-help` | Build Operator | Low | No |
+| `show zk proof status` | `show zk proof status` | `zk-webhook-verification status` | Build Operator | Low | No |
+| `show zk proof help` | `show zk proof help` | `zk-webhook-verification-help` | Build Operator | Low | No |
+| `show tree groove status` | `show tree groove status` | `micro-product-tree-groove-connector status` | Creative Revenue Strategist | Low | No |
+| `show tree groove help` | `show tree groove help` | `micro-product-tree-groove-connector-help` | Creative Revenue Strategist | Low | No |
 
 ---
 
