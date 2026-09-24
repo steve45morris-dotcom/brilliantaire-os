@@ -13,13 +13,18 @@ export async function processMicroAgentSettlement(
   amountPaid: number,
   licenseKey: string
 ): Promise<SettlementResult> {
+  if (!Number.isFinite(amountPaid) || amountPaid <= 0) {
+    throw new Error("amountPaid must be a positive number");
+  }
   const lastContact = new Date().toISOString();
-  
+
+  // Values are bound parameters, never interpolated: they come straight from the request body.
   // 1. Insert license record into sales_ledger
-  await runExecute(`
-    INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, subscription_status)
-    VALUES ('${clientName}', '${platformName}', 'ACTIVE', '${lastContact}', 'License assigned: ${licenseKey}, settled: $${amountPaid}', 'active');
-  `);
+  await runExecute(
+    `INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, subscription_status)
+     VALUES (?, ?, 'ACTIVE', ?, ?, 'active');`,
+    [clientName, platformName, lastContact, `License assigned: ${licenseKey}, settled: $${amountPaid}`]
+  );
   
   const lastSalesRow = await runQuery("SELECT last_insert_rowid() as id;");
   const salesId = lastSalesRow.length > 0 
@@ -27,10 +32,11 @@ export async function processMicroAgentSettlement(
     : 0;
 
   // 2. Insert transaction ledger entry into sovereign_ledger
-  await runExecute(`
-    INSERT INTO sovereign_ledger (category, action, status, detail)
-    VALUES ('SETTLEMENT', 'LICENSING', 'SUCCESS', 'Settled transaction of $${amountPaid} for client ${clientName} on platform ${platformName}');
-  `);
+  await runExecute(
+    `INSERT INTO sovereign_ledger (category, action, status, detail)
+     VALUES ('SETTLEMENT', 'LICENSING', 'SUCCESS', ?);`,
+    [`Settled transaction of $${amountPaid} for client ${clientName} on platform ${platformName}`]
+  );
 
   const lastSovereignRow = await runQuery("SELECT last_insert_rowid() as id;");
   const sovereignId = lastSovereignRow.length > 0

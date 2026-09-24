@@ -54,11 +54,10 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- **SQL in `sentinel-os`:** still built as strings in three files.
-  - **`lib/settlement-bridge.ts` (open injection):** `processMicroAgentSettlement` interpolates `clientName`, `platformName` and `licenseKey` with no escaping, and `POST /api/mesh/settle` passes request-body values straight in. Fix before any deployment.
+- **SQL in `sentinel-os`:** still built as strings in two files.
   - **`lib/mesh_layer.ts`:** runs SQL through the `sqlite3` CLI. String values go through `sqlParam()` (quote escaping, #3), but `clearCrossChainSettlement` still interpolates `amount` unescaped (typed `number`, no callers today).
   - **`lib/solar-scheduler.ts`:** interpolates only values from its own node config.
-  - **Fix:** `lib/db.ts` already wraps `better-sqlite3`, and its `runQuery(sql, params)` supports bound parameters. Move all three files onto it.
+  - **Fix:** `lib/db.ts` already wraps `better-sqlite3`, and its `runQuery(sql, params)` supports bound parameters. Move both files onto it. `lib/settlement-bridge.ts` already uses it: it had an open injection reachable from `POST /api/mesh/settle`, fixed with bound parameters.
 - **Authentication:**
   - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
   - **`sentinel-os`:** Supabase Auth, enforced in `sentinel-os/middleware.ts`, with the rules in `lib/auth/policy.ts`. Pages and GET requests need a signed-in viewer. Mesh POSTs need editor. Billing, settle and provision need admin. Roles are read from Supabase `app_metadata.role`, which users cannot edit. There is no self-signup: admins invite operators.
