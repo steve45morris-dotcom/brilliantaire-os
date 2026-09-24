@@ -8,7 +8,7 @@ const ROLE_RANK: Record<UserRole, number> = { viewer: 0, editor: 1, admin: 2 };
 export const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/signout"];
 
 // Mutations that move money or create enterprise clients.
-const ADMIN_API_ROUTES = ["/api/mesh/billing", "/api/mesh/settle", "/api/mesh/provision"];
+export const ADMIN_API_ROUTES = ["/api/mesh/billing", "/api/mesh/settle", "/api/mesh/provision"];
 
 export function isPublicRoute(pathname: string): boolean {
   return PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));

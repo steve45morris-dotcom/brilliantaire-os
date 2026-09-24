@@ -1,8 +1,32 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { hasRole, isApiRoute, requiredRole, roleFromAppMetadata } from "./policy";
+import {
+  MemoryRateLimitStore,
+  RATE_LIMIT_RULES,
+  applyRateLimitHeaders,
+  checkRateLimit,
+  getClientIp,
+  isRateLimited,
+  rateLimitResponse,
+  resolveTier,
+} from "../rate-limit";
+
+const rateLimitStore = new MemoryRateLimitStore();
 
 export async function updateSession(request: NextRequest) {
+  const limitApi = isRateLimited(request.nextUrl.pathname);
+
+  // Throttle by IP before the Supabase lookup so floods never reach auth.
+  if (limitApi) {
+    const ipResult = await checkRateLimit(
+      rateLimitStore,
+      `ip:${getClientIp(request.headers)}`,
+      RATE_LIMIT_RULES.ip
+    );
+    if (!ipResult.allowed) return rateLimitResponse(ipResult);
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -57,6 +81,17 @@ export async function updateSession(request: NextRequest) {
       );
     }
     return NextResponse.redirect(new URL("/?error=insufficient_permissions", request.url));
+  }
+
+  if (limitApi) {
+    const tier = resolveTier(pathname, request.method);
+    const userResult = await checkRateLimit(
+      rateLimitStore,
+      `user:${user.id}:${tier}`,
+      RATE_LIMIT_RULES[tier]
+    );
+    if (!userResult.allowed) return rateLimitResponse(userResult);
+    applyRateLimitHeaders(supabaseResponse, userResult);
   }
 
   return supabaseResponse;
