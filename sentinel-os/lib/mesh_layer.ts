@@ -1,16 +1,29 @@
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import Database from "better-sqlite3";
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import crypto from "node:crypto";
 
-const execFileAsync = promisify(execFile);
 const DB_PATH = process.env.SUPERNOVA_DB_PATH || path.join(os.homedir(), "supernova.db");
 const SIM_LOG_PATH = path.join(os.homedir(), ".sentinel-os", "mesh_sim_logs.jsonl");
 
-function sqlParam(value: string): string {
-  return value.replace(/'/g, "''");
+// All SQL here uses bound parameters: never interpolate values into a statement.
+let meshDb: Database.Database | null = null;
+
+function db(): Database.Database {
+  return (meshDb ??= new Database(DB_PATH));
+}
+
+function all<T = any>(sql: string, ...params: unknown[]): T[] {
+  return db().prepare(sql).all(...params) as T[];
+}
+
+function get<T = any>(sql: string, ...params: unknown[]): T | undefined {
+  return db().prepare(sql).get(...params) as T | undefined;
+}
+
+function run(sql: string, ...params: unknown[]): void {
+  db().prepare(sql).run(...params);
 }
 
 export interface MeshNode {
@@ -31,59 +44,11 @@ export interface MeshNode {
 export async function getMeshNodes(): Promise<MeshNode[]> {
   try {
     const clientMap: Record<string, string> = {};
-    try {
-      const { stdout: clientStdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "-json",
-        "SELECT id, name FROM enterprise_clients;"
-      ]);
-      if (clientStdout.trim()) {
-        const clientRows = JSON.parse(clientStdout);
-        for (const row of clientRows) {
-          clientMap[row.id] = row.name;
-        }
-      }
-    } catch {
-      const { stdout: clientStdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "SELECT id, name FROM enterprise_clients;"
-      ]);
-      const lines = clientStdout.split("\n").filter(Boolean);
-      for (const line of lines) {
-        const parts = line.split("|");
-        if (parts[0] && parts[1]) {
-          clientMap[parts[0]] = parts[1];
-        }
-      }
+    for (const row of all<{ id: string; name: string }>("SELECT id, name FROM enterprise_clients;")) {
+      clientMap[row.id] = row.name;
     }
 
-    let rows: any[] = [];
-    try {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "-json",
-        "SELECT id, client_id, node_type, status, last_pulse FROM fleet_nodes;"
-      ]);
-      if (stdout.trim()) {
-        rows = JSON.parse(stdout);
-      }
-    } catch {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "SELECT id, client_id, node_type, status, last_pulse FROM fleet_nodes;"
-      ]);
-      const lines = stdout.split("\n").filter(Boolean);
-      rows = lines.map(line => {
-        const parts = line.split("|");
-        return {
-          id: parts[0],
-          client_id: parts[1],
-          node_type: parts[2],
-          status: parts[3],
-          last_pulse: parts[4]
-        };
-      });
-    }
+    const rows = all("SELECT id, client_id, node_type, status, last_pulse FROM fleet_nodes;");
 
     const getRegion = (name: string) => {
       if (name === "NexTech_Global") return "US-East (Virginia)";
@@ -224,12 +189,16 @@ export async function provisionNewHub(clientName: string, tier = "ACTIVE"): Prom
   ];
 
   try {
-    const sqlClient = `INSERT INTO enterprise_clients (id, name, status, mrr_usd, created_at) VALUES ('${sqlParam(clientId)}', '${sqlParam(cleanName)}', '${sqlParam(tier)}', 2500.0, datetime('now'));`;
-    await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlClient]);
+    run(
+      "INSERT INTO enterprise_clients (id, name, status, mrr_usd, created_at) VALUES (?, ?, ?, 2500.0, datetime('now'));",
+      clientId, cleanName, tier
+    );
 
     for (const node of nodes) {
-      const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${sqlParam(node.id)}', '${sqlParam(clientId)}', '${sqlParam(node.type)}', 'ONLINE', datetime('now'), datetime('now'));`;
-      await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlNode]);
+      run(
+        "INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES (?, ?, ?, 'ONLINE', datetime('now'), datetime('now'));",
+        node.id, clientId, node.type
+      );
     }
 
     return {
@@ -299,11 +268,13 @@ export async function simulateRaftConsensus(proposalId: string, proposalData: st
     noCount,
     timeoutCount,
     nodesCount: nodes.length
-  }).replace(/'/g, "''");
+  });
 
   try {
-    const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('CONSENSUS_PROPOSAL', 'Consensus voting for proposal ${sqlParam(proposalId)}', '${sqlParam(ledgerStatus)}', '${sqlParam(ledgerDetail)}', datetime('now'));`;
-    await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
+    run(
+      "INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('CONSENSUS_PROPOSAL', ?, ?, ?, datetime('now'));",
+      `Consensus voting for proposal ${proposalId}`, ledgerStatus, ledgerDetail
+    );
   } catch (dbErr) {
     console.error("Failed to write proposal to sovereign_ledger:", dbErr);
   }
@@ -330,36 +301,9 @@ export interface LedgerEntry {
 
 export async function getSovereignLedgerHistory(): Promise<LedgerEntry[]> {
   try {
-    let rows: any[] = [];
-    const query = "SELECT id, timestamp, category, action, status, detail FROM sovereign_ledger ORDER BY timestamp DESC LIMIT 50;";
-    try {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "-json",
-        query
-      ]);
-      if (stdout.trim()) {
-        rows = JSON.parse(stdout);
-      }
-    } catch {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        query
-      ]);
-      const lines = stdout.split("\n").filter(Boolean);
-      rows = lines.map(line => {
-        const parts = line.split("|");
-        return {
-          id: parseInt(parts[0]),
-          timestamp: parts[1],
-          category: parts[2],
-          action: parts[3],
-          status: parts[4],
-          detail: parts[5]
-        };
-      });
-    }
-    return rows;
+    return all<LedgerEntry>(
+      "SELECT id, timestamp, category, action, status, detail FROM sovereign_ledger ORDER BY timestamp DESC LIMIT 50;"
+    );
   } catch (err) {
     console.error("Failed to query sovereign ledger history:", err);
     return [];
@@ -379,38 +323,9 @@ export interface SalesLedgerEntry {
 
 export async function getSalesLedger(): Promise<SalesLedgerEntry[]> {
   try {
-    let rows: any[] = [];
-    const query = "SELECT id, target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status FROM sales_ledger ORDER BY id DESC;";
-    try {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        "-json",
-        query
-      ]);
-      if (stdout.trim()) {
-        rows = JSON.parse(stdout);
-      }
-    } catch {
-      const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-        DB_PATH,
-        query
-      ]);
-      const lines = stdout.split("\n").filter(Boolean);
-      rows = lines.map(line => {
-        const parts = line.split("|");
-        return {
-          id: parseInt(parts[0]),
-          target_name: parts[1],
-          target_platform: parts[2],
-          status: parts[3],
-          last_contact: parts[4],
-          notes: parts[5],
-          stripe_id: parts[6],
-          subscription_status: parts[7]
-        };
-      });
-    }
-    return rows;
+    return all<SalesLedgerEntry>(
+      "SELECT id, target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status FROM sales_ledger ORDER BY id DESC;"
+    );
   } catch (err) {
     console.error("Failed to query sales ledger:", err);
     return [];
@@ -423,35 +338,30 @@ export async function simulateStripeInvoicePayment(clientId: string): Promise<{ 
   }
 
   try {
-    const { stdout: clientNameStdout } = await execFileAsync("/usr/bin/sqlite3", [
-      DB_PATH,
-      `SELECT name FROM enterprise_clients WHERE id = '${sqlParam(clientId)}' LIMIT 1;`
-    ]);
-    const clientName = clientNameStdout.trim();
+    const clientName = get<{ name: string }>("SELECT name FROM enterprise_clients WHERE id = ? LIMIT 1;", clientId)?.name;
     if (!clientName) {
       return { ok: false, error: "Client not found" };
     }
 
-    const { stdout: nodesCountStdout } = await execFileAsync("/usr/bin/sqlite3", [
-      DB_PATH,
-      `SELECT COUNT(*) FROM fleet_nodes WHERE client_id = '${sqlParam(clientId)}';`
-    ]);
-    const nodesCount = parseInt(nodesCountStdout.trim()) || 1;
+    const nodesCount =
+      get<{ count: number }>("SELECT COUNT(*) AS count FROM fleet_nodes WHERE client_id = ?;", clientId)?.count || 1;
     const computedMRR = nodesCount * 1250.0;
 
     const stripeId = `sub_${Math.random().toString(36).substring(2, 10)}${Math.random().toString(36).substring(2, 10)}`;
 
-    const { stdout: existing } = await execFileAsync("/usr/bin/sqlite3", [
-      DB_PATH,
-      `SELECT id FROM sales_ledger WHERE target_name = '${sqlParam(clientName)}' LIMIT 1;`
-    ]);
+    const notes = `Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes`;
+    const existing = get("SELECT id FROM sales_ledger WHERE target_name = ? LIMIT 1;", clientName);
 
-    if (existing.trim()) {
-      const sqlUpdate = `UPDATE sales_ledger SET subscription_status = 'active', status = 'PAID', stripe_id = '${sqlParam(stripeId)}', last_contact = datetime('now'), notes = 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes' WHERE target_name = '${sqlParam(clientName)}';`;
-      await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlUpdate]);
+    if (existing) {
+      run(
+        "UPDATE sales_ledger SET subscription_status = 'active', status = 'PAID', stripe_id = ?, last_contact = datetime('now'), notes = ? WHERE target_name = ?;",
+        stripeId, notes, clientName
+      );
     } else {
-      const sqlInsert = `INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status) VALUES ('${sqlParam(clientName)}', 'Sentinel-OS Mesh', 'PAID', datetime('now'), 'Paid computed node MRR of $${computedMRR}.00 for ${nodesCount} nodes', '${sqlParam(stripeId)}', 'active');`;
-      await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlInsert]);
+      run(
+        "INSERT INTO sales_ledger (target_name, target_platform, status, last_contact, notes, stripe_id, subscription_status) VALUES (?, 'Sentinel-OS Mesh', 'PAID', datetime('now'), ?, ?, 'active');",
+        clientName, notes, stripeId
+      );
     }
 
     return { ok: true };
@@ -477,12 +387,9 @@ export async function registerEdgeDevice(deviceId: string, deviceType: string, c
 
   let clientId = "client-3c136c8c";
   try {
-    const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-      DB_PATH,
-      `SELECT id FROM enterprise_clients WHERE name = '${sqlParam(clientName)}' LIMIT 1;`
-    ]);
-    if (stdout.trim()) {
-      clientId = stdout.trim();
+    const row = get<{ id: string }>("SELECT id FROM enterprise_clients WHERE name = ? LIMIT 1;", clientName);
+    if (row?.id) {
+      clientId = row.id;
     }
   } catch {
     // Keep default
@@ -491,8 +398,10 @@ export async function registerEdgeDevice(deviceId: string, deviceType: string, c
   const nodeId = `edge-${cleanType.toLowerCase()}-${Math.random().toString(16).slice(2, 8)}`;
 
   try {
-    const sqlNode = `INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES ('${sqlParam(nodeId)}', '${sqlParam(clientId)}', 'EDGE-${sqlParam(cleanType.toUpperCase())}', 'ONLINE', datetime('now'), datetime('now'));`;
-    await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlNode]);
+    run(
+      "INSERT INTO fleet_nodes (id, client_id, node_type, status, last_pulse, created_at) VALUES (?, ?, ?, 'ONLINE', datetime('now'), datetime('now'));",
+      nodeId, clientId, `EDGE-${cleanType.toUpperCase()}`
+    );
 
     return {
       ok: true,
@@ -537,12 +446,9 @@ export async function submitOracleBid(clientId: string, bidPrice: number, thread
 
   let clientName = "Sovereign Provider";
   try {
-    const { stdout } = await execFileAsync("/usr/bin/sqlite3", [
-      DB_PATH,
-      `SELECT name FROM enterprise_clients WHERE id = '${sqlParam(clientId)}' LIMIT 1;`
-    ]);
-    if (stdout.trim()) {
-      clientName = stdout.trim();
+    const row = get<{ name: string }>("SELECT name FROM enterprise_clients WHERE id = ? LIMIT 1;", clientId);
+    if (row?.name) {
+      clientName = row.name;
     }
   } catch {
     // Default fallback
@@ -623,10 +529,12 @@ export async function deployMicroProduct(name: string, template: string): Promis
     name: cleanName,
     template,
     deploymentUrl
-  }).replace(/'/g, "''");
+  });
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('MICRO_PRODUCT_DEPLOY', 'Deploy micro-agent product ${sqlParam(cleanName)}', 'LIVE', '${sqlParam(detail)}', datetime('now'));`;
-  await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
+  run(
+    "INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('MICRO_PRODUCT_DEPLOY', ?, 'LIVE', ?, datetime('now'));",
+    `Deploy micro-agent product ${cleanName}`, detail
+  );
 
   return {
     id: `prod-${Math.random().toString(36).substring(2, 9)}`,
@@ -657,10 +565,12 @@ export async function clearCrossChainSettlement(clientId: string, amount: number
     sourceBridge,
     destBridge,
     txHash
-  }).replace(/'/g, "''");
+  });
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('FINANCIAL_SETTLEMENT', 'Clear settlement bridge swap $${amount}', 'SUCCESS', '${sqlParam(detail)}', datetime('now'));`;
-  await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
+  run(
+    "INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('FINANCIAL_SETTLEMENT', ?, 'SUCCESS', ?, datetime('now'));",
+    `Clear settlement bridge swap $${amount}`, detail
+  );
 
   return {
     txHash,
@@ -692,10 +602,12 @@ export async function runZKAuditSweep(): Promise<ZKAuditResult> {
   const detail = JSON.stringify({
     blockCount: rows.length,
     rootHash: currentHash
-  }).replace(/'/g, "''");
+  });
 
-  const sqlLedger = `INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('ZK_AUDIT_VERIFY', 'ZK-Proof audit verification sweep over ${rows.length} blocks', 'PASS', '${sqlParam(detail)}', datetime('now'));`;
-  await execFileAsync("/usr/bin/sqlite3", [DB_PATH, sqlLedger]);
+  run(
+    "INSERT INTO sovereign_ledger (category, action, status, detail, timestamp) VALUES ('ZK_AUDIT_VERIFY', ?, 'PASS', ?, datetime('now'));",
+    `ZK-Proof audit verification sweep over ${rows.length} blocks`, detail
+  );
 
   return {
     rootHash: currentHash,

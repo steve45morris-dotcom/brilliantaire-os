@@ -54,10 +54,11 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- **SQL in `sentinel-os`:** still built as strings in two files.
-  - **`lib/mesh_layer.ts`:** runs SQL through the `sqlite3` CLI. String values go through `sqlParam()` (quote escaping, #3), but `clearCrossChainSettlement` still interpolates `amount` unescaped (typed `number`, no callers today).
-  - **`lib/solar-scheduler.ts`:** interpolates only values from its own node config.
-  - **Fix:** `lib/db.ts` already wraps `better-sqlite3`, and its `runQuery(sql, params)` supports bound parameters. Move both files onto it. `lib/settlement-bridge.ts` already uses it: it had an open injection reachable from `POST /api/mesh/settle`, fixed with bound parameters.
+- **SQL in `sentinel-os`:** every query uses bound parameters.
+  - **`lib/settlement-bridge.ts` and `lib/solar-scheduler.ts`:** go through `runQuery`/`runExecute` in `lib/db.ts`.
+  - **`lib/mesh_layer.ts`:** uses its own `better-sqlite3` connection. It no longer shells out to the `sqlite3` CLI.
+  - **Database path:** `mesh_layer.ts` defaults to `~/supernova.db`, but `lib/db.ts` falls back to a path based on the working directory. Set `SUPERNOVA_DB_PATH` so both use the same file.
+  - **History:** settlement-bridge had an open injection reachable from `POST /api/mesh/settle` (fixed).
 - **Authentication:**
   - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
   - **`sentinel-os`:** Supabase Auth, enforced in `sentinel-os/middleware.ts`, with the rules in `lib/auth/policy.ts`. Pages and GET requests need a signed-in viewer. Mesh POSTs need editor. Billing, settle and provision need admin. Roles are read from Supabase `app_metadata.role`, which users cannot edit. There is no self-signup: admins invite operators.
@@ -106,5 +107,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Deploy `sentinel-os/` to clients before its SQL uses bound parameters
+- Build SQL from strings in `sentinel-os/`: always pass values as bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
