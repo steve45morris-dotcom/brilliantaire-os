@@ -21,7 +21,8 @@ export const APPROVED_SOURCES = [
   "outputs/render_intake/logs/",
   "outputs/render_intake/scans/",
   "outputs/grinders_keep_verification_rerun/logs/",
-  "outputs/manual_implementation_packet/logs/"
+  "outputs/manual_implementation_packet/logs/",
+  "outputs/asr_human_approval_selection/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

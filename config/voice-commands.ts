@@ -188,5 +188,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show asr approval status',
+    normalizedCommand: 'show asr approval status',
+    routerCommand: 'asr-human-approval-selection-packet status',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show asr approval help',
+    normalizedCommand: 'show asr approval help',
+    routerCommand: 'asr-human-approval-selection-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

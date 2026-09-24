@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 14E: Episode 1 Manual Render Intake + Phase 13J: Verification Rerun Planner + Manual Implementation Packet Compiler — COMPLETE
+- **Current Phase:** Phase 12B: Offline ASR Human Approval Selection Packet — COMPLETE
 - **Last Verified:** 2026-07-27
 - **Build Status:** passing
 
@@ -174,6 +174,7 @@
 - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
 - **Higgsfield AI Bridge (Phase 15A):** Manual-first AI video generation adapter (`scripts/higgsfield-ai.ts`) integrating Open Higgsfield AI into the ICYFLAMZE CORE tool stacks under the Creative Architect. Supports render request staging, scene description composition, storyboard compilation, narrator sync package generation, Obsidian export staging, and bridge status reporting. 7 render types (character-animation, scene-transition, music-video-sequence, trailer-clip, lyric-visual, cover-art-motion, storyboard-preview) and 7 approved visual styles. Connected to ICYFLAMZE CORE pipeline (episode-trailer-render, ip-bible-visual-reference, asset-queue-submission, render-intake-handoff) and Narrator TTS/voice pipeline. All API calls disabled, manual approval required, render review enforced.
 - **Local Inference Server Bridge (Phase 15B):** Manual-first OpenAI-compatible local LLM inference adapter (`scripts/local-inference.ts`) integrating the localhost:20128 inference endpoint into Claude Code under the Prompt Engineer. Supports chat request staging, structured prompt staging, health check verification, MCP configuration guide generation, Obsidian export staging, and bridge status reporting. Zero-credential server with model "auto". 6 approved use cases (research-augmentation, draft-composition, code-review-assist, knowledge-query, narrator-draft-assist, creative-brainstorm). Live inference calls disabled, autonomous inference blocked, manual prompt review and response audit enforced.
+- **Offline ASR Human Approval Selection Packet (Phase 12B):** Manual-first ASR candidate and model selection adapter (`scripts/asr-human-approval-selection-packet.ts`) enabling human operator review of upstream ASR pipeline candidates, Whisper model family evaluation, selection packet staging, and approval/rejection decision recording under the Workflow Auditor. 7 CLI commands (status, list-candidates, list-models, stage-selection, approve, reject, obsidian-export) with HASP- request IDs. Reads from ASR orchestrator, model gate, live ASR logs, and voice command logs. 5 supported Whisper model families and 5 evaluation criteria. No automated ASR, no model downloads, no external API calls, human approval required, manual selection enforced.
 
 
 

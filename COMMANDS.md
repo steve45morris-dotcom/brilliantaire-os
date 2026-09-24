@@ -405,6 +405,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `render-intake` | `render intake`, `intake` | Creative Architect | Medium | Yes | Execute Episode 1 Manual Render Intake scanning, validation, and readiness commands. |
 | `grinders-keep-verification-rerun-planner-help` | `rerun planner help`, `verification rerun help` | Workflow Auditor | Low | No | Print help menu for the Verification Rerun Planner CLI. |
 | `grinders-keep-verification-rerun-planner` | `rerun planner`, `verification rerun` | Workflow Auditor | Medium | Yes | Execute Verification Rerun Planner commands for evidence collection task scheduling. |
+| `asr-human-approval-selection-packet-help` | `asr approval help`, `asr selection help` | Workflow Auditor | Low | No | Print help menu for the Offline ASR Human Approval Selection Packet CLI. |
+| `asr-human-approval-selection-packet` | `asr approval`, `asr selection` | Workflow Auditor | Medium | Yes | Stage and manage offline ASR candidate evaluation, model selection, and human approval decisions. |
 
 
 

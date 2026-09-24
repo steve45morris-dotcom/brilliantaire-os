@@ -1,5 +1,5 @@
 {
-  "currentPhase": "Phase 14E + Phase 13J + Manual Implementation Packet Compiler — COMPLETE",
+  "currentPhase": "Phase 12B: Offline ASR Human Approval Selection Packet — COMPLETE",
   "activeCapabilities": [
     "**Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).",
     "**Build Pipeline:** Structured task runner via `Taskfile.yml`.",
@@ -122,7 +122,8 @@
     "**Local Inference Server Bridge (Phase 15B):** Manual-first OpenAI-compatible local inference adapter (`scripts/local-inference.ts`) integrating a localhost:20128 inference server into Claude Code under the Prompt Engineer. Supports chat request staging, prompt management, health-check diagnostics, MCP configuration generation, and Obsidian export staging with all live inference calls disabled and manual approval enforced.",
     "**Episode 1 Manual Render Intake (Phase 14E):** Manual-first render asset intake system (`scripts/render-intake.ts`) scanning, validating, and tracking incoming rendered assets against the Episode 1 Asset Generation Queue under the Creative Architect. Supports asset scanning, validation, visual continuity checklists, audio review, assembly readiness reports, and revision logging with all automated file moves disabled.",
     "**Grinders Keep Verification Rerun Planner (Phase 13J):** Manual-first verification rerun planner (`scripts/grinders-keep-verification-rerun-planner.ts`) compiling rerun scripts, scheduling recommendations, and manual command sheets for evidence collection tasks under the Workflow Auditor. Closes the Grinders Keep evidence collection loop.",
-    "**Manual Implementation Packet Compiler:** Manual-first pipeline implementation compiler (`scripts/manual-implementation-packet.ts`) reading approved pipeline proposals, generating build prompts, implementation checklists, safety reviews, and handoff documents under the Workflow Auditor. Closes the pipeline approval-to-build gap."
+    "**Manual Implementation Packet Compiler:** Manual-first pipeline implementation compiler (`scripts/manual-implementation-packet.ts`) reading approved pipeline proposals, generating build prompts, implementation checklists, safety reviews, and handoff documents under the Workflow Auditor. Closes the pipeline approval-to-build gap.",
+    "**Offline ASR Human Approval Selection Packet (Phase 12B):** Manual-first ASR candidate and model selection adapter (`scripts/asr-human-approval-selection-packet.ts`) enabling human operator review of upstream ASR pipeline candidates, Whisper model family evaluation, selection packet staging, and approval/rejection decision recording under the Workflow Auditor. No automated ASR, no model downloads, manual selection enforced."
   ],
   "activeProjects": [
     "Icyflamze",

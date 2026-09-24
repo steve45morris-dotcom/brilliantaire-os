@@ -58,6 +58,7 @@ The engine dynamically compiles statistics by scanning files within:
 9. `outputs/render_intake/logs/` & `outputs/render_intake/scans/` — Tracking Episode 1 render asset intake scanning, validation, and assembly readiness.
 10. `outputs/grinders_keep_verification_rerun/logs/` & `outputs/grinders_keep_verification_rerun/rerun_plans/` — Tracking evidence verification rerun planning and scheduling.
 11. `outputs/manual_implementation_packet/logs/` & `outputs/manual_implementation_packet/build_prompts/` — Tracking pipeline implementation packet compilation and handoff staging.
+12. `outputs/asr_human_approval_selection/logs/` & `outputs/asr_human_approval_selection/selection_packets/` — Tracking offline ASR candidate evaluation, model selection staging, and human approval decisions.
 
 ---
 

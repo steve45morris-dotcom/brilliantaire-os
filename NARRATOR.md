@@ -37,6 +37,7 @@ The Narrator is strictly restricted to reading the following approved source fil
 - `outputs/render_intake/scans/`
 - `outputs/grinders_keep_verification_rerun/logs/`
 - `outputs/manual_implementation_packet/logs/`
+- `outputs/asr_human_approval_selection/logs/`
 
 ## 4. Flow Architecture
 
