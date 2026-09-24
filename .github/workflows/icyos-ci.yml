@@ -3,24 +3,40 @@ name: IcyOS CI
 on:
   push:
     branches: [main]
+    paths:
+      - 'Knowledge Core/IcyOS/**'
+      - '.github/workflows/icyos-ci.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'Knowledge Core/IcyOS/**'
+      - '.github/workflows/icyos-ci.yml'
+
+defaults:
+  run:
+    working-directory: Knowledge Core/IcyOS
 
 jobs:
   ci:
     name: Build & Test
     runs-on: ubuntu-latest
+    env:
+      # Public client config needed to prerender pages; placeholders are enough to build.
+      NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+      NEXT_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+          cache-dependency-path: Knowledge Core/IcyOS/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -39,10 +55,12 @@ jobs:
         continue-on-error: true
 
       - name: Install Playwright browsers
-        run: cd apps/web && npx playwright install --with-deps chromium
+        working-directory: Knowledge Core/IcyOS/apps/web
+        run: npx playwright install --with-deps chromium
 
       - name: E2E tests
-        run: cd apps/web && npx playwright test
+        working-directory: Knowledge Core/IcyOS/apps/web
+        run: npx playwright test
         continue-on-error: true
 
       - name: Security audit
