@@ -11,10 +11,10 @@
 ## Required Before Client Delivery
 - [x] Authentication layer (Supabase Auth with SSR middleware)
 - [x] Role-based access control (admin, editor, viewer)
-- [ ] API rate limiting and abuse protection
+- [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; in-memory store — swap in a shared store such as Redis before running multiple instances)
 - [ ] Stripe billing integration
 - [ ] Client onboarding flow
-- [ ] Remove internal/personal references from codebase
+- [ ] Remove internal/personal references from codebase — app code, packages, seed data and START_HERE done; ~137 internal planning docs (numbered folders) still contain absolute personal paths and should be excluded from client deliverables
 - [ ] Environment variable documentation for clients
 - [ ] Docker containerization for self-hosted deployments
 - [ ] SLA monitoring and uptime dashboard

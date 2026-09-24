@@ -1,9 +1,34 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import {
+  MemoryRateLimitStore,
+  RATE_LIMIT_RULES,
+  applyRateLimitHeaders,
+  checkRateLimit,
+  getClientIp,
+  isRateLimited,
+  rateLimitResponse,
+  resolveTier,
+} from "../api/rate-limit";
 
 const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm"];
 
+const rateLimitStore = new MemoryRateLimitStore();
+
 export async function updateSession(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const limitApi = isRateLimited(pathname);
+
+  // Throttle by IP before the Supabase lookup so floods never reach auth.
+  if (limitApi) {
+    const ipResult = await checkRateLimit(
+      rateLimitStore,
+      `ip:${getClientIp(request.headers)}`,
+      RATE_LIMIT_RULES.ip
+    );
+    if (!ipResult.allowed) return rateLimitResponse(ipResult);
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -45,6 +70,17 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     return NextResponse.redirect(url);
+  }
+
+  if (limitApi && user) {
+    const tier = resolveTier(pathname, request.method);
+    const userResult = await checkRateLimit(
+      rateLimitStore,
+      `user:${user.id}:${tier}`,
+      RATE_LIMIT_RULES[tier]
+    );
+    if (!userResult.allowed) return rateLimitResponse(userResult);
+    applyRateLimitHeaders(supabaseResponse, userResult);
   }
 
   return supabaseResponse;
