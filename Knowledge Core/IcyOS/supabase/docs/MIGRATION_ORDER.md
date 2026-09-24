@@ -19,5 +19,6 @@ Conceptual migration execution order:
 15. **15_fix_role_resolution.sql**: Resolve identity and role in `SECURITY DEFINER` functions (`current_app_user_id()`, `current_user_role()`, `is_admin()`) and replace 14's recursive `user_roles` policies.
 16. **16_fix_rls_identity.sql**: Rewrite the `12_rls_policies.sql` read policies to match users through `auth_id`, and add the missing `sprints` and `missions` policies.
 17. **17_enable_rls_remaining_tables.sql**: Enable RLS on the 19 remaining tables: owner-only reads where a table links to a user, admin-only reads where it has no owner column.
+18. **18_add_owner_columns.sql**: Add a nullable `user_id` to the 12 tables without an owner (`blueprint_steps` follows its blueprint). Make `knowledge_assets.path` and `architecture_decisions.adr_id` unique per user, and switch their reads to owner-only; ownerless legacy rows stay admin-only.
 
 *I build before burning.*

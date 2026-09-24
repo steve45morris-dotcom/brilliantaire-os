@@ -19,7 +19,7 @@ Owned tables (17):
 - **`sessions`**: sessions in the user's workspaces.
 - **`actions`**: actions of the user's missions.
 
-Tables with no owner column (17), admin-only reads via `*_admin_select` (`is_admin()`): `ai_decisions`, `ai_context_packages`, `reviews`, `insights`, `learning_records`, `notifications`, `blueprints`, `blueprint_steps`, `recommendations`, `trade_off_decisions`, `knowledge_assets`, `architecture_decisions`, `memory_entries`. Several hold private data, so they stay closed to other signed-in users until they gain an owner column.
+Per-user records (17, owner columns added in 18): `ai_decisions`, `ai_context_packages`, `reviews`, `insights`, `learning_records`, `notifications`, `blueprints`, `recommendations`, `trade_off_decisions`, `knowledge_assets`, `architecture_decisions`, `memory_entries` carry a nullable `user_id`, and `blueprint_steps` is owned through its blueprint. `*_owner_select` lets a user read rows where `user_id = current_app_user_id()`; rows with `user_id IS NULL` (created before 18) are readable by admins only. `knowledge_assets.path` and `architecture_decisions.adr_id` are unique per user.
 
 Every table in `public` has RLS enabled. Every policy is scoped `TO authenticated`, so the `anon` role matches none and reads nothing. Server code using the service role bypasses RLS.
 
