@@ -10,8 +10,12 @@ import {
   rateLimitResponse,
   resolveTier,
 } from "../api/rate-limit";
+import { errorResponse } from "../api/response";
+import { hasAccess } from "../billing/entitlement";
+import { billingEnforced, requiresSubscription } from "../billing/gate";
 
-const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm"];
+// The Stripe webhook authenticates by signature, not by session.
+const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/api/billing/webhook"];
 
 const rateLimitStore = new MemoryRateLimitStore();
 
@@ -81,6 +85,25 @@ export async function updateSession(request: NextRequest) {
     );
     if (!userResult.allowed) return rateLimitResponse(userResult);
     applyRateLimitHeaders(supabaseResponse, userResult);
+  }
+
+  // Trial or paid subscription required; RLS returns only the user's own row.
+  if (user && billingEnforced() && requiresSubscription(pathname)) {
+    const { data: subscription, error } = await supabase
+      .from("subscriptions")
+      .select("status, trial_ends_at")
+      .maybeSingle();
+    if (error) console.error("Subscription lookup failed; denying access:", error.message);
+
+    if (!hasAccess(subscription)) {
+      if (pathname.startsWith("/api/")) {
+        return errorResponse("payment_required", "An active subscription is required", null, 402);
+      }
+      const url = request.nextUrl.clone();
+      url.pathname = "/billing";
+      url.search = "";
+      return NextResponse.redirect(url);
+    }
   }
 
   return supabaseResponse;

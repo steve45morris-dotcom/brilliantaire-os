@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
-  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings 
+  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, CreditCard 
 } from 'lucide-react';
 
 const navItems = [
@@ -13,6 +13,7 @@ const navItems = [
   { href: '/focus', label: 'Focus', icon: Play },
   { href: '/review', label: 'Review', icon: BarChart3 },
   { href: '/knowledge', label: 'Knowledge', icon: BookOpen },
+  { href: '/billing', label: 'Billing', icon: CreditCard },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 

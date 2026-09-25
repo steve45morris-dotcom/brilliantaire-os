@@ -21,6 +21,8 @@ Owned tables (17):
 
 Per-user records (17, owner columns added in 18): `ai_decisions`, `ai_context_packages`, `reviews`, `insights`, `learning_records`, `notifications`, `blueprints`, `recommendations`, `trade_off_decisions`, `knowledge_assets`, `architecture_decisions`, `memory_entries` carry a nullable `user_id`, and `blueprint_steps` is owned through its blueprint. `*_owner_select` lets a user read rows where `user_id = current_app_user_id()`; rows with `user_id IS NULL` (created before 18) are readable by admins only. `knowledge_assets.path` and `architecture_decisions.adr_id` are unique per user.
 
+Billing (19): `subscriptions_owner_select` lets a user read their own subscription. There are no write policies: checkout and the Stripe webhook write through the service role. `billing_events` has RLS enabled and no policies, so only the service role can use it.
+
 Every table in `public` has RLS enabled. Every policy is scoped `TO authenticated`, so the `anon` role matches none and reads nothing. Server code using the service role bypasses RLS.
 
 *I build before burning.*

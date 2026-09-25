@@ -68,7 +68,8 @@ export type RateLimitTier = 'ai' | 'write' | 'read';
 // Routes that invoke an AI provider and cost money per call.
 const AI_ROUTES = ['/api/briefings/generate', '/api/timelines/generate', '/api/timelines/regenerate'];
 
-const EXEMPT_ROUTES = ['/api/health'];
+// Health checks, and Stripe webhooks, which retry on 429 and arrive from shared IPs.
+const EXEMPT_ROUTES = ['/api/health', '/api/billing/webhook'];
 
 export function isRateLimited(pathname: string): boolean {
   return pathname.startsWith('/api/') && !EXEMPT_ROUTES.includes(pathname);
