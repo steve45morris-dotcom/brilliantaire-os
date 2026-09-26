@@ -1,7 +1,7 @@
 // Which requests need an active subscription or trial. Everything a locked-out
 // user needs to subscribe stays reachable.
 
-const EXEMPT_PREFIXES = ['/billing', '/api/billing/', '/api/health', '/login', '/auth/'];
+const EXEMPT_PREFIXES = ['/billing', '/api/billing/', '/api/health', '/login', '/auth/', '/terms', '/privacy'];
 
 export function requiresSubscription(pathname: string): boolean {
   return !EXEMPT_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix.endsWith('/') ? prefix : `${prefix}/`));

@@ -18,7 +18,7 @@
 - [ ] Environment variable documentation for clients
 - [ ] Docker containerization for self-hosted deployments
 - [ ] SLA monitoring and uptime dashboard
-- [ ] Terms of Service and Privacy Policy
+- [ ] Terms of Service and Privacy Policy — drafted at `/terms` and `/privacy` (Delaware law, linked from sign-in, billing and Checkout); needs legal review, contact email and hosting provider filled in, and a deletion/export process before launch (see `apps/web/LEGAL.md`)
 
 ## Revenue Model Options
 1. **SaaS** — Multi-tenant hosted, $49-299/mo per seat

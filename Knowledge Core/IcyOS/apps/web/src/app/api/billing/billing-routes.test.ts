@@ -105,6 +105,7 @@ describe('POST /api/billing/checkout', () => {
       success_url: 'https://app.example.com/billing?checkout=success',
     });
     expect(session.subscription_data.metadata).toEqual({ user_id: 'user-1' });
+    expect(session.custom_text.submit.message).toContain('https://app.example.com/terms');
     expect(session.subscription_data.trial_end).toBeGreaterThan(Date.now() / 1000);
   });
 

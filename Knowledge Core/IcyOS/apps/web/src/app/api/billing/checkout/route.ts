@@ -63,6 +63,11 @@ export async function POST(req: NextRequest) {
       ...(carryTrial ? { trial_end: Math.floor(trialEnd / 1000) } : {}),
     },
     allow_promotion_codes: true,
+    custom_text: {
+      submit: {
+        message: `By subscribing you agree to the Terms of Service (${origin}/terms), including automatic monthly renewal until you cancel and no partial refunds.`,
+      },
+    },
     success_url: `${origin}/billing?checkout=success`,
     cancel_url: `${origin}/billing?checkout=canceled`,
   });
