@@ -127,6 +127,19 @@ describe('Auth Middleware Subscription Gate', () => {
     expect(subscriptionLookup).not.toHaveBeenCalled();
   });
 
+  it('should serve the Terms and Privacy Policy to signed-out and locked-out users', async () => {
+    const updateSession = await loadMiddleware();
+    getUser.mockResolvedValue({ data: { user: null } });
+    for (const path of ['/terms', '/privacy']) {
+      expect((await updateSession(new NextRequest(`http://localhost${path}`))).status).toBe(200);
+    }
+
+    getUser.mockResolvedValue({ data: { user: { id: 'user-3' } } });
+    subscriptionLookup.mockResolvedValue(trialEnding(-1000));
+    expect((await updateSession(new NextRequest('http://localhost/terms'))).status).toBe(200);
+    expect(subscriptionLookup).not.toHaveBeenCalled();
+  });
+
   it('should skip the gate when BILLING_ENFORCEMENT=off', async () => {
     const updateSession = await loadMiddleware();
     process.env.BILLING_ENFORCEMENT = 'off';

@@ -132,6 +132,12 @@ export default function LoginPage() {
             </>
           )}
         </p>
+
+        <p className="mt-4 text-center text-xs text-gray-500">
+          By {mode === "login" ? "signing in" : "creating an account"}, you agree to the{" "}
+          <a href="/terms" className="underline hover:text-gray-300">Terms of Service</a> and{" "}
+          <a href="/privacy" className="underline hover:text-gray-300">Privacy Policy</a>.
+        </p>
       </div>
     </div>
   );

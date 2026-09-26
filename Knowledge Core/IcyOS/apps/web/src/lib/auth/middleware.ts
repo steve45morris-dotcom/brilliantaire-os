@@ -14,8 +14,9 @@ import { errorResponse } from "../api/response";
 import { hasAccess } from "../billing/entitlement";
 import { billingEnforced, requiresSubscription } from "../billing/gate";
 
-// The Stripe webhook authenticates by signature, not by session.
-const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/api/billing/webhook"];
+// Legal pages must be readable before sign-up; the Stripe webhook authenticates
+// by signature, not by session.
+const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/terms", "/privacy", "/api/billing/webhook"];
 
 const rateLimitStore = new MemoryRateLimitStore();
 

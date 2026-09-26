@@ -81,6 +81,15 @@ export default function BillingPage() {
       )}
 
       {status && !subscribed && (
+        <p className="text-xs text-zinc-500">
+          Plans renew monthly until you cancel. Cancel anytime; access continues to the end of the paid period, with no
+          partial refunds. By subscribing you agree to the{' '}
+          <a href="/terms" className="underline hover:text-zinc-300">Terms of Service</a> and{' '}
+          <a href="/privacy" className="underline hover:text-zinc-300">Privacy Policy</a>.
+        </p>
+      )}
+
+      {status && !subscribed && (
         <div className="grid gap-4 md:grid-cols-3">
           {status.plans.map((p) => (
             <Card key={p.plan} className="flex flex-col gap-4">
