@@ -20,7 +20,7 @@
 config/          # Command registry, workflow configs (commands.ts is 3,717 lines)
 scripts/         # 208+ TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
-sentinel-os/     # Mesh layer, multi-tenant SaaS backend
+sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
 orchestrator/    # Phase-based orchestration engine
 Knowledge Core/  # IcyOS monorepo (Next.js, 6 packages, Supabase)
 dashboard/       # Vite React dashboard
@@ -54,17 +54,17 @@ npm run command    # Safe command router
 
 ## Security Notes
 
-- **SQL in `sentinel-os`:** every query uses bound parameters.
-  - **`lib/settlement-bridge.ts` and `lib/solar-scheduler.ts`:** go through `runQuery`/`runExecute` in `lib/db.ts`.
-  - **`lib/mesh_layer.ts`:** uses its own `better-sqlite3` connection. It no longer shells out to the `sqlite3` CLI.
-  - **Database path:** `mesh_layer.ts` defaults to `~/supernova.db`, but `lib/db.ts` falls back to a path based on the working directory. Set `SUPERNOVA_DB_PATH` so both use the same file.
-  - **History:** settlement-bridge had an open injection reachable from `POST /api/mesh/settle` (fixed).
+- **`sentinel-os` lives in its own repo:** `steve45morris-dotcom/sentinel-os`, checked out at `~/sentinel-os`. That is also where P.J.K. lives (`/pjk`).
+  - **The `sentinel-os/` folder here is a stale snapshot.** It holds 38 tracked files from around August 2026 and has drifted from the real app. Don't edit it: make sentinel-os changes in the standalone repo.
+  - **Same directory on the Mac:** because this repo is rooted at `$HOME`, `~/sentinel-os` is tracked by both repos. Deleting the folder from this repo would delete those files from the real checkout on the next pull. Untrack it on the Mac with `git rm -r --cached sentinel-os` instead.
+  - **SQL:** the standalone repo uses bound parameters for every statement (commit `170c829`, 2026-09-17).
+  - **Access model:** local-only and single-operator by design, with no login. `proxy.ts` refuses non-localhost hosts and cross-site requests. Add real authentication before exposing it beyond localhost.
+  - **Not in the real app:** the Supabase login, roles and rate limiting in this repo's snapshot (#6) were added to the stale copy only.
 - **Authentication:**
   - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
-  - **`sentinel-os`:** Supabase Auth, enforced in `sentinel-os/middleware.ts`, with the rules in `lib/auth/policy.ts`. Pages and GET requests need a signed-in viewer. Mesh POSTs need editor. Billing, settle and provision need admin. Roles are read from Supabase `app_metadata.role`, which users cannot edit. There is no self-signup: admins invite operators.
-- **Rate limiting:** both apps limit `/api/*` per IP (300/min, checked before auth) and per user, by tier.
+  - **`sentinel-os`:** none by design. It is local-only (see above).
+- **Rate limiting (IcyOS):** `/api/*` is limited per IP (300/min, checked before auth) and per user, by tier.
   - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
-  - **`sentinel-os`** (`lib/rate-limit.ts`): billing, settle and provision 10/min, other writes 60/min, reads 120/min.
   - **Limitation:** counters are in memory, one set per server instance. Use a shared store (e.g. Redis) before running more than one instance.
 - **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
@@ -110,5 +110,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Build SQL from strings in `sentinel-os/`: always pass values as bound parameters
+- Edit the `sentinel-os/` snapshot here: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
