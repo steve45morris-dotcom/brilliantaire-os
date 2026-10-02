@@ -52,6 +52,16 @@ npm run command    # Safe command router
 - VNP (Voice Narrative Protocol) for task announcements
 - Preview Handoff Rule: build production artifacts, no ephemeral localhost
 
+## Adding API Keys
+
+When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him the one command below. Never ask him to paste a key into chat.
+
+- **Command:** `pjkkey KEY_NAME`, for example `pjkkey STRIPE_SECRET_KEY`. It's installed in `~/.zshrc`.
+  - It prompts with hidden input, so the key never shows on screen or in shell history.
+  - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
+- **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
+- **If `pjkkey` is missing** (a new Mac or a fresh shell config): give him the install snippet in `docs/PJKKEY.md`.
+
 ## Security Notes
 
 - **`sentinel-os` lives in its own repo:** `steve45morris-dotcom/sentinel-os`, checked out at `~/sentinel-os`. That is also where P.J.K. lives (`/pjk`).
