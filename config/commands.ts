@@ -10,6 +10,15 @@ export interface CommandDefinition {
   requiresExactName: boolean;
 }
 
+/**
+ * P.J.K. (sentinel-os, lib/pjk-toolbox.ts) reads this file as text, not as
+ * code. Each entry must stay a flat object literal: quoted string values, an
+ * inline aliases array and literal true/false flags. Bump this number when that
+ * shape changes, and P.J.K. will stop instead of misreading the registry.
+ * config/commands.contract.test.ts checks the shape.
+ */
+export const COMMAND_REGISTRY_FORMAT_VERSION = 1;
+
 export const COMMAND_REGISTRY: CommandDefinition[] = [
   {
     name: 'audit',
