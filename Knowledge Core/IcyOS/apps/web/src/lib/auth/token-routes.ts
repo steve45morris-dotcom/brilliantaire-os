@@ -2,7 +2,8 @@
 // browser session. Shared by the middleware (Edge runtime) and the API routes,
 // so it uses nothing Node-specific.
 //
-// Tokens reach the user's own projects, missions and steps only: never billing,
+// Tokens reach the user's own work (projects, missions, steps, day plans,
+// focus sessions, reviews and notes) only: never billing,
 // onboarding, settings or token management, so a leaked token can't mint more
 // tokens or change the account.
 
@@ -26,6 +27,8 @@ const TOKEN_ROUTES: RegExp[] = [
   /^\/api\/focus\/start$/,
   new RegExp(`^/api/focus/${UUID}$`),
   /^\/api\/review$/,
+  /^\/api\/knowledge$/,
+  new RegExp(`^/api/knowledge/${UUID}$`),
 ];
 
 export const TOKEN_PREFIX = 'icy_';
