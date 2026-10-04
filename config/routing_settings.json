@@ -1,0 +1,14 @@
+{
+  "routingMode": "automatic",
+  "preferredProvider": "openai",
+  "preferredFastProvider": "openai",
+  "preferredReasoningProvider": "openai",
+  "preferredCodingProvider": "openai",
+  "preferredResearchProvider": "openai",
+  "preferredVerificationProvider": "openai",
+  "preferredVoiceProvider": "openai",
+  "preferredImageProvider": "openai",
+  "allowProviderFallback": true,
+  "requireApprovalBeforeProviderSwitch": false,
+  "maxEstimatedCostPerRequest": 0.5
+}

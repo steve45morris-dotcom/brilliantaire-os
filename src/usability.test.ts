@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, test } from 'vitest';
+import { hasRealDB } from './db.js';
 import { globalSkillAcquisitionService } from './skills/acquisition/SkillAcquisitionService.js';
 import { globalWorkspaceRegistry } from './workspaces/WorkspaceRegistry.js';
 import { getRouteForWorkspace } from './workspaces/WorkspaceRoutes.js';
@@ -45,7 +46,7 @@ describe('Application Era Usability Upgrades Tests', () => {
   });
 
   describe('Phase 2: Project Workspaces Registry & Routes', () => {
-    it('should retrieve official workspaces by ID', () => {
+    test.skipIf(!hasRealDB)('should retrieve official workspaces by ID', () => {
       const official = ['the-one-system', 'icyflamze', 'profbetgeng', 'treegroove', 'joy-beauty-studio', 'avatar', 'podcast', 'ai-school'];
       official.forEach(id => {
         const ws = globalWorkspaceRegistry.getWorkspace(id);
