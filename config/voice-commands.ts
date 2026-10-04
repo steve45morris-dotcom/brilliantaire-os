@@ -296,5 +296,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show release pipeline status',
+    normalizedCommand: 'show release pipeline status',
+    routerCommand: 'tree-groove-release-pipeline status',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show release pipeline help',
+    normalizedCommand: 'show release pipeline help',
+    routerCommand: 'tree-groove-release-pipeline-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];
