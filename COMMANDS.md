@@ -23,6 +23,8 @@ To ensure complete control and system safety, the router enforces the following 
 
 ## 3. Allowed Commands Registry
 
+Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `creative`, `release`, `knowledge`, `research`, `finance` or `ops` (`COMMAND_CATEGORIES`). It groups commands by what they are for, so P.J.K. can answer "what brilliantaire commands are there for audio?" with the whole group instead of a keyword match. `npm run command-help` prints the category column. The field was added without a `COMMAND_REGISTRY_FORMAT_VERSION` bump, because P.J.K.'s reader ignores keys it does not know.
+
 | Command | Aliases | Owning Agent | Risk Level | Exact Name Required | Description |
 |---|---|---|---|---|---|
 | `audit` | `check`, `verify` | Workflow Auditor | Low | No | Runs workspace structural checks and verification checks. |
