@@ -23,7 +23,7 @@ import { acceptsApiToken, bearerToken } from "./token-routes";
 
 // Legal pages must be readable before sign-up; the Stripe webhook authenticates
 // by signature, not by session.
-const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/terms", "/privacy", "/api/billing/webhook"];
+const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/terms", "/privacy", "/status", "/api/billing/webhook"];
 
 const rateLimitStore = new MemoryRateLimitStore();
 
@@ -85,10 +85,9 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // /api/health is public so hosting platforms and uptime monitors can use it;
-  // it only says the app is up.
   const isPublicRoute =
     pathname === "/api/health" ||
+    pathname === "/api/status" ||
     PUBLIC_ROUTES.some((route) => request.nextUrl.pathname.startsWith(route));
 
   if (!user && !isPublicRoute) {
