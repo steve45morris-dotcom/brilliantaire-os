@@ -134,6 +134,13 @@ verify-governance-output.txt
 outputs/icyflamze_core/episode_1/render_intake/logs/
 outputs/icyflamze_core/episode_1/render_intake/reports/
 
+# Documentation Drift Detector — generated audit/report artifacts.
+# Regenerated on every `doc-drift` run. .gitkeep files are tracked separately.
+outputs/documentation_drift/audits/*.md
+outputs/documentation_drift/reports/*.md
+outputs/documentation_drift/logs/*.md
+outputs/documentation_drift/documentation_drift_bridge_report.md
+
 # ============================================================================
 # Defense in depth. Every path below is already covered by the `/*` boundary
 # above; they are retained deliberately so that if a future allow-line ever
