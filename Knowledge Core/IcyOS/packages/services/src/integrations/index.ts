@@ -84,7 +84,7 @@ export class ObsidianConnector implements Connector {
   async importData(): Promise<any> {
     return [
       { note_id: 'note-1', title: 'IcyOS Specs Roadmap', filepath: '/obsidian/IcyOS.md' },
-      { note_id: 'note-2', title: 'Lagos Creative Bible', filepath: '/obsidian/LagosBible.md' }
+      { note_id: 'note-2', title: 'Creative Bible', filepath: '/obsidian/CreativeBible.md' }
     ];
   }
 

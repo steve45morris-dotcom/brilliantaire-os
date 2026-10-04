@@ -40,16 +40,20 @@ export async function getUser() {
 
 export type UserRole = "admin" | "editor" | "viewer";
 
+const ROLES: readonly UserRole[] = ["admin", "editor", "viewer"];
+
+// Resolved in the database (migration 15): user_roles is keyed by users.id,
+// not the auth id, and its RLS policies depend on the same function.
 export async function getUserRole(): Promise<UserRole | null> {
   const user = await getUser();
   if (!user) return null;
 
   const supabase = await createServerSupabaseClient();
-  const { data } = await supabase
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", user.id)
-    .single();
+  const { data, error } = await supabase.rpc("current_user_role");
+  if (error) {
+    console.error("Failed to resolve user role; treating as viewer:", error.message);
+    return "viewer";
+  }
 
-  return (data?.role as UserRole) ?? "viewer";
+  return ROLES.includes(data as UserRole) ? (data as UserRole) : "viewer";
 }

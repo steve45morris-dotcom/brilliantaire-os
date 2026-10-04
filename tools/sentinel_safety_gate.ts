@@ -15,6 +15,7 @@ import {
   ALLOW_NOTEBOOKLM_EXECUTION,
   ALLOW_OBSIDIAN_DIRECT_WRITE,
 } from "../config/sentinel_safety";
+import { sentinelOsRoot } from "../config/sentinel_os_root";
 
 interface SafetyGateReport {
   timestamp: string;
@@ -24,6 +25,7 @@ interface SafetyGateReport {
 
 async function runSafetyGate() {
   const HOME = os.homedir();
+  const sentinelRoot = sentinelOsRoot();
   const today = new Date().toISOString().slice(0, 10);
   const reportsDir = path.join(process.cwd(), "reports", "sentinel_safety");
   await fs.mkdir(reportsDir, { recursive: true });
@@ -54,13 +56,13 @@ async function runSafetyGate() {
   }
 
   // 3. Verify CIP Validator Existence
-  const localCipValidatorPath = path.join(process.cwd(), "sentinel-os", "web", "cip_validator.ts");
+  const localCipValidatorPath = path.join(sentinelRoot, "web", "cip_validator.ts");
   if (!fsSync.existsSync(localCipValidatorPath)) {
     violations.push(`Violation: CIP validator script not found at ${localCipValidatorPath}`);
   }
 
   // 4. Verify CIP Audit Report Existence
-  const cipReportPath = path.join(process.cwd(), "sentinel-os", "cip_audit_report.md");
+  const cipReportPath = path.join(sentinelRoot, "cip_audit_report.md");
   if (!fsSync.existsSync(cipReportPath)) {
     violations.push(`Violation: cip_audit_report.md not found at ${cipReportPath}`);
   }
@@ -76,7 +78,7 @@ async function runSafetyGate() {
   // 6. Scan environment files for credentials leaking in git/logs (non-obvious secret scan)
   const envPaths = [
     path.join(process.cwd(), ".env"),
-    path.join(process.cwd(), "sentinel-os", ".env"),
+    path.join(sentinelRoot, ".env"),
   ];
 
   for (const envPath of envPaths) {

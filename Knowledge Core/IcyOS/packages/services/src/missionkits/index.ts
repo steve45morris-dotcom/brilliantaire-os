@@ -22,7 +22,7 @@ export class MissionKitRegistry {
         { type: 'application', target: 'DAW' },
         { type: 'file', target: '/recordings/take1.wav' }
       ],
-      resources: ['Microphone hardware connection', 'Tree Groove vocal layout sheets'],
+      resources: ['Microphone hardware connection', 'Vocal layout sheets'],
       checklist: ['Plug in XLR cable', 'Calibrate preamp levels', 'Track lead vocal'],
       completion_rules: ['Audio file must be saved', 'Vocal reflection logged']
     });
@@ -47,7 +47,7 @@ export class MissionKitRegistry {
       launch_actions: [
         { type: 'note', target: 'Obsidian Blog Draft' }
       ],
-      resources: ['Topic outline note', 'Lagos cultural lexicon notes'],
+      resources: ['Topic outline note', 'Cultural lexicon notes'],
       checklist: ['Draft opening intro hook', 'Outline 3 core pillars', 'Polished final edit'],
       completion_rules: ['Markdown file saved in vault']
     });
