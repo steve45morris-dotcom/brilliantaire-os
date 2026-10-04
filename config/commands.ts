@@ -4271,6 +4271,30 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'doc-drift-help',
+    aliases: ['drift help', 'documentation drift help'],
+    description: 'Print help menu for the Documentation Drift Detector CLI',
+    npmScript: 'doc-drift-help',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'doc-drift',
+    aliases: ['drift', 'documentation drift'],
+    description: 'Scan system indexes for cross-reference consistency, audit command docs, check stale pointers, and verify narrator source alignment',
+    npmScript: 'doc-drift',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

@@ -389,7 +389,9 @@
     "tree-groove-release-pipeline": "tsx scripts/tree-groove-release-pipeline.ts",
     "tree-groove-release-pipeline-help": "tsx scripts/tree-groove-release-pipeline-help.ts",
     "system-diagnostics": "tsx scripts/system-diagnostics-runner.ts",
-    "system-diagnostics-help": "tsx scripts/system-diagnostics-runner-help.ts"
+    "system-diagnostics-help": "tsx scripts/system-diagnostics-runner-help.ts",
+    "doc-drift": "tsx scripts/documentation-drift-detector.ts",
+    "doc-drift-help": "tsx scripts/documentation-drift-detector-help.ts"
   },
   "keywords": [
     "antigravity",

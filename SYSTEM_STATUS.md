@@ -1,8 +1,8 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 22G: System Diagnostics Runner — COMPLETE
-- **Last Verified:** 2026-07-27
+- **Current Phase:** Phase 22H: Documentation Drift Detector — COMPLETE
+- **Last Verified:** 2026-10-04
 - **Build Status:** passing
 
 ## 🔋 Active Capabilities
@@ -182,8 +182,7 @@
 - **Live Microphone Audio Streamer Daemon Expansion (Phase 22D):** Manual-first audio streaming daemon expansion adapter (`scripts/live-microphone-audio-streamer.ts`) staging daemon configurations, scanning local audio processing models, validating pipeline connections, and simulating stream parameters under the Creative Architect. 7 CLI commands (status, scan-models, configure-daemon, validate-pipeline, stream-simulation, daemon-report, obsidian-export) with LMAS- request IDs. Integrates sentinel-os audio bridge with ASR pipeline. Supports 6 audio processing models (Whisper ggml variants + Silero VAD) and 5 audio input backends. No live microphone, no daemon spawning, no audio streaming, human approval required.
 - **Obsidian Sync Layer (Phase 22E):** Manual-first unified vault sync orchestration layer (`scripts/obsidian-sync-layer.ts`) scanning all 16 module export directories for Obsidian-ready files, compiling sync manifests, previewing vault routing assignments, generating sync health reports, and checking vault structure under the Knowledge Librarian. 7 CLI commands (status, discover-staged, compile-manifest, preview-routes, sync-report, vault-health, obsidian-export) with OSL- request IDs. Maps 20 filename-prefix routing rules to vault subfolders. Bridges the gap between module staging directories and the Approved Write Gateway. No direct vault writes, no auto sync, no vault deletion, human approval required.
 - **System Diagnostics Runner (Phase 22G):** Manual-first unified system health and diagnostics runner (`scripts/system-diagnostics-runner.ts`) executing Vitest test suites, scanning module config safety flags, auditing the command registry for integrity and duplicates, checking UIF and GitHub integration module presence, compiling comprehensive diagnostics reports with codebase metrics, and staging Obsidian exports under the Build Operator. 7 CLI commands (status, run-tests, module-health, config-audit, integration-status, diagnostics-report, obsidian-export) with SDR- request IDs. 6 diagnostic categories across test suite, module health, config audit, integration status, output inventory, and dependency checks. 12 health check targets validated. No live remediation, no auto-fix, no external API calls, human approval required.
-
-
+- **Documentation Drift Detector (Phase 22H):** Manual-first system index consistency auditor (`scripts/documentation-drift-detector.ts`) scanning all 8 system indexes for cross-reference consistency, auditing command registry against COMMANDS.md and package.json npm scripts, checking SYSTEM_STATUS.md stale "Next Upgrade" pointers against NEXT_ACTIONS.md completion, and verifying narrator source alignment between config and NARRATOR.md under the Workflow Auditor. 7 CLI commands (status, scan-indexes, audit-commands, audit-pointers, audit-narration, drift-report, obsidian-export) with DDR- request IDs. 7 drift categories (stale-pointer, missing-command-doc, missing-npm-script, orphaned-template, missing-output-dir, index-desync, missing-voice-command). 5 cross-reference targets validated. No auto-fix, no external API calls, no direct Obsidian write, human approval required, manual review enforced.
 
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
@@ -194,7 +193,7 @@
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Phase 13J: Grinders Keep Local Verification Rerun Planner**
+- **Phase 22I: (Staged)**
 
 ## Obsidian Intelligence Snapshot
 
