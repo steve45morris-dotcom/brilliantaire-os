@@ -13,6 +13,12 @@ import {
 import { errorResponse } from "../api/response";
 import { hasAccess } from "../billing/entitlement";
 import { billingEnforced, requiresSubscription } from "../billing/gate";
+import {
+  ONBOARDED_COOKIE,
+  ONBOARDED_COOKIE_OPTIONS,
+  ONBOARDING_PATH,
+  needsFirstRunCheck,
+} from "../onboarding/first-run";
 
 // Legal pages must be readable before sign-up; the Stripe webhook authenticates
 // by signature, not by session.
@@ -104,6 +110,26 @@ export async function updateSession(request: NextRequest) {
       url.pathname = "/billing";
       url.search = "";
       return NextResponse.redirect(url);
+    }
+  }
+
+  // First run: users without a workspace set one up before using the app.
+  // Not a security check, so a failed lookup lets the request through.
+  if (user && needsFirstRunCheck(pathname) && request.cookies.get(ONBOARDED_COOKIE)?.value !== user.id) {
+    const { data: workspace, error } = await supabase
+      .from("workspaces")
+      .select("id")
+      .limit(1)
+      .maybeSingle();
+    if (error) {
+      console.error("Workspace lookup failed; skipping onboarding check:", error.message);
+    } else if (!workspace) {
+      const url = request.nextUrl.clone();
+      url.pathname = ONBOARDING_PATH;
+      url.search = "";
+      return NextResponse.redirect(url);
+    } else {
+      supabaseResponse.cookies.set(ONBOARDED_COOKIE, user.id, ONBOARDED_COOKIE_OPTIONS);
     }
   }
 
