@@ -13,5 +13,14 @@
     "types": ["node"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  // Two source files are kept out of the Node build on purpose:
+  //  - The Edge-Link server (src/edge-link/index.ts starts src/edge-link/broker.ts
+  //    on import) needs the `ws` package, and this project ships no runtime
+  //    dependencies beyond openai and zod. Nothing imports either file; add
+  //    `ws` and remove them from this list if the broker is ever wired in. The
+  //    rest of src/edge-link (command router, security gate, logger, types)
+  //    stays in the build and under test.
+  //  - src/ui/voice/RealtimeVoiceControls.tsx is a React component; React is a
+  //    dashboard concern, not this build's. Nothing imports it.
+  "exclude": ["node_modules", "dist", "src/edge-link/index.ts", "src/edge-link/broker.ts", "src/ui/voice/RealtimeVoiceControls.tsx"]
 }
