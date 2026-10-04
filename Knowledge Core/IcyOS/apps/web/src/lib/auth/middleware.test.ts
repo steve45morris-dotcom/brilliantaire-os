@@ -136,6 +136,14 @@ describe('Auth Middleware Subscription Gate', () => {
     expect(subscriptionLookup).not.toHaveBeenCalled();
   });
 
+  it('should answer the health check without a session, for uptime monitors', async () => {
+    const updateSession = await loadMiddleware();
+    getUser.mockResolvedValue({ data: { user: null } });
+    expect((await updateSession(new NextRequest('http://localhost/api/health'))).status).toBe(200);
+    expect((await updateSession(new NextRequest('http://localhost/api/healthx'))).status).toBe(307);
+    expect(subscriptionLookup).not.toHaveBeenCalled();
+  });
+
   it('should serve the Terms and Privacy Policy to signed-out and locked-out users', async () => {
     const updateSession = await loadMiddleware();
     getUser.mockResolvedValue({ data: { user: null } });

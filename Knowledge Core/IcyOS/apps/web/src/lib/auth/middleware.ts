@@ -85,9 +85,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isPublicRoute = PUBLIC_ROUTES.some((route) =>
-    request.nextUrl.pathname.startsWith(route)
-  );
+  // /api/health is public so hosting platforms and uptime monitors can use it;
+  // it only says the app is up.
+  const isPublicRoute =
+    pathname === "/api/health" ||
+    PUBLIC_ROUTES.some((route) => request.nextUrl.pathname.startsWith(route));
 
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();
