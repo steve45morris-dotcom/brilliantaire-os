@@ -233,3 +233,47 @@ describe('Auth Middleware First Run', () => {
     expect(response.headers.get('location')).toBe('http://localhost/billing');
   });
 });
+
+describe('Auth Middleware Personal Access Tokens', () => {
+  const TOKEN = 'icy_' + 'a'.repeat(43);
+  const OTHER = 'icy_' + 'b'.repeat(43);
+  const tokenRequest = (path: string, token: string, ip: string, method = 'GET') =>
+    new NextRequest(`http://localhost${path}`, {
+      method,
+      headers: { authorization: `Bearer ${token}`, 'x-forwarded-for': ip },
+    });
+
+  beforeEach(() => {
+    getUser.mockReset();
+    getUser.mockResolvedValue({ data: { user: null } });
+    subscriptionLookup.mockReset();
+  });
+
+  it('passes token requests on work routes to the route without a session', async () => {
+    const updateSession = await loadMiddleware();
+    const response = await updateSession(tokenRequest('/api/workspace', TOKEN, '203.0.113.50'));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('X-RateLimit-Limit')).toBe('120');
+    expect(getUser).not.toHaveBeenCalled();
+    expect(subscriptionLookup).not.toHaveBeenCalled();
+  });
+
+  it('treats a token on any other route like a signed-out request', async () => {
+    const updateSession = await loadMiddleware();
+    for (const path of ['/api/tokens', '/api/billing/checkout', '/api/missions/create', '/dashboard']) {
+      const response = await updateSession(tokenRequest(path, TOKEN, '203.0.113.51', 'POST'));
+      expect(response.status, path).toBe(307);
+      expect(response.headers.get('location')).toBe('http://localhost/login');
+    }
+  });
+
+  it('rate limits each token separately', async () => {
+    const updateSession = await loadMiddleware();
+    for (let i = 0; i < 60; i++) {
+      await updateSession(tokenRequest('/api/projects', TOKEN, '203.0.113.52', 'POST'));
+    }
+    expect((await updateSession(tokenRequest('/api/projects', TOKEN, '203.0.113.52', 'POST'))).status).toBe(429);
+    expect((await updateSession(tokenRequest('/api/projects', OTHER, '203.0.113.52', 'POST'))).status).toBe(200);
+  });
+});

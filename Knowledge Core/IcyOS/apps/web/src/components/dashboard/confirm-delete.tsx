@@ -8,6 +8,8 @@ export interface PendingDelete {
   title: string;
   message: string;
   run: () => Promise<boolean>;
+  /** Button text; "Delete" by default. */
+  confirmLabel?: string;
 }
 
 /** Asks before deleting. Closes on success; stays open (the page shows the error) on failure. */
@@ -30,7 +32,7 @@ export function ConfirmDelete({ pending, onClose }: { pending: PendingDelete | n
           Cancel
         </Button>
         <Button variant="danger" disabled={busy} onClick={confirm}>
-          {busy ? 'Deleting…' : 'Delete'}
+          {busy ? 'Working…' : pending?.confirmLabel ?? 'Delete'}
         </Button>
       </div>
     </Modal>

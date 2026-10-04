@@ -8,5 +8,5 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   if (!id) return notFound();
   const check = await validatePayload(req, stepSchema);
   if (!check.success) return check.response;
-  return callWorkFunction('add_step', { target_mission_id: id, step_text: check.data.text }, 201);
+  return callWorkFunction(req, 'add_step', { target_mission_id: id, step_text: check.data.text }, 201);
 }

@@ -1,7 +1,7 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { jsonResponse, errorResponse } from '../../../../lib/api/response';
 import { validatePayload } from '../../../../lib/api/validation';
-import { createServerSupabaseClient } from '../../../../lib/auth/supabase-server';
+import { authenticateRequest } from '../../../../lib/auth/request-auth';
 import { setStepSchema, type SetStepResult } from '../../../../lib/workspace/overview';
 
 // Ticks or un-ticks one mission step through set_action_completed()
@@ -11,11 +11,10 @@ export async function POST(req: NextRequest) {
   const check = await validatePayload(req, setStepSchema);
   if (!check.success) return check.response;
 
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return errorResponse('unauthorized', 'Sign in required', null, 401);
+  const auth = await authenticateRequest(req);
+  if (auth instanceof NextResponse) return auth;
 
-  const { data, error } = await supabase.rpc('set_action_completed', {
+  const { data, error } = await auth.db.rpc('set_action_completed', {
     action_id: check.data.actionId,
     completed: check.data.completed,
   });

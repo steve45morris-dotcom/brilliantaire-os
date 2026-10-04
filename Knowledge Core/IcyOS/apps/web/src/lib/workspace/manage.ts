@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import type { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { jsonResponse, errorResponse } from '../api/response';
-import { createServerSupabaseClient } from '../auth/supabase-server';
+import { authenticateRequest } from '../auth/request-auth';
 
 // Creating, renaming, reprioritising and deleting projects, missions and steps.
 // Every change goes through a database function from
 // supabase/migrations/22_manage_work.sql, which checks ownership itself; these
-// helpers validate input, call it as the signed-in user and map its errors.
+// helpers validate input, call it as the caller and map its errors.
 
 const name = (label: string, max = 255) =>
   z.string().trim().min(1, `${label} is required`).max(max, `${label} must be ${max} characters or fewer`);
@@ -42,20 +42,21 @@ export async function routeId(params: Promise<{ id: string }>): Promise<string |
 export const notFound = () => errorResponse('not_found', 'Not found', null, 404);
 
 /**
- * Calls one of the 22_manage_work.sql functions as the signed-in user.
+ * Calls one of the 22_manage_work.sql functions as the caller (browser session
+ * or personal access token).
  * Its own messages for bad input (22023) and missing rows (P0002) are safe to
  * show; anything else is logged and hidden.
  */
 export async function callWorkFunction(
+  req: Request,
   fn: string,
   args: Record<string, unknown>,
   successStatus = 200
 ): Promise<NextResponse> {
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return errorResponse('unauthorized', 'Sign in required', null, 401);
+  const auth = await authenticateRequest(req);
+  if (auth instanceof NextResponse) return auth;
 
-  const { data, error } = await supabase.rpc(fn, args);
+  const { data, error } = await auth.db.rpc(fn, args);
   if (error) {
     if (error.code === '22023') return errorResponse('validation_error', error.message, null, 400);
     if (error.code === 'P0002') return notFound();

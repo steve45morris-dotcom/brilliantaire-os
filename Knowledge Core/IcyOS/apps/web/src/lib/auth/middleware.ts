@@ -19,6 +19,7 @@ import {
   ONBOARDING_PATH,
   needsFirstRunCheck,
 } from "../onboarding/first-run";
+import { acceptsApiToken, bearerToken } from "./token-routes";
 
 // Legal pages must be readable before sign-up; the Stripe webhook authenticates
 // by signature, not by session.
@@ -38,6 +39,23 @@ export async function updateSession(request: NextRequest) {
       RATE_LIMIT_RULES.ip
     );
     if (!ipResult.allowed) return rateLimitResponse(ipResult);
+  }
+
+  // Personal access tokens: the route checks the token, its owner and their
+  // subscription (request-auth.ts). Here they only get their own rate limit,
+  // keyed on a hash so the token never sits in memory as a map key.
+  const token = limitApi ? bearerToken(request.headers) : null;
+  if (token && acceptsApiToken(pathname)) {
+    const tier = resolveTier(pathname, request.method);
+    const tokenResult = await checkRateLimit(
+      rateLimitStore,
+      `token:${await sha256Hex(token)}:${tier}`,
+      RATE_LIMIT_RULES[tier]
+    );
+    if (!tokenResult.allowed) return rateLimitResponse(tokenResult);
+    const response = NextResponse.next({ request });
+    applyRateLimitHeaders(response, tokenResult);
+    return response;
   }
 
   let supabaseResponse = NextResponse.next({ request });
@@ -134,4 +152,9 @@ export async function updateSession(request: NextRequest) {
   }
 
   return supabaseResponse;
+}
+
+async function sha256Hex(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
 }

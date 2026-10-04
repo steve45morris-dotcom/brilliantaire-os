@@ -10,7 +10,7 @@ export async function PATCH(req: NextRequest, { params }: Context) {
   if (!id) return notFound();
   const check = await validatePayload(req, updateProjectSchema);
   if (!check.success) return check.response;
-  return callWorkFunction('update_project', {
+  return callWorkFunction(req, 'update_project', {
     target_project_id: id,
     project_name: check.data.name ?? null,
     project_priority: check.data.priority ?? null,
@@ -18,8 +18,8 @@ export async function PATCH(req: NextRequest, { params }: Context) {
 }
 
 // Deletes a project with all its missions and steps.
-export async function DELETE(_req: NextRequest, { params }: Context) {
+export async function DELETE(req: NextRequest, { params }: Context) {
   const id = await routeId(params);
   if (!id) return notFound();
-  return callWorkFunction('delete_project', { target_project_id: id });
+  return callWorkFunction(req, 'delete_project', { target_project_id: id });
 }
