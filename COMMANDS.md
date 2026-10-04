@@ -419,6 +419,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `obsidian-sync-layer` | `obsidian sync`, `osl` | Knowledge Librarian | Medium | Yes | Scan module exports, compile sync manifests, preview vault routing, and report sync health for Obsidian integration. |
 | `tree-groove-release-pipeline-help` | `release pipeline help`, `tgrp help` | Creative Revenue Strategist | Low | No | Print help menu for the Tree Groove Records Release Pipeline CLI. |
 | `tree-groove-release-pipeline` | `release pipeline`, `tgrp` | Creative Revenue Strategist | Medium | Yes | Orchestrate release packaging, quality gates, metadata validation, platform submission staging, and pipeline reporting for Tree Groove Records. |
+| `system-diagnostics-help` | `diagnostics help`, `sdr help` | Build Operator | Low | No | Print help menu for the System Diagnostics Runner CLI. |
+| `system-diagnostics` | `diagnostics`, `sdr` | Build Operator | Medium | Yes | Run unified system health checks, test suite execution, module config audits, integration status scans, and comprehensive diagnostics reports. |
 
 
 ---

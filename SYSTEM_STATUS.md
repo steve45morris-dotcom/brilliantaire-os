@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 22F: Tree Groove Records Release Pipeline — COMPLETE
+- **Current Phase:** Phase 22G: System Diagnostics Runner — COMPLETE
 - **Last Verified:** 2026-07-27
 - **Build Status:** passing
 
@@ -181,6 +181,7 @@
 - **Micro-Product Factory Tree Groove Records Connector (Phase 22C):** Manual-first catalog connector (`scripts/micro-product-tree-groove-connector.ts`) bridging the SQLite ledger micro-product factory to the Tree Groove Records release catalog under the Creative Revenue Strategist. 7 CLI commands (status, scan-products, map-catalog, stage-release, distribution-plan, connector-report, obsidian-export) with MPT- request IDs. Maps micro-product ledger entries to release catalog format across 5 release types (single-track, ep-bundle, album-package, remix-collection, beat-pack) and 6 distribution platforms. No ledger writes, no catalog publishing, human approval required.
 - **Live Microphone Audio Streamer Daemon Expansion (Phase 22D):** Manual-first audio streaming daemon expansion adapter (`scripts/live-microphone-audio-streamer.ts`) staging daemon configurations, scanning local audio processing models, validating pipeline connections, and simulating stream parameters under the Creative Architect. 7 CLI commands (status, scan-models, configure-daemon, validate-pipeline, stream-simulation, daemon-report, obsidian-export) with LMAS- request IDs. Integrates sentinel-os audio bridge with ASR pipeline. Supports 6 audio processing models (Whisper ggml variants + Silero VAD) and 5 audio input backends. No live microphone, no daemon spawning, no audio streaming, human approval required.
 - **Obsidian Sync Layer (Phase 22E):** Manual-first unified vault sync orchestration layer (`scripts/obsidian-sync-layer.ts`) scanning all 16 module export directories for Obsidian-ready files, compiling sync manifests, previewing vault routing assignments, generating sync health reports, and checking vault structure under the Knowledge Librarian. 7 CLI commands (status, discover-staged, compile-manifest, preview-routes, sync-report, vault-health, obsidian-export) with OSL- request IDs. Maps 20 filename-prefix routing rules to vault subfolders. Bridges the gap between module staging directories and the Approved Write Gateway. No direct vault writes, no auto sync, no vault deletion, human approval required.
+- **System Diagnostics Runner (Phase 22G):** Manual-first unified system health and diagnostics runner (`scripts/system-diagnostics-runner.ts`) executing Vitest test suites, scanning module config safety flags, auditing the command registry for integrity and duplicates, checking UIF and GitHub integration module presence, compiling comprehensive diagnostics reports with codebase metrics, and staging Obsidian exports under the Build Operator. 7 CLI commands (status, run-tests, module-health, config-audit, integration-status, diagnostics-report, obsidian-export) with SDR- request IDs. 6 diagnostic categories across test suite, module health, config audit, integration status, output inventory, and dependency checks. 12 health check targets validated. No live remediation, no auto-fix, no external API calls, human approval required.
 
 
 

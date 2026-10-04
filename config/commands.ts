@@ -3939,6 +3939,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'system-diagnostics-help',
+    aliases: ['diagnostics help', 'sdr help'],
+    description: 'Print help menu for the System Diagnostics Runner CLI',
+    npmScript: 'system-diagnostics-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'system-diagnostics',
+    aliases: ['diagnostics', 'sdr'],
+    description: 'Run unified system health checks, test suite execution, module config audits, integration status scans, and comprehensive diagnostics reports',
+    npmScript: 'system-diagnostics',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

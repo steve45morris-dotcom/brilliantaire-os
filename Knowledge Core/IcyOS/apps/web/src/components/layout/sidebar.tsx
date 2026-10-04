@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, CreditCard 
+import {
+  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, CreditCard, Activity
 } from 'lucide-react';
 
 const navItems = [
@@ -13,6 +13,7 @@ const navItems = [
   { href: '/focus', label: 'Focus', icon: Play },
   { href: '/review', label: 'Review', icon: BarChart3 },
   { href: '/knowledge', label: 'Knowledge', icon: BookOpen },
+  { href: '/sla-monitoring', label: 'SLA', icon: Activity },
   { href: '/billing', label: 'Billing', icon: CreditCard },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];

@@ -1,6 +1,20 @@
 # 🎯 Next Actions
 
 ## Do Now
+- [x] Phase 22G: Build System Diagnostics Runner
+- [x] Phase 22G: Create config/system-diagnostics-runner.ts with safety flags and diagnostic categories
+- [x] Phase 22G: Create scripts/system-diagnostics-runner.ts with 7 CLI commands (status, run-tests, module-health, config-audit, integration-status, diagnostics-report, obsidian-export)
+- [x] Phase 22G: Create scripts/system-diagnostics-runner-help.ts
+- [x] Phase 22G: Create tools/system_diagnostics_runner_bridge.ts bridge status API
+- [x] Phase 22G: Create 6 mustache templates under templates/system_diagnostics_runner/
+- [x] Phase 22G: Register npm scripts (system-diagnostics, system-diagnostics-help)
+- [x] Phase 22G: Register command registry entries with requiresExactName constraint
+- [x] Phase 22G: Propagate to all 8 system indexes (SYSTEM_STATUS, COMMANDS, VOICE_COMMANDS, voice-commands.ts, NARRATOR, narrator-sources.ts, MESH_TELEMETRY, dashboard-data.json)
+- [x] IcyOS: Build SLA Monitoring Dashboard page
+- [x] IcyOS: Create /api/sla health check endpoint
+- [x] IcyOS: Create /sla-monitoring page with service health, uptime cards, and incident history
+- [x] IcyOS: Add SLA nav entry to sidebar
+
 - [x] Register ICYFLAMZE CORE project (Phase 14A)
 - [x] Stage Obsidian vault note (Phase 14A)
 - [x] Generate Season 1 summary (Phase 14A)

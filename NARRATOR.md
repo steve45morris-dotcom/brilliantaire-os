@@ -44,6 +44,7 @@ The Narrator is strictly restricted to reading the following approved source fil
 - `outputs/live_microphone_audio_streamer/logs/`
 - `outputs/obsidian_sync_layer/logs/`
 - `outputs/tree_groove_release_pipeline/logs/`
+- `outputs/system_diagnostics/logs/`
 
 ## 4. Flow Architecture
 
