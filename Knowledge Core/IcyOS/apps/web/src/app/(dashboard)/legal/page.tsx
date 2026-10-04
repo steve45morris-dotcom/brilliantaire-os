@@ -92,7 +92,7 @@ export default function LegalPage() {
           return (
             <Button
               key={doc.id}
-              variant={isActive ? 'default' : 'secondary'}
+              variant={isActive ? 'primary' : 'secondary'}
               onClick={() => setActiveDocId(doc.id)}
               className={isActive ? 'bg-pink-600 hover:bg-pink-700 text-white' : ''}
             >
