@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, test } from 'vitest';
+import { hasRealDB } from './db.js';
 import { getGitHubConfig, redactGitHubToken } from './integrations/github/GitHubConfig.js';
 import { globalGitHubRepositoryService } from './integrations/github/GitHubRepositoryService.js';
 import { globalGitHubHealthService } from './integrations/github/GitHubHealthService.js';
@@ -15,7 +16,7 @@ describe('GitHub Integration Tests', () => {
     expect(redacted).not.toContain('testtoken');
   });
 
-  it('should fallback to mock data when config is not configured', async () => {
+  test.skipIf(!hasRealDB)('should fallback to mock data when config is not configured', async () => {
     const res = await globalGitHubRepositoryService.listRepositories();
     expect(res.source).toBe('mock');
     expect(res.status).toBe('online');

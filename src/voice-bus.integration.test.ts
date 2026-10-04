@@ -7,13 +7,15 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const SPEAK_SCRIPT = path.join(REPO_ROOT, ".agents", "speak_serialized.sh");
 const NARRATE_SCRIPT = path.join(REPO_ROOT, ".agents", "voice_narrative.sh");
 
+const hasShellScripts = fs.existsSync(SPEAK_SCRIPT) && fs.existsSync(NARRATE_SCRIPT);
+
 function ensureExecutable(file: string) {
   try {
     fs.chmodSync(file, 0o755);
   } catch (err) {}
 }
 
-describe("Voice Bus Real Integration Tests", { timeout: 60000 }, () => {
+describe.skipIf(!hasShellScripts)("Voice Bus Real Integration Tests", { timeout: 60000 }, () => {
   let mainSandboxDir: string;
 
   beforeAll(() => {

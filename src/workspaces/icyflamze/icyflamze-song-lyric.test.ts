@@ -2,11 +2,12 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalLiveOperationsStore } from '../../kernel/live/LiveOperationsStore.js';
 import { globalGraphStore } from '../../knowledge/GraphStore.js';
+import { hasRealDB } from '../../db.js';
 import { LyricWorkspace } from './Lyrics.js';
 import { SongManager } from './Music.js';
 import { getRouteForWorkspace } from '../WorkspaceRoutes.js';
 
-describe('Icyflamze song and lyric association', () => {
+describe.skipIf(!hasRealDB)('Icyflamze song and lyric association', () => {
   let songs: SongManager;
   let lyrics: LyricWorkspace;
 
