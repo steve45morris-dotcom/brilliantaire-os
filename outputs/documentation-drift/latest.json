@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T22:03:28.019Z",
+  "generatedAt": "2026-10-04T23:07:24.939Z",
   "items": [
     {
       "code": "LIVE_ROUTE_UNDOCUMENTED",
@@ -49,13 +49,6 @@
       "subject": "orchestrator",
       "document": "package.json",
       "message": "Package command orchestrator is not documented in the configured documentation set."
-    },
-    {
-      "code": "LIVE_COMMAND_UNDOCUMENTED",
-      "severity": "low",
-      "subject": "command-help",
-      "document": "package.json",
-      "message": "Package command command-help is not documented in the configured documentation set."
     },
     {
       "code": "LIVE_COMMAND_UNDOCUMENTED",
@@ -220,15 +213,15 @@
     }
   ],
   "summary": {
-    "total": 31,
+    "total": 30,
     "high": 0,
     "medium": 3,
-    "low": 28
+    "low": 27
   },
   "coverage": {
     "documentsScanned": 1,
     "routeFilesScanned": 3,
-    "packageCommandsScanned": 385,
+    "packageCommandsScanned": 387,
     "checksRun": [
       "routes",
       "commands",

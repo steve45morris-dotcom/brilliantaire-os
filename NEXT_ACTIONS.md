@@ -1,6 +1,20 @@
 # 🎯 Next Actions
 
 ## Do Now
+- [x] Phase 22H: Build Documentation Drift Detector
+- [x] Phase 22H: Create config/documentation-drift-detector.ts with safety flags and drift categories
+- [x] Phase 22H: Create scripts/documentation-drift-detector.ts with 7 CLI commands (status, scan-indexes, audit-commands, audit-pointers, audit-narration, drift-report, obsidian-export)
+- [x] Phase 22H: Create scripts/documentation-drift-detector-help.ts
+- [x] Phase 22H: Create tools/documentation_drift_detector_bridge.ts bridge status API
+- [x] Phase 22H: Create 6 mustache templates under templates/documentation_drift_detector/
+- [x] Phase 22H: Register npm scripts (doc-drift, doc-drift-help)
+- [x] Phase 22H: Register command registry entries with requiresExactName constraint
+- [x] Phase 22H: Propagate to all 8 system indexes
+- [x] IcyOS: Build Legal & Compliance page with Terms of Service, Privacy Policy, and Acceptable Use Policy
+- [x] IcyOS: Create /api/legal endpoint returning legal document snapshot
+- [x] IcyOS: Create /legal page with document selector tabs, section rendering, company info footer
+- [x] IcyOS: Add Legal nav entry to sidebar between Billing and Settings
+- [x] Bridge Tests: Create tools/bridge-modules.test.ts with 208 structural contract tests across 13 bridge modules
 - [x] Phase 22G: Build System Diagnostics Runner
 - [x] Phase 22G: Create config/system-diagnostics-runner.ts with safety flags and diagnostic categories
 - [x] Phase 22G: Create scripts/system-diagnostics-runner.ts with 7 CLI commands (status, run-tests, module-health, config-audit, integration-status, diagnostics-report, obsidian-export)

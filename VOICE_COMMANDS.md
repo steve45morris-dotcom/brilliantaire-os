@@ -63,6 +63,10 @@ The active voice phrases are defined in [config/voice-commands.ts](file://~/Proj
 | `show obsidian sync help` | `show obsidian sync help` | `obsidian-sync-layer-help` | Knowledge Librarian | Low | No |
 | `show release pipeline status` | `show release pipeline status` | `tree-groove-release-pipeline status` | Creative Revenue Strategist | Low | No |
 | `show release pipeline help` | `show release pipeline help` | `tree-groove-release-pipeline-help` | Creative Revenue Strategist | Low | No |
+| `run system diagnostics` | `run system diagnostics` | `system-diagnostics diagnostics-report` | Build Operator | Low | No |
+| `show diagnostics help` | `show diagnostics help` | `system-diagnostics-help` | Build Operator | Low | No |
+| `run documentation drift` | `run documentation drift` | `doc-drift drift-report` | Workflow Auditor | Low | No |
+| `show drift help` | `show drift help` | `doc-drift-help` | Workflow Auditor | Low | No |
 
 ---
 

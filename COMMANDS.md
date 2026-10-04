@@ -423,6 +423,8 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `tree-groove-release-pipeline` | `release pipeline`, `tgrp` | Creative Revenue Strategist | Medium | Yes | Orchestrate release packaging, quality gates, metadata validation, platform submission staging, and pipeline reporting for Tree Groove Records. |
 | `system-diagnostics-help` | `diagnostics help`, `sdr help` | Build Operator | Low | No | Print help menu for the System Diagnostics Runner CLI. |
 | `system-diagnostics` | `diagnostics`, `sdr` | Build Operator | Medium | Yes | Run unified system health checks, test suite execution, module config audits, integration status scans, and comprehensive diagnostics reports. |
+| `doc-drift-help` | `drift help`, `documentation drift help` | Workflow Auditor | Low | No | Print help menu for the Documentation Drift Detector CLI. |
+| `doc-drift` | `drift`, `documentation drift` | Workflow Auditor | Medium | Yes | Scan system indexes for cross-reference consistency, audit command docs, check stale pointers, and verify narrator source alignment. |
 
 
 ---

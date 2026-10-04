@@ -332,5 +332,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'run documentation drift',
+    normalizedCommand: 'run documentation drift',
+    routerCommand: 'doc-drift drift-report',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show drift help',
+    normalizedCommand: 'show drift help',
+    routerCommand: 'doc-drift-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];
