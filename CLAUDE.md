@@ -65,8 +65,9 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
 ## Security Notes
 
 - **`sentinel-os` lives in its own repo:** `steve45morris-dotcom/sentinel-os`, checked out at `~/sentinel-os`. That is also where P.J.K. lives (`/pjk`).
-  - **The `sentinel-os/` folder here is a stale snapshot.** It holds 38 tracked files from around August 2026 and has drifted from the real app. Don't edit it: make sentinel-os changes in the standalone repo.
-  - **Same directory on the Mac:** because this repo is rooted at `$HOME`, `~/sentinel-os` is tracked by both repos. Deleting the folder from this repo would delete those files from the real checkout on the next pull. Untrack it on the Mac with `git rm -r --cached sentinel-os` instead.
+  - **This repo no longer tracks `sentinel-os/`.** Because this repo is rooted at `$HOME`, `~/sentinel-os` is that standalone checkout; it used to be tracked here too as a stale snapshot (38 files from around August 2026). It was untracked in October 2026 and the folder now falls under the deny-by-default root ignore, so nothing in it is picked up by this repo. Make sentinel-os changes in the standalone repo.
+  - **Pulling this change on the Mac** removes the 38 files from this repo's index only; `git` leaves the working files alone because they are untracked afterwards, and `~/sentinel-os` stays a valid checkout of its own repo.
+  - **Tools that read it** (`tools/sentinel_safety_gate.ts`, `tools/sentinel_safety_report.ts`) find the checkout through `SENTINEL_OS_ROOT`, default `~/sentinel-os` (`config/sentinel_os_root.ts`).
   - **SQL:** the standalone repo uses bound parameters for every statement (commit `170c829`, 2026-09-17).
   - **Access model:** local-only and single-operator by design, with no login. `proxy.ts` refuses non-localhost hosts and cross-site requests. Add real authentication before exposing it beyond localhost.
   - **Not in the real app:** the Supabase login, roles and rate limiting in this repo's snapshot (#6) were added to the stale copy only.
@@ -120,5 +121,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Edit the `sentinel-os/` snapshot here: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
+- Re-track `sentinel-os/` here or edit it as part of this repo: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
