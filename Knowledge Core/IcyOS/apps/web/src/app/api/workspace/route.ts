@@ -1,15 +1,16 @@
+import { NextResponse } from 'next/server';
 import { jsonResponse, errorResponse } from '../../../lib/api/response';
-import { createServerSupabaseClient } from '../../../lib/auth/supabase-server';
+import { authenticateRequest } from '../../../lib/auth/request-auth';
 import { loadWorkspaceOverview } from '../../../lib/workspace/overview';
 
-// The signed-in user's workspace, projects, missions and steps.
-export async function GET() {
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return errorResponse('unauthorized', 'Sign in required', null, 401);
+// The caller's workspace, projects, missions and steps. Accepts a browser
+// session or a personal access token.
+export async function GET(req: Request) {
+  const auth = await authenticateRequest(req);
+  if (auth instanceof NextResponse) return auth;
 
   try {
-    return jsonResponse(await loadWorkspaceOverview(supabase));
+    return jsonResponse(await loadWorkspaceOverview(auth.db));
   } catch (err) {
     console.error((err as Error).message);
     return errorResponse('internal_error', 'Could not load your workspace', null, 500);

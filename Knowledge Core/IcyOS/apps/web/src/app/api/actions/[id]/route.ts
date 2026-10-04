@@ -10,12 +10,12 @@ export async function PATCH(req: NextRequest, { params }: Context) {
   if (!id) return notFound();
   const check = await validatePayload(req, stepSchema);
   if (!check.success) return check.response;
-  return callWorkFunction('rename_step', { target_action_id: id, step_text: check.data.text });
+  return callWorkFunction(req, 'rename_step', { target_action_id: id, step_text: check.data.text });
 }
 
 // Deletes a step. Returns the mission's new status.
-export async function DELETE(_req: NextRequest, { params }: Context) {
+export async function DELETE(req: NextRequest, { params }: Context) {
   const id = await routeId(params);
   if (!id) return notFound();
-  return callWorkFunction('delete_step', { target_action_id: id });
+  return callWorkFunction(req, 'delete_step', { target_action_id: id });
 }

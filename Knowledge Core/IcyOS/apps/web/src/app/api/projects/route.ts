@@ -6,7 +6,7 @@ import { callWorkFunction, createProjectSchema } from '../../../lib/workspace/ma
 export async function POST(req: NextRequest) {
   const check = await validatePayload(req, createProjectSchema);
   if (!check.success) return check.response;
-  return callWorkFunction('create_project', {
+  return callWorkFunction(req, 'create_project', {
     project_name: check.data.name,
     project_priority: check.data.priority,
   }, 201);

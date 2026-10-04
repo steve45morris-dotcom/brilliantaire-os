@@ -14,7 +14,8 @@ vi.mock('../auth/supabase-server', () => ({
   }),
 }));
 
-const { GET } = await import('../../app/api/workspace/route');
+const { GET: getWorkspace } = await import('../../app/api/workspace/route');
+const GET = () => getWorkspace(new NextRequest('http://localhost/api/workspace'));
 const { POST } = await import('../../app/api/actions/complete/route');
 
 const ID = (n: number) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
