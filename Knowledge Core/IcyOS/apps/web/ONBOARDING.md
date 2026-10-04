@@ -28,10 +28,23 @@ Finishing creates the workspace, the project, "Sprint 1" and the sample mission 
   - A locked-out user goes to `/billing` first.
   - If the lookup fails, the request goes through: onboarding is not a security check.
 
+## After setup: the dashboard
+
+`/dashboard` shows the workspace, its projects (P1 first), and each mission with its steps.
+- **Reading:** `GET /api/workspace` loads everything in one query through RLS
+  (`src/lib/workspace/overview.ts`), so it only returns the user's own rows.
+- **Ticking steps:** `POST /api/actions/complete` calls `set_action_completed()` from
+  `21_mission_progress.sql`. Like onboarding, this function is the only write users have. It also
+  moves the mission along:
+  - the first step done makes it Running;
+  - all steps done makes it Completed;
+  - un-ticking a step on a Completed mission makes it Running again.
+  - Skipped and Failed missions are left alone.
+
 ## Deploying
 
-Apply `20_onboarding.sql` after 15 to 19. Without it, `/onboarding` reports "Could not set up your
-workspace" and logs that `complete_onboarding` does not exist.
+Apply `20_onboarding.sql` and `21_mission_progress.sql` after 15 to 19. Without them,
+`/onboarding` reports "Could not set up your workspace" and the dashboard can't load or update steps.
 
 ## Not included yet
 
