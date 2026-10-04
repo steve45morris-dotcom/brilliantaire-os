@@ -59,6 +59,8 @@ The active voice phrases are defined in [config/voice-commands.ts](file:///Users
 | `show tree groove help` | `show tree groove help` | `micro-product-tree-groove-connector-help` | Creative Revenue Strategist | Low | No |
 | `show audio streamer status` | `show audio streamer status` | `live-microphone-audio-streamer status` | Creative Architect | Low | No |
 | `show audio streamer help` | `show audio streamer help` | `live-microphone-audio-streamer-help` | Creative Architect | Low | No |
+| `show obsidian sync status` | `show obsidian sync status` | `obsidian-sync-layer status` | Knowledge Librarian | Low | No |
+| `show obsidian sync help` | `show obsidian sync help` | `obsidian-sync-layer-help` | Knowledge Librarian | Low | No |
 
 ---
 

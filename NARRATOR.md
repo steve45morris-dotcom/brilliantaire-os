@@ -42,6 +42,7 @@ The Narrator is strictly restricted to reading the following approved source fil
 - `outputs/zk_webhook_verification/logs/`
 - `outputs/micro_product_tree_groove/logs/`
 - `outputs/live_microphone_audio_streamer/logs/`
+- `outputs/obsidian_sync_layer/logs/`
 
 ## 4. Flow Architecture
 

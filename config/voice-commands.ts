@@ -278,5 +278,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'show obsidian sync status',
+    normalizedCommand: 'show obsidian sync status',
+    routerCommand: 'obsidian-sync-layer status',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show obsidian sync help',
+    normalizedCommand: 'show obsidian sync help',
+    routerCommand: 'obsidian-sync-layer-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

@@ -63,6 +63,7 @@ The engine dynamically compiles statistics by scanning files within:
 14. `outputs/zk_webhook_verification/logs/` & `outputs/zk_webhook_verification/proof_compilations/` — Tracking zero-knowledge webhook transaction proof compilations and integrity verification chains.
 15. `outputs/micro_product_tree_groove/logs/` & `outputs/micro_product_tree_groove/catalog_mappings/` — Tracking micro-product factory to Tree Groove Records catalog mapping and release staging.
 16. `outputs/live_microphone_audio_streamer/logs/` & `outputs/live_microphone_audio_streamer/daemon_configs/` — Tracking live microphone audio streamer daemon expansion configuration staging, model scanning, pipeline validation, and stream simulation parameters.
+17. `outputs/obsidian_sync_layer/logs/` & `outputs/obsidian_sync_layer/sync_manifests/` — Tracking Obsidian sync layer unified vault sync orchestration, module export discovery, sync manifest compilation, route previewing, and vault health diagnostics.
 
 ---
 
