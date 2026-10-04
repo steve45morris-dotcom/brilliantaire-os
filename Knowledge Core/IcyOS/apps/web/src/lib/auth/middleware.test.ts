@@ -45,15 +45,15 @@ describe('Auth Middleware Rate Limiting', () => {
     const updateSession = await loadMiddleware();
 
     for (let i = 0; i < 10; i++) {
-      const response = await updateSession(apiRequest('/api/briefings/generate', '203.0.113.1'));
+      const response = await updateSession(apiRequest('/api/inbox/sort', '203.0.113.1'));
       expect(response.status).toBe(200);
     }
 
-    const blocked = await updateSession(apiRequest('/api/briefings/generate', '203.0.113.1'));
+    const blocked = await updateSession(apiRequest('/api/inbox/sort', '203.0.113.1'));
     expect(blocked.status).toBe(429);
 
     // Other tiers keep their own budget.
-    const write = await updateSession(apiRequest('/api/missions/create', '203.0.113.1'));
+    const write = await updateSession(apiRequest('/api/projects', '203.0.113.1'));
     expect(write.status).toBe(200);
     expect(write.headers.get('X-RateLimit-Limit')).toBe('60');
   });
@@ -63,11 +63,11 @@ describe('Auth Middleware Rate Limiting', () => {
     getUser.mockResolvedValue({ data: { user: null } });
 
     for (let i = 0; i < 300; i++) {
-      await updateSession(apiRequest('/api/missions/create', '198.51.100.9'));
+      await updateSession(apiRequest('/api/projects', '198.51.100.9'));
     }
     const callsBefore = getUser.mock.calls.length;
 
-    const blocked = await updateSession(apiRequest('/api/missions/create', '198.51.100.9'));
+    const blocked = await updateSession(apiRequest('/api/projects', '198.51.100.9'));
     expect(blocked.status).toBe(429);
     expect(getUser.mock.calls.length).toBe(callsBefore);
   });
@@ -111,7 +111,7 @@ describe('Auth Middleware Subscription Gate', () => {
     expect(page.status).toBe(307);
     expect(page.headers.get('location')).toBe('http://localhost/billing');
 
-    const api = await updateSession(apiRequest('/api/missions/create', '203.0.113.20'));
+    const api = await updateSession(apiRequest('/api/projects', '203.0.113.20'));
     expect(api.status).toBe(402);
     expect((await api.json()).error.code).toBe('payment_required');
   });
@@ -261,7 +261,7 @@ describe('Auth Middleware Personal Access Tokens', () => {
 
   it('treats a token on any other route like a signed-out request', async () => {
     const updateSession = await loadMiddleware();
-    for (const path of ['/api/tokens', '/api/billing/checkout', '/api/missions/create', '/dashboard']) {
+    for (const path of ['/api/tokens', '/api/billing/checkout', '/api/onboarding', '/dashboard']) {
       const response = await updateSession(tokenRequest(path, TOKEN, '203.0.113.51', 'POST'));
       expect(response.status, path).toBe(307);
       expect(response.headers.get('location')).toBe('http://localhost/login');

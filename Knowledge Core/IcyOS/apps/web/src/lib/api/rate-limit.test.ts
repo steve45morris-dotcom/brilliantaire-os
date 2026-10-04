@@ -56,14 +56,13 @@ describe('Rate Limiting', () => {
   });
 
   it('should classify routes into tiers', () => {
-    expect(resolveTier('/api/briefings/generate', 'POST')).toBe('ai');
     expect(resolveTier('/api/inbox/sort', 'POST')).toBe('ai');
-    expect(resolveTier('/api/missions/create', 'POST')).toBe('write');
-    expect(resolveTier('/api/missions/create', 'GET')).toBe('read');
+    expect(resolveTier('/api/projects', 'POST')).toBe('write');
+    expect(resolveTier('/api/knowledge', 'GET')).toBe('read');
   });
 
   it('should only limit API routes and exempt health checks', () => {
-    expect(isRateLimited('/api/missions/create')).toBe(true);
+    expect(isRateLimited('/api/projects')).toBe(true);
     expect(isRateLimited('/api/health')).toBe(false);
     expect(isRateLimited('/dashboard')).toBe(false);
   });
