@@ -119,6 +119,16 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 4. Tree Groove Records
 5. Grinder's Keep
 
+## Visual Verification Rule
+
+**Before marking any UI or frontend work as complete**, you MUST:
+1. Start the dev server and render the affected pages in a real browser
+2. Take screenshots of every new or changed page
+3. Show the screenshots to the Commander for visual sign-off
+4. Only then commit, push, or create a PR
+
+This applies to: new pages, modified pages, component changes, layout changes, styling changes, and any work that affects what users see. Tests passing is not enough — the human must see what the app looks like. No exceptions.
+
 ## Do Not
 
 - Push to `main` without explicit approval
@@ -126,3 +136,4 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Expose `.env*` or `mcp_secrets/` contents
 - Re-track `sentinel-os/` here or edit it as part of this repo: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
+- Ship UI changes without visual verification (see Visual Verification Rule above)
