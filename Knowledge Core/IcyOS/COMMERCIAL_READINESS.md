@@ -11,14 +11,14 @@
 ## Required Before Client Delivery
 - [x] Authentication layer (Supabase Auth with SSR middleware)
 - [x] Role-based access control (admin, editor, viewer)
-- [ ] API rate limiting and abuse protection
-- [ ] Stripe billing integration
-- [ ] Client onboarding flow
-- [ ] Remove internal/personal references from codebase
+- [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; in-memory store — swap in a shared store such as Redis before running multiple instances)
+- [x] Stripe billing integration (Starter/Pro/Team, 14-day trial then paywall, Checkout + Customer Portal + signed webhooks; setup in `apps/web/BILLING.md`)
+- [x] Client onboarding flow (3-step wizard at `/onboarding`, `complete_onboarding()` RPC, middleware redirect for users without a workspace)
+- [ ] Remove internal/personal references from codebase — app code, packages, seed data and START_HERE done; ~137 internal planning docs (numbered folders) still contain absolute personal paths and should be excluded from client deliverables
 - [ ] Environment variable documentation for clients
 - [ ] Docker containerization for self-hosted deployments
 - [ ] SLA monitoring and uptime dashboard
-- [ ] Terms of Service and Privacy Policy
+- [ ] Terms of Service and Privacy Policy — drafted at `/terms` and `/privacy` (Delaware law, linked from sign-in, billing and Checkout); needs legal review, contact email and hosting provider filled in, and a deletion/export process before launch (see `apps/web/LEGAL.md`)
 
 ## Revenue Model Options
 1. **SaaS** — Multi-tenant hosted, $49-299/mo per seat
