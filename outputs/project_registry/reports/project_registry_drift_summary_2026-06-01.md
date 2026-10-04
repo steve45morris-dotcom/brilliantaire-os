@@ -18,16 +18,16 @@
   - **active_experiment:** 10
 
 ## ⭐️ Top Register Candidates
-- **Kronos** (`/Users/alexanderanthony/Projects/Kronos`) - Confidence: 90%
-- **agency-agents** (`/Users/alexanderanthony/Projects/agency-agents`) - Confidence: 90%
-- **awesome-design-md** (`/Users/alexanderanthony/Projects/awesome-design-md`) - Confidence: 90%
-- **brilliantier-web** (`/Users/alexanderanthony/Projects/brilliantier-web`) - Confidence: 90%
-- **crewAI** (`/Users/alexanderanthony/Projects/crewAI`) - Confidence: 90%
-- **fastapi** (`/Users/alexanderanthony/Projects/fastapi`) - Confidence: 90%
-- **firebase-admin-node** (`/Users/alexanderanthony/Projects/firebase-admin-node`) - Confidence: 90%
-- **flutter** (`/Users/alexanderanthony/Projects/flutter`) - Confidence: 90%
-- **generative-ai-python** (`/Users/alexanderanthony/Projects/generative-ai-python`) - Confidence: 90%
-- **gstack** (`/Users/alexanderanthony/Projects/gstack`) - Confidence: 90%
+- **Kronos** (`~/Projects/Kronos`) - Confidence: 90%
+- **agency-agents** (`~/Projects/agency-agents`) - Confidence: 90%
+- **awesome-design-md** (`~/Projects/awesome-design-md`) - Confidence: 90%
+- **brilliantier-web** (`~/Projects/brilliantier-web`) - Confidence: 90%
+- **crewAI** (`~/Projects/crewAI`) - Confidence: 90%
+- **fastapi** (`~/Projects/fastapi`) - Confidence: 90%
+- **firebase-admin-node** (`~/Projects/firebase-admin-node`) - Confidence: 90%
+- **flutter** (`~/Projects/flutter`) - Confidence: 90%
+- **generative-ai-python** (`~/Projects/generative-ai-python`) - Confidence: 90%
+- **gstack** (`~/Projects/gstack`) - Confidence: 90%
 
 ## 📦 Archive Candidates
   None

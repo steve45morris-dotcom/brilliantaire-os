@@ -17,7 +17,7 @@ IcyOS implements a mono-repository pattern exposing a single shared TypeScript p
 - **Purpose**: Map high-level type systems.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [API CONTRACTS](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/24%20API%20Contracts/API_CONTRACTS_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [API CONTRACTS](./24%20API%20Contracts/API_CONTRACTS_v1.0.md)
 
 *I build before burning.*

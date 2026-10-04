@@ -15,6 +15,6 @@ The AI Governance Layer defines the validation mechanisms and preflight gates de
 - **Purpose**: Govern AI assistant access and code boundaries.
 - **Version**: 1.1.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
 
 *I build before burning.*

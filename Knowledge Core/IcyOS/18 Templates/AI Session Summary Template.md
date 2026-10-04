@@ -29,6 +29,6 @@ graph TD
   - `{{date:YYYY-MM-DD}}`: Initial write.
 - **Future Expansion**: 
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*

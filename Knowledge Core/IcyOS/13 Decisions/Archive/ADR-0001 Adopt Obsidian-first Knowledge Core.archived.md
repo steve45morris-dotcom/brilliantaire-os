@@ -25,7 +25,7 @@ Adopt the Obsidian Knowledge Core (`Knowledge Core/IcyOS`) as the primary operat
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [Global Context](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Global%20Context.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [Global Context](./11%20Memory/Global%20Context.md)
 
 *I build before burning.*

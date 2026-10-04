@@ -5,10 +5,10 @@
 - **Install Status:** SUCCESS
 
 ## 📋 Installation Details
-- **Target Hook Path:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/.git/hooks/pre-push`
-- **Hook Template Source:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/hooks/pre-push.brilliantaire-template`
+- **Target Hook Path:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/.git/hooks/pre-push`
+- **Hook Template Source:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/hooks/pre-push.brilliantaire-template`
 - **Backup Created:** Yes
-- **Backup Path:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/.git/hooks/pre-push.brilliantaire-backup-20260531-145837`
+- **Backup Path:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/.git/hooks/pre-push.brilliantaire-backup-20260531-145837`
 
 ---
 

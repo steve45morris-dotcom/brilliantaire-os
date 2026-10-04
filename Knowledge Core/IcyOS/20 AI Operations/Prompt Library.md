@@ -29,6 +29,6 @@ Run "npm run lint" and "npm run test" on every file modification. If compilation
 - **Purpose**: version system prompt packs.
 - **Version**: 1.1.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
 
 *I build before burning.*

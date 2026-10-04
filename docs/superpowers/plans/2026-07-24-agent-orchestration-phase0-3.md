@@ -20,7 +20,7 @@
 - Phase 2 resolves verification targets before execution. A target inside the agent-writable output path is recorded as `SELF_SPECIFIED` and caps the entry at `VERIFIED_WITH_CONDITIONS`.
 - Claims carry `depends_on: string[]`; validation rejects unknown IDs. Phase 3 evaluates dependencies recursively against approved claim IDs. `NOT_TESTABLE` requires an agent-supplied claim justification and is excluded from bulk approval.
 - `process` verification allowlist: `ls`, `cat`, `wc`, `comm`, `diff`, `grep`, `shasum`, `sha256sum`. Do not allow `git` or `find`; use typed `git_diff` and `git_status` instructions instead.
-- Tests never touch the real `/Users/alexanderanthony` repo — fixture repos are created in `os.tmpdir()` per test and cleaned up after.
+- Tests never touch the real `$HOME` repo — fixture repos are created in `os.tmpdir()` per test and cleaned up after.
 
 ## Reuse decisions
 

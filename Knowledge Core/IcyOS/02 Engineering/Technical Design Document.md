@@ -35,14 +35,14 @@ The system is built as a **web application / PWA first** to guarantee maximum po
 ## 📋 Document Metadata
 - **Purpose**: Document system topologies and technology stack choices.
 - **Responsibilities**: Enforces tech stack constraints.
-- **Dependencies**: [Product Requirements Document](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/01%20Product/Product%20Requirements%20Document.md)
+- **Dependencies**: [Product Requirements Document](./01%20Product/Product%20Requirements%20Document.md)
 - **Version**: 1.1.0
 - **Revision History**:
   - `2026-07-02`: Created initial design.
   - `2026-07-02`: Upgraded to v1.1.0 for ICOS.
 - **Future Expansion**: Add specific container routing paths.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [System Architecture](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/System%20Architecture.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [System Architecture](./02%20Engineering/System%20Architecture.md)
 
 *I build before burning.*

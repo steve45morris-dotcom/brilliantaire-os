@@ -263,9 +263,9 @@ git commit -m "feat(voice): Display intelligence activity telemetry"
 ### Task 6: Live Installation and Verification
 
 **Files:**
-- Install: `work/voice_bridge/voice_intelligence.py` to `/Users/alexanderanthony/scripts/voice_intelligence.py`
-- Install: `work/voice_bridge/voice_daemon.sh` to `/Users/alexanderanthony/scripts/voice_daemon.sh`
-- Install: `work/voice_bridge/voice_vibe.py` to `/Users/alexanderanthony/.claude/voice/voice_vibe.py`
+- Install: `work/voice_bridge/voice_intelligence.py` to `~/scripts/voice_intelligence.py`
+- Install: `work/voice_bridge/voice_daemon.sh` to `~/scripts/voice_daemon.sh`
+- Install: `work/voice_bridge/voice_vibe.py` to `~/.claude/voice/voice_vibe.py`
 
 - [ ] **Step 1: Run final static verification**
 

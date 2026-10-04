@@ -22,6 +22,6 @@ This document outlines the bindings, boundaries, and files owned by each role in
 - **Purpose**: Map agent responsibilities to system files.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [Sovereign Stack Rules](file:///Users/alexanderanthony/AGENTS.md)
+  - [Sovereign Stack Rules](file://~/AGENTS.md)
 
 *I build before burning.*

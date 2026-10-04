@@ -16,6 +16,6 @@ This Charter establishes the constitutional baseline of the **IcyOS** project. I
 - **Purpose**: Declare IcyOS operating constitution.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)
+  - [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)
 
 *I build before burning.*

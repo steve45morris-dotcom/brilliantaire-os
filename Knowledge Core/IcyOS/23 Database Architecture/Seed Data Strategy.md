@@ -4,7 +4,7 @@
 Provides specifications for initializing system constants.
 
 - **System User**: Primary strategist profile seed.
-- **Default Workspace**: Path mapped to `/Users/alexanderanthony/Knowledge Core/IcyOS/`.
+- **Default Workspace**: Path mapped to `./`.
 - **System Sprints**: Sprint 01 seed board details.
 
 ---

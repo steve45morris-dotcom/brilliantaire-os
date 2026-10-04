@@ -1,7 +1,7 @@
 {
   "date": "2026-05-29",
   "timestamp": "2026-05-29T16:53:15.279Z",
-  "vault": "/Users/alexanderanthony/AlexanderOSVault",
+  "vault": "~/AlexanderOSVault",
   "stagedFilesCount": 4,
   "writtenFiles": [
     "- Staged: `daily_brief_2026-05-29.md` -> Written: `brilliantaire-briefs/daily/daily_brief_2026-05-29_1780073595.md`",

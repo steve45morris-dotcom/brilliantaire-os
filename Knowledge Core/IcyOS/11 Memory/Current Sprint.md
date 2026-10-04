@@ -2,7 +2,7 @@
 This document has been consolidated into the upgraded command center.
 
 Please see the active sprint board here:
-- **[ICOS Current Sprint Board](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Current%20Sprint.md)**
+- **[ICOS Current Sprint Board](./99%20Command%20Center/Current%20Sprint.md)**
 
 *I build before burning.*
 

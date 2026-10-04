@@ -16,6 +16,6 @@ Before launching complex execution missions, the **Mission Kit Engine** compiles
 - **Purpose**: Describe context staging packages and manifest templates.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*

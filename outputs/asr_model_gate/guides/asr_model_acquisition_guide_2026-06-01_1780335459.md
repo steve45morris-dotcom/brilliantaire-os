@@ -5,7 +5,7 @@
 This document provides instructions for safely procuring and placing Whisper speech recognition models locally. Automatic model downloading is disabled to enforce isolated offline environments.
 
 ## 2. Target Folder
-* **Path:** `/Users/alexanderanthony/models/asr/whisper`
+* **Path:** `~/models/asr/whisper`
 
 ## 3. Allowed Formats
 Only the following binary formats are permitted inside the Whisper model directory:

@@ -30,7 +30,7 @@ Commits must follow the **Conventional Commits** standard:
 ## 📋 Document Metadata
 - **Purpose**: Map contribution steps and merge workflows.
 - **Responsibilities**: Enforces branching, commits, and PR safety.
-- **Dependencies**: [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+- **Dependencies**: [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 - **Relationships**: Child of Engineering Standards.
 - **Version**: 1.1.0
 - **Revision History**:
@@ -38,7 +38,7 @@ Commits must follow the **Conventional Commits** standard:
   - `2026-07-02`: Renamed to Git Workflow for ICOS.
 - **Future Expansion**: Add automated commit linter rules.
 - **Cross References**:
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
-  - [Repository Guide](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Repository%20Guide.md)
+  - [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
+  - [Repository Guide](./02%20Engineering/Repository%20Guide.md)
 
 *I build before burning.*

@@ -5,7 +5,7 @@ This is an architectural recommendation only. No migration was performed or is r
 
 ## Current architecture
 
-`/Users/alexanderanthony` (`$HOME`) is the Git root for the public repo `brilliantaire-os`. This is intentional, not accidental: ~130 top-level entries are deliberately tracked (`.agents/`, `bin/`, `config/`, `dashboard/`, `docs/`, `Documents/` (partially), `hooks/`, `Knowledge Core/`, `outputs/`, `projects/`, `reports/`, `scripts/`, `sentinel-os/`, `skills/`, `src/`, `templates/`, plus dozens of root-level architecture/spec `.md` files), and multiple pieces of tooling (the `gstack` skill install, `.claude/` session state, various scripts) already assume and reference this location.
+`$HOME` (`$HOME`) is the Git root for the public repo `brilliantaire-os`. This is intentional, not accidental: ~130 top-level entries are deliberately tracked (`.agents/`, `bin/`, `config/`, `dashboard/`, `docs/`, `Documents/` (partially), `hooks/`, `Knowledge Core/`, `outputs/`, `projects/`, `reports/`, `scripts/`, `sentinel-os/`, `skills/`, `src/`, `templates/`, plus dozens of root-level architecture/spec `.md` files), and multiple pieces of tooling (the `gstack` skill install, `.claude/` session state, various scripts) already assume and reference this location.
 
 ## Why this is structurally risky regardless of today's clean audit
 

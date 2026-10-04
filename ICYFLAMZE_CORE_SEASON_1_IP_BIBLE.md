@@ -28,7 +28,7 @@ The scope of this Phase includes:
 1. **No Direct Vault Writes:** All outputs stage locally to `outputs/icyflamze_core/ip_bible/obsidian_staging/` and `outputs/write_staging/`. Copying into live vaults requires explicit manual approval.
 2. **No Automated Image Generation:** No image generation calls are initiated during compile sweeps (`ALLOW_IMAGE_GENERATION = false`).
 3. **No External Network Queries:** The compiler operates strictly offline (`ALLOW_EXTERNAL_API_CALLS = false`).
-4. **No Arbitrary Script Execution:** Command execution is routed solely via the pre-approved [config/commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) configurations.
+4. **No Arbitrary Script Execution:** Command execution is routed solely via the pre-approved [config/commands.ts](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) configurations.
 
 ---
 

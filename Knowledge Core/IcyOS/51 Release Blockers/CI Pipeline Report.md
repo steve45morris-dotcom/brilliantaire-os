@@ -5,7 +5,7 @@
 
 ## Pipeline Location
 
-`/Users/alexanderanthony/Knowledge Core/IcyOS/.github/workflows/ci.yml`
+`./.github/workflows/ci.yml`
 
 ## Trigger Configuration
 

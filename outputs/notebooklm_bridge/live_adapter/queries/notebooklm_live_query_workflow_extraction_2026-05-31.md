@@ -2,7 +2,7 @@
 
 * **Staging Date:** 2026-05-31
 * **Query Type:** workflow-extraction
-* **Source Payload Path:** /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/mcp_execution/payloads/notebooklm_payload_workflow_extraction_2026-05-31.md
+* **Source Payload Path:** ~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/mcp_execution/payloads/notebooklm_payload_workflow_extraction_2026-05-31.md
 
 ## Prepared Question
 # NotebookLM MCP Query Payload

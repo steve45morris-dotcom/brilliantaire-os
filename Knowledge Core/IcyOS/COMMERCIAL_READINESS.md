@@ -14,7 +14,7 @@
 - [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; in-memory store — swap in a shared store such as Redis before running multiple instances)
 - [x] Stripe billing integration (Starter/Pro/Team, 14-day trial then paywall, Checkout + Customer Portal + signed webhooks; setup in `apps/web/BILLING.md`)
 - [x] Client onboarding flow (3-step wizard at `/onboarding`, `complete_onboarding()` RPC, middleware redirect for users without a workspace)
-- [ ] Remove internal/personal references from codebase — app code, packages, seed data and START_HERE done; ~137 internal planning docs (numbered folders) still contain absolute personal paths and should be excluded from client deliverables
+- [x] Remove internal/personal references from codebase — all absolute `/Users/alexanderanthony` paths replaced with relative or generic (`~/`, `$HOME`, `./`) references across 329 files
 - [x] Environment variable documentation for clients (`DEPLOY.md` with full env var table, Supabase/Stripe setup, Docker commands, production checklist)
 - [x] Docker containerization for self-hosted deployments (multi-stage Dockerfile, docker-compose.yml, health check, .dockerignore)
 - [ ] SLA monitoring and uptime dashboard

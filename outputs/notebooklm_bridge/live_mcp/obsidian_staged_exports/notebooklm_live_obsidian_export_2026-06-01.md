@@ -13,7 +13,7 @@ Exported from response record file: notebooklm_live_response_source_summary_2026
 
 - **Query Type:** source-summary
 - **Executed At:** 2026-06-01T05:26:34.332Z
-- **Payload Path:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/live_mcp/payloads/notebooklm_live_payload_source_summary_2026-05-31.md`
+- **Payload Path:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/live_mcp/payloads/notebooklm_live_payload_source_summary_2026-05-31.md`
 - **Raw Response Location:** `None`
 - **Status:** blocked_manual_execution_required
 - **Next Action:** Perform query manually on NotebookLM client interface.

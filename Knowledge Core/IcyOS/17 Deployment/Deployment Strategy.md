@@ -8,7 +8,7 @@ This document details the production build commands, Docker packaging guidelines
 ## 🏗️ Build & Containerization
 - **Commands**: Build orchestration is managed via Taskfile recipes (`Taskfile.yml`).
 - **Containerization**: Deployments utilize multi-stage Docker builds to keep final production images tiny (< 100MB).
-- **Static Previews**: Static web UI views are built and linked directly to absolute local file routes (e.g. `file:///Users/alexanderanthony/...`) to bypass CORS issues on local previews.
+- **Static Previews**: Static web UI views are built and linked directly to absolute local file routes (e.g. `file://~/...`) to bypass CORS issues on local previews.
 
 ---
 
@@ -23,14 +23,14 @@ If any of these conditions are met post-deployment, trigger an automated rollbac
 ## 📋 Document Metadata
 - **Purpose**: Outline deployment commands, packaging rules, and rollbacks.
 - **Responsibilities**: Enforces release safety, build integrity, and rollbacks.
-- **Dependencies**: [Technical Design](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20Architecture/Technical%20Design.md)
+- **Dependencies**: [Technical Design](./03%20Architecture/Technical%20Design.md)
 - **Relationships**: Child of Engineering Standards.
 - **Version**: 1.0.0
 - **Revision History**:
   - `2026-07-02`: Created initial Deployment Strategy guide.
 - **Future Expansion**: Add continuous blue-green deployment specifications.
 - **Cross References**:
-  - [Technical Design](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20Architecture/Technical%20Design.md)
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [Technical Design](./03%20Architecture/Technical%20Design.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*

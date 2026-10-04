@@ -17,6 +17,6 @@ This document details the frontend directories, client-side state managers, page
 - **Purpose**: Document frontend specifications.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [Technical Design Document](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Technical%20Design%20Document.md)
+  - [Technical Design Document](./02%20Engineering/Technical%20Design%20Document.md)
 
 *I build before burning.*

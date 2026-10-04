@@ -7,8 +7,8 @@ Enforces strict boundaries on how much documentation context is loaded on start 
 
 ## 📐 Loading Rules
 - **No Wildcard Reads**: Loading the entire Obsidian vault is forbidden.
-- **Selective Directory Slicing**: Only load the specific domain directories matching the [Task Type Classification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Task%20Type%20Classification.md).
-- **Compacted Context Loading**: For general questions, prioritize loading [Compressed Context](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Compressed%20Context.md).
+- **Selective Directory Slicing**: Only load the specific domain directories matching the [Task Type Classification](./20%20AI%20Operations/Task%20Type%20Classification.md).
+- **Compacted Context Loading**: For general questions, prioritize loading [Compressed Context](./11%20Memory/Compressed%20Context.md).
 
 ---
 

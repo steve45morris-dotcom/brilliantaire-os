@@ -24,6 +24,6 @@ Deploy the AI Governance Layer (`20 AI Operations/AI Governance Layer.md`). Enfo
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [AI Governance Layer](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/AI%20Governance%20Layer.md)
+  - [AI Governance Layer](./20%20AI%20Operations/AI%20Governance%20Layer.md)
 
 *I build before burning.*

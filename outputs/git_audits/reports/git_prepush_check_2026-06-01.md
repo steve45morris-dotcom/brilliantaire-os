@@ -14,7 +14,7 @@
 ## 🔍 Detail Log
 - **Build Output Summary:** TypeScript compilation completed successfully.
 - **Static Audit Summary:** Static folder and capability audit checks passed.
-- **Asset Guard Verification Path:** [git_asset_audit_2026-06-01.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/git_audits/reports/git_asset_audit_2026-06-01.md)
+- **Asset Guard Verification Path:** [git_asset_audit_2026-06-01.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/git_audits/reports/git_asset_audit_2026-06-01.md)
 
 ---
 

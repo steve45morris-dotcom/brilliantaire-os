@@ -6,9 +6,9 @@ Central entry maps grouping systems specifications, memory logs, and project roa
 ---
 
 ## 🧭 MOC Index
-- **[Home Dashboard](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/07%20Knowledge/Home%20Dashboard.md)**: Entry point.
-- **[Knowledge Map](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/07%20Knowledge/Knowledge%20Map.md)**: Domain specs.
-- **[Documentation Index](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/07%20Knowledge/Documentation%20Index.md)**: Connection links.
+- **[Home Dashboard](./07%20Knowledge/Home%20Dashboard.md)**: Entry point.
+- **[Knowledge Map](./07%20Knowledge/Knowledge%20Map.md)**: Domain specs.
+- **[Documentation Index](./07%20Knowledge/Documentation%20Index.md)**: Connection links.
 
 ---
 

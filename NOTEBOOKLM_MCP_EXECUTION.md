@@ -23,7 +23,7 @@ Live MCP execution is currently disabled to prevent automated, unverified querie
 3. **Simulation:** Generates an offline simulation report under `outputs/notebooklm_bridge/mcp_execution/dry_runs/` outlining structural readiness.
 
 ## Safety Flags Configuration
-Located in [`config/notebooklm-mcp-execution.ts`](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/notebooklm-mcp-execution.ts):
+Located in [`config/notebooklm-mcp-execution.ts`](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/notebooklm-mcp-execution.ts):
 *   `EXECUTION_MODE = "dry-run"`
 *   `ALLOW_LIVE_MCP_EXECUTION = false`
 *   `ALLOW_EXTERNAL_API_CALLS = false`

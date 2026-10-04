@@ -90,7 +90,7 @@ Brilliantaire OS operates with a lean council of **7 conceptual agents** to segm
 6. **Build Operator** — Builds compiler, typescript checks, and CLI executors.
 7. **Creative Revenue Strategist** — Marketing launches, rollout briefs, and revenue tracker logic.
 
-All roles are documented and mapped to specific owned files in [AGENTS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/AGENTS.md).
+All roles are documented and mapped to specific owned files in [AGENTS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/AGENTS.md).
 
 ---
 

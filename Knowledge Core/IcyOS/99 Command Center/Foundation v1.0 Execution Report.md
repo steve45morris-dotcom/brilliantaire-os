@@ -136,7 +136,7 @@ Read-only verification after changes:
 - Markdown files found: `166`
 - Directories found within depth 2: `40`
 - Production app/source files created: `0`
-- Git state: `Knowledge Core/IcyOS/` remains untracked in parent `/Users/alexanderanthony` repo.
+- Git state: `Knowledge Core/IcyOS/` remains untracked in parent `$HOME` repo.
 
 ## Missing Pieces
 

@@ -4,10 +4,10 @@ import sys
 import time
 import subprocess
 
-VOICE_INPUT_DIR = "/Users/alexanderanthony/voice_input"
-TRIGGER_FILE = "/Users/alexanderanthony/voice_input/ignite.trigger"
-LOG_FILE = "/Users/alexanderanthony/sentinel-os/logs/wake_word.log"
-VOICE_BUFFER = "/Users/alexanderanthony/.agents/voice_buffer.txt"
+VOICE_INPUT_DIR = "~/voice_input"
+TRIGGER_FILE = "~/voice_input/ignite.trigger"
+LOG_FILE = "~/sentinel-os/logs/wake_word.log"
+VOICE_BUFFER = "~/.agents/voice_buffer.txt"
 
 os.makedirs(VOICE_INPUT_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)

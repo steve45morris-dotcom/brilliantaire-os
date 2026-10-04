@@ -1757,12 +1757,12 @@ tasks:
   voice:intent:
     desc: "Announce tactical intent via Voice Narrative Protocol"
     cmds:
-      - bash /Users/alexanderanthony/.agents/voice_narrative.sh "{{.MSG}}"
+      - bash ~/.agents/voice_narrative.sh "{{.MSG}}"
 
   voice:done:
     desc: "Announce completion via Voice Narrative Protocol"
     cmds:
-      - bash -c 'source /Users/alexanderanthony/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
+      - bash -c 'source ~/.agents/voice_narrative.sh && announce_completion "{{.MSG}}" {{.SOVEREIGNTY_INC | default 10}}'
 
   voice:bus:audit:
     desc: "Run grep audit to check for direct say commands"

@@ -1,6 +1,6 @@
 # Agent Assignment & Responsibilities: Pipeline Integration Stage Gate
 
-- **Proposal Reference:** /Users/alexanderanthony/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
+- **Proposal Reference:** ~/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
 
 ## Selected Agents Matrix
 | Agent | Role | Reason Selected | Approval Responsibility | Implementation Responsibility | Review Responsibility |

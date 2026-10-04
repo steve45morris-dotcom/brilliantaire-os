@@ -21,14 +21,14 @@ This document details the test framework specifications, mock environments, cove
 ## 📋 Document Metadata
 - **Purpose**: Enforce software validation rules, regression checking, and E2E verification.
 - **Responsibilities**: Enforces test suite executions.
-- **Dependencies**: [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/10%20Engineering/Engineering%20Standards.md)
+- **Dependencies**: [Engineering Standards](./10%20Engineering/Engineering%20Standards.md)
 - **Relationships**: Child of Engineering Standards.
 - **Version**: 1.0.0
 - **Revision History**:
   - `2026-07-02`: Created initial Testing Strategy guide.
 - **Future Expansion**: Add regression tests simulating model behavior shifts.
 - **Cross References**:
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/10%20Engineering/Engineering%20Standards.md)
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [Engineering Standards](./10%20Engineering/Engineering%20Standards.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*

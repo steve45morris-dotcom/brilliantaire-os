@@ -17,7 +17,7 @@ The IcyOS MVP implementation is split into:
 - **Purpose**: Map high-level delivery schedules.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [APPLICATION ARCHITECTURE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/26%20Application%20Architecture/APPLICATION_ARCHITECTURE_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [APPLICATION ARCHITECTURE](./26%20Application%20Architecture/APPLICATION_ARCHITECTURE_v1.0.md)
 
 *I build before burning.*
