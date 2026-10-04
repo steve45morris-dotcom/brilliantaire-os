@@ -1,8 +1,21 @@
 # IcyOS Deployment Guide
 
+## Quick Start
+
+```bash
+# Run the deployment preflight check
+./scripts/setup-deploy.sh
+```
+
+## Deployment Options
+
+| Option | Best for | What you need |
+|---|---|---|
+| **Vercel** (recommended) | SaaS, fast iteration | Vercel account + GitHub repo |
+| **Docker** | Self-hosted, on-prem | Docker 24+ host, reverse proxy |
+
 ## Prerequisites
 
-- Docker 24+ and Docker Compose v2
 - A Supabase project (or self-hosted Supabase instance)
 - A Stripe account (for billing)
 
@@ -64,7 +77,45 @@ Copy `.env.example` to `apps/web/.env` and fill in each value:
 
 See `apps/web/BILLING.md` for the full Stripe integration reference.
 
-## Docker Deployment
+## Vercel Deployment (Recommended)
+
+### First-time setup
+
+1. Install the Vercel CLI: `pnpm add -g vercel`
+2. From the `Knowledge Core/IcyOS` directory:
+   ```bash
+   vercel link
+   ```
+   Select your Vercel team/account and create a new project. Set the root directory to `.` (the IcyOS monorepo root).
+
+3. Add environment variables in Vercel Dashboard → Project → Settings → Environment Variables:
+   - All variables from the table above (Supabase, Stripe)
+   - Set `BILLING_ENFORCEMENT` to `off` until Stripe is configured
+
+4. Deploy:
+   ```bash
+   vercel --prod
+   ```
+
+### Automatic deployments (CI/CD)
+
+The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files.
+
+Add these secrets in GitHub → Settings → Secrets and variables → Actions:
+
+| Secret | Where to find it |
+|---|---|
+| `VERCEL_TOKEN` | Vercel → Settings → Tokens → Create |
+| `VERCEL_ORG_ID` | `.vercel/project.json` after `vercel link` (or Vercel → Settings → General → ID) |
+| `VERCEL_PROJECT_ID` | `.vercel/project.json` after `vercel link` |
+
+### Custom domain
+
+In Vercel Dashboard → Project → Settings → Domains, add your domain. Then update:
+- Stripe webhook endpoint to `https://your-domain/api/billing/webhook`
+- Supabase → Authentication → URL Configuration → Site URL to `https://your-domain`
+
+## Docker Deployment (Self-Hosted)
 
 ### Build and run
 
@@ -140,10 +191,14 @@ API tokens are rate-limited by the token's SHA-256 hash:
 
 ## Production Checklist
 
-- [ ] All env vars set in `apps/web/.env`
-- [ ] Supabase migrations applied
-- [ ] Stripe products and webhook configured
+- [ ] Supabase project created and migrations applied (`supabase db push`)
+- [ ] All env vars set (Vercel Dashboard or `apps/web/.env` for Docker)
+- [ ] Stripe products created (Starter $49, Pro $149, Team $299) with price IDs configured
+- [ ] Stripe webhook endpoint pointed at `https://<domain>/api/billing/webhook`
 - [ ] `BILLING_ENFORCEMENT` is **not** set to `off`
-- [ ] Terms of Service and Privacy Policy reviewed by legal
-- [ ] HTTPS/TLS termination configured (reverse proxy or cloud provider)
+- [ ] Terms of Service entity name confirmed (LLC/Inc suffix) and reviewed by legal
+- [ ] Custom domain configured with HTTPS
+- [ ] Supabase Auth site URL updated to production domain
+- [ ] For Vercel: GitHub secrets set (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`)
+- [ ] For Docker: HTTPS/TLS termination configured (reverse proxy)
 - [ ] For multiple instances: replace in-memory rate limiter with Redis
