@@ -3,12 +3,21 @@ import { NextRequest } from 'next/server';
 
 const getUser = vi.fn();
 const subscriptionLookup = vi.fn();
+const workspaceLookup = vi.fn();
 vi.mock('@supabase/ssr', () => ({
   createServerClient: () => ({
     auth: { getUser },
-    from: () => ({ select: () => ({ maybeSingle: subscriptionLookup }) }),
+    from: (table: string) =>
+      table === 'subscriptions'
+        ? { select: () => ({ maybeSingle: subscriptionLookup }) }
+        : { select: () => ({ limit: () => ({ maybeSingle: workspaceLookup }) }) },
   }),
 }));
+
+beforeEach(() => {
+  workspaceLookup.mockReset();
+  workspaceLookup.mockResolvedValue({ data: { id: 'ws-1' }, error: null });
+});
 
 const ACTIVE = { data: { status: 'active', trial_ends_at: null }, error: null };
 
@@ -148,5 +157,79 @@ describe('Auth Middleware Subscription Gate', () => {
     const response = await updateSession(new NextRequest('http://localhost/dashboard'));
     expect(response.status).toBe(200);
     delete process.env.BILLING_ENFORCEMENT;
+  });
+});
+
+describe('Auth Middleware First Run', () => {
+  const page = (path: string, cookie?: string) =>
+    new NextRequest(`http://localhost${path}`, cookie ? { headers: { cookie } } : undefined);
+
+  beforeEach(() => {
+    getUser.mockReset();
+    getUser.mockResolvedValue({ data: { user: { id: 'user-4' } } });
+    subscriptionLookup.mockReset();
+    subscriptionLookup.mockResolvedValue(ACTIVE);
+  });
+
+  it('should send a user without a workspace to /onboarding', async () => {
+    const updateSession = await loadMiddleware();
+    workspaceLookup.mockResolvedValue({ data: null, error: null });
+
+    for (const path of ['/', '/dashboard', '/timeline']) {
+      const response = await updateSession(page(path));
+      expect(response.status).toBe(307);
+      expect(response.headers.get('location')).toBe('http://localhost/onboarding');
+    }
+  });
+
+  it('should leave onboarding, billing, legal pages and the API reachable before setup', async () => {
+    const updateSession = await loadMiddleware();
+    workspaceLookup.mockResolvedValue({ data: null, error: null });
+
+    for (const path of ['/onboarding', '/billing', '/terms', '/privacy']) {
+      expect((await updateSession(page(path))).status).toBe(200);
+    }
+    expect((await updateSession(apiRequest('/api/onboarding', '203.0.113.40'))).status).toBe(200);
+    expect(workspaceLookup).not.toHaveBeenCalled();
+  });
+
+  it('should remember a set-up user in a cookie and skip the lookup next time', async () => {
+    const updateSession = await loadMiddleware();
+
+    const first = await updateSession(page('/dashboard'));
+    expect(first.status).toBe(200);
+    expect(first.cookies.get('icyos_onboarded')?.value).toBe('user-4');
+    expect(workspaceLookup).toHaveBeenCalledTimes(1);
+
+    expect((await updateSession(page('/dashboard', 'icyos_onboarded=user-4'))).status).toBe(200);
+    expect(workspaceLookup).toHaveBeenCalledTimes(1);
+  });
+
+  it('should check again when a different account signs in on the same browser', async () => {
+    const updateSession = await loadMiddleware();
+    workspaceLookup.mockResolvedValue({ data: null, error: null });
+
+    const response = await updateSession(page('/dashboard', 'icyos_onboarded=someone-else'));
+    expect(response.status).toBe(307);
+    expect(response.headers.get('location')).toBe('http://localhost/onboarding');
+  });
+
+  it('should let the request through when the workspace lookup fails', async () => {
+    const updateSession = await loadMiddleware();
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    workspaceLookup.mockResolvedValue({ data: null, error: { message: 'timeout' } });
+
+    const response = await updateSession(page('/dashboard'));
+    expect(response.status).toBe(200);
+    expect(response.cookies.get('icyos_onboarded')).toBeUndefined();
+  });
+
+  it('should send a locked-out user to billing before onboarding', async () => {
+    const updateSession = await loadMiddleware();
+    subscriptionLookup.mockResolvedValue({ data: { status: 'canceled', trial_ends_at: null }, error: null });
+    workspaceLookup.mockResolvedValue({ data: null, error: null });
+
+    const response = await updateSession(page('/dashboard'));
+    expect(response.headers.get('location')).toBe('http://localhost/billing');
   });
 });
