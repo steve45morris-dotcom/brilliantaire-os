@@ -29,12 +29,6 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.131.0
         version: 0.131.0(zod@3.25.76)
-      '@icyos/database':
-        specifier: workspace:*
-        version: link:../../packages/database
-      '@icyos/services':
-        specifier: workspace:*
-        version: link:../../packages/services
       '@icyos/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -101,22 +95,6 @@ importers:
         specifier: ^3.2.6
         version: 3.2.6(@types/node@20.19.43)(jiti@1.21.7)
 
-  packages/database:
-    dependencies:
-      '@icyos/shared':
-        specifier: workspace:*
-        version: link:../shared
-      zod:
-        specifier: ^3.22.0
-        version: 3.25.76
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
-      vitest:
-        specifier: ^3.2.6
-        version: 3.2.6(@types/node@20.19.43)(jiti@1.21.7)
-
   packages/decision:
     dependencies:
       '@icyos/learning':
@@ -138,34 +116,6 @@ importers:
       '@icyos/shared':
         specifier: workspace:*
         version: link:../shared
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
-      vitest:
-        specifier: ^3.2.6
-        version: 3.2.6(@types/node@20.19.43)(jiti@1.21.7)
-
-  packages/services:
-    dependencies:
-      '@icyos/ai':
-        specifier: workspace:*
-        version: link:../ai
-      '@icyos/database':
-        specifier: workspace:*
-        version: link:../database
-      '@icyos/decision':
-        specifier: workspace:*
-        version: link:../decision
-      '@icyos/learning':
-        specifier: workspace:*
-        version: link:../learning
-      '@icyos/shared':
-        specifier: workspace:*
-        version: link:../shared
-      zod:
-        specifier: ^3.22.0
-        version: 3.25.76
     devDependencies:
       typescript:
         specifier: ^5.0.0

@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 export interface Device {
   id: string;
   name: string;
@@ -19,4 +19,4 @@ export interface CommandResponse {
   data?: unknown;
   error?: string;
 }
-export const generateCommandId = () => uuidv4();
+export const generateCommandId = () => randomUUID();

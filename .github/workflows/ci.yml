@@ -1,0 +1,56 @@
+name: Brilliantaire CI
+
+# Runs the root Vitest suite on every change, so the repository's own checks
+# are verified rather than left to whoever remembers to run them locally. The
+# suite includes config/commands.contract.test.ts, the contract P.J.K.
+# (sentinel-os) relies on when it reads config/commands.ts as text.
+#
+# IcyOS has its own workflow (icyos-ci.yml) and is left to it.
+#
+# Typecheck is `tsc --noEmit` over tsconfig.json, the same compile `npm run
+# build` does without writing dist/.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'Knowledge Core/**'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - 'Knowledge Core/**'
+
+# A newer push to the same branch supersedes an in-flight run.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Cheapest check first, so an obvious failure reports without waiting on
+      # the suite.
+      - name: Typecheck
+        run: npx tsc --noEmit -p tsconfig.json
+
+      # The P.J.K. contract first: it is the cheapest test and the one whose
+      # failure most needs a clear name in the log.
+      - name: Command registry contract
+        run: npx vitest run config/commands.contract.test.ts
+
+      - name: Test
+        run: npm test

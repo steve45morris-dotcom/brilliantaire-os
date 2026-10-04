@@ -17,7 +17,7 @@
 - [x] Remove internal/personal references from codebase — all absolute `/Users/alexanderanthony` paths replaced with relative or generic (`~/`, `$HOME`, `./`) references across 329 files
 - [x] Environment variable documentation for clients (`DEPLOY.md` with full env var table, Supabase/Stripe setup, Docker commands, production checklist)
 - [x] Docker containerization for self-hosted deployments (multi-stage Dockerfile, docker-compose.yml, health check, .dockerignore)
-- [ ] SLA monitoring and uptime dashboard
+- [x] SLA monitoring and uptime dashboard — public `/status` page with live service checks (Application, Database, Authentication), `/api/status` endpoint for external monitors, 30s auto-refresh, SLA targets displayed
 - [x] Terms of Service and Privacy Policy — `/terms` and `/privacy` (Delaware law, linked from sign-in, billing and Checkout); placeholders filled, `DELETE /api/account` and `GET /api/account/export` APIs built with migration 27; entity name needs LLC/Inc suffix confirmed, then legal review before launch (see `apps/web/LEGAL.md`)
 
 ## Revenue Model Options

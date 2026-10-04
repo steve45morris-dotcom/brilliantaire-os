@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
-    "@icyos/database": "workspace:*",
-    "@icyos/services": "workspace:*",
     "@icyos/shared": "workspace:*",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.117.1",

@@ -22,7 +22,7 @@ scripts/         # 208+ TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
 sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
 orchestrator/    # Phase-based orchestration engine
-Knowledge Core/  # IcyOS monorepo (Next.js, 6 packages, Supabase)
+Knowledge Core/  # IcyOS monorepo (Next.js app + 4 packages, Supabase)
 dashboard/       # Vite React dashboard
 outputs/         # Generated reports, narrator audio queue
 ```
@@ -39,6 +39,8 @@ npm run next       # Print ranked next actions
 npm run audit      # Run system audit
 npm run command    # Safe command router
 ```
+
+CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, the P.J.K. command-registry contract test, and `npm test` on every pull request and push to `main`. Two source files are excluded from the Node build in `tsconfig.json` and say why: the Edge-Link server, `src/edge-link/index.ts` + `broker.ts` (needs `ws`, which the no-runtime-deps rule forbids; nothing imports them) and `src/ui/voice/RealtimeVoiceControls.tsx` (a React component; nothing imports it). `vitest.config.ts` keeps `sentinel-os/` and `Knowledge Core/` out of the suite, since both sit inside this `$HOME`-rooted repo.
 
 ## Safe Command Router
 
@@ -60,6 +62,7 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
   - It prompts with hidden input, so the key never shows on screen or in shell history.
   - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
 - **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
+- **AI keys:** P.J.K. takes `GEMINI_API_KEY`, `ANTHROPIC_API_KEY` (Claude) and `OPENAI_API_KEY` (ChatGPT), tried in that order; each extra key is a backup brain. `docs/PJKKEY.md` says where each comes from. `ANTHROPIC_DEFAULT_MODEL` and `OPENAI_DEFAULT_MODEL` pick the models.
 - **If `pjkkey` is missing** (a new Mac or a fresh shell config): give him the install snippet in `docs/PJKKEY.md`.
 
 ## Security Notes
