@@ -14,7 +14,7 @@ global.fetch = vi.fn().mockImplementation(() =>
 
 describe('API Client Response Handling', () => {
   it('should parse successful JSON response envelopes', async () => {
-    const res = await apiFetch<{ result: string }>('/api/inbox/capture');
+    const res = await apiFetch<{ result: string }>('/api/inbox/sort');
     expect(res.success).toBe(true);
     expect(res.data?.result).toBe('Structured task');
   });

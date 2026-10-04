@@ -17,6 +17,8 @@ export interface MissionView {
   name: string;
   status: MissionStatus;
   sprintName: string;
+  /** Planned length in minutes, when known. */
+  estimatedMinutes: number | null;
   steps: StepView[];
   stepsDone: number;
 }
@@ -41,7 +43,7 @@ const SELECT = `
     sprints (
       id, sprint_name, created_at,
       missions (
-        id, name, status, created_at,
+        id, name, status, estimated_minutes, created_at,
         actions ( id, command, position, completed_at, created_at )
       )
     )
@@ -50,7 +52,7 @@ const SELECT = `
 
 interface Row { id: string; created_at: string }
 interface ActionRow extends Row { command: string; position: number; completed_at: string | null }
-interface MissionRow extends Row { name: string; status: MissionStatus; actions: ActionRow[] | null }
+interface MissionRow extends Row { name: string; status: MissionStatus; estimated_minutes?: number | null; actions: ActionRow[] | null }
 interface SprintRow extends Row { sprint_name: string; missions: MissionRow[] | null }
 interface ProjectRow extends Row { name: string; priority: Priority; sprints: SprintRow[] | null }
 export interface WorkspaceRow extends Row { name: string | null; projects: ProjectRow[] | null }
@@ -78,6 +80,7 @@ export function shapeOverview(row: WorkspaceRow | null): WorkspaceOverview {
             name: mission.name,
             status: mission.status,
             sprintName: sprint.sprint_name,
+            estimatedMinutes: mission.estimated_minutes ?? null,
             steps,
             stepsDone: steps.filter((s) => s.completedAt).length,
           };

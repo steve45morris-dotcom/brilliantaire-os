@@ -15,6 +15,14 @@ const STATUS_STYLE: Record<string, string> = {
   Failed: 'bg-red-500/10 text-red-300 border-red-500/30',
 };
 
+/** 45 → "45 min", 90 → "1h 30m", 120 → "2h". */
+export function formatMinutes(minutes: number): string {
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m ? `${h}h ${m}m` : `${h}h`;
+}
+
 export interface MissionCardActions {
   toggleStep: (mission: MissionView, stepId: string, completed: boolean) => void;
   renameMission: (missionId: string, name: string) => Promise<boolean>;
@@ -43,7 +51,10 @@ export function MissionCard({
             onSave={(name) => actions.renameMission(mission.id, name)}
             className="font-semibold text-zinc-100"
           />
-          <span className="text-xs text-zinc-500">{mission.sprintName}</span>
+          <span className="text-xs text-zinc-500">
+            {mission.sprintName}
+            {mission.estimatedMinutes ? ` · ~${formatMinutes(mission.estimatedMinutes)}` : ''}
+          </span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <span
