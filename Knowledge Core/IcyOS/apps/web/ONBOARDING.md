@@ -41,10 +41,41 @@ Finishing creates the workspace, the project, "Sprint 1" and the sample mission 
   - un-ticking a step on a Completed mission makes it Running again.
   - Skipped and Failed missions are left alone.
 
+## Managing projects, missions and steps
+
+From the dashboard, users can add, rename and delete projects, missions and steps, and change a
+project's priority. Deletes ask for confirmation first; deleting a project also deletes its missions
+and steps.
+
+| Change | Route | Database function |
+|---|---|---|
+| Add project | `POST /api/projects` | `create_project` |
+| Rename or reprioritise project | `PATCH /api/projects/[id]` | `update_project` |
+| Delete project | `DELETE /api/projects/[id]` | `delete_project` |
+| Add mission (with steps) | `POST /api/projects/[id]/missions` | `create_mission` |
+| Rename mission | `PATCH /api/missions/[id]` | `rename_mission` |
+| Delete mission | `DELETE /api/missions/[id]` | `delete_mission` |
+| Add step | `POST /api/missions/[id]/steps` | `add_step` |
+| Rename step | `PATCH /api/actions/[id]` | `rename_step` |
+| Delete step | `DELETE /api/actions/[id]` | `delete_step` |
+
+- **Database:** the functions are in `22_manage_work.sql`. Signed-in users still have no direct write
+  access to these tables; these functions are the only way in.
+  - Each function acts only on the caller's own rows. Someone else's row and a missing one both
+    answer 404, so ids can't be probed.
+  - Limits per account: 100 projects per workspace, 500 missions per project, 50 steps per mission.
+  - Adding a step to a Completed mission makes it Running again. Deleting the last open step
+    completes it.
+- **API:** `src/lib/workspace/manage.ts` validates input and maps database errors:
+  - bad input is a 400 with the database's own message;
+  - a missing or foreign row is a 404;
+  - anything else is a generic 500, with the detail logged.
+
 ## Deploying
 
-Apply `20_onboarding.sql` and `21_mission_progress.sql` after 15 to 19. Without them,
-`/onboarding` reports "Could not set up your workspace" and the dashboard can't load or update steps.
+Apply `20_onboarding.sql`, `21_mission_progress.sql` and `22_manage_work.sql` after 15 to 19. Without
+them, `/onboarding` reports "Could not set up your workspace" and the dashboard can't load or change
+anything.
 
 ## Not included yet
 
@@ -52,3 +83,4 @@ Apply `20_onboarding.sql` and `21_mission_progress.sql` after 15 to 19. Without 
   doesn't offer them.
 - Inviting teammates.
 - Renaming the workspace after setup. The column exists, but there's no settings page for it yet.
+- Reordering missions or steps.

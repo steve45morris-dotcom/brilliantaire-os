@@ -1,32 +1,46 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { Plus } from 'lucide-react';
 import { Card } from '../../../components/ui/card';
-import { Badge } from '../../../components/ui/badge';
+import { Button } from '../../../components/ui/button';
 import { Spinner } from '../../../components/ui/spinner';
+import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard/confirm-delete';
+import { NewProjectForm } from '../../../components/dashboard/forms';
+import { ProjectSection, type ProjectActions } from '../../../components/dashboard/project-section';
 import { apiFetch } from '../../../lib/api/client';
 import type { MissionView, SetStepResult, WorkspaceOverview } from '../../../lib/workspace/overview';
 
-const STATUS_STYLE: Record<string, string> = {
-  Staged: 'bg-zinc-800 text-zinc-300 border-zinc-700',
-  Approved: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
-  Running: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
-  Completed: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
-  Skipped: 'bg-zinc-900 text-zinc-500 border-zinc-800',
-  Failed: 'bg-red-500/10 text-red-300 border-red-500/30',
-};
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 export default function DashboardPage() {
   const [overview, setOverview] = useState<WorkspaceOverview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState<Set<string>>(new Set());
+  const [addingProject, setAddingProject] = useState(false);
+  const [confirming, setConfirming] = useState<PendingDelete | null>(null);
+
+  const refresh = useCallback(async () => {
+    const res = await apiFetch<WorkspaceOverview>('/api/workspace');
+    if (res.success && res.data) setOverview(res.data);
+    else setError(res.error?.message ?? 'Could not load your workspace');
+  }, []);
 
   useEffect(() => {
-    apiFetch<WorkspaceOverview>('/api/workspace').then((res) => {
-      if (res.success && res.data) setOverview(res.data);
-      else setError(res.error?.message ?? 'Could not load your workspace');
-    });
-  }, []);
+    void refresh();
+  }, [refresh]);
+
+  /** Sends one change, then reloads the workspace. Returns whether it worked. */
+  async function send(method: 'POST' | 'PATCH' | 'DELETE', url: string, body?: object): Promise<boolean> {
+    setError(null);
+    const res = await apiFetch(url, { method, body: body ? JSON.stringify(body) : undefined });
+    if (!res.success) {
+      setError(res.error?.message ?? 'Could not save your change');
+      return false;
+    }
+    await refresh();
+    return true;
+  }
 
   function updateMission(missionId: string, change: (m: MissionView) => MissionView) {
     setOverview((prev) => {
@@ -48,18 +62,19 @@ export default function DashboardPage() {
     });
   }
 
-  function setStep(mission: MissionView, stepId: string, completedAt: string | null) {
-    updateMission(mission.id, (m) => {
+  function setStep(missionId: string, stepId: string, completedAt: string | null) {
+    updateMission(missionId, (m) => {
       const steps = m.steps.map((s) => (s.id === stepId ? { ...s, completedAt } : s));
       return { ...m, steps, stepsDone: steps.filter((s) => s.completedAt).length };
     });
   }
 
+  // Ticks update the screen at once and roll back if saving fails.
   async function toggleStep(mission: MissionView, stepId: string, completed: boolean) {
     const before = mission.steps.find((s) => s.id === stepId)?.completedAt ?? null;
     setError(null);
     setPending((p) => new Set(p).add(stepId));
-    setStep(mission, stepId, completed ? new Date().toISOString() : null);
+    setStep(mission.id, stepId, completed ? new Date().toISOString() : null);
 
     const res = await apiFetch<SetStepResult>('/api/actions/complete', {
       method: 'POST',
@@ -67,10 +82,10 @@ export default function DashboardPage() {
     });
     if (res.success && res.data) {
       const result = res.data;
-      setStep(mission, stepId, result.completed_at);
+      setStep(mission.id, stepId, result.completed_at);
       updateMission(mission.id, (m) => ({ ...m, status: result.mission_status }));
     } else {
-      setStep(mission, stepId, before);
+      setStep(mission.id, stepId, before);
       setError(res.error?.message ?? 'Could not update the step');
     }
     setPending((p) => {
@@ -79,6 +94,35 @@ export default function DashboardPage() {
       return next;
     });
   }
+
+  const actions: ProjectActions = {
+    toggleStep: (mission, stepId, completed) => void toggleStep(mission, stepId, completed),
+    renameProject: (id, name) => send('PATCH', `/api/projects/${id}`, { name }),
+    setPriority: (id, priority) => send('PATCH', `/api/projects/${id}`, { priority }),
+    deleteProject: (project) =>
+      setConfirming({
+        title: `Delete “${project.name}”?`,
+        message:
+          project.missions.length > 0
+            ? `This also deletes its ${plural(project.missions.length, 'mission')} and their steps. It can't be undone.`
+            : "It can't be undone.",
+        run: () => send('DELETE', `/api/projects/${project.id}`),
+      }),
+    createMission: (projectId, name, steps) => send('POST', `/api/projects/${projectId}/missions`, { name, steps }),
+    renameMission: (id, name) => send('PATCH', `/api/missions/${id}`, { name }),
+    deleteMission: (mission) =>
+      setConfirming({
+        title: `Delete “${mission.name}”?`,
+        message:
+          mission.steps.length > 0
+            ? `This also deletes its ${plural(mission.steps.length, 'step')}. It can't be undone.`
+            : "It can't be undone.",
+        run: () => send('DELETE', `/api/missions/${mission.id}`),
+      }),
+    addStep: (missionId, text) => send('POST', `/api/missions/${missionId}/steps`, { text }),
+    renameStep: (stepId, text) => send('PATCH', `/api/actions/${stepId}`, { text }),
+    deleteStep: (step) => send('DELETE', `/api/actions/${step.id}`),
+  };
 
   if (!overview) {
     return (
@@ -93,15 +137,26 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-100">{workspace?.name ?? 'Dashboard'}</h1>
-        <p className="text-zinc-500 text-sm">
-          {totals.projects} project{totals.projects === 1 ? '' : 's'} · {totals.activeMissions} active mission
-          {totals.activeMissions === 1 ? '' : 's'} · {totals.stepsDone} of {totals.steps} steps done
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">{workspace?.name ?? 'Dashboard'}</h1>
+          <p className="text-zinc-500 text-sm">
+            {plural(totals.projects, 'project')} · {plural(totals.activeMissions, 'active mission')} · {totals.stepsDone} of{' '}
+            {totals.steps} steps done
+          </p>
+        </div>
+        {workspace && !addingProject && (
+          <Button className="inline-flex items-center gap-1.5" onClick={() => setAddingProject(true)}>
+            <Plus size={16} /> New project
+          </Button>
+        )}
       </div>
 
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-red-400">
+          {error}
+        </p>
+      )}
 
       {!workspace && (
         <Card className="flex flex-col items-start gap-3">
@@ -110,72 +165,27 @@ export default function DashboardPage() {
         </Card>
       )}
 
+      {addingProject && (
+        <NewProjectForm
+          onCreate={(name, priority) => send('POST', '/api/projects', { name, priority })}
+          onCancel={() => setAddingProject(false)}
+        />
+      )}
+
+      {workspace && projects.length === 0 && !addingProject && (
+        <Card className="border-dashed text-sm text-zinc-500">
+          No projects yet.{' '}
+          <button type="button" onClick={() => setAddingProject(true)} className="text-pink-400 hover:underline">
+            Add your first
+          </button>
+        </Card>
+      )}
+
       {projects.map((project) => (
-        <section key={project.id} className="flex flex-col gap-3" aria-label={project.name}>
-          <div className="flex items-center gap-2">
-            <h2 className="text-lg font-semibold text-zinc-100">{project.name}</h2>
-            <Badge>{project.priority}</Badge>
-          </div>
-
-          {project.missions.length === 0 && (
-            <Card className="border-dashed text-sm text-zinc-500">No missions in this project yet.</Card>
-          )}
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {project.missions.map((mission) => (
-              <Card key={mission.id} className="flex flex-col gap-3">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex flex-col gap-0.5 min-w-0">
-                    <span className="font-semibold text-zinc-100">{mission.name}</span>
-                    <span className="text-xs text-zinc-500">{mission.sprintName}</span>
-                  </div>
-                  <span
-                    className={`shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${STATUS_STYLE[mission.status] ?? STATUS_STYLE.Staged}`}
-                  >
-                    {mission.status}
-                  </span>
-                </div>
-
-                {mission.steps.length > 0 && (
-                  <>
-                    <div
-                      className="h-1.5 rounded bg-zinc-800 overflow-hidden"
-                      role="progressbar"
-                      aria-label={`${mission.name} progress`}
-                      aria-valuemin={0}
-                      aria-valuemax={mission.steps.length}
-                      aria-valuenow={mission.stepsDone}
-                    >
-                      <div
-                        className="h-full bg-pink-500 transition-all"
-                        style={{ width: `${(mission.stepsDone / mission.steps.length) * 100}%` }}
-                      />
-                    </div>
-                    <ul className="flex flex-col gap-2">
-                      {mission.steps.map((step) => (
-                        <li key={step.id}>
-                          <label className="flex items-start gap-2 text-sm cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="mt-0.5"
-                              checked={Boolean(step.completedAt)}
-                              disabled={pending.has(step.id)}
-                              onChange={(e) => toggleStep(mission, step.id, e.target.checked)}
-                            />
-                            <span className={step.completedAt ? 'text-zinc-500 line-through' : 'text-zinc-300'}>
-                              {step.command}
-                            </span>
-                          </label>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </Card>
-            ))}
-          </div>
-        </section>
+        <ProjectSection key={project.id} project={project} pendingSteps={pending} actions={actions} />
       ))}
+
+      <ConfirmDelete pending={confirming} onClose={() => setConfirming(null)} />
     </div>
   );
 }
