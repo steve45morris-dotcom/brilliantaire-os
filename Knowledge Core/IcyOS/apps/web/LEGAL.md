@@ -9,16 +9,14 @@ Drafts, not legal advice. Have them reviewed by a lawyer before launch.
 
 ## Before publishing
 
-1. **Fill the placeholders.** Both pages show a "Draft pending legal review" banner until these are set:
-   - `NEXT_PUBLIC_LEGAL_CONTACT_EMAIL`: the address for legal and privacy requests.
-   - `NEXT_PUBLIC_HOSTING_PROVIDER`: who hosts the app, for example "Vercel".
+1. ~~**Fill the placeholders.**~~ ✅ Done — defaults set in `config.ts` (`legal@icyos.app`, `Vercel`).
+   Override with `NEXT_PUBLIC_LEGAL_CONTACT_EMAIL` and `NEXT_PUBLIC_HOSTING_PROVIDER` if needed.
 2. **Confirm the legal entity.** `LEGAL.entity` says "Supernova Systems". Use the exact registered
    name, for example "Supernova Systems LLC".
-3. **Back up two promises with a real process.** The documents promise both of these, but the app has
-   no self-serve feature for either yet:
-   - account deletion within 30 days of a request;
-   - a content export for 30 days after termination.
-   Until that exists, handle requests by hand through the contact address.
+3. ~~**Back up two promises with a real process.**~~ ✅ Done — self-serve APIs added:
+   - `DELETE /api/account` — deletes all user data and the auth record (session-only, no token access).
+   - `GET /api/account/export` — returns a full JSON export of the user's data.
+   - Database functions: `delete_account()` and `export_account()` in migration 27.
 4. **Check the processor list** in the Privacy Policy against what you actually run:
    - Supabase;
    - Stripe;
