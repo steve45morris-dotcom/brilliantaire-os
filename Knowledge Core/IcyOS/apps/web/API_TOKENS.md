@@ -19,6 +19,13 @@ A token can only reach these routes, as its owner:
 | `POST /api/actions/complete` | Tick or un-tick a step |
 | `POST /api/inbox/sort` | Turn a brain-dump into proposed missions (saves nothing) |
 | `POST /api/inbox/add` | Add reviewed missions, all at once |
+| `GET /api/timeline?date=` | The day's saved plan |
+| `POST /api/timeline/propose` | Propose a plan for a working window (saves nothing) |
+| `POST /api/timeline/save` | Save or replace the day's plan |
+| `GET /api/focus` | The running focus session and the missions to focus on |
+| `POST /api/focus/start` | Start a focus session on a mission |
+| `POST /api/focus/[id]` | Pause, resume or finish a focus session |
+| `GET`/`POST /api/review` | The day's stats and reflection; save the reflection |
 
 Anything else answers as if the request were signed out. That includes billing, onboarding, settings,
 token management and the older placeholder routes. So a leaked token can't create more tokens or

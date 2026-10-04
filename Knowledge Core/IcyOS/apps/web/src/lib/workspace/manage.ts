@@ -51,7 +51,9 @@ export async function callWorkFunction(
   req: Request,
   fn: string,
   args: Record<string, unknown>,
-  successStatus = 200
+  successStatus = 200,
+  /** Reshapes the function's result for the client. */
+  map: (data: unknown) => unknown = (data) => data
 ): Promise<NextResponse> {
   const auth = await authenticateRequest(req);
   if (auth instanceof NextResponse) return auth;
@@ -64,5 +66,5 @@ export async function callWorkFunction(
     console.error(`${fn} failed:`, error.message);
     return errorResponse('internal_error', 'Could not save your change. Please try again.', null, 500);
   }
-  return jsonResponse(data, successStatus);
+  return jsonResponse(map(data), successStatus);
 }

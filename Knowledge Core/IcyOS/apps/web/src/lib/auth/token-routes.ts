@@ -19,6 +19,13 @@ const TOKEN_ROUTES: RegExp[] = [
   /^\/api\/actions\/complete$/,
   /^\/api\/inbox\/sort$/,
   /^\/api\/inbox\/add$/,
+  /^\/api\/timeline$/,
+  /^\/api\/timeline\/propose$/,
+  /^\/api\/timeline\/save$/,
+  /^\/api\/focus$/,
+  /^\/api\/focus\/start$/,
+  new RegExp(`^/api/focus/${UUID}$`),
+  /^\/api\/review$/,
 ];
 
 export const TOKEN_PREFIX = 'icy_';

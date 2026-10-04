@@ -57,7 +57,7 @@ describe('Rate Limiting', () => {
 
   it('should classify routes into tiers', () => {
     expect(resolveTier('/api/briefings/generate', 'POST')).toBe('ai');
-    expect(resolveTier('/api/timelines/regenerate', 'POST')).toBe('ai');
+    expect(resolveTier('/api/inbox/sort', 'POST')).toBe('ai');
     expect(resolveTier('/api/missions/create', 'POST')).toBe('write');
     expect(resolveTier('/api/missions/create', 'GET')).toBe('read');
   });
