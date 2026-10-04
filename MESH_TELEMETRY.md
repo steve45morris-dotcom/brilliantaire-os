@@ -65,6 +65,7 @@ The engine dynamically compiles statistics by scanning files within:
 16. `outputs/live_microphone_audio_streamer/logs/` & `outputs/live_microphone_audio_streamer/daemon_configs/` — Tracking live microphone audio streamer daemon expansion configuration staging, model scanning, pipeline validation, and stream simulation parameters.
 17. `outputs/obsidian_sync_layer/logs/` & `outputs/obsidian_sync_layer/sync_manifests/` — Tracking Obsidian sync layer unified vault sync orchestration, module export discovery, sync manifest compilation, route previewing, and vault health diagnostics.
 18. `outputs/tree_groove_release_pipeline/logs/` & `outputs/tree_groove_release_pipeline/release_packages/` — Tracking Tree Groove Records release pipeline orchestration, release packaging, quality gate evaluation, metadata validation, platform submission staging, and pipeline reporting.
+19. `outputs/system_diagnostics/logs/` & `outputs/system_diagnostics/test_reports/` — Tracking system diagnostics runner test suite execution, module config health audits, command registry integrity checks, integration status scans, and comprehensive codebase health reports.
 
 ---
 

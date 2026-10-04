@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T20:40:23.218Z",
+  "generatedAt": "2026-10-04T22:03:28.019Z",
   "items": [
     {
       "code": "LIVE_ROUTE_UNDOCUMENTED",
@@ -214,9 +214,9 @@
     {
       "code": "BROKEN_INTERNAL_LINK",
       "severity": "medium",
-      "subject": "file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts",
+      "subject": "file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts",
       "document": "COMMANDS.md",
-      "message": "Internal link file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts does not resolve."
+      "message": "Internal link file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts does not resolve."
     }
   ],
   "summary": {
@@ -228,7 +228,7 @@
   "coverage": {
     "documentsScanned": 1,
     "routeFilesScanned": 3,
-    "packageCommandsScanned": 383,
+    "packageCommandsScanned": 385,
     "checksRun": [
       "routes",
       "commands",

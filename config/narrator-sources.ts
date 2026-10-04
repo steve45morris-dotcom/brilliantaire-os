@@ -28,7 +28,8 @@ export const APPROVED_SOURCES = [
   "outputs/micro_product_tree_groove/logs/",
   "outputs/live_microphone_audio_streamer/logs/",
   "outputs/obsidian_sync_layer/logs/",
-  "outputs/tree_groove_release_pipeline/logs/"
+  "outputs/tree_groove_release_pipeline/logs/",
+  "outputs/system_diagnostics/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

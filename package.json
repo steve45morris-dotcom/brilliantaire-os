@@ -387,7 +387,9 @@
     "obsidian-sync-layer": "tsx scripts/obsidian-sync-layer.ts",
     "obsidian-sync-layer-help": "tsx scripts/obsidian-sync-layer-help.ts",
     "tree-groove-release-pipeline": "tsx scripts/tree-groove-release-pipeline.ts",
-    "tree-groove-release-pipeline-help": "tsx scripts/tree-groove-release-pipeline-help.ts"
+    "tree-groove-release-pipeline-help": "tsx scripts/tree-groove-release-pipeline-help.ts",
+    "system-diagnostics": "tsx scripts/system-diagnostics-runner.ts",
+    "system-diagnostics-help": "tsx scripts/system-diagnostics-runner-help.ts"
   },
   "keywords": [
     "antigravity",

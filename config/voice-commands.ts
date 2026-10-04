@@ -314,5 +314,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'run system diagnostics',
+    normalizedCommand: 'run system diagnostics',
+    routerCommand: 'system-diagnostics diagnostics-report',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show diagnostics help',
+    normalizedCommand: 'show diagnostics help',
+    routerCommand: 'system-diagnostics-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];
