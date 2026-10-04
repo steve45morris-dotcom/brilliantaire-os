@@ -37,5 +37,7 @@ Execute the safety gates and routers from the terminal using the standard worksp
 | `npm run sentinel:knowledge-router` | Allocates directories and logs staging boundaries | `reports/knowledge_intake/knowledge_intake_router_status_*.md` |
 | `npm run sentinel:safety-report` | Aggregates all safety sub-logs into a unified brief | `reports/sentinel_safety/sentinel_safety_summary_*.md` |
 
+The CIP checks read the standalone sentinel-os checkout (this repo no longer tracks a copy of it). They look in `SENTINEL_OS_ROOT` when it is set, otherwise in `~/sentinel-os`.
+
 ---
 *Authorized by Chief Systems Architect under One System Governance Protocol.*

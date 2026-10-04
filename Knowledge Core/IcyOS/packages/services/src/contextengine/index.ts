@@ -25,8 +25,8 @@ export class ContextEngine {
     }
 
     const context: MissionContext = {
-      notes: ['Obsidian: IcyOS Phase 2 Plan', 'Obsidian: Lagos Street Code Lyrical pack'],
-      calendar_events: ['Sync with Tree Groove Records at 14:00'],
+      notes: ['Obsidian: IcyOS Phase 2 Plan', 'Obsidian: Lyric Pack Draft'],
+      calendar_events: ['Label sync at 14:00'],
       files: ['packages/services/src/index.ts', 'apps/web/package.json'],
       recent_decisions: ['DEC-SP15-01: Unified AI provider interface', 'DEC-AR-01: Service DI parameters'],
       learning_signals: ['Win: Passed all compilation checks', 'Blocker: Timezone mismatch solved'],

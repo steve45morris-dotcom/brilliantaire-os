@@ -43,7 +43,7 @@ test.describe('Founder Daily Workflow', () => {
     await inputArea.fill('Test inbox capture from E2E: review quarterly OKRs');
 
     // Find and click the capture/submit button
-    const captureButton = page.locator('button').filter({ hasText: /capture|submit|send/i }).first();
+    const captureButton = page.locator('button').filter({ hasText: /sort|capture|submit|send/i }).first();
     if (await captureButton.isVisible()) {
       await captureButton.click();
       // Wait for processing (loading state or result)
@@ -51,49 +51,21 @@ test.describe('Founder Daily Workflow', () => {
     }
   });
 
-  test('should generate a daily timeline', async ({ page }) => {
+  test('should offer to plan the day', async ({ page }) => {
     await page.goto('/timeline');
     await expect(page.locator('h1')).toContainText('Timeline');
-
-    // Find the generate button
-    const generateButton = page.locator('button').filter({ hasText: /generate/i }).first();
-    if (await generateButton.isVisible()) {
-      await generateButton.click();
-      // Wait for timeline generation
-      await page.waitForTimeout(2000);
-    }
+    await expect(page.getByRole('button', { name: /plan/i }).first()).toBeVisible();
   });
 
-  test('should display the timeline approval panel', async ({ page }) => {
-    await page.goto('/timeline');
-    await expect(page.locator('h1')).toContainText('Timeline');
-
-    // Check for approval controls (approve/reject buttons may appear after generation)
-    const approveButton = page.locator('button').filter({ hasText: /approve/i }).first();
-    const rejectButton = page.locator('button').filter({ hasText: /reject/i }).first();
-
-    // These may or may not be visible depending on timeline state
-    // We verify the page structure is correct
-    await expect(page.locator('h1')).toBeVisible();
-  });
-
-  test('should navigate to focus session page', async ({ page }) => {
+  test('should navigate to focus page', async ({ page }) => {
     await page.goto('/focus');
     await expect(page.locator('h1')).toContainText('Focus');
-
-    // Verify focus session card is rendered
-    await expect(page.locator('[class*="card"], [class*="Card"], main')).toBeVisible();
   });
 
   test('should navigate to review page and see reflection form', async ({ page }) => {
     await page.goto('/review');
-    await expect(page.locator('h1')).toContainText('Reflection');
+    await expect(page.locator('h1')).toContainText('Review');
 
-    // Verify the score slider or rating component exists
-    const reviewContainer = page.locator('main, [class*="flex"]').first();
-    await expect(reviewContainer).toBeVisible();
-
-    // Check for text reflection area
     const textarea = page.locator('textarea').first();
     if (await textarea.isVisible()) {
       await textarea.fill('E2E test reflection: session was productive');
@@ -115,22 +87,23 @@ test.describe('Founder Daily Workflow', () => {
     const health = await page.request.get('/api/health');
     expect(health.ok()).toBe(true);
 
-    // Timeline generation (POST)
-    const timeline = await page.request.post('/api/timelines/generate', {
-      data: { date: new Date().toISOString().split('T')[0] },
+    // Day plan proposal (POST)
+    const now = new Date();
+    const timeline = await page.request.post('/api/timeline/propose', {
+      data: { date: now.toISOString().split('T')[0], start: now.toISOString(), end: new Date(now.getTime() + 4 * 3600_000).toISOString() },
     });
     // Expect 200 or 400 (validation) — not 500
     expect(timeline.status()).toBeLessThan(500);
 
     // Inbox capture (POST)
-    const inbox = await page.request.post('/api/inbox/capture', {
-      data: { text: 'E2E test capture' },
+    const inbox = await page.request.post('/api/inbox/sort', {
+      data: { text: 'E2E test: email the printer' },
     });
     expect(inbox.status()).toBeLessThan(500);
 
-    // Session start (POST)
-    const session = await page.request.post('/api/sessions/start', {
-      data: { missionId: 'test-mission' },
+    // Focus session start (POST)
+    const session = await page.request.post('/api/focus/start', {
+      data: { missionId: '00000000-0000-4000-8000-000000000000' },
     });
     expect(session.status()).toBeLessThan(500);
   });

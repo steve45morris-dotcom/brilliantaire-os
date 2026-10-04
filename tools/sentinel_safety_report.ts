@@ -4,13 +4,14 @@
 import fs from "node:fs/promises";
 import fsSync from "node:fs";
 import path from "node:path";
+import { sentinelOsRoot } from "../config/sentinel_os_root";
 
 async function generateSummary() {
   const today = new Date().toISOString().slice(0, 10);
   const baseDir = process.cwd();
 
   // Define input report paths
-  const cipReportPath = path.join(baseDir, "sentinel-os", "cip_audit_report.md");
+  const cipReportPath = path.join(sentinelOsRoot(), "cip_audit_report.md");
   const tunnelLogPath = path.join(baseDir, "reports", "tunnel_sessions", `tunnel_session_log_${today}.md`);
   const voiceRegistryPath = path.join(baseDir, "reports", "voice_dispatch", "voice_risk_registry.md");
   const safetyGatePath = path.join(baseDir, "reports", "sentinel_safety", `sentinel_safety_gate_${today}.md`);

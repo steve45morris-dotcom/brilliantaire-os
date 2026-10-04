@@ -25,7 +25,7 @@
 
 /*
 
-# --- Re-allowed project directories (the 25 with tracked content) ---
+# --- Re-allowed project directories (the 24 with tracked content) ---
 !/.agents/
 !/bin/
 !/brilliantaire-briefs/
@@ -33,13 +33,14 @@
 !/dashboard/
 !/docs/
 !/hooks/
+!/inputs/
 !/Knowledge Core/
+!/.github/
 !/orchestrator/
 !/outputs/
 !/reports/
 !/scratch/
 !/scripts/
-!/sentinel-os/
 !/skills/
 !/src/
 !/staging/
@@ -105,9 +106,6 @@ outputs/narrator/tts_queue/bin/
 *.tar.gz
 test.wav
 .zsh_secrets
-
-# Next.js build output
-sentinel-os/.next/
 
 # Quarantine storage
 .quarantine/
@@ -188,3 +186,4 @@ Public/
 .local/
 .vscode/
 .idea/
+.claude/worktrees/

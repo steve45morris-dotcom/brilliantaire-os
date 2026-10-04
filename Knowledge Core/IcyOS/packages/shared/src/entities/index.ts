@@ -12,6 +12,7 @@ export interface User {
 export interface Workspace {
   readonly id: UUID;
   user_id: UUID;
+  name?: string | null;
   root_path: string;
   created_at: Timestamp;
   updated_at: Timestamp;
@@ -39,6 +40,8 @@ export interface Action {
   readonly id: UUID;
   mission_id: UUID;
   command: string;
+  position?: number;
+  completed_at?: Timestamp | null;
   created_at: Timestamp;
 }
 

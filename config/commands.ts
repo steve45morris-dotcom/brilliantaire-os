@@ -10,6 +10,15 @@ export interface CommandDefinition {
   requiresExactName: boolean;
 }
 
+/**
+ * P.J.K. (sentinel-os, lib/pjk-toolbox.ts) reads this file as text, not as
+ * code. Each entry must stay a flat object literal: quoted string values, an
+ * inline aliases array and literal true/false flags. Bump this number when that
+ * shape changes, and P.J.K. will stop instead of misreading the registry.
+ * config/commands.contract.test.ts checks the shape.
+ */
+export const COMMAND_REGISTRY_FORMAT_VERSION = 1;
+
 export const COMMAND_REGISTRY: CommandDefinition[] = [
   {
     name: 'audit',
@@ -126,6 +135,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     aliases: ['render intake', 'episode render'],
     description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation subcommands',
     npmScript: 'icyflamze-core-episode-1-render-intake',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'render-intake-help',
+    aliases: ['render intake manual help', 'manual render help'],
+    description: 'Print available commands for the Episode 1 Manual Render Intake system',
+    npmScript: 'render-intake-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'render-intake',
+    aliases: ['manual render intake', 'render scan'],
+    description: 'Execute Episode 1 Manual Render Intake scan, validate, and readiness subcommands',
+    npmScript: 'render-intake',
     owningAgent: 'Creative Architect',
     riskLevel: 'medium',
     outputType: 'files',
@@ -3750,6 +3781,160 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     description: 'Execute Local Inference Server Bridge commands (chat staging, health check, MCP config)',
     npmScript: 'local-inference',
     owningAgent: 'Prompt Engineer',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-human-approval-selection-packet-help',
+    aliases: ['asr approval help', 'asr selection help'],
+    description: 'Print help menu for offline ASR human approval selection packet',
+    npmScript: 'asr-human-approval-selection-packet-help',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-human-approval-selection-packet',
+    aliases: ['asr approval', 'asr selection'],
+    description: 'Stage and manage offline ASR candidate evaluation, model selection, and human approval decisions',
+    npmScript: 'asr-human-approval-selection-packet',
+    owningAgent: 'Workflow Auditor',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification-help',
+    aliases: ['zk webhook help', 'zkw help'],
+    description: 'Print help menu for Zero-Knowledge Webhook Transaction Verification Proofs',
+    npmScript: 'zk-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'zk-webhook-verification',
+    aliases: ['zk webhook', 'zkw'],
+    description: 'Compile and verify ZK proofs for webhook transaction payloads under strict offline safety constraints',
+    npmScript: 'zk-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector-help',
+    aliases: ['micro product help', 'tree groove connector help'],
+    description: 'Print help menu for the Micro-Product Factory Tree Groove Records Connector',
+    npmScript: 'micro-product-tree-groove-connector-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'micro-product-tree-groove-connector',
+    aliases: ['micro product connector', 'tree groove connector'],
+    description: 'Bridge micro-product factory ledger entries to Tree Groove Records release catalog with offline staging',
+    npmScript: 'micro-product-tree-groove-connector',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification-help',
+    aliases: ['stripe webhook help', 'swv help'],
+    description: 'Print help menu for Stripe Webhook Signature Verification Gate',
+    npmScript: 'stripe-webhook-verification-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'stripe-webhook-verification',
+    aliases: ['stripe webhook', 'swv'],
+    description: 'Stage and manage Stripe webhook signature verification transition from mock to live',
+    npmScript: 'stripe-webhook-verification',
+    owningAgent: 'Build Operator',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'live-microphone-audio-streamer-help',
+    aliases: ['audio streamer help', 'lmas help'],
+    description: 'Print help menu for Live Microphone Audio Streamer Daemon Expansion',
+    npmScript: 'live-microphone-audio-streamer-help',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'live-microphone-audio-streamer',
+    aliases: ['audio streamer', 'lmas'],
+    description: 'Stage and manage live microphone audio streamer daemon expansion with local audio processing models',
+    npmScript: 'live-microphone-audio-streamer',
+    owningAgent: 'Creative Architect',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'obsidian-sync-layer-help',
+    aliases: ['obsidian sync help', 'osl help'],
+    description: 'Print help menu for the Obsidian Sync Layer unified vault sync orchestration CLI',
+    npmScript: 'obsidian-sync-layer-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'obsidian-sync-layer',
+    aliases: ['obsidian sync', 'osl'],
+    description: 'Scan module exports, compile sync manifests, preview vault routing, and report sync health for Obsidian integration',
+    npmScript: 'obsidian-sync-layer',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'tree-groove-release-pipeline-help',
+    aliases: ['release pipeline help', 'tgrp help'],
+    description: 'Print help menu for the Tree Groove Records Release Pipeline CLI',
+    npmScript: 'tree-groove-release-pipeline-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'tree-groove-release-pipeline',
+    aliases: ['release pipeline', 'tgrp'],
+    description: 'Orchestrate release packaging, quality gates, metadata validation, platform submission staging, and pipeline reporting for Tree Groove Records',
+    npmScript: 'tree-groove-release-pipeline',
+    owningAgent: 'Creative Revenue Strategist',
     riskLevel: 'medium',
     outputType: 'files',
     enabled: true,

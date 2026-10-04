@@ -20,7 +20,7 @@
 config/          # Command registry, workflow configs (commands.ts is 3,717 lines)
 scripts/         # 208+ TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
-sentinel-os/     # Mesh layer, multi-tenant SaaS backend
+sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
 orchestrator/    # Phase-based orchestration engine
 Knowledge Core/  # IcyOS monorepo (Next.js, 6 packages, Supabase)
 dashboard/       # Vite React dashboard
@@ -52,11 +52,32 @@ npm run command    # Safe command router
 - VNP (Voice Narrative Protocol) for task announcements
 - Preview Handoff Rule: build production artifacts, no ephemeral localhost
 
+## Adding API Keys
+
+When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him the one command below. Never ask him to paste a key into chat.
+
+- **Command:** `pjkkey KEY_NAME`, for example `pjkkey STRIPE_SECRET_KEY`. It's installed in `~/.zshrc`.
+  - It prompts with hidden input, so the key never shows on screen or in shell history.
+  - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
+- **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
+- **If `pjkkey` is missing** (a new Mac or a fresh shell config): give him the install snippet in `docs/PJKKEY.md`.
+
 ## Security Notes
 
-- `sentinel-os/lib/mesh_layer.ts` has SQL injection vulnerabilities (string interpolation) — must be fixed before any client deployment
-- No authentication layer exists yet — required before SaaS launch
-- MIT license is currently on IP intended for commercial sale — needs relicensing
+- **`sentinel-os` lives in its own repo:** `steve45morris-dotcom/sentinel-os`, checked out at `~/sentinel-os`. That is also where P.J.K. lives (`/pjk`).
+  - **This repo no longer tracks `sentinel-os/`.** Because this repo is rooted at `$HOME`, `~/sentinel-os` is that standalone checkout; it used to be tracked here too as a stale snapshot (38 files from around August 2026). It was untracked in October 2026 and the folder now falls under the deny-by-default root ignore, so nothing in it is picked up by this repo. Make sentinel-os changes in the standalone repo.
+  - **Pulling this change on the Mac** removes the 38 files from this repo's index only; `git` leaves the working files alone because they are untracked afterwards, and `~/sentinel-os` stays a valid checkout of its own repo.
+  - **Tools that read it** (`tools/sentinel_safety_gate.ts`, `tools/sentinel_safety_report.ts`) find the checkout through `SENTINEL_OS_ROOT`, default `~/sentinel-os` (`config/sentinel_os_root.ts`).
+  - **SQL:** the standalone repo uses bound parameters for every statement (commit `170c829`, 2026-09-17).
+  - **Access model:** local-only and single-operator by design, with no login. `proxy.ts` refuses non-localhost hosts and cross-site requests. Add real authentication before exposing it beyond localhost.
+  - **Not in the real app:** the Supabase login, roles and rate limiting in this repo's snapshot (#6) were added to the stale copy only.
+- **Authentication:**
+  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/src/middleware.ts` (#4). Next.js only loads middleware from `src/` when the app lives in `src/`; it sat at `apps/web/middleware.ts` until October 2026 and never ran.
+  - **`sentinel-os`:** none by design. It is local-only (see above).
+- **Rate limiting (IcyOS):** `/api/*` is limited per IP (300/min, checked before auth) and per user, by tier.
+  - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
+  - **Limitation:** counters are in memory, one set per server instance. Use a shared store (e.g. Redis) before running more than one instance.
+- **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
 ## Installed Tools
 
@@ -100,5 +121,5 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 - Push to `main` without explicit approval
 - Bypass the Safe Command Router
 - Expose `.env*` or `mcp_secrets/` contents
-- Deploy `sentinel-os/` without fixing SQL injection
+- Re-track `sentinel-os/` here or edit it as part of this repo: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
 - Treat agent role documents (AGENTS.md) as running code — they are conceptual
