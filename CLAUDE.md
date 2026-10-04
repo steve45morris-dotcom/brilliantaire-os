@@ -40,6 +40,8 @@ npm run audit      # Run system audit
 npm run command    # Safe command router
 ```
 
+CI (`.github/workflows/ci.yml`) runs `npm test` on every pull request and push to `main`, with the P.J.K. command-registry contract as its own step. `npm run build` (`tsc`) is not in CI yet: it has failed since Phase 15A because `src/` imports `ws`, `uuid` and `react` without declaring them. Fix that before adding a typecheck step.
+
 ## Safe Command Router
 
 `config/commands.ts` enforces whitelisted commands with `shell: false`, risk tiers L0-L4, and exact-name routing. All CLI execution routes through this — never bypass it with raw shell commands in production paths.
