@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Check, Copy, KeyRound } from 'lucide-react';
+import Link from 'next/link';
+import { Check, ChevronRight, Copy, CreditCard, KeyRound } from 'lucide-react';
 import { Card } from '../../../components/ui/card';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
@@ -100,6 +101,15 @@ export default function SettingsPage() {
         <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Settings</h1>
         <p className="text-zinc-500 text-sm">Account and connections.</p>
       </div>
+
+      <Link href="/billing" className="group">
+        <Card className="flex items-center justify-between gap-3 !py-4 group-hover:border-zinc-700 transition-colors">
+          <span className="flex items-center gap-2 text-sm font-semibold text-zinc-100">
+            <CreditCard size={18} /> Plan and billing
+          </span>
+          <ChevronRight size={18} className="text-zinc-500" />
+        </Card>
+      </Link>
 
       <Card className="flex flex-col gap-5">
         <div className="flex flex-col gap-1">
