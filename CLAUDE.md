@@ -72,7 +72,7 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
   - **Access model:** local-only and single-operator by design, with no login. `proxy.ts` refuses non-localhost hosts and cross-site requests. Add real authentication before exposing it beyond localhost.
   - **Not in the real app:** the Supabase login, roles and rate limiting in this repo's snapshot (#6) were added to the stale copy only.
 - **Authentication:**
-  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/middleware.ts` (#4).
+  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/src/middleware.ts` (#4). Next.js only loads middleware from `src/` when the app lives in `src/`; it sat at `apps/web/middleware.ts` until October 2026 and never ran.
   - **`sentinel-os`:** none by design. It is local-only (see above).
 - **Rate limiting (IcyOS):** `/api/*` is limited per IP (300/min, checked before auth) and per user, by tier.
   - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
