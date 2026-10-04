@@ -385,7 +385,9 @@
     "live-microphone-audio-streamer": "tsx scripts/live-microphone-audio-streamer.ts",
     "live-microphone-audio-streamer-help": "tsx scripts/live-microphone-audio-streamer-help.ts",
     "obsidian-sync-layer": "tsx scripts/obsidian-sync-layer.ts",
-    "obsidian-sync-layer-help": "tsx scripts/obsidian-sync-layer-help.ts"
+    "obsidian-sync-layer-help": "tsx scripts/obsidian-sync-layer-help.ts",
+    "tree-groove-release-pipeline": "tsx scripts/tree-groove-release-pipeline.ts",
+    "tree-groove-release-pipeline-help": "tsx scripts/tree-groove-release-pipeline-help.ts"
   },
   "keywords": [
     "antigravity",

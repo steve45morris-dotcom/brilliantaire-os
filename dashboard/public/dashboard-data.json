@@ -1,5 +1,5 @@
 {
-  "currentPhase": "Phase 22E: Obsidian Sync Layer — COMPLETE",
+  "currentPhase": "Phase 22F: Tree Groove Records Release Pipeline — COMPLETE",
   "activeCapabilities": [
     "**Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).",
     "**Build Pipeline:** Structured task runner via `Taskfile.yml`.",
@@ -128,7 +128,8 @@
     "**Zero-Knowledge Webhook Verification (Phase 22B):** Manual-first zero-knowledge proof compilation adapter (`scripts/zk-webhook-verification.ts`) compiling transaction proofs, generating integrity reports, auditing payloads, and verifying hash chains under the Build Operator. No live verification, no production payload access, offline proof compilation only.",
     "**Micro-Product Tree Groove Connector (Phase 22C):** Manual-first catalog mapping adapter (`scripts/micro-product-tree-groove-connector.ts`) scanning micro-products, mapping catalog entries, staging releases, and compiling distribution plans under the Creative Revenue Strategist. No ledger writes, no catalog publishing, manual approval enforced.",
     "**Live Microphone Audio Streamer Daemon Expansion (Phase 22D):** Manual-first audio streaming daemon expansion adapter (`scripts/live-microphone-audio-streamer.ts`) staging daemon configurations, scanning local audio processing models, validating pipeline connections, and simulating stream parameters under the Creative Architect. No live microphone, no daemon spawning, no audio streaming, human approval enforced.",
-    "**Obsidian Sync Layer (Phase 22E):** Manual-first unified vault sync orchestration layer (`scripts/obsidian-sync-layer.ts`) scanning 16 module export directories for Obsidian-ready files, compiling sync manifests, previewing vault routing across 20 prefix rules, and reporting sync health under the Knowledge Librarian. No direct vault writes, no auto sync, no vault deletion, human approval enforced."
+    "**Obsidian Sync Layer (Phase 22E):** Manual-first unified vault sync orchestration layer (`scripts/obsidian-sync-layer.ts`) scanning 16 module export directories for Obsidian-ready files, compiling sync manifests, previewing vault routing across 20 prefix rules, and reporting sync health under the Knowledge Librarian. No direct vault writes, no auto sync, no vault deletion, human approval enforced.",
+    "**Tree Groove Records Release Pipeline (Phase 22F):** Manual-first automated release pipeline orchestration (`scripts/tree-groove-release-pipeline.ts`) assembling release packages from connector catalog mappings, running 18 quality gate checks across technical/artwork/metadata/legal categories, validating metadata against 6 distribution platforms (Spotify, Apple Music, YouTube Music, SoundCloud, Bandcamp, TikTok), staging platform submissions with 6-phase timelines, and generating pipeline reports under the Creative Revenue Strategist. No live distribution, no auto submission, no external API calls, human approval enforced."
   ],
   "activeProjects": [
     "Icyflamze",

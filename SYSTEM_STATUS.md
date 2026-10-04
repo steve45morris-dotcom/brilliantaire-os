@@ -1,7 +1,7 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 22E: Obsidian Sync Layer — COMPLETE
+- **Current Phase:** Phase 22F: Tree Groove Records Release Pipeline — COMPLETE
 - **Last Verified:** 2026-07-27
 - **Build Status:** passing
 
@@ -86,6 +86,7 @@
 - **Operator Packet Completion Audit (Phase 11Z-L):** Local-first staging completion audit script checking disk asset presence, manifest properties configured with Whisper model details, and staged audio inputs discovery without command execution, model downloads, or audio transcription.
 - **ASR Verification Rerun Trigger Packet (Phase 11Z-M):** Local-first verification trigger packet generator checking staging completion audit state, checking precondition constraints, and formatting rerun command sequences or blockers sheets under strict safety rules.
 - **ASR Validation Chain Execution Report (Phase 11Z-N):** Local-first validation chain execution report script validating and compiling status of all validation gates, verifying safety parameters, and compiling a unified JSON manifest and master report under dry-run constraints.
+- **Tree Groove Records Release Pipeline (Phase 22F):** Manual-first automated release pipeline orchestration (`scripts/tree-groove-release-pipeline.ts`) assembling release packages from connector catalog mappings, running 18 quality gate checks across technical/artwork/metadata/legal categories, validating metadata against 6 distribution platforms (Spotify, Apple Music, YouTube Music, SoundCloud, Bandcamp, TikTok), staging platform submissions with 6-phase timelines, and generating pipeline reports under the Creative Revenue Strategist. No live distribution, no auto submission, no external API calls, human approval enforced.
 - **Offline ASR Execution Approval Switch (Phase 12A):** Human-controlled approval switch (`scripts/asr-offline-execution-approval-switch.ts`) authorizing selected local audio files for future offline ASR transcription under strict safety rules, keeping ASR execution disabled by default.
 - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
 - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.

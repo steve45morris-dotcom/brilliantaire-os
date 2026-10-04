@@ -27,7 +27,8 @@ export const APPROVED_SOURCES = [
   "outputs/zk_webhook_verification/logs/",
   "outputs/micro_product_tree_groove/logs/",
   "outputs/live_microphone_audio_streamer/logs/",
-  "outputs/obsidian_sync_layer/logs/"
+  "outputs/obsidian_sync_layer/logs/",
+  "outputs/tree_groove_release_pipeline/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

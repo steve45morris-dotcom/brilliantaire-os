@@ -3917,6 +3917,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'tree-groove-release-pipeline-help',
+    aliases: ['release pipeline help', 'tgrp help'],
+    description: 'Print help menu for the Tree Groove Records Release Pipeline CLI',
+    npmScript: 'tree-groove-release-pipeline-help',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'tree-groove-release-pipeline',
+    aliases: ['release pipeline', 'tgrp'],
+    description: 'Orchestrate release packaging, quality gates, metadata validation, platform submission staging, and pipeline reporting for Tree Groove Records',
+    npmScript: 'tree-groove-release-pipeline',
+    owningAgent: 'Creative Revenue Strategist',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
