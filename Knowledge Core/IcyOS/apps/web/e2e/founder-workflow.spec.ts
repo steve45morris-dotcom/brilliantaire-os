@@ -43,7 +43,7 @@ test.describe('Founder Daily Workflow', () => {
     await inputArea.fill('Test inbox capture from E2E: review quarterly OKRs');
 
     // Find and click the capture/submit button
-    const captureButton = page.locator('button').filter({ hasText: /capture|submit|send/i }).first();
+    const captureButton = page.locator('button').filter({ hasText: /sort|capture|submit|send/i }).first();
     if (await captureButton.isVisible()) {
       await captureButton.click();
       // Wait for processing (loading state or result)
@@ -123,8 +123,8 @@ test.describe('Founder Daily Workflow', () => {
     expect(timeline.status()).toBeLessThan(500);
 
     // Inbox capture (POST)
-    const inbox = await page.request.post('/api/inbox/capture', {
-      data: { text: 'E2E test capture' },
+    const inbox = await page.request.post('/api/inbox/sort', {
+      data: { text: 'E2E test: email the printer' },
     });
     expect(inbox.status()).toBeLessThan(500);
 

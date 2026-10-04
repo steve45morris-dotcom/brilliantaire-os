@@ -17,6 +17,8 @@ A token can only reach these routes, as its owner:
 | `POST /api/missions/[id]/steps` | Add a step |
 | `PATCH`/`DELETE /api/actions/[id]` | Rename or delete a step |
 | `POST /api/actions/complete` | Tick or un-tick a step |
+| `POST /api/inbox/sort` | Turn a brain-dump into proposed missions (saves nothing) |
+| `POST /api/inbox/add` | Add reviewed missions, all at once |
 
 Anything else answers as if the request were signed out. That includes billing, onboarding, settings,
 token management and the older placeholder routes. So a leaked token can't create more tokens or

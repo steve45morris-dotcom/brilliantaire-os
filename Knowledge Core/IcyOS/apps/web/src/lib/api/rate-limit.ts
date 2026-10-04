@@ -66,7 +66,7 @@ export const RATE_LIMIT_RULES = {
 export type RateLimitTier = 'ai' | 'write' | 'read';
 
 // Routes that invoke an AI provider and cost money per call.
-const AI_ROUTES = ['/api/briefings/generate', '/api/timelines/generate', '/api/timelines/regenerate'];
+const AI_ROUTES = ['/api/briefings/generate', '/api/timelines/generate', '/api/timelines/regenerate', '/api/inbox/sort'];
 
 // Health checks, and Stripe webhooks, which retry on 429 and arrive from shared IPs.
 const EXEMPT_ROUTES = ['/api/health', '/api/billing/webhook'];
