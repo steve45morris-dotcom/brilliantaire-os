@@ -6,9 +6,9 @@ Verifies that documentation files match implementation realities.
 ---
 
 ## 🧭 Sync Checklist
-- [ ] Was [Current State](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Current%20State.md) updated?
-- [ ] Was [Current Sprint](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Current%20Sprint.md) updated to reflect ticket state?
-- [ ] Were [Lessons Learned](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Lessons%20Learned.md) log entries compiled at session end?
+- [ ] Was [Current State](./11%20Memory/Current%20State.md) updated?
+- [ ] Was [Current Sprint](./99%20Command%20Center/Current%20Sprint.md) updated to reflect ticket state?
+- [ ] Were [Lessons Learned](./11%20Memory/Lessons%20Learned.md) log entries compiled at session end?
 
 ---
 

@@ -1,6 +1,6 @@
 # 📋 Voice Ops Daily Report: 2026-05-31
 *Generated Timestamp: 2026-06-01T07:53:37.811Z*
-*Project Root Workspace: /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os*
+*Project Root Workspace: ~/Projects/antigravity-lab/one-system/brilliantaire-os*
 *Report Target ID: voice_ops_report_2026-05-31*
 
 ---
@@ -47,7 +47,7 @@
 - **Active tracking stage state**: `Initialized`
 - **Scanned blocked events**: `36`
 - **Scanned safety anomalies**: `31`
-- **Lifecycle Markdown report file**: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_lifecycle_audit/reports/voice_command_lifecycle_report_2026-05-31_0801.md`
+- **Lifecycle Markdown report file**: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_lifecycle_audit/reports/voice_command_lifecycle_report_2026-05-31_0801.md`
 
 ---
 

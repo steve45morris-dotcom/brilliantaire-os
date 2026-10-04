@@ -10,7 +10,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Inputs:** Current roadmap, codebase directories, tech specifications.
 - **Outputs:** Architectural updates, file layout templates, boundaries review.
 - **Activation Trigger:** Adding a major subsystem or modifying system blueprints.
-- **Files Owned:** [BLUEPRINT.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/BLUEPRINT.md), [SYSTEM_STATUS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/SYSTEM_STATUS.md).
+- **Files Owned:** [BLUEPRINT.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/BLUEPRINT.md), [SYSTEM_STATUS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/SYSTEM_STATUS.md).
 - **Success Metric:** Zero architectural boundary violations or unplanned circular file mappings.
 - **Failure Mode:** System bloat, circular imports, or undocumented module overrides.
 - **Escalation Rule:** Notify User immediately if architectural dependencies break validation rules.
@@ -23,7 +23,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Inputs:** Workspace directory structure, file list, npm package audit logs.
 - **Outputs:** Space reports, duplication alerts, security recommendations.
 - **Activation Trigger:** Running `npm run audit` or modifying configuration packages.
-- **Files Owned:** Local audit reports, [SYSTEM_STATUS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/SYSTEM_STATUS.md).
+- **Files Owned:** Local audit reports, [SYSTEM_STATUS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/SYSTEM_STATUS.md).
 - **Success Metric:** 100% core files presence and verified folder counts during validation checks.
 - **Failure Mode:** Stale backups or unflagged missing files.
 - **Escalation Rule:** Fail workspace build pipeline on audit failure.
@@ -36,7 +36,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Inputs:** User requests, active projects matrix, latest Obsidian ingest reports.
 - **Outputs:** Ranked next-action lists.
 - **Activation Trigger:** Running `npm run next` or updating task files.
-- **Files Owned:** [NEXT_ACTIONS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/NEXT_ACTIONS.md), [PROJECTS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/PROJECTS.md).
+- **Files Owned:** [NEXT_ACTIONS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/NEXT_ACTIONS.md), [PROJECTS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/PROJECTS.md).
 - **Success Metric:** Action item completion rates and zero redundant status flags.
 - **Failure Mode:** Stale priorities list or unassigned project actions.
 - **Escalation Rule:** Elevate priority if a project is flagged High priority but has no Do Now tasks.
@@ -49,7 +49,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Inputs:** Local Obsidian vault markdown notes, canvas files.
 - **Outputs:** Ingest reports, backup snapshots, intelligence reports.
 - **Activation Trigger:** Running `npm run ingest` or updating sync statuses.
-- **Files Owned:** [DECISIONS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/DECISIONS.md), [PROJECTS.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/PROJECTS.md), [outputs/obsidian_ingest/](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/obsidian_ingest/).
+- **Files Owned:** [DECISIONS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/DECISIONS.md), [PROJECTS.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/PROJECTS.md), [outputs/obsidian_ingest/](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/obsidian_ingest/).
 - **Success Metric:** Clean ingestion of Markdown vaults under 2 seconds without modification of target vault.
 - **Failure Mode:** Target path mapping failure or infinite directory traversal.
 - **Escalation Rule:** Alert user if candidate paths contain zero readable vaults.
@@ -75,7 +75,7 @@ This document defines the agent council of **Brilliantaire OS**. Each agent is m
 - **Inputs:** TypeScript source code, test definitions, Taskfile recipes.
 - **Outputs:** Compiled JavaScript files (`dist/`), test reports, command outputs.
 - **Activation Trigger:** Sourcing compiler runs, code testing, or Git status checks.
-- **Files Owned:** Build outputs, compilation results, [Taskfile.yml](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/Taskfile.yml) recipes.
+- **Files Owned:** Build outputs, compilation results, [Taskfile.yml](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/Taskfile.yml) recipes.
 - **Success Metric:** Zero build, lint, or test failures on compile.
 - **Failure Mode:** Broken JavaScript files or syntax errors in build scripts.
 - **Escalation Rule:** Terminate run loops and warn of compilation failure.

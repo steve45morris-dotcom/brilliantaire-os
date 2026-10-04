@@ -1,6 +1,6 @@
 # 🧭 Project Registry Drift Review (Phase 12C)
 
-This system reviews local directories to identify "drift" between files present on the filesystem and the active project entries listed in [PROJECTS.md](file:///Users/alexanderanthony/PROJECTS.md).
+This system reviews local directories to identify "drift" between files present on the filesystem and the active project entries listed in [PROJECTS.md](file://~/PROJECTS.md).
 
 ## 🛡️ Review-Only Safety Gate (CIP Core)
 To enforce the **Collision Isolation Protocol (CIP)** and preserve design sovereignty, this system operates under a strict read-only boundary:
@@ -11,8 +11,8 @@ To enforce the **Collision Isolation Protocol (CIP)** and preserve design sovere
 
 ## 📁 Scan Roots & Signatures
 Scanned Root Directories:
-- `/Users/alexanderanthony/Projects/`
-- `/Users/alexanderanthony/TreeGrooveProjects/`
+- `~/Projects/`
+- `~/TreeGrooveProjects/`
 
 Project Signature Files detected:
 - `package.json`
@@ -81,4 +81,4 @@ All reports are generated with a timestamped suffix to avoid overwriting existin
 - Review Action Plan: `outputs/project_registry/reports/project_registry_action_plan_YYYY-MM-DD.md`
 
 ## 🔮 Future Approved Registry Updater Boundary
-In a future phase, a manual approval confirmation UI or script may allow safe, incremental writing of approved `register` entries to [PROJECTS.md](file:///Users/alexanderanthony/PROJECTS.md) using structured JSON commits. This phase remains strictly read-only.
+In a future phase, a manual approval confirmation UI or script may allow safe, incremental writing of approved `register` entries to [PROJECTS.md](file://~/PROJECTS.md) using structured JSON commits. This phase remains strictly read-only.

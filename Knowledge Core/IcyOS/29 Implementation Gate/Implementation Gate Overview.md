@@ -17,7 +17,7 @@ The Implementation Gate verifies that:
 - **Purpose**: Map high-level repository gates.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [MVP IMPLEMENTATION PLAN](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/28%20MVP%20Implementation%20Plan/MVP_IMPLEMENTATION_PLAN_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [MVP IMPLEMENTATION PLAN](./28%20MVP%20Implementation%20Plan/MVP_IMPLEMENTATION_PLAN_v1.0.md)
 
 *I build before burning.*

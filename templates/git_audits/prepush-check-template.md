@@ -14,7 +14,7 @@
 ## 🔍 Detail Log
 - **Build Output Summary:** {{BUILD_SUMMARY}}
 - **Static Audit Summary:** {{AUDIT_SUMMARY}}
-- **Asset Guard Verification Path:** [git_asset_audit_{{DATE}}.md](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/git_audits/reports/git_asset_audit_{{DATE}}.md)
+- **Asset Guard Verification Path:** [git_asset_audit_{{DATE}}.md](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/git_audits/reports/git_asset_audit_{{DATE}}.md)
 
 ---
 

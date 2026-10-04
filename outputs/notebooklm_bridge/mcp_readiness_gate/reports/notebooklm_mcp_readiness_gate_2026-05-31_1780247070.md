@@ -7,10 +7,10 @@
 * **Files Checked:**
 - [Not Found] .env.local
 - [Not Found] .mcp.local.json
-- [Not Found] Directory: /Users/alexanderanthony/.config/mcp
-- [Not Found] /Users/alexanderanthony/.claude/mcp.json
-- [Not Found] /Users/alexanderanthony/.codex/mcp.json
-- [Not Found] /Users/alexanderanthony/.agents/mcp.json
+- [Not Found] Directory: ~/.config/mcp
+- [Not Found] ~/.claude/mcp.json
+- [Not Found] ~/.codex/mcp.json
+- [Not Found] ~/.agents/mcp.json
 
 * **Required Env Names Present:** None
 * **Values:** `[REDACTED]` (Offline scanning safety policy active; zero plaintext output)

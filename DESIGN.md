@@ -4,7 +4,7 @@ This file acts as the primary design router for all AI agents in this workspace.
 
 ## Master Design Source
 All UI development must reference the `awesome-design-md` collection:
-`Path: /Users/alexanderanthony/Projects/awesome-design-md/design-md/`
+`Path: ~/Projects/awesome-design-md/design-md/`
 
 ## Routing Instructions
 1. **Identify Brand:** Determine which website or brand style the user is requesting (e.g., Claude, Linear, Vercel).

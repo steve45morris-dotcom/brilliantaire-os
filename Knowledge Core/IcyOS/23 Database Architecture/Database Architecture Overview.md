@@ -17,7 +17,7 @@ To support spatial search, text searches, and encryption inside Supabase:
 - **Purpose**: Map high-level database architecture.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [INFORMATION ARCHITECTURE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/22%20Information%20Architecture/INFORMATION_ARCHITECTURE_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [INFORMATION ARCHITECTURE](./22%20Information%20Architecture/INFORMATION_ARCHITECTURE_v1.0.md)
 
 *I build before burning.*

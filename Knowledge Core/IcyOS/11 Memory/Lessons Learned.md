@@ -9,7 +9,7 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 
 ### Pitfall 1: Absolute Path Dependency
 - **Context**: Specifying relative file links that break when the vault or workspace path shifts.
-- **Resolution**: Use absolute `file:///Users/alexanderanthony/Knowledge%20Core/...` paths for developer-facing documents, and portable relative paths for vault-internal wikilinks.
+- **Resolution**: Use absolute `file://~/Knowledge%20Core/...` paths for developer-facing documents, and portable relative paths for vault-internal wikilinks.
 
 ### Pitfall 2: Context Window Saturation
 - **Context**: Feeding full conversation records or very large search logs back into agent prompts.
@@ -32,8 +32,8 @@ This document serves as the permanent memory for past developer mistakes, AI cod
   - `2026-07-02`: Upgraded to v1.1.0.
 - **Future Expansion**: Add automated linting checks that scan files against known code smell logs.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 
 *I build before burning.*
 
@@ -47,8 +47,8 @@ This document serves as the permanent memory for past developer mistakes, AI cod
 - Freeze safeguards are necessary to protect immutable philosophy from being overwritten by operational sprint data.
 
 ## Cross References
-- [Foundation Audit Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Foundation%20Audit%20Report.md)
-- [Documentation Update Protocol](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Documentation%20Update%20Protocol.md)
+- [Foundation Audit Report](./99%20Command%20Center/Foundation%20Audit%20Report.md)
+- [Documentation Update Protocol](./20%20AI%20Operations/Documentation%20Update%20Protocol.md)
 
 ---
 

@@ -10,11 +10,11 @@
 - Total Intercepted Safety Violations: `64`
 
 ## 2. Directory Locations Mapping
-- Voice Ingestion recordings: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings`
-- ASR Inputs: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio`
-- ASR Transcripts: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/transcripts`
-- Staged Commands: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/staged_commands`
-- Approved Packets: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/approved`
+- Voice Ingestion recordings: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings`
+- ASR Inputs: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio`
+- ASR Transcripts: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/transcripts`
+- Staged Commands: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/staged_commands`
+- Approved Packets: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/approved`
 
 ## 3. Top Active / Critical Safety Parameters
 - [x] Auto Transcribe triggers: Disabled (`false`)

@@ -185,16 +185,16 @@
     "Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models",
     "Local web interface (focusing on pure CLI operations first)",
     "Legacy bash scripts replaced by typescript runners",
-    "# 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "**Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "| Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "| Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
-    "| [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))"
+    "# 🎯 Next Actions (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "Create next-action generator (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "**Extracted Next Actions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "| Layer | Status | Evidence | Next Check | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "| Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "| [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))",
+    "| [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))"
   ],
   "commandSummary": {
     "totalCommands": 273,
@@ -259,7 +259,7 @@
         "autoTranscribeAfterRecording": false,
         "confirmationRequired": true
       },
-      "latestRecorderLog": "[2026-05-31T22:27:43.649Z] STAGE_FOR_ASR | ID: voice_session_test_voice_session_2026-05-31_152643 | Target: /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio/voice_session_test_voice_session_2026-05-31_152643.wav"
+      "latestRecorderLog": "[2026-05-31T22:27:43.649Z] STAGE_FOR_ASR | ID: voice_session_test_voice_session_2026-05-31_152643 | Target: ~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio/voice_session_test_voice_session_2026-05-31_152643.wav"
     },
     "audit": {
       "latestLifecycleId": "2026-05-31_0801",
@@ -275,7 +275,7 @@
     },
     "report": {
       "reportDate": "2026-06-01",
-      "reportPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_ops_daily_report/reports/voice_ops_daily_report_2026-06-01.md",
+      "reportPath": "~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_ops_daily_report/reports/voice_ops_daily_report_2026-06-01.md",
       "riskLevel": "High",
       "totalSessions": 0,
       "totalTranscripts": 0,
@@ -291,7 +291,7 @@
       "approvedBriefings": 1,
       "rejectedBriefings": 0,
       "ttsRequestCount": 1,
-      "latestSourceReportPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_ops_daily_report/reports/voice_ops_daily_report_2026-06-01.md",
+      "latestSourceReportPath": "~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_ops_daily_report/reports/voice_ops_daily_report_2026-06-01.md",
       "duplicateBriefingProtection": true,
       "autoRun": false,
       "manualApprovalRequired": true
@@ -303,7 +303,7 @@
       "approvedRequestCount": 1,
       "renderedAudioCount": 1,
       "blockedRequestCount": 1,
-      "latestRenderedAudioPath": "/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/rendered_audio/narrator_audio_briefing_2026-05-31.mp3",
+      "latestRenderedAudioPath": "~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/rendered_audio/narrator_audio_briefing_2026-05-31.mp3",
       "cloudTtsStatus": "disabled",
       "autoPlaybackStatus": "disabled",
       "manualApprovalRequired": true

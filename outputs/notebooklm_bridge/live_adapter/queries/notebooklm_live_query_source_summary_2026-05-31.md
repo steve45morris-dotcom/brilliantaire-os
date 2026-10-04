@@ -2,7 +2,7 @@
 
 * **Staging Date:** 2026-05-31
 * **Query Type:** source-summary
-* **Source Payload Path:** /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/mcp_execution/payloads/notebooklm_payload_source_summary_2026-05-31_1780228191.md
+* **Source Payload Path:** ~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/notebooklm_bridge/mcp_execution/payloads/notebooklm_payload_source_summary_2026-05-31_1780228191.md
 
 ## Prepared Question
 # NotebookLM MCP Query Payload

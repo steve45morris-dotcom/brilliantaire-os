@@ -8,11 +8,11 @@
 - [Not Found] .env.local
 - [Not Found] .mcp.json
 - [Not Found] mcp.json
-- [Not Found] Directory: /Users/alexanderanthony/.config/mcp
-- [Not Found] /Users/alexanderanthony/.cursor/mcp.json
-- [Not Found] /Users/alexanderanthony/.claude/mcp.json
-- [Not Found] /Users/alexanderanthony/.codex/mcp.json
-- [Not Found] /Users/alexanderanthony/.agents/mcp.json
+- [Not Found] Directory: ~/.config/mcp
+- [Not Found] ~/.cursor/mcp.json
+- [Not Found] ~/.claude/mcp.json
+- [Not Found] ~/.codex/mcp.json
+- [Not Found] ~/.agents/mcp.json
 - [Checked] package.json
 - [Checked] Taskfile.yml
 

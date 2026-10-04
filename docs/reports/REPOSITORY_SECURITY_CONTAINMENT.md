@@ -9,7 +9,7 @@ Companion reports: `CREDENTIAL_HISTORY_AUDIT.md`, `GITIGNORE_SECURITY_BASELINE.m
 ## Phase 1 — Frozen state at start of this audit
 
 ```
-git rev-parse --show-toplevel → /Users/alexanderanthony
+git rev-parse --show-toplevel → $HOME
 git branch --show-current     → feature/frontend-design-guardian
 git rev-parse HEAD            → 0e4ef59b197958cfb325f78e97a8243c804ae000
 git status --short | wc -l    → 2377
@@ -101,7 +101,7 @@ See `HOME_ROOT_REPOSITORY_RISK.md` for the full assessment. Summary: home-root a
 
 # REPOSITORY SECURITY CONTAINED
 
-- **Repository root:** `/Users/alexanderanthony` (intentional home-root architecture, unchanged)
+- **Repository root:** `$HOME` (intentional home-root architecture, unchanged)
 - **Public/private remote status:** PUBLIC (`steve45morris-dotcom/brilliantaire-os`)
 - **Sensitive files currently tracked:** None (zero, across every path/filename checked)
 - **Sensitive files historically tracked:** None (zero, full history, all branches)

@@ -24,6 +24,6 @@ Deploy the Repository Guardian (`20 AI Operations/Repository Guardian.md`) to ru
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [Repository Guardian](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Repository%20Guardian.md)
+  - [Repository Guardian](./20%20AI%20Operations/Repository%20Guardian.md)
 
 *I build before burning.*

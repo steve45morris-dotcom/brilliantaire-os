@@ -23,14 +23,14 @@ This document details the directories, folder scopes, packages, and scripts insi
 ## 📋 Document Metadata
 - **Purpose**: Describe the directory structures and build flows of the codebase.
 - **Responsibilities**: Enforces directory naming guidelines and import bounds.
-- **Dependencies**: [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+- **Dependencies**: [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 - **Relationships**: Child of Engineering Standards.
 - **Version**: 1.0.0
 - **Revision History**:
   - `2026-07-02`: Created initial Repository Guide.
 - **Future Expansion**: Add monorepo package reference flowcharts.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 
 *I build before burning.*

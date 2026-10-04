@@ -1,6 +1,6 @@
 # Project Status Report
 
-- Root: `/Users/alexanderanthony`
+- Root: `$HOME`
 - Generated: `2026-05-30 10:52`
 - Buckets:
   - `active`: git commit within 21 days, or touched within 7 days with at least 100 changed files in the last 30 days

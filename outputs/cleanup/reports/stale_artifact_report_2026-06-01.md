@@ -10,7 +10,7 @@
 ## 📂 Stale Candidates List
 | Artifact | Age | Type | Reason | Risk | Next Action |
 | --- | --- | --- | --- | --- | --- |
-| [voice_session_narrator_briefing_2026-06-01.md](file:///Users/alexanderanthony/voice_sessions/session_metadata/voice_session_narrator_briefing_2026-06-01.md) | 0 days | Orphan Queue | Metadata without recording | Medium | Confirm recording exists elsewhere |
+| [voice_session_narrator_briefing_2026-06-01.md](file://~/voice_sessions/session_metadata/voice_session_narrator_briefing_2026-06-01.md) | 0 days | Orphan Queue | Metadata without recording | Medium | Confirm recording exists elsewhere |
 
 ---
 

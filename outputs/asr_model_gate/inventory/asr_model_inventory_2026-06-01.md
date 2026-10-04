@@ -2,7 +2,7 @@
 *Generated on: 2026-06-01*
 
 ## 1. Model Directory
-* **Path:** `/Users/alexanderanthony/models/asr/whisper`
+* **Path:** `~/models/asr/whisper`
 * **Exists:** `No`
 
 ## 2. Files Found

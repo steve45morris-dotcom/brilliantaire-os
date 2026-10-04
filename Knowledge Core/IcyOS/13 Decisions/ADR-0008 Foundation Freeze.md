@@ -24,6 +24,6 @@ Execute the Foundation Freeze v1.0, locking the 10 Protected Assets under the Kn
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [Foundation v1.1 Execution Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Foundation%20v1.1%20Execution%20Report.md)
+  - [Foundation v1.1 Execution Report](./99%20Command%20Center/Foundation%20v1.1%20Execution%20Report.md)
 
 *I build before burning.*

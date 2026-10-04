@@ -7,7 +7,7 @@
 - [2026-06-11T08:22:56.628Z] Target folder scan complete. Total files detected: 0, Accepted format count: 0
 - [2026-06-11T08:22:56.630Z] Staged 0 ready items for Phase 12R tracker.
 - [2026-06-11T08:22:56.630Z] Registered 17 blocked imports.
-- [2026-06-11T08:22:56.645Z] Successfully updated Grinders Keep frontpage file at: /Users/alexanderanthony/outputs/grinders_keep/grinders_keep_frontpage_2026-06-01.md
+- [2026-06-11T08:22:56.645Z] Successfully updated Grinders Keep frontpage file at: ~/outputs/grinders_keep/grinders_keep_frontpage_2026-06-01.md
 - [2026-06-11T08:22:56.645Z] Evidence Pack Completion Importer execution completed successfully.
 
 --- 

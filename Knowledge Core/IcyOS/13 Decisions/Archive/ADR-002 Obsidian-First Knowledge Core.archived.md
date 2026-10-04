@@ -31,7 +31,7 @@ Establish the Obsidian vault (`Knowledge Core/IcyOS/`) as the central organizati
   - `2026-07-02`: Initialized ADR.
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
-  - [Global Context](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Global%20Context.md)
+  - [START_HERE](./START_HERE.md)
+  - [Global Context](./11%20Memory/Global%20Context.md)
 
 *I build before burning.*

@@ -3,7 +3,7 @@
 This report logs the inventory scan of the local voice models directory.
 
 ## 📂 Directory Configuration
-*   **Model Directory:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
+*   **Model Directory:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
 
 ## 📊 File Inventory
 *   **ONNX Files:** None

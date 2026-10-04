@@ -10,38 +10,38 @@
 
 | Project Path | Signature Files | Likely Type | Activity Status | Recommended Action |
 |---|---|---|---|---|
-| `/Users/alexanderanthony/Projects/Kronos` | `requirements.txt` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/Open-Higgsfield-AI` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/Projects/agency-agents` | `CONTRIBUTING.md` | docs | stale | archive |
-| `/Users/alexanderanthony/Projects/awesome-design-md` | `CONTRIBUTING.md` | docs | stale | archive |
-| `/Users/alexanderanthony/Projects/awesome-design-md-extracted` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/Projects/brilliantier-web` | `package.json` | node | recent | add to PROJECTS.md |
-| `/Users/alexanderanthony/Projects/crewAI` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/docker` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/Projects/fastapi` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/firebase-admin-node` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/flutter` | `pubspec.yaml` | flutter | stale | archive |
-| `/Users/alexanderanthony/Projects/generative-ai-python` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/gstack` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/obsidian-releases` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/openhuman` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/pydantic` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/remotion` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/remotion-skills` | `package.json` | node | stale | archive |
-| `/Users/alexanderanthony/Projects/ruff` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/siyuan` | `API.md` | docs | stale | archive |
-| `/Users/alexanderanthony/Projects/supabase-py` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/tinyfish-cookbook` | `CONTRIBUTING.md` | docs | stale | archive |
-| `/Users/alexanderanthony/Projects/uv` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/Projects/whisper` | `requirements.txt` | python | recent | add to PROJECTS.md |
-| `/Users/alexanderanthony/Projects/whisper-pipeline` | `pyproject.toml` | python | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Agents` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Config` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Input` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Output` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Prompts` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/TreeGrooveFactory` | `none` | unknown | stale | archive |
-| `/Users/alexanderanthony/TreeGrooveProjects/Universe` | `none` | unknown | stale | archive |
+| `~/Projects/Kronos` | `requirements.txt` | python | stale | archive |
+| `~/Projects/Open-Higgsfield-AI` | `none` | unknown | stale | archive |
+| `~/Projects/agency-agents` | `CONTRIBUTING.md` | docs | stale | archive |
+| `~/Projects/awesome-design-md` | `CONTRIBUTING.md` | docs | stale | archive |
+| `~/Projects/awesome-design-md-extracted` | `none` | unknown | stale | archive |
+| `~/Projects/brilliantier-web` | `package.json` | node | recent | add to PROJECTS.md |
+| `~/Projects/crewAI` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/docker` | `none` | unknown | stale | archive |
+| `~/Projects/fastapi` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/firebase-admin-node` | `package.json` | node | stale | archive |
+| `~/Projects/flutter` | `pubspec.yaml` | flutter | stale | archive |
+| `~/Projects/generative-ai-python` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/gstack` | `package.json` | node | stale | archive |
+| `~/Projects/obsidian-releases` | `package.json` | node | stale | archive |
+| `~/Projects/openhuman` | `package.json` | node | stale | archive |
+| `~/Projects/pydantic` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/remotion` | `package.json` | node | stale | archive |
+| `~/Projects/remotion-skills` | `package.json` | node | stale | archive |
+| `~/Projects/ruff` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/siyuan` | `API.md` | docs | stale | archive |
+| `~/Projects/supabase-py` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/tinyfish-cookbook` | `CONTRIBUTING.md` | docs | stale | archive |
+| `~/Projects/uv` | `pyproject.toml` | python | stale | archive |
+| `~/Projects/whisper` | `requirements.txt` | python | recent | add to PROJECTS.md |
+| `~/Projects/whisper-pipeline` | `pyproject.toml` | python | stale | archive |
+| `~/TreeGrooveProjects/Agents` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/Config` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/Input` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/Output` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/Prompts` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/TreeGrooveFactory` | `none` | unknown | stale | archive |
+| `~/TreeGrooveProjects/Universe` | `none` | unknown | stale | archive |
 
 ---
 

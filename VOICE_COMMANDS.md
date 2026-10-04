@@ -25,7 +25,7 @@ Our **Queue-Based Architecture** resolves this by separating the bridge into two
 
 ## 3. Allowed Voice Phrases Registry
 
-The active voice phrases are defined in [config/voice-commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/voice-commands.ts):
+The active voice phrases are defined in [config/voice-commands.ts](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/voice-commands.ts):
 
 | Mapped Phrase | Normalized Match | Router Command | Owning Agent | Risk Level | Requires Confirmation |
 |---|---|---|---|---|---|

@@ -30,9 +30,9 @@
 ## ⚠️ Blockers & Risks
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
-- ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-- ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-- ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+- ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 
 ## 💸 Money-Making Opportunities
 - **ProfBetGeng Analytics Optimization:** Execute betting odds analysis scripts to identify high-signal opportunities.

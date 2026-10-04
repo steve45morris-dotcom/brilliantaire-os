@@ -24,6 +24,6 @@ Deploy the Context Builder (`20 AI Operations/Context Builder.md`) to dynamicall
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [Context Builder](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Context%20Builder.md)
+  - [Context Builder](./20%20AI%20Operations/Context%20Builder.md)
 
 *I build before burning.*

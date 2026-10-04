@@ -30,6 +30,6 @@ This document details the code formatting rules, AI coding restrictions, lint-an
   - `2026-07-02`: Upgraded to v1.1.0.
 - **Future Expansion**: Add automated pre-commit hook validation scripts.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
 
 *I build before burning.*

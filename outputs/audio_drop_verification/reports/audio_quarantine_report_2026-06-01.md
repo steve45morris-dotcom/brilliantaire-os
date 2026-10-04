@@ -2,7 +2,7 @@
 *Scan Date: 2026-06-01*
 
 ## 1. Quarantine Inventory
-* **Quarantine Path:** `/Users/alexanderanthony/outputs/audio_drop_verification/quarantine`
+* **Quarantine Path:** `~/outputs/audio_drop_verification/quarantine`
 
 ## 2. Flagged Files Summary
 ### Unsupported Files

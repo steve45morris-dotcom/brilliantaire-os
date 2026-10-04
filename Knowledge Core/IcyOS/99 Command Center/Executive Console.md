@@ -6,11 +6,11 @@ Welcome to the executive operating console of **IcyOS**.
 ---
 
 ## 🧭 Dashboard Status Monitors
-- **[Foundation v1.1 Status](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Foundation%20v1.1%20Status.md)**: Main foundation upgrade status.
-- **[AI Governance Status](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/AI%20Governance%20Status.md)**: Session preflight compliance metrics.
-- **[Repository Guardian Status](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Repository%20Guardian%20Status.md)**: Architecture drift checks.
-- **[Context Builder Status](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Context%20Builder%20Status.md)**: Context compression and package logs.
-- **[Task Dispatcher Status](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Task%20Dispatcher%20Status.md)**: Worker jobs queue tracking.
+- **[Foundation v1.1 Status](./99%20Command%20Center/Foundation%20v1.1%20Status.md)**: Main foundation upgrade status.
+- **[AI Governance Status](./99%20Command%20Center/AI%20Governance%20Status.md)**: Session preflight compliance metrics.
+- **[Repository Guardian Status](./99%20Command%20Center/Repository%20Guardian%20Status.md)**: Architecture drift checks.
+- **[Context Builder Status](./99%20Command%20Center/Context%20Builder%20Status.md)**: Context compression and package logs.
+- **[Task Dispatcher Status](./99%20Command%20Center/Task%20Dispatcher%20Status.md)**: Worker jobs queue tracking.
 
 ---
 

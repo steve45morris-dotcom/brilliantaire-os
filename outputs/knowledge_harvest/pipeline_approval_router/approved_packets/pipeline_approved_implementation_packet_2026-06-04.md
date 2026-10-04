@@ -6,9 +6,9 @@
 - **Approval Status:** approved_for_manual_build
 
 ## Associated Artifacts
-- **Source Proposal:** /Users/alexanderanthony/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
-- **Dependency Map:** /Users/alexanderanthony/outputs/knowledge_harvest/pipeline_stage_gate/dependencies/pipeline_dependency_map_2026-06-03.md
-- **Implementation Prompt:** /Users/alexanderanthony/outputs/knowledge_harvest/pipeline_stage_gate/prompts/pipeline_implementation_prompt_2026-06-03.md
+- **Source Proposal:** ~/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
+- **Dependency Map:** ~/outputs/knowledge_harvest/pipeline_stage_gate/dependencies/pipeline_dependency_map_2026-06-03.md
+- **Implementation Prompt:** ~/outputs/knowledge_harvest/pipeline_stage_gate/prompts/pipeline_implementation_prompt_2026-06-03.md
 
 ## Execution Configuration
 - **Assigned Agents:** Knowledge Librarian, Workflow Auditor, OS Architect, Prompt Engineer, Build Operator, Creative Revenue Strategist

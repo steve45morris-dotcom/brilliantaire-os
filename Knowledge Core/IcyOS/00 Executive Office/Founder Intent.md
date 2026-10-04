@@ -60,8 +60,8 @@ Wellbeing is the fuel for strategic clarity. IcyOS explicitly treats **rest as a
   - `2026-07-02`: Upgraded to v1.1.0 for ICOS.
 - **Future Expansion**: Add specific quantitative metrics for wellbeing boundaries.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [North Star](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/North%20Star.md)
-  - [Product Requirements Document](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/01%20Product/Product%20Requirements%20Document.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [North Star](./00%20Executive%20Office/North%20Star.md)
+  - [Product Requirements Document](./01%20Product/Product%20Requirements%20Document.md)
 
 *I build before burning.*

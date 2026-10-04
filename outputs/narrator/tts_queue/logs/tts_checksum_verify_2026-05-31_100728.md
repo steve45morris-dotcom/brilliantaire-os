@@ -2,7 +2,7 @@
 *Timestamp: 2026-05-31T17:07:28.307Z*
 
 ## Manifest Details
-- Manifest Path: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/checksum-manifest.json`
+- Manifest Path: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/checksum-manifest.json`
 - Manifest Status: `Consistent / Verified`
 - Verified Entries Count: `3`
 - Unsafe/Mismatched Files Found: `0`

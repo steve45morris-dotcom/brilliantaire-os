@@ -126,6 +126,6 @@ This document defines the canonical entities, value objects, lifecycle flows, an
 - **Purpose**: Canonical reference sheet for the Domain Model.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
 
 *I build before burning.*

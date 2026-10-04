@@ -24,6 +24,6 @@ Design and adopt the `icy` CLI Specification (`16 Scripts/icy CLI Specification.
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [icy CLI Specification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/16%20Scripts/icy%20CLI%20Specification.md)
+  - [icy CLI Specification](./16%20Scripts/icy%20CLI%20Specification.md)
 
 *I build before burning.*

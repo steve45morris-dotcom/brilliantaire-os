@@ -17,7 +17,7 @@ The IcyOS API layer utilizes:
 - **Purpose**: Map high-level API boundaries.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [PHYSICAL DATABASE DESIGN](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/23%20Database%20Architecture/PHYSICAL_DATABASE_DESIGN_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [PHYSICAL DATABASE DESIGN](./23%20Database%20Architecture/PHYSICAL_DATABASE_DESIGN_v1.0.md)
 
 *I build before burning.*

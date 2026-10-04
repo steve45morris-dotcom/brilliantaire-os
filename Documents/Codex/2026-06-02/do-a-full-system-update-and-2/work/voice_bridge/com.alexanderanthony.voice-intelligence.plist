@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/alexanderanthony/scripts/voice_daemon.sh</string>
+        <string>~/scripts/voice_daemon.sh</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

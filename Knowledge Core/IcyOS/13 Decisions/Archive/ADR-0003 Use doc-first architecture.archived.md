@@ -24,7 +24,7 @@ Enforce the "Doc-First" rule: all structural revisions (database models, API pay
 - **Version**: 1.0.0
 - **Future Review Date**: 2027-07-02
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 
 *I build before burning.*

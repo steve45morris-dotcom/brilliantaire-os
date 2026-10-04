@@ -25,6 +25,6 @@ Build IcyOS as a Next.js Progressive Web App (PWA) first. This allows native-lik
 - **Version**: 1.0.0
 - **Future Review Date**: 2026-10-02
 - **Cross References**:
-  - [Technical Design Document](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Technical%20Design%20Document.md)
+  - [Technical Design Document](./02%20Engineering/Technical%20Design%20Document.md)
 
 *I build before burning.*

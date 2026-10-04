@@ -3,7 +3,7 @@
 This report logs local Piper voice model files directory scanning, file size checks, and potential path validations.
 
 ## 📂 Directory Configuration
-*   **Model Directory:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
+*   **Model Directory:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
 *   **ONNX Files Found:** 0
 *   **JSON Files Found:** 0
 *   **Unexpected Files:** None
