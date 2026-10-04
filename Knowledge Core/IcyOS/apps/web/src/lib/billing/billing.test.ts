@@ -92,7 +92,7 @@ describe('gate', () => {
     for (const path of ['/billing', '/api/billing/checkout', '/api/billing/webhook', '/api/health', '/login', '/auth/callback']) {
       expect(requiresSubscription(path)).toBe(false);
     }
-    for (const path of ['/', '/dashboard', '/billingx', '/api/missions/create']) {
+    for (const path of ['/', '/dashboard', '/billingx', '/api/projects']) {
       expect(requiresSubscription(path)).toBe(true);
     }
     expect(billingEnforced({})).toBe(true);

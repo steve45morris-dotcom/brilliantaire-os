@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, test } from 'vitest';
+import { hasRealDB } from './db.js';
 import { globalIntegrationRegistry } from './integrations/core/IntegrationRegistry.js';
 import { globalIntegrationLifecycle } from './integrations/core/IntegrationLifecycle.js';
 import { globalIntegrationSecurity } from './integrations/core/IntegrationSecurity.js';
@@ -50,7 +51,7 @@ describe('Universal Integration Framework Tests', () => {
   });
 
   // NEW Core Module Tests
-  it('should bridge calls to registered integrations', async () => {
+  test.skipIf(!hasRealDB)('should bridge calls to registered integrations', async () => {
     globalIntegrationRegistry.clear();
     globalIntegrationRegistry.register(globalGitHubIntegrationContract);
 

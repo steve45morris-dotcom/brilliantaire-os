@@ -26,6 +26,8 @@ A token can only reach these routes, as its owner:
 | `POST /api/focus/start` | Start a focus session on a mission |
 | `POST /api/focus/[id]` | Pause, resume or finish a focus session |
 | `GET`/`POST /api/review` | The day's stats and reflection; save the reflection |
+| `GET`/`POST /api/knowledge` | List or search notes; add one |
+| `GET`/`PATCH`/`DELETE /api/knowledge/[id]` | Read, change or delete a note |
 
 Anything else answers as if the request were signed out. That includes billing, onboarding, settings,
 token management and the older placeholder routes. So a leaked token can't create more tokens or

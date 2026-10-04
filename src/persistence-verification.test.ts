@@ -5,9 +5,9 @@ import { GoalManager } from './executive/GoalManager.js';
 import { GraphStore } from './knowledge/GraphStore.js';
 import { LiveOperationsStore } from './kernel/live/LiveOperationsStore.js';
 import { WorkspaceRegistry } from './workspaces/WorkspaceRegistry.js';
-import { getDB } from './db.js';
+import { getDB, hasRealDB } from './db.js';
 
-describe('Persistence Layer Write-Then-Reload Unit Tests', () => {
+describe.skipIf(!hasRealDB)('Persistence Layer Write-Then-Reload Unit Tests', () => {
   beforeEach(() => {
     // Clear test tables before each test
     const db = getDB();
