@@ -40,7 +40,7 @@ npm run audit      # Run system audit
 npm run command    # Safe command router
 ```
 
-CI (`.github/workflows/ci.yml`) runs `npm test` on every pull request and push to `main`, with the P.J.K. command-registry contract as its own step. `npm run build` (`tsc`) is not in CI yet: it has failed since Phase 15A because `src/` imports `ws`, `uuid` and `react` without declaring them. Fix that before adding a typecheck step.
+CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, the P.J.K. command-registry contract test, and `npm test` on every pull request and push to `main`. Two source files are excluded from the Node build in `tsconfig.json` and say why: the Edge-Link server, `src/edge-link/index.ts` + `broker.ts` (needs `ws`, which the no-runtime-deps rule forbids; nothing imports them) and `src/ui/voice/RealtimeVoiceControls.tsx` (a React component; nothing imports it). `vitest.config.ts` keeps `sentinel-os/` and `Knowledge Core/` out of the suite, since both sit inside this `$HOME`-rooted repo.
 
 ## Safe Command Router
 
