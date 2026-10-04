@@ -415,6 +415,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `micro-product-tree-groove-connector` | `tree groove`, `micro product` | Creative Revenue Strategist | Medium | Yes | Map micro-product ledger entries to Tree Groove Records release catalog and stage distribution plans. |
 | `live-microphone-audio-streamer-help` | `audio streamer help`, `lmas help` | Creative Architect | Low | No | Print help menu for the Live Microphone Audio Streamer Daemon Expansion CLI. |
 | `live-microphone-audio-streamer` | `audio streamer`, `lmas` | Creative Architect | Medium | Yes | Stage daemon configs, scan audio models, validate pipeline, and simulate audio streaming parameters. |
+| `obsidian-sync-layer-help` | `obsidian sync help`, `osl help` | Knowledge Librarian | Low | No | Print help menu for the Obsidian Sync Layer unified vault sync orchestration CLI. |
+| `obsidian-sync-layer` | `obsidian sync`, `osl` | Knowledge Librarian | Medium | Yes | Scan module exports, compile sync manifests, preview vault routing, and report sync health for Obsidian integration. |
 
 
 ---

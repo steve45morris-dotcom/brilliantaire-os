@@ -3886,6 +3886,28 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'obsidian-sync-layer-help',
+    aliases: ['obsidian sync help', 'osl help'],
+    description: 'Print help menu for the Obsidian Sync Layer unified vault sync orchestration CLI',
+    npmScript: 'obsidian-sync-layer-help',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'obsidian-sync-layer',
+    aliases: ['obsidian sync', 'osl'],
+    description: 'Scan module exports, compile sync manifests, preview vault routing, and report sync health for Obsidian integration',
+    npmScript: 'obsidian-sync-layer',
+    owningAgent: 'Knowledge Librarian',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 
