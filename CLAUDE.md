@@ -22,7 +22,7 @@ scripts/         # 208+ TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
 sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
 orchestrator/    # Phase-based orchestration engine
-Knowledge Core/  # IcyOS monorepo (Next.js, 6 packages, Supabase)
+Knowledge Core/  # IcyOS monorepo (Next.js app + 4 packages, Supabase)
 dashboard/       # Vite React dashboard
 outputs/         # Generated reports, narrator audio queue
 ```
