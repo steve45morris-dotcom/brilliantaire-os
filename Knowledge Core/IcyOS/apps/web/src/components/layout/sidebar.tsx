@@ -13,7 +13,7 @@ const navItems = [
   { href: '/focus', label: 'Focus', icon: Play },
   { href: '/review', label: 'Review', icon: BarChart3 },
   { href: '/knowledge', label: 'Knowledge', icon: BookOpen },
-  { href: '/sla-monitoring', label: 'SLA', icon: Activity },
+  { href: '/status', label: 'Status', icon: Activity },
   { href: '/billing', label: 'Billing', icon: CreditCard },
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
