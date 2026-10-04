@@ -13,18 +13,19 @@ async function load(env: Record<string, string> = {}) {
 }
 
 describe('legal documents', () => {
-  it('flag unfilled placeholders until they are configured', async () => {
-    const draft = await load();
-    expect(placeholdersIn(draft.documentText(draft.TERMS))).toEqual(['[CONTACT_EMAIL]']);
-    expect(placeholdersIn(draft.documentText(draft.PRIVACY)).sort()).toEqual(['[CONTACT_EMAIL]', '[HOSTING_PROVIDER]']);
+  it('use defaults when env vars are not set, and override when they are', async () => {
+    const defaults = await load();
+    expect(placeholdersIn(defaults.documentText(defaults.TERMS))).toEqual([]);
+    expect(placeholdersIn(defaults.documentText(defaults.PRIVACY))).toEqual([]);
+    expect(defaults.documentText(defaults.TERMS)).toContain('legal@icyos.app');
+    expect(defaults.documentText(defaults.PRIVACY)).toContain('Vercel');
 
-    const filled = await load({
+    const custom = await load({
       NEXT_PUBLIC_LEGAL_CONTACT_EMAIL: 'privacy@example.com',
-      NEXT_PUBLIC_HOSTING_PROVIDER: 'Vercel',
+      NEXT_PUBLIC_HOSTING_PROVIDER: 'Railway',
     });
-    expect(placeholdersIn(filled.documentText(filled.TERMS))).toEqual([]);
-    expect(placeholdersIn(filled.documentText(filled.PRIVACY))).toEqual([]);
-    expect(filled.documentText(filled.PRIVACY)).toContain('privacy@example.com');
+    expect(custom.documentText(custom.TERMS)).toContain('privacy@example.com');
+    expect(custom.documentText(custom.PRIVACY)).toContain('Railway');
     vi.unstubAllEnvs();
   });
 

@@ -18,7 +18,7 @@
 - [x] Environment variable documentation for clients (`DEPLOY.md` with full env var table, Supabase/Stripe setup, Docker commands, production checklist)
 - [x] Docker containerization for self-hosted deployments (multi-stage Dockerfile, docker-compose.yml, health check, .dockerignore)
 - [ ] SLA monitoring and uptime dashboard
-- [ ] Terms of Service and Privacy Policy — drafted at `/terms` and `/privacy` (Delaware law, linked from sign-in, billing and Checkout); needs legal review, contact email and hosting provider filled in, and a deletion/export process before launch (see `apps/web/LEGAL.md`)
+- [x] Terms of Service and Privacy Policy — `/terms` and `/privacy` (Delaware law, linked from sign-in, billing and Checkout); placeholders filled, `DELETE /api/account` and `GET /api/account/export` APIs built with migration 27; entity name needs LLC/Inc suffix confirmed, then legal review before launch (see `apps/web/LEGAL.md`)
 
 ## Revenue Model Options
 1. **SaaS** — Multi-tenant hosted, $49-299/mo per seat

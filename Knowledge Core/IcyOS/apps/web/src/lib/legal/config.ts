@@ -6,9 +6,9 @@ export const LEGAL = {
   entity: 'Supernova Systems',
   governingLaw: 'the State of Delaware, United States',
   courts: 'the state and federal courts located in Delaware',
-  contactEmail: process.env.NEXT_PUBLIC_LEGAL_CONTACT_EMAIL || '[CONTACT_EMAIL]',
-  hostingProvider: process.env.NEXT_PUBLIC_HOSTING_PROVIDER || '[HOSTING_PROVIDER]',
-  lastUpdated: 'September 25, 2026',
+  contactEmail: process.env.NEXT_PUBLIC_LEGAL_CONTACT_EMAIL || 'legal@icyos.app',
+  hostingProvider: process.env.NEXT_PUBLIC_HOSTING_PROVIDER || 'Vercel',
+  lastUpdated: 'October 4, 2026',
   trialDays: 14,
   minimumAge: 18,
 } as const;
