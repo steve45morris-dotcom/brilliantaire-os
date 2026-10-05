@@ -1,6 +1,7 @@
 'use client';
 
 import { Breadcrumbs } from './breadcrumbs';
+import { openPalette } from './command-palette';
 import { Search, Bell } from 'lucide-react';
 
 export function TopNav() {
@@ -14,19 +15,26 @@ export function TopNav() {
       <Breadcrumbs />
 
       <div className="flex items-center gap-2 sm:gap-3">
-        <div className="relative hidden sm:block group">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4a4d5a] pointer-events-none" size={13} />
-          <input
-            type="text"
-            placeholder="Search commands"
-            aria-label="Search commands"
-            className="font-tactical pl-8 pr-14 h-9 w-60 bg-[#0a0b10] border border-[#1e2030] text-[11px] tracking-[0.06em] text-[#b8b4ac] placeholder:text-[#4a4d5a] rounded-md focus:outline-none focus:border-[#c9a84c]/40 disabled:opacity-70 transition-colors"
-            disabled
-          />
-          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 font-tactical text-[9px] tracking-[0.12em] text-[#4a4d5a] px-1.5 py-[2px] rounded-[3px] border border-[#1e2030] bg-[#08090e]">
+        <button
+          type="button"
+          onClick={openPalette}
+          aria-label="Open command palette"
+          className="group relative hidden sm:flex items-center font-tactical pl-8 pr-14 h-9 w-60 bg-[#0a0b10] border border-[#1e2030] text-[11px] tracking-[0.06em] text-[#4a4d5a] rounded-md hover:border-[#c9a84c]/40 hover:text-[#8a8d9a] focus:outline-none focus-visible:border-[#c9a84c]/40 transition-colors"
+        >
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4a4d5a] group-hover:text-[#c9a84c] transition-colors" size={13} />
+          <span>Search commands</span>
+          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] tracking-[0.12em] text-[#4a4d5a] px-1.5 py-[2px] rounded-[3px] border border-[#1e2030] bg-[#08090e]">
             ⌘K
           </span>
-        </div>
+        </button>
+        <button
+          type="button"
+          onClick={openPalette}
+          aria-label="Open command palette"
+          className="sm:hidden w-9 h-9 flex items-center justify-center rounded-md text-[#6b6e7a] hover:text-[#d0ccc4] hover:bg-[#12131a] transition-colors"
+        >
+          <Search size={16} />
+        </button>
 
         <button
           type="button"
