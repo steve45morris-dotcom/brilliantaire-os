@@ -8,6 +8,11 @@
 #   - watch plugin       (marketplace + plugin install, user scope)
 #   - local WhisperX     (offline transcription fallback, CPU, "small" model)
 #
+# The watch engine is saved as "auto": when GEMINI_API_KEY is set in the environment
+# (add it under the cloud environment's environment variables), /watch sends the video
+# to Google's Gemini model, which also works for YouTube URLs that yt-dlp cannot fetch
+# from the cloud container; without a key it uses the local frames + WhisperX pipeline.
+#
 # Paste the whole file into the environment's Setup script field (claude.ai/code ->
 # environment menu in the session title bar -> Edit -> Setup script). The cloud runs it
 # once as root before Claude Code launches, then snapshots the filesystem, so later
@@ -146,12 +151,12 @@ PYEOF
 
   # Let the plugin's installer warm the model caches and write its config.
   log "warming WhisperX (downloads the ~464 MB small model)"
-  python3 "$SETUP_PY" --engine local --backend whisperx --detail balanced
+  python3 "$SETUP_PY" --engine auto --backend whisperx --detail balanced
 }
 
 configure_captions_only() {
   log "configuring base watch without a local transcription backend"
-  python3 "$SETUP_PY" --engine local --backend none --detail balanced || true
+  python3 "$SETUP_PY" --engine auto --backend none --detail balanced || true
 }
 
 # ---------------------------------------------------------------------------
