@@ -201,4 +201,4 @@ API tokens are rate-limited by the token's SHA-256 hash:
 - [ ] Supabase Auth site URL updated to production domain
 - [ ] For Vercel: GitHub secrets set (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`)
 - [ ] For Docker: HTTPS/TLS termination configured (reverse proxy)
-- [ ] For multiple instances: replace in-memory rate limiter with Redis
+- [ ] For multiple instances: set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` so rate-limit counters are shared (without them each instance counts on its own)

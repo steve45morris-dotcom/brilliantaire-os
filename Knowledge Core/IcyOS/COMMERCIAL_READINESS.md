@@ -11,7 +11,7 @@
 ## Required Before Client Delivery
 - [x] Authentication layer (Supabase Auth with SSR middleware)
 - [x] Role-based access control (admin, editor, viewer)
-- [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; in-memory store — swap in a shared store such as Redis before running multiple instances)
+- [x] API rate limiting and abuse protection (per-IP + per-user tiers in `apps/web/src/lib/api/rate-limit.ts`; counters shared across instances via Upstash Redis when `UPSTASH_REDIS_REST_URL`/`TOKEN` are set, per-instance memory store otherwise)
 - [x] Stripe billing integration (Starter/Pro/Team, 14-day trial then paywall, Checkout + Customer Portal + signed webhooks; setup in `apps/web/BILLING.md`)
 - [x] Client onboarding flow (3-step wizard at `/onboarding`, `complete_onboarding()` RPC, middleware redirect for users without a workspace)
 - [x] Remove internal/personal references from codebase — all absolute `/Users/alexanderanthony` paths replaced with relative or generic (`~/`, `$HOME`, `./`) references across 329 files
