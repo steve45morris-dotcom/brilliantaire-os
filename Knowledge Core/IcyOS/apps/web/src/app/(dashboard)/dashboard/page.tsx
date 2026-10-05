@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Plus, AlertCircle } from 'lucide-react';
 import { Spinner } from '../../../components/ui/spinner';
 import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard/confirm-delete';
 import { NewProjectForm } from '../../../components/dashboard/forms';
 import { ProjectSection, type ProjectActions, type MissionFilter } from '../../../components/dashboard/project-section';
 import { ProjectTile } from '../../../components/dashboard/project-tile';
+import { SELECT_PROJECT_EVENT } from '../../../components/layout/command-palette';
 import { Backdrop, CornerBrackets, SegmentBar, SystemClock, useCountUp, GOLD, GREEN } from '../../../components/dashboard/hud';
 import { apiFetch } from '../../../lib/api/client';
 import type { MissionView, SetStepResult, WorkspaceOverview } from '../../../lib/workspace/overview';
@@ -183,13 +184,31 @@ export default function DashboardPage() {
 
   const projects = overview?.projects ?? [];
 
+  // ?project= from the command palette wins the first time projects arrive.
+  const askedProject = useRef<string | null | undefined>(undefined);
   useEffect(() => {
     if (projects.length === 0) {
       if (selectedId !== null) setSelectedId(null);
       return;
     }
+    if (askedProject.current === undefined) {
+      askedProject.current = new URLSearchParams(window.location.search).get('project');
+      if (askedProject.current && projects.some((p) => p.id === askedProject.current)) {
+        setSelectedId(askedProject.current);
+        return;
+      }
+    }
     if (!selectedId || !projects.some((p) => p.id === selectedId)) setSelectedId(projects[0].id);
   }, [projects, selectedId]);
+
+  useEffect(() => {
+    const onSelect = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      if (projects.some((p) => p.id === id)) setSelectedId(id);
+    };
+    window.addEventListener(SELECT_PROJECT_EVENT, onSelect);
+    return () => window.removeEventListener(SELECT_PROJECT_EVENT, onSelect);
+  }, [projects]);
 
   async function send(method: 'POST' | 'PATCH' | 'DELETE', url: string, body?: object): Promise<boolean> {
     setError(null);
