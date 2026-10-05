@@ -127,7 +127,7 @@ export default function DashboardPage() {
   if (!overview) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-[#d0ccc4]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Dashboard</h1>
         {error ? <p className="text-sm text-red-400">{error}</p> : <Spinner />}
       </div>
     );
@@ -139,8 +139,8 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">{workspace?.name ?? 'Dashboard'}</h1>
-          <p className="text-zinc-500 text-sm">
+          <h1 className="text-3xl font-bold tracking-tight text-[#d0ccc4]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{workspace?.name ?? 'Dashboard'}</h1>
+          <p className="text-[#4a4d5a] text-sm">
             {plural(totals.projects, 'project')} · {plural(totals.activeMissions, 'active mission')} · {totals.stepsDone} of{' '}
             {totals.steps} steps done
           </p>
@@ -160,8 +160,8 @@ export default function DashboardPage() {
 
       {!workspace && (
         <Card className="flex flex-col items-start gap-3">
-          <span className="text-sm text-zinc-300">You don’t have a workspace yet.</span>
-          <a href="/onboarding" className="text-sm text-pink-400 hover:underline">Set one up</a>
+          <span className="text-sm text-[#b8b4ac]">You don’t have a workspace yet.</span>
+          <a href="/onboarding" className="text-sm text-[#c9a84c] hover:underline">Set one up</a>
         </Card>
       )}
 
@@ -173,9 +173,9 @@ export default function DashboardPage() {
       )}
 
       {workspace && projects.length === 0 && !addingProject && (
-        <Card className="border-dashed text-sm text-zinc-500">
+        <Card className="border-dashed text-sm text-[#4a4d5a]">
           No projects yet.{' '}
-          <button type="button" onClick={() => setAddingProject(true)} className="text-pink-400 hover:underline">
+          <button type="button" onClick={() => setAddingProject(true)} className="text-[#c9a84c] hover:underline">
             Add your first
           </button>
         </Card>

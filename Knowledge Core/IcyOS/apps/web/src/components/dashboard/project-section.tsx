@@ -35,7 +35,7 @@ export function ProjectSection({
           value={project.name}
           label={`project ${project.name}`}
           onSave={(name) => actions.renameProject(project.id, name)}
-          className="text-lg font-semibold text-zinc-100"
+          className="text-lg font-semibold text-[#d0ccc4]"
         />
         <PrioritySelect
           value={project.priority}
@@ -50,7 +50,7 @@ export function ProjectSection({
             type="button"
             aria-label={`Delete project ${project.name}`}
             onClick={() => actions.deleteProject(project)}
-            className="p-1.5 text-zinc-500 hover:text-red-400"
+            className="p-1.5 text-[#4a4d5a] hover:text-red-400 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <Trash2 size={16} />
           </button>
@@ -66,9 +66,9 @@ export function ProjectSection({
       )}
 
       {project.missions.length === 0 && !adding && (
-        <Card className="border-dashed text-sm text-zinc-500">
+        <Card className="border-dashed text-sm text-[#4a4d5a]">
           No missions yet.{' '}
-          <button type="button" onClick={() => setAdding(true)} className="text-pink-400 hover:underline">
+          <button type="button" onClick={() => setAdding(true)} className="text-[#c9a84c] hover:underline">
             Add one
           </button>
         </Card>

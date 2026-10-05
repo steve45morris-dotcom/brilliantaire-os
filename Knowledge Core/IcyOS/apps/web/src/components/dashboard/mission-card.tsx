@@ -7,11 +7,11 @@ import { AddStepInput } from './forms';
 import type { MissionView, StepView } from '../../lib/workspace/overview';
 
 const STATUS_STYLE: Record<string, string> = {
-  Staged: 'bg-zinc-800 text-zinc-300 border-zinc-700',
+  Staged: 'bg-[#1e2030] text-[#6b6e7a] border-[#2a2d3a]',
   Approved: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
-  Running: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
+  Running: 'bg-[#c9a84c]/10 text-[#c9a84c] border-[#c9a84c]/30',
   Completed: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
-  Skipped: 'bg-zinc-900 text-zinc-500 border-zinc-800',
+  Skipped: 'bg-[#12131a] text-[#4a4d5a] border-[#1e2030]',
   Failed: 'bg-red-500/10 text-red-300 border-red-500/30',
 };
 
@@ -49,9 +49,9 @@ export function MissionCard({
             value={mission.name}
             label={`mission ${mission.name}`}
             onSave={(name) => actions.renameMission(mission.id, name)}
-            className="font-semibold text-zinc-100"
+            className="font-semibold text-[#d0ccc4]"
           />
-          <span className="text-xs text-zinc-500">
+          <span className="text-xs text-[#4a4d5a]">
             {mission.sprintName}
             {mission.estimatedMinutes ? ` · ~${formatMinutes(mission.estimatedMinutes)}` : ''}
           </span>
@@ -66,7 +66,7 @@ export function MissionCard({
             type="button"
             aria-label={`Delete mission ${mission.name}`}
             onClick={() => actions.deleteMission(mission)}
-            className="text-zinc-500 hover:text-red-400"
+            className="text-[#4a4d5a] hover:text-red-400 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <Trash2 size={15} />
           </button>
@@ -75,7 +75,7 @@ export function MissionCard({
 
       {mission.steps.length > 0 && (
         <div
-          className="h-1.5 rounded bg-zinc-800 overflow-hidden"
+          className="h-1.5 rounded-full bg-[#1e2030] overflow-hidden"
           role="progressbar"
           aria-label={`${mission.name} progress`}
           aria-valuemin={0}
@@ -83,8 +83,12 @@ export function MissionCard({
           aria-valuenow={mission.stepsDone}
         >
           <div
-            className="h-full bg-pink-500 transition-all"
-            style={{ width: `${(mission.stepsDone / mission.steps.length) * 100}%` }}
+            className="h-full rounded-full transition-all"
+            style={{
+              width: `${(mission.stepsDone / mission.steps.length) * 100}%`,
+              background: 'linear-gradient(90deg, #a8872e, #c9a84c)',
+              boxShadow: mission.stepsDone > 0 ? '0 0 8px rgba(201,168,76,0.4)' : 'none',
+            }}
           />
         </div>
       )}
@@ -94,7 +98,7 @@ export function MissionCard({
           <li key={step.id} className="group/step flex items-start gap-2 text-sm">
             <input
               type="checkbox"
-              className="mt-1 shrink-0"
+              className="mt-1 shrink-0 accent-[#c9a84c] w-4 h-4"
               aria-label={step.command}
               checked={Boolean(step.completedAt)}
               disabled={pendingSteps.has(step.id)}
@@ -107,7 +111,7 @@ export function MissionCard({
               onSave={(text) => actions.renameStep(step.id, text)}
               className="flex-1"
             >
-              <span className={`min-w-0 break-words ${step.completedAt ? 'text-zinc-500 line-through' : 'text-zinc-300'}`}>
+              <span className={`min-w-0 break-words ${step.completedAt ? 'text-[#4a4d5a] line-through' : 'text-[#b8b4ac]'}`}>
                 {step.command}
               </span>
             </EditableText>
@@ -115,7 +119,7 @@ export function MissionCard({
               type="button"
               aria-label={`Delete step ${step.command}`}
               onClick={() => actions.deleteStep(step)}
-              className="shrink-0 mt-0.5 text-zinc-500 hover:text-red-400 opacity-100 md:opacity-0 md:group-hover/step:opacity-100 focus:opacity-100 transition-opacity"
+              className="shrink-0 mt-0.5 text-[#4a4d5a] hover:text-red-400 opacity-100 md:opacity-0 md:group-hover/step:opacity-100 focus:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <X size={14} />
             </button>
