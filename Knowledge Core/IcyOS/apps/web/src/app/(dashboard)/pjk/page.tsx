@@ -3,5 +3,9 @@
 import { PjkChat } from '../../../components/pjk/chat';
 
 export default function PjkPage() {
-  return <PjkChat />;
+  return (
+    <div className="h-full">
+      <PjkChat />
+    </div>
+  );
 }
