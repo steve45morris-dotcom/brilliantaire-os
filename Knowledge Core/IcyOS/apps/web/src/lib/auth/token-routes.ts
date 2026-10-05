@@ -29,6 +29,7 @@ const TOKEN_ROUTES: RegExp[] = [
   /^\/api\/review$/,
   /^\/api\/knowledge$/,
   new RegExp(`^/api/knowledge/${UUID}$`),
+  /^\/api\/pjk\/status$/,
 ];
 
 export const TOKEN_PREFIX = 'icy_';
