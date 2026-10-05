@@ -1,11 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { ClipboardList, Filter, Download, AlertTriangle, CheckCircle, XCircle, Clock } from 'lucide-react';
-import { Card } from '../../../components/ui/card';
-import { Button } from '../../../components/ui/button';
-import { Spinner } from '../../../components/ui/spinner';
+import { Download, AlertTriangle, CheckCircle, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
+import { Backdrop, CornerBrackets, PageHeader, SectionLabel, TacButton, useCountUp, GOLD, GREEN } from '../../../components/dashboard/hud';
 import { apiFetch } from '../../../lib/api/client';
+
+const AMBER = '#fbbf24';
+const RED = '#f87171';
+const CYAN = '#22d3ee';
+const pad = (n: number) => String(n).padStart(2, '0');
 
 interface AuditEvent {
   id: string;
@@ -27,25 +30,66 @@ interface AuditLogSnapshot {
 
 type CategoryFilter = 'all' | 'auth' | 'data' | 'config' | 'system' | 'ai';
 
-const categoryLabels: Record<CategoryFilter, string> = {
-  all: 'All',
-  auth: 'Auth',
-  data: 'Data',
-  config: 'Config',
-  system: 'System',
-  ai: 'AI',
+const CATEGORIES: { key: CategoryFilter; label: string }[] = [
+  { key: 'all', label: 'ALL' },
+  { key: 'auth', label: 'AUTH' },
+  { key: 'data', label: 'DATA' },
+  { key: 'config', label: 'CONFIG' },
+  { key: 'system', label: 'SYSTEM' },
+  { key: 'ai', label: 'AI' },
+];
+
+const CATEGORY_COLOR: Record<AuditEvent['category'], string> = {
+  auth: GOLD,
+  data: CYAN,
+  config: '#a78bfa',
+  system: '#8a8d9a',
+  ai: '#f472b6',
 };
 
-const statusIcons = {
-  success: CheckCircle,
-  warning: AlertTriangle,
-  error: XCircle,
+const STATUS = {
+  success: { Icon: CheckCircle, color: GREEN, label: 'OK' },
+  warning: { Icon: AlertTriangle, color: AMBER, label: 'WARN' },
+  error: { Icon: XCircle, color: RED, label: 'ERR' },
 };
 
-const statusColors = {
-  success: 'text-green-500',
-  warning: 'text-yellow-500',
-  error: 'text-red-500',
+function Panel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`relative rounded-lg overflow-hidden ${className}`}
+      style={{
+        background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
+        border: '1px solid #1e2030',
+        boxShadow: '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.08)',
+      }}
+    >
+      <CornerBrackets color="rgba(201,168,76,0.55)" size={18} />
+      <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
+      {children}
+    </div>
+  );
+}
+
+function Stat({ label, value, numeric, unit, color = '#e0dcd2' }: { label: string; value?: string; numeric?: number; unit?: string; color?: string }) {
+  const counted = useCountUp(numeric ?? 0);
+  return (
+    <div className="relative flex flex-col gap-1.5 px-4 py-3.5 rounded-lg overflow-hidden" style={{ background: 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)', border: '1px solid #1e2030' }}>
+      <CornerBrackets color="rgba(201,168,76,0.3)" size={10} />
+      <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">{label}</span>
+      <span className="font-tactical text-[26px] leading-none font-semibold tabular-nums" style={{ color, textShadow: color === GOLD ? '0 0 18px rgba(201,168,76,0.3)' : 'none' }}>
+        {numeric != null ? counted : value}
+        {unit && <span className="text-[11px] text-[#4a4d5a] ml-1">{unit}</span>}
+      </span>
+    </div>
+  );
+}
+
+const stamp = (iso: string) => {
+  const d = new Date(iso);
+  return {
+    date: d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase(),
+    time: d.toLocaleTimeString('en-GB', { hour12: false }),
+  };
 };
 
 export default function AuditLogPage() {
@@ -69,138 +113,111 @@ export default function AuditLogPage() {
     void load();
   }, [load]);
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <Spinner />
-        <p className="text-sm text-zinc-500">Loading audit log...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col gap-6">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Audit Log</h1>
-        <Card>
-          <p className="text-sm text-red-400">{error}</p>
-          <Button variant="secondary" onClick={() => { setLoading(true); void load(); }} className="mt-4">Retry</Button>
-        </Card>
-      </div>
-    );
-  }
-
-  if (!snapshot) return null;
-
-  const filteredEvents = selectedCategory === 'all'
-    ? snapshot.events
-    : snapshot.events.filter((e) => e.category === selectedCategory);
-
-  const successCount = snapshot.events.filter((e) => e.status === 'success').length;
-  const successRate = snapshot.totalCount > 0
-    ? Math.round((successCount / snapshot.totalCount) * 100)
-    : 0;
+  const filteredEvents = snapshot
+    ? selectedCategory === 'all' ? snapshot.events : snapshot.events.filter((e) => e.category === selectedCategory)
+    : [];
+  const successCount = snapshot?.events.filter((e) => e.status === 'success').length ?? 0;
+  const successRate = snapshot && snapshot.events.length > 0 ? Math.round((successCount / snapshot.events.length) * 100) : 0;
+  const errorCount = snapshot?.events.filter((e) => e.status === 'error').length ?? 0;
+  const countFor = (c: CategoryFilter) => (snapshot ? (c === 'all' ? snapshot.events.length : snapshot.events.filter((e) => e.category === c).length) : 0);
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Audit Log</h1>
-        <p className="text-zinc-500 text-sm">Track system activity and security events</p>
-      </div>
+    <div className="relative flex flex-col gap-5 max-w-4xl">
+      <Backdrop />
 
-      {/* Category Filter Row */}
-      <div className="flex gap-2 flex-wrap">
-        {(Object.keys(categoryLabels) as CategoryFilter[]).map((cat) => {
-          const isActive = cat === selectedCategory;
-          return (
-            <Button
-              key={cat}
-              variant={isActive ? 'primary' : 'secondary'}
-              onClick={() => setSelectedCategory(cat)}
-              className={isActive ? 'bg-pink-600 hover:bg-pink-700 text-white' : ''}
-            >
-              {cat === 'all' && <Filter size={16} />}
-              <span className={cat === 'all' ? 'ml-2' : ''}>{categoryLabels[cat]}</span>
-            </Button>
-          );
-        })}
-      </div>
+      <PageHeader
+        eyebrow="LEDGER"
+        title="Audit Log"
+        aside={snapshot && <span className="font-tactical text-[10px] tracking-[0.2em] text-[#2f3240] hidden sm:block">{snapshot.totalCount} EVENTS · {snapshot.retentionDays}D RETENTION</span>}
+      />
+      <p className="text-sm text-[#8a8d9a] -mt-2">Track system activity and security events.</p>
 
-      {/* Summary Stats Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <div className="flex items-center gap-3">
-            <ClipboardList size={20} className="text-pink-500" />
-            <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide">Total Events</p>
-              <p className="text-2xl font-bold text-zinc-100">{snapshot.totalCount}</p>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex items-center gap-3">
-            <CheckCircle size={20} className="text-green-500" />
-            <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide">Success Rate</p>
-              <p className="text-2xl font-bold text-zinc-100">{successRate}%</p>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex items-center gap-3">
-            <Clock size={20} className="text-cyan-500" />
-            <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide">Retention Period</p>
-              <p className="text-2xl font-bold text-zinc-100">{snapshot.retentionDays} days</p>
-            </div>
-          </div>
-        </Card>
-      </div>
+      {loading && <span className="font-tactical text-[10px] tracking-[0.3em] text-[#4a4d5a]">// READING LEDGER</span>}
 
-      {/* Events List */}
-      <div className="space-y-4">
-        {filteredEvents.map((event) => {
-          const StatusIcon = statusIcons[event.status];
-          return (
-            <Card key={event.id}>
-              <div className="flex items-start gap-4">
-                <StatusIcon size={20} className={`mt-0.5 ${statusColors[event.status]}`} />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <p className="text-sm font-semibold text-zinc-200">{event.action}</p>
-                    <span className="text-xs font-medium bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded">
-                      {event.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 mt-1">
-                    <span className="text-xs text-zinc-500">Actor: {event.actor}</span>
-                    <span className="text-zinc-700">|</span>
-                    <span className="text-xs text-zinc-500">Target: {event.target}</span>
-                  </div>
-                  <p className="text-sm text-zinc-400 mt-2">{event.details}</p>
-                  <p className="text-xs text-zinc-600 mt-2">
-                    {new Date(event.timestamp).toLocaleString()}
-                  </p>
-                </div>
-              </div>
-            </Card>
-          );
-        })}
-      </div>
-
-      {/* Footer */}
-      <Card>
-        <div className="flex items-center justify-between text-xs text-zinc-500">
-          <div className="flex items-center gap-4">
-            <Download size={14} className="text-zinc-500" />
-            <span>Export formats: {snapshot.exportFormats.join(', ')}</span>
-            <span className="text-zinc-700">|</span>
-            <span>Retention: {snapshot.retentionDays} days</span>
-          </div>
-          <span className="text-zinc-600">{snapshot.totalCount} events recorded</span>
+      {error && (
+        <div className="flex items-center justify-between gap-3 px-4 py-3 bg-red-500/5 border border-red-500/20 rounded-lg">
+          <span className="flex items-center gap-2">
+            <AlertCircle size={14} className="text-red-400 shrink-0" />
+            <p className="text-sm text-red-300">{error}</p>
+          </span>
+          <TacButton variant="ghost" onClick={() => { setLoading(true); void load(); }}>
+            <RefreshCw size={12} /> RETRY
+          </TacButton>
         </div>
-      </Card>
+      )}
+
+      {snapshot && (
+        <>
+          <SectionLabel>SUMMARY</SectionLabel>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <Stat label="TOTAL EVENTS" numeric={snapshot.totalCount} color={GOLD} />
+            <Stat label="SUCCESS RATE" numeric={successRate} unit="%" color={successRate >= 95 ? GREEN : successRate >= 80 ? AMBER : RED} />
+            <Stat label="ERRORS" numeric={errorCount} color={errorCount > 0 ? RED : '#4a4d5a'} />
+            <Stat label="RETENTION" numeric={snapshot.retentionDays} unit="D" color="#8a8d9a" />
+          </div>
+
+          <SectionLabel>EVENTS · {pad(filteredEvents.length)}</SectionLabel>
+          <Panel>
+            <div className="flex items-center gap-1 px-4 pt-3 pb-3 border-b border-[#1e2030] overflow-x-auto">
+              {CATEGORIES.map((c) => {
+                const on = c.key === selectedCategory;
+                return (
+                  <button
+                    key={c.key}
+                    type="button"
+                    onClick={() => setSelectedCategory(c.key)}
+                    className="font-tactical shrink-0 px-2.5 py-1.5 rounded-[4px] text-[10px] tracking-[0.14em] font-semibold flex items-center gap-1.5 transition-all min-h-[32px]"
+                    style={{ color: on ? '#c9a84c' : '#6b6e7a', background: on ? 'rgba(201,168,76,0.10)' : 'transparent', boxShadow: on ? 'inset 0 0 0 1px rgba(201,168,76,0.3)' : 'none' }}
+                  >
+                    {c.key !== 'all' && <span className="w-1.5 h-1.5 rounded-full" style={{ background: CATEGORY_COLOR[c.key] }} />}
+                    {c.label}
+                    <span className={`tabular-nums ${on ? 'text-[#c9a84c]/60' : 'text-[#2a2d3a]'}`}>{countFor(c.key)}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {filteredEvents.length === 0 ? (
+              <div className="flex items-center justify-center py-12 font-tactical text-[10px] tracking-[0.16em] text-[#4a4d5a]">NO EVENTS IN THIS CATEGORY</div>
+            ) : (
+              <ul className="flex flex-col">
+                {filteredEvents.map((event, i) => {
+                  const s = STATUS[event.status];
+                  const t = stamp(event.timestamp);
+                  const cc = CATEGORY_COLOR[event.category];
+                  return (
+                    <li key={event.id} className={`relative flex gap-4 px-5 py-3.5 ${i > 0 ? 'border-t border-[#1e2030]/60' : ''} ${event.status === 'error' ? 'bg-red-500/[0.03]' : ''}`}>
+                      <span aria-hidden className="absolute left-0 top-3 bottom-3 w-px" style={{ background: s.color, opacity: event.status === 'success' ? 0.35 : 0.8 }} />
+                      <div className="flex flex-col items-end font-tactical tabular-nums shrink-0 w-14">
+                        <span className="text-[11px] text-[#b8b4ac]">{t.time}</span>
+                        <span className="text-[9px] text-[#4a4d5a]">{t.date}</span>
+                      </div>
+                      <s.Icon size={15} className="shrink-0 mt-0.5" style={{ color: s.color }} />
+                      <div className="flex-1 min-w-0 flex flex-col gap-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[14px] font-semibold text-[#e0dcd2]">{event.action}</span>
+                          <span className="font-tactical text-[9px] tracking-[0.14em] px-1.5 py-[2px] rounded-[3px]" style={{ color: cc, background: `${cc}14`, boxShadow: `inset 0 0 0 1px ${cc}44` }}>{event.category.toUpperCase()}</span>
+                          <span className="font-tactical text-[9px] tracking-[0.14em]" style={{ color: s.color }}>{s.label}</span>
+                        </div>
+                        <span className="font-tactical text-[10px] tracking-[0.08em] text-[#4a4d5a] flex flex-wrap gap-x-3">
+                          <span>ACTOR <span className="text-[#8a8d9a]">{event.actor}</span></span>
+                          <span>TARGET <span className="text-[#8a8d9a]">{event.target}</span></span>
+                        </span>
+                        <p className="text-[13px] text-[#8a8d9a] leading-snug">{event.details}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-t border-[#1e2030] font-tactical text-[9px] tracking-[0.14em] text-[#4a4d5a]">
+              <span className="flex items-center gap-2"><Download size={11} /> EXPORT {snapshot.exportFormats.map((f) => f.toUpperCase()).join(' · ')}</span>
+              <span>{snapshot.totalCount} RECORDED · {snapshot.retentionDays}D RETENTION</span>
+            </div>
+          </Panel>
+        </>
+      )}
     </div>
   );
 }

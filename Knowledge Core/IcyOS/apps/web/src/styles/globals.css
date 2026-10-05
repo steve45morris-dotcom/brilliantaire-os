@@ -1,20 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --primary: #f50057;
-  --secondary: #27272a;
-  --accent: #00f0ff;
-  --border: #27272a;
+  --background: #08090e;
+  --foreground: #d0ccc4;
+  --primary: #c9a84c;
+  --secondary: #12131a;
+  --accent: #c9a84c;
+  --border: #1e2030;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Tactical HUD primitives (dashboard) */
+.font-tactical {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+@keyframes hud-scan {
+  0% { top: -1px; opacity: 0; }
+  6% { opacity: 0.55; }
+  94% { opacity: 0.55; }
+  100% { top: 100%; opacity: 0; }
+}
+.hud-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.7) 50%, transparent 100%);
+  animation: hud-scan 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hud-pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(201,168,76,0); }
+}
+@keyframes hud-pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(52,211,153,0); }
+}
+.hud-pulse-gold { animation: hud-pulse-gold 2s ease-out infinite; }
+.hud-pulse-green { animation: hud-pulse-green 2.4s ease-out infinite; }
+
+.tac-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 1px solid #4a4d5a;
+  background: #0a0b10;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.tac-check:hover { border-color: #c9a84c; }
+.tac-check:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(201,168,76,0.35); }
+.tac-check:checked {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  box-shadow: 0 0 8px rgba(201,168,76,0.45);
+}
+.tac-check:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #08090e;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.tac-check:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-scan, .hud-pulse-gold, .hud-pulse-green { animation: none; }
 }

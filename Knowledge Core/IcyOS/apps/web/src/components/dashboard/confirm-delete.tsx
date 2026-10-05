@@ -26,7 +26,7 @@ export function ConfirmDelete({ pending, onClose }: { pending: PendingDelete | n
 
   return (
     <Modal isOpen={pending !== null} onClose={() => !busy && onClose()} title={pending?.title ?? ''}>
-      <p className="text-sm text-zinc-400 mb-6">{pending?.message}</p>
+      <p className="text-sm text-[#6b6e7a] mb-6">{pending?.message}</p>
       <div className="flex justify-end gap-2">
         <Button variant="secondary" disabled={busy} onClick={onClose}>
           Cancel

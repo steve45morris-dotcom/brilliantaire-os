@@ -6,9 +6,6 @@ import {
   LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, Terminal
 } from 'lucide-react';
 
-// Every page the sidebar has, except Billing, which is linked from Settings
-// to keep the bar readable on narrow phones. Labels are short enough for a
-// 320px screen; `name` is the page's full name, for screen readers.
 export const mobileNavItems: { href: string; label: string; name?: string; icon: typeof Inbox }[] = [
   { href: '/dashboard', label: 'Home', icon: LayoutDashboard },
   { href: '/inbox', label: 'Inbox', icon: Inbox },
@@ -27,7 +24,7 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Main" className="fixed bottom-0 inset-x-0 h-16 bg-zinc-950 border-t border-zinc-900 flex md:hidden items-stretch px-1 z-40">
+    <nav aria-label="Main" className="fixed bottom-0 inset-x-0 h-16 bg-[#08090e] border-t border-[#1e2030] flex md:hidden items-stretch px-1 z-40">
       {mobileNavItems.map((item) => {
         const Icon = item.icon;
         const active = isActive(pathname, item.href);
@@ -38,7 +35,7 @@ export function BottomNav() {
             aria-current={active ? 'page' : undefined}
             aria-label={item.name}
             className={`flex-1 min-w-0 flex flex-col items-center justify-center gap-1 text-[10px] font-semibold transition-colors duration-200 ${
-              active ? 'text-pink-500' : 'text-zinc-500 hover:text-zinc-300'
+              active ? 'text-[#c9a84c]' : 'text-[#4a4d5a] hover:text-[#b8b4ac]'
             }`}
           >
             <Icon size={20} />

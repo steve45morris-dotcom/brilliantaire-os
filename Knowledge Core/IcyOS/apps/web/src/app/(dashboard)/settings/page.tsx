@@ -2,29 +2,45 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Check, ChevronRight, Copy, CreditCard, KeyRound } from 'lucide-react';
-import { Card } from '../../../components/ui/card';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { Spinner } from '../../../components/ui/spinner';
+import { Check, ChevronRight, Copy, CreditCard, KeyRound, AlertCircle, Plus, ShieldAlert } from 'lucide-react';
 import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard/confirm-delete';
+import { Backdrop, CornerBrackets, PageHeader, SectionLabel, TacButton } from '../../../components/dashboard/hud';
 import { apiFetch } from '../../../lib/api/client';
 import type { ApiTokenRow, CreatedApiToken } from '../../../lib/auth/token-routes';
 
+const pad = (n: number) => String(n).padStart(2, '0');
+
 const EXPIRY_OPTIONS: { label: string; days: number | null }[] = [
-  { label: '30 days', days: 30 },
-  { label: '90 days', days: 90 },
-  { label: '1 year', days: 365 },
-  { label: 'Never', days: null },
+  { label: '30D', days: 30 },
+  { label: '90D', days: 90 },
+  { label: '1Y', days: 365 },
+  { label: 'NEVER', days: null },
 ];
 
 const formatDate = (iso: string | null, fallback: string) =>
-  iso ? new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : fallback;
+  iso ? new Date(iso).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' }).toUpperCase() : fallback;
 
 function expiryText(token: ApiTokenRow): { text: string; expired: boolean } {
-  if (!token.expires_at) return { text: 'Never expires', expired: false };
+  if (!token.expires_at) return { text: 'NO EXPIRY', expired: false };
   const expired = new Date(token.expires_at).getTime() <= Date.now();
-  return { text: `${expired ? 'Expired' : 'Expires'} ${formatDate(token.expires_at, '')}`, expired };
+  return { text: `${expired ? 'EXPIRED' : 'EXPIRES'} ${formatDate(token.expires_at, '')}`, expired };
+}
+
+function Panel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`relative rounded-lg overflow-hidden ${className}`}
+      style={{
+        background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
+        border: '1px solid #1e2030',
+        boxShadow: '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.08)',
+      }}
+    >
+      <CornerBrackets color="rgba(201,168,76,0.55)" size={18} />
+      <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
+      {children}
+    </div>
+  );
 }
 
 export default function SettingsPage() {
@@ -95,114 +111,171 @@ export default function SettingsPage() {
     });
   }
 
-  return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-100">Settings</h1>
-        <p className="text-zinc-500 text-sm">Account and connections.</p>
-      </div>
+  const live = tokens?.filter((t) => !expiryText(t).expired).length ?? 0;
 
-      <Link href="/billing" className="group">
-        <Card className="flex items-center justify-between gap-3 !py-4 group-hover:border-zinc-700 transition-colors">
-          <span className="flex items-center gap-2 text-sm font-semibold text-zinc-100">
-            <CreditCard size={18} /> Plan and billing
+  return (
+    <div className="relative flex flex-col gap-5 max-w-3xl">
+      <Backdrop />
+
+      <PageHeader
+        eyebrow="CONFIGURATION"
+        title="Settings"
+        aside={tokens && <span className="font-tactical text-[10px] tracking-[0.2em] text-[#2f3240] hidden sm:block">{pad(live)} TOKENS LIVE</span>}
+      />
+      <p className="text-sm text-[#8a8d9a] -mt-2">Account and connections.</p>
+
+      {/* Billing link */}
+      <Link href="/billing" className="group block">
+        <div
+          className="relative flex items-center justify-between gap-3 px-5 py-4 rounded-lg overflow-hidden transition-all"
+          style={{ background: 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)', border: '1px solid #1e2030' }}
+        >
+          <span aria-hidden className="pointer-events-none absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" style={{ boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.3), 0 0 22px rgba(201,168,76,0.06)' }} />
+          <span className="flex items-center gap-3">
+            <span className="w-9 h-9 rounded-md flex items-center justify-center text-[#c9a84c]" style={{ background: 'rgba(201,168,76,0.08)', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.25)' }}>
+              <CreditCard size={16} />
+            </span>
+            <span className="flex flex-col">
+              <span className="font-tactical text-[9px] tracking-[0.2em] text-[#4a4d5a]">ACCOUNT</span>
+              <span className="text-[15px] font-semibold text-[#e0dcd2]">Plan and billing</span>
+            </span>
           </span>
-          <ChevronRight size={18} className="text-zinc-500" />
-        </Card>
+          <ChevronRight size={16} className="text-[#4a4d5a] group-hover:text-[#c9a84c] group-hover:translate-x-0.5 transition-all" />
+        </div>
       </Link>
 
-      <Card className="flex flex-col gap-5">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-lg font-semibold text-zinc-100 flex items-center gap-2">
-            <KeyRound size={18} /> Personal access tokens
-          </h2>
-          <p className="text-sm text-zinc-400">
-            Let your own tools and assistants read and change your projects, missions and steps. A token can’t see
-            billing or settings, or create other tokens. Send it as <code className="text-zinc-300">Authorization: Bearer &lt;token&gt;</code>.
-          </p>
+      {/* Tokens */}
+      <SectionLabel>ACCESS TOKENS</SectionLabel>
+      <Panel>
+        <div className="flex items-start gap-3 px-5 pt-4 pb-4 border-b border-[#1e2030]">
+          <span className="w-9 h-9 shrink-0 rounded-md flex items-center justify-center text-[#c9a84c]" style={{ background: 'rgba(201,168,76,0.08)', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.25)' }}>
+            <KeyRound size={16} />
+          </span>
+          <div className="flex flex-col gap-1 min-w-0">
+            <h2 className="text-[15px] font-semibold text-[#e0dcd2]">Personal access tokens</h2>
+            <p className="text-[13px] text-[#8a8d9a] leading-relaxed">
+              Let your own tools and assistants read and change your projects, missions and steps. A token can’t see billing or settings, or create other tokens. Send it as{' '}
+              <code className="font-tactical text-[11px] text-[#c9a84c] bg-[#c9a84c]/10 px-1.5 py-0.5 rounded">Authorization: Bearer &lt;token&gt;</code>.
+            </p>
+          </div>
         </div>
 
-        {error && (
-          <p role="alert" className="text-sm text-red-400">
-            {error}
-          </p>
-        )}
-
-        {created && (
-          <div className="flex flex-col gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 p-4">
-            <span className="text-sm font-semibold text-emerald-300">
-              Copy “{created.name}” now. You won’t be able to see it again.
-            </span>
-            <div className="flex gap-2">
-              <input
-                readOnly
-                aria-label="New token"
-                value={created.token}
-                onFocus={(e) => e.target.select()}
-                className="flex-1 min-w-0 px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-md font-mono text-xs text-zinc-100"
-              />
-              <Button variant="secondary" className="inline-flex items-center gap-1.5" onClick={() => copy(created.token)}>
-                {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? 'Copied' : 'Copy'}
-              </Button>
+        <div className="flex flex-col gap-4 px-5 py-4">
+          {error && (
+            <div className="flex items-center gap-2 px-4 py-3 bg-red-500/5 border border-red-500/20 rounded-lg">
+              <AlertCircle size={14} className="text-red-400 shrink-0" />
+              <p role="alert" className="text-sm text-red-300">{error}</p>
             </div>
-            <span className="text-xs text-zinc-500">Store it somewhere safe, like a password manager or your tool’s secret settings.</span>
-            <button type="button" onClick={() => setCreated(null)} className="self-start text-xs text-zinc-400 hover:text-zinc-200 underline">
-              I’ve saved it
-            </button>
-          </div>
-        )}
+          )}
 
-        <form onSubmit={create} className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Input
-            aria-label="Token name"
-            placeholder="Name, e.g. P.J.K. on my Mac"
-            maxLength={100}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="flex-1"
-          />
-          <select
-            aria-label="Token expiry"
-            value={expiry === null ? 'never' : String(expiry)}
-            onChange={(e) => setExpiry(e.target.value === 'never' ? null : Number(e.target.value))}
-            className="px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-md text-sm text-zinc-200 focus:outline-none focus:border-pink-500"
-          >
-            {EXPIRY_OPTIONS.map((o) => (
-              <option key={o.label} value={o.days === null ? 'never' : String(o.days)}>
-                Expires: {o.label}
-              </option>
-            ))}
-          </select>
-          <Button type="submit" disabled={!name.trim() || creating}>
-            {creating ? 'Creating…' : 'Create token'}
-          </Button>
-        </form>
+          {created && (
+            <div
+              className="relative flex flex-col gap-3 rounded-lg px-4 py-4 overflow-hidden"
+              style={{ background: 'linear-gradient(160deg, rgba(52,211,153,0.07), transparent)', border: '1px solid rgba(52,211,153,0.3)', boxShadow: '0 0 24px rgba(52,211,153,0.06)' }}
+            >
+              <CornerBrackets color="rgba(52,211,153,0.6)" size={12} />
+              <span className="inline-flex items-center gap-2 font-tactical text-[10px] tracking-[0.16em] text-emerald-300">
+                <ShieldAlert size={13} /> TOKEN ISSUED · “{created.name.toUpperCase()}” · SHOWN ONCE
+              </span>
+              <div className="flex gap-2">
+                <input
+                  readOnly
+                  aria-label="New token"
+                  value={created.token}
+                  onFocus={(e) => e.target.select()}
+                  className="flex-1 min-w-0 px-3 min-h-[38px] bg-[#08090e] border border-[#1e2030] rounded-md font-tactical text-[12px] text-[#e0dcd2] focus:outline-none focus:border-emerald-500/50"
+                />
+                <TacButton variant="ghost" onClick={() => copy(created.token)}>
+                  {copied ? <Check size={12} /> : <Copy size={12} />} {copied ? 'COPIED' : 'COPY'}
+                </TacButton>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-[12px] text-[#6b6e7a]">Store it somewhere safe, like a password manager or your tool’s secret settings.</span>
+                <button type="button" onClick={() => setCreated(null)} className="font-tactical text-[9px] tracking-[0.14em] text-[#8a8d9a] hover:text-[#e0dcd2] shrink-0">
+                  I’VE SAVED IT
+                </button>
+              </div>
+            </div>
+          )}
 
-        {tokens === null && !error && <Spinner />}
-        {tokens && tokens.length === 0 && <p className="text-sm text-zinc-500">No tokens yet.</p>}
-        {tokens && tokens.length > 0 && (
-          <ul className="flex flex-col divide-y divide-zinc-800 border-t border-zinc-800">
-            {tokens.map((t) => {
-              const expiryInfo = expiryText(t);
-              return (
-                <li key={t.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
-                  <div className="flex flex-col gap-0.5 min-w-0">
-                    <span className="text-sm font-medium text-zinc-100 break-words">{t.name}</span>
-                    <span className="text-xs text-zinc-500">
-                      <code className="text-zinc-400">{t.prefix}…</code> · Created {formatDate(t.created_at, '')} · Last used{' '}
-                      {formatDate(t.last_used_at, 'never')} ·{' '}
-                      <span className={expiryInfo.expired ? 'text-red-400' : ''}>{expiryInfo.text}</span>
-                    </span>
-                  </div>
-                  <Button variant="secondary" className="!px-3 !py-1 text-xs" onClick={() => revoke(t)}>
-                    Revoke
-                  </Button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </Card>
+          <form onSubmit={create} className="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <label className="flex-1 flex flex-col gap-1.5">
+              <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">TOKEN NAME</span>
+              <input
+                aria-label="Token name"
+                placeholder="e.g. P.J.K. on my Mac"
+                maxLength={100}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="px-3 min-h-[40px] bg-[#08090e] border border-[#1e2030] rounded-md text-[13.5px] text-[#e0dcd2] placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors"
+              />
+            </label>
+            <div className="flex flex-col gap-1.5">
+              <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">EXPIRY</span>
+              <div className="flex gap-1" role="radiogroup" aria-label="Token expiry">
+                {EXPIRY_OPTIONS.map((o) => {
+                  const on = expiry === o.days;
+                  return (
+                    <button
+                      key={o.label}
+                      type="button"
+                      role="radio"
+                      aria-checked={on}
+                      onClick={() => setExpiry(o.days)}
+                      className="font-tactical px-3 min-h-[40px] rounded-md text-[11px] tracking-[0.12em] font-semibold transition-all"
+                      style={{ color: on ? '#c9a84c' : '#6b6e7a', background: on ? 'rgba(201,168,76,0.10)' : 'transparent', boxShadow: on ? 'inset 0 0 0 1px rgba(201,168,76,0.4)' : 'inset 0 0 0 1px #1e2030' }}
+                    >
+                      {o.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <TacButton type="submit" disabled={!name.trim() || creating} className="sm:min-h-[40px]">
+              <Plus size={12} /> {creating ? 'ISSUING…' : 'ISSUE'}
+            </TacButton>
+          </form>
+
+          {tokens === null && !error && <span className="font-tactical text-[10px] tracking-[0.3em] text-[#4a4d5a]">// LOADING</span>}
+          {tokens && tokens.length === 0 && (
+            <div className="flex items-center justify-center py-8 border border-dashed border-[#1e2030] rounded-lg">
+              <span className="font-tactical text-[10px] tracking-[0.14em] text-[#4a4d5a]">NO TOKENS ISSUED</span>
+            </div>
+          )}
+          {tokens && tokens.length > 0 && (
+            <ul className="flex flex-col border-t border-[#1e2030]">
+              {tokens.map((t, i) => {
+                const expiryInfo = expiryText(t);
+                return (
+                  <li key={t.id} className="flex flex-wrap items-center justify-between gap-3 py-3 border-b border-[#1e2030]/60">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${expiryInfo.expired ? 'bg-red-400' : 'bg-emerald-400'}`} style={{ boxShadow: expiryInfo.expired ? 'none' : '0 0 6px rgba(52,211,153,0.6)' }} />
+                      <div className="flex flex-col gap-0.5 min-w-0">
+                        <span className="flex items-center gap-2">
+                          <span className="font-tactical text-[9px] tracking-[0.16em] text-[#4a4d5a]">T-{pad(i + 1)}</span>
+                          <span className="text-[14px] font-semibold text-[#e0dcd2] break-words">{t.name}</span>
+                        </span>
+                        <span className="font-tactical text-[9px] tracking-[0.1em] text-[#4a4d5a] flex flex-wrap gap-x-2">
+                          <span className="text-[#8a8d9a]">{t.prefix}…</span>
+                          <span>·</span>
+                          <span>ISSUED {formatDate(t.created_at, '')}</span>
+                          <span>·</span>
+                          <span>USED {formatDate(t.last_used_at, 'NEVER')}</span>
+                          <span>·</span>
+                          <span className={expiryInfo.expired ? 'text-red-400' : ''}>{expiryInfo.text}</span>
+                        </span>
+                      </div>
+                    </div>
+                    <TacButton variant="danger" className="!min-h-[32px] !px-2.5 !text-[10px]" onClick={() => revoke(t)}>
+                      REVOKE
+                    </TacButton>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </Panel>
 
       <ConfirmDelete pending={confirming} onClose={() => setConfirming(null)} />
     </div>

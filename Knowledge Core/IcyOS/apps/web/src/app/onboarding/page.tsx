@@ -1,21 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
+import { ArrowLeft, ArrowRight, Check, Rocket, AlertCircle } from 'lucide-react';
+import { CornerBrackets, TacButton } from '../../components/dashboard/hud';
 import { apiFetch } from '../../lib/api/client';
 import { SAMPLE_MISSION, type OnboardingResult } from '../../lib/onboarding/first-run';
 
 type Priority = 'P1' | 'P2' | 'P3';
 
-const STEPS = ['Workspace', 'First project', 'Sample mission'] as const;
+const pad = (n: number) => String(n).padStart(2, '0');
+const STEPS = ['WORKSPACE', 'FIRST PROJECT', 'SAMPLE MISSION'] as const;
 
-const PRIORITIES: { value: Priority; label: string }[] = [
-  { value: 'P1', label: 'P1 · Urgent' },
-  { value: 'P2', label: 'P2 · Important' },
-  { value: 'P3', label: 'P3 · Someday' },
+const PRIORITIES: { value: Priority; label: string; tag: string; color: string }[] = [
+  { value: 'P1', label: 'P1', tag: 'URGENT', color: '#ef4444' },
+  { value: 'P2', label: 'P2', tag: 'IMPORTANT', color: '#c9a84c' },
+  { value: 'P3', label: 'P3', tag: 'SOMEDAY', color: '#6b6e7a' },
 ];
+
+const FIELD =
+  'w-full px-4 min-h-[46px] bg-[#08090e] border border-[#1e2030] rounded-md text-[15px] text-[#e0dcd2] placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors';
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(0);
@@ -53,47 +56,58 @@ export default function OnboardingPage() {
 
   if (result) {
     return (
-      <Shell>
-        <h1 className="text-2xl font-bold text-zinc-100">
-          {result.created ? 'You’re set up' : 'Your workspace is already set up'}
-        </h1>
-        {result.created && (
-          <ul className="text-sm text-zinc-400 flex flex-col gap-1">
-            <li>Workspace: <span className="text-zinc-200">{workspaceName.trim()}</span></li>
-            <li>Project: <span className="text-zinc-200">{projectName.trim()}</span> ({projectPriority}), with Sprint 1</li>
-            {result.mission_id && <li>Mission: <span className="text-zinc-200">{SAMPLE_MISSION.name}</span></li>}
-          </ul>
-        )}
-        <Button onClick={() => { window.location.href = '/dashboard'; }}>Go to dashboard</Button>
+      <Shell eyebrow="INITIALIZATION COMPLETE">
+        <div className="flex flex-col items-center gap-5 py-2 text-center">
+          <span className="w-16 h-16 rounded-full flex items-center justify-center text-emerald-300 hud-pulse-green" style={{ background: 'rgba(52,211,153,0.1)', boxShadow: 'inset 0 0 0 1px rgba(52,211,153,0.4), 0 0 30px rgba(52,211,153,0.15)' }}>
+            <Check size={26} />
+          </span>
+          <h1 className="text-2xl font-semibold text-[#ece8de]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.9rem' }}>
+            {result.created ? 'You’re set up' : 'Workspace already online'}
+          </h1>
+          {result.created && (
+            <ul className="w-full flex flex-col rounded-md overflow-hidden border border-[#1e2030] text-left">
+              <Row label="WORKSPACE" value={workspaceName.trim()} />
+              <Row label="PROJECT" value={`${projectName.trim()} · ${projectPriority} · Sprint 1`} />
+              {result.mission_id && <Row label="MISSION" value={SAMPLE_MISSION.name} />}
+            </ul>
+          )}
+          <TacButton onClick={() => { window.location.href = '/dashboard'; }} className="w-full">
+            <Rocket size={13} /> ENTER OPERATIONS CENTER
+          </TacButton>
+        </div>
       </Shell>
     );
   }
 
   return (
-    <Shell>
-      <ol className="flex gap-2 text-xs" aria-label="Setup progress">
-        {STEPS.map((label, i) => (
-          <li
-            key={label}
-            aria-current={i === step ? 'step' : undefined}
-            className={`flex-1 border-t-2 pt-2 ${i <= step ? 'border-pink-500 text-zinc-200' : 'border-zinc-800 text-zinc-600'}`}
-          >
-            {i + 1}. {label}
-          </li>
-        ))}
+    <Shell eyebrow={`SETUP · STEP ${pad(step + 1)} OF ${pad(STEPS.length)}`}>
+      <ol className="flex gap-2" aria-label="Setup progress">
+        {STEPS.map((label, i) => {
+          const done = i < step;
+          const on = i === step;
+          return (
+            <li key={label} aria-current={on ? 'step' : undefined} className="flex-1 flex flex-col gap-2">
+              <span className="h-[3px] rounded-sm transition-all" style={{ background: done || on ? '#c9a84c' : '#1e2030', boxShadow: on ? '0 0 8px rgba(201,168,76,0.6)' : 'none', opacity: done ? 0.6 : 1 }} />
+              <span className="font-tactical text-[9px] tracking-[0.16em]" style={{ color: on ? '#c9a84c' : done ? '#8a8d9a' : '#4a4d5a' }}>
+                {pad(i + 1)} {label}
+              </span>
+            </li>
+          );
+        })}
       </ol>
 
-      <form onSubmit={next} className="flex flex-col gap-4">
+      <form onSubmit={next} className="flex flex-col gap-5">
         {step === 0 && (
           <>
             <Heading title="Name your workspace" hint="Your projects, plans and reviews live here. You can rename it later." />
-            <Input
+            <input
               autoFocus
               aria-label="Workspace name"
-              placeholder="e.g. Acme Studio"
+              placeholder="e.g. Brilliantaire HQ"
               maxLength={255}
               value={workspaceName}
               onChange={(e) => setWorkspaceName(e.target.value)}
+              className={FIELD}
             />
           </>
         )}
@@ -101,31 +115,36 @@ export default function OnboardingPage() {
         {step === 1 && (
           <>
             <Heading title="What are you working on first?" hint="One project to start. Add more anytime." />
-            <Input
+            <input
               autoFocus
               aria-label="Project name"
               placeholder="e.g. Launch the new website"
               maxLength={255}
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
+              className={FIELD}
             />
-            <div className="flex gap-2" role="radiogroup" aria-label="Priority">
-              {PRIORITIES.map((p) => (
-                <button
-                  key={p.value}
-                  type="button"
-                  role="radio"
-                  aria-checked={projectPriority === p.value}
-                  onClick={() => setProjectPriority(p.value)}
-                  className={`flex-1 px-3 py-2 rounded-md text-xs border transition-colors ${
-                    projectPriority === p.value
-                      ? 'border-pink-500 text-zinc-100 bg-pink-500/10'
-                      : 'border-zinc-800 text-zinc-400 hover:border-zinc-700'
-                  }`}
-                >
-                  {p.label}
-                </button>
-              ))}
+            <div className="flex flex-col gap-1.5">
+              <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">PRIORITY</span>
+              <div className="flex gap-2" role="radiogroup" aria-label="Priority">
+                {PRIORITIES.map((p) => {
+                  const on = projectPriority === p.value;
+                  return (
+                    <button
+                      key={p.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={on}
+                      onClick={() => setProjectPriority(p.value)}
+                      className="font-tactical flex-1 flex items-center justify-center gap-2 min-h-[42px] rounded-md text-[11px] tracking-[0.12em] font-semibold transition-all"
+                      style={{ color: on ? p.color : '#6b6e7a', background: on ? `${p.color}14` : 'transparent', boxShadow: on ? `inset 0 0 0 1px ${p.color}88` : 'inset 0 0 0 1px #1e2030' }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: on ? p.color : '#2a2d3a', boxShadow: on ? `0 0 6px ${p.color}` : 'none' }} />
+                      {p.label} <span className="text-[9px] opacity-70">{p.tag}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </>
         )}
@@ -133,38 +152,95 @@ export default function OnboardingPage() {
         {step === 2 && (
           <>
             <Heading title="Start with a sample mission" hint="A short guided mission that walks you through IcyOS. Delete it whenever you like." />
-            <div className={`rounded-md border p-4 ${includeSampleMission ? 'border-zinc-700' : 'border-zinc-800 opacity-50'}`}>
-              <span className="text-sm font-semibold text-zinc-100">{SAMPLE_MISSION.name}</span>
-              <ol className="mt-2 flex flex-col gap-1 text-sm text-zinc-400 list-decimal list-inside">
-                {SAMPLE_MISSION.actions.map((action) => <li key={action}>{action}</li>)}
+            <div
+              className="relative rounded-md overflow-hidden px-4 py-3.5 transition-all"
+              style={{
+                background: 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)',
+                border: `1px solid ${includeSampleMission ? 'rgba(201,168,76,0.3)' : '#1e2030'}`,
+                opacity: includeSampleMission ? 1 : 0.5,
+              }}
+            >
+              {includeSampleMission && <CornerBrackets color="rgba(201,168,76,0.5)" size={10} />}
+              <div className="flex items-center gap-2 font-tactical text-[9px] tracking-[0.16em] text-[#4a4d5a] mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c]" style={{ boxShadow: '0 0 6px rgba(201,168,76,0.6)' }} />
+                M-01 · {pad(SAMPLE_MISSION.actions.length)} STEPS
+              </div>
+              <span className="text-[15px] font-semibold text-[#e0dcd2]">{SAMPLE_MISSION.name}</span>
+              <ol className="mt-2.5 flex flex-col">
+                {SAMPLE_MISSION.actions.map((action, i) => (
+                  <li key={action} className={`flex items-center gap-3 py-1.5 text-[13px] text-[#b8b4ac] ${i > 0 ? 'border-t border-[#1e2030]/50' : ''}`}>
+                    <span className="w-4 h-4 rounded-full border border-[#2a2d3a] shrink-0" />
+                    {action}
+                  </li>
+                ))}
               </ol>
             </div>
-            <label className="flex items-center gap-2 text-sm text-zinc-400">
-              <input type="checkbox" checked={includeSampleMission} onChange={(e) => setIncludeSampleMission(e.target.checked)} />
-              Add this mission to {projectName.trim() || 'my project'}
+            <label className="flex items-center gap-3 text-[13.5px] text-[#b8b4ac] cursor-pointer">
+              <input type="checkbox" className="tac-check" checked={includeSampleMission} onChange={(e) => setIncludeSampleMission(e.target.checked)} />
+              Add this mission to <span className="text-[#e0dcd2] font-semibold">{projectName.trim() || 'my project'}</span>
             </label>
           </>
         )}
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && (
+          <div className="flex items-center gap-2 px-3 py-2.5 bg-red-500/5 border border-red-500/20 rounded-md">
+            <AlertCircle size={13} className="text-red-400 shrink-0" />
+            <p className="text-[13px] text-red-300">{error}</p>
+          </div>
+        )}
 
-        <div className="flex justify-between gap-2">
-          <Button type="button" variant="secondary" disabled={step === 0 || busy} onClick={() => setStep(step - 1)}>
-            Back
-          </Button>
-          <Button type="submit" disabled={!canContinue || busy}>
-            {step < STEPS.length - 1 ? 'Continue' : busy ? 'Setting up…' : 'Finish setup'}
-          </Button>
+        <div className="flex justify-between gap-2 pt-3 border-t border-[#1e2030]">
+          <TacButton type="button" variant="ghost" disabled={step === 0 || busy} onClick={() => setStep(step - 1)}>
+            <ArrowLeft size={12} /> BACK
+          </TacButton>
+          <TacButton type="submit" disabled={!canContinue || busy}>
+            {step < STEPS.length - 1 ? <>CONTINUE <ArrowRight size={12} /></> : busy ? 'INITIALIZING…' : <><Rocket size={12} /> FINISH SETUP</>}
+          </TacButton>
         </div>
       </form>
     </Shell>
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-950 p-4">
-      <Card className="w-full max-w-md flex flex-col gap-6">{children}</Card>
+    <li className="flex items-center gap-3 px-4 py-2.5 border-b border-[#1e2030]/60 last:border-b-0 bg-[#0a0b10]">
+      <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a] w-20 shrink-0">{label}</span>
+      <span className="text-[13.5px] text-[#e0dcd2] truncate">{value}</span>
+    </li>
+  );
+}
+
+function Shell({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#08090e] p-4 relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+          maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 75%)',
+        }}
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 40% 40% at 50% 45%, rgba(201,168,76,0.08), transparent 70%)' }} />
+      <div
+        className="relative w-full max-w-md flex flex-col gap-6 rounded-lg overflow-hidden px-7 py-7"
+        style={{
+          background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
+          border: '1px solid #1e2030',
+          boxShadow: '0 0 0 1px rgba(201,168,76,0.05), 0 30px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(201,168,76,0.08)',
+        }}
+      >
+        <CornerBrackets color="rgba(201,168,76,0.55)" size={18} />
+        <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
+        <div className="flex items-center justify-between">
+          <span className="text-base font-bold text-[#c9a84c] uppercase tracking-widest" style={{ fontFamily: "'Cormorant Garamond', serif" }}>IcyOS</span>
+          <span className="font-tactical text-[9px] tracking-[0.2em] text-[#4a4d5a]">{eyebrow}</span>
+        </div>
+        {children}
+      </div>
     </div>
   );
 }
@@ -172,8 +248,8 @@ function Shell({ children }: { children: React.ReactNode }) {
 function Heading({ title, hint }: { title: string; hint: string }) {
   return (
     <div className="flex flex-col gap-1">
-      <h1 className="text-xl font-bold text-zinc-100">{title}</h1>
-      <p className="text-sm text-zinc-500">{hint}</p>
+      <h1 className="text-[1.6rem] font-semibold text-[#ece8de] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{title}</h1>
+      <p className="text-[13px] text-[#8a8d9a]">{hint}</p>
     </div>
   );
 }

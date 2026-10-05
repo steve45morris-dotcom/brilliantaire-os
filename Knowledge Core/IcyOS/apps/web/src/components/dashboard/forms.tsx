@@ -29,7 +29,7 @@ export function PrioritySelect({
       value={value}
       disabled={disabled}
       onChange={(e) => onChange(e.target.value as Priority)}
-      className="px-2 py-1 bg-zinc-950 border border-zinc-800 rounded-md text-xs text-zinc-200 focus:outline-none focus:border-pink-500"
+      className="px-2 py-1 min-h-[44px] bg-[#0e0f16] border border-[#1e2030] rounded-xl text-xs text-[#b8b4ac] focus:outline-none focus:border-[#c9a84c]/40"
     >
       {(Object.keys(PRIORITY_LABELS) as Priority[]).map((p) => (
         <option key={p} value={p}>
@@ -132,7 +132,7 @@ export function NewMissionForm({
           rows={4}
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          className="px-4 py-2 bg-zinc-950 border border-zinc-800 rounded-md text-sm text-zinc-100 focus:outline-none focus:border-pink-500"
+          className="px-4 py-2 min-h-[44px] bg-[#0e0f16] border border-[#1e2030] rounded-xl text-base text-[#d0ccc4] focus:outline-none focus:border-[#c9a84c]/40"
         />
         {tooMany && <p className="text-xs text-red-400">A mission can have at most 50 steps.</p>}
         <div className="flex justify-end gap-2">
@@ -162,16 +162,28 @@ export function AddStepInput({ onAdd }: { onAdd: (text: string) => Promise<boole
   }
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="group/add relative">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border border-dashed border-[#2a2d3a] flex items-center justify-center font-tactical text-[11px] leading-none text-[#4a4d5a] transition-colors group-focus-within/add:border-[#c9a84c]/60 group-focus-within/add:text-[#c9a84c] group-hover/add:border-[#4a4d5a]"
+      >
+        +
+      </span>
       <input
         aria-label="Add a step"
-        placeholder="+ Add a step"
+        placeholder="Add a step"
         maxLength={512}
         value={text}
         disabled={busy}
         onChange={(e) => setText(e.target.value)}
-        className="w-full px-2 py-1 bg-transparent border border-transparent rounded text-sm text-zinc-300 placeholder:text-zinc-600 hover:border-zinc-800 focus:outline-none focus:border-pink-500"
+        className="w-full pl-8 pr-14 py-1.5 min-h-[38px] bg-transparent border border-dashed border-transparent rounded-md text-[13px] text-[#c4c0b8] placeholder:text-[#4a4d5a] hover:border-[#1e2030] focus:outline-none focus:border-[#c9a84c]/40 focus:bg-[#0a0b10] transition-colors"
       />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-tactical text-[9px] tracking-[0.14em] text-[#2f3240] opacity-0 group-focus-within/add:opacity-100 transition-opacity"
+      >
+        ENTER ↵
+      </span>
     </form>
   );
 }

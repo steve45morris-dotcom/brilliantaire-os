@@ -5,7 +5,6 @@ import { Pencil } from 'lucide-react';
 
 interface EditableTextProps {
   value: string;
-  /** Names the field for screen readers, e.g. "project name". */
   label: string;
   maxLength?: number;
   onSave: (next: string) => Promise<boolean>;
@@ -13,16 +12,11 @@ interface EditableTextProps {
   children?: React.ReactNode;
 }
 
-/**
- * Text with a pencil button that turns it into an input. Enter or leaving the
- * field saves; Escape cancels. Unchanged or blank text is not saved.
- */
 export function EditableText({ value, label, maxLength = 255, onSave, className = '', children }: EditableTextProps) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(value);
   const [saving, setSaving] = useState(false);
   const input = useRef<HTMLInputElement>(null);
-  // Enter saves and disables the input, which can also fire blur; save once.
   const inFlight = useRef(false);
 
   useEffect(() => {
@@ -64,7 +58,7 @@ export function EditableText({ value, label, maxLength = 255, onSave, className 
             setEditing(false);
           }
         }}
-        className="w-full min-w-0 px-2 py-0.5 bg-zinc-950 border border-pink-500 rounded text-zinc-100 focus:outline-none"
+        className="w-full min-w-0 px-2 py-0.5 bg-[#0e0f16] border border-[#c9a84c]/40 rounded-xl text-[#d0ccc4] focus:outline-none"
       />
     );
   }
@@ -79,7 +73,7 @@ export function EditableText({ value, label, maxLength = 255, onSave, className 
           setDraft(value);
           setEditing(true);
         }}
-        className="shrink-0 mt-0.5 text-zinc-500 hover:text-zinc-200 opacity-100 md:opacity-0 md:group-hover/edit:opacity-100 focus:opacity-100 transition-opacity"
+        className="shrink-0 mt-0.5 text-[#4a4d5a] hover:text-[#d0ccc4] opacity-100 md:opacity-0 md:group-hover/edit:opacity-100 focus:opacity-100 transition-opacity"
       >
         <Pencil size={14} />
       </button>

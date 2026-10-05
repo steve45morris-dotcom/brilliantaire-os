@@ -1,21 +1,22 @@
 'use client';
 
-import { Trash2, X } from 'lucide-react';
-import { Card } from '../ui/card';
+import { Trash2, X, Clock } from 'lucide-react';
 import { EditableText } from './editable-text';
 import { AddStepInput } from './forms';
+import { MiniGauge, SegmentBar, GOLD, GREEN } from './hud';
 import type { MissionView, StepView } from '../../lib/workspace/overview';
 
-const STATUS_STYLE: Record<string, string> = {
-  Staged: 'bg-zinc-800 text-zinc-300 border-zinc-700',
-  Approved: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
-  Running: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
-  Completed: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
-  Skipped: 'bg-zinc-900 text-zinc-500 border-zinc-800',
-  Failed: 'bg-red-500/10 text-red-300 border-red-500/30',
+type StatusStyle = { chip: string; dot: string; border: string; glow: string; bar: string; pulse?: string };
+
+const STATUS: Record<string, StatusStyle> = {
+  Staged:    { chip: 'text-[#8a8d9a] border-[#2a2d3a] bg-[#12131a]', dot: '#6b6e7a', border: '#1e2030', glow: 'none', bar: '#6b6e7a' },
+  Approved:  { chip: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10', dot: '#22d3ee', border: 'rgba(34,211,238,0.2)', glow: '0 0 20px rgba(34,211,238,0.05)', bar: '#22d3ee' },
+  Running:   { chip: 'text-[#c9a84c] border-[#c9a84c]/35 bg-[#c9a84c]/10', dot: GOLD, border: 'rgba(201,168,76,0.3)', glow: '0 0 26px rgba(201,168,76,0.08), inset 0 1px 0 rgba(201,168,76,0.12)', bar: GOLD, pulse: 'hud-pulse-gold' },
+  Completed: { chip: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', dot: GREEN, border: 'rgba(52,211,153,0.18)', glow: '0 0 18px rgba(52,211,153,0.05)', bar: GREEN },
+  Skipped:   { chip: 'text-[#4a4d5a] border-[#1e2030] bg-[#0e0f16]', dot: '#4a4d5a', border: '#1e2030', glow: 'none', bar: '#4a4d5a' },
+  Failed:    { chip: 'text-red-300 border-red-500/30 bg-red-500/10', dot: '#ef4444', border: 'rgba(239,68,68,0.2)', glow: '0 0 20px rgba(239,68,68,0.05)', bar: '#ef4444' },
 };
 
-/** 45 → "45 min", 90 → "1h 30m", 120 → "2h". */
 export function formatMinutes(minutes: number): string {
   if (minutes < 60) return `${minutes} min`;
   const h = Math.floor(minutes / 60);
@@ -34,96 +35,139 @@ export interface MissionCardActions {
 
 export function MissionCard({
   mission,
+  index,
   pendingSteps,
   actions,
 }: {
   mission: MissionView;
+  index: number;
   pendingSteps: Set<string>;
   actions: MissionCardActions;
 }) {
+  const s = STATUS[mission.status] ?? STATUS.Staged;
+  const isComplete = mission.status === 'Completed';
+  const isRunning = mission.status === 'Running';
+  const id = `M-${String(index + 1).padStart(2, '0')}`;
+  const remaining = mission.steps.length - mission.stepsDone;
+
   return (
-    <Card className="flex flex-col gap-3">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-0.5 min-w-0">
+    <div
+      className="relative h-full flex flex-col rounded-lg overflow-hidden transition-all duration-300"
+      style={{
+        background: 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)',
+        border: `1px solid ${s.border}`,
+        boxShadow: s.glow,
+      }}
+    >
+      {(isRunning || isComplete) && (
+        <span
+          aria-hidden
+          className="absolute top-0 left-5 right-5 h-px"
+          style={{ background: `linear-gradient(90deg, transparent, ${s.bar}99, transparent)` }}
+        />
+      )}
+
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3 px-4 pt-3 pb-2.5">
+        <div className="flex flex-col gap-1 min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap font-tactical">
+            <span className="text-[9px] tracking-[0.16em] text-[#4a4d5a]">{id}</span>
+            <span className={`inline-flex items-center gap-1.5 px-1.5 py-[2px] rounded-[3px] text-[9px] uppercase tracking-[0.14em] font-semibold border ${s.chip}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${s.pulse ?? ''}`} style={{ background: s.dot, boxShadow: `0 0 6px ${s.dot}99` }} />
+              {mission.status}
+            </span>
+            {mission.estimatedMinutes != null && (
+              <span className="inline-flex items-center gap-1 text-[9px] tracking-[0.08em] text-[#4a4d5a]">
+                <Clock size={9} />
+                {formatMinutes(mission.estimatedMinutes)}
+              </span>
+            )}
+            {mission.sprintName && (
+              <span className="text-[9px] uppercase tracking-[0.12em] text-[#2f3240]">{mission.sprintName}</span>
+            )}
+          </div>
+
           <EditableText
             value={mission.name}
             label={`mission ${mission.name}`}
             onSave={(name) => actions.renameMission(mission.id, name)}
-            className="font-semibold text-zinc-100"
-          />
-          <span className="text-xs text-zinc-500">
-            {mission.sprintName}
-            {mission.estimatedMinutes ? ` · ~${formatMinutes(mission.estimatedMinutes)}` : ''}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <span
-            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${STATUS_STYLE[mission.status] ?? STATUS_STYLE.Staged}`}
+            className="font-semibold text-[#e0dcd2]"
           >
-            {mission.status}
-          </span>
+            <span className="min-w-0 break-words font-semibold text-[15px] leading-snug text-[#e0dcd2]">
+              {mission.name}
+            </span>
+          </EditableText>
+        </div>
+
+        <div className="flex items-center gap-0.5 shrink-0 -mr-1.5">
+          {mission.steps.length > 0 && <MiniGauge done={mission.stepsDone} total={mission.steps.length} size={30} stroke={2.5} />}
           <button
             type="button"
             aria-label={`Delete mission ${mission.name}`}
             onClick={() => actions.deleteMission(mission)}
-            className="text-zinc-500 hover:text-red-400"
+            className="text-[#4a4d5a] hover:text-red-400 min-w-[36px] min-h-[36px] flex items-center justify-center transition-colors"
           >
-            <Trash2 size={15} />
+            <Trash2 size={14} />
           </button>
         </div>
       </div>
 
+      {/* Segment progress */}
       {mission.steps.length > 0 && (
-        <div
-          className="h-1.5 rounded bg-zinc-800 overflow-hidden"
-          role="progressbar"
-          aria-label={`${mission.name} progress`}
-          aria-valuemin={0}
-          aria-valuemax={mission.steps.length}
-          aria-valuenow={mission.stepsDone}
-        >
-          <div
-            className="h-full bg-pink-500 transition-all"
-            style={{ width: `${(mission.stepsDone / mission.steps.length) * 100}%` }}
-          />
+        <div className="flex items-center gap-3 px-4 pb-2.5">
+          <div className="flex-1"><SegmentBar done={mission.stepsDone} total={mission.steps.length} color={isComplete ? GREEN : GOLD} height={3} /></div>
+          <span className="font-tactical text-[10px] tabular-nums text-[#4a4d5a] shrink-0">
+            <span className="text-[#b8b4ac]">{mission.stepsDone}</span>/{mission.steps.length}
+            {remaining > 0 && <span className="ml-2 text-[#2f3240] tracking-[0.1em]">{remaining} LEFT</span>}
+          </span>
         </div>
       )}
 
-      <ul className="flex flex-col gap-2">
-        {mission.steps.map((step) => (
-          <li key={step.id} className="group/step flex items-start gap-2 text-sm">
-            <input
-              type="checkbox"
-              className="mt-1 shrink-0"
-              aria-label={step.command}
-              checked={Boolean(step.completedAt)}
-              disabled={pendingSteps.has(step.id)}
-              onChange={(e) => actions.toggleStep(mission, step.id, e.target.checked)}
-            />
-            <EditableText
-              value={step.command}
-              label={`step ${step.command}`}
-              maxLength={512}
-              onSave={(text) => actions.renameStep(step.id, text)}
-              className="flex-1"
+      {/* Steps */}
+      {mission.steps.length > 0 && (
+        <ul className="flex flex-col px-2 border-t border-[#1e2030]/70">
+          {mission.steps.map((step, i) => (
+            <li
+              key={step.id}
+              className={`group/step flex items-center gap-2.5 py-1.5 px-2 rounded-md hover:bg-[#13141c] transition-colors ${i > 0 ? 'border-t border-[#1e2030]/40' : ''}`}
             >
-              <span className={`min-w-0 break-words ${step.completedAt ? 'text-zinc-500 line-through' : 'text-zinc-300'}`}>
-                {step.command}
-              </span>
-            </EditableText>
-            <button
-              type="button"
-              aria-label={`Delete step ${step.command}`}
-              onClick={() => actions.deleteStep(step)}
-              className="shrink-0 mt-0.5 text-zinc-500 hover:text-red-400 opacity-100 md:opacity-0 md:group-hover/step:opacity-100 focus:opacity-100 transition-opacity"
-            >
-              <X size={14} />
-            </button>
-          </li>
-        ))}
-      </ul>
+              <input
+                type="checkbox"
+                className="tac-check"
+                aria-label={step.command}
+                checked={Boolean(step.completedAt)}
+                disabled={pendingSteps.has(step.id)}
+                onChange={(e) => actions.toggleStep(mission, step.id, e.target.checked)}
+              />
+              <EditableText
+                value={step.command}
+                label={`step ${step.command}`}
+                maxLength={512}
+                onSave={(text) => actions.renameStep(step.id, text)}
+                className="flex-1"
+              >
+                <span className={`min-w-0 break-words text-[13px] leading-snug transition-colors ${step.completedAt ? 'text-[#4a4d5a] line-through decoration-[#2a2d3a]' : 'text-[#c4c0b8]'}`}>
+                  {step.command}
+                </span>
+              </EditableText>
+              <button
+                type="button"
+                aria-label={`Delete step ${step.command}`}
+                onClick={() => actions.deleteStep(step)}
+                className="shrink-0 text-[#4a4d5a] hover:text-red-400 opacity-100 md:opacity-0 md:group-hover/step:opacity-100 focus:opacity-100 transition-opacity min-w-[30px] min-h-[30px] flex items-center justify-center"
+              >
+                <X size={12} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
 
-      {mission.steps.length < 50 && <AddStepInput onAdd={(text) => actions.addStep(mission.id, text)} />}
-    </Card>
+      {mission.steps.length < 50 && (
+        <div className={`mt-auto px-2 pb-2 ${mission.steps.length > 0 ? 'pt-1' : 'pt-0 border-t border-[#1e2030]/70'}`}>
+          <AddStepInput onAdd={(text) => actions.addStep(mission.id, text)} />
+        </div>
+      )}
+    </div>
   );
 }
