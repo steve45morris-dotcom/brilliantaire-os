@@ -5,16 +5,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --primary: #f50057;
-  --secondary: #27272a;
-  --accent: #00f0ff;
-  --border: #27272a;
+  --background: #08090e;
+  --foreground: #d0ccc4;
+  --primary: #c9a84c;
+  --secondary: #12131a;
+  --accent: #c9a84c;
+  --border: #1e2030;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }

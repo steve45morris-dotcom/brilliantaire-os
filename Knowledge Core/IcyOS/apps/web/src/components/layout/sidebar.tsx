@@ -25,9 +25,14 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-zinc-950 border-r border-zinc-900 hidden md:flex flex-col h-screen sticky top-0">
-      <div className="h-16 flex items-center px-6 border-b border-zinc-900">
-        <span className="text-lg font-bold text-zinc-100 uppercase tracking-widest">IcyOS</span>
+    <aside className="w-64 bg-[#08090e] border-r border-[#1e2030] hidden md:flex flex-col h-screen sticky top-0">
+      <div className="h-16 flex items-center px-6 border-b border-[#1e2030]">
+        <span
+          className="text-lg font-bold text-[#c9a84c] uppercase tracking-widest"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          IcyOS
+        </span>
       </div>
       <nav className="flex-1 px-4 py-6 flex flex-col gap-1">
         {navItems.map((item) => {
@@ -38,9 +43,9 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={`flex items-center gap-3 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors duration-200 ${
-                active 
-                  ? 'bg-pink-600 text-white' 
-                  : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900'
+                active
+                  ? 'bg-[#c9a84c]/10 text-[#c9a84c] border border-[#c9a84c]/20'
+                  : 'text-[#6b6e7a] hover:text-[#d0ccc4] hover:bg-[#12131a] border border-transparent'
               }`}
             >
               <Icon size={18} />
@@ -49,7 +54,7 @@ export function Sidebar() {
           );
         })}
       </nav>
-      <div className="p-4 border-t border-zinc-900 text-xs text-zinc-600 select-none text-center">
+      <div className="p-4 border-t border-[#1e2030] text-xs text-[#4a4d5a] select-none text-center">
         v1.0.0 | I build before burning.
       </div>
     </aside>
