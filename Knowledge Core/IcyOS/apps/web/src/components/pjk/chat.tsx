@@ -26,6 +26,11 @@ export function PjkChat() {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const scrollToBottom = useCallback(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, []);
 
   const checkConnection = useCallback(async (url: string) => {
     if (!url) { setStatus('unconfigured'); return; }
@@ -48,8 +53,20 @@ export function PjkChat() {
   }, [checkConnection]);
 
   useEffect(() => {
-    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages]);
+    scrollToBottom();
+  }, [messages, scrollToBottom]);
+
+  // Keep input visible when iOS keyboard opens
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const handler = () => {
+      scrollToBottom();
+      inputRef.current?.scrollIntoView({ block: 'nearest' });
+    };
+    vv.addEventListener('resize', handler);
+    return () => vv.removeEventListener('resize', handler);
+  }, [scrollToBottom]);
 
   function saveUrl(e: React.FormEvent) {
     e.preventDefault();
@@ -95,19 +112,17 @@ export function PjkChat() {
   const statusLabel = { checking: 'Checking…', connected: 'Connected', unreachable: 'Unreachable', unconfigured: 'Not configured' };
 
   return (
-    <div className="flex flex-col gap-6 max-w-2xl h-full">
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">P.J.K.</h1>
-          <span className={`text-xs font-semibold uppercase tracking-wide ${statusColor[status]}`}>
-            {statusLabel[status]}
-          </span>
-        </div>
-        <p className="text-zinc-500 text-sm">Voice-first command interface to your local Sentinel OS.</p>
+    <div className="flex flex-col h-full max-w-2xl w-full">
+      {/* Header — compact on mobile */}
+      <div className="flex items-center gap-3 shrink-0 pb-3 md:pb-4">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-100">P.J.K.</h1>
+        <span className={`text-xs font-semibold uppercase tracking-wide ${statusColor[status]}`}>
+          {statusLabel[status]}
+        </span>
       </div>
 
       {(status === 'unconfigured' || status === 'unreachable') && (
-        <Card>
+        <Card className="shrink-0">
           <form onSubmit={saveUrl} className="flex flex-col gap-3">
             <label className="flex flex-col gap-1 text-xs text-zinc-500">
               P.J.K. URL
@@ -116,7 +131,7 @@ export function PjkChat() {
                 placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net"
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
-                className="px-4 py-2 bg-zinc-950 border border-zinc-800 rounded-md text-sm text-zinc-100 focus:outline-none focus:border-pink-500"
+                className="px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-base text-zinc-100 focus:outline-none focus:border-pink-500"
               />
             </label>
             {status === 'unreachable' && (
@@ -126,9 +141,9 @@ export function PjkChat() {
               </div>
             )}
             <div className="flex items-center gap-2">
-              <Button type="submit" className="self-start">Save &amp; Connect</Button>
+              <Button type="submit" className="self-start min-h-[44px]">Save &amp; Connect</Button>
               {pjkUrl && (
-                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className="text-xs text-pink-400 hover:underline inline-flex items-center gap-1">
+                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className="text-xs text-pink-400 hover:underline inline-flex items-center gap-1 min-h-[44px] px-2">
                   Open Command Globe <ExternalLink size={12} />
                 </a>
               )}
@@ -142,7 +157,8 @@ export function PjkChat() {
 
       {status === 'connected' && (
         <>
-          <div ref={scrollRef} className="flex-1 overflow-y-auto flex flex-col gap-3 min-h-[200px] max-h-[60vh]">
+          {/* Messages — fills all available space, scrolls internally */}
+          <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-3 -mx-1 px-1 overscroll-contain">
             {messages.length === 0 && (
               <div className="flex-1 flex items-center justify-center">
                 <p className="text-zinc-600 text-sm">Send a message to P.J.K.</p>
@@ -150,10 +166,10 @@ export function PjkChat() {
             )}
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] px-4 py-2.5 rounded-lg text-sm whitespace-pre-wrap ${
+                <div className={`max-w-[85%] md:max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                   msg.role === 'user'
-                    ? 'bg-pink-600 text-white rounded-br-sm'
-                    : 'bg-zinc-800 text-zinc-200 rounded-bl-sm'
+                    ? 'bg-pink-600 text-white rounded-br-md'
+                    : 'bg-zinc-800 text-zinc-200 rounded-bl-md'
                 }`}>
                   {msg.text}
                 </div>
@@ -161,36 +177,41 @@ export function PjkChat() {
             ))}
             {sending && (
               <div className="flex justify-start">
-                <div className="px-4 py-2.5 bg-zinc-800 rounded-lg rounded-bl-sm">
+                <div className="px-4 py-2.5 bg-zinc-800 rounded-2xl rounded-bl-md">
                   <Loader2 size={16} className="animate-spin text-zinc-400" />
                 </div>
               </div>
             )}
           </div>
 
-          <form onSubmit={send} className="flex gap-2">
+          {/* Input bar — pinned at bottom, safe-area aware */}
+          <form onSubmit={send} className="flex gap-2 pt-3 shrink-0 pb-[env(safe-area-inset-bottom,0px)]">
             <input
+              ref={inputRef}
               type="text"
               placeholder="Message P.J.K.…"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={sending}
-              autoFocus
-              className="flex-1 px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-pink-500 disabled:opacity-50"
+              enterKeyHint="send"
+              autoComplete="off"
+              autoCorrect="on"
+              className="flex-1 min-w-0 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-base text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-pink-500 disabled:opacity-50"
             />
-            <Button type="submit" disabled={!input.trim() || sending} className="px-3">
-              <Send size={16} />
+            <Button type="submit" disabled={!input.trim() || sending} className="px-3 min-w-[44px] min-h-[44px] rounded-xl shrink-0">
+              <Send size={18} />
             </Button>
           </form>
 
-          <div className="flex items-center gap-3 text-xs text-zinc-600">
-            <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline inline-flex items-center gap-1">
-              Open Command Globe <ExternalLink size={12} />
+          {/* Footer links — compact row */}
+          <div className="flex items-center gap-3 text-xs text-zinc-600 pt-1 shrink-0">
+            <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline inline-flex items-center gap-1 py-1">
+              Command Globe <ExternalLink size={12} />
             </a>
-            <button type="button" onClick={() => { setStatus('unconfigured'); setMessages([]); }} className="hover:text-zinc-400 transition-colors">
+            <button type="button" onClick={() => { setStatus('unconfigured'); setMessages([]); }} className="hover:text-zinc-400 transition-colors py-1">
               Change URL
             </button>
-            <button type="button" onClick={() => void checkConnection(pjkUrl)} className="hover:text-zinc-400 transition-colors">
+            <button type="button" onClick={() => void checkConnection(pjkUrl)} className="hover:text-zinc-400 transition-colors py-1">
               Re-check
             </button>
           </div>
