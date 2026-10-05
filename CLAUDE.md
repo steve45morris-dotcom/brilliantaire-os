@@ -9,7 +9,7 @@
 - **Core Language:** TypeScript / Node.js (ES modules)
 - **Build:** `tsc` for compilation, `Taskfile.yml` for task orchestration
 - **Test:** Vitest (`npm run test`)
-- **Scripts:** 208+ TypeScript CLI scripts in `scripts/` using `tsx` — zero runtime npm dependencies beyond `openai` and `zod`
+- **Scripts:** 243 TypeScript CLI scripts in `scripts/` using `tsx` — zero runtime npm dependencies beyond `openai` and `zod`
 - **Python:** `tools/ai_narrator.py` (Gemini 2.5 Flash), voice stress tests
 - **Database:** PostgreSQL (`supernova` schema), Supabase (IcyOS)
 - **Frontend:** Vite + React (dashboard), Next.js (IcyOS Knowledge Core)
@@ -17,8 +17,8 @@
 ## Project Structure
 
 ```
-config/          # Command registry, workflow configs (commands.ts is 3,717 lines)
-scripts/         # 208+ TypeScript CLI tools (all use tsx)
+config/          # Command registry, workflow configs (commands.ts is 4,326 lines)
+scripts/         # 243 TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
 sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
 orchestrator/    # Phase-based orchestration engine
