@@ -14,7 +14,7 @@ describe('AppShell Layout & Nav Primitives', () => {
   });
 
   it('puts every page on the phone menu, with Billing reached from Settings', () => {
-    expect(mobileNavItems.map((i) => i.href)).toEqual(['/dashboard', '/inbox', '/timeline', '/focus', '/review', '/knowledge', '/settings']);
+    expect(mobileNavItems.map((i) => i.href)).toEqual(['/dashboard', '/inbox', '/timeline', '/focus', '/pjk', '/review', '/knowledge', '/settings']);
   });
 
   it('marks a menu item active on its page and pages under it only', () => {
