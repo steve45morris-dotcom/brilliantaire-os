@@ -52,6 +52,80 @@ export class MemoryRateLimitStore implements RateLimitStore {
   }
 }
 
+// Runs INCR and PEXPIRE as one atomic step, so two instances racing on the
+// same key in the same window can't both start it.
+const INCREMENT_SCRIPT =
+  "local c = redis.call('INCR', KEYS[1]) " +
+  "if c == 1 then redis.call('PEXPIRE', KEYS[1], ARGV[1]) end " +
+  "return {c, redis.call('PTTL', KEYS[1])}";
+
+export interface UpstashConfig {
+  url: string;
+  token: string;
+  /** Key prefix, so one database can serve more than one app. */
+  prefix?: string;
+  fetchImpl?: typeof fetch;
+}
+
+/**
+ * Shared fixed-window counters in Upstash Redis over its REST API, so every
+ * instance enforces the same limits. Uses plain fetch, which works in the
+ * Edge middleware runtime without an SDK.
+ *
+ * A failed call fails open: the request is counted as the first in a fresh
+ * window and the error is logged. For a single-operator app a Redis blip
+ * should not block all traffic; the limits here guard cost and floods, not
+ * access, which the auth checks do.
+ */
+export class UpstashRateLimitStore implements RateLimitStore {
+  private readonly endpoint: string;
+  private readonly headers: Record<string, string>;
+  private readonly prefix: string;
+  private readonly fetchImpl: typeof fetch;
+
+  constructor(config: UpstashConfig) {
+    this.endpoint = config.url.replace(/\/+$/, '');
+    this.headers = { Authorization: `Bearer ${config.token}`, 'Content-Type': 'application/json' };
+    this.prefix = config.prefix ?? 'rl';
+    this.fetchImpl = config.fetchImpl ?? fetch;
+  }
+
+  async increment(key: string, windowMs: number, now: number) {
+    try {
+      const res = await this.fetchImpl(this.endpoint, {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify(['EVAL', INCREMENT_SCRIPT, 1, `${this.prefix}:${key}`, String(windowMs)]),
+      });
+      if (!res.ok) throw new Error(`Upstash responded ${res.status}`);
+      const body = (await res.json()) as { result?: unknown; error?: string };
+      if (body.error || !Array.isArray(body.result)) throw new Error(body.error ?? 'Upstash returned no result');
+      const [count, pttl] = body.result as [number, number];
+      // PTTL is -1 only if the key somehow has no expiry; treat it as a fresh window.
+      const resetAt = pttl > 0 ? now + pttl : now + windowMs;
+      return { count, resetAt };
+    } catch (err) {
+      console.error('Rate limit store unavailable; allowing request:', (err as Error).message);
+      return { count: 1, resetAt: now + windowMs };
+    }
+  }
+}
+
+/**
+ * The store the middleware should use: Upstash when configured, otherwise
+ * the per-instance memory store. Production without Upstash is logged once,
+ * since the limits then only hold per instance.
+ */
+export function createRateLimitStore(env: Record<string, string | undefined> = process.env): RateLimitStore {
+  const url = env.UPSTASH_REDIS_REST_URL;
+  const token = env.UPSTASH_REDIS_REST_TOKEN;
+  if (url && token) return new UpstashRateLimitStore({ url, token, prefix: env.RATE_LIMIT_PREFIX });
+  if (env.NODE_ENV === 'production') {
+    console.warn('UPSTASH_REDIS_REST_URL/TOKEN not set; rate limits are per instance only.');
+  }
+  return new MemoryRateLimitStore();
+}
+
 const MINUTE = 60_000;
 
 export const RATE_LIMIT_RULES = {

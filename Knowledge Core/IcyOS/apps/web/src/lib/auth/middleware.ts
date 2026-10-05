@@ -1,10 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import {
-  MemoryRateLimitStore,
   RATE_LIMIT_RULES,
   applyRateLimitHeaders,
   checkRateLimit,
+  createRateLimitStore,
   getClientIp,
   isRateLimited,
   rateLimitResponse,
@@ -25,7 +25,8 @@ import { acceptsApiToken, bearerToken } from "./token-routes";
 // by signature, not by session.
 const PUBLIC_ROUTES = ["/login", "/auth/callback", "/auth/confirm", "/terms", "/privacy", "/status", "/api/billing/webhook"];
 
-const rateLimitStore = new MemoryRateLimitStore();
+// Shared across instances when Upstash is configured; per instance otherwise.
+const rateLimitStore = createRateLimitStore();
 
 export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl;
