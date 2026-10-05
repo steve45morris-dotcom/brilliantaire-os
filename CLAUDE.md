@@ -79,7 +79,7 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
   - **`sentinel-os`:** none by design. It is local-only (see above).
 - **Rate limiting (IcyOS):** `/api/*` is limited per IP (300/min, checked before auth) and per user, by tier.
   - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
-  - **Limitation:** counters are in memory, one set per server instance. Use a shared store (e.g. Redis) before running more than one instance.
+  - **Store:** Upstash Redis over REST when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set (`createRateLimitStore()` in `rate-limit.ts`), so every instance enforces the same counters; one atomic `INCR`+`PEXPIRE` per request, no SDK. Without them it falls back to the per-instance memory store and warns once in production. A failed Redis call fails open and logs, since these limits guard cost and floods rather than access.
 - **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
 
 ## Installed Tools
