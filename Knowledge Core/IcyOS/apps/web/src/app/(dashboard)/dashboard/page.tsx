@@ -7,37 +7,12 @@ import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard
 import { NewProjectForm } from '../../../components/dashboard/forms';
 import { ProjectSection, type ProjectActions, type MissionFilter } from '../../../components/dashboard/project-section';
 import { ProjectTile } from '../../../components/dashboard/project-tile';
-import { CornerBrackets, SegmentBar, SystemClock, useCountUp, GOLD, GREEN } from '../../../components/dashboard/hud';
+import { Backdrop, CornerBrackets, SegmentBar, SystemClock, useCountUp, GOLD, GREEN } from '../../../components/dashboard/hud';
 import { apiFetch } from '../../../lib/api/client';
 import type { MissionView, SetStepResult, WorkspaceOverview } from '../../../lib/workspace/overview';
 
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 const ACTIVE = new Set(['Staged', 'Approved', 'Running']);
-
-function Backdrop() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute -inset-6 md:-inset-8 -z-10 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-          maskImage: 'radial-gradient(ellipse 70% 55% at 50% 0%, black 20%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 70% 55% at 50% 0%, black 20%, transparent 80%)',
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 55% 35% at 50% 0%, rgba(201,168,76,0.09), transparent 70%)' }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(8,9,14,0.9), transparent 70%)' }}
-      />
-    </div>
-  );
-}
 
 function Readout({ label, value, color = '#e0dcd2' }: { label: string; value: number; color?: string }) {
   const v = useCountUp(value);

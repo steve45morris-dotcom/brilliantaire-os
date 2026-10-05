@@ -118,6 +118,77 @@ export function useCountUp(target: number, duration = 700) {
   return value;
 }
 
+export function Backdrop() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute -inset-6 md:-inset-8 -z-10 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+          maskImage: 'radial-gradient(ellipse 70% 55% at 50% 0%, black 20%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 70% 55% at 50% 0%, black 20%, transparent 80%)',
+        }}
+      />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 35% at 50% 0%, rgba(201,168,76,0.09), transparent 70%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(8,9,14,0.9), transparent 70%)' }} />
+    </div>
+  );
+}
+
+export function TacButton({
+  variant = 'gold',
+  className = '',
+  children,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'gold' | 'ghost' | 'danger' }) {
+  const base = 'font-tactical inline-flex items-center justify-center gap-1.5 px-3.5 min-h-[38px] rounded-md text-[11px] tracking-[0.14em] font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed';
+  const styles: Record<string, React.CSSProperties> = {
+    gold: { background: 'linear-gradient(180deg, #dcc878, #c9a84c)', color: '#08090e', boxShadow: '0 0 20px rgba(201,168,76,0.3), inset 0 1px 0 rgba(255,255,255,0.3)' },
+    ghost: { background: 'rgba(201,168,76,0.06)', color: '#c9a84c', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.35)' },
+    danger: { background: 'rgba(239,68,68,0.08)', color: '#f87171', boxShadow: 'inset 0 0 0 1px rgba(239,68,68,0.35)' },
+  };
+  return (
+    <button className={`${base} ${className}`} style={styles[variant]} {...props}>
+      {children}
+    </button>
+  );
+}
+
+export function PageHeader({ eyebrow, title, aside }: { eyebrow: string; title: string; aside?: React.ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="flex flex-col gap-1">
+        <span className="font-tactical text-[10px] tracking-[0.3em] text-[#6b6e7a]">
+          <span className="text-[#c9a84c]">//</span> {eyebrow}
+        </span>
+        <h1
+          className="text-3xl sm:text-[2.6rem] font-bold tracking-tight leading-none"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            background: 'linear-gradient(135deg, #e8e4da 0%, #c9a84c 70%, #a8872e 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          {title}
+        </h1>
+      </div>
+      {aside}
+    </div>
+  );
+}
+
+export function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-tactical text-[10px] tracking-[0.24em] text-[#4a4d5a]">{children}</span>
+      <span className="flex-1 h-px bg-gradient-to-r from-[#1e2030] to-transparent" />
+    </div>
+  );
+}
+
 export function SystemClock() {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
