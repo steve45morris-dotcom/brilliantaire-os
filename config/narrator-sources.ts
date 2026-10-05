@@ -30,7 +30,8 @@ export const APPROVED_SOURCES = [
   "outputs/obsidian_sync_layer/logs/",
   "outputs/tree_groove_release_pipeline/logs/",
   "outputs/system_diagnostics/logs/",
-  "outputs/documentation_drift/logs/"
+  "outputs/documentation_drift/logs/",
+  "outputs/bridge_health_monitor/logs/"
 ];
 
 export const ALLOW_COMMAND_EXECUTION = false;

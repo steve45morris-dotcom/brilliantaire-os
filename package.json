@@ -391,7 +391,9 @@
     "system-diagnostics": "tsx scripts/system-diagnostics-runner.ts",
     "system-diagnostics-help": "tsx scripts/system-diagnostics-runner-help.ts",
     "doc-drift": "tsx scripts/documentation-drift-detector.ts",
-    "doc-drift-help": "tsx scripts/documentation-drift-detector-help.ts"
+    "doc-drift-help": "tsx scripts/documentation-drift-detector-help.ts",
+    "bridge-health": "tsx scripts/bridge-health-monitor.ts",
+    "bridge-health-help": "tsx scripts/bridge-health-monitor-help.ts"
   },
   "keywords": [
     "antigravity",

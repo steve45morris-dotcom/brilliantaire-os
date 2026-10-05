@@ -141,6 +141,15 @@ outputs/documentation_drift/reports/*.md
 outputs/documentation_drift/logs/*.md
 outputs/documentation_drift/documentation_drift_bridge_report.md
 
+# Bridge Health Monitor — generated scan/report artifacts.
+# Regenerated on every `bridge-health` run. .gitkeep files are tracked separately.
+outputs/bridge_health_monitor/reports/*.md
+outputs/bridge_health_monitor/reports/*.json
+outputs/bridge_health_monitor/scans/*.md
+outputs/bridge_health_monitor/scans/*.json
+outputs/bridge_health_monitor/logs/*.md
+outputs/bridge_health_monitor/bridge_health_monitor_bridge_report.md
+
 # ============================================================================
 # Defense in depth. Every path below is already covered by the `/*` boundary
 # above; they are retained deliberately so that if a future allow-line ever

@@ -1,0 +1,105 @@
+import { COMMAND_REGISTRY } from '../config/commands.js';
+
+function printBridgeHealthMonitorHelp() {
+  console.log("=========================================");
+  console.log("BRIDGE HEALTH MONITOR - HELP");
+  console.log("=========================================");
+  console.log("This module aggregates health status from all 15 bridge");
+  console.log("modules into a unified report, checking file presence,");
+  console.log("safety flags, export functions, and CLI guards —");
+  console.log("all WITHOUT modifying system state or contacting external");
+  console.log("services.");
+  console.log("\nCore Safety Rules Enforced:");
+  console.log("  1. No Auto Fix: ALLOW_AUTO_FIX = false");
+  console.log("  2. No External API Calls: ALLOW_EXTERNAL_API_CALLS = false");
+  console.log("  3. No Direct Obsidian Write: ALLOW_DIRECT_OBSIDIAN_WRITE = false");
+  console.log("  4. Human Approval Required: REQUIRE_HUMAN_APPROVAL = true");
+  console.log("  5. Manual Review Required: REQUIRE_MANUAL_REVIEW = true");
+  console.log("\n-----------------------------------------");
+  console.log("  COMMANDS:");
+  console.log("-----------------------------------------");
+  console.log("\n  status");
+  console.log("    Print configuration, safety flags, bridge modules,");
+  console.log("    health categories, and output directory status.");
+  console.log("\n  scan-bridges");
+  console.log("    Scan all 15 bridge modules for file presence,");
+  console.log("    config presence, BRIDGE_MODE, safety flags,");
+  console.log("    status exports, report exports, and CLI guards.");
+  console.log("\n  health-report");
+  console.log("    Generate comprehensive health report with");
+  console.log("    PASS/WARN/FAIL per bridge and overall verdict.");
+  console.log("\n  bridge-detail <name>");
+  console.log("    Show detailed info for a specific bridge module.");
+  console.log("    Accepts partial name match.");
+  console.log("\n  anomaly-scan");
+  console.log("    Scan for anomalies: missing safety flags, configs");
+  console.log("    without BRIDGE_MODE, safety flag violations,");
+  console.log("    and missing output directories.");
+  console.log("\n  dashboard-export");
+  console.log("    Export bridge health summary as JSON for");
+  console.log("    dashboard consumption.");
+  console.log("\n  obsidian-export");
+  console.log("    Stage bridge health summary for Obsidian export");
+  console.log("    via the Approved Write Gateway.");
+  console.log("\n-----------------------------------------");
+  console.log("  EXAMPLES:");
+  console.log("-----------------------------------------");
+  console.log("\n  npm run bridge-health -- \"status\"");
+  console.log("  npm run bridge-health -- \"scan-bridges\"");
+  console.log("  npm run bridge-health -- \"health-report\"");
+  console.log("  npm run bridge-health -- \"bridge-detail\" \"stripe\"");
+  console.log("  npm run bridge-health -- \"anomaly-scan\"");
+  console.log("  npm run bridge-health -- \"dashboard-export\"");
+  console.log("  npm run bridge-health -- \"obsidian-export\"");
+  console.log("\n-----------------------------------------");
+  console.log("  SAFETY:");
+  console.log("-----------------------------------------");
+  console.log("  - No system state modifications");
+  console.log("  - No external API calls or network requests");
+  console.log("  - No automatic fixes or remediation");
+  console.log("  - All output is read-only reporting");
+  console.log("  - Human approval required for any actions");
+  console.log("\n-----------------------------------------");
+  console.log("  HEALTH CATEGORIES:");
+  console.log("-----------------------------------------");
+  console.log("  - bridge-missing: Bridge .ts file does not exist");
+  console.log("  - config-missing: Config .ts file does not exist");
+  console.log("  - safety-flag-violation: ALLOW_* is true or REQUIRE_* is false");
+  console.log("  - output-dir-missing: Expected output directory missing");
+  console.log("  - mode-mismatch: BRIDGE_MODE not declared in config");
+  console.log("  - export-missing: Missing status or report export functions");
+  console.log("\n-----------------------------------------");
+  console.log("  BRIDGE MODULES MONITORED:");
+  console.log("-----------------------------------------");
+  console.log("   1. ASR Human Approval Selection Bridge");
+  console.log("   2. Documentation Drift Detector Bridge");
+  console.log("   3. Higgsfield AI Bridge");
+  console.log("   4. Live Microphone Audio Streamer Bridge");
+  console.log("   5. Local Inference Bridge");
+  console.log("   6. Manual Implementation Packet Bridge");
+  console.log("   7. Micro Product Tree Groove Bridge");
+  console.log("   8. Obsidian Sync Layer Bridge");
+  console.log("   9. Render Intake Bridge");
+  console.log("  10. Stripe Webhook Verification Bridge");
+  console.log("  11. System Diagnostics Runner Bridge");
+  console.log("  12. Tree Groove Release Pipeline Bridge");
+  console.log("  13. Verification Rerun Planner Bridge");
+  console.log("  14. ZK Webhook Verification Bridge");
+  console.log("  15. Bridge Health Monitor Bridge (self)");
+
+  console.log("\n-----------------------------------------");
+  console.log("  REGISTERED COMMANDS:");
+  console.log("-----------------------------------------");
+  const targetCmds = COMMAND_REGISTRY.filter(c =>
+    c.name.includes('bridge-health')
+  );
+  for (const cmd of targetCmds) {
+    console.log(`\n  Command: npm run command -- "${cmd.name}"`);
+    console.log(`   Description: ${cmd.description}`);
+    console.log(`   Owning Agent: ${cmd.owningAgent}`);
+    console.log(`   Risk Level:   ${cmd.riskLevel.toUpperCase()}`);
+  }
+  console.log("\n=========================================");
+}
+
+printBridgeHealthMonitorHelp();
