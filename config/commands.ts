@@ -4319,6 +4319,30 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'design-cli',
+    aliases: ['design cli', 'design audit'],
+    description: 'Run the design CLI (design:audit, design:profile, design:review, design:score, design:screenshot, design:compare, design:regression, design:sources, design:pilot)',
+    npmScript: 'design-cli',
+    owningAgent: 'Creative Architect',
+    category: 'creative',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'icyflamze-core-episode-1-render-intake-v2',
+    aliases: ['render intake v2', 'episode render v2'],
+    description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Render Intake v2 subcommands, including recovery approval and rejection by job ID',
+    npmScript: 'icyflamze-core-episode-1-render-intake-v2',
+    owningAgent: 'Creative Architect',
+    category: 'creative',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

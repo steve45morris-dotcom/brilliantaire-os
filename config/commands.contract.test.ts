@@ -85,6 +85,24 @@ describe("command registry as P.J.K. reads it", () => {
   });
 });
 
+describe("command registry is runnable", () => {
+  const scripts = (JSON.parse(read("package.json")) as { scripts: Record<string, string> }).scripts;
+
+  it("maps every command to an npm script whose tsx target exists", () => {
+    const broken: string[] = [];
+    for (const c of COMMAND_REGISTRY) {
+      const run = scripts[c.npmScript];
+      if (!run) {
+        broken.push(`${c.name}: no npm script "${c.npmScript}"`);
+        continue;
+      }
+      const target = run.match(/\btsx (scripts\/\S+)/)?.[1];
+      if (target && !fs.existsSync(path.join(root, target))) broken.push(`${c.name}: ${target} is missing`);
+    }
+    expect(broken, `${broken.length} command(s) would fail at runtime:\n${broken.join("\n")}`).toEqual([]);
+  });
+});
+
 describe("status files as P.J.K. reads them", () => {
   it("NEXT_ACTIONS.md keeps its Do Now and Do Next checklists", () => {
     const md = read("NEXT_ACTIONS.md");
