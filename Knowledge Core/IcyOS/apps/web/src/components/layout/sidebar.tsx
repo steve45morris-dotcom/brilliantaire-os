@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, CreditCard, Activity, Scale
+  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, CreditCard, Activity, ClipboardList, Scale
 } from 'lucide-react';
 
 const navItems = [
@@ -14,6 +14,7 @@ const navItems = [
   { href: '/review', label: 'Review', icon: BarChart3 },
   { href: '/knowledge', label: 'Knowledge', icon: BookOpen },
   { href: '/status', label: 'Status', icon: Activity },
+  { href: '/audit-log', label: 'Audit Log', icon: ClipboardList },
   { href: '/billing', label: 'Billing', icon: CreditCard },
   { href: '/legal', label: 'Legal', icon: Scale },
   { href: '/settings', label: 'Settings', icon: Settings },

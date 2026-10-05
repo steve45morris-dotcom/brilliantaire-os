@@ -350,5 +350,23 @@ export const VOICE_COMMANDS_REGISTRY: VoiceCommandDefinition[] = [
     riskLevel: 'low',
     requiresConfirmation: false,
     enabled: true
+  },
+  {
+    phrase: 'run bridge health',
+    normalizedCommand: 'run bridge health',
+    routerCommand: 'bridge-health health-report',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
+  },
+  {
+    phrase: 'show bridge health help',
+    normalizedCommand: 'show bridge health help',
+    routerCommand: 'bridge-health-help',
+    owningAgent: 'Build Operator',
+    riskLevel: 'low',
+    requiresConfirmation: false,
+    enabled: true
   }
 ];

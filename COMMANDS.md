@@ -425,6 +425,8 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `system-diagnostics` | `diagnostics`, `sdr` | Build Operator | Medium | Yes | Run unified system health checks, test suite execution, module config audits, integration status scans, and comprehensive diagnostics reports. |
 | `doc-drift-help` | `drift help`, `documentation drift help` | Workflow Auditor | Low | No | Print help menu for the Documentation Drift Detector CLI. |
 | `doc-drift` | `drift`, `documentation drift` | Workflow Auditor | Medium | Yes | Scan system indexes for cross-reference consistency, audit command docs, check stale pointers, and verify narrator source alignment. |
+| `bridge-health-help` | `bhm help`, `bridge health help` | Build Operator | Low | No | Print help menu for the Bridge Health Monitor CLI. |
+| `bridge-health` | `bhm`, `bridge health` | Build Operator | Medium | Yes | Aggregate health status from all 15 bridge modules with safety flag validation, export checks, and unified reporting. |
 
 
 ---

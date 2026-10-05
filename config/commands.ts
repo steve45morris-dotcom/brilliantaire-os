@@ -4295,6 +4295,30 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'bridge-health-help',
+    aliases: ['bhm help', 'bridge health help'],
+    description: 'Print help menu for the Bridge Health Monitor CLI',
+    npmScript: 'bridge-health-help',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'console',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'bridge-health',
+    aliases: ['bhm', 'bridge health'],
+    description: 'Aggregate health status from all 15 bridge modules with safety flag validation, export checks, and unified reporting',
+    npmScript: 'bridge-health',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

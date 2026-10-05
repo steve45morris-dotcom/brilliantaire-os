@@ -10,6 +10,20 @@
 - [x] Phase 22H: Register npm scripts (doc-drift, doc-drift-help)
 - [x] Phase 22H: Register command registry entries with requiresExactName constraint
 - [x] Phase 22H: Propagate to all 8 system indexes
+- [x] Phase 22I: Build Bridge Health Monitor
+- [x] Phase 22I: Create config/bridge-health-monitor.ts with safety flags and bridge modules array
+- [x] Phase 22I: Create scripts/bridge-health-monitor.ts with 7 CLI commands (status, scan-bridges, health-report, bridge-detail, anomaly-scan, dashboard-export, obsidian-export)
+- [x] Phase 22I: Create scripts/bridge-health-monitor-help.ts
+- [x] Phase 22I: Create tools/bridge_health_monitor_bridge.ts bridge status API
+- [x] Phase 22I: Create 6 mustache templates under templates/bridge_health_monitor/
+- [x] Phase 22I: Register npm scripts (bridge-health, bridge-health-help)
+- [x] Phase 22I: Register command registry entries with requiresExactName constraint
+- [x] Phase 22I: Propagate to all 8 system indexes
+- [x] IcyOS: Build Audit Log page with event filtering and summary stats
+- [x] IcyOS: Create /api/audit-log endpoint returning audit log snapshot
+- [x] IcyOS: Create /audit-log page with category filter tabs, event list, summary cards
+- [x] IcyOS: Add Audit Log nav entry to sidebar between Status and Billing
+- [x] Config Tests: Create config/config-modules.test.ts with 178 structural contract tests across 16 module configs
 - [x] IcyOS: Build Legal & Compliance page with Terms of Service, Privacy Policy, and Acceptable Use Policy
 - [x] IcyOS: Create /api/legal endpoint returning legal document snapshot
 - [x] IcyOS: Create /legal page with document selector tabs, section rendering, company info footer

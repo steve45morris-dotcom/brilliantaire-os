@@ -67,6 +67,8 @@ The active voice phrases are defined in [config/voice-commands.ts](file://~/Proj
 | `show diagnostics help` | `show diagnostics help` | `system-diagnostics-help` | Build Operator | Low | No |
 | `run documentation drift` | `run documentation drift` | `doc-drift drift-report` | Workflow Auditor | Low | No |
 | `show drift help` | `show drift help` | `doc-drift-help` | Workflow Auditor | Low | No |
+| `run bridge health` | `run bridge health` | `bridge-health health-report` | Build Operator | Low | No |
+| `show bridge health help` | `show bridge health help` | `bridge-health-help` | Build Operator | Low | No |
 
 ---
 
