@@ -1,6 +1,7 @@
 'use client';
 
-import { Trash2, X, Clock } from 'lucide-react';
+import { useState } from 'react';
+import { Trash2, X, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import { EditableText } from './editable-text';
 import { AddStepInput } from './forms';
 import { MiniGauge, SegmentBar, GOLD, GREEN } from './hud';
@@ -16,6 +17,8 @@ const STATUS: Record<string, StatusStyle> = {
   Skipped:   { chip: 'text-[#4a4d5a] border-[#1e2030] bg-[#0e0f16]', dot: '#4a4d5a', border: '#1e2030', glow: 'none', bar: '#4a4d5a' },
   Failed:    { chip: 'text-red-300 border-red-500/30 bg-red-500/10', dot: '#ef4444', border: 'rgba(239,68,68,0.2)', glow: '0 0 20px rgba(239,68,68,0.05)', bar: '#ef4444' },
 };
+
+const STEP_PREVIEW = 12;
 
 export function formatMinutes(minutes: number): string {
   if (minutes < 60) return `${minutes} min`;
@@ -49,6 +52,10 @@ export function MissionCard({
   const isRunning = mission.status === 'Running';
   const id = `M-${String(index + 1).padStart(2, '0')}`;
   const remaining = mission.steps.length - mission.stepsDone;
+  const [expanded, setExpanded] = useState(false);
+  const collapsible = mission.steps.length > STEP_PREVIEW;
+  const visibleSteps = collapsible && !expanded ? mission.steps.slice(0, STEP_PREVIEW) : mission.steps;
+  const hidden = mission.steps.length - visibleSteps.length;
 
   return (
     <div
@@ -126,7 +133,7 @@ export function MissionCard({
       {/* Steps */}
       {mission.steps.length > 0 && (
         <ul className="flex flex-col px-2 border-t border-[#1e2030]/70">
-          {mission.steps.map((step, i) => (
+          {visibleSteps.map((step, i) => (
             <li
               key={step.id}
               className={`group/step flex items-center gap-2.5 py-1.5 px-2 rounded-md hover:bg-[#13141c] transition-colors ${i > 0 ? 'border-t border-[#1e2030]/40' : ''}`}
@@ -160,6 +167,18 @@ export function MissionCard({
               </button>
             </li>
           ))}
+          {collapsible && (
+            <li className="border-t border-[#1e2030]/40">
+              <button
+                type="button"
+                onClick={() => setExpanded((e) => !e)}
+                aria-expanded={expanded}
+                className="font-tactical w-full flex items-center justify-center gap-1.5 py-2 text-[9px] tracking-[0.16em] text-[#6b6e7a] hover:text-[#c9a84c] transition-colors"
+              >
+                {expanded ? <><ChevronUp size={11} /> COLLAPSE</> : <><ChevronDown size={11} /> SHOW ALL {mission.steps.length} · {hidden} HIDDEN</>}
+              </button>
+            </li>
+          )}
         </ul>
       )}
 
