@@ -22,7 +22,7 @@ import {
 import { printHelp } from './quarantine-deletion-readiness-help.js';
 import { announceIntent, announceCompletion } from './vnp.js';
 
-const REPO_ROOT = process.cwd();
+const REPO_ROOT = '/Users/alexanderanthony';
 
 function getScanDate(): string {
   return '2026-06-01';

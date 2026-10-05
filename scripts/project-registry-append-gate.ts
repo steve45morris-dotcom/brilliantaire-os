@@ -16,7 +16,7 @@ import {
 } from '../config/project-registry-append-gate.js';
 import { printHelp } from './project-registry-append-gate-help.js';
 
-const REPO_ROOT = process.cwd();
+const REPO_ROOT = '/Users/alexanderanthony';
 
 interface CandidateEntry {
   projectName: string;

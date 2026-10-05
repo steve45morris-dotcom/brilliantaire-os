@@ -4,9 +4,9 @@ import sys
 import time
 import subprocess
 
-INBOX_DIR = "~/voice_queue/inbox"
-SCRIPT_PATH = "~/scripts/voice-queue.ts"
-LOG_FILE = "~/sentinel-os/logs/voice_dispatcher.log"
+INBOX_DIR = "/Users/alexanderanthony/voice_queue/inbox"
+SCRIPT_PATH = "/Users/alexanderanthony/scripts/voice-queue.ts"
+LOG_FILE = "/Users/alexanderanthony/sentinel-os/logs/voice_dispatcher.log"
 
 os.makedirs(INBOX_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
@@ -27,7 +27,7 @@ def check_and_dispatch():
             # Run the typescript voice queue parser
             res = subprocess.run(
                 ["npx", "tsx", SCRIPT_PATH],
-                cwd="~/sentinel-os",
+                cwd="/Users/alexanderanthony/sentinel-os",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True

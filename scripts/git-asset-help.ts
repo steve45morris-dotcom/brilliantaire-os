@@ -1,4 +1,4 @@
-import { FORBIDDEN_FOLDERS, FORBIDDEN_EXTENSIONS, SENSITIVE_FILES, MAX_TRACKED_FILE_SIZE_MB } from '../config/git-asset-policy';
+import { FORBIDDEN_FOLDERS, FORBIDDEN_EXTENSIONS, SENSITIVE_FILES, MAX_TRACKED_FILE_SIZE_MB } from '../config/git-asset-policy.js';
 
 export function printHelp(): void {
   console.log('========================================================================');
@@ -11,7 +11,7 @@ export function printHelp(): void {
   console.log('');
   
   console.log('🚫 Forbidden Folders:');
-  FORBIDDEN_FOLDERS.forEach(folder => console.log(`  - ${folder}`));
+  FORBIDDEN_FOLDERS.forEach((folder: string) => console.log(`  - ${folder}`));
   console.log('');
 
   console.log('🚫 Forbidden Extensions:');

@@ -1,8 +1,7 @@
 import { exec } from 'child_process';
 import fs from 'fs';
-import path from 'path';
 
-const VNP_BRIDGE_PATH = path.join(process.cwd(), '.agents', 'voice_narrative.sh');
+const VNP_BRIDGE_PATH = '/Users/alexanderanthony/.agents/voice_narrative.sh';
 
 export function announceIntent(message: string): Promise<void> {
   return new Promise((resolve) => {
@@ -13,7 +12,7 @@ export function announceIntent(message: string): Promise<void> {
 
     const cleanMsg = message.replace(/"/g, '\\"');
     const cmd = `source ${VNP_BRIDGE_PATH} && announce_intent "${cleanMsg}"`;
-    exec(cmd, { shell: '/bin/zsh', timeout: 3000 }, (err) => {
+    exec(cmd, { shell: '/bin/zsh', timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to announce intent: ${err.message}`);
       }
@@ -31,7 +30,7 @@ export function announceCompletion(message: string, score: string = '10'): Promi
 
     const cleanMsg = message.replace(/"/g, '\\"');
     const cmd = `source ${VNP_BRIDGE_PATH} && announce_completion "${cleanMsg}" "${score}"`;
-    exec(cmd, { shell: '/bin/zsh', timeout: 3000 }, (err) => {
+    exec(cmd, { shell: '/bin/zsh', timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to announce completion: ${err.message}`);
       }
@@ -48,7 +47,7 @@ export function announcePhrase(phrase: string): Promise<void> {
     }
     
     // Write to buffer for audit trail and speak on macOS
-    const VOICE_BUFFER = path.join(process.cwd(), '.agents', 'voice_buffer.txt');
+    const VOICE_BUFFER = "/Users/alexanderanthony/.agents/voice_buffer.txt";
     const cleanPhrase = phrase.replace(/"/g, '\\"');
     
     // We append to the voice buffer and speak the phrase
@@ -59,8 +58,8 @@ export function announcePhrase(phrase: string): Promise<void> {
       console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
     }
     
-    const cmd = `${path.join(process.cwd(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
-    exec(cmd, { timeout: 3000 }, (err) => {
+    const cmd = `/Users/alexanderanthony/.agents/speak_serialized.sh "${cleanPhrase}" "P3"`;
+    exec(cmd, { timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);
       }

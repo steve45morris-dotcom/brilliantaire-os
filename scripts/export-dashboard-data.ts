@@ -1,533 +1,85 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { globalGovernanceEngine } from '../src/kernel/governance/GovernanceEngine.js';
+import { globalLiveOperationsStore } from '../src/kernel/live/LiveOperationsStore.js';
 import {
-  REC_METADATA_DIR,
-  REC_ARCHIVE_DIR,
-  REC_REJECTED_DIR,
-  REC_LOGS_DIR,
-  REC_ASR_INPUT_DIR,
-  LIVE_MIC_ENABLED as REC_LIVE_MIC_ENABLED,
-  BACKGROUND_RECORDING_ENABLED as REC_BG_ENABLED,
-  AUTO_TRANSCRIBE_AFTER_RECORDING as REC_AUTO_TRANS,
-  CONFIRMATION_REQUIRED as REC_CONF_REQ
-} from '../config/narrator-voice-session-recorder.config.js';
-
+  projectPublicDashboardData,
+  writePublicDashboardArtifact,
+} from '../src/dashboard/PublicDashboardProjection.js';
 import {
-  ORCH_ASR_INPUT_DIR,
-  ORCH_ASR_TRANSCRIPTS_DIR,
-  ORCH_ASR_STAGED_DIR,
-  ORCH_ASR_APPROVED_DIR,
-  DUPLICATE_DISPATCH_PROTECTION
-} from '../config/narrator-voice-asr-orchestrator.config.js';
+  projectAllProvidersHealth,
+  writeProviderHealthDashboardArtifact,
+} from '../src/integrations/core/ProviderHealthProjection.js';
 
-import { performScan } from './narrator-voice-lifecycle-audit.js';
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.dirname(__dirname);
-
-const SYSTEM_STATUS_PATH = path.join(REPO_ROOT, 'SYSTEM_STATUS.md');
-const PROJECTS_PATH = path.join(REPO_ROOT, 'PROJECTS.md');
-const NEXT_ACTIONS_PATH = path.join(REPO_ROOT, 'NEXT_ACTIONS.md');
-const COMMANDS_PATH = path.join(REPO_ROOT, 'COMMANDS.md');
-const AGENTS_PATH = path.join(REPO_ROOT, 'AGENTS.md');
-
-const TELEMETRY_DIR = path.join(REPO_ROOT, 'outputs', 'mesh_telemetry');
-const SNAPSHOTS_DIR = path.join(TELEMETRY_DIR, 'snapshots');
-const REPORTS_DIR = path.join(TELEMETRY_DIR, 'reports');
-
+const REPO_ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const OUTPUT_JSON_DIR = path.join(REPO_ROOT, 'dashboard', 'public');
 const OUTPUT_JSON_PATH = path.join(OUTPUT_JSON_DIR, 'dashboard-data.json');
+const OUTPUT_PROVIDER_HEALTH_PATH = path.join(OUTPUT_JSON_DIR, 'provider-health-data.json');
 
-function getLatestFile(dir: string, prefix: string): string {
-  if (!fs.existsSync(dir)) return '';
-  const files = fs.readdirSync(dir).filter(f => f.startsWith(prefix) && f.endsWith('.md')).sort();
-  if (files.length === 0) return '';
-  return path.join(dir, files[files.length - 1]);
+function readText(relativePath: string): string {
+  const filePath = path.join(REPO_ROOT, relativePath);
+  return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8') : '';
 }
 
-function parseSystemStatus(): { currentPhase: string; activeCapabilities: string[] } {
-  let currentPhase = 'Unknown';
-  const activeCapabilities: string[] = [];
-
-  if (fs.existsSync(SYSTEM_STATUS_PATH)) {
-    const content = fs.readFileSync(SYSTEM_STATUS_PATH, 'utf-8');
-    const phaseMatch = content.match(/-\s+\*\*Current Phase:\*\*\s+(.*)/i);
-    if (phaseMatch) {
-      currentPhase = phaseMatch[1].trim();
-    }
-
-    const capLines = content.split('\n');
-    let inCaps = false;
-    for (const line of capLines) {
-      if (line.includes('## 🔋 Active Capabilities')) {
-        inCaps = true;
-        continue;
-      }
-      if (inCaps && line.startsWith('##')) {
-        break;
-      }
-      if (inCaps && line.trim().startsWith('-')) {
-        activeCapabilities.push(line.trim().replace(/^-\s+/, ''));
-      }
-    }
-  }
-
-  return { currentPhase, activeCapabilities };
+function currentPhase(): string {
+  return readText('SYSTEM_STATUS.md').match(/-\s+\*\*Current Phase:\*\*\s+(.*)/i)?.[1]?.trim() || 'Unavailable';
 }
 
-function parseProjects(): string[] {
+function activeProjects(): string[] {
   const projects: string[] = [];
-  if (fs.existsSync(PROJECTS_PATH)) {
-    const content = fs.readFileSync(PROJECTS_PATH, 'utf-8');
-    const lines = content.split('\n');
-    let inTable = false;
-    for (const line of lines) {
-      if (line.startsWith('| Project Name')) {
-        inTable = true;
-        continue;
-      }
-      if (inTable && line.startsWith('|')) {
-        if (line.includes('---')) continue;
-        const cols = line.split('|').map(c => c.trim()).filter(Boolean);
-        if (cols.length > 0) {
-          // clean up markdown bold if present
-          const name = cols[0].replace(/\*\*/g, '');
-          if (name && name !== 'Project Name') {
-            projects.push(name);
-          }
-        }
-      } else if (inTable && line.trim() === '') {
-        // Table ended or spacing
-      }
-    }
+  let inTable = false;
+  for (const line of readText('PROJECTS.md').split('\n')) {
+    if (line.startsWith('| Project Name')) { inTable = true; continue; }
+    if (!inTable || !line.startsWith('|') || line.includes('---')) continue;
+    const name = line.split('|').map((column) => column.trim()).filter(Boolean)[0]?.replace(/\*\*/g, '');
+    if (name && name !== 'Project Name') projects.push(name);
   }
   return projects;
 }
 
-function parseNextActions(): string[] {
-  const actions: string[] = [];
-  if (fs.existsSync(NEXT_ACTIONS_PATH)) {
-    const content = fs.readFileSync(NEXT_ACTIONS_PATH, 'utf-8');
-    const lines = content.split('\n');
-    for (const line of lines) {
-      // Find unchecked markdown tasks
-      if (line.trim().startsWith('- [ ]')) {
-        actions.push(line.trim().replace(/^-\s+\[\s+\]\s+/, ''));
-      }
-    }
-  }
-  return actions;
+function latestTelemetryReport(): string {
+  const directory = path.join(REPO_ROOT, 'outputs', 'mesh_telemetry', 'reports');
+  if (!fs.existsSync(directory)) return '';
+  const latest = fs.readdirSync(directory)
+    .filter((name) => name.startsWith('mesh_telemetry_report') && name.endsWith('.md'))
+    .sort()
+    .at(-1);
+  return latest ? fs.readFileSync(path.join(directory, latest), 'utf-8') : '';
 }
 
-function parseTelemetryReport(reportPath: string) {
-  const summary = {
-    totalCommands: 0,
-    successfulCommands: 0,
-    blockedCommands: 0,
-    totalVoiceCommands: 0,
-    voiceAccepted: 0,
-    voicePending: 0,
-    voiceRejected: 0,
-    voiceApprovedConfirmations: 0,
-    voiceDeniedConfirmations: 0,
-    obsidianWrites: 0,
-    totalRiskEvents: 0
-  };
-
-  if (reportPath && fs.existsSync(reportPath)) {
-    const content = fs.readFileSync(reportPath, 'utf-8');
-    
-    // Command matches
-    const totalCmdMatch = content.match(/-\s+\*\*Total Command Attempts:\*\*\s+(\d+)/i);
-    const successCmdMatch = content.match(/-\s+\*\*Successful Gated Script Runs:\*\*\s+(\d+)/i);
-    const blockedCmdMatch = content.match(/-\s+\*\*Blocked \/\s+Risk\s+Boundary\s+Violations:\*\*\s+(\d+)/i);
-
-    // Voice matches
-    const totalVoiceMatch = content.match(/-\s+\*\*Total Voice Command Dispatch Runs:\*\*\s+(\d+)/i);
-    const acceptedVoiceMatch = content.match(/-\s+\*\*Accepted &\s+Executed\s+Immediately.*:\*\*\s+(\d+)/i);
-    const pendingVoiceMatch = content.match(/-\s+\*\*Quarantined \/\s+Held\s+for\s+Manual\s+Review.*:\*\*\s+(\d+)/i);
-    const rejectedVoiceMatch = content.match(/-\s+\*\*Rejected\s+\(Unknown.*:\*\*\s+(\d+)/i);
-    const approvedConfMatch = content.match(/-\s+\*\*Voice\s+Confirmations\s+Approved.*:\*\*\s+(\d+)/i);
-    const deniedConfMatch = content.match(/-\s+\*\*Voice\s+Confirmations\s+Rejected.*:\*\*\s+(\d+)/i);
-
-    // Writes
-    const writesMatch = content.match(/-\s+\*\*Obsidian\s+approved\s+write.*:\*\*\s+(\d+)/i);
-    
-    // Risk anomalies
-    const anomaliesMatch = content.match(/-\s+\*\*Total\s+Logged\s+Mesh\s+Anomalies.*:\*\*\s+(\d+)/i);
-
-    if (totalCmdMatch) summary.totalCommands = parseInt(totalCmdMatch[1], 10);
-    if (successCmdMatch) summary.successfulCommands = parseInt(successCmdMatch[1], 10);
-    if (blockedCmdMatch) summary.blockedCommands = parseInt(blockedCmdMatch[1], 10);
-
-    if (totalVoiceMatch) summary.totalVoiceCommands = parseInt(totalVoiceMatch[1], 10);
-    if (acceptedVoiceMatch) summary.voiceAccepted = parseInt(acceptedVoiceMatch[1], 10);
-    if (pendingVoiceMatch) summary.voicePending = parseInt(pendingVoiceMatch[1], 10);
-    if (rejectedVoiceMatch) summary.voiceRejected = parseInt(rejectedVoiceMatch[1], 10);
-    if (approvedConfMatch) summary.voiceApprovedConfirmations = parseInt(approvedConfMatch[1], 10);
-    if (deniedConfMatch) summary.voiceDeniedConfirmations = parseInt(deniedConfMatch[1], 10);
-
-    if (writesMatch) summary.obsidianWrites = parseInt(writesMatch[1], 10);
-    if (anomaliesMatch) summary.totalRiskEvents = parseInt(anomaliesMatch[1], 10);
-  }
-
-  return summary;
+function count(report: string, pattern: RegExp): number {
+  const match = report.match(pattern);
+  return match ? Number.parseInt(match[1], 10) : 0;
 }
 
-function parseSportyMetrics(reportPath: string) {
-  const sporty = {
-    campaignName: 'Sporty No Go Take My Soul',
-    readinessScore: 'N/A',
-    executionStatus: 'UNKNOWN',
-    filesPresentCount: 0,
-    missingFilesCount: 0,
-    missingFilesList: [] as string[]
+function voiceSummary() {
+  const report = latestTelemetryReport();
+  return {
+    accepted: count(report, /-\s+\*\*Accepted &\s+Executed\s+Immediately.*:\*\*\s+(\d+)/i),
+    pending: count(report, /-\s+\*\*Quarantined \/\s+Held\s+for\s+Manual\s+Review.*:\*\*\s+(\d+)/i),
+    rejected: count(report, /-\s+\*\*Rejected\s+\(Unknown.*:\*\*\s+(\d+)/i),
+    approvedConfirmations: count(report, /-\s+\*\*Voice\s+Confirmations\s+Approved.*:\*\*\s+(\d+)/i),
+    deniedConfirmations: count(report, /-\s+\*\*Voice\s+Confirmations\s+Rejected.*:\*\*\s+(\d+)/i),
   };
-
-  if (reportPath && fs.existsSync(reportPath)) {
-    const content = fs.readFileSync(reportPath, 'utf-8');
-    const scoreMatch = content.match(/-\s+\*\*Readiness Scores:\*\*\s+(.*)/i);
-    const statusMatch = content.match(/-\s+\*\*Execution Status:\*\*\s+(.*)/i);
-    const filesMatch = content.match(/-\s+\*\*Files Present:\*\*\s+(.*)/i);
-    const missingMatch = content.match(/-\s+\*\*Missing Items:\*\*\s+(.*)/i);
-
-    if (scoreMatch) sporty.readinessScore = scoreMatch[1].trim();
-    if (statusMatch) sporty.executionStatus = statusMatch[1].trim();
-
-    if (filesMatch) {
-      const list = filesMatch[1].split(',').map(f => f.trim()).filter(Boolean);
-      sporty.filesPresentCount = list.length;
-    }
-    if (missingMatch) {
-      const items = missingMatch[1].split(',').map(f => f.trim()).filter(Boolean);
-      if (items.length > 0 && items[0] !== 'None') {
-        sporty.missingFilesList = items;
-        sporty.missingFilesCount = items.length;
-      }
-    }
-  }
-
-  return sporty;
 }
 
-function parseSnapshotMissingSignals(snapshotPath: string): string[] {
-  const missing: string[] = [];
-  if (snapshotPath && fs.existsSync(snapshotPath)) {
-    const content = fs.readFileSync(snapshotPath, 'utf-8');
-    const lines = content.split('\n');
-    let inSection = false;
-    for (const line of lines) {
-      if (line.includes('## Missing Signals')) {
-        inSection = true;
-        continue;
-      }
-      if (inSection && line.startsWith('##')) {
-        break;
-      }
-      if (inSection && line.trim()) {
-        const text = line.trim().replace(/^-\s+/, '');
-        if (text && text !== 'None') {
-          missing.push(text);
-        }
-      }
-    }
-  }
-  return missing;
-}
+function main(): void {
+  console.log('Exporting validated public dashboard telemetry...');
+  fs.mkdirSync(OUTPUT_JSON_DIR, { recursive: true });
+  const publicData = projectPublicDashboardData({
+    currentPhase: currentPhase(),
+    activeProjects: activeProjects(),
+    voiceSummary: voiceSummary(),
+    governance: globalGovernanceEngine.runAudit(),
+    agentExecutions: globalLiveOperationsStore.getAgentExecutionStates(),
+  });
+  writePublicDashboardArtifact(OUTPUT_JSON_PATH, publicData);
+  console.log(`Public dashboard data exported to: ${OUTPUT_JSON_PATH}`);
 
-function main() {
-  console.log("📤 Exporting dashboard telemetry data...");
-
-  if (!fs.existsSync(OUTPUT_JSON_DIR)) {
-    fs.mkdirSync(OUTPUT_JSON_DIR, { recursive: true });
-  }
-
-  const { currentPhase, activeCapabilities } = parseSystemStatus();
-  const activeProjects = parseProjects();
-  const nextActions = parseNextActions();
-
-  // Telemetry files
-  const latestSnapshot = getLatestFile(SNAPSHOTS_DIR, 'system_snapshot');
-  const latestReport = getLatestFile(REPORTS_DIR, 'mesh_telemetry_report');
-  const latestSporty = getLatestFile(REPORTS_DIR, 'sporty_mesh_telemetry');
-
-  const commandSummary = parseTelemetryReport(latestReport);
-  const campaignReadiness = parseSportyMetrics(latestSporty);
-  const missingSignals = parseSnapshotMissingSignals(latestSnapshot);
-
-  // Voice Loop Directory Scanning for dashboard export
-  const asrApprovedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'asr', 'approved');
-  const asrTranscriptsDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'asr', 'transcripts');
-  const bridgeReadyDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'ready');
-  const bridgeExecutedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'executed');
-  const bridgeRejectedDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'rejected');
-  const bridgeLogDir = path.join(REPO_ROOT, 'outputs', 'narrator', 'voice_bridge', 'logs');
-
-  const countFiles = (dir: string) => {
-    if (!fs.existsSync(dir)) return 0;
-    return fs.readdirSync(dir).filter(f => f.endsWith('.md')).length;
-  };
-
-  let latestTranscript = '';
-  if (fs.existsSync(asrTranscriptsDir)) {
-    const tFiles = fs.readdirSync(asrTranscriptsDir).filter(f => f.endsWith('.md')).sort();
-    if (tFiles.length > 0) {
-      const content = fs.readFileSync(path.join(asrTranscriptsDir, tFiles[tFiles.length - 1]), 'utf-8');
-      const textMatch = content.match(/```text\s*([\s\S]*?)\s*```/i);
-      if (textMatch) latestTranscript = textMatch[1].trim();
-    }
-  }
-
-  let latestApprovedPacket = '';
-  if (fs.existsSync(asrApprovedDir)) {
-    const apFiles = fs.readdirSync(asrApprovedDir).filter(f => f.endsWith('.md')).sort();
-    if (apFiles.length > 0) latestApprovedPacket = apFiles[apFiles.length - 1];
-  }
-
-  let latestExecutedPacket = '';
-  if (fs.existsSync(bridgeExecutedDir)) {
-    const exFiles = fs.readdirSync(bridgeExecutedDir).filter(f => f.endsWith('.md')).sort();
-    if (exFiles.length > 0) latestExecutedPacket = exFiles[exFiles.length - 1];
-  }
-
-  let lastAuditEvent = '';
-  if (fs.existsSync(bridgeLogDir)) {
-    const logFiles = fs.readdirSync(bridgeLogDir).filter(f => f.endsWith('.md')).sort();
-    if (logFiles.length > 0) lastAuditEvent = logFiles[logFiles.length - 1];
-  }
-
-  // Voice Session Recorder details
-  const countRecorderFiles = (dir: string, extension: string = '.json') => {
-    if (!fs.existsSync(dir)) return 0;
-    return fs.readdirSync(dir).filter(f => f.endsWith(extension)).length;
-  };
-
-  let latestSession = 'None';
-  let latestSessionStatus = 'unknown';
-  let asrDispatchStatus = 'Pending';
-  let transcriptionStatus = 'Pending';
-  let stagedCommandStatus = 'Pending';
-  let asrApprovalStatus = 'Pending';
-  let bridgeReadiness = 'Not Ready';
-  let executionStatus = 'Not Executed';
-
-  if (fs.existsSync(REC_METADATA_DIR)) {
-    const metaFiles = fs.readdirSync(REC_METADATA_DIR).filter(f => f.endsWith('.json')).sort();
-    if (metaFiles.length > 0) {
-      latestSession = metaFiles[metaFiles.length - 1].replace('.json', '');
-    }
-  }
-
-  if (latestSession !== 'None') {
-    const sessionJson = path.join(REC_METADATA_DIR, `${latestSession}.json`);
-    if (fs.existsSync(sessionJson)) {
-      try {
-        const meta = JSON.parse(fs.readFileSync(sessionJson, 'utf-8'));
-        latestSessionStatus = meta.status;
-      } catch (e) {}
-    }
-
-    const hasInputCopy = fs.existsSync(path.join(ORCH_ASR_INPUT_DIR, `${latestSession}.wav`));
-    const hasTranscript = fs.existsSync(path.join(ORCH_ASR_TRANSCRIPTS_DIR, `asr_transcript_${latestSession}.md`));
-    const hasStaged = fs.existsSync(path.join(ORCH_ASR_STAGED_DIR, `asr_command_packet_${latestSession}.md`));
-    const hasApproved = fs.existsSync(path.join(ORCH_ASR_APPROVED_DIR, `asr_command_packet_${latestSession}.md`));
-    const hasRejected = fs.existsSync(path.join(process.cwd(), `outputs/narrator/asr/rejected/asr_command_packet_${latestSession}.md`));
-    const hasReady = fs.existsSync(path.join(process.cwd(), `outputs/narrator/voice_bridge/ready/asr_command_packet_${latestSession}.md`));
-    const hasExecuted = fs.existsSync(path.join(process.cwd(), `outputs/narrator/voice_bridge/executed/asr_command_packet_${latestSession}.md`));
-
-    if (hasInputCopy) asrDispatchStatus = 'Staged';
-    if (hasTranscript) transcriptionStatus = 'Transcribed';
-    if (hasStaged) stagedCommandStatus = 'Staged';
-    if (hasApproved) asrApprovalStatus = 'Approved';
-    else if (hasRejected) asrApprovalStatus = 'Rejected';
-    if (hasReady) bridgeReadiness = 'Ready';
-    if (hasExecuted) executionStatus = 'Executed';
-  }
-
-  let latestRecorderLog = 'No events recorded.';
-  const recLogPath = path.join(REC_LOGS_DIR, 'voice_recorder.log');
-  if (fs.existsSync(recLogPath)) {
-    const lines = fs.readFileSync(recLogPath, 'utf-8').trim().split('\n');
-    if (lines.length > 0) {
-      latestRecorderLog = lines[lines.length - 1];
-    }
-  }
-
-  // Detect recorder backend
-  let recBackend = 'None Detected';
-  try {
-    const ffmpegPath = execSync('which ffmpeg', { encoding: 'utf-8' }).trim();
-    if (ffmpegPath) recBackend = `ffmpeg (${ffmpegPath})`;
-  } catch (err) {
-    try {
-      const recPath = execSync('which rec', { encoding: 'utf-8' }).trim();
-      if (recPath) recBackend = `rec (${recPath})`;
-    } catch (e) {}
-  }
-
-  // Scan lifecycle events for audit timeline telemetry
-  let latestLifecycleId = 'None';
-  let auditSessionStatus = 'Pending';
-  let auditAsrTranscriptStatus = 'Pending';
-  let auditCommandPacketStatus = 'Pending';
-  let auditApprovalStatus = 'Pending';
-  let auditBridgeStatus = 'Pending';
-  let auditExecutionStatus = 'Pending';
-  let blockedEventCount = 0;
-  let safetyEventCount = 0;
-  let latestAuditReportPath = 'None';
-
-  try {
-    const { events, timelines } = performScan();
-    const keys = Object.keys(timelines);
-    if (keys.length > 0) {
-      latestLifecycleId = keys[keys.length - 1];
-      latestAuditReportPath = `outputs/narrator/voice_lifecycle_audit/reports/voice_command_lifecycle_report_${latestLifecycleId}.md`;
-      const t = timelines[latestLifecycleId];
-      auditSessionStatus = t.currentState;
-      if (t.events.some(e => e.type === 'asr_dispatched')) auditAsrTranscriptStatus = 'Dispatched';
-      if (t.transcriptExists) auditAsrTranscriptStatus = 'Transcribed';
-      if (t.stagedExists) auditCommandPacketStatus = 'Staged';
-      if (t.approvedExists) auditApprovalStatus = 'Approved';
-      else if (t.events.some(e => e.type === 'asr_rejected')) auditApprovalStatus = 'Rejected';
-      if (t.events.some(e => e.type === 'bridge_prepared')) auditBridgeStatus = 'Ready';
-      if (t.executedExists) auditExecutionStatus = 'Executed';
-    }
-    blockedEventCount = events.filter(e => e.status === 'BLOCKED' || e.type.includes('blocked')).length;
-    safetyEventCount = events.filter(e => e.type === 'fuzzy_command_blocked' || e.type === 'injection_blocked' || e.type === 'duplicate_blocked').length;
-  } catch (err) {}
-
-  const voiceLoop = {
-    asrBackend: 'registered-whisper-cli',
-    ttsRenderer: 'piper (en)',
-    voiceBridgeStatus: 'Active',
-    queueCounts: {
-      approvedAsr: countFiles(asrApprovedDir),
-      ready: countFiles(bridgeReadyDir),
-      executed: countFiles(bridgeExecutedDir),
-      rejected: countFiles(bridgeRejectedDir)
-    },
-    latestTranscript,
-    latestApprovedPacket,
-    latestExecutedPacket,
-    blockedPacketCount: countFiles(bridgeRejectedDir),
-    lastAuditEvent,
-    safetyFlags: {
-      liveMicEnabled: false,
-      autoExecute: false,
-      cloudAsrEnabled: false,
-      exactNameRouterActive: true,
-      rawShellExecutionBlocked: true
-    },
-    recorder: {
-      backendStatus: recBackend,
-      latestSession,
-      latestSessionStatus,
-      asrDispatchStatus,
-      transcriptionStatus,
-      stagedCommandStatus,
-      asrApprovalStatus,
-      bridgeReadiness,
-      executionStatus,
-      duplicateDispatchProtection: DUPLICATE_DISPATCH_PROTECTION,
-      sessionCount: countRecorderFiles(REC_METADATA_DIR),
-      stagedForAsrCount: fs.existsSync(REC_ASR_INPUT_DIR) ? fs.readdirSync(REC_ASR_INPUT_DIR).length : 0,
-      rejectedCount: countRecorderFiles(REC_REJECTED_DIR),
-      archivedCount: countRecorderFiles(REC_ARCHIVE_DIR),
-      safetyFlags: {
-        liveMicEnabled: REC_LIVE_MIC_ENABLED,
-        backgroundRecordingEnabled: REC_BG_ENABLED,
-        autoTranscribeAfterRecording: REC_AUTO_TRANS,
-        confirmationRequired: REC_CONF_REQ
-      },
-      latestRecorderLog
-    },
-    audit: {
-      latestLifecycleId,
-      latestSessionStatus: auditSessionStatus,
-      latestAsrTranscriptStatus: auditAsrTranscriptStatus,
-      latestCommandPacketStatus: auditCommandPacketStatus,
-      latestApprovalStatus: auditApprovalStatus,
-      latestBridgeStatus: auditBridgeStatus,
-      latestExecutionStatus: auditExecutionStatus,
-      blockedEventCount,
-      safetyEventCount,
-      latestAuditReportPath
-    },
-    report: (() => {
-      const dailyReportSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/voice_ops_daily_report/snapshots/dashboard_snapshot.json');
-      if (fs.existsSync(dailyReportSnapshotPath)) {
-        try {
-          return JSON.parse(fs.readFileSync(dailyReportSnapshotPath, 'utf-8'));
-        } catch (e) {
-          console.error(`Failed to parse dashboard snapshot JSON: ${e}`);
-        }
-      }
-      return undefined;
-    })(),
-    briefing: (() => {
-      const briefingSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/voice_ops_scheduled_briefing/reports/dashboard_briefing_snapshot.json');
-      if (fs.existsSync(briefingSnapshotPath)) {
-        try {
-          return JSON.parse(fs.readFileSync(briefingSnapshotPath, 'utf-8'));
-        } catch (e) {
-          console.error(`Failed to parse dashboard briefing snapshot JSON: ${e}`);
-        }
-      }
-      return undefined;
-    })(),
-    briefingTts: (() => {
-      const briefingTtsSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/briefing_tts_render_approval/reports/dashboard_briefing_tts_snapshot.json');
-      if (fs.existsSync(briefingTtsSnapshotPath)) {
-        try {
-          return JSON.parse(fs.readFileSync(briefingTtsSnapshotPath, 'utf-8'));
-        } catch (e) {
-          console.error(`Failed to parse dashboard briefing TTS snapshot JSON: ${e}`);
-        }
-      }
-      return undefined;
-    })(),
-    briefingAudio: (() => {
-      const briefingAudioSnapshotPath = path.join(REPO_ROOT, 'outputs/narrator/briefing_audio_playback_review/reports/dashboard_briefing_audio_snapshot.json');
-      if (fs.existsSync(briefingAudioSnapshotPath)) {
-        try {
-          return JSON.parse(fs.readFileSync(briefingAudioSnapshotPath, 'utf-8'));
-        } catch (e) {
-          console.error(`Failed to parse dashboard briefing audio snapshot JSON: ${e}`);
-        }
-      }
-      return undefined;
-    })()
-  };
-
-  const data = {
-    currentPhase,
-    activeCapabilities,
-    activeProjects,
-    nextActions,
-    commandSummary,
-    voiceSummary: {
-      accepted: commandSummary.voiceAccepted,
-      pending: commandSummary.voicePending,
-      rejected: commandSummary.voiceRejected,
-      approvedConfirmations: commandSummary.voiceApprovedConfirmations,
-      deniedConfirmations: commandSummary.voiceDeniedConfirmations
-    },
-    voiceLoop,
-    campaignReadiness,
-    latestSnapshotPath: latestSnapshot ? path.relative(REPO_ROOT, latestSnapshot) : '',
-    latestTelemetryReportPath: latestReport ? path.relative(REPO_ROOT, latestReport) : '',
-    latestSportyReportPath: latestSporty ? path.relative(REPO_ROOT, latestSporty) : '',
-    missingSignals,
-    exportedAt: new Date().toISOString()
-  };
-
-  fs.writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
-  console.log(`✅ Dashboard data exported successfully to: ${OUTPUT_JSON_PATH}`);
+  const providerHealthData = projectAllProvidersHealth();
+  writeProviderHealthDashboardArtifact(OUTPUT_PROVIDER_HEALTH_PATH, providerHealthData);
+  console.log(`Public provider health data exported to: ${OUTPUT_PROVIDER_HEALTH_PATH}`);
 }
 
 main();
