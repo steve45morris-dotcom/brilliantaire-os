@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T23:07:24.939Z",
+  "generatedAt": "2026-10-05T01:59:22.487Z",
   "items": [
     {
       "code": "LIVE_ROUTE_UNDOCUMENTED",
@@ -221,7 +221,7 @@
   "coverage": {
     "documentsScanned": 1,
     "routeFilesScanned": 3,
-    "packageCommandsScanned": 387,
+    "packageCommandsScanned": 389,
     "checksRun": [
       "routes",
       "commands",

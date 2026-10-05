@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings
+  LayoutDashboard, Inbox, Calendar, Play, BarChart3, BookOpen, Settings, Terminal
 } from 'lucide-react';
 
 // Every page the sidebar has, except Billing, which is linked from Settings
@@ -14,6 +14,7 @@ export const mobileNavItems: { href: string; label: string; name?: string; icon:
   { href: '/inbox', label: 'Inbox', icon: Inbox },
   { href: '/timeline', label: 'Plan', name: 'Timeline', icon: Calendar },
   { href: '/focus', label: 'Focus', icon: Play },
+  { href: '/pjk', label: 'P.J.K.', icon: Terminal },
   { href: '/review', label: 'Review', icon: BarChart3 },
   { href: '/knowledge', label: 'Notes', name: 'Knowledge', icon: BookOpen },
   { href: '/settings', label: 'Config', name: 'Settings', icon: Settings },
