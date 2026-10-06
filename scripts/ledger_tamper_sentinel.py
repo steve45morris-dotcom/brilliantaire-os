@@ -6,10 +6,11 @@ import sqlite3
 import hashlib
 import subprocess
 
-DB_PATH = "~/supernova.db"
-LOCK_FILE = "~/.agents/focus_lock.txt"
-LOG_FILE = "~/sentinel-os/logs/ledger_sentinel.log"
-VOICE_BUFFER = "~/.agents/voice_buffer.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.environ.get("SUPERNOVA_DB_PATH") or os.path.abspath(os.path.join(SCRIPT_DIR, "..", "supernova.db"))
+LOCK_FILE = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".agents", "focus_lock.txt"))
+LOG_FILE = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "sentinel-os", "logs", "ledger_sentinel.log"))
+VOICE_BUFFER = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".agents", "voice_buffer.txt"))
 GENESIS_HASH = "0000000000000000000000000000000000000000000000000000000000000000"
 
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
