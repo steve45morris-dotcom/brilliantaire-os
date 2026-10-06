@@ -32,7 +32,7 @@ export function createShellAdapter(config: ShellAdapterConfig): AgentAdapter {
           { cwd: invocation.repoRoot, timeout: config.timeoutMs, env: { ...process.env, ...this.buildEnv() } },
           (error, stdout, stderr) => {
             const durationMs = Date.now() - start;
-            if (error && (error as NodeJS.ErrnoException).killed) {
+            if (error?.killed) {
               resolve({ exitCode: null, outcome: 'timeout', stdout, stderr, durationMs, modelIdentity: config.executable });
               return;
             }
