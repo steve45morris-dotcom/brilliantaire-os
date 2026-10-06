@@ -4,9 +4,11 @@ import sys
 import time
 import subprocess
 
-INBOX_DIR = "~/voice_queue/inbox"
-SCRIPT_PATH = "~/scripts/voice-queue.ts"
-LOG_FILE = "~/sentinel-os/logs/voice_dispatcher.log"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+SENTINEL_OS_ROOT = os.path.expanduser(os.environ.get("SENTINEL_OS_ROOT") or "~/sentinel-os")
+INBOX_DIR = os.path.join(REPO_ROOT, "voice_queue", "inbox")
+SCRIPT_PATH = os.path.join(REPO_ROOT, "scripts", "voice-queue.ts")
+LOG_FILE = os.path.join(SENTINEL_OS_ROOT, "logs", "voice_dispatcher.log")
 
 os.makedirs(INBOX_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
@@ -27,7 +29,7 @@ def check_and_dispatch():
             # Run the typescript voice queue parser
             res = subprocess.run(
                 ["npx", "tsx", SCRIPT_PATH],
-                cwd="~/sentinel-os",
+                cwd=SENTINEL_OS_ROOT,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True

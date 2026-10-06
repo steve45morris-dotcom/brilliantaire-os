@@ -4,10 +4,12 @@ import sys
 import time
 import subprocess
 
-VOICE_INPUT_DIR = "~/voice_input"
-TRIGGER_FILE = "~/voice_input/ignite.trigger"
-LOG_FILE = "~/sentinel-os/logs/wake_word.log"
-VOICE_BUFFER = "~/.agents/voice_buffer.txt"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+SENTINEL_OS_ROOT = os.path.expanduser(os.environ.get("SENTINEL_OS_ROOT") or "~/sentinel-os")
+VOICE_INPUT_DIR = os.path.join(REPO_ROOT, "voice_input")
+TRIGGER_FILE = os.path.join(VOICE_INPUT_DIR, "ignite.trigger")
+LOG_FILE = os.path.join(SENTINEL_OS_ROOT, "logs", "wake_word.log")
+VOICE_BUFFER = os.path.expanduser("~/.agents/voice_buffer.txt")
 
 os.makedirs(VOICE_INPUT_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)

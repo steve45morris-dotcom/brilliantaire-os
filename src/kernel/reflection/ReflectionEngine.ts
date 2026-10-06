@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import { globalEventBus } from '../events/EventBus.js';
@@ -11,7 +12,7 @@ const MEMORY_DIR = path.join(process.cwd(), 'memory');
 const LESSONS_PATH = path.join(MEMORY_DIR, 'lessons_learned.json');
 const DECISIONS_PATH = path.join(MEMORY_DIR, 'decisions.json');
 const OUTCOMES_PATH = path.join(MEMORY_DIR, 'outcomes.json');
-const VNP_BRIDGE_PATH = path.join(process.cwd(), '.agents', 'voice_narrative.sh');
+const VNP_BRIDGE_PATH = path.join(os.homedir(), '.agents', 'voice_narrative.sh');
 
 export interface InsightMatch {
   type: 'lesson' | 'decision';
@@ -42,7 +43,7 @@ export class ReflectionEngine {
       }
 
       // Write to buffer for audit trail and speak on macOS
-      const VOICE_BUFFER = path.join(process.cwd(), '.agents', 'voice_buffer.txt');
+      const VOICE_BUFFER = path.join(os.homedir(), '.agents', 'voice_buffer.txt');
       const cleanPhrase = phrase.replace(/"/g, '\\"');
       
       const dateStr = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -52,7 +53,7 @@ export class ReflectionEngine {
         console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
       }
       
-      const cmd = `${path.join(process.cwd(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
+      const cmd = `${path.join(os.homedir(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
       exec(cmd, { timeout: 8000 }, (err) => {
         if (err) {
           console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);
