@@ -1,6 +1,8 @@
 {
   "character_id": "icyflamze",
-  "reference_asset": "Landing Page Sites/icyflamze/icyflamze-site/images/branded-portrait.jpg",
+  "reference_asset": "~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg",
+  "reference_sha256": "7594b33211f8754724e2a211474de9157824bac63f100bbf0506e03600646abb",
+  "canonical_source": "outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md",
   "identity_lock": "strict",
   "immutable": {
     "facial_structure": "high-cheekbones, angular jawline",
