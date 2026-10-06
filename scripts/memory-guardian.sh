@@ -5,7 +5,8 @@
 FREE_PAGES=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
 FREE_MB=$((FREE_PAGES * 4096 / 1048576))
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-LOG="$HOME/scripts/memory-guardian.log"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"  # this repository's scripts/
+LOG="$SCRIPT_DIR/memory-guardian.log"
 MUTE_MARKER="/tmp/.supernova_voice_muted"
 VOICE_CONF="$HOME/.claude/voice/voice.conf"
 

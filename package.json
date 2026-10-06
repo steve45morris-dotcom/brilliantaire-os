@@ -64,7 +64,7 @@
     "mesh-telemetry-help": "tsx scripts/mesh-telemetry-help.ts",
     "dashboard:export": "tsx scripts/export-dashboard-data.ts",
     "dashboard:dev": "cd dashboard && npm run dev",
-    "dashboard:build": "cd dashboard && npm run build && if [ -f ~/scripts/compile_master_dashboard.py ]; then python3 ~/scripts/compile_master_dashboard.py; else echo 'compile_master_dashboard.py not found in ~/scripts; skipped master dashboard compile'; fi",
+    "dashboard:build": "cd dashboard && npm run build && if [ -f ../scripts/compile_master_dashboard.py ]; then python3 ../scripts/compile_master_dashboard.py; else echo 'scripts/compile_master_dashboard.py not found; skipped master dashboard compile'; fi",
     "automation-help": "tsx scripts/automation-help.ts",
     "automation-runner": "tsx scripts/automation-runner.ts",
     "background-help": "tsx scripts/background-help.ts",

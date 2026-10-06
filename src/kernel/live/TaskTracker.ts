@@ -5,9 +5,10 @@ import { execFile } from 'node:child_process';
 import fs from 'node:fs';
 
 import path from 'node:path';
+import os from 'node:os';
 
-const VOICE_BUFFER = path.join(process.cwd(), '.agents', 'voice_buffer.txt');
-const SPEAK_SCRIPT = path.join(process.cwd(), '.agents', 'speak_serialized.sh');
+const VOICE_BUFFER = path.join(os.homedir(), '.agents', 'voice_buffer.txt');
+const SPEAK_SCRIPT = path.join(os.homedir(), '.agents', 'speak_serialized.sh');
 
 function speak(msg: string, priority = 'P3'): void {
   const dateStr = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');

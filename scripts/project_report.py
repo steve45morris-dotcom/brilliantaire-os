@@ -11,6 +11,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterable
 
+REPO_ROOT = Path(__file__).resolve().parent.parent  # this repository
+
 
 MARKER_FILES = (".git", "package.json", "pyproject.toml", "Cargo.toml", "go.mod")
 EXCLUDED_DIR_NAMES = {
@@ -65,7 +67,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output",
-        default=str(Path.home() / "reports" / "project-status" / "latest.md"),
+        default=str(REPO_ROOT / "reports" / "project-status" / "latest.md"),
         help="Markdown output path.",
     )
     parser.add_argument(
@@ -425,7 +427,7 @@ def main() -> int:
     output = Path(args.output).expanduser().resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     html_output = output.with_suffix(".html")
-    reports_root = (Path.home() / "reports").resolve()
+    reports_root = (REPO_ROOT / "reports").resolve()
 
     statuses = collect_statuses(root, args.max_depth)
     report = render_report(statuses, root)
