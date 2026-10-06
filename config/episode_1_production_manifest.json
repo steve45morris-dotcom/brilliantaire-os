@@ -19,6 +19,7 @@
       ],
       "dimensions": "9:16",
       "description": "A strategic artist-founder in matte black technical coat with gold engravings, cybernetic glasses displaying code readouts, standing on server grid.",
+      "requires_identity": true,
       "dependencies": []
     },
     {
@@ -35,6 +36,7 @@
       ],
       "dimensions": "16:9",
       "description": "Extreme macro close-up of eyes behind cyber spectacles, neon-blue and gold diagnostic terminal codes reflecting on the lenses.",
+      "requires_identity": true,
       "dependencies": []
     },
     {
@@ -51,6 +53,7 @@
       ],
       "dimensions": "16:9",
       "description": "A matte gold lighter striking in pitch black darkness, detailed slow-motion sparks, igniting a blue-gold flame.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -67,6 +70,7 @@
       ],
       "dimensions": "16:9",
       "description": "Overhead wide pan view of a neon cyberpunk city streets mapping like a circuit board grid, gold and blue illumination, wet asphalt reflections.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -83,6 +87,7 @@
       ],
       "dimensions": "16:9",
       "description": "Inside a dark recording studio booth, glowing neon-blue holographic lyric lines and math formulas float in the air like code equations.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -99,6 +104,7 @@
       ],
       "dimensions": "16:9",
       "description": "Detailed anime shot of leather-bound books, soundwave graphs, and floating transparent terminal screens orbiting around Icyflamze - calm, matte black tactical coat with gold engraving and minimalist tactical straps, black-frame cybernetic specs, goatee, expressive eyes.",
+      "requires_identity": true,
       "dependencies": []
     },
     {
@@ -115,6 +121,7 @@
       ],
       "dimensions": "16:9",
       "description": "Typography design reading 'ICYFLAMZE CORE - Rise of the Street Scholar', gold foil lettering, neon-blue gridlines on black background.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -131,6 +138,7 @@
       ],
       "dimensions": "1:1",
       "description": "High-contrast cover art featuring a strategic artist-founder seated on server throne, hands clasped, black matte coat, gold details, neon-blue grid lines background.",
+      "requires_identity": true,
       "dependencies": [
         "IMG-01"
       ]
@@ -148,6 +156,7 @@
       ],
       "duration": 30.0,
       "description": "Calm, strategic cadence voiceover track with philosophical boom-bap narration.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -163,6 +172,7 @@
       ],
       "duration": 15.0,
       "description": "Teaser narration audio for the 15-second visual teaser cut.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -178,6 +188,7 @@
       ],
       "duration": 30.0,
       "description": "Loop and trim main record instrumental track at 80 BPM.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -193,6 +204,7 @@
       ],
       "duration": 1.5,
       "description": "Sound stem detailing metallic lighter click and spark ignition whoosh.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -208,6 +220,7 @@
       ],
       "duration": 30.0,
       "description": "Background city ambience sound effect layer.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -223,6 +236,7 @@
       ],
       "duration": 2.0,
       "description": "Digital interface typing and activation sounds pack.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -238,6 +252,7 @@
       ],
       "duration": 1.0,
       "description": "Deep concrete impact sound effect for chess piece placement.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -253,6 +268,7 @@
       ],
       "duration": 3.0,
       "description": "Synthesizer stab and bass drops for title outro placement.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -268,6 +284,7 @@
       ],
       "duration": 5.0,
       "description": "Outro soundscape decay.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -284,6 +301,7 @@
       "dimensions": "16:9",
       "duration": 3.0,
       "description": "Shot 1: Cybernetic specs lens zoom.",
+      "requires_identity": true,
       "dependencies": [
         "AUD-01",
         "IMG-02"
@@ -303,6 +321,7 @@
       "dimensions": "16:9",
       "duration": 3.5,
       "description": "Shot 2: Cityscape panning sequence.",
+      "requires_identity": false,
       "dependencies": [
         "AUD-01",
         "IMG-04"
@@ -322,6 +341,7 @@
       "dimensions": "16:9",
       "duration": 4.0,
       "description": "Shot 3: Metallic gold lighter striking sparks.",
+      "requires_identity": false,
       "dependencies": [
         "AUD-01",
         "IMG-03"
@@ -341,6 +361,7 @@
       "dimensions": "16:9",
       "duration": 3.5,
       "description": "Shot 4: Orbiting equation visual overlays.",
+      "requires_identity": false,
       "dependencies": [
         "AUD-01",
         "IMG-05"
@@ -360,6 +381,7 @@
       "dimensions": "16:9",
       "duration": 3.0,
       "description": "Shot 5: Chess king thud on concrete.",
+      "requires_identity": false,
       "dependencies": [
         "AUD-01",
         "IMG-06"
@@ -379,6 +401,7 @@
       "dimensions": "16:9",
       "duration": 4.5,
       "description": "Shot 6: Orbiting library books.",
+      "requires_identity": true,
       "dependencies": [
         "AUD-01",
         "IMG-06"
@@ -398,6 +421,7 @@
       "dimensions": "16:9",
       "duration": 4.5,
       "description": "Shot 7: Fingers striking lighters on rhythm beat.",
+      "requires_identity": false,
       "dependencies": [
         "AUD-01",
         "IMG-03"
@@ -417,6 +441,7 @@
       "dimensions": "16:9",
       "duration": 4.0,
       "description": "Shot 8: Character overlooking neon city server layout.",
+      "requires_identity": true,
       "dependencies": [
         "AUD-01",
         "IMG-01"
@@ -435,6 +460,7 @@
         ".md"
       ],
       "description": "Subtitle captions tracks timed to the master narration.",
+      "requires_identity": false,
       "dependencies": [
         "VID-01",
         "VID-02",
@@ -461,6 +487,7 @@
         ".xml"
       ],
       "description": "Master Resolve/Premiere timeline backup file.",
+      "requires_identity": false,
       "dependencies": [
         "VID-01",
         "VID-02",
@@ -495,6 +522,7 @@
       ],
       "dimensions": "16:9",
       "description": "Low angle close-up of a metallic gold chess king standing on a chalk-drawn chessboard grid on wet, rain-slicked cracked concrete. Pavement reflecting gold streetlights and neon-blue signs, reflections pooling around the base of the piece. Camera tilts upward from near-ground level, rain visible in the air. No figure, no face, no character.",
+      "requires_identity": false,
       "dependencies": []
     },
     {
@@ -511,6 +539,7 @@
       ],
       "dimensions": "9:16",
       "description": "Vertical Story Crop derived from the Main Cover Art master.",
+      "requires_identity": true,
       "dependencies": [
         "COV-01"
       ]
@@ -529,6 +558,7 @@
       ],
       "dimensions": "16:9",
       "description": "YouTube Thumbnail Crop derived from the Main Cover Art master.",
+      "requires_identity": true,
       "dependencies": [
         "COV-01"
       ]
@@ -547,6 +577,7 @@
       ],
       "dimensions": "1:1",
       "description": "Title Typography Variant derived from the Main Cover Art master.",
+      "requires_identity": false,
       "dependencies": [
         "COV-01"
       ]
@@ -565,6 +596,7 @@
       ],
       "dimensions": "1:1",
       "description": "No-Text Variant derived from the Main Cover Art master.",
+      "requires_identity": true,
       "dependencies": [
         "COV-01"
       ]
