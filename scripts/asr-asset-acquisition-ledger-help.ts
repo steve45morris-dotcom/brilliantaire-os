@@ -1,0 +1,18 @@
+console.log("=========================================");
+console.log("🔍 ASR ASSET ACQUISITION LEDGER HELP");
+console.log("=========================================");
+console.log("");
+console.log("Usage: npm run command -- \"asr-asset-acquisition-ledger\"");
+console.log("");
+console.log("This command audits offline ASR resources to build a local-first ledger");
+console.log("tracking manual Whisper model acquisition, checksum manifest registers,");
+console.log("and audio staging configurations.");
+console.log("");
+console.log("Execution constraints enforced in this phase:");
+console.log("  - ALLOW_ASR_EXECUTION = false        (No speech transcription)");
+console.log("  - ALLOW_AUDIO_TRANSCRIPTION = false  (No speech-to-text done)");
+console.log("  - ALLOW_EXTERNAL_API_CALLS = false   (No external network HTTP calls)");
+console.log("  - ALLOW_MODEL_DOWNLOAD = false       (No downloads spawned)");
+console.log("");
+console.log("Pipes to target output location: outputs/asr_asset_ledger/");
+console.log("=========================================");
