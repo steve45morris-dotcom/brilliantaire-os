@@ -105,9 +105,9 @@ Requires an LLM API key for real optimization (runs in mock mode without one).
 ## IcyOS Knowledge Core
 
 Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
-- 31,991 source LOC, 27,194 test LOC, 42 passing tests
+- 145 TypeScript source files (10,624 lines) and 25 test files (2,640 lines) in `apps/` and `packages/`; 176 passing Vitest tests (counted 2026-10-06)
 - Provider-agnostic AI runtime (Anthropic, OpenAI, Gemini, Ollama, Mock)
-- 13 Supabase migrations, 23 pages, GitHub Actions CI
+- 27 Supabase migrations, 17 pages, GitHub Actions CI
 - Founder Certification grade: 94/100
 
 ## Active Projects (PROJECTS.md)
