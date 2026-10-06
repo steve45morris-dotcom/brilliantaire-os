@@ -6,7 +6,7 @@ Never paste a key into a chat. Keys go into Supabase, your hosting dashboard or 
 
 ## 1. Database (Supabase)
 
-Run the files in `supabase/migrations/`, oldest first, ending with `26_knowledge_notes.sql`.
+Run the files in `supabase/migrations/`, oldest first, ending with `28_fix_account_lifecycle.sql`.
 
 - **SQL editor:** open the Supabase dashboard → SQL Editor. Paste one file, run it, then do the next.
 - **Supabase CLI**, if this folder is linked to your project: run `supabase db push`.
@@ -23,6 +23,10 @@ Run the files in `supabase/migrations/`, oldest first, ending with `26_knowledge
 | 24 | Inbox brain dumps and time estimates |
 | 25 | Timeline, Focus and Review |
 | 26 | Knowledge notes |
+| 27 | Account export and deletion (its functions fail; 28 fixes them) |
+| 28 | Working account export and deletion |
+
+If you already ran 27, run 28 too: it replaces 27's two functions and changes no data.
 
 ## 2. Sign-in addresses (Supabase)
 
@@ -48,19 +52,27 @@ Set these as environment variables on the IcyOS server.
 
 **Billing:** choose one.
 
+- **Not yet (recommended for a private first launch):** set `BILLING_ENFORCEMENT=off`, and nobody is asked to pay. Charging is on unless this says `off`. Without Stripe, the trial would end and lock you out, with no way to pay.
 - **Charge for it:** set the Stripe settings in `apps/web/BILLING.md`: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_STARTER`, `STRIPE_PRICE_PRO` and `STRIPE_PRICE_TEAM`. Then add the webhook in Stripe as that file describes. Use Stripe's test mode first.
-- **Not yet:** set `BILLING_ENFORCEMENT=off`, and nobody is asked to pay.
 
 **Optional**
 
 - `ANTHROPIC_API_KEY`: Claude sorts Inbox brain dumps. Without it, simple rules do.
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`: share rate-limit counters between running copies of the app (see "After launch").
 
 ## 4. Deploy
 
-Deploy the app in `apps/web`. It's a Next.js app in a pnpm monorepo and needs Node 20 or newer.
+The app is `apps/web`, a Next.js app in a pnpm monorepo. It needs Node 20 or newer (CI uses 22).
 
-- **On Vercel:** set Root Directory to `Knowledge Core/IcyOS/apps/web`. Leave the framework as Next.js. Vercel finds the pnpm workspace above it.
+- **On Vercel:** set Root Directory to `Knowledge Core/IcyOS`, the monorepo root. `vercel.json` there tells Vercel how to install, build and find the app. From that folder, `vercel link` connects it, and `vercel --prod` deploys it by hand.
+- **Automatic deploys:** `.github/workflows/icyos-deploy.yml` deploys every IcyOS change merged to `main`, once three GitHub secrets are set (repository Settings → Secrets and variables → Actions):
+  - `VERCEL_TOKEN`: Vercel → Settings → Tokens;
+  - `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`: in `.vercel/project.json` after `vercel link`.
+
+  Until they're set, every run of that workflow fails at "Pull Vercel environment".
 - **Anywhere else:** run `pnpm install` and `pnpm build` in `Knowledge Core/IcyOS`, then serve `apps/web` with `pnpm --filter web-app start`.
+
+`DEPLOY.md` has more on Vercel, Docker and custom domains. For the settings list, use step 3 above, which includes `SUPABASE_JWT_SECRET` and the legal settings.
 
 Settings changed in step 3 only take effect after a deploy.
 
@@ -69,6 +81,7 @@ Settings changed in step 3 only take effect after a deploy.
 1. Open your IcyOS address and sign in.
 2. Finish the setup screen. It creates your workspace and first project.
 3. Check that the Terms and Privacy pages show your contact address. Have them read before inviting anyone (see `apps/web/LEGAL.md`).
+4. While signed in, open `https://<your-address>/api/account/export`. It should download `icyos-export.json` with your workspace in it, which confirms migration 28. It only reads. The launch check in step 7 can't test this, because tokens can't reach account routes.
 
 ## 6. Token for P.J.K. (IcyOS, then your Mac)
 
@@ -122,4 +135,5 @@ P.J.K. uses the Mac's clock for "today", so check the Mac's time zone is yours. 
 
 - **Uptime monitor:** point one at `https://<your-address>/api/health`. It answers without signing in, and says only that the app is up.
 - **After every update:** run `pnpm launch-check` again, especially when the update includes a new migration.
-- **More than one server:** rate limits are counted per server today. Before running more than one, see "Rate limiting" in the repo's `CLAUDE.md`.
+- **Rate limits:** each running copy of the app counts on its own unless `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set. Then all copies share one set of counters. Vercel can run several copies at once, so set them once you invite other people (see "Rate limiting" in the repo's `CLAUDE.md`).
+- **Account deletion and export** have no buttons in the app yet. They exist as `DELETE /api/account` and `GET /api/account/export`.
