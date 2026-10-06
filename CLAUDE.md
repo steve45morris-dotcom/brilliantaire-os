@@ -17,7 +17,7 @@
 ## Project Structure
 
 ```
-config/          # Command registry, workflow configs (commands.ts is 4,326 lines)
+config/          # Command registry, workflow configs (commands.ts is 3,870 lines)
 scripts/         # 243 TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
 sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here

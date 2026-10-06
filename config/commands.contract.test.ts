@@ -89,21 +89,11 @@ describe("command registry as P.J.K. reads it", () => {
 });
 
 /**
- * The Grinders Keep evidence pipeline: registered in 506433a (July 2026) ahead
- * of implementation and never written. Its config/ and templates/ files exist;
- * the scripts don't, on the Mac or anywhere else. Each target here may only be
- * removed from this list, never added to it; delete a line once its file lands.
+ * Every registered command must run. A command whose script doesn't exist is
+ * a phantom: the router accepts it and Node then fails on a missing module.
+ * The last 42 (the Grinders Keep evidence pipeline, registered in 506433a ahead
+ * of implementation and never written) were pruned in October 2026.
  */
-const KNOWN_MISSING_SCRIPTS = [
-  "evidence-collection-execution-guide", "evidence-collection-intake-lock", "evidence-collection-queue",
-  "evidence-collection-session-logger", "evidence-collection-workbench", "evidence-completion-tracker",
-  "evidence-detector", "evidence-first-item-collection-packet", "evidence-intake-validator",
-  "evidence-loop-closure-auditor", "evidence-pack-builder", "evidence-proof-review-board",
-  "evidence-revalidation-trigger", "evidence-session-import-bridge", "evidence-tracker-manual-rerun-planner",
-  "evidence-tracker-sync-adapter", "first-evidence-attempt-reviewer", "first-evidence-completion-detector",
-  "first-evidence-importer-gate", "first-evidence-manual-completion-loop", "manual-evidence-action-board",
-].flatMap((s) => [`scripts/grinders-keep-${s}.ts`, `scripts/grinders-keep-${s}-help.ts`]);
-
 describe("command registry is runnable", () => {
   const scripts = (JSON.parse(read("package.json")) as { scripts: Record<string, string> }).scripts;
   const missing = new Set<string>();
@@ -122,14 +112,8 @@ describe("command registry is runnable", () => {
     expect(unmapped).toEqual([]);
   });
 
-  it("finds every command's script on disk, apart from the known-missing list", () => {
-    const fresh = [...missing].filter((t) => !KNOWN_MISSING_SCRIPTS.includes(t));
-    expect(fresh, `command(s) whose script is missing:\n${fresh.join("\n")}`).toEqual([]);
-  });
-
-  it("keeps the known-missing list honest: drop entries once their script lands", () => {
-    const landed = KNOWN_MISSING_SCRIPTS.filter((t) => !missing.has(t));
-    expect(landed, `now present, remove from KNOWN_MISSING_SCRIPTS:\n${landed.join("\n")}`).toEqual([]);
+  it("finds every command's script on disk", () => {
+    expect([...missing], `command(s) whose script is missing:\n${[...missing].join("\n")}`).toEqual([]);
   });
 });
 
