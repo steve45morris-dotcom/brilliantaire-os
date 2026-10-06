@@ -14,8 +14,8 @@ import {
   ALLOW_KNOWLEDGE_INGESTION_EXECUTION,
   ALLOW_NOTEBOOKLM_EXECUTION,
   ALLOW_OBSIDIAN_DIRECT_WRITE,
-} from "../config/sentinel_safety";
-import { sentinelOsRoot } from "../config/sentinel_os_root";
+} from "../config/sentinel_safety.js";
+import { sentinelOsRoot } from "../config/sentinel_os_root.js";
 
 interface SafetyGateReport {
   timestamp: string;

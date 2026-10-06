@@ -4,7 +4,7 @@
 import fs from "node:fs/promises";
 import fsSync from "node:fs";
 import path from "node:path";
-import { sentinelOsRoot } from "../config/sentinel_os_root";
+import { sentinelOsRoot } from "../config/sentinel_os_root.js";
 
 async function generateSummary() {
   const today = new Date().toISOString().slice(0, 10);

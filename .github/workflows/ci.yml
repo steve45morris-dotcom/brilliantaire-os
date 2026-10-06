@@ -47,9 +47,9 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit -p tsconfig.json
 
-      # tsconfig.json covers src/ only. The CLI scripts, and the orchestrator
-      # and config modules they import, get the same strict check here.
-      - name: Typecheck scripts
+      # tsconfig.json covers src/ only. The CLI scripts, tools/ and config/,
+      # and the orchestrator modules they import, get the same strict check here.
+      - name: Typecheck scripts, tools and config
         run: npx tsc -p tsconfig.scripts.json
 
       # The P.J.K. contract first: it is the cheapest test and the one whose
