@@ -333,50 +333,10 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `grinders-keep-post-launch-review-ledger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Post-Launch Review Ledger. |
 | `grinders-keep-continuous-improvement-loop` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process and analyze post-launch telemetry, recurring blockers, and signals to recommend process upgrades. |
 | `grinders-keep-continuous-improvement-loop-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Continuous Improvement Loop. |
-| `grinders-keep-evidence-collection-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Identify missing evidence and create concrete collection tasks for Commander. |
-| `grinders-keep-evidence-collection-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Queue. |
-| `grinders-keep-evidence-intake-validator` | *(none)* | Creative Revenue Strategist | Medium | Yes | Validate, classify, score manually collected evidence and stage downstream feeds. |
-| `grinders-keep-evidence-intake-validator-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Intake Validator. |
 | `grinders-keep-downstream-feed-router` | *(none)* | Creative Revenue Strategist | Medium | Yes | Discover validated evidence and stage routing configurations for downstream target phases. |
 | `grinders-keep-downstream-feed-router-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Downstream Feed Router. |
-| `grinders-keep-manual-evidence-action-board` | *(none)* | Creative Revenue Strategist | Medium | Yes | Create prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander. |
-| `grinders-keep-manual-evidence-action-board-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Manual Evidence Action Board. |
-| `grinders-keep-evidence-completion-tracker` | *(none)* | Creative Revenue Strategist | Medium | Yes | Audit local filesystem evidence check status, validation states, and build manifests for validator. |
-| `grinders-keep-evidence-completion-tracker-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Completion Tracker. |
-| `grinders-keep-evidence-revalidation-trigger` | *(none)* | Creative Revenue Strategist | Medium | Yes | Stage revalidation plans and commands to trigger evidence validation in Phase 12O. |
-| `grinders-keep-evidence-revalidation-trigger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Revalidation Trigger. |
-| `grinders-keep-evidence-loop-closure-auditor` | *(none)* | Workflow Auditor | Medium | Yes | Audit the end-to-end evidence loop and generate closure readiness reports. |
-| `grinders-keep-evidence-loop-closure-auditor-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Loop Closure Auditor. |
-| `grinders-keep-evidence-pack-builder` | *(none)* | Workflow Auditor | Medium | Yes | Gathers unresolved evidence tasks and packages them into one Commander collection packet. |
-| `grinders-keep-evidence-pack-builder-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Builder. |
 | `grinders-keep-evidence-pack-completion-importer` | *(none)* | Workflow Auditor | Medium | Yes | Scans target folders for manually placed evidence completions and stages them for tracker sync. |
 | `grinders-keep-evidence-pack-completion-importer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Completion Importer. |
-| `grinders-keep-evidence-tracker-sync-adapter` | *(none)* | Workflow Auditor | Medium | Yes | Sync adapter mapping imported Phase 12V outputs to expected Phase 12R tracker input files. |
-| `grinders-keep-evidence-tracker-sync-adapter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Sync Adapter. |
-| `grinders-keep-evidence-tracker-manual-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Manual rerun planner evaluating sync outputs and preparing Phase 12R manual execution sheets. |
-| `grinders-keep-evidence-tracker-manual-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Manual Rerun Planner. |
-| `grinders-keep-evidence-collection-workbench` | *(none)* | Workflow Auditor | Medium | Yes | Centralized commander-facing evidence collection workbench for staging manual proofs. |
-| `grinders-keep-evidence-collection-workbench-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Workbench. |
-| `grinders-keep-evidence-collection-intake-lock` | *(none)* | Workflow Auditor | Medium | Yes | Local intake lock freezing task definitions and target paths from Phase 12Y. |
-| `grinders-keep-evidence-collection-intake-lock-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Intake Lock. |
-| `grinders-keep-evidence-collection-execution-guide` | *(none)* | Workflow Auditor | Medium | Yes | Generate copy-pasteable manual collection steps and prompt packs for frozen targets. |
-| `grinders-keep-evidence-collection-execution-guide-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Execution Guide. |
-| `grinders-keep-evidence-collection-session-logger` | *(none)* | Workflow Auditor | Medium | Yes | Local session logger aggregating manual evidence collection attempts and blockers. |
-| `grinders-keep-evidence-collection-session-logger-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Session Logger. |
-| `grinders-keep-evidence-session-import-bridge` | *(none)* | Workflow Auditor | Medium | Yes | Local session import bridge mapping manual evidence attempts to importer items. |
-| `grinders-keep-evidence-session-import-bridge-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Session Import Bridge. |
-| `grinders-keep-evidence-proof-review-board` | *(none)* | Workflow Auditor | Medium | Yes | Local Commander-facing proof review board dashboard summarizing attempts, bridges, and status. |
-| `grinders-keep-evidence-proof-review-board-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Proof Review Board. |
-| `grinders-keep-evidence-first-item-collection-packet` | *(none)* | Workflow Auditor | Medium | Yes | Focused manual collection packet for the highest-priority locked evidence task. |
-| `grinders-keep-evidence-first-item-collection-packet-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence First-Item Collection Packet. |
-| `grinders-keep-first-evidence-attempt-reviewer` | *(none)* | Workflow Auditor | Medium | Yes | Local reviewer auditing manual first evidence collection attempt and target file presence. |
-| `grinders-keep-first-evidence-attempt-reviewer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Attempt Reviewer. |
-| `grinders-keep-first-evidence-importer-gate` | *(none)* | Workflow Auditor | Medium | Yes | Local gate deciding manual handoff eligibility for first evidence item completed by Commander. |
-| `grinders-keep-first-evidence-importer-gate-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Importer Gate. |
-| `grinders-keep-first-evidence-manual-completion-loop` | *(none)* | Workflow Auditor | Medium | Yes | One-page checklist and manual sequence for completing the blocked first evidence task. |
-| `grinders-keep-first-evidence-manual-completion-loop-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Manual Completion Loop. |
-| `grinders-keep-first-evidence-completion-detector` | *(none)* | Workflow Auditor | Medium | Yes | Scan local folders and check if manual evidence steps are completed. |
-| `grinders-keep-first-evidence-completion-detector-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Completion Detector. |
 | `grinders-keep-local-verification-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Compile manual rerun instructions for the evidence verification workflow after manual completion. |
 | `grinders-keep-local-verification-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Local Verification Rerun Planner. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
