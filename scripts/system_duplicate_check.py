@@ -21,7 +21,7 @@ EXCLUDED_DIR_NAMES = {
 }
 
 # Subdirectories of workspace that should be scanned
-TARGET_ROOT = Path("/Users/alexanderanthony")
+TARGET_ROOT = Path.home()
 
 def get_file_hash(filepath: Path) -> str:
     """Compute SHA-256 hash of a file's contents."""

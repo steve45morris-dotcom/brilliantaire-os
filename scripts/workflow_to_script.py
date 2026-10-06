@@ -215,7 +215,7 @@ logging.basicConfig(
 logger = logging.getLogger("{safe_name}")
 
 # Voice Narrative Bridge Helpers
-VNP_BRIDGE_PATH = "/Users/alexanderanthony/.agents/voice_narrative.sh"
+VNP_BRIDGE_PATH = os.path.expanduser("~/.agents/voice_narrative.sh")
 
 def announce_intent(message):
     logger.info(f"[VNP Intent] {{message}}")
@@ -305,7 +305,7 @@ def main():
             out_path = args.output
         else:
             filename = metadata["agent_name"].lower().replace(" ", "_") + ".py"
-            out_path = os.path.join("/Users/alexanderanthony/scripts", filename)
+            out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
 
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         with open(out_path, "w", encoding="utf-8") as f:

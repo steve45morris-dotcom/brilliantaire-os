@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 
-const baseDir = '/Users/alexanderanthony';
+const baseDir = path.resolve(__dirname, '..');
 
 async function run() {
   console.log("=== PHASE 1: SEARCHING FOR SCORE SOURCE ===");
@@ -76,7 +76,7 @@ async function run() {
 
   // Generate GOVERNANCE_DRIFT_AUDIT.md
   let auditMd = `# 🛡️ ICYOS Governance Drift Audit Report\n\n`;
-  auditMd += `- **Audited Base Directory:** \`/Users/alexanderanthony\`\n`;
+  auditMd += `- **Audited Base Directory:** \`${baseDir}\`\n`;
   auditMd += `- **Date of Audit:** ${new Date().toLocaleDateString()}\n`;
   auditMd += `- **Initial Governance Score:** ${dashboardData.governance.score}\n`;
   auditMd += `- **Initial Issue Count:** ${dashboardData.governance.issuesCount}\n\n`;

@@ -4,7 +4,7 @@
 
 QUEUE_DIR="/tmp/voice_bus_queue"
 LOCKDIR="/tmp/say_speak.lock"
-LOG_FILE="/Users/alexanderanthony/logs/voice/voice-bus.log"
+LOG_FILE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/logs/voice/voice-bus.log"
 
 echo "=== 🎙️ Voice Bus Queue Status ==="
 

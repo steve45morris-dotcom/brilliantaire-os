@@ -11,6 +11,8 @@ import hashlib
 import argparse
 from datetime import datetime
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+
 TOOL_METADATA = {
     "name": "security_hash_auditor",
     "description": "Scans system config files and databases for cryptographic drift, logging reports to the Obsidian vault.",
@@ -36,8 +38,8 @@ TARGET_FILES = [
     ".agents/registry.json"
 ]
 
-BASELINE_PATH = "/Users/alexanderanthony/outputs/security_audits/hash_baseline.json"
-OBSIDIAN_VAULT_PATH = "/Users/alexanderanthony/AlexanderOSVault/05 Decisions"
+BASELINE_PATH = os.path.join(REPO_ROOT, "outputs/security_audits/hash_baseline.json")
+OBSIDIAN_VAULT_PATH = os.path.expanduser("~/AlexanderOSVault/05 Decisions")
 
 def print_styled(message, category="info"):
     if "--json" in sys.argv:

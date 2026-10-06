@@ -16,7 +16,7 @@ async function main() {
   const performant = engine.generateHighPerformingWorkflowReport();
   console.log('✓ High-Performing Workflows report written.');
 
-  console.log('\nAll reports written to folder: /Users/alexanderanthony/reports/');
+  console.log('\nAll reports written to the reports/ folder.');
 }
 
 main();

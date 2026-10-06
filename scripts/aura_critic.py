@@ -6,12 +6,14 @@ import re
 import google.generativeai as genai
 from PIL import Image
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+
 def get_api_key():
     key = os.environ.get("GEMINI_API_KEY")
     if key:
         return key
     
-    secrets_path = "/Users/alexanderanthony/.zsh_secrets"
+    secrets_path = os.path.expanduser("~/.zsh_secrets")
     if os.path.exists(secrets_path):
         try:
             with open(secrets_path, "r") as f:
@@ -23,7 +25,7 @@ def get_api_key():
         except Exception:
             pass
             
-    env_path = "/Users/alexanderanthony/.env"
+    env_path = os.path.expanduser("~/.env")
     if os.path.exists(env_path):
         try:
             with open(env_path, "r") as f:
@@ -39,7 +41,7 @@ def get_api_key():
 
 def run_local_programmatic_audit(image_path, output_path):
     print("[AURA-CRITIC] FALLBACK: Running local programmatic design linter...")
-    html_path = "/Users/alexanderanthony/dashboard/dist/index.html"
+    html_path = os.path.join(REPO_ROOT, "dashboard/dist/index.html")
     
     has_emojis = False
     typography_valid = False
@@ -222,6 +224,6 @@ You must respond exclusively with a valid JSON object of this structure:
         run_local_programmatic_audit(image_path, output_path)
 
 if __name__ == "__main__":
-    img_in = sys.argv[1] if len(sys.argv) > 1 else "/Users/alexanderanthony/sentinel_preview.png"
-    report_out = sys.argv[2] if len(sys.argv) > 2 else "/Users/alexanderanthony/outputs/aura/critic_report.json"
+    img_in = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO_ROOT, "sentinel_preview.png")
+    report_out = sys.argv[2] if len(sys.argv) > 2 else os.path.join(REPO_ROOT, "outputs/aura/critic_report.json")
     run_vision_audit(img_in, report_out)

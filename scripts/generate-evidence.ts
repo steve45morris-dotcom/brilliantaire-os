@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
-const REPO_ROOT = "/Users/alexanderanthony";
+const REPO_ROOT = path.resolve(__dirname, '..');
 
 function getTimestampStr(): string {
   const now = new Date();

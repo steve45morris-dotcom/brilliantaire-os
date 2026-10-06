@@ -223,6 +223,7 @@ async function main() {
         const readline = await import('node:readline');
         const fs = await import('node:fs');
         const path = await import('node:path');
+        const os = await import('node:os');
 
         console.log('\n----------------------------------------');
         console.log('The One System Secure Provider Setup');
@@ -304,7 +305,7 @@ async function main() {
           break;
         }
 
-        const zshSecretsPath = path.join(process.env.HOME || '/Users/alexanderanthony', '.zsh_secrets');
+        const zshSecretsPath = path.join(os.homedir(), '.zsh_secrets');
         let secretsContent = '';
         if (fs.existsSync(zshSecretsPath)) {
           secretsContent = fs.readFileSync(zshSecretsPath, 'utf8');
@@ -329,7 +330,7 @@ async function main() {
           console.warn(`Could not chmod ~/.zsh_secrets: ${(err as Error).message}`);
         }
 
-        const zshrcPath = path.join(process.env.HOME || '/Users/alexanderanthony', '.zshrc');
+        const zshrcPath = path.join(os.homedir(), '.zshrc');
         if (fs.existsSync(zshrcPath)) {
           let zshrcContent = fs.readFileSync(zshrcPath, 'utf8');
           if (!zshrcContent.includes('.zsh_secrets')) {
@@ -365,12 +366,13 @@ async function main() {
         console.log('\n--- Initiating Secure Provider Secret Scan ---');
         const fs = await import('node:fs');
         const path = await import('node:path');
+        const os = await import('node:os');
         const { execSync } = await import('node:child_process');
 
         const scanPaths: string[] = [];
         
         ['.env', '.env.local', '.env.production'].forEach(file => {
-          const filePath = path.join('/Users/alexanderanthony', file);
+          const filePath = path.join(os.homedir(), file);
           if (fs.existsSync(filePath)) {
             scanPaths.push(filePath);
           }
@@ -396,15 +398,15 @@ async function main() {
         }
 
         ['src', 'docs', 'scripts'].forEach(dir => {
-          const dirPath = path.join('/Users/alexanderanthony', dir);
+          const dirPath = path.join(os.homedir(), dir);
           scanPaths.push(...collectFiles(dirPath));
         });
 
-        const rootFiles = fs.readdirSync('/Users/alexanderanthony');
+        const rootFiles = fs.readdirSync(os.homedir());
         for (const file of rootFiles) {
           if (file.endsWith('.md') || file.endsWith('.html') || file.endsWith('.json')) {
             if (file.includes('AUDIT') || file.includes('REPORT') || file.includes('STATUS')) {
-              scanPaths.push(path.join('/Users/alexanderanthony', file));
+              scanPaths.push(path.join(os.homedir(), file));
             }
           }
         }

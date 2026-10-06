@@ -12,8 +12,9 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import os from "os";
 
-const ROOT = "/Users/alexanderanthony";
+const ROOT = os.homedir();
 const OUTPUT = path.join(ROOT, "claude-project-context.md");
 
 // Directories to skip entirely

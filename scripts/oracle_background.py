@@ -36,7 +36,7 @@ def voice_bridge_announce(msg):
             client.post("http://localhost:8001/registry/actions/vv_vocalize/execute", json=payload)
     except Exception:
         # Fallback to file buffer if API is down
-        with open("/Users/alexanderanthony/.agents/voice_buffer.txt", "a") as f:
+        with open(os.path.expanduser("~/.agents/voice_buffer.txt"), "a") as f:
             f.write(f"{msg}\n")
 
 def oracle_listener():

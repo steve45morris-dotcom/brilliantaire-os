@@ -5,7 +5,7 @@
 echo "========================================================"
 echo "⚡ LAUNCHING P.J.K. (PROF JOHN KUSH) COMPANION SYSTEM"
 echo "========================================================"
-cd /Users/alexanderanthony/PJK || exit 1
+cd "$HOME/PJK" || exit 1
 
 if ./scripts/pjk status >/dev/null 2>&1; then
     echo "[INFO] P.J.K daemon is already running on port 8003."
