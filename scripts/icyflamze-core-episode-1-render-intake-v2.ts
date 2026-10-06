@@ -1,10 +1,19 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { REPO_ROOT } from '../config/paths.js';
 import { announceIntent, announceCompletion } from './vnp.js';
 import { probeMedia, ratioMatches, durationMatches } from './lib/media-probe.js';
+import {
+  applySignoff,
+  parseSignoffArgs,
+  pendingReviews,
+  SIGNOFF_USAGE,
+  type Review,
+  type SignoffRecord
+} from './lib/asset-signoff.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -82,7 +91,7 @@ let mutationsDetectedThisRun = 0;
 let recoveredThisRunCount = 0;
 
 function appendEvent(event: {
-  eventType: 'ASSET_DISCOVERED' | 'VALIDATION_PASSED' | 'APPROVED' | 'MUTATION_DETECTED' | 'STATE_INVALIDATED' | 'REVALIDATED' | 'REJECTED' | 'STALE_INVALIDATED';
+  eventType: 'ASSET_DISCOVERED' | 'VALIDATION_PASSED' | 'APPROVED' | 'MUTATION_DETECTED' | 'STATE_INVALIDATED' | 'REVALIDATED' | 'REJECTED' | 'STALE_INVALIDATED' | 'SIGNED_OFF';
   slotId: string;
   version: number;
   fromState: string;
@@ -128,6 +137,10 @@ interface ProvenanceEntry {
   technicalScore: 'PASS' | 'FAIL' | 'PENDING';
   creativeScore: 'PASS' | 'FAIL' | 'PENDING';
   parentLineage: Record<string, number>; // Maps parentAssetId -> parentVersion
+  // Human reviews recorded by `signoff`, each bound to the sha256 it was given for.
+  // Absent until someone signs off; dropped when the file changes (the mutation
+  // path rebuilds the entry without it).
+  signoffs?: Partial<Record<Review, SignoffRecord>>;
 }
 
 interface ProvenanceDb {
@@ -954,6 +967,18 @@ function handleStatus() {
       console.log(`  Identity Score:             ${prov.identityScore}`);
       console.log(`  Technical Score:            ${prov.technicalScore}`);
       console.log(`  Creative Review:            ${prov.creativeScore === 'PASS' ? 'APPROVED' : prov.creativeScore}`);
+      for (const review of ['identity', 'creative'] as const) {
+        const rec = prov.signoffs?.[review];
+        const score = review === 'identity' ? prov.identityScore : prov.creativeScore;
+        if (rec && rec.sha256 === prov.sha256 && rec.verdict === score) {
+          const label = `${review === 'identity' ? 'Identity' : 'Creative'} Sign-off:`.padEnd(28);
+          console.log(`  ${label}${rec.verdict} by ${rec.reviewer}, ${rec.timestamp.slice(0, 10)}${rec.note ? ` (${rec.note})` : ''}`);
+        }
+      }
+      const owed = pendingReviews(prov);
+      if (owed.length > 0) {
+        console.log(`  Awaiting Sign-off:          ${owed.join(', ')}`);
+      }
       console.log(`  Dependency Availability:    ${availabilityStr}`);
       console.log(`  Dependency Integrity:       ${integrityStr}`);
       console.log(`  Parent Lineage:             ${lineageStr}`);
@@ -964,7 +989,135 @@ function handleStatus() {
   writeLog(`Printed Control Plane status. Score: ${readinessPercentage}%`);
 }
 
-// 4. recovery commands
+// 4. human sign-off
+// The file validate would check for a slot: the first match in name order.
+function stagedFileFor(spec: any): string | null {
+  const files = getStagedFiles(spec.category).filter(f => f.startsWith(spec.prefix));
+  return files.length > 0 ? files[0] : null;
+}
+
+function currentReviewer(): string {
+  try {
+    return os.userInfo().username || 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
+
+function handleSignoff(args: string[]) {
+  ensureDirectories();
+  const req = parseSignoffArgs(args);
+  if ('error' in req) {
+    console.error(`❌ ${req.error}`);
+    process.exit(1);
+  }
+
+  const spec = prodManifest.assets.find((a: any) => a.id === req.slotId);
+  if (!spec) {
+    console.error(`❌ Unknown slot ${req.slotId}. Slots: ${prodManifest.assets.map((a: any) => a.id).join(', ')}`);
+    process.exit(1);
+  }
+
+  const db = loadProvenanceDb();
+  const entry = db.assets[spec.id];
+  const file = stagedFileFor(spec);
+  const currentSha = file ? calculateSha256(path.join(incomingFolders[spec.category], file)) : null;
+
+  const outcome = applySignoff(entry, req.review, req.verdict, currentSha);
+  if (!outcome.ok) {
+    console.error(`❌ Sign-off refused for ${spec.id}: ${outcome.reason}`);
+    writeLog(`Sign-off refused for ${spec.id} (${req.review} ${req.verdict}): ${outcome.reason}`);
+    process.exit(1);
+  }
+
+  const record: SignoffRecord = {
+    verdict: req.verdict,
+    reviewer: currentReviewer(),
+    timestamp: new Date().toISOString(),
+    sha256: entry.sha256,
+    note: req.note
+  };
+  const fromState = entry.approvalState;
+
+  entry.identityScore = outcome.identityScore;
+  entry.creativeScore = outcome.creativeScore;
+  entry.approvalState = outcome.approvalState;
+  entry.signoffs = { ...entry.signoffs, [req.review]: record };
+  saveProvenanceDb(db);
+
+  appendEvent({
+    eventType: 'SIGNED_OFF',
+    slotId: spec.id,
+    version: entry.version,
+    fromState,
+    toState: entry.approvalState,
+    reason: `HUMAN_${req.review.toUpperCase()}_${req.verdict}`,
+    details: `reviewer=${record.reviewer}; sha256=${record.sha256.slice(0, 16)}${record.note ? `; note=${record.note}` : ''}`
+  });
+  if (entry.approvalState !== fromState && (entry.approvalState === 'APPROVED' || entry.approvalState === 'REJECTED')) {
+    appendEvent({
+      eventType: entry.approvalState,
+      slotId: spec.id,
+      version: entry.version,
+      fromState,
+      toState: entry.approvalState,
+      reason: 'HUMAN_SIGNOFF'
+    });
+  }
+  writeLog(`Sign-off recorded for ${spec.id}: ${req.review} ${req.verdict} by ${record.reviewer}; ${fromState} -> ${entry.approvalState}`);
+
+  console.log(`✅ ${spec.id} ${spec.role}: ${req.review} ${req.verdict} recorded for ${file} (v${entry.version}).`);
+  console.log(`   State: ${fromState} -> ${entry.approvalState}`);
+  const owed = pendingReviews(entry);
+  if (owed.length > 0) {
+    console.log(`   Still awaiting: ${owed.join(', ')}`);
+  }
+}
+
+function handleSignoffPending() {
+  ensureDirectories();
+  const db = loadProvenanceDb();
+  const lines: string[] = [];
+
+  for (const spec of prodManifest.assets) {
+    const entry = db.assets[spec.id];
+    if (!entry) continue;
+    const owed = pendingReviews(entry);
+    if (owed.length === 0) continue;
+
+    const file = stagedFileFor(spec);
+    const filePath = file ? path.relative(REPO_ROOT, path.join(incomingFolders[spec.category], file)) : null;
+    const unchanged = file !== null && calculateSha256(path.join(incomingFolders[spec.category], file)) === entry.sha256;
+
+    lines.push(`${spec.id} ${spec.role}`);
+    lines.push(`  File:   ${filePath ?? 'none staged'}`);
+    if (!unchanged) {
+      lines.push(`  ⚠️  The file changed since validate. Run validate before signing off.`);
+    } else {
+      if (owed.includes('identity')) {
+        lines.push(`  Identity: compare against ${identityManifest.reference_asset}`);
+      }
+      lines.push(`  Creative: check against the IP bible's visual language`);
+      for (const review of owed) {
+        lines.push(`  npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff" "${spec.id}" "${review}" "pass"`);
+      }
+    }
+    lines.push('');
+  }
+
+  console.log(`\n=========================================`);
+  console.log(`✍️  AWAITING HUMAN SIGN-OFF`);
+  console.log(`=========================================`);
+  if (lines.length === 0) {
+    console.log(`Nothing is waiting. Assets appear here once validate marks them TECHNICALLY_VERIFIED.`);
+  } else {
+    console.log(lines.join('\n'));
+    console.log(`A fail needs a note: ... "signoff" "IMG-01" "identity" "fail" "glasses changed shape"`);
+  }
+  console.log(`=========================================\n`);
+}
+
+// 5. recovery commands
 function handleRecoveryShow() {
   ensureDirectories();
   const jobsDb = loadJobsDb();
@@ -1125,6 +1278,12 @@ async function main() {
       case 'status':
         handleStatus();
         break;
+      case 'signoff':
+        handleSignoff(args.slice(1));
+        break;
+      case 'signoff-pending':
+        handleSignoffPending();
+        break;
       case 'recovery-show':
         handleRecoveryShow();
         break;
@@ -1147,6 +1306,7 @@ async function main() {
         break;
       default:
         console.error(`❌ Unknown command: ${command}`);
+        console.error(`   Commands: scan, validate, status, signoff-pending, ${SIGNOFF_USAGE}, recovery-show, recovery-approve <jobId>, recovery-reject <jobId>, recovery-run`);
         process.exit(1);
     }
     await announceCompletion(`Render intake v2 command ${command} completed successfully`, '10');

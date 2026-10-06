@@ -3,7 +3,7 @@
 **Project:** ICYFLAMZE CORE · *Rise of the Street Scholar*
 **Episode:** 1, *The Core Wakes*
 **Date:** 2026-10-06
-**Covers:** the four Phase 14E-R next actions: generate the 5 stills, generate the 3 audio files, drop them into render intake, rerun the tracker.
+**Covers:** the four Phase 14E-R next actions: generate the 5 stills, generate the 3 audio files, drop them into render intake, rerun the tracker. Step 6 then signs each asset off.
 **Supersedes** the filenames and verify commands in `episode_1_asset_drop_instructions_2026-07-02.md`, `episode_1_batch_1_generation_plan_2026-07-02.md` and `episode_1_chatgpt_image_prompts_2026-07-02.md`. Those files are kept as the record.
 
 Generation stays manual, as the production boundaries require. Every command here only checks, converts, places or reports on files you made yourself. Nothing is deleted or overwritten.
@@ -222,13 +222,51 @@ What a good run looks like:
 | v2 `status` | 8 assets TECHNICALLY_VERIFIED, readiness 0% |
 | v1 `status` | readiness 0% |
 
-- **0/8 APPROVED is expected.** No command can mark an asset APPROVED yet. Identity and creative review are human sign-offs that the tool records as PENDING.
-- **`status` readiness stays at 0% in both versions.** v2's `status` counts only APPROVED assets.
+- **0/8 APPROVED is expected at this point.** Identity and creative review are human sign-offs, recorded as PENDING until you do Step 6.
+- **`status` readiness starts at 0% in both versions.** v2's `status` counts only APPROVED assets, so it rises as you sign off in Step 6.
 - **v1 counts whole categories.** A category is ready only when every slot in it is filled, and Batch 1 fills none completely. Use v2's 25% as the progress number.
 - **A row marked STAGED** means `ffprobe` was not found. Rerun Step 1.
 - **A row marked FAILED** names the problem in its details column, such as a wrong shape or duration. Fix the source and see "Replacing a file" below.
 
 The full v2 report is written to `outputs/icyflamze_core/episode_1/render_intake/reports/v2_asset_validation_report_<date>.md`.
+
+---
+
+## Step 6: Sign off each asset
+
+The tracker can check shape and length, but only you can judge the face and the style. List what is waiting, with the file to open and the exact commands:
+
+```bash
+cd ~
+npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff-pending"
+```
+
+Open each file and judge it:
+
+- **Identity** applies to IMG-01 and IMG-02. Compare the face, the short fade, the black-frame glasses, the facial hair and the skin tone against `icyflamze_reference_MASTER.jpeg`.
+- **Creative** applies to all eight. Check the palette, the symbols and the mood against the IP bible's visual language, and the spelling of any text.
+
+Record a pass:
+
+```bash
+npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff" "IMG-01" "identity" "pass"
+npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff" "IMG-01" "creative" "pass"
+```
+
+Record a fail with a note saying what to fix:
+
+```bash
+npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff" "IMG-03" "creative" "fail" "embers read as fireworks"
+```
+
+How sign-off behaves:
+
+- **An asset is APPROVED once every review that applies has passed.** For IMG-01 and IMG-02 that is identity and creative. For the other six it is creative alone.
+- **A fail marks the asset REJECTED.** Regenerate it and follow "Replacing a file" below. You can also change your mind on the same file by signing off again; the event log keeps both decisions.
+- **A sign-off belongs to the exact file you looked at.** It is refused if the file changed since the last `validate`. Changing the file afterwards resets the asset to pending on the next `validate`.
+- **Each sign-off is logged** with your username, the time, the file's checksum and the note, in `outputs/icyflamze_core/episode_1/render_intake/provenance_events.jsonl`.
+
+With all eight signed off, v2 `status` shows Visuals 5/8 and readiness 25%.
 
 ---
 
