@@ -2,10 +2,18 @@ import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+// Only a path on this site: "@evil.com" or "//evil.com" appended to the
+// origin would send a freshly signed-in user to another host.
+function safeNextPath(next: string | null, origin: string): string {
+  if (!next || !next.startsWith("/")) return "/";
+  const url = new URL(next, origin);
+  return url.origin === origin ? `${url.pathname}${url.search}${url.hash}` : "/";
+}
+
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/";
+  const next = safeNextPath(searchParams.get("next"), origin);
 
   if (code) {
     const cookieStore = await cookies();
