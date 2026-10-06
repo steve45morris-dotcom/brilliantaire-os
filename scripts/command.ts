@@ -178,6 +178,10 @@ async function runCommand() {
 
   const wordCount = cmdMatchedStr.split(/\s+/).length;
   const extraArgs = filteredArgs.slice(wordCount);
+  // The docs write `npm run command -- "<name>" -- "<subcommand>"`. npm eats
+  // the first `--`; the second arrives here as a plain separator. Forwarded,
+  // it became the script's first argument ("Unknown command: --").
+  if (extraArgs[0] === '--') extraArgs.shift();
 
   console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
 
