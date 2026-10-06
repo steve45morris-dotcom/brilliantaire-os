@@ -225,6 +225,30 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     requiresExactName: false
   },
   {
+    name: 'next-tick',
+    aliases: ['tick-action'],
+    description: 'Tick one NEXT_ACTIONS.md item by its key (no key lists open items with keys)',
+    npmScript: 'next-tick',
+    owningAgent: 'Action Router',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
+    name: 'next-reopen',
+    aliases: ['reopen-action'],
+    description: 'Untick one NEXT_ACTIONS.md item by its key (no key lists ticked items with keys)',
+    npmScript: 'next-reopen',
+    owningAgent: 'Action Router',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: false
+  },
+  {
     name: 'agents',
     aliases: ['council', 'roster'],
     description: 'Display active productivity agents council details',

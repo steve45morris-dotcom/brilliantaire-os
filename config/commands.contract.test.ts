@@ -3,13 +3,16 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { COMMAND_CATEGORIES, COMMAND_REGISTRY, COMMAND_REGISTRY_FORMAT_VERSION } from "./commands";
+import { actionKey } from "./next-actions";
 
 /**
  * The contract with P.J.K. in the sentinel-os repo, which reads this repo's
  * files as plain text:
  *  - config/commands.ts, through lib/pjk-toolbox.ts (parseRegistry below is a
  *    copy of its reader, keep the two in step);
- *  - NEXT_ACTIONS.md and SYSTEM_STATUS.md, through lib/pjk-brilliantaire.ts.
+ *  - NEXT_ACTIONS.md and SYSTEM_STATUS.md, through lib/pjk-brilliantaire.ts;
+ *  - item keys for `next-tick <key>`, which lib/pjk-brilliantaire.ts computes
+ *    with its own copy of actionKey (config/next-actions.ts).
  */
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -140,5 +143,17 @@ describe("status files as P.J.K. reads them", () => {
 
   it("SYSTEM_STATUS.md keeps its Current Phase line", () => {
     expect(read("SYSTEM_STATUS.md")).toMatch(/^- \*\*Current Phase:\*\* \S/m);
+  });
+});
+
+describe("ticking an item, as P.J.K. stages it", () => {
+  it("keys item text the way P.J.K. does (sentinel-os pins the same value)", () => {
+    expect(actionKey("Run first live chat request through Local Inference Server (Phase 15B)")).toBe("0e66aeb9");
+    expect(actionKey("  **Run first live chat request**   through Local Inference Server (Phase 15B) ")).toBe("0e66aeb9");
+  });
+
+  it("registers next-tick as a low-risk command P.J.K. can stage with one plain argument", () => {
+    const tick = parseRegistry(read("config/commands.ts")).find((c) => c.name === "next-tick");
+    expect(tick).toMatchObject({ risk: "low", enabled: true, exact: false });
   });
 });
