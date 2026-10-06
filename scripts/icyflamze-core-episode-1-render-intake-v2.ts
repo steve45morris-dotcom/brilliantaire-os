@@ -14,6 +14,7 @@ import {
   type Review,
   type SignoffRecord
 } from './lib/asset-signoff.js';
+import { classifyRecovery, planRecovery, type RecoveryParent } from './lib/recovery-plan.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -221,7 +222,10 @@ function performSemanticValidation(
   expectedId: string, 
   desc: string, 
   expectedDim: string,
-  db: ProvenanceDb
+  db: ProvenanceDb,
+  // Re-probe even when the bytes match the record. Only recovery-run passes this,
+  // for a STALE asset made from the current parents (see lib/recovery-plan.ts).
+  forceReprobe = false
 ): AssetVerificationResult {
   const folder = incomingFolders[category];
   const filePath = path.join(folder, file);
@@ -240,7 +244,7 @@ function performSemanticValidation(
   const existingEntry = db.assets[expectedId];
 
   // If file hasn't changed, preserve existing registry parameters
-  if (existingEntry && existingEntry.sha256 === currentHash) {
+  if (!forceReprobe && existingEntry && existingEntry.sha256 === currentHash) {
     result.state = existingEntry.approvalState;
     result.checks.structural = existingEntry.approvalState !== 'REJECTED';
     result.checks.technical = existingEntry.technicalScore === 'PASS';
@@ -507,7 +511,10 @@ function propagateDownstreamInvalidation(db: ProvenanceDb): { staleCount: number
           staleCount++;
           propagated = true;
 
-          const reasonMsg = `[STALE INVALIDATION] Downstream asset ${spec.id} marked STALE because parent ${parentId} shifted from version ${recordedParentVer} to ${currentParentVer}`;
+          const why = currentParentVer > recordedParentVer
+            ? `shifted from version ${recordedParentVer} to ${currentParentVer}`
+            : `v${currentParentVer} is not APPROVED yet`;
+          const reasonMsg = `[STALE INVALIDATION] Downstream asset ${spec.id} marked STALE because parent ${parentId} ${why}`;
           console.log(`⚠️  ${reasonMsg}`);
           writeLog(reasonMsg);
           invalidations.push(reasonMsg);
@@ -519,7 +526,7 @@ function propagateDownstreamInvalidation(db: ProvenanceDb): { staleCount: number
             fromState,
             toState: 'STALE',
             reason: 'PARENT_MUTATION',
-            details: `Parent ${parentId} changed version from ${recordedParentVer} to ${currentParentVer}`
+            details: `Parent ${parentId} ${why}`
           });
           
           appendEvent({
@@ -664,7 +671,7 @@ function generateRecoveryPlan(db: ProvenanceDb): string {
       
       planMd += `- **Required Action:**\n`;
       planMd += `  1. Re-render/regenerate asset from the updated parent versions.\n`;
-      planMd += `  2. Replace file in folder: \`incoming/${spec.category}s/\`.\n`;
+      planMd += `  2. Move the old file to \`render_intake/superseded/\` and place the new one in \`${path.relative(intakeOutDir, incomingFolders[spec.category])}/\`.\n`;
       planMd += `  3. Re-run structural, technical, identity, and creative validation checks.\n\n`;
     }
   }
@@ -707,6 +714,8 @@ function printConsoleRecoveryPlan(db: ProvenanceDb) {
         parentList.push(`${parentId} v${currentParentVer}`);
         if (currentParentVer > recordedParentVer) {
           mutList.push(`${parentId} changed v${recordedParentVer} → v${currentParentVer}`);
+        } else if (!parentProv || parentProv.approvalState !== 'APPROVED') {
+          mutList.push(`${parentId} v${currentParentVer} not APPROVED yet`);
         }
       }
       
@@ -1183,81 +1192,79 @@ function handleRecoveryRun() {
     return;
   }
 
-  console.log(`\n⚙️  Executing Approved Recovery Jobs...`);
-  
+  // Generation is manual, so this never writes to an asset file. It checks what
+  // the Commander placed for each approved job and reconciles the record.
+  console.log(`\n⚙️  Reconciling Approved Recovery Jobs...`);
+
   for (const job of approvedJobs) {
-    job.status = 'RUNNING';
     const spec = prodManifest.assets.find((a: any) => a.id === job.slotId);
     if (!spec) {
       job.status = 'FAILED';
+      console.error(`❌ ${job.jobId}: slot ${job.slotId} is not in the production manifest.`);
       continue;
     }
 
+    const entry = db.assets[spec.id];
+    const file = stagedFileFor(spec);
     const folder = incomingFolders[spec.category];
-    
-    // Resolve existing file name or build default
-    const existingFiles = getStagedFiles(spec.category).filter(f => f.startsWith(spec.prefix));
-    const targetFile = existingFiles.length > 0 ? existingFiles[0] : `${spec.prefix}_recovered${spec.allowed_extensions[0]}`;
-    const filePath = path.join(folder, targetFile);
+    const stagedSha = file ? calculateSha256(path.join(folder, file)) : null;
 
-    // Rollback backup (keep previous copy in memory/file)
-    let backupContent = '';
-    let hasBackup = false;
-    if (fs.existsSync(filePath)) {
-      backupContent = fs.readFileSync(filePath, 'utf-8');
-      hasBackup = true;
+    const parents: RecoveryParent[] = spec.dependencies.map((depId: string) => {
+      const parentProv = db.assets[depId];
+      return {
+        id: depId,
+        recordedVersion: entry?.parentLineage[depId] || 0,
+        currentVersion: parentProv ? parentProv.version : 0,
+        approved: parentProv?.approvalState === 'APPROVED'
+      };
+    });
+
+    const plan = planRecovery({ stagedSha, entry, parents });
+
+    if (plan.kind === 'await_file') {
+      const where = path.relative(REPO_ROOT, folder);
+      console.log(`⏸  ${job.jobId}: waiting on you. ${plan.reason}`);
+      console.log(`   Place it in ${where}/ as ${spec.prefix}_<name>_v<nn><ext>, after moving the old file to render_intake/superseded/, then rerun recovery-run.`);
+      writeLog(`Recovery ${job.jobId} awaiting a hand-made file: ${plan.reason}`);
+      continue;
     }
 
-    try {
-      // Simulate regeneration of downstream asset timed against parent versions
-      const parentLineageStr = Object.entries(job.parents).map(([pId, v]) => `${pId} v${v}`).join(', ');
-      
-      let regeneratedContent = `REGENERATED ASSET FOR SLOT ${job.slotId} (${spec.role})\n`;
-      regeneratedContent += `source: ${spec.tool}\n`;
-      regeneratedContent += `generator: v2.0 (reconciliation engine)\n`;
-      if (spec.dimensions) {
-        regeneratedContent += `dimensions: ${spec.dimensions}\n`;
-      }
-      regeneratedContent += `Parent Lineage: ${parentLineageStr}\n`;
-      regeneratedContent += `Reconciliation ID: ${job.jobId}\n`;
+    const fromState = entry ? entry.approvalState : 'NONE';
+    const res = performSemanticValidation(file!, spec.category, spec.id, spec.description, spec.dimensions || '', db, plan.force);
+    propagateDownstreamInvalidation(db);
+    const stateAfter = db.assets[spec.id]?.approvalState ?? res.state;
+    const outcome = classifyRecovery(stateAfter);
 
-      fs.writeFileSync(filePath, regeneratedContent, 'utf-8');
-
-      // Re-run validation on regenerated file
-      const res = performSemanticValidation(targetFile, spec.category, spec.id, spec.description, spec.dimensions || '', db);
-      
-      if (res.state === 'APPROVED') {
-        job.status = 'COMPLETED';
-        job.reconciledTimestamp = new Date().toISOString();
-        recoveredThisRunCount++;
-        console.log(`✅ Successfully recovered asset ${job.slotId} to APPROVED state.`);
-        
-        appendEvent({
-          eventType: 'REVALIDATED',
-          slotId: job.slotId,
-          version: db.assets[job.slotId].version,
-          fromState: 'STALE',
-          toState: 'APPROVED',
-          reason: 'RECONCILIATION_RUN_PASSED'
-        });
-      } else {
-        throw new Error(`Revalidated file failed semantic verification filters: ${res.details.join('; ')}`);
-      }
-    } catch (err: any) {
-      console.error(`❌ Recovery failed for job ${job.jobId}: ${err.message}`);
-      job.status = 'FAILED';
-      
-      // Rollback to restore previous known-good stale asset rather than corrupting
-      if (hasBackup) {
-        fs.writeFileSync(filePath, backupContent, 'utf-8');
-        console.log(`🔄 Rolled back slot ${job.slotId} to previous version.`);
-      }
+    if (outcome === 'COMPLETED') {
+      job.status = 'COMPLETED';
+      job.reconciledTimestamp = new Date().toISOString();
+      recoveredThisRunCount++;
+      console.log(`✅ ${job.jobId}: ${spec.id} is ${stateAfter} (v${db.assets[spec.id].version}). Sign it off when you have reviewed it.`);
+      appendEvent({
+        eventType: 'REVALIDATED',
+        slotId: spec.id,
+        version: db.assets[spec.id].version,
+        fromState,
+        toState: stateAfter,
+        reason: plan.force ? 'RECOVERY_REPROBE_PASSED' : 'RECOVERY_NEW_FILE_PASSED'
+      });
+    } else if (outcome === 'WAITING_ON_PARENTS') {
+      const unapproved = spec.dependencies.filter((d: string) => db.assets[d]?.approvalState !== 'APPROVED');
+      console.log(`⏸  ${job.jobId}: ${spec.id} is still STALE. Sign off ${unapproved.join(', ') || 'its parents'} first, then rerun recovery-run.`);
+    } else if (outcome === 'FAILED_CHECKS') {
+      console.log(`❌ ${job.jobId}: ${spec.id} failed its checks: ${res.details.join('; ')}`);
+      console.log(`   The job stays approved. Place a corrected file and rerun recovery-run.`);
+    } else {
+      console.log(`⏸  ${job.jobId}: ${spec.id} could not be checked: ${res.details.join('; ')}`);
     }
+    writeLog(`Recovery ${job.jobId}: ${outcome} (${fromState} -> ${stateAfter})`);
   }
 
+  ensureRecoveryJobs(db, jobsDb);
+  generateRecoveryPlan(db);
   saveJobsDb(jobsDb);
   saveProvenanceDb(db);
-  console.log(`Reconciliation run finished. ${recoveredThisRunCount} assets recovered.\n`);
+  console.log(`Reconciliation finished. ${recoveredThisRunCount} assets recovered.\n`);
 }
 
 async function main() {
