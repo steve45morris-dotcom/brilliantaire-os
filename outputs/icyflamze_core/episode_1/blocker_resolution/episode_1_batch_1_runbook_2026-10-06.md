@@ -15,7 +15,7 @@ Generation stays manual, as the production boundaries require. Every command her
 - **The filenames fail the v2 gate.** Render intake v2 only looks at files whose names start with the slot ID, such as `IMG-01`. The old names (`icyflamze_core_ep01_hero_poster_v01.png`) are never seen. This runbook uses `IMG-01_hero_poster_v01.png` and so on.
 - **ChatGPT's image shapes are not the slot shapes.** ChatGPT gives 1536×1024 or 1024×1536 (3:2). The slots want 16:9 or 9:16 within 2%, and the visual checklist wants at least 1920×1080. Step 4 crops and scales each image to exactly 1920×1080 or 1080×1920.
 - **The old prompts break the identity lock.** The IP bible requires the identity line, verbatim, on every image prompt, and the reference photo on every character frame. The prompts below add both.
-- **v2 crashes without its identity manifest.** `config/icyflamze-identity-manifest.json` was never committed. Step 1 creates it only if it is missing.
+- **v2 crashes without its identity manifest.** `config/icyflamze-identity-manifest.json` is now in the repo and names the master reference photo. Step 1 still creates it if a checkout lacks it, and never touches an existing one.
 - **Audio needs `ffprobe` to verify.** Without it, every audio file is held at STAGED. Step 1 installs `ffmpeg`, which includes it.
 
 ---
@@ -56,7 +56,7 @@ The checksum must read:
 
 If it doesn't, stop and check the backup in `~/Desktop/icyflamze-reference-backup/` before generating anything.
 
-Then create the identity manifest that render intake v2 needs. This leaves an existing file alone.
+Then make sure the identity manifest that render intake v2 needs is there. After `git pull` it is, so this prints "present". It only creates the file in a checkout that lacks it.
 
 ```bash
 cd ~
