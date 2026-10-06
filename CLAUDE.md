@@ -61,9 +61,10 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
 - **Command:** `pjkkey KEY_NAME`, for example `pjkkey STRIPE_SECRET_KEY`. It's installed in `~/.zshrc`.
   - It prompts with hidden input, so the key never shows on screen or in shell history.
   - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
+  - It saves the value in quotes with every `$` escaped, so any characters work. Unquoted, Next's loader cuts a value at `#` and reads `$` as a variable, which is how a passcode like `Pass#word12` once failed.
 - **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
 - **AI keys:** P.J.K. takes `GEMINI_API_KEY`, `ANTHROPIC_API_KEY` (Claude) and `OPENAI_API_KEY` (ChatGPT), tried in that order; each extra key is a backup brain. `docs/PJKKEY.md` says where each comes from. `ANTHROPIC_DEFAULT_MODEL` and `OPENAI_DEFAULT_MODEL` pick the models.
-- **If `pjkkey` is missing** (a new Mac or a fresh shell config): give him the install snippet in `docs/PJKKEY.md`.
+- **If `pjkkey` is missing or out of date** (a new Mac, a fresh shell config, or a version that saves values unquoted): give him the install snippet in `docs/PJKKEY.md`. Running it again updates it.
 
 ## Security Notes
 
