@@ -2,7 +2,7 @@
 """
 preview_engine.py - Unified Preview & Media Verification Engine
 Authority: Architect-Core / Commander
-Governance: /Users/alexanderanthony/COMPLETION_AND_LEVERAGE.md
+Governance: COMPLETION_AND_LEVERAGE.md (repository root)
 
 Provides automated, multi-modal preview generation, Playwright UI validation,
 image metadata inspection, ffmpeg video keyframing/contact sheets, and
@@ -19,7 +19,7 @@ import subprocess
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
-WORKSPACE_ROOT = Path("/Users/alexanderanthony")
+WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 OUTPUTS_DIR = WORKSPACE_ROOT / "outputs" / "previews"
 SCRIPTS_DIR = WORKSPACE_ROOT / "scripts"
 OPEN_PREVIEW_SCRIPT = SCRIPTS_DIR / "open_preview.sh"

@@ -5,9 +5,12 @@ import time
 import glob
 import json
 
-VOICE_INPUT_DIR = "/Users/alexanderanthony/voice_input"
-VOICE_QUEUE_INBOX = "/Users/alexanderanthony/voice_queue/inbox"
-LOG_FILE = "/Users/alexanderanthony/sentinel-os/logs/whisper_daemon.log"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+SENTINEL_OS_ROOT = os.path.abspath(os.path.expanduser(os.environ.get("SENTINEL_OS_ROOT", "").strip() or "~/sentinel-os"))  # as config/sentinel_os_root.ts
+
+VOICE_INPUT_DIR = os.path.join(REPO_ROOT, "voice_input")
+VOICE_QUEUE_INBOX = os.path.join(REPO_ROOT, "voice_queue", "inbox")
+LOG_FILE = os.path.join(SENTINEL_OS_ROOT, "logs", "whisper_daemon.log")
 
 os.makedirs(VOICE_INPUT_DIR, exist_ok=True)
 os.makedirs(VOICE_QUEUE_INBOX, exist_ok=True)

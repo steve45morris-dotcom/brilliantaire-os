@@ -5,7 +5,7 @@
 echo "========================================================"
 echo "🎙️ LAUNCHING VOICE VIBE ASR & HOTWORD DAEMON"
 echo "========================================================"
-cd /Users/alexanderanthony/voice_vibe_asr || exit 1
+cd "$HOME/voice_vibe_asr" || exit 1
 
 PLIST="$HOME/Library/LaunchAgents/com.alexanderanthony.voicevibe-hotword.plist"
 
@@ -23,5 +23,5 @@ if [ -f "$PLIST" ]; then
     tail -f /tmp/voicevibe-hotword.out.log
 else
     echo "[INFO] Launching Voice Vibe in foreground..."
-    /Users/alexanderanthony/.local/bin/python3.11 hotword_daemon.py --run
+    "$HOME/.local/bin/python3.11" hotword_daemon.py --run
 fi

@@ -1,7 +1,8 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 
-export const REPO_ROOT = '/Users/alexanderanthony';
+export const REPO_ROOT = path.resolve(__dirname, '..');
 export const PROJECTS_MD_PATH = path.join(REPO_ROOT, 'PROJECTS.md');
 
 export interface CanonicalTarget {
@@ -17,7 +18,7 @@ export const CANONICAL_PROJECT_TARGETS: CanonicalTarget[] = [
   {
     name: 'P.J.K. (Prof John Kush)',
     namePattern: /P\.J\.K\.\s*\(Prof John Kush\)/i,
-    path: '/Users/alexanderanthony/PJK',
+    path: path.join(os.homedir(), 'PJK'),
     expectedStatePattern: /Active/i,
     completionPattern: /90%/i,
     requiredNotesSnippet: 'Ratified AEC3 baseline remains untouched'
@@ -25,7 +26,7 @@ export const CANONICAL_PROJECT_TARGETS: CanonicalTarget[] = [
   {
     name: 'Voice Vibe',
     namePattern: /Voice Vibe/i,
-    path: '/Users/alexanderanthony/voice_vibe_asr',
+    path: path.join(os.homedir(), 'voice_vibe_asr'),
     expectedStatePattern: /(Persistent\s*\/\s*Supervised|Built\s*\/\s*Standby)/i,
     completionPattern: /(82%|85%|88%)/i,
     requiredNotesSnippet: 'NVIDIA-dependent functions explicitly dependency-gated'

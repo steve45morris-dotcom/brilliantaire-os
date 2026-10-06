@@ -3,8 +3,9 @@
 # Cleans stale deferred jobs, orphaned chunk files, and interrupted state files.
 
 QUEUE_DIR="/tmp/voice_bus_queue"
-ARCHIVE_DIR="/Users/alexanderanthony/reports/voice/full-narration"
-LOG_FILE="/Users/alexanderanthony/logs/voice/voice-bus.log"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ARCHIVE_DIR="$ROOT/reports/voice/full-narration"
+LOG_FILE="$ROOT/logs/voice/voice-bus.log"
 
 echo "=== 🧹 Starting Voice Bus Cleanup v3 ==="
 

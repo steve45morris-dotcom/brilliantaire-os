@@ -1,19 +1,21 @@
 #!/bin/bash
 
-BUFFER="${VOICE_BUFFER:-/Users/alexanderanthony/.agents/voice_buffer.txt}"
-MUTED_ARCHIVE_DIR="${VOICE_MUTED_ARCHIVES:-/Users/alexanderanthony/.agents/muted_voice_reports}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+BUFFER="${VOICE_BUFFER:-$HOME/.agents/voice_buffer.txt}"
+MUTED_ARCHIVE_DIR="${VOICE_MUTED_ARCHIVES:-$HOME/.agents/muted_voice_reports}"
 MUTE_MARKER="${VOICE_MUTE_MARKER:-/tmp/.supernova_voice_muted}"
-VOICE_CONF="${VOICE_CONF:-/Users/alexanderanthony/.claude/voice/voice.conf}"
-INTELLIGENCE_ENGINE="${VOICE_INTELLIGENCE_ENGINE:-/Users/alexanderanthony/scripts/voice_intelligence.py}"
+VOICE_CONF="${VOICE_CONF:-$HOME/.claude/voice/voice.conf}"
+INTELLIGENCE_ENGINE="${VOICE_INTELLIGENCE_ENGINE:-$SCRIPT_DIR/voice_intelligence.py}"
 POLICY_PYTHON="${VOICE_POLICY_PYTHON:-/usr/bin/python3}"
 DIGEST_STATE="${VOICE_DIGEST_STATE:-/tmp/.supernova_voice_digest.json}"
 LOCK="${VOICE_DAEMON_LOCK:-/tmp/voice_daemon.lock}"
-LOG="${VOICE_DAEMON_LOG:-/Users/alexanderanthony/supernova/logs/voice_daemon.log}"
+LOG="${VOICE_DAEMON_LOG:-$HOME/supernova/logs/voice_daemon.log}"
 RUN_ONCE="${VOICE_DAEMON_ONCE:-0}"
 IDLE_POLL_SECONDS="${VOICE_IDLE_POLL_SECONDS:-10}"
 ACTIVE_POLL_SECONDS="${VOICE_ACTIVE_POLL_SECONDS:-2}"
-VIBEVOICE_CLIENT="${VIBEVOICE_CLIENT:-/Users/alexanderanthony/scripts/vibevoice_client.py}"
-VIBEVOICE_PYTHON="${VIBEVOICE_PYTHON:-/Users/alexanderanthony/venv_stable/bin/python}"
+VIBEVOICE_CLIENT="${VIBEVOICE_CLIENT:-$SCRIPT_DIR/vibevoice_client.py}"
+VIBEVOICE_PYTHON="${VIBEVOICE_PYTHON:-$HOME/venv_stable/bin/python}"
 VIBEVOICE_TIMEOUT="${VIBEVOICE_TIMEOUT:-45}"
 VOICE_FALLBACK_MODE="${VOICE_FALLBACK_MODE:-none}"
 
@@ -97,7 +99,7 @@ record_spoken() {
     VOICE_BUFFER="$BUFFER" \
     VOICE_INTELLIGENCE_STATE="${VOICE_INTELLIGENCE_STATE:-/tmp/.supernova_voice_intelligence.json}" \
     VOICE_DIGEST_STATE="$DIGEST_STATE" \
-    VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-/Users/alexanderanthony/.agents/voice_intelligence_archives}" \
+    VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-$HOME/.agents/voice_intelligence_archives}" \
         "$POLICY_PYTHON" "$INTELLIGENCE_ENGINE" spoken "$speech" "${digests[@]}" >> "$LOG" 2>&1
 }
 
@@ -125,7 +127,7 @@ evaluate_policy() {
     VOICE_BUFFER="$BUFFER" \
     VOICE_INTELLIGENCE_STATE="${VOICE_INTELLIGENCE_STATE:-/tmp/.supernova_voice_intelligence.json}" \
     VOICE_DIGEST_STATE="$DIGEST_STATE" \
-    VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-/Users/alexanderanthony/.agents/voice_intelligence_archives}" \
+    VOICE_INTELLIGENCE_ARCHIVES="${VOICE_INTELLIGENCE_ARCHIVES:-$HOME/.agents/voice_intelligence_archives}" \
         "$POLICY_PYTHON" "$INTELLIGENCE_ENGINE" "$command" "$@"
 }
 

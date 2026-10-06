@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger("RepoScout")
 
 # Voice Narrative Bridge Helpers
-VNP_BRIDGE_PATH = "/Users/alexanderanthony/.agents/voice_narrative.sh"
+VNP_BRIDGE_PATH = os.path.expanduser("~/.agents/voice_narrative.sh")
 
 def announce_intent(message):
     logger.info(f"[VNP Intent] {message}")

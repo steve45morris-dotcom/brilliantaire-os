@@ -111,7 +111,7 @@ async function main() {
     } else if (step.id.startsWith('db')) {
       stepOutput = `# Daily Brief Summary\n\nRoadmap items:\n- Complete stack upgrade\n- Verify workspace runs`;
     } else if (step.id.startsWith('mg')) {
-      stepOutput = `Dialogue timing mapped: scene 1 (0-5s) - narration active, render file path: /Users/alexanderanthony/workspaces/media-render.mp4`;
+      stepOutput = `Dialogue timing mapped: scene 1 (0-5s) - narration active, render file path: workspaces/media-render.mp4`;
     } else {
       stepOutput = `Executed task logic successfully. Step output records written.`;
     }

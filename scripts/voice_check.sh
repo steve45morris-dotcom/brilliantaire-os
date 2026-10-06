@@ -18,7 +18,7 @@ else
 fi
 
 echo "[$(date)] Checking voice log..."
-LOG_FILE="/Users/alexanderanthony/supernova/logs/voice_daemon.log"
+LOG_FILE="$HOME/supernova/logs/voice_daemon.log"
 if [ -f "$LOG_FILE" ]; then
     tail -n 3 "$LOG_FILE"
 else

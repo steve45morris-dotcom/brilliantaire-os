@@ -6,10 +6,12 @@ import json
 import subprocess
 import numpy as np
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this repository
+
 # File paths
-TARGET_FILE = "/Users/alexanderanthony/video_stability.py"
-LEDGER_PATH = "/Users/alexanderanthony/.agents/cycle_ledger.jsonl"
-VOICE_SCRIPT = "/Users/alexanderanthony/.agents/voice_narrative.sh"
+TARGET_FILE = os.path.join(REPO_ROOT, "video_stability.py")
+LEDGER_PATH = os.path.expanduser("~/.agents/cycle_ledger.jsonl")
+VOICE_SCRIPT = os.path.expanduser("~/.agents/voice_narrative.sh")
 
 # Original and Optimized implementations for verification
 ORIGINAL_CODE = """import numpy as np

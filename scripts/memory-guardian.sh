@@ -21,7 +21,7 @@ voice_is_muted() {
 # Spoken alerts obey the global Voice Vibe switch; visual alerts remain active.
 speak() {
     voice_is_muted && return 0
-    /Users/alexanderanthony/.agents/speak_serialized.sh "$1" "P1" "Daniel"
+    "$HOME/.agents/speak_serialized.sh" "$1" "P1" "Daniel"
 }
 
 # Visual notification as secondary layer

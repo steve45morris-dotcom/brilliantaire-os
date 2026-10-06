@@ -3,7 +3,7 @@
 # Evolved under the Sovereign Architect-Core protocol.
 
 PORT=8888
-WORKSPACE_DIR="/Users/alexanderanthony"
+WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 is_port_in_use() {
     nc -z localhost "$PORT" >/dev/null 2>&1

@@ -11,6 +11,8 @@ import argparse
 import subprocess
 from datetime import datetime
 
+SENTINEL_OS_ROOT = os.path.abspath(os.path.expanduser(os.environ.get("SENTINEL_OS_ROOT", "").strip() or "~/sentinel-os"))  # as config/sentinel_os_root.ts
+
 TOOL_METADATA = {
     "name": "microsaas_launcher",
     "description": "Scaffolds a new Next.js micro-service panel with Stripe metering, registers it, and validates compilation.",
@@ -144,7 +146,7 @@ def main():
 
     if args.verify:
         print_styled("Initiating production verification compile...", "info")
-        project_root = "/Users/alexanderanthony/sentinel-os"
+        project_root = SENTINEL_OS_ROOT
         try:
             proc = subprocess.run(
                 ["npm", "run", "build"],
@@ -184,7 +186,7 @@ def main():
         
     # Capitalize component name to align with react naming conventions
     comp_name = args.name[0].upper() + args.name[1:]
-    project_root = "/Users/alexanderanthony/sentinel-os"
+    project_root = SENTINEL_OS_ROOT
     comp_path = os.path.join(project_root, f"components/{comp_name}Panel.tsx")
     
     print_styled(f"Scaffolding Next.js panel: {comp_path}", "info")
