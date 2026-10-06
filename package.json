@@ -393,7 +393,9 @@
     "doc-drift": "tsx scripts/documentation-drift-detector.ts",
     "doc-drift-help": "tsx scripts/documentation-drift-detector-help.ts",
     "bridge-health": "tsx scripts/bridge-health-monitor.ts",
-    "bridge-health-help": "tsx scripts/bridge-health-monitor-help.ts"
+    "bridge-health-help": "tsx scripts/bridge-health-monitor-help.ts",
+    "design-cli": "tsx scripts/design-cli.ts",
+    "icyflamze-core-episode-1-render-intake-v2": "tsx scripts/icyflamze-core-episode-1-render-intake-v2.ts"
   },
   "keywords": [
     "antigravity",
