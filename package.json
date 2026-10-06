@@ -19,6 +19,8 @@
     "audit": "tsx scripts/audit.ts",
     "brief": "tsx scripts/brief.ts",
     "next": "tsx scripts/next.ts",
+    "next-tick": "tsx scripts/next-tick.ts tick",
+    "next-reopen": "tsx scripts/next-tick.ts reopen",
     "ingest": "tsx scripts/ingest-obsidian.ts",
     "sync-status": "tsx scripts/sync-status.ts",
     "daily-brief": "tsx scripts/daily-brief.ts",

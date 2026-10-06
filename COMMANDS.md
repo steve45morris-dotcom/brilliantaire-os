@@ -40,6 +40,8 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `icyflamze-core-episode-1-render-intake` | `render intake`, `episode render` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation subcommands. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
+| `next-tick` | `tick-action` | Action Router | Low | No | Ticks one Do Now / Do Next item by its key; with no key, lists open items and their keys. P.J.K. stages it for approval. |
+| `next-reopen` | `reopen-action` | Action Router | Low | No | Unticks one item by its key; with no key, lists ticked items and their keys. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |
 | `ingest` | `scan-notes`, `obsidian` | Knowledge Librarian | Medium | Yes | Recursively scans Obsidian vault notes (Read-Only). |
 | `daily-brief` | `daily`, `today` | Action Router | Low | No | Compiles daily briefs markdown file outputs. |
