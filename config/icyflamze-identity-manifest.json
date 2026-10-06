@@ -1,0 +1,28 @@
+{
+  "character_id": "icyflamze",
+  "reference_asset": "Landing Page Sites/icyflamze/icyflamze-site/images/branded-portrait.jpg",
+  "identity_lock": "strict",
+  "immutable": {
+    "facial_structure": "high-cheekbones, angular jawline",
+    "skin_tone": "warm brown (Nigerian roots)",
+    "haircut": "clean low fade, sharp line-up",
+    "eyes": "dark brown, intense focused gaze behind spectacles",
+    "goatee": "neatly trimmed goatee and mustache",
+    "age_range": "25-30",
+    "body_proportions": "athletic, lean, commanding stance"
+  },
+  "mutable": [
+    "clothing",
+    "environment",
+    "lighting",
+    "camera_angle",
+    "art_direction"
+  ],
+  "forbidden": [
+    "alternate_face",
+    "anime_face_reinterpretation",
+    "exaggerated facial proportions",
+    "unapproved hairstyle",
+    "identity substitution"
+  ]
+}

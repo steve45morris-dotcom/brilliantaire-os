@@ -17,7 +17,11 @@ import {
   MANUAL_ENABLE_FLAG_NAME,
   inputFolders,
   outputFolders,
-  REPO_ROOT
+  REPO_ROOT,
+  SPECULATIVE_DECODING_ENABLED,
+  SPECULATIVE_DRAFT_MODEL,
+  SPECULATIVE_TARGET_MODEL,
+  SPECULATIVE_VERIFICATION_THRESHOLD
 } from '../config/asr-model-gate.js';
 import { announceIntent, announceCompletion } from './vnp.js';
 
@@ -408,6 +412,12 @@ function handleStatus() {
   if (scan.unexpectedCount > 0) blockers.push("Disallowed files present inside models directory.");
   if (!checksumReportExists) blockers.push("No checksum review report generated.");
   if (!asrExecutionEnabled) blockers.push("Manual override flag ASR_EXECUTION_ENABLED is not set to true in environment.");
+  if (SPECULATIVE_DECODING_ENABLED) {
+    const hasDraft = scan.modelFiles.includes(SPECULATIVE_DRAFT_MODEL);
+    const hasTarget = scan.modelFiles.includes(SPECULATIVE_TARGET_MODEL);
+    if (!hasDraft) blockers.push(`Speculative Draft model file '${SPECULATIVE_DRAFT_MODEL}' is missing.`);
+    if (!hasTarget) blockers.push(`Speculative Target model file '${SPECULATIVE_TARGET_MODEL}' is missing.`);
+  }
 
   let score = 100;
   if (!stagedAudioExists) score -= 10;
@@ -425,6 +435,14 @@ function handleStatus() {
   console.log(`Model Files Found:         ${scan.modelCount > 0 ? 'Yes' : 'No'} (${scan.modelCount} files total)`);
   console.log(`Checksum Reviewed:         ${checksumReportExists ? 'Yes' : 'No'}`);
   console.log(`ASR Execution Enabled:     ${asrExecutionEnabled ? 'Yes' : 'No'}`);
+  if (SPECULATIVE_DECODING_ENABLED) {
+    console.log(`Speculative ASR Mode:      ACTIVE`);
+    console.log(`  Draft Model (Whisper):   ${SPECULATIVE_DRAFT_MODEL}`);
+    console.log(`  Target Model (Whisper):  ${SPECULATIVE_TARGET_MODEL}`);
+    console.log(`  Verification Threshold:  ${SPECULATIVE_VERIFICATION_THRESHOLD * 100}%`);
+  } else {
+    console.log(`Speculative ASR Mode:      INACTIVE`);
+  }
   console.log(`Readiness Score:           ${readinessScore}%`);
   console.log(`Active Blockers Count:     ${blockers.length}`);
   if (blockers.length > 0) {

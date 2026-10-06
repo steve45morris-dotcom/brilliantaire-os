@@ -86,8 +86,9 @@ describe("command registry as P.J.K. reads it", () => {
 });
 
 /**
- * The Grinders Keep evidence pipeline: registered, but its scripts were never
- * committed from the Mac they were written on. Each target here may only be
+ * The Grinders Keep evidence pipeline: registered in 506433a (July 2026) ahead
+ * of implementation and never written. Its config/ and templates/ files exist;
+ * the scripts don't, on the Mac or anywhere else. Each target here may only be
  * removed from this list, never added to it; delete a line once its file lands.
  */
 const KNOWN_MISSING_SCRIPTS = [

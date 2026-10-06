@@ -1,0 +1,63 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+export const REPO_ROOT = path.resolve(__dirname, '..');
+
+// Safety & Scope Rules
+export const MODULE_NAME = 'Grinders Keep Evidence Tracker Sync Adapter';
+export const LOCAL_FIRST_ONLY = true;
+export const ALLOW_EXTERNAL_API_CALLS = false;
+export const ALLOW_GOOGLE_TOOL_EXECUTION = false;
+export const ALLOW_PUBLISHING = false;
+export const ALLOW_UPLOADING = false;
+export const ALLOW_EMAILS = false;
+export const ALLOW_DELETION = false;
+export const ALLOW_COMMAND_EXECUTION = false;
+
+// Tracker execution and file moves are strictly disallowed
+export const TRACKER_EXECUTION_ALLOWED = false;
+export const EVIDENCE_VALIDATION_ALLOWED = false;
+export const FILE_MOVE_ALLOWED = false;
+export const FILE_COPY_ALLOWED = false;
+export const AUTO_FEED_ALLOWED = false;
+
+// Output Directories Setup
+export const OUTPUT_ROOT = path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_tracker_sync_adapter');
+export const outputFolders = {
+  root: OUTPUT_ROOT,
+  maps: path.join(OUTPUT_ROOT, 'maps'),
+  trackerInputs: path.join(OUTPUT_ROOT, 'tracker_inputs'),
+  blocked: path.join(OUTPUT_ROOT, 'blocked'),
+  pathChecks: path.join(OUTPUT_ROOT, 'path_checks'),
+  scorecards: path.join(OUTPUT_ROOT, 'scorecards'),
+  logs: path.join(OUTPUT_ROOT, 'logs'),
+};
+
+// Input Scan Folders Setup
+export const inputScanFolders = {
+  evidenceCollection: path.join(REPO_ROOT, 'inputs', 'grinders_keep', 'evidence_collection'),
+};
+
+// Templates path
+export const TEMPLATE_ROOT = path.join(REPO_ROOT, 'templates');
+
+// Primary telemetry source files
+export const referenceSources = {
+  importerManifest: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_importer', 'grinders_keep_evidence_pack_import_manifest_2026-06-01.json'),
+  importerPhase12rReadyDir: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_importer', 'phase_12r_ready'),
+  importerCompletionStatusDir: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_importer', 'completion_status'),
+  importerDetectedFilesDir: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_importer', 'detected_files'),
+  importerBlockedDir: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_importer', 'blocked'),
+  trackerManifest: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_completion_tracker', 'grinders_keep_evidence_completion_manifest_2026-06-01.json'),
+  packBuilderManifest: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'evidence_pack_builder', 'grinders_keep_evidence_pack_manifest_2026-06-01.json'),
+  actionBoardManifest: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'manual_evidence_action_board', 'grinders_keep_manual_evidence_action_manifest_2026-06-01.json'),
+  frontpage: path.join(REPO_ROOT, 'outputs', 'grinders_keep', 'grinders_keep_frontpage_2026-06-01.md'),
+  systemStatus: path.join(REPO_ROOT, 'SYSTEM_STATUS.md'),
+  projects: path.join(REPO_ROOT, 'PROJECTS.md'),
+  nextActions: path.join(REPO_ROOT, 'NEXT_ACTIONS.md'),
+  commands: path.join(REPO_ROOT, 'COMMANDS.md'),
+  readme: path.join(REPO_ROOT, 'README.md'),
+  schedulerStatus: path.join(REPO_ROOT, 'SCHEDULER_STATUS.md'),
+};
