@@ -11,6 +11,7 @@ export function printHelp() {
 Available Commands:
   help                 Print this help menu and exit
   verify-projects      Audit PROJECTS.md structure, format, names, and paths for duplicates
+  check-canonical      Verify required canonical filesystem projects (P.J.K., Voice Vibe) are registered
   skipped-candidates   Review candidates skipped by the append gate and suggest next actions
   quarantine-status    Monitor quarantined file counts, checksum validations, and elapsed time
   health-report        Generate a unified markdown health report summarizing all audits

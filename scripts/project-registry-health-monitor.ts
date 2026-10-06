@@ -17,6 +17,7 @@ import {
   LOG_DIR
 } from '../config/project-registry-health-monitor.js';
 import { printHelp } from './project-registry-health-monitor-help.js';
+import { runCanonicalCheck } from './project-registry-canonical-check.js';
 
 const REPO_ROOT = process.cwd();
 
@@ -429,6 +430,13 @@ function main() {
   switch (arg) {
     case 'verify-projects': {
       runVerifyProjects();
+      break;
+    }
+    case 'check-canonical': {
+      const canonicalResult = runCanonicalCheck();
+      if (!canonicalResult.allPassed) {
+        process.exit(1);
+      }
       break;
     }
     case 'skipped-candidates': {

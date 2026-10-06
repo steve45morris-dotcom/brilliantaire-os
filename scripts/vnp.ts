@@ -13,7 +13,7 @@ export function announceIntent(message: string): Promise<void> {
 
     const cleanMsg = message.replace(/"/g, '\\"');
     const cmd = `source ${VNP_BRIDGE_PATH} && announce_intent "${cleanMsg}"`;
-    exec(cmd, { shell: '/bin/zsh', timeout: 3000 }, (err) => {
+    exec(cmd, { shell: '/bin/zsh', timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to announce intent: ${err.message}`);
       }
@@ -31,7 +31,7 @@ export function announceCompletion(message: string, score: string = '10'): Promi
 
     const cleanMsg = message.replace(/"/g, '\\"');
     const cmd = `source ${VNP_BRIDGE_PATH} && announce_completion "${cleanMsg}" "${score}"`;
-    exec(cmd, { shell: '/bin/zsh', timeout: 3000 }, (err) => {
+    exec(cmd, { shell: '/bin/zsh', timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to announce completion: ${err.message}`);
       }
@@ -60,7 +60,7 @@ export function announcePhrase(phrase: string): Promise<void> {
     }
     
     const cmd = `${path.join(process.cwd(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
-    exec(cmd, { timeout: 3000 }, (err) => {
+    exec(cmd, { timeout: 8000 }, (err) => {
       if (err) {
         console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);
       }

@@ -93,18 +93,18 @@ function detectBackend(): BackendStatus {
 function createSilentWav(filePath: string) {
   const header = Buffer.alloc(44);
   header.write('RIFF', 0);
-  header.writeInt32(36, 4, true);
+  header.writeInt32LE(36, 4);
   header.write('WAVE', 8);
   header.write('fmt ', 12);
-  header.writeInt32(16, 16, true);
-  header.writeInt16(1, 20, true);
-  header.writeInt16(1, 22, true);
-  header.writeInt32(8000, 24, true);
-  header.writeInt32(8000 * 2, 28, true);
-  header.writeInt16(2, 32, true);
-  header.writeInt16(16, 34, true);
+  header.writeInt32LE(16, 16);
+  header.writeInt16LE(1, 20);
+  header.writeInt16LE(1, 22);
+  header.writeInt32LE(8000, 24);
+  header.writeInt32LE(8000 * 2, 28);
+  header.writeInt16LE(2, 32);
+  header.writeInt16LE(16, 34);
   header.write('data', 36);
-  header.writeInt32(0, 40, true);
+  header.writeInt32LE(0, 40);
   fs.writeFileSync(filePath, header);
 }
 
