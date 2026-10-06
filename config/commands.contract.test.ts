@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { COMMAND_CATEGORIES, COMMAND_REGISTRY, COMMAND_REGISTRY_FORMAT_VERSION } from "./commands";
-import { actionKey } from "./next-actions";
+import { COMMAND_CATEGORIES, COMMAND_REGISTRY, COMMAND_REGISTRY_FORMAT_VERSION } from "./commands.js";
+import { actionKey } from "./next-actions.js";
 
 /**
  * The contract with P.J.K. in the sentinel-os repo, which reads this repo's

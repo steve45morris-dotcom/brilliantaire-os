@@ -40,7 +40,7 @@ npm run audit      # Run system audit
 npm run command    # Safe command router
 ```
 
-CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, a strict typecheck of `scripts/` (`tsconfig.scripts.json`, locally `npm run typecheck:scripts`), the P.J.K. command-registry contract test, and `npm test` on every pull request and push to `main`. Two source files are excluded from the Node build in `tsconfig.json` and say why: the Edge-Link server, `src/edge-link/index.ts` + `broker.ts` (needs `ws`, which the no-runtime-deps rule forbids; nothing imports them) and `src/ui/voice/RealtimeVoiceControls.tsx` (a React component; nothing imports it). `vitest.config.ts` keeps `sentinel-os/` and `Knowledge Core/` out of the suite, since both sit inside this `$HOME`-rooted repo.
+CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, a strict typecheck of `scripts/`, `tools/` and `config/` (`tsconfig.scripts.json`, locally `npm run typecheck:scripts`), the P.J.K. command-registry contract test, and `npm test` on every pull request and push to `main`. Two source files are excluded from the Node build in `tsconfig.json` and say why: the Edge-Link server, `src/edge-link/index.ts` + `broker.ts` (needs `ws`, which the no-runtime-deps rule forbids; nothing imports them) and `src/ui/voice/RealtimeVoiceControls.tsx` (a React component; nothing imports it). `vitest.config.ts` keeps `sentinel-os/` and `Knowledge Core/` out of the suite, since both sit inside this `$HOME`-rooted repo.
 
 ## Safe Command Router
 

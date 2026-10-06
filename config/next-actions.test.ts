@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { actionKey, actionText, parseActionItems, setActionDone } from './next-actions';
+import { actionKey, actionText, parseActionItems, setActionDone } from './next-actions.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 

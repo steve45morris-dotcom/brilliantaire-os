@@ -3,7 +3,7 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { RISK_LEVELS } from "../config/sentinel_safety";
+import { RISK_LEVELS } from "../config/sentinel_safety.js";
 
 interface VoiceRegistryEntry {
   phrase: string;
