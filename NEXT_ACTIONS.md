@@ -90,9 +90,6 @@
 - [x] Integrate Local Inference Server Bridge into tool stacks (Phase 15B)
 - [x] Wire Local Inference Server into command registry, Taskfile, and package.json (Phase 15B)
 - [x] Generate MCP configuration guide for Claude Code installation (Phase 15B)
-- [ ] Copy MCP config to local ~/.claude/settings.json and verify server connection (Phase 15B)
-- [ ] Run first live chat request through Local Inference Server (Phase 15B)
-- [ ] Validate health-check with ALLOW_LIVE_INFERENCE_CALLS enabled (Phase 15B)
 - [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
 - [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
 - [x] Add operational intelligence scripts (audit, brief, next)
@@ -395,7 +392,6 @@
 - [x] Phase 11O: Generate prompt pack ideas
 - [x] Phase 11O: Generate staged Obsidian intelligence note
 - [x] Phase 11O: Generate response intelligence summary
-- [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
 
 ## Do Next
 - [x] Phase 11N: Build NotebookLM MCP Live Adapter
@@ -415,7 +411,6 @@
 - [x] Generate graph report
 - [x] Inspect latest graph
 - [x] Review high-risk weak claims
-- [ ] Prepare vector index only after graph review
 
 ## Do Next
 - [x] Phase 11Q: Build Grounded Narrator Review Queue
@@ -463,8 +458,6 @@
 - [x] Phase 11V: Generate local model inventory
 - [x] Phase 11V: Verify model placement
 - [x] Phase 11V: Generate next-step report
-- [ ] Phase 11V: Manually place Piper model files
-- [ ] Phase 11V: Rerun model gate after placement
 - [x] Phase 11W: Build Offline Voice Session Recorder
 - [x] Phase 11W: Generate manual recording guide
 - [x] Phase 11W: Create narrator briefing session metadata
@@ -864,6 +857,14 @@
 
 ## Pause
 - [ ] Local web interface (focusing on pure CLI operations first)
+<!-- Parked 2026-10-06: open, but nothing current depends on them. Episode 1 narration uses ElevenLabs, not Piper; P.J.K. uses cloud AI keys, not the local inference server. Move one back under Do Now or Do Next to restart it. -->
+- [ ] Copy MCP config to local ~/.claude/settings.json and verify server connection (Phase 15B)
+- [ ] Run first live chat request through Local Inference Server (Phase 15B)
+- [ ] Validate health-check with ALLOW_LIVE_INFERENCE_CALLS enabled (Phase 15B)
+- [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
+- [ ] Prepare vector index only after graph review
+- [ ] Phase 11V: Manually place Piper model files
+- [ ] Phase 11V: Rerun model gate after placement
 
 ## Archive
 - [ ] Legacy bash scripts replaced by typescript runners
