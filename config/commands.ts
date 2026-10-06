@@ -4335,7 +4335,7 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
   {
     name: 'icyflamze-core-episode-1-render-intake-v2',
     aliases: ['render intake v2', 'episode render v2'],
-    description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Render Intake v2 subcommands, including recovery approval and rejection by job ID',
+    description: 'Execute ICYFLAMZE CORE Episode 1 Trailer Render Intake v2 subcommands, including human asset sign-off and recovery approval and rejection by job ID',
     npmScript: 'icyflamze-core-episode-1-render-intake-v2',
     owningAgent: 'Creative Architect',
     category: 'creative',
