@@ -29,8 +29,8 @@ This document details the active bugs, resource constraints, integration issues,
   - `2026-07-02`: Created initial Known Problems tracker.
 - **Future Expansion**: Add automatic bug collection triggers from compiler outputs.
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
-  - [Current State](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Current%20State.md)
+  - [START_HERE](./START_HERE.md)
+  - [Current State](./11%20Memory/Current%20State.md)
 
 *I build before burning.*
 

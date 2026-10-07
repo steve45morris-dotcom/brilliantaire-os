@@ -6,9 +6,9 @@
 - **Recommended Next Phase:** Phase 13H: Manual Code Execution
 
 ## Generated Artifacts
-- **Final Prompt:** file:///Users/alexanderanthony/outputs/knowledge_harvest/manual_implementation/prompts/final_manual_build_prompt_2026-06-04.md
-- **Checklist:** file:///Users/alexanderanthony/outputs/knowledge_harvest/manual_implementation/checklists/manual_implementation_checklist_2026-06-04.md
-- **Safety Review:** file:///Users/alexanderanthony/outputs/knowledge_harvest/manual_implementation/reports/manual_implementation_safety_review_2026-06-04.md
+- **Final Prompt:** file://~/outputs/knowledge_harvest/manual_implementation/prompts/final_manual_build_prompt_2026-06-04.md
+- **Checklist:** file://~/outputs/knowledge_harvest/manual_implementation/checklists/manual_implementation_checklist_2026-06-04.md
+- **Safety Review:** file://~/outputs/knowledge_harvest/manual_implementation/reports/manual_implementation_safety_review_2026-06-04.md
 
 ## Manual Handoff Details
 - **Human Action Required:** Verify the manual build prompt and checklist records. Instruct the developer agent to execute the finalized manual build prompt inside the sandboxed environment.

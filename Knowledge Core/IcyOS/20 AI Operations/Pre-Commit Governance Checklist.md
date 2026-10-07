@@ -6,9 +6,9 @@ Pre-commit checklist executed by the Repository Guardian.
 ---
 
 ## 🧭 Pre-Commit Checklist
-- [ ] Verify that implementation did not violate [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md).
-- [ ] Verify that implementation did not violate [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md).
-- [ ] Check if database schemas align with [Database Architecture](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Database%20Architecture.md).
+- [ ] Verify that implementation did not violate [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md).
+- [ ] Verify that implementation did not violate [Engineering Standards](./02%20Engineering/Engineering%20Standards.md).
+- [ ] Check if database schemas align with [Database Architecture](./02%20Engineering/Database%20Architecture.md).
 
 ---
 

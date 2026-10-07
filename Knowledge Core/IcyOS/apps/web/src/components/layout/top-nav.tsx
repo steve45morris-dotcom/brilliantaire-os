@@ -1,35 +1,61 @@
 'use client';
 
 import { Breadcrumbs } from './breadcrumbs';
+import { openPalette } from './command-palette';
 import { Search, Bell } from 'lucide-react';
 
 export function TopNav() {
   return (
-    <header className="h-16 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-40">
+    <header
+      className="relative h-14 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md"
+      style={{ background: 'rgba(8,9,14,0.82)', borderBottom: '1px solid #1e2030' }}
+    >
+      <span aria-hidden className="absolute left-0 right-0 bottom-[-1px] h-px" style={{ background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent 40%, transparent 60%, rgba(201,168,76,0.15))' }} />
+
       <Breadcrumbs />
-      <div className="flex items-center gap-4">
-        {/* Command Palette Placeholder */}
-        <div className="relative hidden sm:block">
-          <Search className="absolute left-3 top-2.5 text-zinc-500" size={16} />
-          <input
-            type="text"
-            placeholder="Search commands... (⌘K)"
-            className="pl-9 pr-4 py-1.5 bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 rounded-md focus:outline-none focus:border-zinc-700 w-56"
-            disabled
-          />
-        </div>
-        
-        {/* Notifications Placeholder */}
-        <button className="p-2 text-zinc-400 hover:text-zinc-200 transition-colors relative" aria-label="Notifications">
-          <Bell size={18} />
-          <span className="absolute top-1.5 right-1.5 h-1.5 w-1.5 bg-pink-500 rounded-full" />
+
+      <div className="flex items-center gap-2 sm:gap-3">
+        <button
+          type="button"
+          onClick={openPalette}
+          aria-label="Open command palette"
+          className="group relative hidden sm:flex items-center font-tactical pl-8 pr-14 h-9 w-60 bg-[#0a0b10] border border-[#1e2030] text-[11px] tracking-[0.06em] text-[#4a4d5a] rounded-md hover:border-[#c9a84c]/40 hover:text-[#8a8d9a] focus:outline-none focus-visible:border-[#c9a84c]/40 transition-colors"
+        >
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4a4d5a] group-hover:text-[#c9a84c] transition-colors" size={13} />
+          <span>Search commands</span>
+          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] tracking-[0.12em] text-[#4a4d5a] px-1.5 py-[2px] rounded-[3px] border border-[#1e2030] bg-[#08090e]">
+            ⌘K
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={openPalette}
+          aria-label="Open command palette"
+          className="sm:hidden w-9 h-9 flex items-center justify-center rounded-md text-[#6b6e7a] hover:text-[#d0ccc4] hover:bg-[#12131a] transition-colors"
+        >
+          <Search size={16} />
         </button>
 
-        {/* User Menu Placeholder */}
-        <button className="flex items-center gap-2 p-1 text-zinc-400 hover:text-zinc-200 transition-colors" aria-label="User Profile">
-          <div className="h-7 w-7 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-bold text-zinc-300">
+        <button
+          type="button"
+          className="relative w-9 h-9 flex items-center justify-center rounded-md text-[#6b6e7a] hover:text-[#d0ccc4] hover:bg-[#12131a] transition-colors"
+          aria-label="Notifications"
+        >
+          <Bell size={16} />
+          <span className="absolute top-2 right-2 h-1.5 w-1.5 bg-[#c9a84c] rounded-full hud-pulse-gold" />
+        </button>
+
+        <button type="button" className="flex items-center gap-2 pl-1 pr-1 h-9 rounded-md hover:bg-[#12131a] transition-colors" aria-label="User Profile">
+          <span
+            className="h-7 w-7 rounded-full flex items-center justify-center font-tactical text-[11px] font-bold text-[#c9a84c]"
+            style={{ background: 'rgba(201,168,76,0.08)', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.4), 0 0 10px rgba(201,168,76,0.15)' }}
+          >
             A
-          </div>
+          </span>
+          <span className="hidden lg:flex flex-col items-start leading-none">
+            <span className="font-tactical text-[9px] tracking-[0.16em] text-[#4a4d5a]">OPERATOR</span>
+            <span className="text-[12px] font-semibold text-[#d0ccc4] mt-0.5">Commander</span>
+          </span>
         </button>
       </div>
     </header>

@@ -25,6 +25,6 @@
 - **Version**: 1.0.0
 - **Future Review Date**: YYYY-MM-DD
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
 
 *I build before burning.*

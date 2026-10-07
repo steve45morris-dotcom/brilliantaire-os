@@ -6,10 +6,10 @@ The Context Builder dynamically constructs task-specific, compact context packag
 ---
 
 ## 🧭 Operational Loop
-1. **Identify Task Type**: Consult [Task Type Classification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Task%20Type%20Classification.md).
-2. **Select Documents**: Read [Relevant Document Selection Rules](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Relevant%20Document%20Selection%20Rules.md).
-3. **Assemble Template**: Build context using the [Context Package Template](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Context%20Package%20Template.md).
-4. **Compress Context**: Apply [Context Compression Rules](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Context%20Compression%20Rules.md) on log files.
+1. **Identify Task Type**: Consult [Task Type Classification](./20%20AI%20Operations/Task%20Type%20Classification.md).
+2. **Select Documents**: Read [Relevant Document Selection Rules](./20%20AI%20Operations/Relevant%20Document%20Selection%20Rules.md).
+3. **Assemble Template**: Build context using the [Context Package Template](./20%20AI%20Operations/Context%20Package%20Template.md).
+4. **Compress Context**: Apply [Context Compression Rules](./20%20AI%20Operations/Context%20Compression%20Rules.md) on log files.
 
 ---
 

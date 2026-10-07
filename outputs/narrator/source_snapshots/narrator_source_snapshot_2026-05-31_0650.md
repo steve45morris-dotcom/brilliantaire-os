@@ -717,16 +717,16 @@ Here are the workflow ideas extracted from recently harvested knowledge sources.
 
 - **Last Ingest:** 5/31/2026, 5:20:15 AM
 - **Vaults Scanned:**
-  - `/Users/alexanderanthony/AlexanderOSVault`
+  - `~/AlexanderOSVault`
 - **Top Relevant Files:**
-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
-  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+  - [🛰️ Daily Operating Brief - 2026-05-29](file://~/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
 - **Extracted Next Actions:**
-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
   - [ ] Create next-action generator (in [🎯 Next Actions](file:///Us
 ...[truncated]
 
@@ -870,7 +870,7 @@ The **Command Router** serves as the single safe entry point to execute scripts 
 
 To ensure complete control and system safety, the router enforces the following security boundaries:
 * **No Arbitrary Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn` with `shell: false`. No `eval` or shell injection vectors exist.
-* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
+* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
 * **Audit Logging:** Every command execution, whether successful, failed, or blocked, is logged with metadata to `outputs/command_logs/command_log_YYYY-MM-DD.md`.
 * **Exact-Name Rules:** Medium-risk or High-risk commands containing `requiresExactName: true` cannot be run via aliases. They must be typed exactly to ensure explicit developer intent.
 * **High-Risk Confirmation Rule:** Commands with `riskLevel: 'high'` require the explicit addition of the `--confirm` flag (e.g. `npm run command -- "approve-write" --confirm`). Without the flag, execution is blocked.

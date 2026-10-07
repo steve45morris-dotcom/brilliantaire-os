@@ -1,0 +1,87 @@
+import { COMMAND_REGISTRY } from '../config/commands.js';
+
+function printAsrHumanApprovalSelectionHelp() {
+  console.log("=========================================");
+  console.log("OFFLINE ASR HUMAN APPROVAL SELECTION PACKET - HELP");
+  console.log("=========================================");
+  console.log("This module allows a human operator to review ASR pipeline candidates,");
+  console.log("evaluate Whisper model families, stage selection packets, and record");
+  console.log("approval or rejection decisions -- all WITHOUT automated ASR execution");
+  console.log("or model downloads.");
+  console.log("\nCore Safety Rules Enforced:");
+  console.log("  1. No Automated ASR: ALLOW_AUTOMATED_ASR = false");
+  console.log("  2. No Model Downloads: ALLOW_MODEL_DOWNLOADS = false");
+  console.log("  3. No External API Calls: ALLOW_EXTERNAL_API_CALLS = false");
+  console.log("  4. Human Approval Required: REQUIRE_HUMAN_APPROVAL = true");
+  console.log("  5. Manual Selection Only: REQUIRE_MANUAL_SELECTION = true");
+  console.log("  6. Read-Only Staging: All output is advisory and read-only");
+  console.log("\n-----------------------------------------");
+  console.log("  COMMANDS:");
+  console.log("-----------------------------------------");
+  console.log("\n  status");
+  console.log("    Print module configuration, safety flags,");
+  console.log("    ASR pipeline source states, and output directory");
+  console.log("    inventory.");
+  console.log("\n  list-candidates");
+  console.log("    Scan upstream ASR pipeline sources and compile");
+  console.log("    a candidate review document listing all available");
+  console.log("    entries for human evaluation.");
+  console.log("\n  list-models");
+  console.log("    Compile a model family registry showing all");
+  console.log("    supported Whisper model variants with size");
+  console.log("    estimates and evaluation criteria.");
+  console.log("\n  stage-selection");
+  console.log("    Stage a complete selection packet combining");
+  console.log("    candidate sources, model options, and evaluation");
+  console.log("    checklists for human review and decision.");
+  console.log("\n  approve");
+  console.log("    Record a human approval decision for the latest");
+  console.log("    staged selection packet. No automated actions");
+  console.log("    are triggered.");
+  console.log("\n  reject");
+  console.log("    Record a human rejection decision for the latest");
+  console.log("    staged selection packet with reason tracking.");
+  console.log("\n  obsidian-export");
+  console.log("    Stage an approval selection summary for Obsidian");
+  console.log("    export via the Approved Write Gateway.");
+  console.log("\n-----------------------------------------");
+  console.log("  EXAMPLES:");
+  console.log("-----------------------------------------");
+  console.log("\n  npm run asr-human-approval-selection-packet -- \"status\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"list-candidates\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"list-models\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"stage-selection\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"approve\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"reject\"");
+  console.log("  npm run asr-human-approval-selection-packet -- \"obsidian-export\"");
+  console.log("\n-----------------------------------------");
+  console.log("  SAFETY:");
+  console.log("-----------------------------------------");
+  console.log("  - No automated ASR transcription");
+  console.log("  - No model binary downloads");
+  console.log("  - No external API calls");
+  console.log("  - All output is read-only staging");
+  console.log("  - Selection decisions require human operator");
+  console.log("  - Approval records are documentation only");
+  console.log("\n-----------------------------------------");
+  console.log("  ASR PIPELINE SOURCES:");
+  console.log("-----------------------------------------");
+  console.log("  - ASR Orchestrator: outputs/asr_orchestrator/");
+  console.log("  - ASR Model Gate: outputs/asr_model_gate/");
+  console.log("  - Live ASR Logs: outputs/live_asr_logs/");
+  console.log("  - Voice Command Logs: outputs/voice_command_logs/");
+
+  console.log("\n-----------------------------------------");
+  console.log("  REGISTERED COMMANDS:");
+  console.log("-----------------------------------------");
+  const targetCmds = COMMAND_REGISTRY.filter(c => c.name.includes('asr-human-approval-selection-packet'));
+  for (const cmd of targetCmds) {
+    console.log(`\n  Command: npm run command -- "${cmd.name}"`);
+    console.log(`   Description: ${cmd.description}`);
+    console.log(`   Owning Agent: ${cmd.owningAgent}`);
+    console.log(`   Risk Level:   ${cmd.riskLevel.toUpperCase()}`);
+  }
+  console.log("\n=========================================");
+}
+
+printAsrHumanApprovalSelectionHelp();

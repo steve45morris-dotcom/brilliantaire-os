@@ -7,7 +7,7 @@ import {
   SENSITIVE_FILES,
   MAX_TRACKED_FILE_SIZE_BYTES,
   MAX_TRACKED_FILE_SIZE_MB
-} from '../config/git-asset-policy';
+} from '../config/git-asset-policy.js';
 
 import { fileURLToPath } from 'url';
 
@@ -89,7 +89,7 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
     }
 
     // 1. Check forbidden folders
-    const isForbiddenFolder = FORBIDDEN_FOLDERS.some(folder => {
+    const isForbiddenFolder = FORBIDDEN_FOLDERS.some((folder: string) => {
       // e.g. 'local_assets/'
       const normalizedFolder = folder.replace(/\/$/, '');
       const relativeParts = file.split('/');
@@ -97,7 +97,7 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
     });
 
     // 2. Check forbidden file extensions
-    const isForbiddenExtension = FORBIDDEN_EXTENSIONS.some(ext => file.endsWith(ext));
+    const isForbiddenExtension = FORBIDDEN_EXTENSIONS.some((ext: string) => file.endsWith(ext));
 
     if (isForbiddenFolder || isForbiddenExtension) {
       forbiddenTracked.push(file);
@@ -115,7 +115,7 @@ export function runAudit(): { success: boolean; reportPath: string; logPath: str
     } catch (_) {}
 
     // 4. Check sensitive files
-    const isSensitive = SENSITIVE_FILES.some(sensitive => {
+    const isSensitive = SENSITIVE_FILES.some((sensitive: string) => {
       const filename = path.basename(file);
       return filename === sensitive;
     });

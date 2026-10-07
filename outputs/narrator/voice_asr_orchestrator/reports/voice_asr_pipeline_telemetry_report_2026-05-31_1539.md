@@ -14,7 +14,7 @@
 - [x] Duplicate Dispatch Protection: Enabled (`true`)
 
 ## 3. Registered Staging Channels
-- Recordings folder: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings`
-- ASR Intake: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio`
-- Transcripts: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/transcripts`
-- Staged Commands: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/staged_commands`
+- Recordings folder: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings`
+- ASR Intake: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/input_audio`
+- Transcripts: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/transcripts`
+- Staged Commands: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/asr/staged_commands`

@@ -47,7 +47,7 @@ This report details the architectural status, file organization, health indexes,
 
 ## ⚠️ 5. Risk Assessment & Recommended Fixes
 1. **Risk: Path Reference Breaks in CLI scripts**: Moving files inside `Knowledge Core` might break references in scripts that parse them.
-   - *Fix*: Update path constants in `/Users/alexanderanthony/scripts/vnp.ts` and other sync scripts to use the upgraded `00 Executive Office/` and `11 Memory/` layouts.
+   - *Fix*: Update path constants in `~/scripts/vnp.ts` and other sync scripts to use the upgraded `00 Executive Office/` and `11 Memory/` layouts.
 2. **Risk: Over-autonomy of AI worker daemons**: Unregulated agent code execution.
    - *Fix*: Establish the `AI Command Protocol` immediately to force strict approval gates.
 

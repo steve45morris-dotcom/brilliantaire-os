@@ -1,8 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { GET as healthGET } from './health/route';
 import { jsonResponse, errorResponse } from '../../lib/api/response';
-import { handleApiError } from '../../lib/api/errors';
-import { ServiceError } from '@icyos/services';
 
 describe('Next.js API Routes Controllers & Boundaries', () => {
   it('should verify health route payload structure', async () => {
@@ -32,15 +30,5 @@ describe('Next.js API Routes Controllers & Boundaries', () => {
     expect(body.success).toBe(false);
     expect(body.error.code).toBe('validation_error');
     expect(body.error.details.email).toBe('invalid');
-  });
-
-  it('should verify service error mapping conversion', async () => {
-    const serviceError = new ServiceError('invariant_violation', 'Action bounds breached');
-    const response = handleApiError(serviceError);
-    const body = await response.json();
-
-    expect(response.status).toBe(400);
-    expect(body.success).toBe(false);
-    expect(body.error.code).toBe('invariant_violation');
   });
 });

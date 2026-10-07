@@ -16,7 +16,7 @@ import {
 } from '../config/project-registry-review.js';
 import { printHelp } from './project-registry-review-help.js';
 
-const REPO_ROOT = '/Users/alexanderanthony';
+const REPO_ROOT = process.cwd();
 
 interface ProjectInfo {
   path: string;

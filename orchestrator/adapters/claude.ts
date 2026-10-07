@@ -30,7 +30,7 @@ export function createClaudeAdapter(): AgentAdapter {
           { cwd: invocation.repoRoot, timeout: this.timeoutMs, env: { ...process.env, ...this.buildEnv() } },
           (error, stdout, stderr) => {
             const durationMs = Date.now() - start;
-            if (error && (error as NodeJS.ErrnoException).killed) {
+            if (error?.killed) {
               resolve({ exitCode: null, outcome: 'timeout', stdout, stderr, durationMs, modelIdentity: 'claude-cli' });
               return;
             }

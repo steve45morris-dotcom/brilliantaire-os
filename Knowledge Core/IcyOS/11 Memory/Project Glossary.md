@@ -28,7 +28,7 @@ This document details the core definitions, acronyms, and terminology used acros
   - `2026-07-02`: Created initial system glossary.
 - **Future Expansion**: Add specific networking and API acronym definitions.
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*
 

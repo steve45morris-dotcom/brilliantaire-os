@@ -20,7 +20,7 @@ import {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const REPO_ROOT = '/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os';
+const REPO_ROOT = process.cwd();
 
 function getScanDate(): string {
   return '2026-06-01'; // Fixed local anchor date

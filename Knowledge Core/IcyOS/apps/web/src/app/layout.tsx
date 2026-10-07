@@ -1,10 +1,29 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../styles/globals.css";
 import { ThemeProvider } from "../providers/theme-provider";
+import { AuthProvider } from "../providers/auth-provider";
+import { RegisterServiceWorker } from "../components/pwa/register-sw";
 
 export const metadata: Metadata = {
   title: "IcyOS Console",
   description: "Autonomous Agentic Orchestration OS Console",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "IcyOS",
+  },
+  icons: {
+    apple: "/icons/icon-192.svg",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#09090b",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -15,9 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </AuthProvider>
+        <RegisterServiceWorker />
       </body>
     </html>
   );

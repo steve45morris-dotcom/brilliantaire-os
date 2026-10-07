@@ -17,7 +17,7 @@ Information architecture maps business entities directly to PostgreSQL tables, R
 - **Purpose**: Map high-level information strategies.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [DOMAIN MODEL](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/21%20Domain%20Model/DOMAIN_MODEL_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [DOMAIN MODEL](./21%20Domain%20Model/DOMAIN_MODEL_v1.0.md)
 
 *I build before burning.*

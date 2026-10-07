@@ -42,7 +42,7 @@ ADR-0001 through ADR-0011 are present as one active top-level file per ADR numbe
 
 ## Cross References
 
-- [ADR Repository Verification Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/ADR%20Repository%20Verification%20Report.md)
-- [ADR Repository Checkpoint](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/ADR%20Repository%20Checkpoint.md)
+- [ADR Repository Verification Report](./13%20Decisions/ADR%20Repository%20Verification%20Report.md)
+- [ADR Repository Checkpoint](./99%20Command%20Center/ADR%20Repository%20Checkpoint.md)
 
 *I build before burning.*

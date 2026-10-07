@@ -5,7 +5,7 @@ This system provides post-append verification and health audits for the projects
 ## 🛡️ Read-Only Guardrails (CIP Core)
 In strict compliance with the **Collision Isolation Protocol (CIP)**, this monitor enforces a complete read-only boundary:
 - **No file deletions:** The script never deletes any project files, backups, logs, or quarantined items.
-- **No registry modifications:** All writes are strictly restricted to compiling health audit files in the `outputs/` folder. [PROJECTS.md](file:///Users/alexanderanthony/PROJECTS.md) is never edited.
+- **No registry modifications:** All writes are strictly restricted to compiling health audit files in the `outputs/` folder. [PROJECTS.md](file://~/PROJECTS.md) is never edited.
 - **No internal folder moves or execution:** Scanned project target directories are inspected for metadata only; no child scripts are run within them.
 
 ## 📊 Audit & Monitor Framework

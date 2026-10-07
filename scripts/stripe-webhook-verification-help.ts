@@ -1,0 +1,86 @@
+import { COMMAND_REGISTRY } from '../config/commands.js';
+
+function printStripeWebhookVerificationHelp() {
+  console.log("=========================================");
+  console.log("STRIPE WEBHOOK SIGNATURE VERIFICATION GATE - HELP");
+  console.log("=========================================");
+  console.log("This module stages, validates, and compiles verification artifacts");
+  console.log("for transitioning mock Stripe events to live Stripe webhook signature");
+  console.log("verification -- all WITHOUT connecting to live Stripe APIs.");
+  console.log("\nCore Safety Rules Enforced:");
+  console.log("  1. No Live Stripe API: ALLOW_LIVE_STRIPE_API = false");
+  console.log("  2. No Payment Processing: ALLOW_PAYMENT_PROCESSING = false");
+  console.log("  3. No Webhook Forwarding: ALLOW_WEBHOOK_FORWARDING = false");
+  console.log("  4. Human Approval Required: REQUIRE_HUMAN_APPROVAL = true");
+  console.log("  5. Signature Verification Required: REQUIRE_SIGNATURE_VERIFICATION = true");
+  console.log("  6. Read-Only Staging: All output is advisory and read-only");
+  console.log("\n-----------------------------------------");
+  console.log("  COMMANDS:");
+  console.log("-----------------------------------------");
+  console.log("\n  status");
+  console.log("    Print module configuration, safety flags,");
+  console.log("    mock source status, and output directory");
+  console.log("    inventory.");
+  console.log("\n  audit-signatures");
+  console.log("    Scan mock webhook events and compile a");
+  console.log("    signature verification readiness report");
+  console.log("    with pattern detection across sentinel-os.");
+  console.log("\n  mock-event-log");
+  console.log("    Generate a structured log of all mock Stripe");
+  console.log("    events found in sentinel-os sources with");
+  console.log("    event type coverage analysis.");
+  console.log("\n  transition-plan");
+  console.log("    Compile a step-by-step transition plan from");
+  console.log("    mock to live Stripe webhook verification");
+  console.log("    including prerequisites and migration steps.");
+  console.log("\n  verification-report");
+  console.log("    Generate a verification readiness report");
+  console.log("    checking all prerequisites, safety flags,");
+  console.log("    and pipeline dependencies.");
+  console.log("\n  simulate-verify");
+  console.log("    Dry-run a mock webhook payload through");
+  console.log("    SHA-256 HMAC signature verification using");
+  console.log("    a locally generated test signing secret.");
+  console.log("\n  obsidian-export");
+  console.log("    Stage a verification summary for Obsidian");
+  console.log("    export via the Approved Write Gateway.");
+  console.log("\n-----------------------------------------");
+  console.log("  EXAMPLES:");
+  console.log("-----------------------------------------");
+  console.log("\n  npm run stripe-webhook-verification -- \"status\"");
+  console.log("  npm run stripe-webhook-verification -- \"audit-signatures\"");
+  console.log("  npm run stripe-webhook-verification -- \"mock-event-log\"");
+  console.log("  npm run stripe-webhook-verification -- \"transition-plan\"");
+  console.log("  npm run stripe-webhook-verification -- \"verification-report\"");
+  console.log("  npm run stripe-webhook-verification -- \"simulate-verify\"");
+  console.log("  npm run stripe-webhook-verification -- \"obsidian-export\"");
+  console.log("\n-----------------------------------------");
+  console.log("  SAFETY:");
+  console.log("-----------------------------------------");
+  console.log("  - No live Stripe API connections");
+  console.log("  - No payment processing or charges");
+  console.log("  - No webhook forwarding to external endpoints");
+  console.log("  - All signature verification uses local test secrets");
+  console.log("  - All output is read-only staging");
+  console.log("  - Human approval required for transition decisions");
+  console.log("\n-----------------------------------------");
+  console.log("  MOCK SOURCE PATHS:");
+  console.log("-----------------------------------------");
+  console.log("  - Settle Route: sentinel-os/app/api/mesh/settle/");
+  console.log("  - Settlement Bridge: sentinel-os/lib/settlement-bridge.ts");
+  console.log("  - Mesh Layer: sentinel-os/lib/mesh_layer.ts");
+
+  console.log("\n-----------------------------------------");
+  console.log("  REGISTERED COMMANDS:");
+  console.log("-----------------------------------------");
+  const targetCmds = COMMAND_REGISTRY.filter(c => c.name.includes('stripe-webhook-verification'));
+  for (const cmd of targetCmds) {
+    console.log(`\n  Command: npm run command -- "${cmd.name}"`);
+    console.log(`   Description: ${cmd.description}`);
+    console.log(`   Owning Agent: ${cmd.owningAgent}`);
+    console.log(`   Risk Level:   ${cmd.riskLevel.toUpperCase()}`);
+  }
+  console.log("\n=========================================");
+}
+
+printStripeWebhookVerificationHelp();

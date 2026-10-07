@@ -7,8 +7,8 @@ This report logs the configuration parameters, path structures, safety validatio
 *   **Mode:** offline-local
 *   **Audio Generation Enabled:** false
 *   **Model Download Enabled:** false
-*   **Model Directory:** /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper
-*   **Output Directory:** /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/tts_audio/audio_outputs
+*   **Model Directory:** ~/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper
+*   **Output Directory:** ~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/tts_audio/audio_outputs
 *   **Voice Profile:** oracle voice (Calibrated Calms)
 
 ## 🛡️ Source Queue Packet & Validation Context

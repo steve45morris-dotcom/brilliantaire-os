@@ -31,6 +31,6 @@ Enforce strict TypeScript (`strict: true`) across all apps, packages, and automa
   - `2026-05-29`: Initialized ADR.
 - **Future Review Date**: 2027-05-29
 - **Cross References**:
-  - [Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)
+  - [Engineering Standards](./02%20Engineering/Engineering%20Standards.md)
 
 *I build before burning.*

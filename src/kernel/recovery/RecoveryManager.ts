@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import { globalEventBus } from '../events/EventBus.js';
@@ -7,7 +8,7 @@ import { globalEventBus } from '../events/EventBus.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const VNP_BRIDGE_PATH = '/Users/alexanderanthony/.agents/voice_narrative.sh';
+const VNP_BRIDGE_PATH = path.join(os.homedir(), '.agents', 'voice_narrative.sh');
 
 export interface RecoveryLog {
   id: string;
@@ -22,7 +23,7 @@ export interface RecoveryLog {
 export class RecoveryManager {
   private logs: RecoveryLog[] = [];
   private checkpoints: Map<string, { [filePath: string]: string }> = new Map();
-  private backupDir = '/Users/alexanderanthony/.antigravity/checkpoints';
+  private backupDir = path.join(process.cwd(), '.antigravity', 'checkpoints');
 
   constructor() {
     // Bootstrap initial logs
@@ -45,7 +46,7 @@ export class RecoveryManager {
       }
 
       // Write to buffer for audit trail and speak on macOS
-      const VOICE_BUFFER = "/Users/alexanderanthony/.agents/voice_buffer.txt";
+      const VOICE_BUFFER = path.join(os.homedir(), '.agents', 'voice_buffer.txt');
       const cleanPhrase = phrase.replace(/"/g, '\\"');
       
       const dateStr = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -55,7 +56,7 @@ export class RecoveryManager {
         console.warn(`[VNP Warning] Failed to write to voice buffer: ${(e as Error).message}`);
       }
       
-      const cmd = `/Users/alexanderanthony/.agents/speak_serialized.sh "${cleanPhrase}" "P3"`;
+      const cmd = `${path.join(os.homedir(), '.agents', 'speak_serialized.sh')} "${cleanPhrase}" "P3"`;
       exec(cmd, { timeout: 8000 }, (err) => {
         if (err) {
           console.warn(`[VNP Error] Failed to speak phrase: ${err.message}`);

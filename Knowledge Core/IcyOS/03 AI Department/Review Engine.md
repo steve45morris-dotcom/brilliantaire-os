@@ -34,6 +34,6 @@ Audit code modifications against compliance guidelines, formatting rules, and te
 ## 📋 Document Metadata
 - **Version**: 1.0.0
 - **Cross References**:
-  - [AI Intelligence Specification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20AI%20Department/AI%20Intelligence%20Specification.md)
+  - [AI Intelligence Specification](./03%20AI%20Department/AI%20Intelligence%20Specification.md)
 
 *I build before burning.*

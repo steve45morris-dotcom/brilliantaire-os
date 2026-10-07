@@ -21,6 +21,6 @@ This framework guides tactical choices, architecture trade-offs, and prioritizat
 - **Purpose**: Guide decision-making.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)
+  - [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)
 
 *I build before burning.*

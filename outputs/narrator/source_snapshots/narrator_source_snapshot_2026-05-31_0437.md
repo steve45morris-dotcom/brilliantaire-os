@@ -658,19 +658,19 @@ Here are the workflow ideas extracted from recently harvested knowledge sources.
 
 - **Last Ingest:** 5/29/2026, 9:27:57 AM
 - **Vaults Scanned:**
-  - `/Users/alexanderanthony/AlexanderOSVault`
+  - `~/AlexanderOSVault`
 - **Top Relevant Files:**
-  - [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md) (Score: 25.5)
-  - [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md) (Score: 19.5)
-  - [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18)
-  - [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 17)
-  - [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md) (Score: 16.5)
+  - [Mission Control](file://~/AlexanderOSVault/Mission Control.md) (Score: 25.5)
+  - [Brilliantaire OS was reframed from a music-adjacent brand concept into a broader creative-technology operating system, then handed off to Antigravity after the user rejected the initial UI as cheap and unprofessional.](file://~/AlexanderOSVault/04 Claude/Codex Memories/rollout_summaries/2026-05-27T17-30-24-xtKz-brilliantaire_os_antigravity_handoff.md) (Score: 19.5)
+  - [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18)
+  - [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 17)
+  - [Task Group: ~/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file://~/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md) (Score: 16.5)
 - **Extracted Next Actions:**
-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/Alexande
+  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md))
+  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md))
+  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md))
+  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md))
+  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/Alexande
 ...[truncated]
 
 #### NEXT_ACTIONS.md
@@ -813,7 +813,7 @@ The **Command Router** serves as the single safe entry point to execute scripts 
 
 To ensure complete control and system safety, the router enforces the following security boundaries:
 * **No Arbitrary Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn` with `shell: false`. No `eval` or shell injection vectors exist.
-* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
+* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
 * **Audit Logging:** Every command execution, whether successful, failed, or blocked, is logged with metadata to `outputs/command_logs/command_log_YYYY-MM-DD.md`.
 * **Exact-Name Rules:** Medium-risk or High-risk commands containing `requiresExactName: true` cannot be run via aliases. They must be typed exactly to ensure explicit developer intent.
 * **High-Risk Confirmation Rule:** Commands with `riskLevel: 'high'` require the explicit addition of the `--confirm` flag (e.g. `npm run command -- "approve-write" --confirm`). Without the flag, execution is blocked.

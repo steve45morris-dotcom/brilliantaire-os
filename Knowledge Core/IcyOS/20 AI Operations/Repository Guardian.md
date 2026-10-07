@@ -7,9 +7,9 @@ The Repository Guardian acts as a validation engine verifying that every codebas
 
 ## 🧭 Pre-Commit Validation Loop
 The Guardian checks:
-- **Architecture Drift**: Validate against [Architecture Drift Checklist](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Architecture%20Drift%20Checklist.md).
-- **Documentation Alignment**: Validate against [Documentation Sync Checklist](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Documentation%20Sync%20Checklist.md).
-- **Test Integrity**: Validate against [Test Requirement Checklist](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/20%20AI%20Operations/Test%20Requirement%20Checklist.md).
+- **Architecture Drift**: Validate against [Architecture Drift Checklist](./20%20AI%20Operations/Architecture%20Drift%20Checklist.md).
+- **Documentation Alignment**: Validate against [Documentation Sync Checklist](./20%20AI%20Operations/Documentation%20Sync%20Checklist.md).
+- **Test Integrity**: Validate against [Test Requirement Checklist](./20%20AI%20Operations/Test%20Requirement%20Checklist.md).
 
 ---
 

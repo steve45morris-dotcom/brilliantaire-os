@@ -1,6 +1,48 @@
 # 🎯 Next Actions
 
 ## Do Now
+- [x] Phase 22H: Build Documentation Drift Detector
+- [x] Phase 22H: Create config/documentation-drift-detector.ts with safety flags and drift categories
+- [x] Phase 22H: Create scripts/documentation-drift-detector.ts with 7 CLI commands (status, scan-indexes, audit-commands, audit-pointers, audit-narration, drift-report, obsidian-export)
+- [x] Phase 22H: Create scripts/documentation-drift-detector-help.ts
+- [x] Phase 22H: Create tools/documentation_drift_detector_bridge.ts bridge status API
+- [x] Phase 22H: Create 6 mustache templates under templates/documentation_drift_detector/
+- [x] Phase 22H: Register npm scripts (doc-drift, doc-drift-help)
+- [x] Phase 22H: Register command registry entries with requiresExactName constraint
+- [x] Phase 22H: Propagate to all 8 system indexes
+- [x] Phase 22I: Build Bridge Health Monitor
+- [x] Phase 22I: Create config/bridge-health-monitor.ts with safety flags and bridge modules array
+- [x] Phase 22I: Create scripts/bridge-health-monitor.ts with 7 CLI commands (status, scan-bridges, health-report, bridge-detail, anomaly-scan, dashboard-export, obsidian-export)
+- [x] Phase 22I: Create scripts/bridge-health-monitor-help.ts
+- [x] Phase 22I: Create tools/bridge_health_monitor_bridge.ts bridge status API
+- [x] Phase 22I: Create 6 mustache templates under templates/bridge_health_monitor/
+- [x] Phase 22I: Register npm scripts (bridge-health, bridge-health-help)
+- [x] Phase 22I: Register command registry entries with requiresExactName constraint
+- [x] Phase 22I: Propagate to all 8 system indexes
+- [x] IcyOS: Build Audit Log page with event filtering and summary stats
+- [x] IcyOS: Create /api/audit-log endpoint returning audit log snapshot
+- [x] IcyOS: Create /audit-log page with category filter tabs, event list, summary cards
+- [x] IcyOS: Add Audit Log nav entry to sidebar between Status and Billing
+- [x] Config Tests: Create config/config-modules.test.ts with 178 structural contract tests across 16 module configs
+- [x] IcyOS: Build Legal & Compliance page with Terms of Service, Privacy Policy, and Acceptable Use Policy
+- [x] IcyOS: Create /api/legal endpoint returning legal document snapshot
+- [x] IcyOS: Create /legal page with document selector tabs, section rendering, company info footer
+- [x] IcyOS: Add Legal nav entry to sidebar between Billing and Settings
+- [x] Bridge Tests: Create tools/bridge-modules.test.ts with 208 structural contract tests across 13 bridge modules
+- [x] Phase 22G: Build System Diagnostics Runner
+- [x] Phase 22G: Create config/system-diagnostics-runner.ts with safety flags and diagnostic categories
+- [x] Phase 22G: Create scripts/system-diagnostics-runner.ts with 7 CLI commands (status, run-tests, module-health, config-audit, integration-status, diagnostics-report, obsidian-export)
+- [x] Phase 22G: Create scripts/system-diagnostics-runner-help.ts
+- [x] Phase 22G: Create tools/system_diagnostics_runner_bridge.ts bridge status API
+- [x] Phase 22G: Create 6 mustache templates under templates/system_diagnostics_runner/
+- [x] Phase 22G: Register npm scripts (system-diagnostics, system-diagnostics-help)
+- [x] Phase 22G: Register command registry entries with requiresExactName constraint
+- [x] Phase 22G: Propagate to all 8 system indexes (SYSTEM_STATUS, COMMANDS, VOICE_COMMANDS, voice-commands.ts, NARRATOR, narrator-sources.ts, MESH_TELEMETRY, dashboard-data.json)
+- [x] IcyOS: Build SLA Monitoring Dashboard page
+- [x] IcyOS: Create /api/sla health check endpoint
+- [x] IcyOS: Create /sla-monitoring page with service health, uptime cards, and incident history
+- [x] IcyOS: Add SLA nav entry to sidebar
+
 - [x] Register ICYFLAMZE CORE project (Phase 14A)
 - [x] Stage Obsidian vault note (Phase 14A)
 - [x] Generate Season 1 summary (Phase 14A)
@@ -26,14 +68,14 @@
 - [x] Generate assembly checklist (Phase 14D)
 - [x] Generate manual generation guide (Phase 14D)
 - [x] Stage Episode 1 asset queue Obsidian note (Phase 14D)
-- [ ] Build Episode 1 Manual Render Intake (Phase 14E)
-- [ ] Scan incoming rendered assets (Phase 14E)
-- [ ] Validate incoming assets (Phase 14E)
-- [ ] Generate visual continuity checklist (Phase 14E)
-- [ ] Generate audio review checklist (Phase 14E)
-- [ ] Generate assembly readiness report (Phase 14E)
-- [ ] Generate revision log (Phase 14E)
-- [ ] Stage render intake Obsidian note (Phase 14E)
+- [x] Build Episode 1 Manual Render Intake (Phase 14E)
+- [x] Scan incoming rendered assets (Phase 14E)
+- [x] Validate incoming assets (Phase 14E)
+- [x] Generate visual continuity checklist (Phase 14E)
+- [x] Generate audio review checklist (Phase 14E)
+- [x] Generate assembly readiness report (Phase 14E)
+- [x] Generate revision log (Phase 14E)
+- [x] Stage render intake Obsidian note (Phase 14E)
 - [ ] Prepare manual assembly once readiness passes (Phase 14E)
 - [ ] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
 - [ ] Manually generate Batch 1 audio assets (Phase 14E-R)
@@ -42,15 +84,12 @@
 - [x] Integrate Higgsfield AI Bridge into tool stacks (Phase 15A)
 - [x] Wire Higgsfield AI into command registry, Taskfile, and package.json (Phase 15A)
 - [x] Connect Higgsfield AI to ICYFLAMZE CORE and Narrator pipelines (Phase 15A)
-- [ ] Stage first production render request via Higgsfield AI Bridge (Phase 15A)
-- [ ] Validate narrator sync pipeline end-to-end with storyboard (Phase 15A)
-- [ ] Review render requests against IP Bible visual specifications (Phase 15A)
+- [x] Stage first production render request via Higgsfield AI Bridge (Phase 15A)
+- [x] Validate narrator sync pipeline end-to-end with storyboard (Phase 15A)
+- [x] Review render requests against IP Bible visual specifications (Phase 15A)
 - [x] Integrate Local Inference Server Bridge into tool stacks (Phase 15B)
 - [x] Wire Local Inference Server into command registry, Taskfile, and package.json (Phase 15B)
 - [x] Generate MCP configuration guide for Claude Code installation (Phase 15B)
-- [ ] Copy MCP config to local ~/.claude/settings.json and verify server connection (Phase 15B)
-- [ ] Run first live chat request through Local Inference Server (Phase 15B)
-- [ ] Validate health-check with ALLOW_LIVE_INFERENCE_CALLS enabled (Phase 15B)
 - [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
 - [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
 - [x] Add operational intelligence scripts (audit, brief, next)
@@ -353,7 +392,6 @@
 - [x] Phase 11O: Generate prompt pack ideas
 - [x] Phase 11O: Generate staged Obsidian intelligence note
 - [x] Phase 11O: Generate response intelligence summary
-- [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
 
 ## Do Next
 - [x] Phase 11N: Build NotebookLM MCP Live Adapter
@@ -373,7 +411,6 @@
 - [x] Generate graph report
 - [x] Inspect latest graph
 - [x] Review high-risk weak claims
-- [ ] Prepare vector index only after graph review
 
 ## Do Next
 - [x] Phase 11Q: Build Grounded Narrator Review Queue
@@ -421,8 +458,6 @@
 - [x] Phase 11V: Generate local model inventory
 - [x] Phase 11V: Verify model placement
 - [x] Phase 11V: Generate next-step report
-- [ ] Phase 11V: Manually place Piper model files
-- [ ] Phase 11V: Rerun model gate after placement
 - [x] Phase 11W: Build Offline Voice Session Recorder
 - [x] Phase 11W: Generate manual recording guide
 - [x] Phase 11W: Create narrator briefing session metadata
@@ -577,7 +612,7 @@
 - [x] Phase 12A: Create templates for switch report, approved/rejected candidates, manifest, locks, checklists, and next actions
 - [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
 - [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
-- [ ] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
+- [x] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
@@ -685,11 +720,11 @@
 - [x] Generate approved implementation packet
 - [x] Generate manual execution brief
 - [x] Review approved packet before any implementation work
-- [ ] Build Manual Implementation Packet Compiler
-- [ ] Compile final manual build prompt
-- [ ] Generate implementation checklist
-- [ ] Generate safety review
-- [ ] Generate final handoff
+- [x] Build Manual Implementation Packet Compiler
+- [x] Compile final manual build prompt
+- [x] Generate implementation checklist
+- [x] Generate safety review
+- [x] Generate final handoff
 - [ ] Review final build prompt before implementation
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
@@ -808,20 +843,28 @@
 - [x] Phase 13H: Create a local manual completion loop that gives Commander a tiny one-page checklist for completing the blocked first evidence task, saving the markdown file, logging the attempt, and rerunning only the required review/gate commands in the correct order.
 - [x] Phase 13I: Grinders Keep First Evidence Completion Detector
 - [x] Phase 13I: Create a local detector that runs after Commander manually follows the Phase 13H loop, checking whether the expected session log and markdown file now exist, without reading or validating evidence content.
-- [ ] Phase 13J: Grinders Keep Local Verification Rerun Planner
-- [ ] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
+- [x] Phase 13J: Grinders Keep Local Verification Rerun Planner
+- [x] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
 
 
 ## Schedule
-- [ ] Prepare Obsidian sync layer later
-- [ ] Build automated release pipeline integration for Tree Groove Records
-- [ ] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
-- [ ] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
-- [ ] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
-- [ ] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
+- [x] Prepare Obsidian sync layer
+- [x] Build automated release pipeline integration for Tree Groove Records
+- [x] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
+- [x] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
+- [x] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
+- [x] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
 
 ## Pause
 - [ ] Local web interface (focusing on pure CLI operations first)
+<!-- Parked 2026-10-06: open, but nothing current depends on them. Episode 1 narration uses ElevenLabs, not Piper; P.J.K. uses cloud AI keys, not the local inference server. Move one back under Do Now or Do Next to restart it. -->
+- [ ] Copy MCP config to local ~/.claude/settings.json and verify server connection (Phase 15B)
+- [ ] Run first live chat request through Local Inference Server (Phase 15B)
+- [ ] Validate health-check with ALLOW_LIVE_INFERENCE_CALLS enabled (Phase 15B)
+- [ ] Decide whether response outputs should be staged through Approved Obsidian Write Gateway
+- [ ] Prepare vector index only after graph review
+- [ ] Phase 11V: Manually place Piper model files
+- [ ] Phase 11V: Rerun model gate after placement
 
 ## Archive
 - [ ] Legacy bash scripts replaced by typescript runners
@@ -830,33 +873,33 @@
 
 - **Last Ingest:** 5/31/2026, 5:20:15 AM
 - **Vaults Scanned:**
-  - `/Users/alexanderanthony/AlexanderOSVault`
+  - `~/AlexanderOSVault`
 - **Top Relevant Files:**
-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
-  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+  - [🛰️ Daily Operating Brief - 2026-05-29](file://~/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
 - **Extracted Next Actions:**
-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] Create next-action generator (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 - **Extracted Blockers:**
-  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: ~/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file://~/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file://~/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
 - **Extracted Decisions:**
-  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))

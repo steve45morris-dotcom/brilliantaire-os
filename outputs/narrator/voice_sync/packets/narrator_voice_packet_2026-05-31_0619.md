@@ -19,5 +19,5 @@ System operational brief for 5/31/2026. Telemetry parsing verified. Campaign pre
 ---
 
 ### Source Context
-- **Source Voice Script Path:** `/Users/alexanderanthony/outputs/narrator/voice_scripts/voice_narration_script_2026-05-31_0618.md`
-- **Source Live Feed Path:** `/Users/alexanderanthony/outputs/narrator/live_feed/narrator_live_feed.json`
+- **Source Voice Script Path:** `~/outputs/narrator/voice_scripts/voice_narration_script_2026-05-31_0618.md`
+- **Source Live Feed Path:** `~/outputs/narrator/live_feed/narrator_live_feed.json`

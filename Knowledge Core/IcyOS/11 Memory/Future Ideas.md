@@ -27,8 +27,8 @@ This document details speculative features, long-term expansion ideas, and integ
   - `2026-07-02`: Created initial Future Ideas board.
 - **Future Expansion**: Add interactive scoring systems.
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
-  - [Roadmap](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/14%20Roadmap/Roadmap.md)
+  - [START_HERE](./START_HERE.md)
+  - [Roadmap](./14%20Roadmap/Roadmap.md)
 
 *I build before burning.*
 

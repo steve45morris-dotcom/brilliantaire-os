@@ -3,7 +3,7 @@
 This report verifies if local Piper voice model packages are ready in the sandbox models folder.
 
 ## 🗃️ Local Model Directory Check
-*   **Model Directory:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
+*   **Model Directory:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
 *   **Directory Exists:** Yes
 *   **Model Files Found:** No
 *   **Supported Extensions (.onnx, .onnx.json):** .onnx, .onnx.json

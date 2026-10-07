@@ -37,3 +37,9 @@ export const outputFolders = {
   checksums: path.join(REPO_ROOT, 'outputs/asr_model_gate/checksums'),
   logs: path.join(REPO_ROOT, 'outputs/asr_model_gate/logs')
 };
+
+// Speculative Decoding Settings
+export const SPECULATIVE_DECODING_ENABLED = true;
+export const SPECULATIVE_DRAFT_MODEL = 'ggml-tiny.bin';
+export const SPECULATIVE_TARGET_MODEL = 'ggml-base.en.bin';
+export const SPECULATIVE_VERIFICATION_THRESHOLD = 0.85;

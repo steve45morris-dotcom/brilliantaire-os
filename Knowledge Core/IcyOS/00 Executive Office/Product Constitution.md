@@ -34,7 +34,7 @@ All user interfaces must follow the "Supernova Aesthetics" spec. UI components m
   - `2026-07-02`: Created initial draft of Product Constitution.
 - **Future Expansion**: Add specific compliance scoring metrics.
 - **Cross References**:
-  - [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Founder/Founder%20Intent.md)
-  - [Product Requirements](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Product/Product%20Requirements.md)
+  - [Founder Intent](./00%20Founder/Founder%20Intent.md)
+  - [Product Requirements](./02%20Product/Product%20Requirements.md)
 
 *I build before burning.*

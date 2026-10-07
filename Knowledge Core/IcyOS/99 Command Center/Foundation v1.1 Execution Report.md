@@ -37,8 +37,8 @@ Created new directories and execution layers:
 - **Decisions ADRs**: `ADR-0004 AI Governance Layer.md`, `ADR-0005 Context Builder.md`, `ADR-0006 Repository Guardian.md`, `ADR-0007 Icy CLI.md` under `13 Decisions/`.
 
 ### Updated:
-- Updated ADR records indexes in [Architecture Decision Records](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Architecture%20Decision%20Records.md) and [Decision Log](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Decision%20Log.md).
-- Updated dashboards in [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md), [Current Priority](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Current%20Priority.md), [Current Sprint](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Current%20Sprint.md), [Open Decisions](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Open%20Decisions.md), [Recent Changes](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/Recent%20Changes.md), and [Current State](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Current%20State.md).
+- Updated ADR records indexes in [Architecture Decision Records](./13%20Decisions/Architecture%20Decision%20Records.md) and [Decision Log](./13%20Decisions/Decision%20Log.md).
+- Updated dashboards in [START HERE](./99%20Command%20Center/START%20HERE.md), [Current Priority](./99%20Command%20Center/Current%20Priority.md), [Current Sprint](./99%20Command%20Center/Current%20Sprint.md), [Open Decisions](./99%20Command%20Center/Open%20Decisions.md), [Recent Changes](./99%20Command%20Center/Recent%20Changes.md), and [Current State](./11%20Memory/Current%20State.md).
 
 ---
 

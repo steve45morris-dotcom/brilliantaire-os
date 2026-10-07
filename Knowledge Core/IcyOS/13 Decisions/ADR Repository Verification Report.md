@@ -86,8 +86,8 @@ Potential additional ADR review:
 
 ## Cross References
 
-- [Architecture Decision Records](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Architecture%20Decision%20Records.md)
-- [Decision Log](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Decision%20Log.md)
-- [ADR Repository Health Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/ADR%20Repository%20Health%20Report.md)
+- [Architecture Decision Records](./13%20Decisions/Architecture%20Decision%20Records.md)
+- [Decision Log](./13%20Decisions/Decision%20Log.md)
+- [ADR Repository Health Report](./13%20Decisions/ADR%20Repository%20Health%20Report.md)
 
 *I build before burning.*

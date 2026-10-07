@@ -28,6 +28,6 @@ Upon finishing a strategic milestone, write a log file into `15 Daily Notes/` ma
 - **Purpose**: Guide session logging and daily retrospective notes.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START_HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/START_HERE.md)
+  - [START_HERE](./START_HERE.md)
 
 *I build before burning.*

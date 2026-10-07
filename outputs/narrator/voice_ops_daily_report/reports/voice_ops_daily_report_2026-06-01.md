@@ -1,6 +1,6 @@
 # 📋 Voice Ops Daily Report: 2026-06-01
 *Generated Timestamp: 2026-06-01T07:55:56.404Z*
-*Project Root Workspace: /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os*
+*Project Root Workspace: ~/Projects/antigravity-lab/one-system/brilliantaire-os*
 *Report Target ID: voice_ops_report_2026-06-01*
 
 ---

@@ -34,6 +34,6 @@ Supernova uses high-contrast HSL Tailored Neon accents set against deep cinemati
   - `2026-07-02`: Created initial Supernova Design System spec.
 - **Future Expansion**: Add light-mode variables and theme generator patterns.
 - **Cross References**:
-  - [Frontend Guide](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/07%20Frontend/Frontend%20Guide.md)
+  - [Frontend Guide](./07%20Frontend/Frontend%20Guide.md)
 
 *I build before burning.*

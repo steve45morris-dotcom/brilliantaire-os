@@ -20,7 +20,7 @@ export class SessionTracker {
       actor,
       origin: type === 'cli' ? 'Terminal' : 'Dashboard',
       projectId,
-      workspaceId: '/Users/alexanderanthony',
+      workspaceId: process.cwd(),
       activeTaskIds: [],
       summary: `Active ${type} session created`
     };

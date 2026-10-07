@@ -2,7 +2,8 @@
 # Enhanced Narrative Logic - Integrated with Oracle Voice Bridge
 # Writing to the buffer ensures reliable speech via the TRAPALRM listener
 
-VOICE_BUFFER="/Users/alexanderanthony/.agents/voice_buffer.txt"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VOICE_BUFFER="${SCRIPT_DIR}/voice_buffer.txt"
 
 # Register all 32 phrases
 get_phrase() {

@@ -14,7 +14,7 @@ The **Command Router** serves as the single safe entry point to execute scripts 
 
 To ensure complete control and system safety, the router enforces the following security boundaries:
 * **No Arbitrary Shell Command execution:** Direct invocation of commands is prohibited. Child processes are spawned directly using `child_process.spawn` with `shell: false`. No `eval` or shell injection vectors exist.
-* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file:///Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
+* **Strict Whitelisting:** Any input that does not match an entry in the pre-approved [config/commands.ts](file://~/Projects/antigravity-lab/one-system/brilliantaire-os/config/commands.ts) registry is immediately blocked, exiting with code 1.
 * **Audit Logging:** Every command execution, whether successful, failed, or blocked, is logged with metadata to `outputs/command_logs/command_log_YYYY-MM-DD.md`.
 * **Exact-Name Rules:** Medium-risk or High-risk commands containing `requiresExactName: true` cannot be run via aliases. They must be typed exactly to ensure explicit developer intent. For example, `notebooklm-response-intelligence` and `notebooklm-grounded-index-graph` enforce exact-name matching, and running them via their registered aliases (e.g., `response intelligence` or `intelligence graph`) is blocked at runtime.
 * **High-Risk Confirmation Rule:** Commands with `riskLevel: 'high'` require the explicit addition of the `--confirm` flag (e.g. `npm run command -- "approve-write" --confirm`). Without the flag, execution is blocked.
@@ -22,6 +22,8 @@ To ensure complete control and system safety, the router enforces the following 
 ---
 
 ## 3. Allowed Commands Registry
+
+Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `creative`, `release`, `knowledge`, `research`, `finance` or `ops` (`COMMAND_CATEGORIES`). It groups commands by what they are for, so P.J.K. can answer "what brilliantaire commands are there for audio?" with the whole group instead of a keyword match. `npm run command-help` prints the category column. The field was added without a `COMMAND_REGISTRY_FORMAT_VERSION` bump, because P.J.K.'s reader ignores keys it does not know.
 
 | Command | Aliases | Owning Agent | Risk Level | Exact Name Required | Description |
 |---|---|---|---|---|---|
@@ -38,6 +40,8 @@ To ensure complete control and system safety, the router enforces the following 
 | `icyflamze-core-episode-1-render-intake` | `render intake`, `episode render` | Creative Architect | Medium | Yes | Runs ICYFLAMZE CORE Episode 1 Trailer Render Intake compilation subcommands. |
 | `brief` | `report`, `summary` | OS Architect | Low | No | Compiles and prints active projects, priorities, and actions. |
 | `next` | `actions`, `next-actions` | Action Router | Low | No | Lists grouped action checklists. |
+| `next-tick` | `tick-action` | Action Router | Low | No | Ticks one Do Now / Do Next item by its key; with no key, lists open items and their keys. P.J.K. stages it for approval. |
+| `next-reopen` | `reopen-action` | Action Router | Low | No | Unticks one item by its key; with no key, lists ticked items and their keys. |
 | `agents` | `council`, `roster` | OS Architect | Low | No | Shows active council properties. |
 | `ingest` | `scan-notes`, `obsidian` | Knowledge Librarian | Medium | Yes | Recursively scans Obsidian vault notes (Read-Only). |
 | `daily-brief` | `daily`, `today` | Action Router | Low | No | Compiles daily briefs markdown file outputs. |
@@ -329,50 +333,10 @@ To ensure complete control and system safety, the router enforces the following 
 | `grinders-keep-post-launch-review-ledger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Post-Launch Review Ledger. |
 | `grinders-keep-continuous-improvement-loop` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process and analyze post-launch telemetry, recurring blockers, and signals to recommend process upgrades. |
 | `grinders-keep-continuous-improvement-loop-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Continuous Improvement Loop. |
-| `grinders-keep-evidence-collection-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Identify missing evidence and create concrete collection tasks for Commander. |
-| `grinders-keep-evidence-collection-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Queue. |
-| `grinders-keep-evidence-intake-validator` | *(none)* | Creative Revenue Strategist | Medium | Yes | Validate, classify, score manually collected evidence and stage downstream feeds. |
-| `grinders-keep-evidence-intake-validator-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Intake Validator. |
 | `grinders-keep-downstream-feed-router` | *(none)* | Creative Revenue Strategist | Medium | Yes | Discover validated evidence and stage routing configurations for downstream target phases. |
 | `grinders-keep-downstream-feed-router-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Downstream Feed Router. |
-| `grinders-keep-manual-evidence-action-board` | *(none)* | Creative Revenue Strategist | Medium | Yes | Create prioritized checklists of missing manual evidence, reports, and blocked routes for the Commander. |
-| `grinders-keep-manual-evidence-action-board-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Manual Evidence Action Board. |
-| `grinders-keep-evidence-completion-tracker` | *(none)* | Creative Revenue Strategist | Medium | Yes | Audit local filesystem evidence check status, validation states, and build manifests for validator. |
-| `grinders-keep-evidence-completion-tracker-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Completion Tracker. |
-| `grinders-keep-evidence-revalidation-trigger` | *(none)* | Creative Revenue Strategist | Medium | Yes | Stage revalidation plans and commands to trigger evidence validation in Phase 12O. |
-| `grinders-keep-evidence-revalidation-trigger-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Evidence Revalidation Trigger. |
-| `grinders-keep-evidence-loop-closure-auditor` | *(none)* | Workflow Auditor | Medium | Yes | Audit the end-to-end evidence loop and generate closure readiness reports. |
-| `grinders-keep-evidence-loop-closure-auditor-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Loop Closure Auditor. |
-| `grinders-keep-evidence-pack-builder` | *(none)* | Workflow Auditor | Medium | Yes | Gathers unresolved evidence tasks and packages them into one Commander collection packet. |
-| `grinders-keep-evidence-pack-builder-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Builder. |
 | `grinders-keep-evidence-pack-completion-importer` | *(none)* | Workflow Auditor | Medium | Yes | Scans target folders for manually placed evidence completions and stages them for tracker sync. |
 | `grinders-keep-evidence-pack-completion-importer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Pack Completion Importer. |
-| `grinders-keep-evidence-tracker-sync-adapter` | *(none)* | Workflow Auditor | Medium | Yes | Sync adapter mapping imported Phase 12V outputs to expected Phase 12R tracker input files. |
-| `grinders-keep-evidence-tracker-sync-adapter-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Sync Adapter. |
-| `grinders-keep-evidence-tracker-manual-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Manual rerun planner evaluating sync outputs and preparing Phase 12R manual execution sheets. |
-| `grinders-keep-evidence-tracker-manual-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Tracker Manual Rerun Planner. |
-| `grinders-keep-evidence-collection-workbench` | *(none)* | Workflow Auditor | Medium | Yes | Centralized commander-facing evidence collection workbench for staging manual proofs. |
-| `grinders-keep-evidence-collection-workbench-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Workbench. |
-| `grinders-keep-evidence-collection-intake-lock` | *(none)* | Workflow Auditor | Medium | Yes | Local intake lock freezing task definitions and target paths from Phase 12Y. |
-| `grinders-keep-evidence-collection-intake-lock-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Intake Lock. |
-| `grinders-keep-evidence-collection-execution-guide` | *(none)* | Workflow Auditor | Medium | Yes | Generate copy-pasteable manual collection steps and prompt packs for frozen targets. |
-| `grinders-keep-evidence-collection-execution-guide-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Execution Guide. |
-| `grinders-keep-evidence-collection-session-logger` | *(none)* | Workflow Auditor | Medium | Yes | Local session logger aggregating manual evidence collection attempts and blockers. |
-| `grinders-keep-evidence-collection-session-logger-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Session Logger. |
-| `grinders-keep-evidence-session-import-bridge` | *(none)* | Workflow Auditor | Medium | Yes | Local session import bridge mapping manual evidence attempts to importer items. |
-| `grinders-keep-evidence-session-import-bridge-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Session Import Bridge. |
-| `grinders-keep-evidence-proof-review-board` | *(none)* | Workflow Auditor | Medium | Yes | Local Commander-facing proof review board dashboard summarizing attempts, bridges, and status. |
-| `grinders-keep-evidence-proof-review-board-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence Collection Proof Review Board. |
-| `grinders-keep-evidence-first-item-collection-packet` | *(none)* | Workflow Auditor | Medium | Yes | Focused manual collection packet for the highest-priority locked evidence task. |
-| `grinders-keep-evidence-first-item-collection-packet-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Evidence First-Item Collection Packet. |
-| `grinders-keep-first-evidence-attempt-reviewer` | *(none)* | Workflow Auditor | Medium | Yes | Local reviewer auditing manual first evidence collection attempt and target file presence. |
-| `grinders-keep-first-evidence-attempt-reviewer-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Attempt Reviewer. |
-| `grinders-keep-first-evidence-importer-gate` | *(none)* | Workflow Auditor | Medium | Yes | Local gate deciding manual handoff eligibility for first evidence item completed by Commander. |
-| `grinders-keep-first-evidence-importer-gate-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Importer Gate. |
-| `grinders-keep-first-evidence-manual-completion-loop` | *(none)* | Workflow Auditor | Medium | Yes | One-page checklist and manual sequence for completing the blocked first evidence task. |
-| `grinders-keep-first-evidence-manual-completion-loop-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Manual Completion Loop. |
-| `grinders-keep-first-evidence-completion-detector` | *(none)* | Workflow Auditor | Medium | Yes | Scan local folders and check if manual evidence steps are completed. |
-| `grinders-keep-first-evidence-completion-detector-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep First Evidence Completion Detector. |
 | `grinders-keep-local-verification-rerun-planner` | *(none)* | Workflow Auditor | Medium | Yes | Compile manual rerun instructions for the evidence verification workflow after manual completion. |
 | `grinders-keep-local-verification-rerun-planner-help` | *(none)* | Workflow Auditor | Low | Yes | Print help documentation for Grinders Keep Local Verification Rerun Planner. |
 | `duplicate-cleanup-help` | `cleanup help`, `duplicate help` | Workflow Auditor | Low | No | Print help documentation for Duplicate Cleanup Quarantine engine commands. |
@@ -401,8 +365,30 @@ To ensure complete control and system safety, the router enforces the following 
 | `higgsfield-ai` | `higgs`, `higgsfield`, `video ai` | Creative Architect | Medium | Yes | Execute Higgsfield AI Bridge render staging and scene management commands. |
 | `local-inference-help` | `inference help`, `local inference help` | Prompt Engineer | Low | No | Print help menu for the Local Inference Server Bridge CLI. |
 | `local-inference` | `inference`, `local inference` | Prompt Engineer | Medium | Yes | Execute Local Inference Server Bridge chat staging and prompt management commands. |
-
-
+| `render-intake-help` | `render intake help`, `intake help` | Creative Architect | Low | No | Print help menu for the Episode 1 Manual Render Intake CLI. |
+| `render-intake` | `render intake`, `intake` | Creative Architect | Medium | Yes | Execute Episode 1 Manual Render Intake scanning, validation, and readiness commands. |
+| `grinders-keep-verification-rerun-planner-help` | `rerun planner help`, `verification rerun help` | Workflow Auditor | Low | No | Print help menu for the Verification Rerun Planner CLI. |
+| `grinders-keep-verification-rerun-planner` | `rerun planner`, `verification rerun` | Workflow Auditor | Medium | Yes | Execute Verification Rerun Planner commands for evidence collection task scheduling. |
+| `asr-human-approval-selection-packet-help` | `asr approval help`, `asr selection help` | Workflow Auditor | Low | No | Print help menu for the Offline ASR Human Approval Selection Packet CLI. |
+| `asr-human-approval-selection-packet` | `asr approval`, `asr selection` | Workflow Auditor | Medium | Yes | Stage and manage offline ASR candidate evaluation, model selection, and human approval decisions. |
+| `stripe-webhook-verification-help` | `stripe help`, `webhook help` | Build Operator | Low | No | Print help menu for the Stripe Webhook Signature Verification Gate CLI. |
+| `stripe-webhook-verification` | `stripe webhook`, `webhook verify` | Build Operator | Medium | Yes | Audit mock Stripe events, compile transition plans, and simulate webhook signature verification. |
+| `zk-webhook-verification-help` | `zk webhook help`, `zk proof help` | Build Operator | Low | No | Print help menu for the Zero-Knowledge Webhook Verification Proofs CLI. |
+| `zk-webhook-verification` | `zk webhook`, `zk proof` | Build Operator | Medium | Yes | Compile and verify ZK proofs for webhook transaction payloads. |
+| `micro-product-tree-groove-connector-help` | `tree groove help`, `micro product help` | Creative Revenue Strategist | Low | No | Print help menu for the Micro-Product Tree Groove Records Connector CLI. |
+| `micro-product-tree-groove-connector` | `tree groove`, `micro product` | Creative Revenue Strategist | Medium | Yes | Map micro-product ledger entries to Tree Groove Records release catalog and stage distribution plans. |
+| `live-microphone-audio-streamer-help` | `audio streamer help`, `lmas help` | Creative Architect | Low | No | Print help menu for the Live Microphone Audio Streamer Daemon Expansion CLI. |
+| `live-microphone-audio-streamer` | `audio streamer`, `lmas` | Creative Architect | Medium | Yes | Stage daemon configs, scan audio models, validate pipeline, and simulate audio streaming parameters. |
+| `obsidian-sync-layer-help` | `obsidian sync help`, `osl help` | Knowledge Librarian | Low | No | Print help menu for the Obsidian Sync Layer unified vault sync orchestration CLI. |
+| `obsidian-sync-layer` | `obsidian sync`, `osl` | Knowledge Librarian | Medium | Yes | Scan module exports, compile sync manifests, preview vault routing, and report sync health for Obsidian integration. |
+| `tree-groove-release-pipeline-help` | `release pipeline help`, `tgrp help` | Creative Revenue Strategist | Low | No | Print help menu for the Tree Groove Records Release Pipeline CLI. |
+| `tree-groove-release-pipeline` | `release pipeline`, `tgrp` | Creative Revenue Strategist | Medium | Yes | Orchestrate release packaging, quality gates, metadata validation, platform submission staging, and pipeline reporting for Tree Groove Records. |
+| `system-diagnostics-help` | `diagnostics help`, `sdr help` | Build Operator | Low | No | Print help menu for the System Diagnostics Runner CLI. |
+| `system-diagnostics` | `diagnostics`, `sdr` | Build Operator | Medium | Yes | Run unified system health checks, test suite execution, module config audits, integration status scans, and comprehensive diagnostics reports. |
+| `doc-drift-help` | `drift help`, `documentation drift help` | Workflow Auditor | Low | No | Print help menu for the Documentation Drift Detector CLI. |
+| `doc-drift` | `drift`, `documentation drift` | Workflow Auditor | Medium | Yes | Scan system indexes for cross-reference consistency, audit command docs, check stale pointers, and verify narrator source alignment. |
+| `bridge-health-help` | `bhm help`, `bridge health help` | Build Operator | Low | No | Print help menu for the Bridge Health Monitor CLI. |
+| `bridge-health` | `bhm`, `bridge health` | Build Operator | Medium | Yes | Aggregate health status from all 15 bridge modules with safety flag validation, export checks, and unified reporting. |
 
 
 ---

@@ -4,7 +4,7 @@
 ## Recording Attributes
 - Session ID: `voice_session_test_voice_session_2026-05-31_152643`
 - Operator Name Tag: `test_voice_session`
-- Audio File Path: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings/voice_session_test_voice_session_2026-05-31_152643.wav`
+- Audio File Path: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/voice_sessions/recordings/voice_session_test_voice_session_2026-05-31_152643.wav`
 - Audio Format: `wav`
 - Recorded Duration: `34 seconds`
 - Audio File Size: `2883584 bytes`

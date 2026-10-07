@@ -4,8 +4,11 @@ import { globalEventBus } from '../events/EventBus.js';
 import { execFile } from 'node:child_process';
 import fs from 'node:fs';
 
-const VOICE_BUFFER = '/Users/alexanderanthony/.agents/voice_buffer.txt';
-const SPEAK_SCRIPT = '/Users/alexanderanthony/.agents/speak_serialized.sh';
+import path from 'node:path';
+import os from 'node:os';
+
+const VOICE_BUFFER = path.join(os.homedir(), '.agents', 'voice_buffer.txt');
+const SPEAK_SCRIPT = path.join(os.homedir(), '.agents', 'speak_serialized.sh');
 
 function speak(msg: string, priority = 'P3'): void {
   const dateStr = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');

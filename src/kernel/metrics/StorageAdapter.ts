@@ -8,7 +8,7 @@ export interface TelemetryRecord {
 }
 
 export class FileStorageAdapter {
-  private filePath = '/Users/alexanderanthony/.gemini/telemetry/telemetry_db.jsonl';
+  private filePath = path.join(process.cwd(), '.gemini', 'telemetry', 'telemetry_db.jsonl');
 
   constructor() {
     const dir = path.dirname(this.filePath);

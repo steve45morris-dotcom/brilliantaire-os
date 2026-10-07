@@ -39,9 +39,9 @@ requires_approval: true
 ## ⚠️ Blockers & Risks
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
-- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md))
-- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))
-- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))
+- ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md))
+- ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md))
+- ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: ~/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file://~/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md))
 
 ## 💸 Money-Making Opportunities
 - **ProfBetGeng Analytics Optimization:** Execute betting odds analysis scripts to identify high-signal opportunities.

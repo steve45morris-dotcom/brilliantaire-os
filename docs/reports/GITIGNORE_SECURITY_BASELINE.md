@@ -1,7 +1,7 @@
 # .gitignore Security Baseline
 
 Date: 2026-07-20
-File changed: `/Users/alexanderanthony/.gitignore` (working-tree edit only — not staged, not committed, per instructions).
+File changed: `~/.gitignore` (working-tree edit only — not staged, not committed, per instructions).
 
 ## Pre-edit state
 

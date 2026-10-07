@@ -8,7 +8,7 @@ export class RuntimeConfigService {
   private config: RuntimeConfig = {
     maxChatHistoryLogs: 100,
     enableStreamOutput: true,
-    defaultSystemPrompt: 'You are Supernova, the sovereign intelligence orchestrator of The One System.'
+    defaultSystemPrompt: 'You are the Kernel, the sovereign intelligence orchestrator of The One System.'
   };
 
   public getConfig(): RuntimeConfig {

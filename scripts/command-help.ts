@@ -10,6 +10,7 @@ function printHelp() {
     command: 15,
     aliases: 18,
     owningAgent: 22,
+    category: 10,
     risk: 8,
     enabled: 6,
     exactName: 10
@@ -25,17 +26,19 @@ function printHelp() {
     pad('Command', colWidths.command) + ' | ' +
     pad('Aliases', colWidths.aliases) + ' | ' +
     pad('Owning Agent', colWidths.owningAgent) + ' | ' +
+    pad('Category', colWidths.category) + ' | ' +
     pad('Risk', colWidths.risk) + ' | ' +
     pad('Active', colWidths.enabled) + ' | ' +
     pad('Exact Name', colWidths.exactName)
   );
-  console.log('-'.repeat(colWidths.command + colWidths.aliases + colWidths.owningAgent + colWidths.risk + colWidths.enabled + colWidths.exactName + 15));
+  console.log('-'.repeat(colWidths.command + colWidths.aliases + colWidths.owningAgent + colWidths.category + colWidths.risk + colWidths.enabled + colWidths.exactName + 18));
 
   for (const cmd of COMMAND_REGISTRY) {
     console.log(
       pad(cmd.name, colWidths.command) + ' | ' +
       pad(cmd.aliases.join(', '), colWidths.aliases) + ' | ' +
       pad(cmd.owningAgent, colWidths.owningAgent) + ' | ' +
+      pad(cmd.category, colWidths.category) + ' | ' +
       pad(cmd.riskLevel.toUpperCase(), colWidths.risk) + ' | ' +
       pad(cmd.enabled ? 'YES' : 'NO', colWidths.enabled) + ' | ' +
       pad(cmd.requiresExactName ? 'REQUIRED' : 'ANY', colWidths.exactName)

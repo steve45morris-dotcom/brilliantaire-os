@@ -17,7 +17,7 @@ The IcyOS MVP utilizes:
 - **Purpose**: Map high-level client-side structures.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [TYPE SYSTEM](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/25%20Type%20System/TYPE_SYSTEM_v1.0.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [TYPE SYSTEM](./25%20Type%20System/TYPE_SYSTEM_v1.0.md)
 
 *I build before burning.*

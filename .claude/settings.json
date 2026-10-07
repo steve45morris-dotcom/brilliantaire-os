@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npx tsx *)",
+      "Bash(task *)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git branch*)",
+      "Bash(git fetch*)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(which *)",
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(pip show *)",
+      "Bash(pip list*)",
+      "Bash(skillopt-sleep *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard*)",
+      "Bash(cat .env*)",
+      "Bash(cat mcp_secrets/*)"
+    ]
+  }
+}

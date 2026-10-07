@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import * as fs from 'fs';
+import * as path from 'path';
 import { globalEventBus } from '../events/EventBus.js';
 import { globalMetricsCollector } from './MetricsCollector.js';
 import { globalStorageAdapter } from './StorageAdapter.js';
@@ -8,7 +9,7 @@ import { AggregationEngine } from './AggregationEngine.js';
 import { globalRetentionPolicy } from './RetentionPolicy.js';
 
 describe('Telemetry Runtime System', () => {
-  const testDbFile = '/Users/alexanderanthony/.gemini/telemetry/telemetry_db_test_1.jsonl';
+  const testDbFile = path.join(process.cwd(), '.gemini', 'telemetry', 'telemetry_db_test_1.jsonl');
   let originalContent = '';
 
   beforeEach(() => {

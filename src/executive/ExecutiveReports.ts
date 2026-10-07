@@ -12,7 +12,7 @@ export class ExecutiveReports {
       generatedAt: new Date().toISOString(),
       highlights: [
         'All 15 registered services online.',
-        'Supernova interface compiled successfully.',
+        'Kernel interface compiled successfully.',
         'Zero unresolved timeout incidents logged in Recovery.'
       ],
       bottlenecksCount: 0

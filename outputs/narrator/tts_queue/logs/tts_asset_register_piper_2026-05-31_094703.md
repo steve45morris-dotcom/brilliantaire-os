@@ -5,7 +5,7 @@
 - Asset Type: `binary`
 - Target Filename: `piper`
 - Source Path: `./local_assets/piper_staging/piper/piper`
-- Destination Path: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/bin/piper`
+- Destination Path: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/bin/piper`
 - Assigned Profile: `N/A`
 
 ## Safety Verification

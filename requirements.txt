@@ -1,0 +1,5 @@
+# Brilliantaire OS — Python Dependencies
+# Install: pip install -r requirements.txt
+
+# Sleep hygiene optimizer (Claude Code skill companion)
+skillopt>=0.2.0

@@ -178,6 +178,10 @@ async function runCommand() {
 
   const wordCount = cmdMatchedStr.split(/\s+/).length;
   const extraArgs = filteredArgs.slice(wordCount);
+  // The docs write `npm run command -- "<name>" -- "<subcommand>"`. npm eats
+  // the first `--`; the second arrives here as a plain separator. Forwarded,
+  // it became the script's first argument ("Unknown command: --").
+  if (extraArgs[0] === '--') extraArgs.shift();
 
   console.log(`📡 [${matchedCmd.owningAgent}] Executing pre-approved script: npm run ${matchedCmd.npmScript}...`);
 
@@ -188,7 +192,7 @@ async function runCommand() {
   // ROUTER INITIALIZED: Fire phrase 23
   await announcePhrase("Street map loaded. Routing without permission.");
 
-  const isWriteCommand = ['approve-write', 'stage-write', 'sync-status', 'ingest', 'campaign', 'campaign-scheduler', 'mesh-telemetry', 'dashboard-export', 'platform-adapter', 'manual-release', 'icyflamze-core', 'icyflamze-core-ip-bible', 'icyflamze-core-episode-1', 'icyflamze-core-episode-1-asset-queue', 'icyflamze-core-episode-1-render-intake'].includes(matchedCmd.name);
+  const isWriteCommand = ['approve-write', 'stage-write', 'sync-status', 'ingest', 'campaign', 'campaign-scheduler', 'mesh-telemetry', 'dashboard-export', 'platform-adapter', 'manual-release', 'icyflamze-core', 'icyflamze-core-ip-bible', 'icyflamze-core-episode-1', 'icyflamze-core-episode-1-asset-queue', 'icyflamze-core-episode-1-render-intake', 'next-tick', 'next-reopen'].includes(matchedCmd.name);
   const isBuildCommand = ['build', 'dashboard-build'].includes(matchedCmd.name);
   const isDaemonCommand = ['background-run', 'voice-queue'].includes(matchedCmd.name);
 

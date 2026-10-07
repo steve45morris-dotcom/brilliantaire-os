@@ -7,10 +7,10 @@
 * **Files Checked:**
 - [Checked File] .env.local
 - [Not Found] .mcp.local.json
-- [Not Found] Directory: /Users/alexanderanthony/.config/mcp
-- [Not Found] /Users/alexanderanthony/.claude/mcp.json
-- [Not Found] /Users/alexanderanthony/.codex/mcp.json
-- [Not Found] /Users/alexanderanthony/.agents/mcp.json
+- [Not Found] Directory: ~/.config/mcp
+- [Not Found] ~/.claude/mcp.json
+- [Not Found] ~/.codex/mcp.json
+- [Not Found] ~/.agents/mcp.json
 
 * **Required Env Names Present:** `NOTEBOOKLM_MCP_ENABLED`, `NOTEBOOKLM_MCP_SERVER_COMMAND`, `NOTEBOOKLM_AUTH_PROFILE`, `GOOGLE_APPLICATION_CREDENTIALS`, `GOOGLE_CLOUD_PROJECT`, `NOTEBOOKLM_WORKSPACE_ID`
 * **Values:** `[REDACTED]` (Offline scanning safety policy active; zero plaintext output)

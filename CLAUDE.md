@@ -1,0 +1,140 @@
+# Brilliantaire OS — Claude Code Project Intelligence
+
+## Identity
+
+**Brilliantaire OS** is a tactical execution platform within the **One System** mesh network, built by Icyflamze (Alexander Anthony). It operates a three-tier architecture: ASTRA (strategist), SID (engineer), GEMINI (validator).
+
+## Tech Stack
+
+- **Core Language:** TypeScript / Node.js (ES modules)
+- **Build:** `tsc` for compilation, `Taskfile.yml` for task orchestration
+- **Test:** Vitest (`npm run test`)
+- **Scripts:** 243 TypeScript CLI scripts in `scripts/` using `tsx` — zero runtime npm dependencies beyond `openai` and `zod`
+- **Python:** `tools/ai_narrator.py` (Gemini 2.5 Flash), voice stress tests
+- **Database:** PostgreSQL (`supernova` schema), Supabase (IcyOS)
+- **Frontend:** Vite + React (dashboard), Next.js (IcyOS Knowledge Core)
+
+## Project Structure
+
+```
+config/          # Command registry, workflow configs (commands.ts is 3,870 lines)
+scripts/         # 243 TypeScript CLI tools (all use tsx)
+tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
+sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
+orchestrator/    # Phase-based orchestration engine
+Knowledge Core/  # IcyOS monorepo (Next.js app + 4 packages, Supabase)
+dashboard/       # Vite React dashboard
+outputs/         # Generated reports, narrator audio queue
+```
+
+## Key Commands
+
+```bash
+task init          # Install dependencies
+task build         # Compile TypeScript
+task audit         # Run self-audit
+npm run test       # Run Vitest suite
+npm run brief      # Generate operational brief
+npm run next       # Print ranked next actions
+npm run audit      # Run system audit
+npm run command    # Safe command router
+```
+
+CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, a strict typecheck of `scripts/`, `tools/` and `config/` (`tsconfig.scripts.json`, locally `npm run typecheck:scripts`), the P.J.K. command-registry contract test, and `npm test` on every pull request and push to `main`. Two source files are excluded from the Node build in `tsconfig.json` and say why: the Edge-Link server, `src/edge-link/index.ts` + `broker.ts` (needs `ws`, which the no-runtime-deps rule forbids; nothing imports them) and `src/ui/voice/RealtimeVoiceControls.tsx` (a React component; nothing imports it). `vitest.config.ts` keeps `sentinel-os/` and `Knowledge Core/` out of the suite, since both sit inside this `$HOME`-rooted repo.
+
+## Safe Command Router
+
+`config/commands.ts` enforces whitelisted commands with `shell: false`, risk tiers L0-L4, and exact-name routing. All CLI execution routes through this — never bypass it with raw shell commands in production paths.
+
+## Conventions
+
+- All scripts use Node.js built-ins only (no runtime npm deps beyond openai/zod)
+- `shell: false` enforcement on all subprocess execution
+- Human approval gates before destructive operations
+- VNP (Voice Narrative Protocol) for task announcements
+- Preview Handoff Rule: build production artifacts, no ephemeral localhost
+
+## Adding API Keys
+
+When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him the one command below. Never ask him to paste a key into chat.
+
+- **Command:** `pjkkey KEY_NAME`, for example `pjkkey STRIPE_SECRET_KEY`. It's installed in `~/.zshrc`.
+  - It prompts with hidden input, so the key never shows on screen or in shell history.
+  - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
+  - It saves the value in quotes with every `$` escaped, so any characters work. Unquoted, Next's loader cuts a value at `#` and reads `$` as a variable, which is how a passcode like `Pass#word12` once failed.
+- **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
+- **AI keys:** P.J.K. takes `GEMINI_API_KEY`, `ANTHROPIC_API_KEY` (Claude) and `OPENAI_API_KEY` (ChatGPT), tried in that order; each extra key is a backup brain. `docs/PJKKEY.md` says where each comes from. `ANTHROPIC_DEFAULT_MODEL` and `OPENAI_DEFAULT_MODEL` pick the models.
+- **If `pjkkey` is missing or out of date** (a new Mac, a fresh shell config, or a version that saves values unquoted): give him the install snippet in `docs/PJKKEY.md`. Running it again updates it.
+
+## Security Notes
+
+- **`sentinel-os` lives in its own repo:** `steve45morris-dotcom/sentinel-os`, checked out at `~/sentinel-os`. That is also where P.J.K. lives (`/pjk`).
+  - **This repo no longer tracks `sentinel-os/`.** Because this repo is rooted at `$HOME`, `~/sentinel-os` is that standalone checkout; it used to be tracked here too as a stale snapshot (38 files from around August 2026). It was untracked in October 2026 and the folder now falls under the deny-by-default root ignore, so nothing in it is picked up by this repo. Make sentinel-os changes in the standalone repo.
+  - **Pulling this change on the Mac** removes the 38 files from this repo's index only; `git` leaves the working files alone because they are untracked afterwards, and `~/sentinel-os` stays a valid checkout of its own repo.
+  - **Tools that read it** (`tools/sentinel_safety_gate.ts`, `tools/sentinel_safety_report.ts`) find the checkout through `SENTINEL_OS_ROOT`, default `~/sentinel-os` (`config/sentinel_os_root.ts`).
+  - **SQL:** the standalone repo uses bound parameters for every statement (commit `170c829`, 2026-09-17).
+  - **Access model:** local-only and single-operator by design, with no login. `proxy.ts` refuses non-localhost hosts and cross-site requests. Add real authentication before exposing it beyond localhost.
+  - **Not in the real app:** the Supabase login, roles and rate limiting in this repo's snapshot (#6) were added to the stale copy only.
+- **Authentication:**
+  - **IcyOS:** Supabase Auth with admin/editor/viewer roles, enforced in `apps/web/src/middleware.ts` (#4). Next.js only loads middleware from `src/` when the app lives in `src/`; it sat at `apps/web/middleware.ts` until October 2026 and never ran.
+  - **`sentinel-os`:** none by design. It is local-only (see above).
+- **Rate limiting (IcyOS):** `/api/*` is limited per IP (300/min, checked before auth) and per user, by tier.
+  - **IcyOS** (`apps/web/src/lib/api/rate-limit.ts`): AI generation 10/min, writes 60/min, reads 120/min.
+  - **Store:** Upstash Redis over REST when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set (`createRateLimitStore()` in `rate-limit.ts`), so every instance enforces the same counters; one atomic `INCR`+`PEXPIRE` per request, no SDK. Without them it falls back to the per-instance memory store and warns once in production. A failed Redis call fails open and logs, since these limits guard cost and floods rather than access.
+- **Licensing:** IcyOS is under a proprietary license (`Knowledge Core/IcyOS/LICENSE`), and the root `package.json` points to it. The old MIT license is gone.
+
+## Installed Tools
+
+### gstack (Claude Code Skills)
+50+ skills installed at `~/.claude/skills/gstack/`. Provides: `/qa`, `/ship`, `/review`, `/spec`, `/investigate`, `/browse`, and more. Install on new machines:
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
+cd ~/.claude/skills/gstack && ./setup
+```
+
+### skillopt (Python)
+Sleep hygiene optimizer. Install: `pip install skillopt`. Run lifecycle:
+```bash
+skillopt-sleep dry-run    # Preview proposals
+skillopt-sleep run        # Execute optimization
+skillopt-sleep status     # Check current state
+skillopt-sleep adopt      # Accept proposals
+skillopt-sleep schedule   # Install daily cron (3:17 AM)
+```
+Requires an LLM API key for real optimization (runs in mock mode without one).
+
+## IcyOS Knowledge Core
+
+Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
+- 145 TypeScript source files (10,734 lines) and 25 Vitest test files (2,644 lines) in `apps/` and `packages/`; 190 passing Vitest tests (177 in the web app, 13 in the packages; counted 2026-10-07)
+- Provider-agnostic AI runtime (Anthropic, OpenAI, Gemini, Ollama, Mock)
+- 28 Supabase migrations, 17 pages, GitHub Actions CI
+- Founder Certification grade: 94/100
+
+## Active Projects (PROJECTS.md)
+
+10 active projects + 22 staged external repos. Key ones:
+1. Brilliantaire OS (this repo)
+2. IcyOS Knowledge Core
+3. ICYFLAMZE CORE (IP Bible, Episode 1)
+4. Tree Groove Records
+5. Grinder's Keep
+
+## Visual Verification Rule
+
+**Before marking any UI or frontend work as complete**, you MUST:
+1. Start the dev server and render the affected pages in a real browser
+2. Take screenshots of every new or changed page
+3. Show the screenshots to the Commander for visual sign-off
+4. Only then commit, push, or create a PR
+
+This applies to: new pages, modified pages, component changes, layout changes, styling changes, and any work that affects what users see. Tests passing is not enough — the human must see what the app looks like. No exceptions.
+
+## Do Not
+
+- Push to `main` without explicit approval
+- Bypass the Safe Command Router
+- Expose `.env*` or `mcp_secrets/` contents
+- Re-track `sentinel-os/` here or edit it as part of this repo: change the standalone `sentinel-os` repo instead, and keep its SQL on bound parameters
+- Treat agent role documents (AGENTS.md) as running code — they are conceptual
+- Ship UI changes without visual verification (see Visual Verification Rule above)

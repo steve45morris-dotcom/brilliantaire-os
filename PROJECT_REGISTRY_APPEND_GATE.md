@@ -1,11 +1,11 @@
 # 🛡️ Staged Registry Appending Gate (Phase 12D)
 
-This gate controls the final process of taking candidate project entries staged during project drift review scans and safely appending them as new rows in [PROJECTS.md](file:///Users/alexanderanthony/PROJECTS.md).
+This gate controls the final process of taking candidate project entries staged during project drift review scans and safely appending them as new rows in [PROJECTS.md](file://~/PROJECTS.md).
 
 ## 🔒 Guardrails & Rules
 To prevent repository corruption, duplication, or namespace clashes, the system enforces the following safety controls:
 
-1. **Review-Only / No Overwrite Rule:** The gate strictly appends new matrix entries at the end of [PROJECTS.md](file:///Users/alexanderanthony/PROJECTS.md). It never rewrites, modifies, or deletes existing rows.
+1. **Review-Only / No Overwrite Rule:** The gate strictly appends new matrix entries at the end of [PROJECTS.md](file://~/PROJECTS.md). It never rewrites, modifies, or deletes existing rows.
 2. **Explicit Operator Approval Required:** Automatic registry updates are blocked. Appending requires the `--confirm` command flag.
 3. **No Automatic Append-All:** Only candidates marked as `register` are eligible for append. Candidates marked as `active_experiment` or `inspect_manually` are skipped.
 4. **Strict Duplicate Checking:** Before appending any candidate, its project name and absolute path are checked against all existing rows in PROJECTS.md. Staged duplicates are skipped and logged.

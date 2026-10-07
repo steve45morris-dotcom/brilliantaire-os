@@ -1,0 +1,83 @@
+import { COMMAND_REGISTRY } from '../config/commands.js';
+
+function printSystemDiagnosticsRunnerHelp() {
+  console.log("=========================================");
+  console.log("SYSTEM DIAGNOSTICS RUNNER - HELP");
+  console.log("=========================================");
+  console.log("This module runs unified system health checks, test suite");
+  console.log("execution, module config audits, integration status scans,");
+  console.log("and comprehensive diagnostics reports — all WITHOUT");
+  console.log("modifying system state or contacting external services.");
+  console.log("\nCore Safety Rules Enforced:");
+  console.log("  1. No Live Remediation: ALLOW_LIVE_REMEDIATION = false");
+  console.log("  2. No Auto Fix: ALLOW_AUTO_FIX = false");
+  console.log("  3. No External API Calls: ALLOW_EXTERNAL_API_CALLS = false");
+  console.log("  4. Human Approval Required: REQUIRE_HUMAN_APPROVAL = true");
+  console.log("  5. No Direct Obsidian Write: ALLOW_DIRECT_OBSIDIAN_WRITE = false");
+  console.log("\n-----------------------------------------");
+  console.log("  COMMANDS:");
+  console.log("-----------------------------------------");
+  console.log("\n  status");
+  console.log("    Print diagnostics configuration, safety flags,");
+  console.log("    health check targets, and output directory status.");
+  console.log("\n  run-tests");
+  console.log("    Execute the Vitest test suite and capture");
+  console.log("    pass/fail/skip counts, duration, and verdict.");
+  console.log("\n  module-health");
+  console.log("    Scan module configs for presence and validate");
+  console.log("    safety flag conventions (ALLOW_=false, REQUIRE_=true).");
+  console.log("\n  config-audit");
+  console.log("    Audit the command registry for total commands,");
+  console.log("    enabled/disabled counts, duplicates, and risk levels.");
+  console.log("\n  integration-status");
+  console.log("    Check UIF core modules and GitHub integration");
+  console.log("    files for presence and completeness.");
+  console.log("\n  diagnostics-report");
+  console.log("    Generate a comprehensive system health report");
+  console.log("    with file counts, output inventory, and overall");
+  console.log("    health verdict (HEALTHY/DEGRADED).");
+  console.log("\n  obsidian-export");
+  console.log("    Stage a diagnostics summary for Obsidian export");
+  console.log("    via the Approved Write Gateway.");
+  console.log("\n-----------------------------------------");
+  console.log("  EXAMPLES:");
+  console.log("-----------------------------------------");
+  console.log("\n  npm run system-diagnostics -- \"status\"");
+  console.log("  npm run system-diagnostics -- \"run-tests\"");
+  console.log("  npm run system-diagnostics -- \"module-health\"");
+  console.log("  npm run system-diagnostics -- \"config-audit\"");
+  console.log("  npm run system-diagnostics -- \"integration-status\"");
+  console.log("  npm run system-diagnostics -- \"diagnostics-report\"");
+  console.log("  npm run system-diagnostics -- \"obsidian-export\"");
+  console.log("\n-----------------------------------------");
+  console.log("  SAFETY:");
+  console.log("-----------------------------------------");
+  console.log("  - No system state modifications");
+  console.log("  - No external API calls or network requests");
+  console.log("  - No automatic fixes or remediation");
+  console.log("  - All output is read-only reporting");
+  console.log("  - Human approval required for any actions");
+  console.log("\n-----------------------------------------");
+  console.log("  DIAGNOSTIC CATEGORIES:");
+  console.log("-----------------------------------------");
+  console.log("  - Test Suite: Vitest pass/fail/skip and duration");
+  console.log("  - Module Health: Config presence and safety flags");
+  console.log("  - Config Audit: Registry integrity and duplicates");
+  console.log("  - Integration Status: UIF and GitHub module health");
+  console.log("  - Output Inventory: Generated output file counts");
+  console.log("  - Dependency Check: Optional dependency availability");
+
+  console.log("\n-----------------------------------------");
+  console.log("  REGISTERED COMMANDS:");
+  console.log("-----------------------------------------");
+  const targetCmds = COMMAND_REGISTRY.filter(c => c.name.includes('system-diagnostics'));
+  for (const cmd of targetCmds) {
+    console.log(`\n  Command: npm run command -- "${cmd.name}"`);
+    console.log(`   Description: ${cmd.description}`);
+    console.log(`   Owning Agent: ${cmd.owningAgent}`);
+    console.log(`   Risk Level:   ${cmd.riskLevel.toUpperCase()}`);
+  }
+  console.log("\n=========================================");
+}
+
+printSystemDiagnosticsRunnerHelp();

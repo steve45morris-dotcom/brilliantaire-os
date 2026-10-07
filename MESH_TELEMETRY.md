@@ -55,6 +55,19 @@ The engine dynamically compiles statistics by scanning files within:
 6. `outputs/campaigns/simulations/` & `outputs/campaigns/validation_reports/` — Extracting campaign readiness scores.
 7. `outputs/higgsfield_ai/logs/` & `outputs/higgsfield_ai/render_requests/` — Tracking AI video render request staging and approval status.
 8. `outputs/local_inference/logs/` & `outputs/local_inference/chat_requests/` — Tracking local inference server chat request staging and prompt management.
+9. `outputs/render_intake/logs/` & `outputs/render_intake/scans/` — Tracking Episode 1 render asset intake scanning, validation, and assembly readiness.
+10. `outputs/grinders_keep_verification_rerun/logs/` & `outputs/grinders_keep_verification_rerun/rerun_plans/` — Tracking evidence verification rerun planning and scheduling.
+11. `outputs/manual_implementation_packet/logs/` & `outputs/manual_implementation_packet/build_prompts/` — Tracking pipeline implementation packet compilation and handoff staging.
+12. `outputs/asr_human_approval_selection/logs/` & `outputs/asr_human_approval_selection/selection_packets/` — Tracking offline ASR candidate evaluation, model selection staging, and human approval decisions.
+13. `outputs/stripe_webhook_verification/logs/` & `outputs/stripe_webhook_verification/signature_audits/` — Tracking Stripe webhook signature verification audits, mock event logs, and transition planning.
+14. `outputs/zk_webhook_verification/logs/` & `outputs/zk_webhook_verification/proof_compilations/` — Tracking zero-knowledge webhook transaction proof compilations and integrity verification chains.
+15. `outputs/micro_product_tree_groove/logs/` & `outputs/micro_product_tree_groove/catalog_mappings/` — Tracking micro-product factory to Tree Groove Records catalog mapping and release staging.
+16. `outputs/live_microphone_audio_streamer/logs/` & `outputs/live_microphone_audio_streamer/daemon_configs/` — Tracking live microphone audio streamer daemon expansion configuration staging, model scanning, pipeline validation, and stream simulation parameters.
+17. `outputs/obsidian_sync_layer/logs/` & `outputs/obsidian_sync_layer/sync_manifests/` — Tracking Obsidian sync layer unified vault sync orchestration, module export discovery, sync manifest compilation, route previewing, and vault health diagnostics.
+18. `outputs/tree_groove_release_pipeline/logs/` & `outputs/tree_groove_release_pipeline/release_packages/` — Tracking Tree Groove Records release pipeline orchestration, release packaging, quality gate evaluation, metadata validation, platform submission staging, and pipeline reporting.
+19. `outputs/system_diagnostics/logs/` & `outputs/system_diagnostics/test_reports/` — Tracking system diagnostics runner test suite execution, module config health audits, command registry integrity checks, integration status scans, and comprehensive codebase health reports.
+20. `outputs/documentation_drift/logs/` & `outputs/documentation_drift/reports/` — Tracking documentation drift detector system index consistency audits, command registry vs COMMANDS.md cross-reference checks, stale pointer detection, narrator source alignment verification, and comprehensive drift reports.
+21. `outputs/bridge_health_monitor/logs/` & `outputs/bridge_health_monitor/reports/` & `outputs/bridge_health_monitor/scans/` — Tracking bridge health monitor unified health aggregation across all 15 bridge modules, safety flag validation, export directory checks, template completeness audits, anomaly scanning, and dashboard/Obsidian exports.
 
 ---
 

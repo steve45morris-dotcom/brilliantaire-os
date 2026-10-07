@@ -1,0 +1,13 @@
+{
+  // Typechecks scripts/, tools/ and config/ (and whatever they import, such as
+  // orchestrator/) with the same strict settings as the src/ build.
+  // tsconfig.json covers src/ only, so until this existed none of these were
+  // typechecked. CI runs it; locally: npm run typecheck:scripts
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": ["scripts/**/*.ts", "tools/**/*.ts", "config/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

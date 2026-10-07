@@ -33,7 +33,7 @@ graph TD
 ## 📋 Document Metadata
 - **Purpose**: Outline MVP requirements and user flow loops.
 - **Responsibilities**: Governs all product milestones.
-- **Dependencies**: [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)
+- **Dependencies**: [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)
 - **Relationships**: Informs Technical Design and AI Specifications.
 - **Version**: 1.1.0
 - **Revision History**:
@@ -41,8 +41,8 @@ graph TD
   - `2026-07-02`: Upgraded to v1.1.0 for ICOS.
 - **Future Expansion**: Add voice-synthesized command review tests.
 - **Cross References**:
-  - [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)
-  - [Product Philosophy](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Product%20Philosophy.md)
-  - [Technical Design Document](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Technical%20Design%20Document.md)
+  - [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)
+  - [Product Philosophy](./00%20Executive%20Office/Product%20Philosophy.md)
+  - [Technical Design Document](./02%20Engineering/Technical%20Design%20Document.md)
 
 *I build before burning.*

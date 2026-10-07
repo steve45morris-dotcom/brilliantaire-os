@@ -6,7 +6,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Kronos
 
-- **Path:** /Users/alexanderanthony/Projects/Kronos
+- **Path:** ~/Projects/Kronos
 - **Folder Name:** Kronos
 - **Signature Files:** README.md, .git
 - **Likely Type:** docs
@@ -22,7 +22,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Open-Higgsfield-AI
 
-- **Path:** /Users/alexanderanthony/Projects/Open-Higgsfield-AI
+- **Path:** ~/Projects/Open-Higgsfield-AI
 - **Folder Name:** Open-Higgsfield-AI
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -38,7 +38,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: agency-agents
 
-- **Path:** /Users/alexanderanthony/Projects/agency-agents
+- **Path:** ~/Projects/agency-agents
 - **Folder Name:** agency-agents
 - **Signature Files:** README.md, .git
 - **Likely Type:** docs
@@ -54,7 +54,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: awesome-design-md
 
-- **Path:** /Users/alexanderanthony/Projects/awesome-design-md
+- **Path:** ~/Projects/awesome-design-md
 - **Folder Name:** awesome-design-md
 - **Signature Files:** README.md, .git
 - **Likely Type:** docs
@@ -70,7 +70,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: awesome-design-md-extracted
 
-- **Path:** /Users/alexanderanthony/Projects/awesome-design-md-extracted
+- **Path:** ~/Projects/awesome-design-md-extracted
 - **Folder Name:** awesome-design-md-extracted
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -86,7 +86,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: brilliantier-web
 
-- **Path:** /Users/alexanderanthony/Projects/brilliantier-web
+- **Path:** ~/Projects/brilliantier-web
 - **Folder Name:** brilliantier-web
 - **Signature Files:** package.json, README.md
 - **Likely Type:** node
@@ -102,7 +102,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: crewAI
 
-- **Path:** /Users/alexanderanthony/Projects/crewAI
+- **Path:** ~/Projects/crewAI
 - **Folder Name:** crewAI
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -118,7 +118,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: docker
 
-- **Path:** /Users/alexanderanthony/Projects/docker
+- **Path:** ~/Projects/docker
 - **Folder Name:** docker
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -134,7 +134,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: fastapi
 
-- **Path:** /Users/alexanderanthony/Projects/fastapi
+- **Path:** ~/Projects/fastapi
 - **Folder Name:** fastapi
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -150,7 +150,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: firebase-admin-node
 
-- **Path:** /Users/alexanderanthony/Projects/firebase-admin-node
+- **Path:** ~/Projects/firebase-admin-node
 - **Folder Name:** firebase-admin-node
 - **Signature Files:** package.json, README.md, .git
 - **Likely Type:** node
@@ -166,7 +166,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: flutter
 
-- **Path:** /Users/alexanderanthony/Projects/flutter
+- **Path:** ~/Projects/flutter
 - **Folder Name:** flutter
 - **Signature Files:** pubspec.yaml, README.md, .git
 - **Likely Type:** flutter
@@ -182,7 +182,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: generative-ai-python
 
-- **Path:** /Users/alexanderanthony/Projects/generative-ai-python
+- **Path:** ~/Projects/generative-ai-python
 - **Folder Name:** generative-ai-python
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -198,7 +198,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: gstack
 
-- **Path:** /Users/alexanderanthony/Projects/gstack
+- **Path:** ~/Projects/gstack
 - **Folder Name:** gstack
 - **Signature Files:** package.json, README.md, .git
 - **Likely Type:** node
@@ -214,7 +214,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: obsidian-releases
 
-- **Path:** /Users/alexanderanthony/Projects/obsidian-releases
+- **Path:** ~/Projects/obsidian-releases
 - **Folder Name:** obsidian-releases
 - **Signature Files:** package.json, README.md, .git
 - **Likely Type:** node
@@ -230,7 +230,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: openhuman
 
-- **Path:** /Users/alexanderanthony/Projects/openhuman
+- **Path:** ~/Projects/openhuman
 - **Folder Name:** openhuman
 - **Signature Files:** package.json, Cargo.toml, README.md, .git, docker-compose.yml
 - **Likely Type:** node
@@ -246,7 +246,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: pydantic
 
-- **Path:** /Users/alexanderanthony/Projects/pydantic
+- **Path:** ~/Projects/pydantic
 - **Folder Name:** pydantic
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -262,7 +262,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: remotion
 
-- **Path:** /Users/alexanderanthony/Projects/remotion
+- **Path:** ~/Projects/remotion
 - **Folder Name:** remotion
 - **Signature Files:** package.json, README.md, .git
 - **Likely Type:** node
@@ -278,7 +278,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: remotion-skills
 
-- **Path:** /Users/alexanderanthony/Projects/remotion-skills
+- **Path:** ~/Projects/remotion-skills
 - **Folder Name:** remotion-skills
 - **Signature Files:** package.json, README.md, .git
 - **Likely Type:** node
@@ -294,7 +294,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: ruff
 
-- **Path:** /Users/alexanderanthony/Projects/ruff
+- **Path:** ~/Projects/ruff
 - **Folder Name:** ruff
 - **Signature Files:** pyproject.toml, Cargo.toml, README.md, .git
 - **Likely Type:** python
@@ -310,7 +310,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: siyuan
 
-- **Path:** /Users/alexanderanthony/Projects/siyuan
+- **Path:** ~/Projects/siyuan
 - **Folder Name:** siyuan
 - **Signature Files:** README.md, .git
 - **Likely Type:** docs
@@ -326,7 +326,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: supabase-py
 
-- **Path:** /Users/alexanderanthony/Projects/supabase-py
+- **Path:** ~/Projects/supabase-py
 - **Folder Name:** supabase-py
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -342,7 +342,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: tinyfish-cookbook
 
-- **Path:** /Users/alexanderanthony/Projects/tinyfish-cookbook
+- **Path:** ~/Projects/tinyfish-cookbook
 - **Folder Name:** tinyfish-cookbook
 - **Signature Files:** README.md, .git
 - **Likely Type:** docs
@@ -358,7 +358,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: uv
 
-- **Path:** /Users/alexanderanthony/Projects/uv
+- **Path:** ~/Projects/uv
 - **Folder Name:** uv
 - **Signature Files:** pyproject.toml, Cargo.toml, README.md, .git
 - **Likely Type:** python
@@ -374,7 +374,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: whisper
 
-- **Path:** /Users/alexanderanthony/Projects/whisper
+- **Path:** ~/Projects/whisper
 - **Folder Name:** whisper
 - **Signature Files:** pyproject.toml, README.md, .git
 - **Likely Type:** python
@@ -390,7 +390,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: whisper-pipeline
 
-- **Path:** /Users/alexanderanthony/Projects/whisper-pipeline
+- **Path:** ~/Projects/whisper-pipeline
 - **Folder Name:** whisper-pipeline
 - **Signature Files:** pyproject.toml
 - **Likely Type:** python
@@ -406,7 +406,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Agents
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Agents
+- **Path:** ~/TreeGrooveProjects/Agents
 - **Folder Name:** Agents
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -422,7 +422,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Config
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Config
+- **Path:** ~/TreeGrooveProjects/Config
 - **Folder Name:** Config
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -438,7 +438,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Input
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Input
+- **Path:** ~/TreeGrooveProjects/Input
 - **Folder Name:** Input
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -454,7 +454,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Output
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Output
+- **Path:** ~/TreeGrooveProjects/Output
 - **Folder Name:** Output
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -470,7 +470,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Prompts
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Prompts
+- **Path:** ~/TreeGrooveProjects/Prompts
 - **Folder Name:** Prompts
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -486,7 +486,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: TreeGrooveFactory
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/TreeGrooveFactory
+- **Path:** ~/TreeGrooveProjects/TreeGrooveFactory
 - **Folder Name:** TreeGrooveFactory
 - **Signature Files:** none
 - **Likely Type:** unknown
@@ -502,7 +502,7 @@ This report lists profiles and action classifications for unregistered folders.
 
 # 📋 Project Classification Profile: Universe
 
-- **Path:** /Users/alexanderanthony/TreeGrooveProjects/Universe
+- **Path:** ~/TreeGrooveProjects/Universe
 - **Folder Name:** Universe
 - **Signature Files:** none
 - **Likely Type:** unknown

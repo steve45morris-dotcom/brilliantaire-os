@@ -10,6 +10,6 @@ To pioneer the next generation of human-AI collaboration where human intent is t
 - **Purpose**: Define the long-term vision of IcyOS.
 - **Version**: 1.0.0
 - **Cross References**:
-  - [Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)
+  - [Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)
 
 *I build before burning.*

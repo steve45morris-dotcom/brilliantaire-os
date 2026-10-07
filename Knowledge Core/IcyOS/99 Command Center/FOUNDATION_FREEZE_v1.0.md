@@ -19,16 +19,16 @@ This document serves as the constitutional baseline and architecture freeze veri
 
 ## 🔒 Protected Assets (Requires ADR Approval to Modify)
 The following files represent Level 1 (Immutable) and Level 2 (Strategic) specifications. They are locked from ad-hoc modifications:
-1. **[Founder Intent](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Founder%20Intent.md)**
-2. **[Vision](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Vision.md)**
-3. **[Mission](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Mission.md)**
-4. **[North Star](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/North%20Star.md)**
-5. **[Company Principles](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Company%20Principles.md)**
-6. **[Product Philosophy](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/00%20Executive%20Office/Product%20Philosophy.md)**
-7. **[Engineering Standards](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Engineering%20Standards.md)**
-8. **[AI Intelligence Specification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20AI%20Department/AI%20Intelligence%20Specification.md)**
-9. **[Repository Guide](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/02%20Engineering/Repository%20Guide.md)**
-10. **[Architecture Decision Records Index](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Architecture%20Decision%20Records.md)**
+1. **[Founder Intent](./00%20Executive%20Office/Founder%20Intent.md)**
+2. **[Vision](./00%20Executive%20Office/Vision.md)**
+3. **[Mission](./00%20Executive%20Office/Mission.md)**
+4. **[North Star](./00%20Executive%20Office/North%20Star.md)**
+5. **[Company Principles](./00%20Executive%20Office/Company%20Principles.md)**
+6. **[Product Philosophy](./00%20Executive%20Office/Product%20Philosophy.md)**
+7. **[Engineering Standards](./02%20Engineering/Engineering%20Standards.md)**
+8. **[AI Intelligence Specification](./03%20AI%20Department/AI%20Intelligence%20Specification.md)**
+9. **[Repository Guide](./02%20Engineering/Repository%20Guide.md)**
+10. **[Architecture Decision Records Index](./13%20Decisions/Architecture%20Decision%20Records.md)**
 
 ---
 

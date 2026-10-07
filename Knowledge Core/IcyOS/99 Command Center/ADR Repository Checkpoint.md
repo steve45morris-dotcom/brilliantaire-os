@@ -23,8 +23,8 @@
 
 ## Cross References
 
-- [Architecture Decision Records](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/Architecture%20Decision%20Records.md)
-- [ADR Repository Verification Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/ADR%20Repository%20Verification%20Report.md)
-- [ADR Repository Health Report](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/13%20Decisions/ADR%20Repository%20Health%20Report.md)
+- [Architecture Decision Records](./13%20Decisions/Architecture%20Decision%20Records.md)
+- [ADR Repository Verification Report](./13%20Decisions/ADR%20Repository%20Verification%20Report.md)
+- [ADR Repository Health Report](./13%20Decisions/ADR%20Repository%20Health%20Report.md)
 
 *I build before burning.*

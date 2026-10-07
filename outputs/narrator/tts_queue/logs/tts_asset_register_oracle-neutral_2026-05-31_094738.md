@@ -5,7 +5,7 @@
 - Asset Type: `model_and_config`
 - Target Filename: `oracle-neutral.onnx / oracle-neutral.json`
 - Source Path: `./local_assets/piper_staging/en_US-lessac-medium.onnx / ./local_assets/piper_staging/en_US-lessac-medium.json`
-- Destination Path: `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/models/oracle-neutral.onnx / /Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/models/oracle-neutral.json`
+- Destination Path: `~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/models/oracle-neutral.onnx / ~/Projects/antigravity-lab/one-system/brilliantaire-os/outputs/narrator/tts_queue/models/oracle-neutral.json`
 - Assigned Profile: `oracle-neutral`
 
 ## Safety Verification

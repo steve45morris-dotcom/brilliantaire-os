@@ -1,5 +1,7 @@
 # Episode 1: Batch 1 Generation Plan
 
+> **Superseded 2026-10-06** by `episode_1_batch_1_runbook_2026-10-06.md`. The filenames here are not seen by render intake v2, which needs slot-prefixed names such as `IMG-01_hero_poster_v01.png`. Kept as the record.
+
 **Project:** ICYFLAMZE CORE
 **Season:** Rise of the Street Scholar
 **Episode:** 1 — The Core Wakes

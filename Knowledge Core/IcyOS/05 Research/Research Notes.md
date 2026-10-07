@@ -22,7 +22,7 @@ Evaluating the performance of parallel agents running inside Tmux workspaces:
   - `2026-07-02`: Created initial research notes file.
 - **Future Expansion**: Add Exa neural query search integration logs.
 - **Cross References**:
-  - [Technical Design](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20Architecture/Technical%20Design.md)
-  - [Future Ideas](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Future%20Ideas.md)
+  - [Technical Design](./03%20Architecture/Technical%20Design.md)
+  - [Future Ideas](./11%20Memory/Future%20Ideas.md)
 
 *I build before burning.*

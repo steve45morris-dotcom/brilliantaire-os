@@ -2,7 +2,7 @@
 *Scan Date: 2026-06-01*
 
 ## 1. Directory Checked
-* **Path:** `/Users/alexanderanthony/voice_sessions/manual_recordings`
+* **Path:** `~/voice_sessions/manual_recordings`
 
 ## 2. Files Found
 * **Total Files:** `0`

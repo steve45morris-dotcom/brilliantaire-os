@@ -12,16 +12,16 @@ This document details the live setup status, activated packages, and current bas
 - **Boot Documentation**: 🟩 Locked. Ingest sequence, indexes, and relations established.
 - **AI Engines Specs**: 🟩 Specifications completed for all 17 engines.
 - **Governance Safeguards**: 🟩 Deployed. AI Governance, Context Building, and Repository Guardian active.
-- **Foundation Freeze**: 🟩 Completed and verified via [FOUNDATION FREEZE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/FOUNDATION_FREEZE_v1.0.md).
-- **Domain Model (Layer 3)**: 🟩 Completed and verified via [DOMAIN MODEL](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/21%20Domain%20Model/DOMAIN_MODEL_v1.0.md).
-- **Information Architecture (Layer 4A)**: 🟩 Completed and verified via [INFORMATION ARCHITECTURE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/22%20Information%20Architecture/INFORMATION_ARCHITECTURE_v1.0.md).
-- **Database Architecture (Layer 4B)**: 🟩 Completed and verified via [DATABASE ARCHITECTURE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/23%20Database%20Architecture/DATABASE_ARCHITECTURE_v1.0.md).
-- **Physical Database Design (Layer 4C)**: 🟩 Completed and verified via [PHYSICAL DATABASE DESIGN](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/23%20Database%20Architecture/PHYSICAL_DATABASE_DESIGN_v1.0.md).
-- **API Contracts (Layer 5)**: 🟩 Completed and verified via [API CONTRACTS](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/24%20API%20Contracts/API_CONTRACTS_v1.0.md).
-- **Type System & Shared Contracts (Layer 6)**: 🟩 Completed and verified via [TYPE SYSTEM](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/25%20Type%20System/TYPE_SYSTEM_v1.0.md).
-- **Application Architecture (Layer 7)**: 🟩 Completed and verified via [APPLICATION ARCHITECTURE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/26%20Application%20Architecture/APPLICATION_ARCHITECTURE_v1.0.md) and [COMPONENT SYSTEM](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/27%20Component%20System/COMPONENT_SYSTEM_v1.0.md).
-- **MVP Implementation Plan (Layer 8)**: 🟩 Completed and verified via [MVP IMPLEMENTATION PLAN](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/28%20MVP%20Implementation%20Plan/MVP_IMPLEMENTATION_PLAN_v1.0.md).
-- **Implementation Gate (Layer 9)**: 🟩 Opened and verified via [IMPLEMENTATION GATE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/29%20Implementation%20Gate/IMPLEMENTATION_GATE_v1.0.md).
+- **Foundation Freeze**: 🟩 Completed and verified via [FOUNDATION FREEZE](./99%20Command%20Center/FOUNDATION_FREEZE_v1.0.md).
+- **Domain Model (Layer 3)**: 🟩 Completed and verified via [DOMAIN MODEL](./21%20Domain%20Model/DOMAIN_MODEL_v1.0.md).
+- **Information Architecture (Layer 4A)**: 🟩 Completed and verified via [INFORMATION ARCHITECTURE](./22%20Information%20Architecture/INFORMATION_ARCHITECTURE_v1.0.md).
+- **Database Architecture (Layer 4B)**: 🟩 Completed and verified via [DATABASE ARCHITECTURE](./23%20Database%20Architecture/DATABASE_ARCHITECTURE_v1.0.md).
+- **Physical Database Design (Layer 4C)**: 🟩 Completed and verified via [PHYSICAL DATABASE DESIGN](./23%20Database%20Architecture/PHYSICAL_DATABASE_DESIGN_v1.0.md).
+- **API Contracts (Layer 5)**: 🟩 Completed and verified via [API CONTRACTS](./24%20API%20Contracts/API_CONTRACTS_v1.0.md).
+- **Type System & Shared Contracts (Layer 6)**: 🟩 Completed and verified via [TYPE SYSTEM](./25%20Type%20System/TYPE_SYSTEM_v1.0.md).
+- **Application Architecture (Layer 7)**: 🟩 Completed and verified via [APPLICATION ARCHITECTURE](./26%20Application%20Architecture/APPLICATION_ARCHITECTURE_v1.0.md) and [COMPONENT SYSTEM](./27%20Component%20System/COMPONENT_SYSTEM_v1.0.md).
+- **MVP Implementation Plan (Layer 8)**: 🟩 Completed and verified via [MVP IMPLEMENTATION PLAN](./28%20MVP%20Implementation%20Plan/MVP_IMPLEMENTATION_PLAN_v1.0.md).
+- **Implementation Gate (Layer 9)**: 🟩 Opened and verified via [IMPLEMENTATION GATE](./29%20Implementation%20Gate/IMPLEMENTATION_GATE_v1.0.md).
 - **Sprint 0 Scaffold**: 🟩 Complete. Root configs and web skeleton configured.
 - **Sprint 1 Shared Types**: 🟩 Complete. Static TS declarations compile cleanly in `@icyos/shared`.
 - **Sprint 1 Zod Validation**: 🟩 Complete. Zod schemas implemented and Vitest checks pass.
@@ -50,7 +50,7 @@ This document details the live setup status, activated packages, and current bas
 ---
 
 ## 🛠️ Active Modules & Setup
-- **Workspace Location**: `/Users/alexanderanthony/Knowledge Core/IcyOS`
+- **Workspace Location**: `~/Knowledge Core/IcyOS`
 - **Rules Mapping**: `.agents/AGENTS.md` and `GEMINI.md` active.
 - **Narrator Voice Bridge**: 🟩 Functional. Checked via `vnp.ts` test.
 - **Priority Queue Voice Bus v3**: 🟩 Operational via `/tmp/voice_bus_queue/`.
@@ -60,7 +60,7 @@ This document details the live setup status, activated packages, and current bas
 ## 📋 Document Metadata
 - **Purpose**: Record live system parameters, health checks, and database baselines.
 - **Responsibilities**: Enforces accurate state tracking across agent execution loops.
-- **Dependencies**: [Global Context](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Global%20Context.md)
+- **Dependencies**: [Global Context](./11%20Memory/Global%20Context.md)
 - **Relationships**: Informs roadmap scheduling and Daily Notes templates.
 - **Version**: 1.3.0
 - **Revision History**:
@@ -70,9 +70,9 @@ This document details the live setup status, activated packages, and current bas
   - `2026-07-02`: Upgraded to v1.3.0 reflecting Foundation Freeze v1.0 locks.
 - **Future Expansion**: Implement automated check scripts updating this file on every commit.
 - **Cross References**:
-  - [START HERE](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/99%20Command%20Center/START%20HERE.md)
-  - [Global Context](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/11%20Memory/Global%20Context.md)
-  - [Knowledge Map](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/07%20Knowledge/Knowledge%20Map.md)
+  - [START HERE](./99%20Command%20Center/START%20HERE.md)
+  - [Global Context](./11%20Memory/Global%20Context.md)
+  - [Knowledge Map](./07%20Knowledge/Knowledge%20Map.md)
 
 ---
 

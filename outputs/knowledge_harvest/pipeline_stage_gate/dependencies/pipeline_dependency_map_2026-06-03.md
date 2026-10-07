@@ -1,6 +1,6 @@
 # Pipeline Dependency Map: Pipeline Integration Stage Gate
 
-- **Proposal Reference:** /Users/alexanderanthony/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
+- **Proposal Reference:** ~/outputs/knowledge_harvest/pipeline_stage_gate/proposals/pipeline_build_proposal_2026-06-03.md
 - **Readiness Status:** Ready for Manual Stage Gate Review
 
 ## Module Dependencies

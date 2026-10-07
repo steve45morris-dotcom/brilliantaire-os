@@ -228,6 +228,22 @@ async function handleTick() {
     }
   }
 
+  // Hook Background Queue processing (Move 3)
+  try {
+    const { BackgroundQueueManager } = await import('../src/agent-upgrade/queue.js');
+    const queueManager = new BackgroundQueueManager();
+    console.log("⏱️ Processing background execution queue jobs...");
+    const queueLogs = queueManager.runPendingJobs();
+    if (queueLogs.length > 0) {
+      queueLogs.forEach(log => console.log(`  [Queue] ${log}`));
+      executedAny = true;
+    } else {
+      console.log("💤 No queued background jobs found.");
+    }
+  } catch (err) {
+    console.error(`⚠️ Failed to run background execution queue: ${(err as Error).message}`);
+  }
+
   if (executedAny) {
     generateStatusMd(state);
   } else {

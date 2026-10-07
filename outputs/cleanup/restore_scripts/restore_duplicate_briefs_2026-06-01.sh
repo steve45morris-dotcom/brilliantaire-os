@@ -13,15 +13,15 @@ echo "🔄 Initiating duplicate brief restoration..."
 
 # Restore Commands:
 # Restore: daily_brief_2026-05-29_1780073595.md
-# cp "/Users/alexanderanthony/outputs/cleanup/quarantine/daily_brief_2026-05-29_1780073595.md" "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29_1780073595.md"
+# cp "~/outputs/cleanup/quarantine/daily_brief_2026-05-29_1780073595.md" "~/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29_1780073595.md"
 
 # Restore: next_actions_2026-05-29_1780073595.md
-# cp "/Users/alexanderanthony/outputs/cleanup/quarantine/next_actions_2026-05-29_1780073595.md" "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md"
+# cp "~/outputs/cleanup/quarantine/next_actions_2026-05-29_1780073595.md" "~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md"
 
 # Restore: project_snapshot_2026-05-29_1780073595.md
-# cp "/Users/alexanderanthony/outputs/cleanup/quarantine/project_snapshot_2026-05-29_1780073595.md" "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md"
+# cp "~/outputs/cleanup/quarantine/project_snapshot_2026-05-29_1780073595.md" "~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md"
 
 # Restore: decisions_snapshot_2026-05-29_1780073595.md
-# cp "/Users/alexanderanthony/outputs/cleanup/quarantine/decisions_snapshot_2026-05-29_1780073595.md" "/Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/decisions/decisions_snapshot_2026-05-29_1780073595.md"
+# cp "~/outputs/cleanup/quarantine/decisions_snapshot_2026-05-29_1780073595.md" "~/AlexanderOSVault/brilliantaire-briefs/decisions/decisions_snapshot_2026-05-29_1780073595.md"
 
 echo "✅ Restoration operations complete."

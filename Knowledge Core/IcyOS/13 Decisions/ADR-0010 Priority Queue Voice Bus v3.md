@@ -31,6 +31,6 @@ Deploy Priority Queue Voice Bus v3 using a microsecond-precision queue folder `/
   - `2026-06-06`: Initialized ADR.
 - **Future Review Date**: 2027-06-06
 - **Cross References**:
-  - [AI Intelligence Specification](file:///Users/alexanderanthony/Knowledge%20Core/IcyOS/03%20AI%20Department/AI%20Intelligence%20Specification.md)
+  - [AI Intelligence Specification](./03%20AI%20Department/AI%20Intelligence%20Specification.md)
 
 *I build before burning.*

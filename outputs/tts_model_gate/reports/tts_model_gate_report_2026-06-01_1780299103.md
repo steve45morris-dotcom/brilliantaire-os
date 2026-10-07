@@ -3,7 +3,7 @@
 This report logs local Piper voice model scanning, matching configurations validation, and safety gate override status.
 
 ## 🗃️ Model Directory Integrity Audit
-*   **Model Directory:** `/Users/alexanderanthony/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
+*   **Model Directory:** `~/Projects/antigravity-lab/one-system/brilliantaire-os/models/tts/piper`
 *   **ONNX Files Found:** 0
 *   **Config Files Found:** 0
 *   **Matching Pair Found:** No

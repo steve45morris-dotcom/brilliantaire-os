@@ -1,7 +1,7 @@
 # Credential History Audit
 
 Date: 2026-07-20
-Scope: full Git history, all branches, of `/Users/alexanderanthony` (remote: `github.com/steve45morris-dotcom/brilliantaire-os`, **public**).
+Scope: full Git history, all branches, of `$HOME` (remote: `github.com/steve45morris-dotcom/brilliantaire-os`, **public**).
 Method: metadata-only (`git log --all --diff-filter=A --name-only`, `git ls-files`, `git check-ignore`). No file contents were printed or inspected; no secret values were viewed.
 
 ## Method note on scope
