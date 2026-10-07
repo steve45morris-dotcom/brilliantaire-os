@@ -156,6 +156,39 @@ describe('Provider Security and Model Lifecycle Repair Tests', () => {
       expect(models).toContain('gemini-1.5-pro');
       expect(models).toContain('gemini-1.5-flash');
     });
+
+    it('default model catalog contains modernized supported models', () => {
+      const models = globalGeminiIntegrationContract.listModels();
+      expect(models).toContain('gemini-2.5-flash');
+      expect(models).toContain('gemini-2.5-pro');
+      expect(models).toContain('gemini-3.6-flash');
+      expect(models).toContain('gemini-1.5-pro');
+      expect(models).toContain('gemini-1.5-flash');
+    });
+
+    it('fallback model derives from getGeminiConfig defaultModel', async () => {
+      const { globalGeminiClient } = await import('./integrations/gemini/GeminiClient.js');
+      const { globalGeminiResponsesService } = await import('./integrations/gemini/GeminiResponsesService.js');
+      const spy = vi.spyOn(globalGeminiClient, 'generateContent').mockResolvedValueOnce({
+        text: 'mock response',
+        model: 'gemini-2.5-flash',
+        latencyMs: 50,
+        usage: { inputTokens: 5, outputTokens: 5, totalTokens: 10 }
+      });
+
+      const result = await globalGeminiResponsesService.executeRequest({
+        prompt: 'test prompt without selectedModel',
+        selectedModel: ''
+      });
+
+      expect(spy).toHaveBeenCalledWith(
+        'gemini-2.5-flash',
+        'test prompt without selectedModel',
+        expect.any(Object)
+      );
+      expect(result.model).toBe('gemini-2.5-flash');
+      spy.mockRestore();
+    });
   });
 
   describe('Router Neutrality & Safety Checks', () => {
@@ -163,6 +196,7 @@ describe('Provider Security and Model Lifecycle Repair Tests', () => {
       globalModelRoutingPolicy.updateSettings({
         routingMode: 'automatic',
         preferredProvider: 'openai',
+        preferredReasoningProvider: 'openai',
         allowProviderFallback: true,
         requireApprovalBeforeProviderSwitch: true
       });

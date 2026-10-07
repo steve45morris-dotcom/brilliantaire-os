@@ -11,6 +11,18 @@ export interface ProviderCostControls {
   monthlyLimit: number;
 }
 
+export type ErrorCategory =
+  | 'authentication'
+  | 'configuration'
+  | 'rate-limit'
+  | 'timeout'
+  | 'network'
+  | 'provider-unavailable'
+  | 'streaming'
+  | 'execution'
+  | 'cancellation'
+  | 'unknown';
+
 export interface ProviderHealth {
   providerId: string;
   status: 'healthy' | 'degraded' | 'disconnected' | 'authentication-failed' | 'misconfigured' | 'unavailable' | 'rate-limited' | 'budget-blocked';
@@ -22,6 +34,9 @@ export interface ProviderHealth {
   checkedAt: string;
   lastCheckedAt: string;
   errors?: string[];
+  cooldownUntil?: number;
+  consecutiveFailures?: number;
+  lastErrorCategory?: ErrorCategory;
 }
 
 export interface ModelProvider {

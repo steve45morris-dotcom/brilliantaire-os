@@ -12,3 +12,15 @@ export function maskAPIKey(keyName: string, keyValue: string | null): string {
   }
   return '••••••••';
 }
+
+/**
+ * Sanitizes arbitrary strings to redact keys, tokens, or authorization headers.
+ */
+export function maskSensitiveText(text: string): string {
+  if (!text) return text;
+  return text
+    .replace(/AIzaSy[a-zA-Z0-9_-]{10,}/g, 'AIz••••••••')
+    .replace(/sk-[a-zA-Z0-9_-]{10,}/g, 'sk-••••••••')
+    .replace(/Bearer\s+[a-zA-Z0-9_.-]+/gi, 'Bearer ••••••••');
+}
+

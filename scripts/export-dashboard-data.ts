@@ -23,6 +23,10 @@ import {
 } from '../config/narrator-voice-asr-orchestrator.config.js';
 
 import { performScan } from './narrator-voice-lifecycle-audit.js';
+import {
+  projectAllProvidersHealth,
+  writeProviderHealthDashboardArtifact,
+} from '../src/integrations/core/ProviderHealthProjection.js';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +45,7 @@ const REPORTS_DIR = path.join(TELEMETRY_DIR, 'reports');
 
 const OUTPUT_JSON_DIR = path.join(REPO_ROOT, 'dashboard', 'public');
 const OUTPUT_JSON_PATH = path.join(OUTPUT_JSON_DIR, 'dashboard-data.json');
+const OUTPUT_PROVIDER_HEALTH_PATH = path.join(OUTPUT_JSON_DIR, 'provider-health-data.json');
 
 function getLatestFile(dir: string, prefix: string): string {
   if (!fs.existsSync(dir)) return '';
@@ -528,6 +533,10 @@ function main() {
 
   fs.writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
   console.log(`✅ Dashboard data exported successfully to: ${OUTPUT_JSON_PATH}`);
+
+  // Phase 5C: each AI provider's health, for the dashboard.
+  writeProviderHealthDashboardArtifact(OUTPUT_PROVIDER_HEALTH_PATH, projectAllProvidersHealth());
+  console.log(`✅ Provider health data exported to: ${OUTPUT_PROVIDER_HEALTH_PATH}`);
 }
 
 main();

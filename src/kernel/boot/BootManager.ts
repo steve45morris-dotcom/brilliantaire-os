@@ -13,9 +13,11 @@ import { globalOpenAIIntegrationContract } from '../../integrations/openai/OpenA
 import { globalOpenAIIntegration } from '../../integrations/openai/OpenAIIntegration.js';
 import { globalGeminiIntegrationContract } from '../../integrations/gemini/GeminiIntegrationContract.js';
 import { globalGeminiIntegration } from '../../integrations/gemini/GeminiIntegration.js';
+import { getGeminiDiagnostics } from '../../integrations/gemini/GeminiConfig.js';
 import { globalAnthropicIntegrationContract } from '../../integrations/anthropic/AnthropicIntegrationContract.js';
 import { globalLocalIntegrationContract } from '../../integrations/core/LocalIntegrationContract.js';
 import { globalModelRouter } from '../../integrations/core/ModelRouter.js';
+import { globalProviderHealthTracker } from '../../integrations/core/ProviderHealthTracker.js';
 import { globalIntelligenceService } from '../../intelligence/IntelligenceService.js';
 
 import { globalObservationEngine } from '../../intelligence/ObservationEngine.js';
@@ -61,6 +63,8 @@ export class BootManager {
     globalOpenAIIntegration.registerService();
     globalGeminiIntegration.registerService();
     globalModelRouter.registerService();
+    globalProviderHealthTracker.initialize();
+    globalServiceRegistry.register('ProviderHealthTracker', globalProviderHealthTracker);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalGitHubIntegrationContract);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalOpenAIIntegrationContract);
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalGeminiIntegrationContract);
@@ -68,6 +72,14 @@ export class BootManager {
     globalServiceRegistry.getService('UniversalIntegrationFramework').registerIntegration(globalLocalIntegrationContract);
     globalServiceRegistry.register('SkillAcquisitionService', globalSkillAcquisitionService);
     this.logSeq('Registered Universal Integration Framework, GitHub plugin, OpenAI, Gemini, Anthropic, Local integrations, and SkillAcquisitionService.');
+    const geminiDiag = getGeminiDiagnostics();
+    if (geminiDiag.configured) {
+      this.logSeq(`[Gemini Provider] Initialized (Default: ${geminiDiag.defaultModel}, Daily Limit: $${geminiDiag.dailyLimit.toFixed(2)}, Timeout: ${geminiDiag.timeoutMs}ms, Retries: ${geminiDiag.maxRetries}).`);
+    } else if (geminiDiag.apiKeyPresent) {
+      this.logSeq(`[Gemini Provider] Configured with notice: ${geminiDiag.validation.message}`);
+    } else {
+      this.logSeq('[Gemini Provider] Standby (Credentials unconfigured).');
+    }
 
 
     // Register Operations Intelligence Layer (OIL)

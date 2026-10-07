@@ -1,5 +1,6 @@
-import { globalGeminiClient } from './GeminiClient.js';
+import { globalGeminiClient, NormalizedGeminiError, GeminiStreamChunk } from './GeminiClient.js';
 import { getGeminiConfig } from './GeminiConfig.js';
+import { globalIntegrationRegistry } from '../core/IntegrationRegistry.js';
 import { globalEventBus } from '../../kernel/events/EventBus.js';
 import { globalEyeStateManager } from '../../ui/eye/EyeStateManager.js';
 import { globalPresenceStateManager } from '../../ui/supernova/PresenceStateManager.js';
@@ -8,8 +9,13 @@ export interface GeminiRequestPayload {
   requestId?: string;
   selectedModel: string;
   prompt: string;
+  systemInstruction?: string;
   temperature?: number;
   maxOutputTokens?: number;
+  responseMimeType?: string;
+  responseSchema?: Record<string, any>;
+  timeoutMs?: number;
+  maxRetries?: number;
   workspaceId?: string;
 }
 
@@ -18,17 +24,20 @@ export interface GeminiResponsePayload {
   requestId: string;
   provider: string;
   model: string;
-  output: { message: string } | null;
+  output: { message: string; data?: any } | null;
   usage: {
     inputTokens: number;
     outputTokens: number;
     totalTokens: number;
   };
   latencyMs: number;
+  finishReason?: string;
   status: 'completed' | 'failed';
   error?: {
     code: string;
     message: string;
+    statusCode?: number;
+    isTransient?: boolean;
   };
 }
 
@@ -36,11 +45,43 @@ export class GeminiResponsesService {
   public async executeRequest(payload: GeminiRequestPayload): Promise<GeminiResponsePayload> {
     const startTime = Date.now();
     const requestId = payload.requestId || `req-${Date.now()}`;
-    const modelName = payload.selectedModel || 'gemini-1.5-pro';
+    const config = getGeminiConfig();
+    const modelName = payload.selectedModel || config.defaultModel || 'gemini-2.5-flash';
 
     globalEyeStateManager.setState('observing');
     globalPresenceStateManager.setState('observing');
     globalEventBus.publish('GeminiRequestStarted', { requestId, model: modelName });
+
+    // Enforce daily budget limit check if configured
+    const geminiProvider = globalIntegrationRegistry.get('gemini') as any;
+    const currentSpend = geminiProvider?.usage?.dailySpend ?? 0;
+    if (config.dailyLimit > 0 && currentSpend >= config.dailyLimit) {
+      const errReason = `Gemini daily budget limit of $${config.dailyLimit.toFixed(2)} exceeded (current spend: $${currentSpend.toFixed(4)}).`;
+      globalEventBus.publish('GeminiRequestFailed', {
+        requestId,
+        model: modelName,
+        error: errReason,
+        code: 'GEMINI_BUDGET_EXCEEDED'
+      });
+      globalEyeStateManager.setState('error');
+      globalPresenceStateManager.setState('error');
+      return {
+        success: false,
+        requestId,
+        provider: 'gemini',
+        model: modelName,
+        output: null,
+        usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+        latencyMs: Date.now() - startTime,
+        status: 'failed',
+        error: {
+          code: 'GEMINI_BUDGET_EXCEEDED',
+          message: errReason,
+          statusCode: 429,
+          isTransient: false
+        }
+      };
+    }
 
     try {
       // Transition UI to executing
@@ -52,7 +93,12 @@ export class GeminiResponsesService {
         payload.prompt,
         {
           temperature: payload.temperature,
-          maxOutputTokens: payload.maxOutputTokens
+          maxOutputTokens: payload.maxOutputTokens,
+          systemInstruction: payload.systemInstruction,
+          responseMimeType: payload.responseMimeType,
+          responseSchema: payload.responseSchema,
+          timeoutMs: payload.timeoutMs,
+          maxRetries: payload.maxRetries
         }
       );
 
@@ -67,24 +113,38 @@ export class GeminiResponsesService {
       globalEyeStateManager.setState('idle');
       globalPresenceStateManager.setState('idle');
 
+      let parsedData: any = undefined;
+      if (payload.responseMimeType === 'application/json' || payload.responseSchema) {
+        try {
+          parsedData = JSON.parse(response.text);
+        } catch {
+          // If JSON parse fails, preserve text output without hard crash
+        }
+      }
+
       return {
         success: true,
         requestId,
         provider: 'gemini',
         model: modelName,
-        output: { message: response.text },
+        output: { message: response.text, data: parsedData },
         usage: response.usage,
+        finishReason: response.finishReason,
         latencyMs,
         status: 'completed'
       };
-    } catch (err) {
+    } catch (err: any) {
       const latencyMs = Date.now() - startTime;
-      const errMsg = (err as Error).message;
+      const errMsg = err?.message || 'Unknown Gemini error';
+      const errCode = (err as NormalizedGeminiError)?.code || 'GEMINI_EXECUTION_FAILED';
+      const statusCode = (err as NormalizedGeminiError)?.statusCode || 500;
+      const isTransient = (err as NormalizedGeminiError)?.isTransient ?? false;
 
       globalEventBus.publish('GeminiRequestFailed', {
         requestId,
         model: modelName,
-        error: errMsg
+        error: errMsg,
+        code: errCode
       });
 
       globalEyeStateManager.setState('error');
@@ -100,8 +160,151 @@ export class GeminiResponsesService {
         latencyMs,
         status: 'failed',
         error: {
-          code: 'gemini_error',
-          message: errMsg
+          code: errCode,
+          message: errMsg,
+          statusCode,
+          isTransient
+        }
+      };
+    }
+  }
+
+  public async executeStreamingRequest(payload: GeminiRequestPayload & {
+    onChunk?: (chunk: GeminiStreamChunk) => void;
+    signal?: AbortSignal;
+  }): Promise<GeminiResponsePayload & { partialOutput?: string; isStreaming: boolean }> {
+    const startTime = Date.now();
+    const requestId = payload.requestId || `req-stream-${Date.now()}`;
+    const config = getGeminiConfig();
+    const modelName = payload.selectedModel || config.defaultModel || 'gemini-2.5-flash';
+
+    globalEyeStateManager.setState('observing');
+    globalPresenceStateManager.setState('observing');
+    globalEventBus.publish('GeminiStreamStarted', { requestId, model: modelName });
+
+    // Enforce daily budget limit check if configured
+    const geminiProvider = globalIntegrationRegistry.get('gemini') as any;
+    const currentSpend = geminiProvider?.usage?.dailySpend ?? 0;
+    if (config.dailyLimit > 0 && currentSpend >= config.dailyLimit) {
+      const errReason = `Gemini daily budget limit of $${config.dailyLimit.toFixed(2)} exceeded (current spend: $${currentSpend.toFixed(4)}).`;
+      globalEventBus.publish('GeminiStreamFailed', {
+        requestId,
+        model: modelName,
+        error: errReason,
+        code: 'GEMINI_BUDGET_EXCEEDED',
+        category: 'configuration'
+      });
+      globalEyeStateManager.setState('error');
+      globalPresenceStateManager.setState('error');
+      return {
+        success: false,
+        requestId,
+        provider: 'gemini',
+        model: modelName,
+        output: null,
+        partialOutput: '',
+        isStreaming: true,
+        usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+        latencyMs: Date.now() - startTime,
+        status: 'failed',
+        error: {
+          code: 'GEMINI_BUDGET_EXCEEDED',
+          message: errReason,
+          statusCode: 429,
+          isTransient: false
+        }
+      };
+    }
+
+    try {
+      globalEyeStateManager.setState('thinking');
+      globalPresenceStateManager.setState('executing');
+
+      const streamResult = await globalGeminiClient.streamContent(
+        modelName,
+        payload.prompt,
+        {
+          temperature: payload.temperature,
+          maxOutputTokens: payload.maxOutputTokens,
+          systemInstruction: payload.systemInstruction,
+          timeoutMs: payload.timeoutMs,
+          maxRetries: payload.maxRetries,
+          signal: payload.signal,
+          onChunk: (chunk) => {
+            globalEventBus.publish('GeminiStreamChunk', {
+              requestId,
+              chunkIndex: chunk.index,
+              chunkLength: chunk.text.length,
+              isFinal: chunk.isFinal ?? false
+            });
+            if (payload.onChunk) {
+              payload.onChunk(chunk);
+            }
+          }
+        }
+      );
+
+      const latencyMs = Date.now() - startTime;
+      globalEventBus.publish('GeminiStreamCompleted', {
+        requestId,
+        model: modelName,
+        latencyMs,
+        totalTokens: streamResult.usage.totalTokens
+      });
+
+      globalEyeStateManager.setState('idle');
+      globalPresenceStateManager.setState('idle');
+
+      return {
+        success: true,
+        requestId,
+        provider: 'gemini',
+        model: modelName,
+        output: { message: streamResult.text },
+        partialOutput: streamResult.text,
+        isStreaming: true,
+        usage: streamResult.usage,
+        finishReason: streamResult.finishReason,
+        latencyMs,
+        status: 'completed'
+      };
+    } catch (err: any) {
+      const latencyMs = Date.now() - startTime;
+      const errMsg = err?.message || 'Unknown Gemini streaming error';
+      const errCode = (err as NormalizedGeminiError)?.code || 'GEMINI_STREAMING_ERROR';
+      const statusCode = (err as NormalizedGeminiError)?.statusCode || 500;
+      const isTransient = (err as NormalizedGeminiError)?.isTransient ?? false;
+      const category = (err as NormalizedGeminiError)?.category || 'streaming';
+      const partialOutput = (err as NormalizedGeminiError)?.partialOutput || '';
+
+      globalEventBus.publish('GeminiStreamFailed', {
+        requestId,
+        model: modelName,
+        error: errMsg,
+        code: errCode,
+        category,
+        partialLength: partialOutput.length
+      });
+
+      globalEyeStateManager.setState('error');
+      globalPresenceStateManager.setState('error');
+
+      return {
+        success: false,
+        requestId,
+        provider: 'gemini',
+        model: modelName,
+        output: null,
+        partialOutput,
+        isStreaming: true,
+        usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+        latencyMs,
+        status: 'failed',
+        error: {
+          code: errCode,
+          message: errMsg,
+          statusCode,
+          isTransient
         }
       };
     }
