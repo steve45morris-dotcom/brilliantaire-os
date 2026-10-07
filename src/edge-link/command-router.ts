@@ -2,6 +2,8 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
+import { createRequire } from 'module';
 
 const execAsync = promisify(exec);
 
@@ -75,12 +77,36 @@ export class CommandRouter {
 
     // 5. List music tracks (mock – point to your actual catalog)
     if (target === 'list_tracks') {
-      // Example: read a directory or JSON manifest
+      const tracks = ['icyflamze_04.mp3', 'tree_groove_mix.wav', 'ambient_demo.flac'];
+      
+      try {
+        // better-sqlite3 from the sentinel-os checkout (SENTINEL_OS_ROOT, default ~/sentinel-os), and
+        // its mesh store, which lives beside that checkout (SUPERNOVA_DB_PATH overrides).
+        const sentinelRoot = path.resolve((process.env.SENTINEL_OS_ROOT || path.join(os.homedir(), 'sentinel-os')).replace(/^~(?=$|\/)/, os.homedir()));
+        const Database = createRequire(import.meta.url)(path.join(sentinelRoot, 'node_modules', 'better-sqlite3'));
+        const db = new Database(process.env.SUPERNOVA_DB_PATH || path.join(path.dirname(sentinelRoot), 'supernova.db'));
+        const rows = db.prepare(
+          "SELECT detail FROM sovereign_ledger WHERE category = 'MICRO_PRODUCT_DEPLOY' ORDER BY timestamp DESC LIMIT 10;"
+        ).all() as { detail: string }[];
+        
+        for (const row of rows) {
+          try {
+            const detail = JSON.parse(row.detail);
+            if (detail && detail.name) {
+              // Connect micro-product deploy assets directly as catalog items
+              tracks.push(`micro_${detail.name.toLowerCase()}_asset.mp3`);
+            }
+          } catch {}
+        }
+      } catch (e) {
+        // Keep default list on fallback
+      }
+
       return {
         status: 'success',
         data: {
-          tracks: ['icyflamze_04.mp3', 'tree_groove_mix.wav', 'ambient_demo.flac'],
-          total: 3,
+          tracks,
+          total: tracks.length,
         },
       };
     }

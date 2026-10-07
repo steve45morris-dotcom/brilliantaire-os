@@ -21,6 +21,17 @@ export interface Song {
   releaseDate: string;
   publishingStatus: 'Unpublished' | 'Staged' | 'Published';
   linkedLyricIds?: string[];
+  personaFidelity?: number;
+  personaSignals?: string[];
+  icySignals?: string[];
+  flamzeSignals?: string[];
+  integratedPersonaSignals?: string[];
+  culturalReferences?: string[];
+  motifs?: string[];
+  callbacks?: string[];
+  emotionalArc?: string[];
+  canonicalCaseStudyRefs?: string[];
+  generationProvenance?: string;
 }
 
 const DEFAULT_SONGS: Song[] = [
@@ -108,12 +119,40 @@ export class SongManager {
       );
     `);
 
+    // Dynamic schema migrations for new metadata fields
+    const tableInfo = db.prepare(`PRAGMA table_info(icyflamze_songs)`).all() as any[];
+    const columns = tableInfo.map(c => c.name);
+
+    const newColumns = [
+      ['persona_fidelity', 'REAL'],
+      ['persona_signals_json', 'TEXT'],
+      ['icy_signals_json', 'TEXT'],
+      ['flamze_signals_json', 'TEXT'],
+      ['integrated_persona_signals_json', 'TEXT'],
+      ['cultural_references_json', 'TEXT'],
+      ['motifs_json', 'TEXT'],
+      ['callbacks_json', 'TEXT'],
+      ['emotional_arc_json', 'TEXT'],
+      ['canonical_case_study_refs_json', 'TEXT'],
+      ['generation_provenance', 'TEXT']
+    ];
+
+    for (const [colName, colType] of newColumns) {
+      if (!columns.includes(colName)) {
+        db.exec(`ALTER TABLE icyflamze_songs ADD COLUMN ${colName} ${colType};`);
+      }
+    }
+
     const initialRows = db.prepare(`SELECT * FROM icyflamze_songs`).all() as any[];
 
     if (initialRows.length === 0) {
       const insertStmt = db.prepare(`
-        INSERT INTO icyflamze_songs (id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO icyflamze_songs (
+          id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json,
+          persona_fidelity, persona_signals_json, icy_signals_json, flamze_signals_json, integrated_persona_signals_json,
+          cultural_references_json, motifs_json, callbacks_json, emotional_arc_json, canonical_case_study_refs_json, generation_provenance
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(id) DO NOTHING
       `);
 
@@ -134,7 +173,18 @@ export class SongManager {
           song.artwork,
           song.releaseDate,
           song.publishingStatus,
-          JSON.stringify(song.linkedLyricIds || [])
+          JSON.stringify(song.linkedLyricIds || []),
+          song.personaFidelity !== undefined ? song.personaFidelity : null,
+          JSON.stringify(song.personaSignals || []),
+          JSON.stringify(song.icySignals || []),
+          JSON.stringify(song.flamzeSignals || []),
+          JSON.stringify(song.integratedPersonaSignals || []),
+          JSON.stringify(song.culturalReferences || []),
+          JSON.stringify(song.motifs || []),
+          JSON.stringify(song.callbacks || []),
+          JSON.stringify(song.emotionalArc || []),
+          JSON.stringify(song.canonicalCaseStudyRefs || []),
+          song.generationProvenance || null
         );
       }
     }
@@ -157,7 +207,18 @@ export class SongManager {
       artwork: r.artwork,
       releaseDate: r.release_date,
       publishingStatus: r.publishing_status,
-      linkedLyricIds: JSON.parse(r.linked_lyric_ids_json || '[]')
+      linkedLyricIds: JSON.parse(r.linked_lyric_ids_json || '[]'),
+      personaFidelity: r.persona_fidelity !== null ? r.persona_fidelity : undefined,
+      personaSignals: JSON.parse(r.persona_signals_json || '[]'),
+      icySignals: JSON.parse(r.icy_signals_json || '[]'),
+      flamzeSignals: JSON.parse(r.flamze_signals_json || '[]'),
+      integratedPersonaSignals: JSON.parse(r.integrated_persona_signals_json || '[]'),
+      culturalReferences: JSON.parse(r.cultural_references_json || '[]'),
+      motifs: JSON.parse(r.motifs_json || '[]'),
+      callbacks: JSON.parse(r.callbacks_json || '[]'),
+      emotionalArc: JSON.parse(r.emotional_arc_json || '[]'),
+      canonicalCaseStudyRefs: JSON.parse(r.canonical_case_study_refs_json || '[]'),
+      generationProvenance: r.generation_provenance || undefined
     }));
   }
 
@@ -212,8 +273,12 @@ export class SongManager {
 
     const db = getDB();
     db.prepare(`
-      INSERT INTO icyflamze_songs (id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO icyflamze_songs (
+        id, title, status, genre, bpm, mood, producer, version, lyrics, recording, mix, master, artwork, release_date, publishing_status, linked_lyric_ids_json,
+        persona_fidelity, persona_signals_json, icy_signals_json, flamze_signals_json, integrated_persona_signals_json,
+        cultural_references_json, motifs_json, callbacks_json, emotional_arc_json, canonical_case_study_refs_json, generation_provenance
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       song.id,
       song.title,
@@ -230,7 +295,18 @@ export class SongManager {
       song.artwork,
       song.releaseDate,
       song.publishingStatus,
-      JSON.stringify(song.linkedLyricIds || [])
+      JSON.stringify(song.linkedLyricIds || []),
+      song.personaFidelity !== undefined ? song.personaFidelity : null,
+      JSON.stringify(song.personaSignals || []),
+      JSON.stringify(song.icySignals || []),
+      JSON.stringify(song.flamzeSignals || []),
+      JSON.stringify(song.integratedPersonaSignals || []),
+      JSON.stringify(song.culturalReferences || []),
+      JSON.stringify(song.motifs || []),
+      JSON.stringify(song.callbacks || []),
+      JSON.stringify(song.emotionalArc || []),
+      JSON.stringify(song.canonicalCaseStudyRefs || []),
+      song.generationProvenance || null
     );
 
     globalNodeRegistry.registerNode(song.id, 'Document', {
@@ -260,7 +336,10 @@ export class SongManager {
     const db = getDB();
     db.prepare(`
       UPDATE icyflamze_songs
-      SET title = ?, status = ?, genre = ?, bpm = ?, mood = ?, producer = ?, version = ?, lyrics = ?, recording = ?, mix = ?, master = ?, artwork = ?, release_date = ?, publishing_status = ?, linked_lyric_ids_json = ?, updated_at = CURRENT_TIMESTAMP
+      SET title = ?, status = ?, genre = ?, bpm = ?, mood = ?, producer = ?, version = ?, lyrics = ?, recording = ?, mix = ?, master = ?, artwork = ?, release_date = ?, publishing_status = ?, linked_lyric_ids_json = ?,
+          persona_fidelity = ?, persona_signals_json = ?, icy_signals_json = ?, flamze_signals_json = ?, integrated_persona_signals_json = ?,
+          cultural_references_json = ?, motifs_json = ?, callbacks_json = ?, emotional_arc_json = ?, canonical_case_study_refs_json = ?, generation_provenance = ?,
+          updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
     `).run(
       song.title,
@@ -278,6 +357,17 @@ export class SongManager {
       song.releaseDate,
       song.publishingStatus,
       JSON.stringify(song.linkedLyricIds || []),
+      song.personaFidelity !== undefined ? song.personaFidelity : null,
+      JSON.stringify(song.personaSignals || []),
+      JSON.stringify(song.icySignals || []),
+      JSON.stringify(song.flamzeSignals || []),
+      JSON.stringify(song.integratedPersonaSignals || []),
+      JSON.stringify(song.culturalReferences || []),
+      JSON.stringify(song.motifs || []),
+      JSON.stringify(song.callbacks || []),
+      JSON.stringify(song.emotionalArc || []),
+      JSON.stringify(song.canonicalCaseStudyRefs || []),
+      song.generationProvenance || null,
       song.id
     );
 

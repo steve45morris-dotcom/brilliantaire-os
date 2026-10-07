@@ -126,7 +126,7 @@ export class OpenAIIntegrationContract implements IntegrationContract, ModelProv
       return this.models;
     }
     try {
-      const response = await fetch('https://api.openai.com/v1/models', {
+      const response = await fetch(`${config.baseUrl}/models`, {
         headers: { 'Authorization': `Bearer ${config.apiKey}` },
         signal: AbortSignal.timeout(5000)
       });
@@ -299,7 +299,7 @@ export class OpenAIIntegrationContract implements IntegrationContract, ModelProv
 
     const startTime = Date.now();
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch(`${config.baseUrl}/chat/completions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

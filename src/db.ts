@@ -38,6 +38,9 @@ const stubDb = {
   exec: () => {},
   pragma: () => {},
   prepare: () => noopStatement,
+  // better-sqlite3's db.transaction(fn) returns a function that runs fn atomically;
+  // with nothing to persist, the stub just runs fn.
+  transaction: <T extends (...args: any[]) => any>(fn: T): T => fn,
   close: () => {},
 };
 

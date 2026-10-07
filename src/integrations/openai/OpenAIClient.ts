@@ -11,6 +11,7 @@ export class OpenAIClient {
       try {
         this.client = new OpenAI({
           apiKey: config.apiKey,
+          baseURL: config.baseUrl,
           timeout: config.requestTimeoutMs
         });
       } catch (e) {

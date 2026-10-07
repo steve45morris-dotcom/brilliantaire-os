@@ -10,3 +10,5 @@ export * from './Analytics.js';
 export * from './Settings.js';
 export * from './Reports.js';
 export * from './Dashboard.js';
+export * from './ArtistPersona.js';
+

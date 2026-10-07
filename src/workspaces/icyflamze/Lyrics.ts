@@ -4,6 +4,7 @@ import { globalEdgeRegistry } from '../../knowledge/EdgeRegistry.js';
 import { globalTaskTracker } from '../../kernel/live/TaskTracker.js';
 import type { SongManager } from './Music.js';
 import { getDB } from '../../db.js';
+import { ArtistPersonaEngine } from './ArtistPersona.js';
 
 export interface LyricItem {
   id: string;
@@ -16,6 +17,7 @@ export interface LyricItem {
   references: string[];
   history: { timestamp: string; content: string; version: string }[];
   songId?: string;
+  personaFidelity?: number;
 }
 
 export interface SongLyricLinkResult {
@@ -65,6 +67,19 @@ const DEFAULT_LYRICS: LyricItem[] = [
     history: [
       { timestamp: '2026-07-21T00:00:00.000Z', content: 'Recorded version locked.', version: 'v1.1.0' }
     ]
+  },
+  {
+    id: 'lyric-freestyle-aug-12',
+    title: 'August 12, 2026 Freestyle (Canonical Persona Case Study)',
+    content: 'Brilliantier is hes mindset, pressure-educated on the hot tarmac, / Lagos boy standing tall, we make the bricks and stack them back. / Move from the cold brain deep into the heartbeat layer, / Transforming all the pain to joy, a silent street prayer. / No time for forced boasting, we let the quiet build the loud, / Nigerian roots deep in the soil, standing clear above the crowd. / Ogbolor oil on the egusi, we cooking up the truth in here, / No matter the wahala, we adapt and conquer every fear. / 90s hip-hop in the DNA, raw freestyle character flowing free, / Crucifixion and resurrection, this is the transformation of me. / Icy reflection on the water, Flamze aggression in the fire, / Loyalty and street logic taking the sovereign status higher. / We build before we burn, locking every type and code, / Sovereign Knight in the universe, walking down this dusty road. / No placeholder claims, only lived truth in the groove, / Area boy with the formula, making the ultimate move. / No over-polishing the truth, keeping the cadence raw and broke, / Two lighters lit in the dark, icyflamze with the smoke.',
+    type: 'Freestyle',
+    status: 'Approved',
+    theme: 'Deep Artist Persona Case Study',
+    version: 'v1.0.0',
+    references: ['Brilliantier', 'Lagos', 'Ogbolor', 'wahala', 'two lighters', 'smoke'],
+    history: [
+      { timestamp: '2026-08-12T00:00:00.000Z', content: 'August 12, 2026 Freestyle case study recorded.', version: 'v1.0.0' }
+    ]
   }
 ];
 
@@ -93,17 +108,28 @@ export class LyricWorkspace {
       );
     `);
 
+    // Schema migration for persona_fidelity
+    const tableInfo = db.prepare(`PRAGMA table_info(icyflamze_lyrics)`).all() as any[];
+    const columns = tableInfo.map(c => c.name);
+    if (!columns.includes('persona_fidelity')) {
+      db.exec(`ALTER TABLE icyflamze_lyrics ADD COLUMN persona_fidelity REAL;`);
+    }
+
     const initialRows = db.prepare(`SELECT * FROM icyflamze_lyrics`).all() as any[];
 
     if (initialRows.length === 0) {
       // Seed default lyrics into SQLite database on first initialization
       const insertStmt = db.prepare(`
-        INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id, persona_fidelity)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(id) DO NOTHING
       `);
 
       for (const lyric of DEFAULT_LYRICS) {
+        // Evaluate default lyrics for persona fidelity
+        const evalResult = ArtistPersonaEngine.evaluateLyrics(lyric.content);
+        lyric.personaFidelity = evalResult.personaFidelity;
+
         insertStmt.run(
           lyric.id,
           lyric.title,
@@ -114,7 +140,8 @@ export class LyricWorkspace {
           lyric.version,
           JSON.stringify(lyric.references),
           JSON.stringify(lyric.history),
-          lyric.songId || null
+          lyric.songId || null,
+          lyric.personaFidelity
         );
       }
     }
@@ -131,7 +158,8 @@ export class LyricWorkspace {
       version: r.version,
       references: JSON.parse(r.references_json || '[]'),
       history: JSON.parse(r.history_json || '[]'),
-      songId: r.song_id || undefined
+      songId: r.song_id || undefined,
+      personaFidelity: r.persona_fidelity !== null ? r.persona_fidelity : undefined
     }));
   }
 
@@ -168,9 +196,15 @@ export class LyricWorkspace {
   }
 
   public addLyric(lyricData: Omit<LyricItem, 'id' | 'history'>): LyricItem {
+    const evalResult = ArtistPersonaEngine.evaluateLyrics(lyricData.content);
+    if (evalResult.personaFidelity < 8.0 && (lyricData.status === 'Approved' || lyricData.status === 'Released')) {
+      throw new Error(`NOT ICYFLAMZE READY: Persona fidelity score (${evalResult.personaFidelity}) is below the required 8.0 threshold.`);
+    }
+
     const lyric: LyricItem = {
       id: `lyric-${Date.now()}`,
       history: [{ timestamp: new Date().toISOString(), content: lyricData.content, version: lyricData.version }],
+      personaFidelity: evalResult.personaFidelity,
       ...lyricData
     };
     this.lyrics.push(lyric);
@@ -178,8 +212,8 @@ export class LyricWorkspace {
     // Persist new lyric to SQLite database using bound parameters
     const db = getDB();
     db.prepare(`
-      INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO icyflamze_lyrics (id, title, content, type, status, theme, version, references_json, history_json, song_id, persona_fidelity)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       lyric.id,
       lyric.title,
@@ -190,7 +224,8 @@ export class LyricWorkspace {
       lyric.version,
       JSON.stringify(lyric.references),
       JSON.stringify(lyric.history),
-      lyric.songId || null
+      lyric.songId || null,
+      lyric.personaFidelity !== undefined ? lyric.personaFidelity : null
     );
 
     globalNodeRegistry.registerNode(lyric.id, 'Document', {
@@ -210,6 +245,12 @@ export class LyricWorkspace {
     const lyric = this.lyrics.find(l => l.id === id);
     if (!lyric) return null;
 
+    const evalResult = ArtistPersonaEngine.evaluateLyrics(content);
+    const targetStatus = updates.status !== undefined ? updates.status : lyric.status;
+    if (evalResult.personaFidelity < 8.0 && (targetStatus === 'Approved' || targetStatus === 'Released')) {
+      throw new Error(`NOT ICYFLAMZE READY: Persona fidelity score (${evalResult.personaFidelity}) is below the required 8.0 threshold.`);
+    }
+
     const oldVersion = lyric.version;
     const majorMinor = oldVersion.startsWith('v') ? oldVersion.slice(1).split('.') : ['1', '0', '0'];
     const newVersion = `v${parseInt(majorMinor[0], 10)}.${parseInt(majorMinor[1], 10) + 1}.0`;
@@ -224,13 +265,14 @@ export class LyricWorkspace {
       lyric.version = newVersion;
     }
 
+    lyric.personaFidelity = evalResult.personaFidelity;
     Object.assign(lyric, updates);
 
     // Persist updated lyric to SQLite database using bound parameters
     const db = getDB();
     db.prepare(`
       UPDATE icyflamze_lyrics
-      SET title = ?, content = ?, type = ?, status = ?, theme = ?, version = ?, references_json = ?, history_json = ?, song_id = ?, updated_at = CURRENT_TIMESTAMP
+      SET title = ?, content = ?, type = ?, status = ?, theme = ?, version = ?, references_json = ?, history_json = ?, song_id = ?, persona_fidelity = ?, updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
     `).run(
       lyric.title,
@@ -242,6 +284,7 @@ export class LyricWorkspace {
       JSON.stringify(lyric.references),
       JSON.stringify(lyric.history),
       lyric.songId || null,
+      lyric.personaFidelity !== undefined ? lyric.personaFidelity : null,
       lyric.id
     );
 
@@ -268,9 +311,12 @@ export class LyricWorkspace {
     );
   }
 
-  public askAssistant(prompt: string, type: 'rhyme' | 'hook' | 'theme'): string {
+  public askAssistant(prompt: string, type: 'rhyme' | 'hook' | 'theme' | 'freestyle'): string {
     const cleanPrompt = prompt.toLowerCase();
-    if (type === 'rhyme') {
+    if (type === 'freestyle') {
+      const caseStudy = this.lyrics.find(l => l.id === 'lyric-freestyle-aug-12');
+      return caseStudy ? caseStudy.content : 'Brilliantier is hes mindset... (freestyle not seeded)';
+    } else if (type === 'rhyme') {
       if (cleanPrompt.includes('chess') || cleanPrompt.includes('board')) {
         return "Tactical moves across the grid / Street Scholar did what the rules forbid / King on my board, Knight in the game / Striking the lighter to ignite the flame.";
       }

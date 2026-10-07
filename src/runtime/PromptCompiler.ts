@@ -1,4 +1,5 @@
 import { ParsedIntent } from './IntentParser.js';
+import type { LoadedSkillContent, SkillDescriptor } from '../agent-upgrade/ProgressiveSkillLoader.js';
 
 export interface KernelCommandPayload {
   commandName: string;
@@ -6,6 +7,33 @@ export interface KernelCommandPayload {
 }
 
 export class PromptCompiler {
+  public assembleContext(
+    baseContext: string,
+    missionContext: string,
+    matchedMetadata: SkillDescriptor[],
+    instructions: LoadedSkillContent[],
+    resources: LoadedSkillContent[],
+  ): string {
+    const activatedIds = new Set(instructions.map((instruction) => instruction.skillId));
+    const selectedMetadata = matchedMetadata
+      .filter((descriptor) => activatedIds.has(descriptor.id))
+      .map((descriptor) => ({
+        id: descriptor.id,
+        name: descriptor.name,
+        summary: descriptor.summary,
+        capabilities: descriptor.capabilities,
+        risk: descriptor.risk || 'low',
+        permissions: descriptor.permissions || [],
+      }));
+    return [
+      baseContext,
+      missionContext,
+      selectedMetadata.length ? `SKILL METADATA\n${JSON.stringify(selectedMetadata)}` : '',
+      ...instructions.map((instruction) => `SKILL INSTRUCTIONS [${instruction.skillId}]\n${instruction.content}`),
+      ...resources.map((resource) => `SKILL RESOURCE [${resource.skillId}:${resource.path}]\n${resource.content}`),
+    ].filter(Boolean).join('\n\n');
+  }
+
   public compile(intent: ParsedIntent, context: Record<string, any>): KernelCommandPayload {
     switch (intent.intentType) {
       case 'research_ai':

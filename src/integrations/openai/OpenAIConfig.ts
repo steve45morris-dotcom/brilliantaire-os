@@ -1,5 +1,6 @@
 export interface OpenAIConfig {
   apiKey: string;
+  baseUrl: string;
   defaultModel: string;
   reasoningModel: string;
   fastModel: string;
@@ -20,6 +21,7 @@ export interface OpenAIConfig {
 export function getOpenAIConfig(): OpenAIConfig {
   return {
     apiKey: process.env.OPENAI_API_KEY || '',
+    baseUrl: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
     defaultModel: process.env.OPENAI_DEFAULT_MODEL || 'gpt-4o',
     reasoningModel: process.env.OPENAI_REASONING_MODEL || 'o3-mini',
     fastModel: process.env.OPENAI_FAST_MODEL || 'gpt-4o-mini',
@@ -44,6 +46,11 @@ export function validateOpenAIKey(key?: string): { valid: boolean; message: stri
   }
   if (key.startsWith('AIza')) {
     return { valid: false, message: 'Gemini/Google API key detected in OpenAI configuration. Provider isolation violation.' };
+  }
+  const config = getOpenAIConfig();
+  const isLocal = config.baseUrl.includes('localhost') || config.baseUrl.includes('127.0.0.1');
+  if (isLocal) {
+    return { valid: true, message: 'Local routing endpoint detected; bypassing strict key validation.' };
   }
   if (!key.startsWith('sk-')) {
     return { 

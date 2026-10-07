@@ -27,4 +27,6 @@ export * from './governance/GovernanceRegistry.js';
 export * from './governance/GovernanceEvents.js';
 export * from './governance/DependencyParser.js';
 export * from './governance/GovernanceEngine.js';
+export * from './governance/CapabilityCompletionGuard.js';
+
 

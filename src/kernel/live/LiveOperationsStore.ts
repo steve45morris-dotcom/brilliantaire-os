@@ -1,11 +1,13 @@
 import { OperationEvent, LiveSession, LiveTask, AttentionItem } from './LiveOperationsTypes.js';
 import { getDB } from '../../db.js';
+import { AgentExecutionState, isAgentExecutionEvent, projectAgentExecutionStates, sanitizeAgentExecutionState } from './AgentExecutionTelemetry.js';
 
 export class LiveOperationsStore {
   private sessions: Map<string, LiveSession> = new Map();
   private tasks: Map<string, LiveTask> = new Map();
   private events: OperationEvent[] = [];
   private attentionItems: AttentionItem[] = [];
+  private executionStates: Map<string, AgentExecutionState> = new Map();
 
   constructor() {
     this.initPersistence();
@@ -38,6 +40,17 @@ export class LiveOperationsStore {
         last_event_id TEXT,
         details_json TEXT
       );
+      CREATE TABLE IF NOT EXISTS live_execution_events (
+        id TEXT PRIMARY KEY,
+        timestamp TEXT NOT NULL,
+        created_at INTEGER NOT NULL DEFAULT 0,
+        event_json TEXT NOT NULL
+      );
+      CREATE TABLE IF NOT EXISTS live_execution_states (
+        execution_key TEXT PRIMARY KEY,
+        updated_at TEXT NOT NULL,
+        state_json TEXT NOT NULL
+      );
     `);
 
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN name TEXT;`); } catch {}
@@ -49,6 +62,7 @@ export class LiveOperationsStore {
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN attention_required INTEGER DEFAULT 0;`); } catch {}
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN last_event_id TEXT;`); } catch {}
     try { db.exec(`ALTER TABLE live_tasks ADD COLUMN details_json TEXT;`); } catch {}
+    try { db.exec(`ALTER TABLE live_execution_events ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0;`); } catch {}
 
     const sessionRows = db.prepare(`SELECT * FROM live_sessions`).all() as any[];
     for (const r of sessionRows) {
@@ -79,6 +93,18 @@ export class LiveOperationsStore {
         lastEventId: r.last_event_id || parsedDetails.lastEventId || 'evt-init',
         ...parsedDetails
       });
+    }
+
+    const eventRows = db.prepare(`SELECT event_json FROM live_execution_events ORDER BY created_at DESC LIMIT 200`).all() as Array<{ event_json: string }>;
+    for (const row of eventRows.reverse()) {
+      try { this.events.push(JSON.parse(row.event_json)); } catch {}
+    }
+    const stateRows = db.prepare(`SELECT execution_key, state_json FROM live_execution_states ORDER BY updated_at DESC LIMIT 500`).all() as Array<{ execution_key: string; state_json: string }>;
+    for (const row of stateRows) {
+      try {
+        const state = sanitizeAgentExecutionState(JSON.parse(row.state_json));
+        if (state) this.executionStates.set(row.execution_key, state);
+      } catch {}
     }
   }
 
@@ -147,14 +173,48 @@ export class LiveOperationsStore {
   }
 
   public addEvent(event: OperationEvent): void {
+    if (this.events.some((existing) => existing.id === event.id)) return;
+    if (isAgentExecutionEvent(event.type) && getDB().prepare(`SELECT 1 FROM live_execution_events WHERE id = ?`).get(event.id)) return;
     this.events.push(event);
     if (this.events.length > 200) {
       this.events.shift();
+    }
+    if (isAgentExecutionEvent(event.type)) {
+      const db = getDB();
+      const transaction = db.transaction(() => {
+        db.prepare(`INSERT INTO live_execution_events (id, timestamp, created_at, event_json) VALUES (?, ?, ?, ?)`)
+          .run(event.id, event.timestamp, Date.now(), JSON.stringify(event));
+        db.prepare(`DELETE FROM live_execution_events WHERE id NOT IN (SELECT id FROM live_execution_events ORDER BY created_at DESC LIMIT 1000)`).run();
+        const eventData = event.data as Record<string, unknown>;
+        const eventKey = `${eventData.agentId}:${eventData.missionId || ''}:${eventData.taskId || ''}`;
+        const projected = projectAgentExecutionStates(this.events).find((state) => `${state.agentId}:${state.missionId || ''}:${state.taskId || ''}` === eventKey);
+        if (projected) {
+          const existing = this.executionStates.get(eventKey);
+          const definedProjection = Object.fromEntries(Object.entries(projected).filter(([, value]) => value !== undefined)) as Partial<AgentExecutionState>;
+          const state = existing ? {
+            ...existing,
+            ...definedProjection,
+            status: projected.status === 'queued' ? existing.status : projected.status
+          } as AgentExecutionState : projected;
+          if (event.type === 'capability.verification.completed' && eventData.verified === true) state.blockedReason = undefined;
+          this.executionStates.set(eventKey, state);
+          db.prepare(`INSERT OR REPLACE INTO live_execution_states (execution_key, updated_at, state_json) VALUES (?, ?, ?)`)
+            .run(eventKey, state.updatedAt, JSON.stringify(state));
+        }
+        db.prepare(`DELETE FROM live_execution_states WHERE execution_key NOT IN (SELECT execution_key FROM live_execution_states ORDER BY updated_at DESC LIMIT 500)`).run();
+        const retained = new Set((db.prepare(`SELECT execution_key FROM live_execution_states`).all() as Array<{ execution_key: string }>).map((row) => row.execution_key));
+        for (const key of this.executionStates.keys()) if (!retained.has(key)) this.executionStates.delete(key);
+      });
+      transaction();
     }
   }
 
   public getEvents(): OperationEvent[] {
     return [...this.events];
+  }
+
+  public getAgentExecutionStates(): AgentExecutionState[] {
+    return [...this.executionStates.values()];
   }
 
   public addAttentionItem(item: AttentionItem): void {
@@ -170,9 +230,10 @@ export class LiveOperationsStore {
     this.tasks.clear();
     this.events = [];
     this.attentionItems = [];
+    this.executionStates.clear();
 
     const db = getDB();
-    db.exec(`DELETE FROM live_sessions; DELETE FROM live_tasks;`);
+    db.exec(`DELETE FROM live_sessions; DELETE FROM live_tasks; DELETE FROM live_execution_events; DELETE FROM live_execution_states;`);
   }
 }
 
