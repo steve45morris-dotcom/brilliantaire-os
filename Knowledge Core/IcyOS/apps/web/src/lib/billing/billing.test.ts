@@ -101,7 +101,7 @@ describe('gate', () => {
 });
 
 // A chainable stand-in for the service-role Supabase client.
-function fakeDb(state: { seenEvent?: boolean; userByCustomer?: string | null } = {}) {
+function fakeDb(state: { seenEvent?: boolean; userByCustomer?: string | null; deletedUser?: boolean } = {}) {
   const upserts: { table: string; row: Record<string, unknown> }[] = [];
   const db = {
     upserts,
@@ -111,6 +111,7 @@ function fakeDb(state: { seenEvent?: boolean; userByCustomer?: string | null } =
           eq: () => ({
             maybeSingle: async () => {
               if (table === 'billing_events') return { data: state.seenEvent ? { stripe_event_id: 'evt' } : null };
+              if (table === 'users') return { data: state.deletedUser ? null : { id: 'user' } };
               return { data: state.userByCustomer ? { user_id: state.userByCustomer } : null };
             },
           }),
@@ -175,6 +176,33 @@ describe('handleStripeEvent', () => {
     await expect(
       handleStripeEvent(
         event('customer.subscription.created', { object: 'subscription', id: 'sub_1' }),
+        { subscriptions: { retrieve } } as unknown as Stripe,
+        db as never,
+        ENV
+      )
+    ).rejects.toThrow('No IcyOS user');
+    expect(db.upserts).toHaveLength(0);
+  });
+
+  it('records a cancellation for a deleted account without storing it', async () => {
+    const retrieve = vi.fn().mockResolvedValue(stripeSubscription({ status: 'canceled' }));
+    const db = fakeDb({ deletedUser: true });
+    const outcome = await handleStripeEvent(
+      event('customer.subscription.deleted', { object: 'subscription', id: 'sub_1' }),
+      { subscriptions: { retrieve } } as unknown as Stripe,
+      db as never,
+      ENV
+    );
+    expect(outcome).toBe('processed');
+    expect(db.upserts).toEqual([{ table: 'billing_events', row: { stripe_event_id: 'evt_1', type: 'customer.subscription.deleted' } }]);
+  });
+
+  it('still fails for a live subscription whose user is gone, so Stripe retries', async () => {
+    const retrieve = vi.fn().mockResolvedValue(stripeSubscription());
+    const db = fakeDb({ deletedUser: true });
+    await expect(
+      handleStripeEvent(
+        event('customer.subscription.updated', { object: 'subscription', id: 'sub_1' }),
         { subscriptions: { retrieve } } as unknown as Stripe,
         db as never,
         ENV

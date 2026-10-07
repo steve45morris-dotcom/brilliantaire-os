@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Check, ChevronRight, Copy, CreditCard, KeyRound, AlertCircle, Plus, ShieldAlert } from 'lucide-react';
+import { Check, ChevronRight, Copy, CreditCard, Download, KeyRound, AlertCircle, Plus, ShieldAlert, Trash2, UserRound } from 'lucide-react';
 import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard/confirm-delete';
 import { Backdrop, CornerBrackets, PageHeader, SectionLabel, TacButton } from '../../../components/dashboard/hud';
 import { apiFetch } from '../../../lib/api/client';
+import { createClient } from '../../../lib/auth/supabase-client';
 import type { ApiTokenRow, CreatedApiToken } from '../../../lib/auth/token-routes';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -52,6 +53,7 @@ export default function SettingsPage() {
   const [created, setCreated] = useState<CreatedApiToken | null>(null);
   const [copied, setCopied] = useState(false);
   const [confirming, setConfirming] = useState<PendingDelete | null>(null);
+  const [accountError, setAccountError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     const res = await apiFetch<ApiTokenRow[]>('/api/tokens');
@@ -111,6 +113,26 @@ export default function SettingsPage() {
     });
   }
 
+  function deleteAccount() {
+    setAccountError(null);
+    setConfirming({
+      title: 'Delete your account?',
+      message:
+        'This removes your workspaces, projects, missions, plans, reviews, notes and tokens for good, and cancels any paid plan. Export your data first if you want a copy. This can’t be undone.',
+      confirmLabel: 'Delete account',
+      run: async () => {
+        const res = await apiFetch('/api/account', { method: 'DELETE' });
+        if (!res.success) {
+          setAccountError(res.error?.message ?? 'Could not delete your account');
+          return false;
+        }
+        await createClient().auth.signOut({ scope: 'local' }).catch(() => undefined);
+        window.location.assign('/login');
+        return true;
+      },
+    });
+  }
+
   const live = tokens?.filter((t) => !expiryText(t).expired).length ?? 0;
 
   return (
@@ -122,7 +144,7 @@ export default function SettingsPage() {
         title="Settings"
         aside={tokens && <span className="font-tactical text-[10px] tracking-[0.2em] text-[#2f3240] hidden sm:block">{pad(live)} TOKENS LIVE</span>}
       />
-      <p className="text-sm text-[#8a8d9a] -mt-2">Account and connections.</p>
+      <p className="text-sm text-[#8a8d9a] -mt-2">Account, connections and your data.</p>
 
       {/* Billing link */}
       <Link href="/billing" className="group block">
@@ -274,6 +296,54 @@ export default function SettingsPage() {
               })}
             </ul>
           )}
+        </div>
+      </Panel>
+
+      {/* Account */}
+      <SectionLabel>YOUR ACCOUNT</SectionLabel>
+      <Panel>
+        <div className="flex items-start gap-3 px-5 pt-4 pb-4 border-b border-[#1e2030]">
+          <span className="w-9 h-9 shrink-0 rounded-md flex items-center justify-center text-[#c9a84c]" style={{ background: 'rgba(201,168,76,0.08)', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.25)' }}>
+            <UserRound size={16} />
+          </span>
+          <div className="flex flex-col gap-1 min-w-0">
+            <h2 className="text-[15px] font-semibold text-[#e0dcd2]">Your data</h2>
+            <p className="text-[13px] text-[#8a8d9a] leading-relaxed">Download everything you’ve put into IcyOS, or delete your account and all of it.</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 px-5 py-4">
+          {accountError && (
+            <div className="flex items-center gap-2 px-4 py-3 bg-red-500/5 border border-red-500/20 rounded-lg">
+              <AlertCircle size={14} className="text-red-400 shrink-0" />
+              <p role="alert" className="text-sm text-red-300">{accountError}</p>
+            </div>
+          )}
+
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <span className="text-[14px] font-semibold text-[#e0dcd2]">Export</span>
+              <span className="text-[12px] text-[#6b6e7a]">One JSON file with your workspaces, projects, plans, reviews and notes. Token secrets aren’t included.</span>
+            </div>
+            <a
+              href="/api/account/export"
+              download="icyos-export.json"
+              className="font-tactical inline-flex items-center justify-center gap-1.5 px-3.5 min-h-[38px] rounded-md text-[11px] tracking-[0.14em] font-semibold transition-all"
+              style={{ background: 'rgba(201,168,76,0.06)', color: '#c9a84c', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.35)' }}
+            >
+              <Download size={12} /> EXPORT
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-[#1e2030]">
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <span className="text-[14px] font-semibold text-[#e0dcd2]">Delete account</span>
+              <span className="text-[12px] text-[#6b6e7a]">Removes everything and cancels any paid plan. This can’t be undone.</span>
+            </div>
+            <TacButton variant="danger" onClick={deleteAccount}>
+              <Trash2 size={12} /> DELETE
+            </TacButton>
+          </div>
         </div>
       </Panel>
 
