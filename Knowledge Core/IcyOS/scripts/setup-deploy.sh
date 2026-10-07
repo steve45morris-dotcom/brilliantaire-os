@@ -68,7 +68,7 @@ if [ -f "$ENV_FILE" ]; then
 
   check_var() {
     local var="$1"
-    if grep -q "^${var}=" "$ENV_FILE" && ! grep -qE "^${var}=(your-|placeholder|sk_test_\.\.\.|price_\.\.\.|whsec_\.\.\.)" "$ENV_FILE"; then
+    if grep -q "^${var}=" "$ENV_FILE" && ! grep -qE "^${var}=(your-|placeholder|sk_test_\.\.\.|price_\.\.\.|whsec_\.\.\.|\$)" "$ENV_FILE"; then
       check "$var" "ok"
     else
       check "$var" "not set — edit $ENV_FILE"
@@ -78,11 +78,20 @@ if [ -f "$ENV_FILE" ]; then
   check_var "NEXT_PUBLIC_SUPABASE_URL"
   check_var "NEXT_PUBLIC_SUPABASE_ANON_KEY"
   check_var "SUPABASE_SERVICE_ROLE_KEY"
-  check_var "STRIPE_SECRET_KEY"
-  check_var "STRIPE_WEBHOOK_SECRET"
-  check_var "STRIPE_PRICE_STARTER"
-  check_var "STRIPE_PRICE_PRO"
-  check_var "STRIPE_PRICE_TEAM"
+  check_var "SUPABASE_JWT_SECRET"
+  check_var "NEXT_PUBLIC_LEGAL_CONTACT_EMAIL"
+  check_var "NEXT_PUBLIC_HOSTING_PROVIDER"
+
+  # Stripe is needed only when charging is on (BILLING_ENFORCEMENT is not "off").
+  if grep -qE "^BILLING_ENFORCEMENT=\"?off\"?$" "$ENV_FILE"; then
+    check "Billing off (BILLING_ENFORCEMENT=off): Stripe not needed" "ok"
+  else
+    check_var "STRIPE_SECRET_KEY"
+    check_var "STRIPE_WEBHOOK_SECRET"
+    check_var "STRIPE_PRICE_STARTER"
+    check_var "STRIPE_PRICE_PRO"
+    check_var "STRIPE_PRICE_TEAM"
+  fi
 else
   check ".env file" "missing — run: cp apps/web/.env.example apps/web/.env"
 fi
@@ -116,7 +125,8 @@ if [ "$CHECKS_FAILED" -eq 0 ]; then
   echo "    1. supabase link --project-ref <your-ref>"
   echo "    2. supabase db push"
   echo "    3. vercel --prod"
-  echo "    4. Set up Stripe webhook → https://<domain>/api/billing/webhook"
+  echo "    4. If charging: set up the Stripe webhook → https://<domain>/api/billing/webhook"
+  echo "    5. Follow LAUNCH.md from step 5, then run: pnpm launch-check"
 else
   echo -e "  ${GREEN}$CHECKS_PASSED passed${NC}, ${RED}$CHECKS_FAILED need attention${NC} (out of $TOTAL)"
   echo
