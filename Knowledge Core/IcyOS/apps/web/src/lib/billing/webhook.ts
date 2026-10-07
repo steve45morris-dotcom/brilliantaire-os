@@ -11,6 +11,9 @@ export const HANDLED_EVENTS = new Set([
   'customer.subscription.resumed',
 ]);
 
+// Stripe statuses after which nothing more is charged.
+export const ENDED_STATUSES = new Set(['canceled', 'incomplete_expired']);
+
 export type WebhookOutcome = 'processed' | 'duplicate' | 'ignored';
 
 function subscriptionIdOf(event: Stripe.Event): string | null {
@@ -58,10 +61,19 @@ export async function handleStripeEvent(
         .maybeSingle();
       userId = data?.user_id ?? null;
     }
-    if (!userId) throw new Error(`No IcyOS user for Stripe subscription ${subscriptionId}`);
+    if (userId) {
+      const { data: user } = await db.from('users').select('id').eq('id', userId).maybeSingle();
+      if (!user) userId = null;
+    }
 
-    const { error } = await db.from('subscriptions').upsert({ user_id: userId, ...row }, { onConflict: 'user_id' });
-    if (error) throw new Error(`Failed to store subscription ${subscriptionId}: ${error.message}`);
+    if (userId) {
+      const { error } = await db.from('subscriptions').upsert({ user_id: userId, ...row }, { onConflict: 'user_id' });
+      if (error) throw new Error(`Failed to store subscription ${subscriptionId}: ${error.message}`);
+    } else if (!ENDED_STATUSES.has(row.status)) {
+      throw new Error(`No IcyOS user for Stripe subscription ${subscriptionId}`);
+    }
+    // An ended subscription with no user left belongs to a deleted account,
+    // which cancels it on the way out: nothing to store, and no retry needed.
   }
 
   // Recorded only after the work succeeds, so a failed attempt is retried by Stripe.
