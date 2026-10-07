@@ -6,3 +6,4 @@ export * from './EventStream.js';
 export * from './AttentionEngine.js';
 export * from './LiveOperationsBridge.js';
 export * from './LiveOperationsConfig.js';
+export * from './AgentExecutionTelemetry.js';

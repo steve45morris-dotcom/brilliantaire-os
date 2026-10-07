@@ -7,3 +7,5 @@ export * from './memory.js';
 export * from './intelligence.js';
 export * from './queue.js';
 export * from './workspace.js';
+export * from './ProgressiveSkillLoader.js';
+export * from './SkillCompositionContracts.js';

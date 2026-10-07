@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { globalLiveOperationsStore } from './kernel/live/LiveOperationsStore.js';
+import { globalLiveOperationsStore, LiveOperationsStore } from './kernel/live/LiveOperationsStore.js';
+import { AgentExecutionTelemetry } from './kernel/live/AgentExecutionTelemetry.js';
 import { globalSessionTracker } from './kernel/live/SessionTracker.js';
 import { globalTaskTracker } from './kernel/live/TaskTracker.js';
 import { globalAttentionEngine } from './kernel/live/AttentionEngine.js';
@@ -41,4 +42,17 @@ describe('Live Operations Tests', () => {
     expect(attention.length).toBe(1);
     expect(attention[0].type).toBe('blocked_task');
   });
+
+  it('rehydrates durable execution projections independently of event replay limits', () => {
+    globalLiveOperationsStore.clear();
+    const telemetry = new AgentExecutionTelemetry(() => '2026-08-17T12:00:00.000Z');
+    globalLiveOperationsStore.addEvent(telemetry.record('task.started', {
+      agentId: 'durable-agent', missionId: 'durable-mission', taskId: 'durable-task', taskName: 'Durable task'
+    }));
+    const reloaded = new LiveOperationsStore();
+    expect(reloaded.getAgentExecutionStates()).toContainEqual(expect.objectContaining({
+      agentId: 'durable-agent', missionId: 'durable-mission', taskId: 'durable-task', status: 'running'
+    }));
+  });
+
 });

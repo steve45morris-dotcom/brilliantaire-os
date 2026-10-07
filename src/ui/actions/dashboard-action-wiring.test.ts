@@ -3,12 +3,20 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 describe('dashboard Action Router wiring', () => {
-  it('imports and invokes the Action Router directly for linked lyric saves', () => {
+  it('uses the browser-safe action request boundary for linked lyric saves', () => {
     const appPath = path.resolve(process.cwd(), 'dashboard/src/App.tsx');
-    const source = fs.readFileSync(appPath, 'utf8');
+    const lyricsTabPath = path.resolve(process.cwd(), 'dashboard/src/components/LyricsTab.tsx');
+    
+    const appSource = fs.readFileSync(appPath, 'utf8');
+    const lyricsTabSource = fs.readFileSync(lyricsTabPath, 'utf8');
 
-    expect(source).toContain("import { globalActionRouter } from '../../src/ui/actions/ActionRouter.js';");
-    expect(source).toContain("globalActionRouter.routeAction('icyflamze:save-linked-lyric'");
-    expect(source).not.toContain("window as any).globalActionRouter.routeAction('icyflamze:save-linked-lyric'");
+    expect(appSource).toContain("import { globalActionRouter } from './lib/browserActionRouter.js';");
+    expect(lyricsTabSource).toContain("import { globalActionRouter } from '../lib/browserActionRouter.js';");
+    expect(lyricsTabSource).toContain("globalActionRouter.routeAction('icyflamze:save-linked-lyric'");
+    
+    expect(appSource).not.toContain("../../src/ui/actions/ActionRouter.js");
+    expect(appSource).not.toContain("../../src/kernel/live/LiveOperationsStore.js");
+    expect(lyricsTabSource).not.toContain("../../src/ui/actions/ActionRouter.js");
+    expect(lyricsTabSource).not.toContain("../../src/kernel/live/LiveOperationsStore.js");
   });
 });
