@@ -18,6 +18,7 @@ export const CANONICAL_REGISTRY: Record<string, CanonicalEntity> = {
   'knowledge': { id: 'knowledge', name: 'Grounded Intelligence Index Graph', type: 'component', path: 'src/knowledge' },
   'integrations': { id: 'integrations', name: 'Universal Integration Framework', type: 'component', path: 'src/integrations' },
   'live': { id: 'live', name: 'Live Operations Projection Layer', type: 'component', path: 'src/kernel/live' },
+  'agent-execution-hud': { id: 'agent-execution-hud', name: 'Unified Agent Execution HUD', type: 'component', path: 'src/kernel/live/AgentExecutionTelemetry.ts' },
 
   // Workspaces
   'icyflamze': { id: 'icyflamze', name: 'Icyflamze Studio', type: 'workspace' },

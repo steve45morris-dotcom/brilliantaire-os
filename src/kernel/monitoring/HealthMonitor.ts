@@ -16,9 +16,12 @@ export interface SystemHealthReport {
 
 export class HealthMonitor {
   private startTime: number;
+  private lastCpuTimes: { idle: number; total: number };
+  private lastCpuUsagePercent = 0.0;
 
   constructor() {
     this.startTime = Date.now();
+    this.lastCpuTimes = this.getCpuTimes();
   }
 
   public getUptime(): number {
@@ -50,17 +53,16 @@ export class HealthMonitor {
     const healthyPlugins = plugins.filter(p => p.status === 'active').length;
     const pluginScore = plugins.length > 0 ? (healthyPlugins / plugins.length) * 100 : 100;
 
-    // Calculate delta CPU usage over 50ms delay
-    const startCpu = this.getCpuTimes();
-    const endSleep = Date.now() + 50;
-    while (Date.now() < endSleep) {
-      // spin loop
+    // Calculate delta CPU usage since last call (non-blocking)
+    const currentCpu = this.getCpuTimes();
+    const idleDiff = currentCpu.idle - this.lastCpuTimes.idle;
+    const totalDiff = currentCpu.total - this.lastCpuTimes.total;
+    
+    if (totalDiff > 0) {
+      this.lastCpuUsagePercent = parseFloat((((totalDiff - idleDiff) / totalDiff) * 100).toFixed(1));
     }
-    const endCpu = this.getCpuTimes();
-
-    const idleDiff = endCpu.idle - startCpu.idle;
-    const totalDiff = endCpu.total - startCpu.total;
-    const cpuUsagePercent = totalDiff > 0 ? parseFloat((((totalDiff - idleDiff) / totalDiff) * 100).toFixed(1)) : 0.0;
+    this.lastCpuTimes = currentCpu;
+    const cpuUsagePercent = this.lastCpuUsagePercent;
 
     // Calculate real memory usage from os freemem and totalmem
     const totalMem = os.totalmem();

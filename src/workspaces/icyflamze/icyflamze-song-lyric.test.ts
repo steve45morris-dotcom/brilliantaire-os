@@ -70,4 +70,16 @@ describe.skipIf(!hasRealDB)('Icyflamze song and lyric association', () => {
   it('preserves the existing Icyflamze workspace route', () => {
     expect(getRouteForWorkspace('icyflamze')).toBe('projects-icyflamze');
   });
+
+  it('seeds and retrieves the canonical August 12, 2026 freestyle case study', () => {
+    const freestyle = lyrics.getLyrics().find(l => l.id === 'lyric-freestyle-aug-12');
+    expect(freestyle).toBeDefined();
+    expect(freestyle?.content).toContain('Brilliantier is hes mindset');
+    expect(freestyle?.content).toContain('icyflamze with the smoke');
+    
+    // Test askAssistant
+    const resp = lyrics.askAssistant('freestyle check', 'freestyle');
+    expect(resp).toContain('Brilliantier is hes mindset');
+    expect(resp).toContain('icyflamze with the smoke');
+  });
 });

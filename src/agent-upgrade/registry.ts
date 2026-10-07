@@ -8,6 +8,7 @@ import {
   SkillCategory,
   SkillBundle
 } from './types.js';
+import { ProgressiveSkillLoader, type SkillDescriptor, type SkillMatchRequest } from './ProgressiveSkillLoader.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -277,76 +278,62 @@ export class SkillRegistryManager {
       instructions = fs.readFileSync(skillMdPath, 'utf-8');
     }
 
-    const references: Record<string, string> = {};
-    const refDir = path.join(skillFolder, 'references');
-    if (fs.existsSync(refDir)) {
-      fs.readdirSync(refDir).forEach((file) => {
-        const fullPath = path.join(refDir, file);
-        if (fs.statSync(fullPath).isFile()) {
-          references[file] = fs.readFileSync(fullPath, 'utf-8');
-        }
-      });
-    }
-
-    const scripts: Record<string, string> = {};
-    const scriptDir = path.join(skillFolder, 'scripts');
-    if (fs.existsSync(scriptDir)) {
-      fs.readdirSync(scriptDir).forEach((file) => {
-        const fullPath = path.join(scriptDir, file);
-        if (fs.statSync(fullPath).isFile()) {
-          scripts[file] = fs.readFileSync(fullPath, 'utf-8');
-        }
-      });
-    }
-
     return {
       ...meta,
       instructions,
-      references,
-      scripts
+      references: {},
+      scripts: {}
     };
+  }
+
+  createProgressiveLoader(): ProgressiveSkillLoader {
+    return new ProgressiveSkillLoader({ approvedRoots: [SKILLS_DIR], descriptors: this.getSkillDescriptors() });
+  }
+
+  getSkillDescriptors(): SkillDescriptor[] {
+    return Object.entries(this.loadMetadataOnly()).map(([id, metadata]) => ({
+      id,
+      name: metadata.name,
+      category: metadata.category,
+      owner: metadata.owner,
+      version: metadata.version,
+      status: metadata.status === 'verified' ? 'active' : metadata.status === 'archived' ? 'retired' : metadata.status,
+      summary: metadata.summary || metadata.verificationNotes || `${metadata.name} skill`,
+      capabilities: metadata.capabilities || [metadata.category, metadata.name],
+      triggerHints: metadata.triggerHints || this.triggerHintsFor(metadata),
+      dependencies: metadata.dependencies,
+      risk: metadata.risk || 'low',
+      permissions: metadata.permissions || [],
+      instructionPath: metadata.instructionPath || this.instructionPathFor(metadata),
+      resourcePaths: metadata.resourcePaths || [],
+    }));
+  }
+
+  private instructionPathFor(metadata: SkillMetadata): string {
+    const rootRelative = `${metadata.name}/SKILL.md`;
+    return fs.existsSync(path.join(SKILLS_DIR, rootRelative)) ? rootRelative : `${metadata.category}/${metadata.name}/SKILL.md`;
+  }
+
+  private triggerHintsFor(metadata: SkillMetadata): string[] {
+    const categoryHints: Partial<Record<SkillCategory, string[]>> = {
+      research: ['research', 'market', 'competitive', 'trend', 'scan', 'find', 'search'],
+      content: ['write', 'copy', 'draft', 'publish'], outreach: ['email', 'outreach', 'campaign'],
+      verification: ['verify', 'check', 'validate', 'audit', 'test'], analytics: ['analytics', 'metric', 'telemetry'],
+      automation: ['automate', 'run', 'execute', 'script'], revenue: ['revenue', 'conversion', 'sales'],
+      operations: ['schedule', 'ops', 'job', 'queue'], memory: ['memory', 'vault', 'context'],
+      media: ['media', 'video', 'audio', 'image', 'render'], design: ['design', 'frontend', 'visual'],
+    };
+    return [...new Set([...metadata.name.split('-'), ...(categoryHints[metadata.category] || [])])];
   }
 
   // Match user intent to likely skills
   matchIntent(intent: string): { selected: string[]; rejected: string[] } {
-    const metadata = this.loadMetadataOnly();
-    const cleanIntent = intent.toLowerCase();
-    const selected: string[] = [];
-    const rejected: string[] = [];
-
-    // Simple keyword mapping
-    const keywordMap: Record<string, string[]> = {
-      research: ['research', 'market', 'explore', 'trend', 'scan', 'find', 'search'],
-      content: ['write', 'copy', 'text', 'post', 'blog', 'draft', 'publish'],
-      outreach: ['email', 'send', 'mail', 'sequence', 'campaign', 'message'],
-      verification: ['verify', 'check', 'validate', 'audit', 'test', 'confirm'],
-      analytics: ['analytics', 'metric', 'track', 'score', 'telemetry', 'performance'],
-      automation: ['automate', 'run', 'execute', 'script', 'cron', 'trigger'],
-      revenue: ['revenue', 'income', 'conversion', 'ad', 'monetize', 'sales'],
-      operations: ['schedule', 'daemon', 'ops', 'brief', 'job', 'queue'],
-      memory: ['memory', 'vault', 'obsidian', 'decision', 'lesson', 'context'],
-      media: ['media', 'video', 'audio', 'image', 'generator', 'render', 'voice']
-    };
-
-    Object.keys(metadata).forEach((skillName) => {
-      const meta = metadata[skillName];
-      if (meta.status === 'archived' || meta.status === 'deprecated') {
-        rejected.push(skillName);
-        return;
-      }
-
-      // Check if category keywords match
-      const keywords = keywordMap[meta.category] || [];
-      const matchesCategory = keywords.some((kw) => cleanIntent.includes(kw));
-      const matchesName = skillName.toLowerCase().split('-').some((word) => cleanIntent.includes(word));
-      const matchesCategoryName = meta.category.includes(cleanIntent) || cleanIntent.includes(meta.category);
-
-      if (matchesCategory || matchesName || matchesCategoryName) {
-        selected.push(skillName);
-      } else {
-        rejected.push(skillName);
-      }
-    });
+    const descriptors = this.getSkillDescriptors();
+    const capabilityHints = descriptors.flatMap((descriptor) => descriptor.capabilities.filter((capability) => intent.toLowerCase().includes(capability.toLowerCase())));
+    const request: SkillMatchRequest = { mission: intent, intent, requiredCapabilities: capabilityHints, permissions: [], maxRisk: 'high' };
+    const selected = this.createProgressiveLoader().match(request).candidates.map((candidate) => candidate.descriptor.id);
+    const selectedSet = new Set(selected);
+    const rejected = descriptors.map((descriptor) => descriptor.id).filter((id) => !selectedSet.has(id));
 
     // Log the selected vs rejected selections for auditing
     this.logMatch(intent, selected, rejected);

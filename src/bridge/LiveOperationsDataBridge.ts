@@ -14,7 +14,8 @@ export class LiveOperationsDataBridge extends LiveDataBridge {
         sessions,
         tasks,
         events,
-        attentionItems
+        attentionItems,
+        agentExecutions: globalLiveOperationsStore.getAgentExecutionStates()
       }, 'live');
     } catch (e: any) {
       return this.buildResponse({}, 'fallback', 'error', [e.message]);

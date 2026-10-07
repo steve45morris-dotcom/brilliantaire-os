@@ -1,4 +1,9 @@
 import { ParsedIntent } from './IntentParser.js';
+import type {
+  CompositionPlanningRequest,
+  SkillCompositionContract,
+  SkillCompositionPlanner,
+} from '../agent-upgrade/SkillCompositionContracts.js';
 
 export interface PlanStep {
   index: number;
@@ -17,6 +22,13 @@ export interface ExecutionPlan {
 }
 
 export class Planner {
+  public generateSkillComposition(
+    compositionPlanner: SkillCompositionPlanner,
+    request: CompositionPlanningRequest,
+  ): SkillCompositionContract {
+    return compositionPlanner.plan(request);
+  }
+
   public generatePlan(intent: ParsedIntent): ExecutionPlan {
     const steps: PlanStep[] = [];
     let duration = 5;

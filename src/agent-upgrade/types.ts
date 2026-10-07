@@ -1,4 +1,4 @@
-export type SkillStatus = 'active' | 'experimental' | 'verified' | 'deprecated' | 'archived';
+export type SkillStatus = 'active' | 'experimental' | 'verified' | 'deprecated' | 'archived' | 'retired';
 
 export type SkillCategory =
   | 'research'
@@ -26,6 +26,13 @@ export interface SkillMetadata {
   failureNotes: string[];
   retirementCandidate: boolean;
   verificationNotes?: string;
+  summary?: string;
+  capabilities?: string[];
+  triggerHints?: string[];
+  risk?: 'low' | 'medium' | 'high';
+  permissions?: string[];
+  instructionPath?: string;
+  resourcePaths?: string[];
 }
 
 export interface SkillDetail extends SkillMetadata {

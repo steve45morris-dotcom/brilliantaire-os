@@ -27,7 +27,7 @@ describe.skipIf(!hasRealDB)('Persistence Layer Write-Then-Reload Unit Tests', ()
     const writer = new LyricWorkspace();
     const created = writer.addLyric({
       title: 'PERSIST_VITEST_LYRIC',
-      content: 'Testing write through vitest.',
+      content: 'Lagos boy mindset of a brilliantier. Mr. 2 Lighter spark the flame, no wahala cooking egusi and ogbolor oil. Two lighters lit in the dark, icyflamze with the smoke.',
       type: 'Notebook',
       status: 'Approved',
       theme: 'Testing',
