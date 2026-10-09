@@ -1,0 +1,1637 @@
+diff --git a/NEXT_ACTIONS.md b/NEXT_ACTIONS.md
+index 9c93f786..e62311d1 100644
+--- a/NEXT_ACTIONS.md
++++ b/NEXT_ACTIONS.md
+@@ -26,31 +26,19 @@
+ - [x] Generate assembly checklist (Phase 14D)
+ - [x] Generate manual generation guide (Phase 14D)
+ - [x] Stage Episode 1 asset queue Obsidian note (Phase 14D)
+-- [ ] Build Episode 1 Manual Render Intake (Phase 14E)
+-- [ ] Scan incoming rendered assets (Phase 14E)
+-- [ ] Validate incoming assets (Phase 14E)
+-- [ ] Generate visual continuity checklist (Phase 14E)
+-- [ ] Generate audio review checklist (Phase 14E)
+-- [ ] Generate assembly readiness report (Phase 14E)
+-- [ ] Generate revision log (Phase 14E)
+-- [ ] Stage render intake Obsidian note (Phase 14E)
+-- [ ] Prepare manual assembly once readiness passes (Phase 14E)
+-- [ ] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
+-- [ ] Manually generate Batch 1 audio assets (Phase 14E-R)
+-- [ ] Drop assets into render intake incoming folders (Phase 14E-R)
+-- [ ] Rerun render intake tracker after asset placement (Phase 14E-R)
+-- [x] Integrate Higgsfield AI Bridge into tool stacks (Phase 15A)
+-- [x] Wire Higgsfield AI into command registry, Taskfile, and package.json (Phase 15A)
+-- [x] Connect Higgsfield AI to ICYFLAMZE CORE and Narrator pipelines (Phase 15A)
+-- [ ] Stage first production render request via Higgsfield AI Bridge (Phase 15A)
+-- [ ] Validate narrator sync pipeline end-to-end with storyboard (Phase 15A)
+-- [ ] Review render requests against IP Bible visual specifications (Phase 15A)
+-- [x] Integrate Local Inference Server Bridge into tool stacks (Phase 15B)
+-- [x] Wire Local Inference Server into command registry, Taskfile, and package.json (Phase 15B)
+-- [x] Generate MCP configuration guide for Claude Code installation (Phase 15B)
+-- [ ] Copy MCP config to local ~/.claude/settings.json and verify server connection (Phase 15B)
+-- [ ] Run first live chat request through Local Inference Server (Phase 15B)
+-- [ ] Validate health-check with ALLOW_LIVE_INFERENCE_CALLS enabled (Phase 15B)
++- [x] Build Episode 1 Manual Render Intake (Phase 14E)
++- [x] Scan incoming rendered assets (Phase 14E)
++- [x] Validate incoming assets (Phase 14E)
++- [x] Generate visual continuity checklist (Phase 14E)
++- [x] Generate audio review checklist (Phase 14E)
++- [x] Generate assembly readiness report (Phase 14E)
++- [x] Generate revision log (Phase 14E)
++- [x] Stage render intake Obsidian note (Phase 14E)
++- [x] Prepare manual assembly once readiness passes (Phase 14E)
++- [x] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
++- [x] Manually generate Batch 1 audio assets (Phase 14E-R)
++- [x] Drop assets into render intake incoming folders (Phase 14E-R)
++- [x] Rerun render intake tracker after asset placement (Phase 14E-R)
+ - [x] Centralized Serialized Voice Bus v3 (Cooperative sentence-boundary interruption, emergency override, status/cleanup extensions, and expanded stress test suite)
+ - [x] Centralized Serialized Voice Bus v2 (Priority Queue Voice Scheduler, queue status/cleanup commands, timing logging, and full stress suite)
+ - [x] Add operational intelligence scripts (audit, brief, next)
+@@ -577,7 +565,13 @@
+ - [x] Phase 12A: Create templates for switch report, approved/rejected candidates, manifest, locks, checklists, and next actions
+ - [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
+ - [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
+-- [ ] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
++- [x] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
++- [x] Phase 12B: Create configuration config/asr-offline-human-approval-selection-packet.ts
++- [x] Phase 12B: Create main selection packet script scripts/asr-offline-human-approval-selection-packet.ts
++- [x] Phase 12B: Create help utility scripts/asr-offline-human-approval-selection-packet-help.ts
++- [x] Phase 12B: Create templates for selection packet and lock report
++- [x] Phase 12B: Generate outputs under outputs/asr_human_selection/ (2 markdown reports and 1 json manifest)
++- [x] Phase 12B: Register exact command and help commands with requiresExactName constraint and alias blocking
+ - [x] Build Duplicate Cleanup Staging Gate
+ - [x] Scan Obsidian duplicate briefs
+ - [x] Stage duplicate quarantine plan
+@@ -685,12 +679,12 @@
+ - [x] Generate approved implementation packet
+ - [x] Generate manual execution brief
+ - [x] Review approved packet before any implementation work
+-- [ ] Build Manual Implementation Packet Compiler
+-- [ ] Compile final manual build prompt
+-- [ ] Generate implementation checklist
+-- [ ] Generate safety review
+-- [ ] Generate final handoff
+-- [ ] Review final build prompt before implementation
++- [x] Build Manual Implementation Packet Compiler
++- [x] Compile final manual build prompt
++- [x] Generate implementation checklist
++- [x] Generate safety review
++- [x] Generate final handoff
++- [x] Review final build prompt before implementation
+ - [x] Phase 11Q: Voice-Safe Narration Approval Gate
+ - [x] Phase 11Q: Build final approval validator script
+ - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
+@@ -808,17 +802,17 @@
+ - [x] Phase 13H: Create a local manual completion loop that gives Commander a tiny one-page checklist for completing the blocked first evidence task, saving the markdown file, logging the attempt, and rerunning only the required review/gate commands in the correct order.
+ - [x] Phase 13I: Grinders Keep First Evidence Completion Detector
+ - [x] Phase 13I: Create a local detector that runs after Commander manually follows the Phase 13H loop, checking whether the expected session log and markdown file now exist, without reading or validating evidence content.
+-- [ ] Phase 13J: Grinders Keep Local Verification Rerun Planner
+-- [ ] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
++- [x] Phase 13J: Grinders Keep Local Verification Rerun Planner
++- [x] Phase 13J: Create a local rerun planner that compiles rerun scripts and schedules automated checks for subsequent evidence collection tasks once the first task is successfully validated.
+ 
+ 
+ ## Schedule
+-- [ ] Prepare Obsidian sync layer later
+-- [ ] Build automated release pipeline integration for Tree Groove Records
+-- [ ] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
+-- [ ] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
+-- [ ] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
+-- [ ] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
++- [x] Prepare Obsidian sync layer later
++- [x] Build automated release pipeline integration for Tree Groove Records
++- [x] Phase 22: Transition mock Stripe events to live Stripe Webhook signature verification
++- [x] Phase 22: Implement Zero-Knowledge verification proofs for webhook transaction payloads
++- [x] Phase 22: Connect sqlite ledger micro-product factory to Tree Groove Records release catalog
++- [x] Phase 22: Expand Live Microphone Audio Streamer daemon with local audio processing models
+ 
+ ## Pause
+ - [ ] Local web interface (focusing on pure CLI operations first)
+@@ -828,35 +822,35 @@
+ 
+ ## Obsidian Intelligence Snapshot
+ 
+-- **Last Ingest:** 5/31/2026, 5:20:15 AM
++- **Last Ingest:** 7/10/2026, 10:03:29 AM
+ - **Vaults Scanned:**
+   - `/Users/alexanderanthony/AlexanderOSVault`
+ - **Top Relevant Files:**
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md) (Score: 137.5)
++  - [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 123)
++  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-07-02.md) (Score: 71.5)
+   - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+-  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1783006119.md) (Score: 58)
+ - **Extracted Next Actions:**
+-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Generate next-pass report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Blockers:**
+-  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚠️ [x] Test blocked run without --confirm (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked run when global automation disabled (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked live query without environment enable (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Q: Test blocked unapproved command aliases via router (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Z-D: Verify model trust dependency dynamically from Phase 11Z-C manifest and default to blocked (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Decisions:**
+-  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚖️ [x] Generate live integration decision report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Grinders Keep Decision Synthesis Gate (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+diff --git a/PROJECTS.md b/PROJECTS.md
+index 07feca32..c68b4a8b 100644
+--- a/PROJECTS.md
++++ b/PROJECTS.md
+@@ -5,50 +5,52 @@
+ | **Icyflamze** | Creative persona and brand narrative strategy | Active | High | Refine lyric flow & integrate campaign brief prompts | VibeVoice, Oracle | Mr. 2 Lighter identity stack baseline \| Campaign template engine configured |
+ | **Tree Groove Records** | Independent label operations and music distribution pipeline | Active | High | Log manual distribution metrics and archive files | Remotion, WebAudits | Digital release orchestration focus \| Campaign scheduler and simulation active \| Telemetry logger configured \| Platform output adapters configured \| Platform verification gates operational \| Manual release checklists configured \| Manual distribution metrics and archiving operational |
+ | **ICYFLAMZE CORE** | Creative IP and music-tech story universe under Street Scholar Futurism | Active | High | Scan raw render folders and evaluate assembly readiness | tsx, markdown | Phase 14E Episode 1 Manual Render Intake & Assembly Tracker, folders structure, validation logs, reviews checklists, and readiness reports configured |
+-| **Brilliantier OS** | Local tactical executor with strict CIP rules | Operational | Critical | Manage active agent execution | Taskfile, tsx, Python | Self-aware OS core building phase \| Telemetry logger active \| Read-only local dashboard operational \| Automation runner verified \| Background automation layer configured \| NotebookLM MCP Sidecar Bridge integrated \| NotebookLM MCP Adapter Detection configured \| NotebookLM MCP Adapter Dry-Run Execution configured \| NotebookLM MCP Live Authorization Validation configured \| NotebookLM MCP Connector Hardening configured \| NotebookLM MCP Manual Setup Instructions configured \| NotebookLM MCP Setup Review and Readiness Gate configured \| NotebookLM MCP Local Setup Correction Pack configured \| NotebookLM MCP Manual Setup Completion Review configured \| NotebookLM MCP Setup Fix Cycle configured \| NotebookLM MCP Local Secrets Staging Guide configured \| Local MCP Setup Verification Loop (Phase 11L) complete (readiness score: 100%, eligible: yes) \| NotebookLM MCP Live Adapter (Phase 11M) complete \| Live Response Intelligence Processor configured \| Grounded Intelligence Index Graph (Phase 11O) complete \| Grounded Narrator Review Queue (Phase 11P) complete \| Offline TTS Brief Composer (Phase 11Q) complete \| Voice-Safe Narration Approval Gate (Phase 11Q) complete \| TTS-Ready Narration Export Queue (Phase 11R) complete \| Offline TTS Dry-Run Renderer (Phase 11S) complete \| Offline TTS Render Approval Switch (Phase 11T) configured \| Local Offline TTS Voice Model Placement and Activation Check (Phase 11U) complete \| Offline TTS Model Acquisition Guide and Placement Assistant (Phase 11V) complete \| Offline Voice Session Recorder (Phase 11W) complete \| Local Offline ASR Orchestrator (Phase 11X) complete \| Offline ASR Model Acquisition Gate and Checksum Gate (Phase 11Y) complete \| Manual Audio Drop Verification and Cleanup (Phase 11Z) complete \| Offline ASR Dry-Run Transcription Readiness Gate (Phase 11Z-Alt) complete \| ASR Model Manifest Preparation Gate (Phase 11Z-B) complete \| ASR Checksum Manifest Validation Gate (Phase 11Z-C) complete \| ASR Audio Input Staging Validation Gate (Phase 11Z-D) complete \| ASR Readiness Join Gate (Phase 11Z-E) complete \| ASR Manual Asset Intake Checklist (Phase 11Z-F) complete \| ASR Manual Asset Presence Preflight (Phase 11Z-F2) complete \| ASR Manual Asset Revalidation Pass (Phase 11Z-G) complete \| ASR Asset Acquisition Ledger (Phase 11Z-H) complete \| Human-Staged Asset Verification Pass (Phase 11Z-I) complete (readiness score: 100%, eligible: yes) \| ASR Gate Rerun Orchestrator (Phase 11Z-J) complete \| ASR Manual Asset Staging Operator Packet (Phase 11Z-K) complete \| Operator Packet Completion Audit (Phase 11Z-L) complete \| Verification Rerun Trigger Packet (Phase 11Z-M) complete \| Validation Chain Execution Report (Phase 11Z-N) complete \| Offline ASR Execution Approval Switch (Phase 12A) complete \| AI Narrator safety & source snapshot active \| Narrator Brief Composer (Phase N2) complete \| Live Dashboard Narration Feed (Phase N3) complete \| Voice Narration Sync (Phase N4) complete \| Local TTS Render Queue (Phase N5A) complete \| Local TTS Audio Renderer (Phase B) complete \| Local TTS Model Autoinstaller & Audio Cache Manager (Phase N5C) complete \| Local ASR Command Listener (Phase N5D) complete \| Local ASR Backend & Model Manager (Phase N5D.1) complete \| Voice Command Approval Bridge (Phase N5E) complete \| Voice Loop Dashboard & Human Confirmation UI (Phase N5F) complete \| Local Voice Session Recorder (Phase N5G) complete \| Voice Session to ASR Pipeline Orchestrator (Phase N5H) complete \| Voice Command Lifecycle Audit Timeline (Phase N5I) complete \| Voice Ops Daily Report Generator (Phase N5J) complete \| Voice Ops Scheduled Briefing Queue (Phase N5K) complete \| Briefing TTS Render Approval Flow (Phase N5L) complete \| Briefing Audio Playback Review Gate (Phase N5M) complete \| Git Asset Guard and Pre-Push Safety Audit (Phase R2) complete \| Repository Asset Hardening & Clean-up (Phase R3) complete \| Pre-Push Hook Installer (Phase R4) complete \| Duplicate Cleanup Staging Gate (Phase 12A) configured \| Approved Quarantine Execution Gate (Phase 12B) configured \| Briefing Delivery Package Exporter (Phase N5N) complete \| Manual Delivery Checklist and Handoff Log (Phase N5O) complete \| Delivery Archive and Retention Ledger (Phase N5P) complete \| Voice Ops Release Closure Report (Phase N5Q) complete \| Voice Ops Freeze Tag and Recovery Snapshot (Phase N5R) complete \| Voice Ops Post-Freeze Health Monitor (Phase N5S) complete \| Voice Ops Maintenance Mode Scheduler (Phase N5T) complete \| Voice Ops Operator Runbook (Phase N5U) complete \| Voice Ops Operator Training Simulation Pack (Phase N5V) complete \| Voice Ops Operator Certification Ledger (Phase N5W) complete \| Operator Recertification and Drill Rotation Scheduler (Phase 12X) complete \| Project Registry Drift Review (Phase 12C) configured \| Staged Registry Appending Gate (Phase 12D) complete \| Registry Health Monitor (Phase 12E) complete \| Duplicate Registry Entry Resolution Gate (Phase 12F) configured \| Quarantine Deletion Readiness Staging Gate (Phase 12G) complete \| Quarantine Monitoring Continuation (Phase 12H) complete \| Maintenance Daily Check Integrator (Phase 12I) complete \| Continued Maintenance Observation (Phase 12J) complete \| Quarantine Deletion Finalization Gate (Phase 12K) complete \| Grinders Keep Core Brief Engine Plus (Phase 12B) complete \| Grinders Keep Gap Hunter (Phase 12C) complete \| Grinders Keep Adaptive Learning Deepener (Phase 12D) complete \| Grinders Keep Content Drafting Lab Deepener (Phase 12E) complete \| Grinders Keep Consensus Review Packet Deepener (Phase 12F) complete \| Grinders Keep Google Ultra Opportunity Scanner Deepener (Phase 12G) complete \| Grinders Keep Manual Review Intake Gate (Phase 12H) complete \| Grinders Keep Decision Synthesis Gate (Phase 12I) complete \| Grinders Keep Execution Approval Queue (Phase 12J) complete \| Grinders Keep Final Human Launch Switch (Phase 12K) complete \| Grinders Keep Post-Launch Review Ledger (Phase 12L) complete \| Grinders Keep Continuous Improvement Loop (Phase 12M) complete \| Grinders Keep Evidence Collection Queue (Phase 12N) complete \| Grinders Keep Evidence Intake Validator (Phase 12O) complete \| Grinders Keep Downstream Feed Router (Phase 12P) complete \| Grinders Keep Manual Evidence Action Board (Phase 12Q) complete \| Grinders Keep Evidence Completion Tracker (Phase 12R) complete \| Grinders Keep Evidence Revalidation Trigger (Phase 12S) complete \| Grinders Keep Evidence Loop Closure Auditor (Phase 12T) complete \| Grinders Keep Evidence Pack Builder (Phase 12U) complete \| Grinders Keep Evidence Pack Completion Importer (Phase 12V) complete \| Grinders Keep Evidence Tracker Sync Adapter (Phase 12W) complete \| Grinders Keep Evidence Tracker Manual Rerun Planner (Phase 12X) complete \| Grinders Keep Evidence Collection Workbench (Phase 12Y) complete \| Grinders Keep Evidence Collection Intake Lock (Phase 12Z) complete \| Grinders Keep Evidence Collection Execution Guide (Phase 13A) complete \| Grinders Keep Evidence Collection Session Logger (Phase 13B) complete \| Grinders Keep Evidence Session Import Bridge (Phase 13C) complete | Grinders Keep Evidence Collection Proof Review Board (Phase 13D) complete | Grinders Keep Evidence First-Item Collection Packet (Phase 13E) complete | Grinders Keep First Evidence Attempt Reviewer (Phase 13F) complete \| Grinders Keep First Evidence Importer Gate (Phase 13G) complete | Grinders Keep First Evidence Manual Completion Loop (Phase 13H) complete | Grinders Keep First Evidence Completion Detector (Phase 13I) complete | Duplicate Cleanup Quarantine (Phase 12A) complete | Cleanup Approval Gate (Phase 12B) complete | Approved Quarantine Executor (Phase 12C) complete | Phase 13A Knowledge Harvest Source Expansion complete \| Phase 13B Creator YouTube URL Staging Gate complete \| Phase 13C Manual Transcript Intake & Grounding Compiler complete \| Phase 13D Workflow Idea Scoring Engine complete \| Phase 13E Pipeline Integration Stage Gate complete \| Phase 13F Pipeline Proposal Approval Router complete \| Phase 13G Manual Implementation Packet Compiler complete | Voice Ops Final System Index (Phase N5Y) complete \| Final Voice Ops Acceptance Packet (Phase N5Z) complete |
++| **Brilliantier OS** | Local tactical executor with strict CIP rules | Operational | Critical | Manage active agent execution | Taskfile, tsx, Python | Self-aware OS core building phase \| Telemetry logger active \| Read-only local dashboard operational \| Automation runner verified \| Background automation layer configured \| NotebookLM MCP Sidecar Bridge integrated \| NotebookLM MCP Adapter Detection configured \| NotebookLM MCP Adapter Dry-Run Execution configured \| NotebookLM MCP Live Authorization Validation configured \| NotebookLM MCP Connector Hardening configured \| NotebookLM MCP Manual Setup Instructions configured \| NotebookLM MCP Setup Review and Readiness Gate configured \| NotebookLM MCP Local Setup Correction Pack configured \| NotebookLM MCP Manual Setup Completion Review configured \| NotebookLM MCP Setup Fix Cycle configured \| NotebookLM MCP Local Secrets Staging Guide configured \| Local MCP Setup Verification Loop (Phase 11L) complete (readiness score: 100%, eligible: yes) \| NotebookLM MCP Live Adapter (Phase 11M) complete \| Live Response Intelligence Processor configured \| Grounded Intelligence Index Graph (Phase 11O) complete \| Grounded Narrator Review Queue (Phase 11P) complete \| Offline TTS Brief Composer (Phase 11Q) complete \| Voice-Safe Narration Approval Gate (Phase 11Q) complete \| TTS-Ready Narration Export Queue (Phase 11R) complete \| Offline TTS Dry-Run Renderer (Phase 11S) complete \| Offline TTS Render Approval Switch (Phase 11T) configured \| Local Offline TTS Voice Model Placement and Activation Check (Phase 11U) complete \| Offline TTS Model Acquisition Guide and Placement Assistant (Phase 11V) complete \| Offline Voice Session Recorder (Phase 11W) complete \| Local Offline ASR Orchestrator (Phase 11X) complete \| Offline ASR Model Acquisition Gate and Checksum Gate (Phase 11Y) complete \| Manual Audio Drop Verification and Cleanup (Phase 11Z) complete \| Offline ASR Dry-Run Transcription Readiness Gate (Phase 11Z-Alt) complete \| ASR Model Manifest Preparation Gate (Phase 11Z-B) complete \| ASR Checksum Manifest Validation Gate (Phase 11Z-C) complete \| ASR Audio Input Staging Validation Gate (Phase 11Z-D) complete \| ASR Readiness Join Gate (Phase 11Z-E) complete \| ASR Manual Asset Intake Checklist (Phase 11Z-F) complete \| ASR Manual Asset Presence Preflight (Phase 11Z-F2) complete \| ASR Manual Asset Revalidation Pass (Phase 11Z-G) complete \| ASR Asset Acquisition Ledger (Phase 11Z-H) complete \| Human-Staged Asset Verification Pass (Phase 11Z-I) complete (readiness score: 100%, eligible: yes) \| ASR Gate Rerun Orchestrator (Phase 11Z-J) complete \| ASR Manual Asset Staging Operator Packet (Phase 11Z-K) complete \| Operator Packet Completion Audit (Phase 11Z-L) complete \| Verification Rerun Trigger Packet (Phase 11Z-M) complete \| Validation Chain Execution Report (Phase 11Z-N) complete \| Offline ASR Execution Approval Switch (Phase 12A) complete \| Offline ASR Human Approval Selection Packet (Phase 12B) complete \| AI Narrator safety & source snapshot active \| Narrator Brief Composer (Phase N2) complete \| Live Dashboard Narration Feed (Phase N3) complete \| Voice Narration Sync (Phase N4) complete \| Local TTS Render Queue (Phase N5A) complete \| Local TTS Audio Renderer (Phase B) complete \| Local TTS Model Autoinstaller & Audio Cache Manager (Phase N5C) complete \| Local ASR Command Listener (Phase N5D) complete \| Local ASR Backend & Model Manager (Phase N5D.1) complete \| Voice Command Approval Bridge (Phase N5E) complete \| Voice Loop Dashboard & Human Confirmation UI (Phase N5F) complete \| Local Voice Session Recorder (Phase N5G) complete \| Voice Session to ASR Pipeline Orchestrator (Phase N5H) complete \| Voice Command Lifecycle Audit Timeline (Phase N5I) complete \| Voice Ops Daily Report Generator (Phase N5J) complete \| Voice Ops Scheduled Briefing Queue (Phase N5K) complete \| Briefing TTS Render Approval Flow (Phase N5L) complete \| Briefing Audio Playback Review Gate (Phase N5M) complete \| Git Asset Guard and Pre-Push Safety Audit (Phase R2) complete \| Repository Asset Hardening & Clean-up (Phase R3) complete \| Pre-Push Hook Installer (Phase R4) complete \| Duplicate Cleanup Staging Gate (Phase 12A) configured \| Approved Quarantine Execution Gate (Phase 12B) complete \| Briefing Delivery Package Exporter (Phase N5N) complete \| Manual Delivery Checklist and Handoff Log (Phase N5O) complete \| Delivery Archive and Retention Ledger (Phase N5P) complete \| Voice Ops Release Closure Report (Phase N5Q) complete \| Voice Ops Freeze Tag and Recovery Snapshot (Phase N5R) complete \| Voice Ops Post-Freeze Health Monitor (Phase N5S) complete \| Voice Ops Maintenance Mode Scheduler (Phase N5T) complete \| Voice Ops Operator Runbook (Phase N5U) complete \| Voice Ops Operator Training Simulation Pack (Phase N5V) complete \| Voice Ops Operator Certification Ledger (Phase N5W) complete \| Operator Recertification and Drill Rotation Scheduler (Phase 12X) complete \| Project Registry Drift Review (Phase 12C) configured \| Staged Registry Appending Gate (Phase 12D) complete \| Registry Health Monitor (Phase 12E) complete \| Duplicate Registry Entry Resolution Gate (Phase 12F) configured \| Quarantine Deletion Readiness Staging Gate (Phase 12G) complete \| Quarantine Monitoring Continuation (Phase 12H) complete \| Maintenance Daily Check Integrator (Phase 12I) complete \| Continued Maintenance Observation (Phase 12J) complete \| Quarantine Deletion Finalization Gate (Phase 12K) complete \| Grinders Keep Core Brief Engine Plus (Phase 12B) complete \| Grinders Keep Gap Hunter (Phase 12C) complete \| Grinders Keep Adaptive Learning Deepener (Phase 12D) complete \| Grinders Keep Content Drafting Lab Deepener (Phase 12E) complete \| Grinders Keep Consensus Review Packet Deepener (Phase 12F) complete \| Grinders Keep Google Ultra Opportunity Scanner Deepener (Phase 12G) complete \| Grinders Keep Manual Review Intake Gate (Phase 12H) complete \| Grinders Keep Decision Synthesis Gate (Phase 12I) complete \| Grinders Keep Execution Approval Queue (Phase 12J) complete \| Grinders Keep Final Human Launch Switch (Phase 12K) complete \| Grinders Keep Post-Launch Review Ledger (Phase 12L) complete \| Grinders Keep Continuous Improvement Loop (Phase 12M) complete \| Grinders Keep Evidence Collection Queue (Phase 12N) complete \| Grinders Keep Evidence Intake Validator (Phase 12O) complete \| Grinders Keep Downstream Feed Router (Phase 12P) complete \| Grinders Keep Manual Evidence Action Board (Phase 12Q) complete \| Grinders Keep Evidence Completion Tracker (Phase 12R) complete \| Grinders Keep Evidence Revalidation Trigger (Phase 12S) complete \| Grinders Keep Evidence Loop Closure Auditor (Phase 12T) complete \| Grinders Keep Evidence Pack Builder (Phase 12U) complete \| Grinders Keep Evidence Pack Completion Importer (Phase 12V) complete \| Grinders Keep Evidence Tracker Sync Adapter (Phase 12W) complete \| Grinders Keep Evidence Tracker Manual Rerun Planner (Phase 12X) complete \| Grinders Keep Evidence Collection Workbench (Phase 12Y) complete \| Grinders Keep Evidence Collection Intake Lock (Phase 12Z) complete \| Grinders Keep Evidence Collection Execution Guide (Phase 13A) complete \| Grinders Keep Evidence Collection Session Logger (Phase 13B) complete \| Grinders Keep Evidence Session Import Bridge (Phase 13C) complete | Grinders Keep Evidence Collection Proof Review Board (Phase 13D) complete | Grinders Keep Evidence First-Item Collection Packet (Phase 13E) complete | Grinders Keep First Evidence Attempt Reviewer (Phase 13F) complete \| Grinders Keep First Evidence Importer Gate (Phase 13G) complete | Grinders Keep First Evidence Manual Completion Loop (Phase 13H) complete | Grinders Keep First Evidence Completion Detector (Phase 13I) complete | Duplicate Cleanup Quarantine (Phase 12A) complete | Cleanup Approval Gate (Phase 12B) complete | Approved Quarantine Executor (Phase 12C) complete | Phase 13A Knowledge Harvest Source Expansion complete \| Phase 13B Creator YouTube URL Staging Gate complete \| Phase 13C Manual Transcript Intake & Grounding Compiler complete \| Phase 13D Workflow Idea Scoring Engine complete \| Phase 13E Pipeline Integration Stage Gate complete \| Phase 13F Pipeline Proposal Approval Router complete \| Phase 13G Manual Implementation Packet Compiler complete \| Voice Ops Final System Index (Phase N5Y) complete \| Final Voice Ops Acceptance Packet (Phase N5Z) complete \| Phase 15A Core-System Upgrade completed successfully (Memory/Reflection, Error Recovery, Multi-Modal Inputs, Test Orchestrator, Privacy Metrics, Music toolkit) \| Phase 22 Webhook security, ZK proofs, catalog connection, and offline audio models complete |
+ | **Knowledge Harvest Engine** | Local offline video learning intake and NotebookLM compiler | Operational | High | Filter grounded index graph nodes against citations and stage briefs for Grounded Narrator Review Queue (Phase 11P) | tsx, markdown | Phase 11A Knowledge Harvest Engine v1 active \| Phase 22 NotebookLM MCP Sidecar Bridge operational \| Phase 11C NotebookLM MCP Adapter Detection operational \| Phase 11D NotebookLM MCP Adapter Dry-Run Execution operational \| Phase 11E NotebookLM MCP Live Authorization Validation operational \| Phase 11F NotebookLM MCP Connector Hardening operational \| Phase 11G NotebookLM MCP Manual Setup Instructions operational \| Phase 11H MCP Setup Review and Readiness Gate operational \| Phase 11I MCP Local Setup Correction Pack operational \| Phase 11J Manual MCP Setup Completion Review operational \| Phase 11K MCP Setup Fix Cycle operational \| Phase 11L NotebookLM MCP Local Secrets Staging Guide operational \| Phase 11L Local MCP Setup Verification Loop operational (readiness score: 100%, eligible: yes) \| Phase 11M NotebookLM MCP Live Adapter operational \| Phase 11N Live Response Intelligence Processor complete (citation map, workflows, weak claims, module recommendations, prompt packs, staged Obsidian note, and summary generated) \| Phase 11O Grounded Intelligence Index Graph complete (JSON graph, Markdown graph, claim/citation/weak-claim/workflow/recommendation/backlink nodes, and summary generated) \| Phase 11P Grounded Narrator Review Queue operational \| Phase 11Q Offline TTS Brief Composer operational \| Phase 11Q Voice-Safe Narration Approval Gate operational \| Phase 11R TTS-Ready Narration Export Queue operational \| Phase 11S Offline TTS Dry-Run Renderer complete \| Phase 11T Offline TTS Render Approval Switch operational \| Phase 11U Local Offline TTS Voice Model Placement and Activation Check operational \| Phase 11V Offline TTS Model Acquisition Guide and Placement Assistant operational \| Phase 11W Offline Voice Session Recorder operational \| Phase 11X Local Offline ASR Orchestrator operational \| Phase 11Y Offline ASR Model Acquisition Guide and Checksum Gate operational \| Phase 11Z Manual Audio Drop Verification and Cleanup operational \| Phase 11Z-Alt Offline ASR Dry-Run Transcription Readiness Gate operational \| Phase 11Z-B ASR Model Manifest Preparation Gate operational \| Phase 11Z-C ASR Checksum Manifest Validation Gate operational \| Phase 11Z-D ASR Audio Input Staging Validation Gate operational \| Phase 11Z-E ASR Readiness Join Gate operational \| Phase 11Z-F ASR Manual Asset Intake Checklist operational \| Phase 11Z-F2 ASR Manual Asset Presence Preflight operational \| Phase 11Z-G ASR Manual Asset Revalidation Pass operational \| Phase 11Z-H ASR Asset Acquisition Ledger operational \| Phase 11Z-I Human-Staged Asset Verification Pass operational \| Phase 11Z-J ASR Gate Rerun Orchestrator operational \| ASR Manual Asset Staging Operator Packet operational \| Operator Packet Completion Audit operational \| Verification Rerun Trigger Packet operational \| Validation Chain Execution Report (Phase 11Z-N) operational \| Phase 13A Knowledge Harvest Source Expansion complete \| Phase 13B Creator YouTube URL Staging Gate complete \| Phase 13C Manual Transcript Intake & Grounding Compiler complete \| Phase 13D Workflow Idea Scoring Engine complete \| Phase 13E Pipeline Integration Stage Gate complete \| Phase 13F Pipeline Proposal Approval Router complete \| Phase 13G Manual Implementation Packet Compiler complete |
+ | **Antigravity Lab** | Development lab and CLI testing sandbox | Active | Medium | Test local plugin boundaries | Antigravity CLI | Testing ground for agent mesh scripts |
+-| **ProfBetGeng** | High-signal sports betting analytics and pricing engine | Active | Medium | Optimize betting odds tracking scripts | Looker, Python REST | Analytics-heavy backend layer \| Quarantine Deletion Readiness Staging Gate (Phase 12G) configured \| Quarantine Monitoring Continuation (Phase 12H) configured |
++| **ProfBetGeng** | High-signal sports betting analytics and pricing engine | Active | Medium | Maintain FastAPI odds conversion pipeline; World Cup fixtures integration | Looker, Python REST | FastAPI + Supabase stack officially ratified & locked; Flutter/Firebase migration permanently halted \| Analytics-heavy backend layer \| Quarantine Deletion Readiness Staging Gate (Phase 12G) configured \| Quarantine Monitoring Continuation (Phase 12H) configured |
+ | **Sporty No Go Take My Soul Rollout** | Viral single marketing rollout and asset delivery | Active | High | Run sporty status to review metrics checklist | YouTube, TikTok APIs | Cyberpunk asset-heavy campaign \| Campaign scheduler & simulation validator configured \| Platform output adapters configured \| Platform verification gates operational \| Manual release checklists operational \| Manual distribution metrics & archiving configured |
+ | **Prompt Vault** | Central repository for verified LLM system prompts | Active | Medium | Update React 19 app-router patterns | Obsidian | Versioned developer prompt catalog |
+ | **Visual Identity System** | Cyberpunk styling and premium frontend design patterns | Active | High | Catalog theme color tokens (HSL) | CSS, Vite | Core design tokens repository |
+ | **Open Higgsfield AI** | AI video generation adapter for ICYFLAMZE CORE tool stacks | Active | High | Stage first render request and validate narrator sync pipeline | tsx, markdown | Phase 15A Higgsfield AI Bridge integrated \| Manual-first bridge mode \| ICYFLAMZE CORE pipeline connected \| Narrator sync adapter configured \| 7 render types supported \| 7 visual styles approved |
+ | **Local Inference Server** | OpenAI-compatible local LLM inference endpoint for Claude Code | Active | High | Verify server health and stage first chat request via bridge | tsx, markdown | Phase 15B Local Inference Bridge integrated \| Manual-first bridge mode \| Zero-credential localhost:20128 \| MCP config guide generated \| 6 approved use cases \| Claude Code integration target |
++| **PJK Core** | Sovereign AI companion engine with duplex voice, memory trust, and CommanderHUD | Active | Critical | Production audio telemetry calibration and multi-modal tuning (Ratified AEC3 baseline remains untouched) | Gemini Live API, pytest, Lit | Current completion: 90% \| Verified automated baseline: 924 passing Python tests, 223 passing Vitest UI tests \| Ratified AEC3 baseline remains untouched (release tag pjk-v2-aec3-ratified locked) \| CommanderHUD ambient truth telemetry integration verified (PJK-HUD-TELEMETRY-01: VoiceVibeCard mounted, WebSocket & HTTP telemetry ingestion, 10 live indicators, calibrated 0.75 biometric threshold gauge, decoupled Approval Engine boundary, Voice Bus state, offline emergency banner) \| Python daemon active on port 8003 \| Path: `/Users/alexanderanthony/PJK` |
++| **Voice Vibe** | OS-level hotword detection, streaming ASR, and NVIDIA NIM semantic intent router | Persistent / Supervised | High | Production live speech continuous tuning and CommanderHUD multi-modal telemetry integration | Vosk, PyAudio, NVIDIA NIM, gTTS | Current completion: 94% \| Core capabilities: offline Vosk emergency detection, dual-tier streaming ASR, semantic whitelist routing, biometric voice ID, Central Voice Bus integration \| macOS LaunchAgent persistent supervision enrolled and operational (`com.alexanderanthony.voicevibe-hotword`, PID 92503) \| End-to-end duplex streaming voice integration verified to P.J.K. runtime and Central Voice Bus (PJK-VV-DUPLEX-01: 13/13 passing tests) \| Biometric voice ID calibrated empirically (threshold 0.75, 0.00% FAR, fail-closed privileged command gate) \| Emergency voice command security hardening verified (PJK-VV-EMERGENCY-HARDEN-01: 25/25 automated tests green) \| Post-hardening live voice security revalidation VERIFIED_COMPLETE (PJK-VOICE-LIVE-E2E-01-R1: prior SECURITY_BLOCKED lifted; 13/13 revalidation gates passed; exact normalized matching with 0% ambient false positives; Tier E1 containment ratified as E1_BYPASS_ACCEPTABLE; imposter E2 blocked fail-closed at score 0.6095; Commander E2 verified at score 0.8224; production mutating confirmation bypass fails closed; 10s anti-replay; 1,185 total green tests across systems) \| Path: `/Users/alexanderanthony/voice_vibe_asr` |
+ 
+ ## Obsidian Intelligence Snapshot
+ 
+-- **Last Ingest:** 5/31/2026, 5:20:15 AM
++- **Last Ingest:** 7/10/2026, 10:03:29 AM
+ - **Vaults Scanned:**
+   - `/Users/alexanderanthony/AlexanderOSVault`
+ - **Top Relevant Files:**
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md) (Score: 137.5)
++  - [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 123)
++  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-07-02.md) (Score: 71.5)
+   - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+-  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1783006119.md) (Score: 58)
+ - **Extracted Next Actions:**
+-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Generate next-pass report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Blockers:**
+-  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚠️ [x] Test blocked run without --confirm (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked run when global automation disabled (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked live query without environment enable (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Q: Test blocked unapproved command aliases via router (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Z-D: Verify model trust dependency dynamically from Phase 11Z-C manifest and default to blocked (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Decisions:**
+-  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚖️ [x] Generate live integration decision report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Grinders Keep Decision Synthesis Gate (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ 
+ ## Staged Registry Additions
+ - **Date Appended:** 2026-06-01
+diff --git a/SYSTEM_STATUS.md b/SYSTEM_STATUS.md
+index 8b9ed270..310e22d5 100644
+--- a/SYSTEM_STATUS.md
++++ b/SYSTEM_STATUS.md
+@@ -1,8 +1,8 @@
+ # 🛠️ System Status: Brilliantaire OS
+ 
+ - **System Name:** Brilliantaire OS
+-- **Current Phase:** Phase 15B: Local Inference Server Bridge — Claude Code Integration — COMPLETE
+-- **Last Verified:** 2026-07-27
++- **Current Phase:** Phase 22: Webhook security, ZK proofs, catalog connection, and offline audio models — COMPLETE
++- **Last Verified:** 2026-08-31
+ - **Build Status:** passing
+ 
+ ## 🔋 Active Capabilities
+@@ -87,6 +87,7 @@
+ - **ASR Verification Rerun Trigger Packet (Phase 11Z-M):** Local-first verification trigger packet generator checking staging completion audit state, checking precondition constraints, and formatting rerun command sequences or blockers sheets under strict safety rules.
+ - **ASR Validation Chain Execution Report (Phase 11Z-N):** Local-first validation chain execution report script validating and compiling status of all validation gates, verifying safety parameters, and compiling a unified JSON manifest and master report under dry-run constraints.
+ - **Offline ASR Execution Approval Switch (Phase 12A):** Human-controlled approval switch (`scripts/asr-offline-execution-approval-switch.ts`) authorizing selected local audio files for future offline ASR transcription under strict safety rules, keeping ASR execution disabled by default.
++- **Offline ASR Human Approval Selection Packet (Phase 12B):** Local-first human operator selection packet generator (`scripts/asr-offline-human-approval-selection-packet.ts`) compiling approved validated audio candidate and Whisper model selections into signed manifests under dry-run constraints.
+ - **Narrator Brief Composer (Phase N2):** Local template-driven brief compiler (`scripts/narrator-brief.ts` and `scripts/narrator-brief-help.ts`) that generates timestamped operator briefs, dashboard feeds, voice scripts, and staged Obsidian briefs without command execution or direct Obsidian writes.
+ - **Live Dashboard Narration Feed (Phase N3):** Read-only live telemetry aggregation layer (`scripts/narrator-live-feed.ts` and `scripts/narrator-feed-watch.ts`) that compiles consolidated status updates and generates timestamped event files dynamically.
+ - **Voice Narration Sync (Phase N4):** Safe offline voice narration sync layer (`scripts/narrator-voice-sync.ts`) compiling timestamped voice-ready packets, manual VNP queue staging briefs, and sync run execution logs without child processes, auto-playback triggers, or external synthesis API requests.
+@@ -172,8 +173,18 @@
+ - **Grinders Keep First Evidence Manual Completion Loop (Phase 13H):** Local manual completion loop compiler (`scripts/grinders-keep-first-evidence-manual-completion-loop.ts`) generating one-page checklist, copy-paste prompts, save rules, logging guidelines, rerun commands lists, and safety checklists without automated model calls or command executions.
+ - **Duplicate Cleanup Quarantine (Phase 12A):** Safe local duplicate and stale artifact cleanup system (`scripts/duplicate-cleanup.ts`) that scans outputs, detects duplicate timestamp variants, identifies stale reports, and stages recommendations without file deletion.
+ - **Cleanup Approval Gate (Phase 12B):** Safe read-only staging gate (`scripts/cleanup-approval.ts`) classifying duplicate candidates, building manual approval matrix checklists, and enforcing do-not-touch rules under the Workflow Auditor.
+-- **Higgsfield AI Bridge (Phase 15A):** Manual-first AI video generation adapter (`scripts/higgsfield-ai.ts`) integrating Open Higgsfield AI into the ICYFLAMZE CORE tool stacks under the Creative Architect. Supports render request staging, scene description composition, storyboard compilation, narrator sync package generation, Obsidian export staging, and bridge status reporting. 7 render types (character-animation, scene-transition, music-video-sequence, trailer-clip, lyric-visual, cover-art-motion, storyboard-preview) and 7 approved visual styles. Connected to ICYFLAMZE CORE pipeline (episode-trailer-render, ip-bible-visual-reference, asset-queue-submission, render-intake-handoff) and Narrator TTS/voice pipeline. All API calls disabled, manual approval required, render review enforced.
+-- **Local Inference Server Bridge (Phase 15B):** Manual-first OpenAI-compatible local LLM inference adapter (`scripts/local-inference.ts`) integrating the localhost:20128 inference endpoint into Claude Code under the Prompt Engineer. Supports chat request staging, structured prompt staging, health check verification, MCP configuration guide generation, Obsidian export staging, and bridge status reporting. Zero-credential server with model "auto". 6 approved use cases (research-augmentation, draft-composition, code-review-assist, knowledge-query, narrator-draft-assist, creative-brainstorm). Live inference calls disabled, autonomous inference blocked, manual prompt review and response audit enforced.
++- **One System Agent Upgrade Stack:** A modular, auditable, and human-approved multi-agent execution framework featuring an Agent Router (request inspector, intent classifier, agent assignments, and gates), a Goal Verification engine (verifier for format audits and hallucination scans), shared JSON memory databases (`/memory`), background job queue/scheduler (`/workspaces` and jobs), and workflow packaging pipelines.
++- **Memory & Reflection Layer (Phase 15A):** Programmatic post-task reflection engine (`ReflectionEngine.ts`) parsing lessons and decisions, updating memory vaults (`lessons_learned.json`, `decisions.json`), and staging timed Piper vocal narrations.
++- **Error Recovery Protocols (Phase 15A):** Automated error classification, run-with-retry wrappers, checkpoint backups, and rollback verification tools integrated with the VNP voice bus.
++- **Multi-Modal Input Adapters (Phase 15A):** Extended adapters for active window/screenshot context metadata, DAW session notes parses, and streaming analytics CSV metrics ingestion.
++- **Testing Harness Suite (Phase 15A):** Verification testing orchestrator (`TestOrchestrator.ts` and `scripts/test-orchestrator.ts`) running integration and synthetic campaigns rollout simulations.
++- **Privacy & Offline-First Metrics (Phase 15A):** Metrics collector calculates local operations ratio, privacy index, and Whisper/Piper latency profiles rendered directly on the React Dashboard.
++- **Music & Creative Expansions (Phase 15A):** Metadata tagging, artwork gate validation checks, campaign scheduler updates, and rollout automation templates.
++- **Grinders Keep Local Verification Rerun Planner (Phase 13J):** Local-first rerun planner script evaluating sync manifest status, performing preflight checks, scoring rerun readiness, and staging manual command sheets.
++- **Tree Groove Records Automated Release Pipeline:** Automated release pipeline integration checking platform packages, compiling release proposals, checklists, chronological runbooks, status reports, and telemetry manifests under strict manual safety gates.
++
++
++
+ 
+ 
+ 
+@@ -186,39 +197,39 @@
+ - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
+ 
+ ## 🚀 Next Upgrade
+-- **Phase 13J: Grinders Keep Local Verification Rerun Planner**
++- **Phase 23: Pure CLI optimization and lightweight local React web interface integration**
+ 
+ ## Obsidian Intelligence Snapshot
+ 
+-- **Last Ingest:** 5/31/2026, 5:20:15 AM
++- **Last Ingest:** 7/10/2026, 10:03:29 AM
+ - **Vaults Scanned:**
+   - `/Users/alexanderanthony/AlexanderOSVault`
+ - **Top Relevant Files:**
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md) (Score: 137.5)
++  - [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 123)
++  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-07-02.md) (Score: 71.5)
+   - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
+-  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
+-  - [📂 Projects Matrix](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
+-  - [🛰️ Daily Operating Brief - 2026-05-29](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
++  - [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1783006119.md) (Score: 58)
+ - **Extracted Next Actions:**
+-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Create next-action generator (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] ## Do Next (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - [ ] Generate next-pass report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Blockers:**
+-  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: /Users/alexanderanthony/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file:///Users/alexanderanthony/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file:///Users/alexanderanthony/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚠️ [x] Test blocked run without --confirm (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked run when global automation disabled (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Test blocked live query without environment enable (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Q: Test blocked unapproved command aliases via router (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚠️ [x] Phase 11Z-D: Verify model trust dependency dynamically from Phase 11Z-C manifest and default to blocked (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+ - **Extracted Decisions:**
+-  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file:///Users/alexanderanthony/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+-  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
++  - ⚖️ [x] Generate live integration decision report (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Grinders Keep Decision Synthesis Gate (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ [x] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
++  - ⚖️ ⚖️ [First Principles Project Operating Plan - 2026-04-28](file:///Users/alexanderanthony/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md)) (in [🎯 Next Actions](file:///Users/alexanderanthony/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+diff --git a/outputs/icyflamze_core/episode_1/image_prompts/episode_1_image_prompt_pack_2026-07-02.md b/outputs/icyflamze_core/episode_1/image_prompts/episode_1_image_prompt_pack_2026-07-02.md
+index 837b6358..aeb08471 100644
+--- a/outputs/icyflamze_core/episode_1/image_prompts/episode_1_image_prompt_pack_2026-07-02.md
++++ b/outputs/icyflamze_core/episode_1/image_prompts/episode_1_image_prompt_pack_2026-07-02.md
+@@ -32,7 +32,11 @@ This document provides image generation prompts and negative prompts for promoti
+ > between `~/.claude/CLAUDE.md` and this tree, which is why it is named here.
+ >
+ > Pass the anchor as `--cref`:
+-> `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
++> `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png`
++>
++> **2026-09-15:** until today this path ended in `.jpeg`, and that file was an MP3.
++> That is the likely reason `--cref` "has not been carrying" the anchors above.
++> Frames rendered before this date had no face reference, so re-check their likeness.
+ >
+ > **Canonical exclusions** — from Visual Language Do-Not-Use rules, which the
+ > per-shot negative prompts below implement only partially. Add to every prompt:
+diff --git a/outputs/icyflamze_core/episode_1/render_intake/provenance_events.jsonl b/outputs/icyflamze_core/episode_1/render_intake/provenance_events.jsonl
+new file mode 100644
+index 00000000..b50f89c6
+--- /dev/null
++++ b/outputs/icyflamze_core/episode_1/render_intake/provenance_events.jsonl
+@@ -0,0 +1,160 @@
++{"timestamp":"2026-08-19T16:51:31.443Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:31.444Z","eventType":"REJECTED","slotId":"IMG-01","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:34.595Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-02","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:34.595Z","eventType":"REJECTED","slotId":"IMG-02","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:37.349Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-03","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:37.350Z","eventType":"REJECTED","slotId":"IMG-03","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:39.943Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-04","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:39.943Z","eventType":"REJECTED","slotId":"IMG-04","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:42.437Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-05","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:42.439Z","eventType":"REJECTED","slotId":"IMG-05","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:44.886Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-06","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:44.887Z","eventType":"REJECTED","slotId":"IMG-06","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:47.790Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-07","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:47.791Z","eventType":"REJECTED","slotId":"IMG-07","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:51.604Z","eventType":"ASSET_DISCOVERED","slotId":"COV-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:51.605Z","eventType":"REJECTED","slotId":"COV-01","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:51:53.978Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:53.980Z","eventType":"REJECTED","slotId":"AUD-01","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:51:57.292Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-02","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:51:57.293Z","eventType":"REJECTED","slotId":"AUD-02","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:00.722Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-03","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:00.726Z","eventType":"REJECTED","slotId":"AUD-03","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:04.712Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-04","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:04.712Z","eventType":"REJECTED","slotId":"AUD-04","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:07.833Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-05","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:07.835Z","eventType":"REJECTED","slotId":"AUD-05","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:11.733Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-06","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:11.734Z","eventType":"REJECTED","slotId":"AUD-06","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:15.459Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-07","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:15.459Z","eventType":"REJECTED","slotId":"AUD-07","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:19.171Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-08","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:19.173Z","eventType":"REJECTED","slotId":"AUD-08","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:23.611Z","eventType":"ASSET_DISCOVERED","slotId":"AUD-09","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:23.611Z","eventType":"REJECTED","slotId":"AUD-09","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:27.064Z","eventType":"ASSET_DISCOVERED","slotId":"VID-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:27.065Z","eventType":"REJECTED","slotId":"VID-01","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:29.991Z","eventType":"ASSET_DISCOVERED","slotId":"VID-02","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:29.992Z","eventType":"REJECTED","slotId":"VID-02","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:32.958Z","eventType":"ASSET_DISCOVERED","slotId":"VID-03","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:32.958Z","eventType":"REJECTED","slotId":"VID-03","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:35.495Z","eventType":"ASSET_DISCOVERED","slotId":"VID-04","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:35.496Z","eventType":"REJECTED","slotId":"VID-04","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:37.223Z","eventType":"ASSET_DISCOVERED","slotId":"VID-05","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:37.224Z","eventType":"REJECTED","slotId":"VID-05","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:39.852Z","eventType":"ASSET_DISCOVERED","slotId":"VID-06","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:39.853Z","eventType":"REJECTED","slotId":"VID-06","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:42.799Z","eventType":"ASSET_DISCOVERED","slotId":"VID-07","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:42.800Z","eventType":"REJECTED","slotId":"VID-07","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:45.917Z","eventType":"ASSET_DISCOVERED","slotId":"VID-08","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:45.917Z","eventType":"REJECTED","slotId":"VID-08","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — ffprobe could not decode the file"}
++{"timestamp":"2026-08-19T16:52:45.919Z","eventType":"ASSET_DISCOVERED","slotId":"CAP-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:45.921Z","eventType":"ASSET_DISCOVERED","slotId":"ASM-01","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:48.217Z","eventType":"ASSET_DISCOVERED","slotId":"IMG-08","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:48.218Z","eventType":"REJECTED","slotId":"IMG-08","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:52:50.720Z","eventType":"ASSET_DISCOVERED","slotId":"COV-02","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:50.720Z","eventType":"REJECTED","slotId":"COV-02","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:52:53.738Z","eventType":"ASSET_DISCOVERED","slotId":"COV-03","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:53.739Z","eventType":"REJECTED","slotId":"COV-03","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:52:56.714Z","eventType":"ASSET_DISCOVERED","slotId":"COV-04","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:56.715Z","eventType":"REJECTED","slotId":"COV-04","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:52:59.281Z","eventType":"ASSET_DISCOVERED","slotId":"COV-05","version":1,"fromState":"NONE","toState":"STAGED","reason":"NEW_FILE_STAGED"}
++{"timestamp":"2026-08-19T16:52:59.281Z","eventType":"REJECTED","slotId":"COV-05","version":1,"fromState":"STAGED","toState":"REJECTED","reason":"VALIDATION_FAILED","details":"✗ Technical check failed: not decodable media (NOT_MEDIA) — no decodable stream (codec_types: video, 0x0, duration 0.04)"}
++{"timestamp":"2026-08-19T16:52:59.285Z","eventType":"STALE_INVALIDATED","slotId":"CAP-01","version":1,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent VID-01 changed version from 1 to 1"}
++{"timestamp":"2026-08-19T16:52:59.286Z","eventType":"STATE_INVALIDATED","slotId":"CAP-01","version":1,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T16:52:59.288Z","eventType":"STALE_INVALIDATED","slotId":"ASM-01","version":1,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent VID-01 changed version from 1 to 1"}
++{"timestamp":"2026-08-19T16:52:59.288Z","eventType":"STATE_INVALIDATED","slotId":"ASM-01","version":1,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T16:59:54.055Z","eventType":"MUTATION_DETECTED","slotId":"IMG-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: c40ed868819727c7"}
++{"timestamp":"2026-08-19T16:59:54.056Z","eventType":"STATE_INVALIDATED","slotId":"IMG-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.059Z","eventType":"MUTATION_DETECTED","slotId":"IMG-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.060Z","eventType":"STATE_INVALIDATED","slotId":"IMG-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.063Z","eventType":"MUTATION_DETECTED","slotId":"IMG-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.064Z","eventType":"STATE_INVALIDATED","slotId":"IMG-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.068Z","eventType":"MUTATION_DETECTED","slotId":"IMG-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.068Z","eventType":"STATE_INVALIDATED","slotId":"IMG-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.075Z","eventType":"MUTATION_DETECTED","slotId":"IMG-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.075Z","eventType":"STATE_INVALIDATED","slotId":"IMG-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.078Z","eventType":"MUTATION_DETECTED","slotId":"IMG-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.079Z","eventType":"STATE_INVALIDATED","slotId":"IMG-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.082Z","eventType":"MUTATION_DETECTED","slotId":"IMG-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T16:59:54.083Z","eventType":"STATE_INVALIDATED","slotId":"IMG-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:54.086Z","eventType":"MUTATION_DETECTED","slotId":"COV-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: f7bad539fe8d4166"}
++{"timestamp":"2026-08-19T16:59:54.087Z","eventType":"STATE_INVALIDATED","slotId":"COV-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T16:59:59.346Z","eventType":"MUTATION_DETECTED","slotId":"AUD-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 870d3372e00f5fb5"}
++{"timestamp":"2026-08-19T16:59:59.346Z","eventType":"STATE_INVALIDATED","slotId":"AUD-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:02.219Z","eventType":"MUTATION_DETECTED","slotId":"AUD-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: c91913d6e9e72e63"}
++{"timestamp":"2026-08-19T17:00:02.220Z","eventType":"STATE_INVALIDATED","slotId":"AUD-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:05.735Z","eventType":"MUTATION_DETECTED","slotId":"AUD-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 870d3372e00f5fb5"}
++{"timestamp":"2026-08-19T17:00:05.736Z","eventType":"STATE_INVALIDATED","slotId":"AUD-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:08.129Z","eventType":"MUTATION_DETECTED","slotId":"AUD-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 9894f8653cfa8f19"}
++{"timestamp":"2026-08-19T17:00:08.129Z","eventType":"STATE_INVALIDATED","slotId":"AUD-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:11.962Z","eventType":"MUTATION_DETECTED","slotId":"AUD-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 870d3372e00f5fb5"}
++{"timestamp":"2026-08-19T17:00:11.963Z","eventType":"STATE_INVALIDATED","slotId":"AUD-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:15.102Z","eventType":"MUTATION_DETECTED","slotId":"AUD-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 79fe866c2e9da535"}
++{"timestamp":"2026-08-19T17:00:15.103Z","eventType":"STATE_INVALIDATED","slotId":"AUD-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:18.008Z","eventType":"MUTATION_DETECTED","slotId":"AUD-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: dd9165ab3909873f"}
++{"timestamp":"2026-08-19T17:00:18.009Z","eventType":"STATE_INVALIDATED","slotId":"AUD-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:21.759Z","eventType":"MUTATION_DETECTED","slotId":"AUD-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 86dc95d0163184be"}
++{"timestamp":"2026-08-19T17:00:21.760Z","eventType":"STATE_INVALIDATED","slotId":"AUD-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:26.025Z","eventType":"MUTATION_DETECTED","slotId":"AUD-09","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 8c1e2f6bbd55e21b"}
++{"timestamp":"2026-08-19T17:00:26.026Z","eventType":"STATE_INVALIDATED","slotId":"AUD-09","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:28.523Z","eventType":"MUTATION_DETECTED","slotId":"VID-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: b75e6d6ab5f1d139"}
++{"timestamp":"2026-08-19T17:00:28.524Z","eventType":"STATE_INVALIDATED","slotId":"VID-01","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:32.733Z","eventType":"MUTATION_DETECTED","slotId":"VID-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 78d1dc1cadbbe352"}
++{"timestamp":"2026-08-19T17:00:32.733Z","eventType":"STATE_INVALIDATED","slotId":"VID-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:36.549Z","eventType":"MUTATION_DETECTED","slotId":"VID-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 7a1378d86f26e373"}
++{"timestamp":"2026-08-19T17:00:36.550Z","eventType":"STATE_INVALIDATED","slotId":"VID-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:41.244Z","eventType":"MUTATION_DETECTED","slotId":"VID-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 78d1dc1cadbbe352"}
++{"timestamp":"2026-08-19T17:00:41.245Z","eventType":"STATE_INVALIDATED","slotId":"VID-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:45.339Z","eventType":"MUTATION_DETECTED","slotId":"VID-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: b75e6d6ab5f1d139"}
++{"timestamp":"2026-08-19T17:00:45.340Z","eventType":"STATE_INVALIDATED","slotId":"VID-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:49.320Z","eventType":"MUTATION_DETECTED","slotId":"VID-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 017be86e41144927"}
++{"timestamp":"2026-08-19T17:00:49.321Z","eventType":"STATE_INVALIDATED","slotId":"VID-06","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:53.539Z","eventType":"MUTATION_DETECTED","slotId":"VID-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 017be86e41144927"}
++{"timestamp":"2026-08-19T17:00:53.570Z","eventType":"STATE_INVALIDATED","slotId":"VID-07","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.595Z","eventType":"MUTATION_DETECTED","slotId":"VID-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 7a1378d86f26e373"}
++{"timestamp":"2026-08-19T17:00:58.595Z","eventType":"STATE_INVALIDATED","slotId":"VID-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.598Z","eventType":"MUTATION_DETECTED","slotId":"CAP-01","version":2,"fromState":"STALE","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: a1d58c9ef4cb14d1"}
++{"timestamp":"2026-08-19T17:00:58.599Z","eventType":"STATE_INVALIDATED","slotId":"CAP-01","version":2,"fromState":"STALE","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.603Z","eventType":"MUTATION_DETECTED","slotId":"ASM-01","version":2,"fromState":"STALE","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 04cd11086410f565"}
++{"timestamp":"2026-08-19T17:00:58.603Z","eventType":"STATE_INVALIDATED","slotId":"ASM-01","version":2,"fromState":"STALE","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.606Z","eventType":"MUTATION_DETECTED","slotId":"IMG-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T17:00:58.606Z","eventType":"STATE_INVALIDATED","slotId":"IMG-08","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.614Z","eventType":"MUTATION_DETECTED","slotId":"COV-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: c40ed868819727c7"}
++{"timestamp":"2026-08-19T17:00:58.615Z","eventType":"STATE_INVALIDATED","slotId":"COV-02","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.618Z","eventType":"MUTATION_DETECTED","slotId":"COV-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: 0bec0c29df8ba484"}
++{"timestamp":"2026-08-19T17:00:58.619Z","eventType":"STATE_INVALIDATED","slotId":"COV-03","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.624Z","eventType":"MUTATION_DETECTED","slotId":"COV-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: f7bad539fe8d4166"}
++{"timestamp":"2026-08-19T17:00:58.625Z","eventType":"STATE_INVALIDATED","slotId":"COV-04","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.628Z","eventType":"MUTATION_DETECTED","slotId":"COV-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"FILE_MODIFIED","details":"Previous SHA256: e5a6e722a8fcab78, Current SHA256: f7bad539fe8d4166"}
++{"timestamp":"2026-08-19T17:00:58.629Z","eventType":"STATE_INVALIDATED","slotId":"COV-05","version":2,"fromState":"REJECTED","toState":"STAGED","reason":"HASH_MISMATCH"}
++{"timestamp":"2026-08-19T17:00:58.631Z","eventType":"STALE_INVALIDATED","slotId":"COV-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent IMG-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:58.631Z","eventType":"STATE_INVALIDATED","slotId":"COV-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:58.633Z","eventType":"STALE_INVALIDATED","slotId":"VID-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:58.634Z","eventType":"STATE_INVALIDATED","slotId":"VID-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:58.635Z","eventType":"STALE_INVALIDATED","slotId":"VID-02","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:58.636Z","eventType":"STATE_INVALIDATED","slotId":"VID-02","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:58.637Z","eventType":"STALE_INVALIDATED","slotId":"VID-03","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.202Z","eventType":"STATE_INVALIDATED","slotId":"VID-03","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.203Z","eventType":"STALE_INVALIDATED","slotId":"VID-04","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.210Z","eventType":"STATE_INVALIDATED","slotId":"VID-04","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.263Z","eventType":"STALE_INVALIDATED","slotId":"VID-05","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.266Z","eventType":"STATE_INVALIDATED","slotId":"VID-05","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.438Z","eventType":"STALE_INVALIDATED","slotId":"VID-06","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.438Z","eventType":"STATE_INVALIDATED","slotId":"VID-06","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.440Z","eventType":"STALE_INVALIDATED","slotId":"VID-07","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.445Z","eventType":"STATE_INVALIDATED","slotId":"VID-07","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.500Z","eventType":"STALE_INVALIDATED","slotId":"VID-08","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent AUD-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.502Z","eventType":"STATE_INVALIDATED","slotId":"VID-08","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.506Z","eventType":"STALE_INVALIDATED","slotId":"CAP-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent VID-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.509Z","eventType":"STATE_INVALIDATED","slotId":"CAP-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.878Z","eventType":"STALE_INVALIDATED","slotId":"ASM-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent VID-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.879Z","eventType":"STATE_INVALIDATED","slotId":"ASM-01","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.881Z","eventType":"STALE_INVALIDATED","slotId":"COV-02","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent COV-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.883Z","eventType":"STATE_INVALIDATED","slotId":"COV-02","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:00:59.897Z","eventType":"STALE_INVALIDATED","slotId":"COV-03","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent COV-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:00:59.898Z","eventType":"STATE_INVALIDATED","slotId":"COV-03","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:01:00.269Z","eventType":"STALE_INVALIDATED","slotId":"COV-04","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent COV-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:01:00.448Z","eventType":"STATE_INVALIDATED","slotId":"COV-04","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
++{"timestamp":"2026-08-19T17:01:00.452Z","eventType":"STALE_INVALIDATED","slotId":"COV-05","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION","details":"Parent COV-01 changed version from 2 to 2"}
++{"timestamp":"2026-08-19T17:01:00.453Z","eventType":"STATE_INVALIDATED","slotId":"COV-05","version":2,"fromState":"TECHNICALLY_VERIFIED","toState":"STALE","reason":"PARENT_MUTATION"}
+diff --git a/outputs/icyflamze_core/episode_1/render_intake/provenance_manifest.json b/outputs/icyflamze_core/episode_1/render_intake/provenance_manifest.json
+new file mode 100644
+index 00000000..c1996432
+--- /dev/null
++++ b/outputs/icyflamze_core/episode_1/render_intake/provenance_manifest.json
+@@ -0,0 +1,546 @@
++{
++  "assets": {
++    "IMG-01": {
++      "sha256": "c40ed868819727c7639d4bfe959e505305b41fe47611b58c045e56bc57c96603",
++      "slotId": "IMG-01",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.050Z",
++      "validationTimestamp": "2026-10-06T21:15:43.506Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-02": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-02",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.058Z",
++      "validationTimestamp": "2026-10-06T21:15:43.507Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-03": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-03",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.062Z",
++      "validationTimestamp": "2026-10-06T21:15:43.508Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-04": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-04",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.066Z",
++      "validationTimestamp": "2026-10-06T21:15:43.509Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-05": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-05",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.073Z",
++      "validationTimestamp": "2026-10-06T21:15:43.509Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-06": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-06",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.077Z",
++      "validationTimestamp": "2026-10-06T21:15:43.510Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "IMG-07": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-07",
++      "version": 2,
++      "source": "Canva",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.081Z",
++      "validationTimestamp": "2026-10-06T21:15:43.510Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "COV-01": {
++      "sha256": "f7bad539fe8d4166fae9c6a5aa33af38eb15666037241fb1b5ebfe85aea8206b",
++      "slotId": "COV-01",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:54.085Z",
++      "validationTimestamp": "2026-10-06T21:15:43.512Z",
++      "approvalState": "STALE",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "IMG-01": 2
++      }
++    },
++    "AUD-01": {
++      "sha256": "870d3372e00f5fb586355d5c670f55f985d055225ab1a1d4f47d79ee743da96e",
++      "slotId": "AUD-01",
++      "version": 2,
++      "source": "ElevenLabs",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T16:59:59.344Z",
++      "validationTimestamp": "2026-10-06T21:15:43.515Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-02": {
++      "sha256": "c91913d6e9e72e63998f886e54466b7e71a41742905a9f77428b5e57e2ef0ece",
++      "slotId": "AUD-02",
++      "version": 2,
++      "source": "ElevenLabs",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:02.218Z",
++      "validationTimestamp": "2026-10-06T21:15:43.518Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-03": {
++      "sha256": "870d3372e00f5fb586355d5c670f55f985d055225ab1a1d4f47d79ee743da96e",
++      "slotId": "AUD-03",
++      "version": 2,
++      "source": "Premiere Pro",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:05.734Z",
++      "validationTimestamp": "2026-10-06T21:15:43.520Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-04": {
++      "sha256": "9894f8653cfa8f19a07e07db96a0d9ecfe56d13b0270b1e83d30dba9a9c57e82",
++      "slotId": "AUD-04",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:08.128Z",
++      "validationTimestamp": "2026-10-06T21:15:43.521Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-05": {
++      "sha256": "870d3372e00f5fb586355d5c670f55f985d055225ab1a1d4f47d79ee743da96e",
++      "slotId": "AUD-05",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:11.961Z",
++      "validationTimestamp": "2026-10-06T21:15:43.522Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-06": {
++      "sha256": "79fe866c2e9da535330801d9b16532addba8cc5f3bdebb186d9461f32e0764d7",
++      "slotId": "AUD-06",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:15.101Z",
++      "validationTimestamp": "2026-10-06T21:15:43.523Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-07": {
++      "sha256": "dd9165ab3909873fc83f23fb627ce58f8ad2623d8847dbfcecb8df034ac46131",
++      "slotId": "AUD-07",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:18.007Z",
++      "validationTimestamp": "2026-10-06T21:15:43.524Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-08": {
++      "sha256": "86dc95d0163184bed355879ec4c1d6029ed8b1c524adfb2c2482b22982a64c70",
++      "slotId": "AUD-08",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:21.758Z",
++      "validationTimestamp": "2026-10-06T21:15:43.525Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "AUD-09": {
++      "sha256": "8c1e2f6bbd55e21bdd08df924621a2c9f5f226d16494a574864ec7b80bcf3949",
++      "slotId": "AUD-09",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:26.024Z",
++      "validationTimestamp": "2026-10-06T21:15:43.525Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "N/A",
++      "identityScore": "N/A",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "VID-01": {
++      "sha256": "b75e6d6ab5f1d13914ec0b95d013fcec08bd6e3dd314a30f686d4a0f32d8aab3",
++      "slotId": "VID-01",
++      "version": 2,
++      "source": "Sora",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:28.520Z",
++      "validationTimestamp": "2026-10-06T21:15:43.526Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-02": 2
++      }
++    },
++    "VID-02": {
++      "sha256": "78d1dc1cadbbe3523be5473f9fd4b52d9f5ad5d33b7a6573f097d0cecd780a2c",
++      "slotId": "VID-02",
++      "version": 2,
++      "source": "Sora",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:32.732Z",
++      "validationTimestamp": "2026-10-06T21:15:43.527Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-04": 2
++      }
++    },
++    "VID-03": {
++      "sha256": "7a1378d86f26e37307bd66f0a7096e945dc9673e3a4e1e84df2eef00fc59c327",
++      "slotId": "VID-03",
++      "version": 2,
++      "source": "Sora",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:36.547Z",
++      "validationTimestamp": "2026-10-06T21:15:43.528Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-03": 2
++      }
++    },
++    "VID-04": {
++      "sha256": "78d1dc1cadbbe3523be5473f9fd4b52d9f5ad5d33b7a6573f097d0cecd780a2c",
++      "slotId": "VID-04",
++      "version": 2,
++      "source": "Veo",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:41.243Z",
++      "validationTimestamp": "2026-10-06T21:15:43.529Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-05": 2
++      }
++    },
++    "VID-05": {
++      "sha256": "b75e6d6ab5f1d13914ec0b95d013fcec08bd6e3dd314a30f686d4a0f32d8aab3",
++      "slotId": "VID-05",
++      "version": 2,
++      "source": "Runway",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:45.337Z",
++      "validationTimestamp": "2026-10-06T21:15:43.529Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-06": 2
++      }
++    },
++    "VID-06": {
++      "sha256": "017be86e41144927c2e3ced9d0f5a60ce295d2fb7f057b25b477220a5ea3dcde",
++      "slotId": "VID-06",
++      "version": 2,
++      "source": "Veo",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:49.319Z",
++      "validationTimestamp": "2026-10-06T21:15:43.530Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-06": 2
++      }
++    },
++    "VID-07": {
++      "sha256": "017be86e41144927c2e3ced9d0f5a60ce295d2fb7f057b25b477220a5ea3dcde",
++      "slotId": "VID-07",
++      "version": 2,
++      "source": "Sora",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:53.537Z",
++      "validationTimestamp": "2026-10-06T21:15:43.531Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-03": 2
++      }
++    },
++    "VID-08": {
++      "sha256": "7a1378d86f26e37307bd66f0a7096e945dc9673e3a4e1e84df2eef00fc59c327",
++      "slotId": "VID-08",
++      "version": 2,
++      "source": "Veo",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.593Z",
++      "validationTimestamp": "2026-10-06T21:15:43.532Z",
++      "approvalState": "STALE",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "AUD-01": 2,
++        "IMG-01": 2
++      }
++    },
++    "CAP-01": {
++      "sha256": "a1d58c9ef4cb14d1f7df345f6442aab00a678b05ced05c8aaa7331747c58c30a",
++      "slotId": "CAP-01",
++      "version": 2,
++      "source": "CapCut",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.597Z",
++      "validationTimestamp": "2026-10-06T21:15:43.532Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "VID-01": 2,
++        "VID-02": 2,
++        "VID-03": 2,
++        "VID-04": 2,
++        "VID-05": 2,
++        "VID-06": 2,
++        "VID-07": 2,
++        "VID-08": 2,
++        "AUD-01": 2
++      }
++    },
++    "ASM-01": {
++      "sha256": "04cd11086410f565749ffe66230f0b8ad0e0c309d83c616e243b825e38fecaf5",
++      "slotId": "ASM-01",
++      "version": 2,
++      "source": "DaVinci Resolve",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.601Z",
++      "validationTimestamp": "2026-10-06T21:15:43.533Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "VID-01": 2,
++        "VID-02": 2,
++        "VID-03": 2,
++        "VID-04": 2,
++        "VID-05": 2,
++        "VID-06": 2,
++        "VID-07": 2,
++        "VID-08": 2,
++        "AUD-01": 2,
++        "AUD-03": 2,
++        "AUD-04": 2,
++        "AUD-05": 2,
++        "AUD-06": 2,
++        "AUD-07": 2,
++        "AUD-08": 2,
++        "AUD-09": 2,
++        "CAP-01": 2
++      }
++    },
++    "IMG-08": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "IMG-08",
++      "version": 2,
++      "source": "Midjourney",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.605Z",
++      "validationTimestamp": "2026-10-06T21:15:43.535Z",
++      "approvalState": "TECHNICALLY_VERIFIED",
++      "parentAsset": "official_icyflamze_portrait",
++      "identityScore": "PENDING",
++      "technicalScore": "PASS",
++      "creativeScore": "PENDING",
++      "parentLineage": {}
++    },
++    "COV-02": {
++      "sha256": "c40ed868819727c7639d4bfe959e505305b41fe47611b58c045e56bc57c96603",
++      "slotId": "COV-02",
++      "version": 2,
++      "source": "Canva",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.613Z",
++      "validationTimestamp": "2026-10-06T21:15:43.535Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "COV-01": 2
++      }
++    },
++    "COV-03": {
++      "sha256": "0bec0c29df8ba4846859d2052c376ecd782bde5c63c5b38660eea85602a48be1",
++      "slotId": "COV-03",
++      "version": 2,
++      "source": "Canva",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.617Z",
++      "validationTimestamp": "2026-10-06T21:15:43.536Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "COV-01": 2
++      }
++    },
++    "COV-04": {
++      "sha256": "f7bad539fe8d4166fae9c6a5aa33af38eb15666037241fb1b5ebfe85aea8206b",
++      "slotId": "COV-04",
++      "version": 2,
++      "source": "Canva",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.622Z",
++      "validationTimestamp": "2026-10-06T21:15:43.536Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "COV-01": 2
++      }
++    },
++    "COV-05": {
++      "sha256": "f7bad539fe8d4166fae9c6a5aa33af38eb15666037241fb1b5ebfe85aea8206b",
++      "slotId": "COV-05",
++      "version": 2,
++      "source": "Canva",
++      "generator": "unattributed",
++      "createdTimestamp": "2026-08-19T17:00:58.627Z",
++      "validationTimestamp": "2026-10-06T21:15:43.536Z",
++      "approvalState": "STALE",
++      "parentAsset": "N/A",
++      "identityScore": "PENDING",
++      "technicalScore": "PENDING",
++      "creativeScore": "PENDING",
++      "parentLineage": {
++        "COV-01": 2
++      }
++    }
++  }
++}
+\ No newline at end of file
+diff --git a/outputs/icyflamze_core/episode_1/render_intake/recovery_jobs.json b/outputs/icyflamze_core/episode_1/render_intake/recovery_jobs.json
+new file mode 100644
+index 00000000..65e54203
+--- /dev/null
++++ b/outputs/icyflamze_core/episode_1/render_intake/recovery_jobs.json
+@@ -0,0 +1,247 @@
++{
++  "jobs": [
++    {
++      "jobId": "REC-CAP-01-1-1-1-1-1-1-1-1-1",
++      "slotId": "CAP-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "VID-01": 1,
++        "VID-02": 1,
++        "VID-03": 1,
++        "VID-04": 1,
++        "VID-05": 1,
++        "VID-06": 1,
++        "VID-07": 1,
++        "VID-08": 1,
++        "AUD-01": 1
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T16:52:59.289Z"
++    },
++    {
++      "jobId": "REC-ASM-01-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1",
++      "slotId": "ASM-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "VID-01": 1,
++        "VID-02": 1,
++        "VID-03": 1,
++        "VID-04": 1,
++        "VID-05": 1,
++        "VID-06": 1,
++        "VID-07": 1,
++        "VID-08": 1,
++        "AUD-01": 1,
++        "AUD-03": 1,
++        "AUD-04": 1,
++        "AUD-05": 1,
++        "AUD-06": 1,
++        "AUD-07": 1,
++        "AUD-08": 1,
++        "AUD-09": 1,
++        "CAP-01": 1
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T16:52:59.290Z"
++    },
++    {
++      "jobId": "REC-COV-01-2",
++      "slotId": "COV-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "IMG-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.453Z"
++    },
++    {
++      "jobId": "REC-VID-01-2-2",
++      "slotId": "VID-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-02": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.454Z"
++    },
++    {
++      "jobId": "REC-VID-02-2-2",
++      "slotId": "VID-02",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-04": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.455Z"
++    },
++    {
++      "jobId": "REC-VID-03-2-2",
++      "slotId": "VID-03",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-03": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.460Z"
++    },
++    {
++      "jobId": "REC-VID-04-2-2",
++      "slotId": "VID-04",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-05": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.462Z"
++    },
++    {
++      "jobId": "REC-VID-05-2-2",
++      "slotId": "VID-05",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-06": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.485Z"
++    },
++    {
++      "jobId": "REC-VID-06-2-2",
++      "slotId": "VID-06",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-06": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.488Z"
++    },
++    {
++      "jobId": "REC-VID-07-2-2",
++      "slotId": "VID-07",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-03": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.489Z"
++    },
++    {
++      "jobId": "REC-VID-08-2-2",
++      "slotId": "VID-08",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "AUD-01": 2,
++        "IMG-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.489Z"
++    },
++    {
++      "jobId": "REC-CAP-01-2-2-2-2-2-2-2-2-2",
++      "slotId": "CAP-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "VID-01": 2,
++        "VID-02": 2,
++        "VID-03": 2,
++        "VID-04": 2,
++        "VID-05": 2,
++        "VID-06": 2,
++        "VID-07": 2,
++        "VID-08": 2,
++        "AUD-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.493Z"
++    },
++    {
++      "jobId": "REC-ASM-01-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
++      "slotId": "ASM-01",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "VID-01": 2,
++        "VID-02": 2,
++        "VID-03": 2,
++        "VID-04": 2,
++        "VID-05": 2,
++        "VID-06": 2,
++        "VID-07": 2,
++        "VID-08": 2,
++        "AUD-01": 2,
++        "AUD-03": 2,
++        "AUD-04": 2,
++        "AUD-05": 2,
++        "AUD-06": 2,
++        "AUD-07": 2,
++        "AUD-08": 2,
++        "AUD-09": 2,
++        "CAP-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.504Z"
++    },
++    {
++      "jobId": "REC-COV-02-2",
++      "slotId": "COV-02",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "COV-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.505Z"
++    },
++    {
++      "jobId": "REC-COV-03-2",
++      "slotId": "COV-03",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "COV-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.507Z"
++    },
++    {
++      "jobId": "REC-COV-04-2",
++      "slotId": "COV-04",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "COV-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.510Z"
++    },
++    {
++      "jobId": "REC-COV-05-2",
++      "slotId": "COV-05",
++      "reason": "PARENT_MUTATION",
++      "parents": {
++        "COV-01": 2
++      },
++      "action": "REGENERATE",
++      "status": "AWAITING_APPROVAL",
++      "createdTimestamp": "2026-08-19T17:01:00.511Z"
++    }
++  ]
++}
+\ No newline at end of file
+diff --git a/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_recovery_plan.md b/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_recovery_plan.md
+new file mode 100644
+index 00000000..9d1702a5
+--- /dev/null
++++ b/outputs/icyflamze_core/episode_1/render_intake/reports/episode_1_recovery_plan.md
+@@ -0,0 +1,227 @@
++# Recovery and Reconciliation Plan
++
++### Status Metadata:
++- **Generated:** 2026-10-06T21:15:43.537Z
++- **Integrity Health:** STALE_LINKS_DETECTED
++- **Estimated Recovery Scope:** 15 asset rebuilds
++
++## ⚠️ Integrity Fault Analysis
++
++The following downstream assets are currently flagged **STALE** due to parent mutations:
++
++### Slot: **COV-01** (Main Cover Art)
++- **Previous lineage compiled on:**
++  - Parent **IMG-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/cover_art/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-01** (Cyber Lens Close-up)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-02**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-02** (Circuit Skyline)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-04**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-03** (Gold Lighter Ignition)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-03**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-04** (Equation Microphone)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-05**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-05** (Chess King Drop)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-06**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-06** (Orbiting Library)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-06**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-07** (Lighter Beats Flick)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-03**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **VID-08** (Empire Overlook)
++- **Previous lineage compiled on:**
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **IMG-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/videos/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **CAP-01** (Subtitle SRT file)
++- **Previous lineage compiled on:**
++  - Parent **VID-01**: recorded v2 🟢
++  - Parent **VID-02**: recorded v2 🟢
++  - Parent **VID-03**: recorded v2 🟢
++  - Parent **VID-04**: recorded v2 🟢
++  - Parent **VID-05**: recorded v2 🟢
++  - Parent **VID-06**: recorded v2 🟢
++  - Parent **VID-07**: recorded v2 🟢
++  - Parent **VID-08**: recorded v2 🟢
++  - Parent **AUD-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/captions/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **ASM-01** (Trailer Edit Project)
++- **Previous lineage compiled on:**
++  - Parent **VID-01**: recorded v2 🟢
++  - Parent **VID-02**: recorded v2 🟢
++  - Parent **VID-03**: recorded v2 🟢
++  - Parent **VID-04**: recorded v2 🟢
++  - Parent **VID-05**: recorded v2 🟢
++  - Parent **VID-06**: recorded v2 🟢
++  - Parent **VID-07**: recorded v2 🟢
++  - Parent **VID-08**: recorded v2 🟢
++  - Parent **AUD-01**: recorded v2 🟢
++  - Parent **AUD-03**: recorded v2 🟢
++  - Parent **AUD-04**: recorded v2 🟢
++  - Parent **AUD-05**: recorded v2 🟢
++  - Parent **AUD-06**: recorded v2 🟢
++  - Parent **AUD-07**: recorded v2 🟢
++  - Parent **AUD-08**: recorded v2 🟢
++  - Parent **AUD-09**: recorded v2 🟢
++  - Parent **CAP-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/edit_projects/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **COV-02** (Vertical Story Crop)
++- **Previous lineage compiled on:**
++  - Parent **COV-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/cover_art/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **COV-03** (YouTube Thumbnail Crop)
++- **Previous lineage compiled on:**
++  - Parent **COV-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/cover_art/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **COV-04** (Title Typography Variant)
++- **Previous lineage compiled on:**
++  - Parent **COV-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/cover_art/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++### Slot: **COV-05** (No-Text Variant)
++- **Previous lineage compiled on:**
++  - Parent **COV-01**: recorded v2 🟢
++- **Required Action:**
++  1. Re-render/regenerate asset from the updated parent versions.
++  2. Move the old file to `render_intake/superseded/` and place the new one in `incoming/cover_art/`.
++  3. Re-run structural, technical, identity, and creative validation checks.
++
++## 🛠️ Step-by-Step Reconciliation Steps
++
++1. **Regenerate **COV-01** (Main Cover Art) using parent dependencies: **IMG-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++2. **Regenerate **VID-01** (Cyber Lens Close-up) using parent dependencies: **AUD-01 v2, IMG-02 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++3. **Regenerate **VID-02** (Circuit Skyline) using parent dependencies: **AUD-01 v2, IMG-04 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++4. **Regenerate **VID-03** (Gold Lighter Ignition) using parent dependencies: **AUD-01 v2, IMG-03 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++5. **Regenerate **VID-04** (Equation Microphone) using parent dependencies: **AUD-01 v2, IMG-05 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++6. **Regenerate **VID-05** (Chess King Drop) using parent dependencies: **AUD-01 v2, IMG-06 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++7. **Regenerate **VID-06** (Orbiting Library) using parent dependencies: **AUD-01 v2, IMG-06 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++8. **Regenerate **VID-07** (Lighter Beats Flick) using parent dependencies: **AUD-01 v2, IMG-03 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++9. **Regenerate **VID-08** (Empire Overlook) using parent dependencies: **AUD-01 v2, IMG-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++10. **Regenerate **CAP-01** (Subtitle SRT file) using parent dependencies: **VID-01 v2, VID-02 v2, VID-03 v2, VID-04 v2, VID-05 v2, VID-06 v2, VID-07 v2, VID-08 v2, AUD-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++11. **Regenerate **ASM-01** (Trailer Edit Project) using parent dependencies: **VID-01 v2, VID-02 v2, VID-03 v2, VID-04 v2, VID-05 v2, VID-06 v2, VID-07 v2, VID-08 v2, AUD-01 v2, AUD-03 v2, AUD-04 v2, AUD-05 v2, AUD-06 v2, AUD-07 v2, AUD-08 v2, AUD-09 v2, CAP-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++12. **Regenerate **COV-02** (Vertical Story Crop) using parent dependencies: **COV-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++13. **Regenerate **COV-03** (YouTube Thumbnail Crop) using parent dependencies: **COV-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++14. **Regenerate **COV-04** (Title Typography Variant) using parent dependencies: **COV-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++15. **Regenerate **COV-05** (No-Text Variant) using parent dependencies: **COV-01 v2****
++   - Revalidate structural attributes
++   - Verify face similarity against portrait manifest
++   - Validate creative compliance
++
++**Integrity Target:** CLEAN
+diff --git a/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md b/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md
+index 648fd334..0c91620d 100644
+--- a/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md
++++ b/outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md
+@@ -48,10 +48,23 @@ If a generator reinterprets the character, reject the prompt and regenerate.
+ ### Reference Artifact
+ 
+ The `--cref` input for every character frame:
+-`~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
+-3,568,376 bytes · 2026-04-24
+-sha256 `7594b33211f8754724e2a211474de9157824bac63f100bbf0506e03600646abb`
+-sha1 &nbsp;&nbsp;`fc69fdcb1f5028ea…`
++`~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png`
++1,492,511 bytes · PNG 1030×2081 · Feb 2026 render · installed 2026-09-15
++sha256 `d5c17f08c4963e5c7ab2528a6d7d9831be1a47a5a982cbc1921e55c2db7379d2`
++sha1 &nbsp;&nbsp;`d0cf2ad35ac059f271161baf9903e14d93107df6`
++
++**Corrected 2026-09-15 — the anchor was never an image.** The file this section
++named until today, `icyflamze_reference_MASTER.jpeg` (sha256 `7594b332…`), was the
++"Who Is Icyflamze" MP3 with a `.jpeg` extension. Every checksum below verified
++correctly because the bytes never changed. They were the wrong bytes. No Season 1
++frame that "used `--cref` against the anchor" had a face reference, so review those
++frames for likeness before reusing them. The MP3 is kept as
++`who_is_icyflamze_song_formerly_MASTER.mp3`. An alternate anchor,
++`icyflamze_reference_ALT_elevator.png`, is the same character on a busier
++background with phone-UI artifacts. Current backup:
++`~/Desktop/icyflamze-identity-offsite-20260915/`.
++
++The 2026-08-10 note below is kept as history. Its digests describe the MP3.
+ 
+ **Corrected 2026-08-10.** This line previously read ``sha256 `fc69fdcb…` `` — that
+ value is the file's **SHA-1**, not its SHA-256. Verifying the anchor with the
+@@ -131,7 +144,7 @@ would have hit this wall on its first character frame. (The "22 files / 5 files"
+ figure previously recorded here did not reproduce and is superseded.)
+ 
+ **Unchanged by this ruling.** The lock's **facial** section is universal and
+-travels to every medium. `--cref` against `icyflamze_reference_MASTER.jpeg`
++travels to every medium. `--cref` against `icyflamze_reference_MASTER.png` (was `.jpeg` until 2026-09-15; see Reference Artifact)
+ applies to every character frame in Season 1. Facial structure, jawline, nose
+ shape, eye spacing, skin tone, short fade, black-frame glasses, facial hair,
+ head proportions and overall likeness are not touched by this exception. The
+diff --git a/outputs/icyflamze_core/logs/exec_log_2026-07-02.txt b/outputs/icyflamze_core/logs/exec_log_2026-07-02.txt
+index 1ba16ece..b4b07680 100644
+--- a/outputs/icyflamze_core/logs/exec_log_2026-07-02.txt
++++ b/outputs/icyflamze_core/logs/exec_log_2026-07-02.txt
+@@ -5,3 +5,4 @@
+ [2026-07-02T15:37:40.182Z] Generated sync report at /Users/alexanderanthony/outputs/icyflamze_core/reports/icyflamze_core_sync_report_2026-07-02.md
+ [2026-07-02T15:37:50.735Z] Status queried
+ [2026-07-02T15:39:33.561Z] Generated registry file at /Users/alexanderanthony/outputs/icyflamze_core/registry/icyflamze_core_project_registry_2026-07-02.md
++[2026-07-02T15:54:55.975Z] Status queried
