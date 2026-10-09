@@ -69,7 +69,7 @@ The app is `apps/web`, a Next.js app in a pnpm monorepo. It needs Node 20 or new
   - `VERCEL_TOKEN`: Vercel → Settings → Tokens;
   - `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`: in `.vercel/project.json` after `vercel link`.
 
-  Until they're set, every run of that workflow fails at "Pull Vercel environment".
+  Until they're set, that workflow skips the deploy. Each run passes with an "IcyOS wasn't deployed" warning, and its summary lists what's missing.
 - **Anywhere else:** run `pnpm install` and `pnpm build` in `Knowledge Core/IcyOS`, then serve `apps/web` with `pnpm --filter web-app start`.
 
 `DEPLOY.md` has more on Vercel, Docker and custom domains. For the settings list, use step 3 above, which includes `SUPABASE_JWT_SECRET` and the legal settings.

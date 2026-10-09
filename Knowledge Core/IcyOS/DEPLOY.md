@@ -112,7 +112,7 @@ See `apps/web/BILLING.md` for the full Stripe integration reference.
 
 ### Automatic deployments (CI/CD)
 
-The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files. Until the three secrets below are set, it fails at "Pull Vercel environment"; deploy by hand with `vercel --prod` meanwhile.
+The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files. Until the three secrets below are set, it doesn't deploy. The run passes with a warning ("IcyOS wasn't deployed"), and its summary page names the missing secrets and where to find each one. A missing setting no longer turns `main` red. Once the secrets are set, a deploy that fails still fails the run. Meanwhile, deploy by hand with `vercel --prod`.
 
 Add these secrets in GitHub → Settings → Secrets and variables → Actions:
 
