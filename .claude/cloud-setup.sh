@@ -6,6 +6,7 @@
 #   - ffmpeg / ffprobe   (frame extraction; already in the base image)
 #   - yt-dlp             (video + caption download; Node enabled as its JS runtime)
 #   - watch plugin       (marketplace + plugin install, user scope)
+#   - youtube-agent      (11 /yt-* skills from Jakeschincariol/youtube-agent-skill)
 #   - local WhisperX     (offline transcription fallback, CPU, "small" model)
 #
 # The watch engine is saved as "auto": when GEMINI_API_KEY is set in the environment
@@ -83,6 +84,17 @@ install_base() {
   if ! claude plugin list 2>/dev/null | grep -q 'watch@claude-video'; then
     log "installing watch@claude-video"
     claude plugin install watch@claude-video
+  fi
+
+  # YouTube agent skill pack (11 /yt-* skills, stdlib-only Python tools).
+  if ! claude plugin marketplace list 2>/dev/null | grep -q 'youtube-agent-skill'; then
+    log "adding youtube-agent-skill marketplace"
+    claude plugin marketplace add Jakeschincariol/youtube-agent-skill
+  fi
+
+  if ! claude plugin list 2>/dev/null | grep -q 'youtube-agent@youtube-agent-skill'; then
+    log "installing youtube-agent@youtube-agent-skill"
+    claude plugin install youtube-agent@youtube-agent-skill
   fi
 }
 
