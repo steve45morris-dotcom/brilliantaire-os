@@ -32,7 +32,11 @@ This document provides image generation prompts and negative prompts for promoti
 > between `~/.claude/CLAUDE.md` and this tree, which is why it is named here.
 >
 > Pass the anchor as `--cref`:
-> `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
+> `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png`
+>
+> **2026-09-15:** until today this path ended in `.jpeg`, and that file was an MP3.
+> That is the likely reason `--cref` "has not been carrying" the anchors above.
+> Frames rendered before this date had no face reference, so re-check their likeness.
 >
 > **Canonical exclusions** — from Visual Language Do-Not-Use rules, which the
 > per-shot negative prompts below implement only partially. Add to every prompt:

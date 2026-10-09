@@ -76,11 +76,11 @@
 - [x] Generate assembly readiness report (Phase 14E)
 - [x] Generate revision log (Phase 14E)
 - [x] Stage render intake Obsidian note (Phase 14E)
-- [ ] Prepare manual assembly once readiness passes (Phase 14E)
-- [ ] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
-- [ ] Manually generate Batch 1 audio assets (Phase 14E-R)
-- [ ] Drop assets into render intake incoming folders (Phase 14E-R)
-- [ ] Rerun render intake tracker after asset placement (Phase 14E-R)
+- [x] Prepare manual assembly once readiness passes (Phase 14E)
+- [x] Manually generate Batch 1 still images using ChatGPT Image (Phase 14E-R)
+- [x] Manually generate Batch 1 audio assets (Phase 14E-R)
+- [x] Drop assets into render intake incoming folders (Phase 14E-R)
+- [x] Rerun render intake tracker after asset placement (Phase 14E-R)
 - [x] Integrate Higgsfield AI Bridge into tool stacks (Phase 15A)
 - [x] Wire Higgsfield AI into command registry, Taskfile, and package.json (Phase 15A)
 - [x] Connect Higgsfield AI to ICYFLAMZE CORE and Narrator pipelines (Phase 15A)
@@ -613,6 +613,12 @@
 - [x] Phase 12A: Generate outputs under outputs/asr_execution_approval/ (7 markdown reports and 1 json manifest)
 - [x] Phase 12A: Register exact command and help commands with requiresExactName constraint and alias blocking
 - [x] Phase 12B: Offline ASR Human Approval Selection Packet (Allow human operator selection of candidate and model)
+- [x] Phase 12B: Create configuration config/asr-offline-human-approval-selection-packet.ts
+- [x] Phase 12B: Create main selection packet script scripts/asr-offline-human-approval-selection-packet.ts
+- [x] Phase 12B: Create help utility scripts/asr-offline-human-approval-selection-packet-help.ts
+- [x] Phase 12B: Create templates for selection packet and lock report
+- [x] Phase 12B: Generate outputs under outputs/asr_human_selection/ (2 markdown reports and 1 json manifest)
+- [x] Phase 12B: Register exact command and help commands with requiresExactName constraint and alias blocking
 - [x] Build Duplicate Cleanup Staging Gate
 - [x] Scan Obsidian duplicate briefs
 - [x] Stage duplicate quarantine plan
@@ -725,7 +731,7 @@
 - [x] Generate implementation checklist
 - [x] Generate safety review
 - [x] Generate final handoff
-- [ ] Review final build prompt before implementation
+- [x] Review final build prompt before implementation
 - [x] Phase 11Q: Voice-Safe Narration Approval Gate
 - [x] Phase 11Q: Build final approval validator script
 - [x] Phase 11Q: Enforce approved_for_voice check on narrator briefs before speech rendering
@@ -865,41 +871,45 @@
 - [ ] Prepare vector index only after graph review
 - [ ] Phase 11V: Manually place Piper model files
 - [ ] Phase 11V: Rerun model gate after placement
+<!-- Parked 2026-10-09: system work stops here unless it helps an episode or a track ship. Each needs a real Episode 1 or release task blocked without it before it moves back. -->
+- [ ] Commit the Mac's dashboard UI changes (browser action router, lyrics tab), with screenshots for sign-off
+- [ ] Decide whether the PJK NotebookLM research belongs in this public repo (it stays in the Mac bookmark until then)
+- [ ] Add a login to P.J.K. (not needed while it stays local-only)
 
 ## Archive
 - [ ] Legacy bash scripts replaced by typescript runners
 
 ## Obsidian Intelligence Snapshot
 
-- **Last Ingest:** 5/31/2026, 5:20:15 AM
+- **Last Ingest:** 7/10/2026, 10:03:29 AM
 - **Vaults Scanned:**
   - `~/AlexanderOSVault`
 - **Top Relevant Files:**
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md) (Score: 137.5)
+  - [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md) (Score: 123)
+  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-07-02.md) (Score: 71.5)
   - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md) (Score: 58)
-  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1780073595.md) (Score: 58)
-  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29.md) (Score: 57.5)
-  - [📂 Projects Matrix](file://~/AlexanderOSVault/brilliantaire-briefs/projects/project_snapshot_2026-05-29_1780073595.md) (Score: 57.5)
-  - [🛰️ Daily Operating Brief - 2026-05-29](file://~/AlexanderOSVault/brilliantaire-briefs/daily/daily_brief_2026-05-29.md) (Score: 34.5)
+  - [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29_1783006119.md) (Score: 58)
 - **Extracted Next Actions:**
-  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] Create next-action generator (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] **Extracted Next Actions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | Layer | Status | Evidence | Next Check | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | Mission | Status | Bottleneck | Next Action | Signal | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | [[02 Projects/ProfBetGeng/ProfBetGeng - Current State|ProfBetGeng]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - [ ] | [[02 Projects/TheOneSystem UI/TheOneSystem UI - Current State|TheOneSystem UI]] | clean | none | Pick the next milestone or archive if no action remains. | green | (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - [ ] # 🎯 Next Actions (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] Add operational intelligence scripts (audit, brief, next) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] Create next-action generator (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] ## Do Next (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - [ ] Generate next-pass report (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
 - **Extracted Blockers:**
-  - ⚠️ [ ] This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ This board is generated from live repo state in `vault-config.json`. It should answer what matters, what is blocked, and what gets attacked next. (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ `chai-builder-sdk` is blocked by an upstream TS unused-variable error, not by the install itself. (in [Raw Memories](file://~/AlexanderOSVault/04 Claude/Codex Memories/raw_memories.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ `chai-builder-sdk` installed dependencies but was blocked at build time by `src/pages/panels/ai-panel/ai-panel-other-lang.tsx(57,3): error TS6133: 'abortController' is declared but its value is never read.` [Task 1] (in [Task Group: ~/codex-workspace/projects/brilliantaire-os brand framing, premium rebuild direction, and Antigravity handoff](file://~/AlexanderOSVault/04 Claude/Codex Memories/MEMORY.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚠️ ⚠️ ## Blocked / Missing (in [Project Status Dashboard](file://~/AlexanderOSVault/Project Status Dashboard.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚠️ [x] Test blocked run without --confirm (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚠️ [x] Test blocked run when global automation disabled (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚠️ [x] Test blocked live query without environment enable (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚠️ [x] Phase 11Q: Test blocked unapproved command aliases via router (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚠️ [x] Phase 11Z-D: Verify model trust dependency dynamically from Phase 11Z-C manifest and default to blocked (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
 - **Extracted Decisions:**
-  - ⚖️ [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ [[05 Decisions/2026-05-26-Supernova-Runtime-Compression|Runtime Compression Decision]] (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ [[Decisions Dashboard]] (in [Mission Control](file://~/AlexanderOSVault/Mission Control.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
-  - ⚖️ ⚖️ ## Core Decision (in [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md))
+  - ⚖️ [x] Generate live integration decision report (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚖️ [x] Phase 12I: Grinders Keep Decision Synthesis Gate (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚖️ [x] Phase 12I: Synthesize manually ingested model and Google workflow reviews into human-approved decisions, ranked next moves, build approvals, content approvals, and monetization experiments without executing changes automatically (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚖️ **Extracted Decisions:** (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
+  - ⚖️ ⚖️ [First Principles Project Operating Plan - 2026-04-28](file://~/AlexanderOSVault/05 Decisions/First Principles Project Operating Plan - 2026-04-28.md) (Score: 18) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-05-29.md)) (in [🎯 Next Actions](file://~/AlexanderOSVault/brilliantaire-briefs/next-actions/next_actions_2026-07-02.md))
