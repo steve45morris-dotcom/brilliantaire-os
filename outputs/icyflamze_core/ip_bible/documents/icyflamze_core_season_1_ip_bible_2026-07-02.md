@@ -48,10 +48,23 @@ If a generator reinterprets the character, reject the prompt and regenerate.
 ### Reference Artifact
 
 The `--cref` input for every character frame:
-`~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg`
-3,568,376 bytes · 2026-04-24
-sha256 `7594b33211f8754724e2a211474de9157824bac63f100bbf0506e03600646abb`
-sha1 &nbsp;&nbsp;`fc69fdcb1f5028ea…`
+`~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png`
+1,492,511 bytes · PNG 1030×2081 · Feb 2026 render · installed 2026-09-15
+sha256 `d5c17f08c4963e5c7ab2528a6d7d9831be1a47a5a982cbc1921e55c2db7379d2`
+sha1 &nbsp;&nbsp;`d0cf2ad35ac059f271161baf9903e14d93107df6`
+
+**Corrected 2026-09-15 — the anchor was never an image.** The file this section
+named until today, `icyflamze_reference_MASTER.jpeg` (sha256 `7594b332…`), was the
+"Who Is Icyflamze" MP3 with a `.jpeg` extension. Every checksum below verified
+correctly because the bytes never changed. They were the wrong bytes. No Season 1
+frame that "used `--cref` against the anchor" had a face reference, so review those
+frames for likeness before reusing them. The MP3 is kept as
+`who_is_icyflamze_song_formerly_MASTER.mp3`. An alternate anchor,
+`icyflamze_reference_ALT_elevator.png`, is the same character on a busier
+background with phone-UI artifacts. Current backup:
+`~/Desktop/icyflamze-identity-offsite-20260915/`.
+
+The 2026-08-10 note below is kept as history. Its digests describe the MP3.
 
 **Corrected 2026-08-10.** This line previously read ``sha256 `fc69fdcb…` `` — that
 value is the file's **SHA-1**, not its SHA-256. Verifying the anchor with the
@@ -131,7 +144,7 @@ would have hit this wall on its first character frame. (The "22 files / 5 files"
 figure previously recorded here did not reproduce and is superseded.)
 
 **Unchanged by this ruling.** The lock's **facial** section is universal and
-travels to every medium. `--cref` against `icyflamze_reference_MASTER.jpeg`
+travels to every medium. `--cref` against `icyflamze_reference_MASTER.png` (was `.jpeg` until 2026-09-15; see Reference Artifact)
 applies to every character frame in Season 1. Facial structure, jawline, nose
 shape, eye spacing, skin tone, short fade, black-frame glasses, facial hair,
 head proportions and overall likeness are not touched by this exception. The

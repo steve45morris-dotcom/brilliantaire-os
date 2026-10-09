@@ -1,0 +1,247 @@
+{
+  "jobs": [
+    {
+      "jobId": "REC-CAP-01-1-1-1-1-1-1-1-1-1",
+      "slotId": "CAP-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "VID-01": 1,
+        "VID-02": 1,
+        "VID-03": 1,
+        "VID-04": 1,
+        "VID-05": 1,
+        "VID-06": 1,
+        "VID-07": 1,
+        "VID-08": 1,
+        "AUD-01": 1
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T16:52:59.289Z"
+    },
+    {
+      "jobId": "REC-ASM-01-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1",
+      "slotId": "ASM-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "VID-01": 1,
+        "VID-02": 1,
+        "VID-03": 1,
+        "VID-04": 1,
+        "VID-05": 1,
+        "VID-06": 1,
+        "VID-07": 1,
+        "VID-08": 1,
+        "AUD-01": 1,
+        "AUD-03": 1,
+        "AUD-04": 1,
+        "AUD-05": 1,
+        "AUD-06": 1,
+        "AUD-07": 1,
+        "AUD-08": 1,
+        "AUD-09": 1,
+        "CAP-01": 1
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T16:52:59.290Z"
+    },
+    {
+      "jobId": "REC-COV-01-2",
+      "slotId": "COV-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "IMG-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.453Z"
+    },
+    {
+      "jobId": "REC-VID-01-2-2",
+      "slotId": "VID-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-02": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.454Z"
+    },
+    {
+      "jobId": "REC-VID-02-2-2",
+      "slotId": "VID-02",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-04": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.455Z"
+    },
+    {
+      "jobId": "REC-VID-03-2-2",
+      "slotId": "VID-03",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-03": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.460Z"
+    },
+    {
+      "jobId": "REC-VID-04-2-2",
+      "slotId": "VID-04",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-05": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.462Z"
+    },
+    {
+      "jobId": "REC-VID-05-2-2",
+      "slotId": "VID-05",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-06": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.485Z"
+    },
+    {
+      "jobId": "REC-VID-06-2-2",
+      "slotId": "VID-06",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-06": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.488Z"
+    },
+    {
+      "jobId": "REC-VID-07-2-2",
+      "slotId": "VID-07",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-03": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.489Z"
+    },
+    {
+      "jobId": "REC-VID-08-2-2",
+      "slotId": "VID-08",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "AUD-01": 2,
+        "IMG-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.489Z"
+    },
+    {
+      "jobId": "REC-CAP-01-2-2-2-2-2-2-2-2-2",
+      "slotId": "CAP-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "VID-01": 2,
+        "VID-02": 2,
+        "VID-03": 2,
+        "VID-04": 2,
+        "VID-05": 2,
+        "VID-06": 2,
+        "VID-07": 2,
+        "VID-08": 2,
+        "AUD-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.493Z"
+    },
+    {
+      "jobId": "REC-ASM-01-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
+      "slotId": "ASM-01",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "VID-01": 2,
+        "VID-02": 2,
+        "VID-03": 2,
+        "VID-04": 2,
+        "VID-05": 2,
+        "VID-06": 2,
+        "VID-07": 2,
+        "VID-08": 2,
+        "AUD-01": 2,
+        "AUD-03": 2,
+        "AUD-04": 2,
+        "AUD-05": 2,
+        "AUD-06": 2,
+        "AUD-07": 2,
+        "AUD-08": 2,
+        "AUD-09": 2,
+        "CAP-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.504Z"
+    },
+    {
+      "jobId": "REC-COV-02-2",
+      "slotId": "COV-02",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "COV-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.505Z"
+    },
+    {
+      "jobId": "REC-COV-03-2",
+      "slotId": "COV-03",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "COV-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.507Z"
+    },
+    {
+      "jobId": "REC-COV-04-2",
+      "slotId": "COV-04",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "COV-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.510Z"
+    },
+    {
+      "jobId": "REC-COV-05-2",
+      "slotId": "COV-05",
+      "reason": "PARENT_MUTATION",
+      "parents": {
+        "COV-01": 2
+      },
+      "action": "REGENERATE",
+      "status": "AWAITING_APPROVAL",
+      "createdTimestamp": "2026-08-19T17:01:00.511Z"
+    }
+  ]
+}
