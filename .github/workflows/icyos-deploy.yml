@@ -23,28 +23,76 @@ jobs:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
+      # Without the three Vercel secrets there is nothing to deploy to. Every
+      # run used to fail at "Pull Vercel environment", which turned main red
+      # over a setting and hid real failures behind it. Now the run says, once,
+      # that IcyOS wasn't deployed and how to connect Vercel, and skips the
+      # rest. With the secrets set, nothing below changes: a deploy that
+      # fails still fails the run.
+      - name: Check the Vercel secrets
+        id: vercel
+        working-directory: ${{ github.workspace }}
+        env:
+          HAS_TOKEN: ${{ secrets.VERCEL_TOKEN != '' }}
+          HAS_ORG: ${{ secrets.VERCEL_ORG_ID != '' }}
+          HAS_PROJECT: ${{ secrets.VERCEL_PROJECT_ID != '' }}
+        run: |
+          missing=""
+          [ "$HAS_TOKEN" = "true" ] || missing="$missing VERCEL_TOKEN"
+          [ "$HAS_ORG" = "true" ] || missing="$missing VERCEL_ORG_ID"
+          [ "$HAS_PROJECT" = "true" ] || missing="$missing VERCEL_PROJECT_ID"
+          missing="${missing# }"
+          if [ -z "$missing" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "ready=false" >> "$GITHUB_OUTPUT"
+          echo "::warning title=IcyOS wasn't deployed::Vercel isn't connected: ${missing// /, } not set. Add them in Settings > Secrets and variables > Actions (see Knowledge Core/IcyOS/DEPLOY.md)."
+          {
+            echo "### IcyOS wasn't deployed"
+            echo
+            echo "Vercel isn't connected yet, so there was nothing to deploy to. Missing: \`${missing// /\`, \`}\`."
+            echo
+            echo "Add them in **Settings → Secrets and variables → Actions → New repository secret**:"
+            echo
+            echo "| Secret | Where to find it |"
+            echo "|---|---|"
+            echo "| \`VERCEL_TOKEN\` | Vercel → Settings → Tokens → Create |"
+            echo "| \`VERCEL_ORG_ID\` | \`.vercel/project.json\` after \`vercel link\` in \`Knowledge Core/IcyOS\` (or Vercel → Settings → General → ID) |"
+            echo "| \`VERCEL_PROJECT_ID\` | \`.vercel/project.json\` after \`vercel link\` |"
+            echo
+            echo "The next IcyOS change merged to main deploys. Until then, \`vercel --prod\` from \`Knowledge Core/IcyOS\` deploys by hand."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/checkout@v7
+        if: steps.vercel.outputs.ready == 'true'
 
       - uses: pnpm/action-setup@v6
+        if: steps.vercel.outputs.ready == 'true'
         with:
           version: 10
 
       - uses: actions/setup-node@v7
+        if: steps.vercel.outputs.ready == 'true'
         with:
           node-version: 22
           cache: pnpm
           cache-dependency-path: Knowledge Core/IcyOS/pnpm-lock.yaml
 
       - name: Install Vercel CLI
+        if: steps.vercel.outputs.ready == 'true'
         run: pnpm add -g vercel@latest
 
       - name: Pull Vercel environment
+        if: steps.vercel.outputs.ready == 'true'
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build
+        if: steps.vercel.outputs.ready == 'true'
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy
+        if: steps.vercel.outputs.ready == 'true'
         id: deploy
         run: |
           URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
