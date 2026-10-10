@@ -41,7 +41,9 @@ main() {
   if [ "$MODE" = "go" ]; then echo "DONE"; else echo "DRY RUN finished. Nothing changed. To do it: bash $0 GO"; fi
 }
 
-main "$@" 2>&1 | tee "$LOG"
+# Anything that looks like a key is blanked before it is shown, logged or copied.
+redact() { sed -E -e 's/(sk-ant-|sk_live_|rk_live_|sk-|nvapi-|AIza|gh[pousr]_|xox[abp]-|glpat-)[A-Za-z0-9_-]{8,}/\1[redacted]/g' -e 's/([A-Za-z0-9_]*(KEY|TOKEN|SECRET|PASSWORD|PASSCODE)[A-Za-z0-9_]*=)[^[:space:]]+/\1[redacted]/g'; }
+main "$@" 2>&1 | redact | tee "$LOG"
 status="${PIPESTATUS[0]}"
 if command -v pbcopy >/dev/null 2>&1; then
   pbcopy < "$LOG" && echo "(the output above is on your clipboard: paste it to Claude)"

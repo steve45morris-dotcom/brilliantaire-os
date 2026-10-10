@@ -54,7 +54,14 @@ This is the procedure, every time. Agreed with the Commander on 10 October 2026.
     files over 2 MB, and stops if it finds either. Public repos
     (brilliantaire-os) get only what is meant to be public. Anything unreviewed
     goes to a private one (sentinel-os, brilliantaire-mac-backup).
-12. **Keys never go into a step or a chat.** They go in through `pjkkey`.
+12. **Keys never go into a step or a chat.** They go in through `pjkkey`. A
+    step never prints anything that can carry a key: no process command lines
+    or environments (`ps -E`, `ps eww`, `pgrep -fl`), no `env`, no `.env`
+    files. Process checks show only the ID and program name
+    (`ps -o pid=,comm=`). As a second line of defence, every step's output goes
+    through the template's `redact` filter before it is shown, logged or
+    copied. On 10 October `pgrep -fl` printed a running server's environment,
+    including an NVIDIA key, which then had to be revoked.
 13. **A verified step is ticked on the roadmap.** When Claude has checked a
     step's output and it's done, Claude ticks the matching item in
     `NEXT_ACTIONS.md` in its next pull request, or gives the voice phrase. If
@@ -76,6 +83,11 @@ shasum -a 256 ~/mac-steps/bin/<step>.sh | cut -c1-16
 
 Then `bash ~/mac-steps/bin/<step>.sh` for the dry run, and the same with `GO`
 once Claude has read it.
+
+Send each block once, complete. Never send a half block, even one that is
+then replaced: a `cat > file <<'EOF_STEP'` that is pasted without its end
+marker stays open, and swallows whatever is pasted next into the file. The
+checksum catches it, which is why it is never skipped.
 
 ## Writing a script (for Claude)
 
