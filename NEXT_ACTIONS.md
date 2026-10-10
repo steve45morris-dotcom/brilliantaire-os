@@ -1,6 +1,23 @@
 # 🎯 Next Actions
 
 ## Do Now
+<!-- Roadmap to completion, set 2026-10-10, target 31 October. Complete means: IcyOS live, P.J.K. used daily for two weeks (sentinel-os docs/FINISH_LINE.md), and Episode 1 exported. No new features until then; whatever real use turns up gets fixed one PR at a time. -->
+- [ ] Week 1: Move Brilliantaire to ~/brilliantaire-os (move plan, Stage 2)
+- [ ] Week 1: Run the IcyOS database migrations up to 28 (LAUNCH.md step 1)
+- [ ] Week 1: Set the IcyOS sign-in addresses and server settings (LAUNCH.md steps 2-3)
+- [ ] Week 1: Deploy IcyOS and add the three Vercel secrets for automatic deploys (LAUNCH.md step 4)
+- [ ] Week 1: First IcyOS sign-in and the P.J.K. token through pjkkey (LAUNCH.md steps 5-6)
+- [ ] Week 1: IcyOS launch check says Ready (LAUNCH.md step 7)
+- [ ] Week 1: Sign off Episode 1 Batch 1 in the render intake tracker
+- [ ] Week 1: Episode 1 Batch 2 approved: 3 stills and 6 sound effects
+- [ ] Week 2: Use P.J.K. every day with real data for 14 days
+- [ ] Week 2: Merge the move clean-up PR (Stage 3) and delete the leftovers
+- [ ] Week 2: Write the Episode 1 Batch 3 runbook for the 8 videos
+- [ ] Week 2: Episode 1 Batch 3 approved: the 8 videos
+- [ ] Week 3: Write the Episode 1 Batch 4 runbook for the covers, captions and edit
+- [ ] Week 3: Episode 1 Batch 4 approved: 5 covers, captions and the edit project
+- [ ] Week 3: Export Episode 1
+- [ ] Week 3: Cross the finish line in sentinel-os docs/FINISH_LINE.md
 - [x] Phase 22H: Build Documentation Drift Detector
 - [x] Phase 22H: Create config/documentation-drift-detector.ts with safety flags and drift categories
 - [x] Phase 22H: Create scripts/documentation-drift-detector.ts with 7 CLI commands (status, scan-indexes, audit-commands, audit-pointers, audit-narration, drift-report, obsidian-export)
