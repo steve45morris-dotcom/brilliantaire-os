@@ -53,6 +53,7 @@ CI (`.github/workflows/ci.yml`) runs `tsc --noEmit`, a strict typecheck of `scri
 - Human approval gates before destructive operations
 - VNP (Voice Narrative Protocol) for task announcements
 - Preview Handoff Rule: build production artifacts, no ephemeral localhost
+- Anything that has to run on the Commander's Mac follows `.claude/skills/mac-execution/SKILL.md`: one labelled step at a time, dry run before `GO`, output saved and copied to the clipboard, scripts tested first and handed over with a checksum
 
 ## Adding API Keys
 
