@@ -64,12 +64,13 @@ Set these as environment variables on the IcyOS server.
 
 The app is `apps/web`, a Next.js app in a pnpm monorepo. It needs Node 20 or newer (CI uses 22).
 
-- **On Vercel:** set Root Directory to `Knowledge Core/IcyOS`, the monorepo root. `vercel.json` there tells Vercel how to install, build and find the app. From that folder, `vercel link` connects it, and `vercel --prod` deploys it by hand.
-- **Automatic deploys:** `.github/workflows/icyos-deploy.yml` deploys every IcyOS change merged to `main`, once three GitHub secrets are set (repository Settings → Secrets and variables → Actions):
+- **On Vercel:** set Root Directory to `Knowledge Core/IcyOS/apps/web`, with "Include files outside the root directory" on, framework Next.js and Node 22.x. Leave the install and build commands empty: `apps/web/vercel.json` sets them. Add the settings from step 3 in Vercel → Project → Settings → Environment Variables (the build needs the two `NEXT_PUBLIC_SUPABASE_*` ones).
+- **Deploys:** `.github/workflows/icyos-deploy.yml` deploys every IcyOS change merged to `main`, and runs by hand from Actions → IcyOS Deploy → Run workflow, once three GitHub secrets are set (repository Settings → Secrets and variables → Actions):
   - `VERCEL_TOKEN`: Vercel → Settings → Tokens;
-  - `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`: in `.vercel/project.json` after `vercel link`.
+  - `VERCEL_ORG_ID`: Vercel → team Settings → General → Team ID;
+  - `VERCEL_PROJECT_ID`: Vercel → the project → Settings → General → Project ID.
 
-  Until they're set, that workflow skips the deploy. Each run passes with an "IcyOS wasn't deployed" warning, and its summary lists what's missing.
+  Until they're set, that workflow skips the deploy. Each run passes with an "IcyOS wasn't deployed" warning, and its summary lists what's missing. Don't deploy with `vercel --prod` by hand, and don't use "Redeploy" to fix a broken deployment: `DEPLOY.md` says why.
 - **Anywhere else:** run `pnpm install` and `pnpm build` in `Knowledge Core/IcyOS`, then serve `apps/web` with `pnpm --filter web-app start`.
 
 `DEPLOY.md` has more on Vercel, Docker and custom domains. For the settings list, use step 3 above, which includes `SUPABASE_JWT_SECRET` and the legal settings.
