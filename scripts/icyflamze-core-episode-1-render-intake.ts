@@ -94,7 +94,7 @@ const REQUIRED_BY_CATEGORY: Record<string, number> = (() => {
 const required = (category: string): number => REQUIRED_BY_CATEGORY[category] ?? 0;
 
 function getAssemblyReadinessState() {
-  const ready =
+  const readyFiles =
     scanFolderFiles(incomingImages).length >= required('image') &&
     scanFolderFiles(incomingVideos).length >= required('video') &&
     scanFolderFiles(incomingAudio).length >= required('audio') &&
@@ -102,9 +102,35 @@ function getAssemblyReadinessState() {
     scanFolderFiles(incomingCaptions).length >= required('caption') &&
     scanFolderFiles(incomingEditProjects).length >= required('assembly');
 
+  const provPath = path.join(intakeOutDir, 'provenance_manifest.json');
+  let approvedCount = 0;
+  let totalSlots = 0;
+
+  const manifestPath = path.join(REPO_ROOT, 'config', 'episode_1_production_manifest.json');
+  if (fs.existsSync(manifestPath)) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+    const expectedSlots = manifest.assets.map((a: any) => a.id);
+    totalSlots = expectedSlots.length;
+
+    if (fs.existsSync(provPath)) {
+      const prov = JSON.parse(fs.readFileSync(provPath, 'utf-8'));
+      const uniqueApproved = new Set<string>();
+
+      for (const slotId of expectedSlots) {
+        const asset = prov.assets?.[slotId];
+        if (asset && asset.approvalState === 'APPROVED') {
+          uniqueApproved.add(slotId);
+        }
+      }
+      approvedCount = uniqueApproved.size;
+    }
+  }
+
+  const ready = readyFiles && (approvedCount === totalSlots) && (totalSlots > 0);
+
   return ready
-    ? { percentage: '100%', status: 'ready', nextPhase: 'Phase 14F: Episode 1 Trailer Assembly and Mastering' }
-    : { percentage: '0%', status: 'not_ready', nextPhase: 'Phase 14E: Render Intake — blocked until required assets are present' };
+    ? { percentage: '100%', status: 'ready', nextPhase: 'Phase 14F: Episode 1 Trailer Assembly and Mastering', approvedCount, totalSlots }
+    : { percentage: '0%', status: 'not_ready', nextPhase: 'Phase 14E: Render Intake — blocked until required assets are present', approvedCount, totalSlots };
 }
 
 // 1. scan command
