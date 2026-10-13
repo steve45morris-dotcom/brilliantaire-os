@@ -126,6 +126,8 @@ Excluding tests, 52 files under `scripts/` and `tools/` are referenced by no npm
 
 `scripts/tests/test_voice_authority.py` and `test_voice_vibe_ui.py` have no runner in `package.json` or CI. `requirements.txt` lists only `skillopt`, so the 17 Python scripts' imports are unmanaged.
 
+**Resolution (2026-10-13, after the audit):** 49 of these files are now registered in all four lists (`package.json`, `Taskfile.yml`, `config/commands.ts`, `COMMANDS.md`) as 53 commands, each probed first: every TypeScript and shell entry starts, every Python entry compiles, and the three VibeVoice scripts and the two playwright probes are marked as Mac-only in their descriptions. High-risk entries (`approved-quarantine`, `disable-unused-skills`, `memory-guardian`, `microsaas-launcher`, `stage-mock-render-assets`) need `--confirm` through the router. Not registered, because they cannot run from a clean checkout: `grinders-keep-decision-synthesis-gate` and `grinders-keep-manual-review-intake-gate` with their help twins (their 12 templates were never committed), `icyflamze-core-episode-1-blocker-resolution-help` (no command behind it), `run-governance-remediation` (reads `governance.issues` that `dashboard-data.json` no longer has), `watch_intake.py` and `sovereign_scout.py` (need a `system/` folder that is not in the repo), `keep_guardian_alive.sh` (`supernova/core/guardian.py` does not exist), the four `http/*.sh` (httpie against servers on ports 8000 and 8001 that nothing here runs), and `voice_authority.py` (a library imported by the voice scripts, not a command). Those twelve are the attic candidates.
+
 ### 3.2 Commands that crash at start
 
 The package is ESM (`"type": "module"`). Three scripts use CommonJS globals and fail before doing anything:
