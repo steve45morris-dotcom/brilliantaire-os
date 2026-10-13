@@ -12,7 +12,7 @@
 - [ ] Week 1: Episode 1 Batch 2 approved: 3 stills and 6 sound effects
 - [ ] Week 2: Use P.J.K. every day with real data for 14 days
 - [ ] Week 2: Merge the move clean-up PR (Stage 3) and delete the leftovers
-- [ ] Week 2: Write the Episode 1 Batch 3 runbook for the 8 videos
+- [x] Week 2: Write the Episode 1 Batch 3 runbook for the 8 videos
 - [ ] Week 2: Episode 1 Batch 3 approved: the 8 videos
 - [ ] Week 3: Write the Episode 1 Batch 4 runbook for the covers, captions and edit
 - [ ] Week 3: Episode 1 Batch 4 approved: 5 covers, captions and the edit project
