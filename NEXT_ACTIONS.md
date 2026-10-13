@@ -14,7 +14,7 @@
 - [ ] Week 2: Merge the move clean-up PR (Stage 3) and delete the leftovers
 - [x] Week 2: Write the Episode 1 Batch 3 runbook for the 8 videos
 - [ ] Week 2: Episode 1 Batch 3 approved: the 8 videos
-- [ ] Week 3: Write the Episode 1 Batch 4 runbook for the covers, captions and edit
+- [x] Week 3: Write the Episode 1 Batch 4 runbook for the covers, captions and edit
 - [ ] Week 3: Episode 1 Batch 4 approved: 5 covers, captions and the edit project
 - [ ] Week 3: Export Episode 1
 - [ ] Week 3: Cross the finish line in sentinel-os docs/FINISH_LINE.md

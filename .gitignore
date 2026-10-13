@@ -109,6 +109,11 @@ outputs/narrator/tts_queue/bin/
 outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.mp4
 outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.mov
 outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.webm
+outputs/icyflamze_core/episode_1/render_intake/incoming/cover_art/*.png
+outputs/icyflamze_core/episode_1/render_intake/incoming/cover_art/*.jpg
+outputs/icyflamze_core/episode_1/render_intake/incoming/cover_art/*.jpeg
+outputs/icyflamze_core/episode_1/render_intake/incoming/cover_art/*.webp
+outputs/icyflamze_core/episode_1/render_intake/incoming/edit_projects/*
 *.mp3
 *.tar.gz
 test.wav
