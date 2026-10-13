@@ -321,10 +321,6 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `grinders-keep-content-drafting-lab-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Content Drafting Lab Deepener engine commands. |
 | `grinders-keep-consensus-review-packet-deepener` | *(none)* | Creative Revenue Strategist | Low | Yes | Run v0.1 Consensus Review Packet Deepener to package context into multi-model and multi-domain manual review prompts. |
 | `grinders-keep-consensus-review-packet-deepener-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Consensus Review Packet Deepener engine commands. |
-| `grinders-keep-manual-review-intake-gate` | *(none)* | Creative Revenue Strategist | Medium | Yes | Run v0.1 manual review intake gate to parse, validate, and compare manually pasted reviews. |
-| `grinders-keep-manual-review-intake-gate-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help menu for manual review intake gate. |
-| `grinders-keep-decision-synthesis-gate` | *(none)* | Creative Revenue Strategist | Medium | Yes | Run v0.1 decision synthesis gate to consolidate reviews into human-approved decisions, build/content approvals, and monetization experiments. |
-| `grinders-keep-decision-synthesis-gate-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help menu for decision synthesis gate. |
 | `grinders-keep-execution-approval-queue` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process the Grinders Keep execution approval queue sweep and generate execution tickets. |
 | `grinders-keep-execution-approval-queue-help` | *(none)* | Creative Revenue Strategist | Low | Yes | Print help documentation for Grinders Keep Execution Approval Queue. |
 | `grinders-keep-final-human-launch-switch` | *(none)* | Creative Revenue Strategist | Medium | Yes | Process the Grinders Keep final human launch switch, validate eligibility, and compile manual command sheets. |
