@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 
-const baseDir = path.resolve(__dirname, '..');
+import { REPO_ROOT } from '../config/paths.js';
+
+const baseDir = REPO_ROOT;
 
 async function run() {
   console.log("=== PHASE 1: SEARCHING FOR SCORE SOURCE ===");

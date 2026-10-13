@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { execSync } from 'child_process';
 import {
   SYSTEM_STATUS_PATH,
   PROJECTS_PATH,
@@ -507,8 +508,7 @@ function handleGenerateReport() {
   // Check git branch if possible, otherwise default main
   let gitBranch = 'main';
   try {
-    const { execSync } = require('child_process');
-    gitBranch = execSync('git rev-parse --abref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
+    gitBranch = execSync('git rev-parse --abbrev-ref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
   } catch (e) {}
 
   const finalReportContent = fillTemplate('voice-ops-release-final-report-template.md', {

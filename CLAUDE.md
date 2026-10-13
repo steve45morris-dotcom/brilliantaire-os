@@ -20,7 +20,7 @@
 config/          # Command registry, workflow configs (commands.ts is 3,870 lines)
 scripts/         # 243 TypeScript CLI tools (all use tsx)
 tools/           # Python AI narrator, TS bridges (higgsfield, inference, sentinel)
-sentinel-os/     # STALE partial snapshot of the standalone sentinel-os repo (see below); do not edit here
+sentinel-os/     # Untracked here: the standalone sentinel-os checkout (see Security Notes); change it in its own repo
 orchestrator/    # Phase-based orchestration engine
 Knowledge Core/  # IcyOS monorepo (Next.js app + 4 packages, Supabase)
 dashboard/       # Vite React dashboard
@@ -63,7 +63,7 @@ When the Commander needs to add a key (Gemini, GitHub, Stripe, etc.), give him t
   - It prompts with hidden input, so the key never shows on screen or in shell history.
   - It saves the key to `~/sentinel-os/.env.local` (mode 600, git-ignored by both repos) and replaces any old value.
   - It saves the value in quotes with every `$` escaped, so any characters work. Unquoted, Next's loader cuts a value at `#` and reads `$` as a variable, which is how a passcode like `Pass#word12` once failed.
-- **Then:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart.
+- **Then, from `~/sentinel-os`:** `npm run pjk:doctor -- --online` to confirm the key works, and `npm run pjk` to restart. Both are sentinel-os scripts, not this repo's.
 - **AI keys:** P.J.K. takes `GEMINI_API_KEY`, `ANTHROPIC_API_KEY` (Claude) and `OPENAI_API_KEY` (ChatGPT), tried in that order; each extra key is a backup brain. `docs/PJKKEY.md` says where each comes from. `ANTHROPIC_DEFAULT_MODEL` and `OPENAI_DEFAULT_MODEL` pick the models.
 - **If `pjkkey` is missing or out of date** (a new Mac, a fresh shell config, or a version that saves values unquoted): give him the install snippet in `docs/PJKKEY.md`. Running it again updates it.
 

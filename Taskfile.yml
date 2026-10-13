@@ -1634,4 +1634,92 @@ tasks:
     cmds:
       - npm run icyflamze-core-episode-1-render-intake-v2 -- {{.CLI_ARGS}}
 
+  next-tick:
+    desc: "Tick one Do Now / Do Next item by its key; no key lists open items and keys"
+    cmds:
+      - npm run next-tick -- {{.CLI_ARGS}}
 
+  next-reopen:
+    desc: "Untick one item by its key; no key lists ticked items and keys"
+    cmds:
+      - npm run next-reopen -- {{.CLI_ARGS}}
+
+  live-microphone-audio-streamer-help:
+    desc: "Print help menu for the Live Microphone Audio Streamer daemon"
+    cmds:
+      - npm run live-microphone-audio-streamer-help
+
+  live-microphone-audio-streamer:
+    desc: "Run the Live Microphone Audio Streamer daemon subcommands"
+    cmds:
+      - npm run live-microphone-audio-streamer -- {{.CLI_ARGS}}
+
+  obsidian-sync-layer-help:
+    desc: "Print help menu for the Obsidian Sync Layer"
+    cmds:
+      - npm run obsidian-sync-layer-help
+
+  obsidian-sync-layer:
+    desc: "Run the Obsidian Sync Layer subcommands"
+    cmds:
+      - npm run obsidian-sync-layer -- {{.CLI_ARGS}}
+
+  tree-groove-release-pipeline-help:
+    desc: "Print help menu for the Tree Groove Records Release Pipeline"
+    cmds:
+      - npm run tree-groove-release-pipeline-help
+
+  tree-groove-release-pipeline:
+    desc: "Run the Tree Groove Records Release Pipeline subcommands"
+    cmds:
+      - npm run tree-groove-release-pipeline -- {{.CLI_ARGS}}
+
+  system-diagnostics-help:
+    desc: "Print help menu for the System Diagnostics Runner"
+    cmds:
+      - npm run system-diagnostics-help
+
+  system-diagnostics:
+    desc: "Run unified system health checks and diagnostics reports"
+    cmds:
+      - npm run system-diagnostics -- {{.CLI_ARGS}}
+
+  doc-drift-help:
+    desc: "Print help menu for the Documentation Drift Detector"
+    cmds:
+      - npm run doc-drift-help
+
+  doc-drift:
+    desc: "Detect drift between the system indexes and the code they describe"
+    cmds:
+      - npm run doc-drift -- {{.CLI_ARGS}}
+
+  bridge-health-help:
+    desc: "Print help menu for the Bridge Health Monitor"
+    cmds:
+      - npm run bridge-health-help
+
+  bridge-health:
+    desc: "Aggregate health status from every bridge module"
+    cmds:
+      - npm run bridge-health -- {{.CLI_ARGS}}
+
+  voice-ops-training-simulation-help:
+    desc: "Print help menu for the Voice Ops Operator Training Simulation Pack"
+    cmds:
+      - npm run voice-ops-training-simulation-help
+
+  voice-ops-training-simulation:
+    desc: "Compile the Voice Ops operator training simulation pack"
+    cmds:
+      - npm run voice-ops-training-simulation -- {{.CLI_ARGS}}
+
+  voice-ops-certification-ledger-help:
+    desc: "Print help menu for the Voice Ops Operator Certification Ledger"
+    cmds:
+      - npm run voice-ops-certification-ledger-help
+
+  voice-ops-certification-ledger:
+    desc: "Record operator certification results in the Voice Ops certification ledger"
+    cmds:
+      - npm run voice-ops-certification-ledger -- {{.CLI_ARGS}}

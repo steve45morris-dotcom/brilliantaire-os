@@ -389,6 +389,17 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `doc-drift` | `drift`, `documentation drift` | Workflow Auditor | Medium | Yes | Scan system indexes for cross-reference consistency, audit command docs, check stale pointers, and verify narrator source alignment. |
 | `bridge-health-help` | `bhm help`, `bridge health help` | Build Operator | Low | No | Print help menu for the Bridge Health Monitor CLI. |
 | `bridge-health` | `bhm`, `bridge health` | Build Operator | Medium | Yes | Aggregate health status from all 15 bridge modules with safety flag validation, export checks, and unified reporting. |
+| `sentinel-safety` | `sentinel safety`, `safety gate` | Build Operator | Medium | Yes | Run the Sentinel safety gate: configuration flags and CIP checks, written to reports/sentinel_safety/. |
+| `sentinel-tunnel-log` | `tunnel log`, `tunnel session` | Build Operator | Medium | Yes | Record and audit a public tunnel session in reports/tunnel_sessions/. |
+| `sentinel-voice-risk` | `voice risk`, `risk registry` | Build Operator | Medium | Yes | Generate the Voice Command Risk Registry (phrase, command, risk level, confirmation) in reports/voice_dispatch/. |
+| `sentinel-knowledge-router` | `knowledge router`, `intake router` | Build Operator | Medium | Yes | Stage incoming knowledge sources and check routing constraints, written to reports/knowledge_intake/. |
+| `sentinel-safety-report` | `safety report`, `safety summary` | Build Operator | Medium | Yes | Compile the safety gate and voice risk reports into one summary in reports/sentinel_safety/. |
+| `asr-gate-rerun-orchestrator-help` | `asr rerun help`, `gate rerun help` | Build Operator | Low | No | Print help menu for the ASR Gate Rerun Orchestrator CLI. |
+| `asr-gate-rerun-orchestrator` | `asr rerun`, `gate rerun` | Build Operator | Medium | Yes | Rerun the offline ASR gate chain in order and compile one readiness report (Phase 11Z-J). |
+| `voice-ops-training-simulation-help` | `training simulation help` | Workflow Auditor | Low | No | Print help menu for the Voice Ops Operator Training Simulation Pack CLI. |
+| `voice-ops-training-simulation` | `training simulation`, `operator training` | Workflow Auditor | Medium | Yes | Compile the Voice Ops operator training simulation pack: scenarios, drills and scoring sheets (Phase N5V). |
+| `voice-ops-certification-ledger-help` | `certification ledger help` | Workflow Auditor | Low | No | Print help menu for the Voice Ops Operator Certification Ledger CLI. |
+| `voice-ops-certification-ledger` | `certification ledger`, `operator certification` | Workflow Auditor | Medium | Yes | Record operator certification results and drill rotations in the Voice Ops certification ledger (Phase N5W). |
 
 
 ---

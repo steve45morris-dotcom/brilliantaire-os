@@ -510,23 +510,10 @@ function handlePreflight(episodeId: string) {
     if (!idManifest.character_id || !idManifest.reference_asset) {
       identityResolved = false;
     } else {
-      // Check each asset slot: if its role/desc implies a character depiction, it MUST declare identity_reference === idManifest.character_id
+      // Check each asset slot: if it declares requires_identity, it MUST declare identity_reference === idManifest.character_id
       for (const asset of manifest.assets) {
-        const isCharacterDepicting = 
-          asset.role.toLowerCase().includes('portrait') || 
-          asset.role.toLowerCase().includes('character') || 
-          asset.role.toLowerCase().includes('scholar') || 
-          asset.role.toLowerCase().includes('founder') || 
-          asset.role.toLowerCase().includes('eyes') ||
-          asset.role.toLowerCase().includes('goatee') ||
-          (asset.description && (
-            asset.description.toLowerCase().includes('portrait') ||
-            asset.description.toLowerCase().includes('character') ||
-            asset.description.toLowerCase().includes('scholar') ||
-            asset.description.toLowerCase().includes('founder') ||
-            asset.description.toLowerCase().includes('eyes') ||
-            asset.description.toLowerCase().includes('goatee')
-          ));
+        // Declared per slot in the manifest; see scripts/lib/asset-signoff.ts.
+        const isCharacterDepicting = asset.requires_identity === true;
 
         if (isCharacterDepicting) {
           if (asset.identity_reference !== idManifest.character_id) {

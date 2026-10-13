@@ -5,15 +5,21 @@
 // are asserted across every combination of scores, not a sample.
 
 import { describe, it, expect } from 'vitest';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import {
   applySignoff,
   parseSignoffArgs,
   pendingReviews,
+  reconcileIdentityRequirement,
   resolveSignoffState,
+  slotsMissingIdentityFlag,
   type ReviewScore,
   type SignoffSubject
 } from './asset-signoff.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const HASH = 'a'.repeat(64);
 
 function subject(overrides: Partial<SignoffSubject> = {}): SignoffSubject {
@@ -173,5 +179,79 @@ describe('pendingReviews', () => {
   it('owes nothing on an asset that has not passed the technical check or is STALE', () => {
     expect(pendingReviews(subject({ technicalScore: 'FAIL' }))).toEqual([]);
     expect(pendingReviews(subject({ approvalState: 'STALE' }))).toEqual([]);
+  });
+});
+
+describe('slotsMissingIdentityFlag', () => {
+  it('names every slot without a boolean flag, and only those', () => {
+    expect(
+      slotsMissingIdentityFlag([
+        { id: 'A', requires_identity: true },
+        { id: 'B', requires_identity: false },
+        { id: 'C' },
+        { id: 'D', requires_identity: 'yes' }
+      ])
+    ).toEqual(['C', 'D']);
+  });
+
+  it('passes the real production manifest, which flags exactly the character frames', () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '../../config/episode_1_production_manifest.json'), 'utf-8')
+    );
+    expect(slotsMissingIdentityFlag(manifest.assets)).toEqual([]);
+    const flagged = manifest.assets.filter((a: any) => a.requires_identity).map((a: any) => a.id).sort();
+    expect(flagged).toEqual(
+      ['COV-01', 'COV-02', 'COV-03', 'COV-05', 'IMG-01', 'IMG-02', 'IMG-06', 'VID-01', 'VID-06', 'VID-08']
+    );
+  });
+});
+
+describe('reconcileIdentityRequirement', () => {
+  it('drops an identity review a slot no longer needs, and approves if creative passed', () => {
+    for (const identityScore of ['PENDING', 'PASS'] as const) {
+      const out = reconcileIdentityRequirement(subject({ identityScore, creativeScore: 'PASS' }), false);
+      expect(out, identityScore).toEqual({ changed: true, identityScore: 'N/A', approvalState: 'APPROVED' });
+    }
+  });
+
+  it('owes an identity review again when a slot starts needing one, and withdraws approval', () => {
+    const out = reconcileIdentityRequirement(
+      subject({ identityScore: 'N/A', creativeScore: 'PASS', approvalState: 'APPROVED' }),
+      true
+    );
+    expect(out).toEqual({ changed: true, identityScore: 'PENDING', approvalState: 'TECHNICALLY_VERIFIED' });
+  });
+
+  it('keeps FAIL, which validate also records for a file that failed its checks', () => {
+    for (const required of [true, false]) {
+      const out = reconcileIdentityRequirement(subject({ identityScore: 'FAIL', approvalState: 'REJECTED' }), required);
+      expect(out.changed, String(required)).toBe(false);
+    }
+  });
+
+  it('never revives a STALE asset or one that failed its technical check', () => {
+    const stale = reconcileIdentityRequirement(
+      subject({ identityScore: 'PENDING', creativeScore: 'PASS', approvalState: 'STALE' }),
+      false
+    );
+    expect(stale.approvalState).toBe('STALE');
+    const failed = reconcileIdentityRequirement(
+      subject({ identityScore: 'PENDING', creativeScore: 'PASS', technicalScore: 'FAIL', approvalState: 'REJECTED' }),
+      false
+    );
+    expect(failed.approvalState).toBe('REJECTED');
+  });
+
+  it('changes nothing when the record already agrees with the flag', () => {
+    const scores: ReviewScore[] = ['PASS', 'FAIL', 'N/A', 'PENDING'];
+    for (const identityScore of scores) {
+      for (const required of [true, false]) {
+        const s = subject({ identityScore });
+        const out = reconcileIdentityRequirement(s, required);
+        const agrees = required ? identityScore !== 'N/A' : identityScore === 'N/A' || identityScore === 'FAIL';
+        expect(out.changed, `${identityScore}/${required}`).toBe(!agrees);
+        if (agrees) expect(out).toEqual({ changed: false, identityScore, approvalState: s.approvalState });
+      }
+    }
   });
 });

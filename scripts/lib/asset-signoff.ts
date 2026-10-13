@@ -149,3 +149,48 @@ export function pendingReviews(subject: SignoffSubject): Review[] {
   if (subject.creativeScore === 'PENDING') pending.push('creative');
   return pending;
 }
+
+// --- Which slots need an identity review --------------------------------------
+//
+// Each slot in config/episode_1_production_manifest.json declares
+// `requires_identity`: true when the frame shows Icyflamze, so a person must
+// compare the face against the master reference before it can be APPROVED.
+// It used to be guessed by searching the description for "founder",
+// "character" or "eyes", which asked for a face check on IMG-08 ("no
+// character") and skipped it on VID-01 (a zoom into his glasses) and VID-06
+// (a shot that orbits him). The flag is declared so it cannot be guessed wrong.
+
+/** Slot ids whose `requires_identity` is missing or not a boolean. */
+export function slotsMissingIdentityFlag(assets: Array<{ id: string; requires_identity?: unknown }>): string[] {
+  return assets.filter(a => typeof a.requires_identity !== 'boolean').map(a => a.id);
+}
+
+/**
+ * Bring a recorded entry in line with its slot's identity requirement, which
+ * may have changed since validate recorded it.
+ *
+ * - Not required: a PENDING or PASS identity score becomes N/A. FAIL stays,
+ *   because validate also records FAIL for a file that failed its checks.
+ * - Required: an N/A score becomes PENDING, so the face check is owed again.
+ *
+ * The state is recomputed only for an asset that passed its technical check
+ * and is not STALE, so this never revives a failed or stale asset.
+ */
+export function reconcileIdentityRequirement(
+  subject: SignoffSubject,
+  required: boolean
+): { changed: boolean; identityScore: ReviewScore; approvalState: string } {
+  let identityScore = subject.identityScore;
+  if (!required && (identityScore === 'PENDING' || identityScore === 'PASS')) identityScore = 'N/A';
+  if (required && identityScore === 'N/A') identityScore = 'PENDING';
+
+  if (identityScore === subject.identityScore) {
+    return { changed: false, identityScore, approvalState: subject.approvalState };
+  }
+
+  const approvalState =
+    subject.technicalScore === 'PASS' && subject.approvalState !== 'STALE'
+      ? resolveSignoffState(subject.technicalScore, identityScore, subject.creativeScore)
+      : subject.approvalState;
+  return { changed: true, identityScore, approvalState };
+}

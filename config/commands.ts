@@ -3863,6 +3863,138 @@ export const COMMAND_REGISTRY: CommandDefinition[] = [
     outputType: 'files',
     enabled: true,
     requiresExactName: true
+  },
+  {
+    name: 'sentinel-safety',
+    aliases: ['sentinel safety', 'safety gate'],
+    description: 'Run the Sentinel safety gate: configuration flags and CIP checks, written to reports/sentinel_safety/',
+    npmScript: 'sentinel:safety',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'sentinel-tunnel-log',
+    aliases: ['tunnel log', 'tunnel session'],
+    description: 'Record and audit a public tunnel session in reports/tunnel_sessions/',
+    npmScript: 'sentinel:tunnel-log',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'sentinel-voice-risk',
+    aliases: ['voice risk', 'risk registry'],
+    description: 'Generate the Voice Command Risk Registry (phrase, command, risk level, confirmation) in reports/voice_dispatch/',
+    npmScript: 'sentinel:voice-risk',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'sentinel-knowledge-router',
+    aliases: ['knowledge router', 'intake router'],
+    description: 'Stage incoming knowledge sources and check routing constraints, written to reports/knowledge_intake/',
+    npmScript: 'sentinel:knowledge-router',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'sentinel-safety-report',
+    aliases: ['safety report', 'safety summary'],
+    description: 'Compile the safety gate and voice risk reports into one summary in reports/sentinel_safety/',
+    npmScript: 'sentinel:safety-report',
+    owningAgent: 'Build Operator',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-gate-rerun-orchestrator-help',
+    aliases: ['asr rerun help', 'gate rerun help'],
+    description: 'Print help menu for the ASR Gate Rerun Orchestrator CLI',
+    npmScript: 'asr-gate-rerun-orchestrator-help',
+    owningAgent: 'Build Operator',
+    category: 'audio',
+    riskLevel: 'low',
+    outputType: 'text',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'asr-gate-rerun-orchestrator',
+    aliases: ['asr rerun', 'gate rerun'],
+    description: 'Rerun the offline ASR gate chain in order and compile one readiness report (Phase 11Z-J)',
+    npmScript: 'asr-gate-rerun-orchestrator',
+    owningAgent: 'Build Operator',
+    category: 'audio',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-training-simulation-help',
+    aliases: ['training simulation help'],
+    description: 'Print help menu for the Voice Ops Operator Training Simulation Pack CLI',
+    npmScript: 'voice-ops-training-simulation-help',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'text',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-training-simulation',
+    aliases: ['training simulation', 'operator training'],
+    description: 'Compile the Voice Ops operator training simulation pack: scenarios, drills and scoring sheets (Phase N5V)',
+    npmScript: 'voice-ops-training-simulation',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-certification-ledger-help',
+    aliases: ['certification ledger help'],
+    description: 'Print help menu for the Voice Ops Operator Certification Ledger CLI',
+    npmScript: 'voice-ops-certification-ledger-help',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'low',
+    outputType: 'text',
+    enabled: true,
+    requiresExactName: true
+  },
+  {
+    name: 'voice-ops-certification-ledger',
+    aliases: ['certification ledger', 'operator certification'],
+    description: 'Record operator certification results and drill rotations in the Voice Ops certification ledger (Phase N5W)',
+    npmScript: 'voice-ops-certification-ledger',
+    owningAgent: 'Workflow Auditor',
+    category: 'ops',
+    riskLevel: 'medium',
+    outputType: 'files',
+    enabled: true,
+    requiresExactName: true
   }
 ];
 

@@ -2,7 +2,8 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
-export const REPO_ROOT = path.resolve(__dirname, '..');
+import { REPO_ROOT } from '../config/paths.js';
+export { REPO_ROOT };
 export const PROJECTS_MD_PATH = path.join(REPO_ROOT, 'PROJECTS.md');
 
 export interface CanonicalTarget {

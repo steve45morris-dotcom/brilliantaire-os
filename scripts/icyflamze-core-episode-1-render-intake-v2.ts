@@ -10,6 +10,8 @@ import {
   applySignoff,
   parseSignoffArgs,
   pendingReviews,
+  reconcileIdentityRequirement,
+  slotsMissingIdentityFlag,
   SIGNOFF_USAGE,
   type Review,
   type SignoffRecord
@@ -46,6 +48,37 @@ function loadJson(filePath: string): any {
 
 const identityManifest = loadJson(identityManifestPath);
 const prodManifest = loadJson(prodManifestPath);
+
+// Whether a slot needs a face check is declared per slot, never guessed from
+// its description (see lib/asset-signoff.ts). A slot without the flag is a
+// manifest error, so refuse to run rather than guess.
+const slotsWithoutIdentityFlag = slotsMissingIdentityFlag(prodManifest.assets);
+if (slotsWithoutIdentityFlag.length > 0) {
+  throw new Error(`requires_identity must be true or false on every slot in ${prodManifestPath}; missing on: ${slotsWithoutIdentityFlag.join(', ')}`);
+}
+
+// Bring a recorded entry in line with its slot's requires_identity, which may
+// have changed since validate recorded it. Returns true when it changed.
+function reconcileEntryIdentity(spec: any, entry: ProvenanceEntry | undefined): boolean {
+  if (!spec || !entry) return false;
+  const r = reconcileIdentityRequirement(entry, spec.requires_identity === true);
+  if (!r.changed) return false;
+  const fromState = entry.approvalState;
+  const fromScore = entry.identityScore;
+  entry.identityScore = r.identityScore;
+  entry.approvalState = r.approvalState as LifecycleState;
+  appendEvent({
+    eventType: 'REVALIDATED',
+    slotId: spec.id,
+    version: entry.version,
+    fromState,
+    toState: entry.approvalState,
+    reason: 'IDENTITY_REQUIREMENT_CHANGED',
+    details: `requires_identity=${spec.requires_identity === true}; identity ${fromScore} -> ${entry.identityScore}`
+  });
+  writeLog(`Identity requirement for ${spec.id} is now ${spec.requires_identity === true}: identity ${fromScore} -> ${entry.identityScore}, ${fromState} -> ${entry.approvalState}`);
+  return true;
+}
 
 // Incoming sub-folders mapping
 const incomingFolders: Record<string, string> = {
@@ -245,6 +278,7 @@ function performSemanticValidation(
 
   // If file hasn't changed, preserve existing registry parameters
   if (!forceReprobe && existingEntry && existingEntry.sha256 === currentHash) {
+    reconcileEntryIdentity(prodManifest.assets.find((a: any) => a.id === expectedId), existingEntry);
     result.state = existingEntry.approvalState;
     result.checks.structural = existingEntry.approvalState !== 'REJECTED';
     result.checks.technical = existingEntry.technicalScore === 'PASS';
@@ -342,7 +376,7 @@ function performSemanticValidation(
   // 3. Identity Verification — NOT automatable. Comparing a rendered face against
   // icyflamze_reference_MASTER.jpeg requires human judgement; the previous "does the file
   // contain the string 'drift: true'" test passed everything a real generator could produce.
-  const requiresIdentity = desc.toLowerCase().includes('founder') || desc.toLowerCase().includes('character') || desc.toLowerCase().includes('eyes');
+  const requiresIdentity = spec.requires_identity === true;
   const identityPassed = structuralPassed && technicalPassed;
   const identityScore: 'PASS' | 'FAIL' | 'N/A' | 'PENDING' = !identityPassed
     ? 'FAIL'
@@ -1029,6 +1063,7 @@ function handleSignoff(args: string[]) {
 
   const db = loadProvenanceDb();
   const entry = db.assets[spec.id];
+  if (reconcileEntryIdentity(spec, entry)) saveProvenanceDb(db);
   const file = stagedFileFor(spec);
   const currentSha = file ? calculateSha256(path.join(incomingFolders[spec.category], file)) : null;
 
@@ -1087,10 +1122,12 @@ function handleSignoffPending() {
   ensureDirectories();
   const db = loadProvenanceDb();
   const lines: string[] = [];
+  let reconciled = false;
 
   for (const spec of prodManifest.assets) {
     const entry = db.assets[spec.id];
     if (!entry) continue;
+    if (reconcileEntryIdentity(spec, entry)) reconciled = true;
     const owed = pendingReviews(entry);
     if (owed.length === 0) continue;
 
@@ -1113,6 +1150,8 @@ function handleSignoffPending() {
     }
     lines.push('');
   }
+
+  if (reconciled) saveProvenanceDb(db);
 
   console.log(`\n=========================================`);
   console.log(`✍️  AWAITING HUMAN SIGN-OFF`);

@@ -182,14 +182,9 @@ npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff-pendi
 | Slot | Reviews owed |
 |---|---|
 | IMG-06 | identity and creative |
-| IMG-08 | identity and creative (see the note below) |
-| IMG-05, AUD-04 to AUD-09 | creative only |
+| IMG-05, IMG-08, AUD-04 to AUD-09 | creative only |
 
-**The IMG-08 identity review is a tracker quirk.** The tracker decides which slots need an identity review by looking for words such as "character" in the slot's description, and IMG-08's description says "no character". So it asks for an identity review on a frame with nobody in it. Until that is fixed, record it with a note saying so:
-
-```bash
-npm run command -- "icyflamze-core-episode-1-render-intake-v2" -- "signoff" "IMG-08" "identity" "pass" "no character in frame"
-```
+Which slots need an identity review is set per slot in the production manifest, by `requires_identity`. In this batch only IMG-06 shows you.
 
 Everything else works exactly as in Batch 1. For example:
 
