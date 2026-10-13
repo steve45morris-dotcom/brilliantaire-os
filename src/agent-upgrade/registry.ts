@@ -475,8 +475,9 @@ export class SkillRegistryManager {
     const now = new Date();
     
     Object.values(metadata).forEach((skill) => {
-      // Unused Skill Detector
-      if (skill.usageCount === 0) {
+      // Unused Skill Detector. A retired (archived or deprecated) skill is unused
+      // by design and is counted under its status instead.
+      if (skill.usageCount === 0 && skill.status !== 'archived' && skill.status !== 'deprecated') {
         unused.push(skill.name);
       }
 
