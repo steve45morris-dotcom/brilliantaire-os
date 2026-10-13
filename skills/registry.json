@@ -31,7 +31,7 @@
     "name": "email-sequencer",
     "owner": "Operations Agent",
     "version": "1.0.0",
-    "status": "experimental",
+    "status": "archived",
     "category": "outreach",
     "dependencies": [],
     "lastUsed": null,
@@ -39,7 +39,7 @@
     "successRate": 0,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Staged for mock sandbox email verification."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "completion-verifier": {
     "name": "completion-verifier",
@@ -59,7 +59,7 @@
     "name": "metric-tracker",
     "owner": "Revenue Agent",
     "version": "1.0.0",
-    "status": "active",
+    "status": "archived",
     "category": "analytics",
     "dependencies": [],
     "lastUsed": null,
@@ -67,13 +67,13 @@
     "successRate": 1,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Tracks intelligence telemetry."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "task-runner": {
     "name": "task-runner",
     "owner": "Automation Agent",
     "version": "1.0.0",
-    "status": "active",
+    "status": "archived",
     "category": "automation",
     "dependencies": [],
     "lastUsed": null,
@@ -81,13 +81,13 @@
     "successRate": 1,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Local CLI task driver."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "conversion-optimizer": {
     "name": "conversion-optimizer",
     "owner": "Revenue Agent",
     "version": "1.0.0",
-    "status": "experimental",
+    "status": "archived",
     "category": "revenue",
     "dependencies": [
       "metric-tracker"
@@ -97,13 +97,13 @@
     "successRate": 0,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Tied to active campaign funnels."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "system-scheduler": {
     "name": "system-scheduler",
     "owner": "Operations Agent",
     "version": "1.0.0",
-    "status": "active",
+    "status": "archived",
     "category": "operations",
     "dependencies": [
       "task-runner"
@@ -113,13 +113,13 @@
     "successRate": 1,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Daemon interface scheduler."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "context-weaver": {
     "name": "context-weaver",
     "owner": "Memory Agent",
     "version": "1.0.0",
-    "status": "active",
+    "status": "archived",
     "category": "memory",
     "dependencies": [],
     "lastUsed": null,
@@ -127,13 +127,13 @@
     "successRate": 1,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Weaves local Obsidian notes into context."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "video-generator": {
     "name": "video-generator",
     "owner": "Media Workflow Agent",
     "version": "1.0.0",
-    "status": "experimental",
+    "status": "archived",
     "category": "media",
     "dependencies": [],
     "lastUsed": null,
@@ -141,13 +141,13 @@
     "successRate": 0,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Interface logic to fal.ai MCP and media generation."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "autonomous-architect": {
     "name": "autonomous-architect",
     "owner": "Research Agent",
     "version": "1.0.0",
-    "status": "experimental",
+    "status": "archived",
     "category": "research",
     "dependencies": [
       "market-explorer",
@@ -158,13 +158,13 @@
     "successRate": 0,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Packaged automatically from workflow run wf-run-1782123695223-2xv79. Staged for human verification."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "ai-agent-intelligence-skill": {
     "name": "ai-agent-intelligence-skill",
     "owner": "Planner Agent",
     "version": "1.0.0",
-    "status": "experimental",
+    "status": "archived",
     "category": "research",
     "dependencies": [
       "market-explorer",
@@ -175,7 +175,7 @@
     "successRate": 0,
     "failureNotes": [],
     "retirementCandidate": false,
-    "verificationNotes": "Packaged automatically from workflow run wf-run-1782136492426-xtwl3. Staged for human verification."
+    "verificationNotes": "Retired 2026-10-13: never used (usageCount 0) since it was registered in July 2026; see reports/SYSTEM_AUDIT_2026-10-13.md section 3.4. Archived skills are not matched to intents. To bring it back, wire it to a workflow step that calls recordUsage and set status to experimental."
   },
   "frontend-design-guardian": {
     "name": "frontend-design-guardian",
@@ -183,7 +183,9 @@
     "version": "0.2.0",
     "status": "verified",
     "category": "design",
-    "dependencies": ["completion-verifier"],
+    "dependencies": [
+      "completion-verifier"
+    ],
     "lastUsed": "2026-07-16",
     "usageCount": 1,
     "successRate": 1,

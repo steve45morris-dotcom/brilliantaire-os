@@ -17,6 +17,39 @@ describe('SkillRegistryManager', () => {
     const matches = registry.matchIntent('Perform overnight competitive trend scanning');
     expect(matches.selected).toContain('market-explorer');
   });
+
+  // Nine entries were retired on 2026-10-13 after never being used. Retirement
+  // is a status, not a deletion, so the names stay resolvable for the agents,
+  // bundles and workflow templates that list them. Both directions: a retired
+  // skill is never selected, whatever the intent says, and it is not reported
+  // as unused, because that would flag it on every audit forever.
+  it('never matches a retired skill, and never counts one as unused', () => {
+    const registry = new SkillRegistryManager();
+    const metadata = registry.loadMetadataOnly();
+    const retired = Object.values(metadata)
+      .filter((m) => m.status === 'archived' || m.status === 'deprecated')
+      .map((m) => m.name);
+    expect(retired.length).toBeGreaterThanOrEqual(9);
+
+    // One intent per category keyword, plus every retired name spelled out,
+    // so each retired skill would match on both counts if status were ignored.
+    const intents = [
+      'research the market', 'write copy', 'send an email sequence', 'verify and audit',
+      'track a metric', 'run a script', 'revenue and conversion', 'schedule a job',
+      'obsidian memory context', 'render a video', ...retired.map((n) => n.replace(/-/g, ' '))
+    ];
+    for (const intent of intents) {
+      const { selected, rejected } = registry.matchIntent(intent);
+      for (const name of retired) {
+        expect(selected, `${name} selected for "${intent}"`).not.toContain(name);
+        expect(rejected, `${name} missing from rejected for "${intent}"`).toContain(name);
+      }
+    }
+
+    const report = registry.auditSkills();
+    expect(report.archivedCount + report.deprecatedCount).toBe(retired.length);
+    for (const name of retired) expect(report.unusedSkills).not.toContain(name);
+  });
 });
 
 describe('AgentRouter', () => {
