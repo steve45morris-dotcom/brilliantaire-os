@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import { execSync } from 'child_process';
 import {
   SYSTEM_STATUS_PATH,
   PROJECTS_PATH,
@@ -302,8 +303,7 @@ function handleCreateFreezeTag() {
 
   let gitBranch = 'main';
   try {
-    const { execSync } = require('child_process');
-    gitBranch = execSync('git rev-parse --abref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
+    gitBranch = execSync('git rev-parse --abbrev-ref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
   } catch (e) {}
 
   const tagContent = fillTemplate('voice-ops-freeze-tag-template.md', {
@@ -395,8 +395,7 @@ function handleSnapshotManifest() {
 
   let gitBranch = 'main';
   try {
-    const { execSync } = require('child_process');
-    gitBranch = execSync('git rev-parse --abref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
+    gitBranch = execSync('git rev-parse --abbrev-ref HEAD || git branch --show-current', { encoding: 'utf-8' }).trim();
   } catch (e) {}
 
   const manifestContent = fillTemplate('voice-ops-snapshot-manifest-template.md', {

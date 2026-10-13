@@ -53,4 +53,4 @@ If the live WebSocket connection or client-command cannot execute safely:
 ---
 
 ## ↩️ Rollback Plan
-To deactivate the live adapter at any point, set `NOTEBOOKLM_MCP_ENABLED=false` in `.env.local` or run `npm run notebooklm-mcp-uninstall` to disable hooks.
+To deactivate the live adapter at any point, set `NOTEBOOKLM_MCP_ENABLED=false` in `.env.local`.

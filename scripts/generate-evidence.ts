@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
-const REPO_ROOT = path.resolve(__dirname, '..');
+import { REPO_ROOT } from '../config/paths.js';
 
 function getTimestampStr(): string {
   const now = new Date();
