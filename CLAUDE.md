@@ -114,7 +114,7 @@ Located at `Knowledge Core/IcyOS/` — the most commercially valuable asset:
 
 ## Active Projects (PROJECTS.md)
 
-10 active projects + 22 staged external repos. Key ones:
+14 projects, one line each, with the phase history in `docs/PROJECTS_CHANGELOG.md` (refreshed 2026-10-13: 4 active, this repo operational, 4 dormant, 1 inactive, 3 external), plus 2 staged repos of the Commander's own. The 20 third-party clones once staged there are gone. Key ones:
 1. Brilliantaire OS (this repo)
 2. IcyOS Knowledge Core
 3. ICYFLAMZE CORE (IP Bible, Episode 1)

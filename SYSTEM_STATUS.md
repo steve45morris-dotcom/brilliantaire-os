@@ -1,12 +1,12 @@
 # 🛠️ System Status: Brilliantaire OS
 
 - **System Name:** Brilliantaire OS
-- **Current Phase:** Phase 22I: Bridge Health Monitor — COMPLETE
-- **Last Verified:** 2026-10-04
+- **Current Phase:** Roadmap to completion (NEXT_ACTIONS.md, set 2026-10-10, target 31 October), Week 1: IcyOS launch and Episode 1 Batches 1 and 2 — IN PROGRESS
+- **Last Verified:** 2026-10-13 (CI green on main at 5cba92f: both typechecks, the command-registry contract test, 904 tests)
 - **Build Status:** passing
 
 ## 🔋 Active Capabilities
-- **Core Orchestration:** Sandboxed Antigravity local skills (10 files under `.agents/skills/`).
+- **Core Orchestration:** Safe Command Router (`config/commands.ts`, 329 registered commands) over `Taskfile.yml` and `package.json`; the three lists are reconciled and `npm run audit` checks them. `.agents/skills/` holds 10 vendored reference skill folders (api-design-principles, backend-architect, context-driven-development, deployment-procedures, e2e-testing-patterns, frontend-design, nextjs-app-router-patterns, postgres-best-practices, security-auditor, typescript-pro) for the Antigravity sandbox: counted by `npm run audit` and read by `scripts/ingest_skill.py`, loaded by nothing at runtime. The runtime skill registry is `skills/registry.json` (4 skills in use; 9 never-used entries retired 2026-10-13).
 - **Build Pipeline:** Structured task runner via `Taskfile.yml`.
 - **Audit Trails & Priority Queue Voice Bus v3:** Voice Narrative Protocol (VNP) and Memory Guardian upgraded to a centralized Priority Queue Voice Bus v3 (`.agents/speak_serialized.sh`) using a microsecond-precision queue directory (`/tmp/voice_bus_queue/`) and a 120s directory lock. It enforces strict serialization (concurrency $\le 1$), prioritizes urgent alerts (P1-P4) ahead of waiting jobs, preserves FIFO order, auto-archives long narration >1,000 characters, and implements safe cooperative sentence-boundary interruption and emergency override preemption for P1 urgent alerts.
 - **GitHub Sync:** Remote origin linked and tracking `main`.
@@ -175,17 +175,27 @@
 - **Grinders Keep Local Verification Rerun Planner (Phase 13J):** Local-first rerun planner script evaluating sync manifest status, performing preflight checks, scoring rerun readiness, and staging manual command sheets.
 - **Tree Groove Records Automated Release Pipeline:** Automated release pipeline integration checking platform packages, compiling release proposals, checklists, chronological runbooks, status reports, and telemetry manifests under strict manual safety gates.
 
+- **Bridge Health Monitor (Phase 22I):** Manual-first unified health aggregator (`scripts/bridge-health-monitor.ts`) scanning all 15 bridge modules for structural integrity, safety flag validation, export directory checks, and template completeness under the Build Operator. 7 CLI commands (status, scan-bridges, health-report, bridge-detail, anomaly-scan, dashboard-export, obsidian-export) with BHM- request IDs. 6 health categories across structural integrity, safety compliance, export capability, template completeness, config consistency, and bridge connectivity. Aggregates per-bridge health scores into unified dashboard exports. No auto-fix, no external API calls, no direct Obsidian write, human approval required.
+- **Episode 1 Render Intake v2 (Phase 14E, October 2026):** `icyflamze-core-episode-1-render-intake-v2` scans, validates (sha256, dimensions, duration, codec), records human identity and creative sign-offs bound to the reviewed bytes, and plans recovery jobs across the 32-slot manifest (`config/episode_1_production_manifest.json`, `requires_identity` per slot). Batch 1 done 2026-10-09; Batch 2 runbook ready.
+- **Mac Execution Skill (`.claude/skills/mac-execution/`):** How anything on the Commander's Mac gets run: one labelled step at a time, dry run before GO, output redacted before it is shown, logged or copied, scripts handed over with a checksum.
+- **Strict typecheck of scripts, tools and config in CI (`tsconfig.scripts.json`):** every CLI script compiles under strict settings, and `scripts/registry-runtime.test.ts` keeps them free of `__dirname` and `require()` so none crashes at start under ES modules.
+- **System audit (`reports/SYSTEM_AUDIT_2026-10-13.md`):** duplicates, stale files, unused tools, projects and workflows, with eight ranked actions; actions 1, 2, 4, 6 (this repo), 7 (the cloud Routine) and 8 (skills) are done.
+
 ## 📭 Missing Capabilities
 - **Obsidian Bi-directional Auto-Sync:** Intentionally excluded for data safety.
-- **Live Microphone Audio Streamer:** Safe real-time stream capturing background daemon.
+- **IcyOS production deployment:** `IcyOS Deploy` has never deployed. It needs `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` as Actions secrets and the two Supabase variables in Vercel (LAUNCH.md step 4); until then every run skips with a warning.
+- **P.J.K. authentication:** none, by design, while it stays local-only (`~/sentinel-os`). Add a login before exposing it beyond localhost.
 
 ## ⚠️ Current Risks
+- **52 scripts outside every command list:** nothing in `package.json`, `Taskfile.yml` or the router references them (audit section 3.1); register or move to an attic.
+- **Local scheduler approved list:** 5 of the 8 registered routines (`security-audit`, `sandbox-sweep`, `launchpad-build-check`, `home-sync`, `ledger-sync`) are outside the approved list and have never run, in this repo and in sentinel-os (whose PRs #202 and #203 investigate the same thing).
+- **Output writers add timestamped twins:** the no-overwrite rule writes `name_<date>_<timestamp>.md` beside an identical dated report; 168 copies were removed on 2026-10-13 and more will accrue until the writers skip identical content.
 - **Dependency Drift:** Node and package configuration updates.
 - **Skill Overlap:** Potential paths collision with global `.gemini/` skills if CIP is bypassed.
 
 ## 🚀 Next Upgrade
-- **Bridge Health Monitor (Phase 22I):** Manual-first unified health aggregator (`scripts/bridge-health-monitor.ts`) scanning all 15 bridge modules for structural integrity, safety flag validation, export directory checks, and template completeness under the Build Operator. 7 CLI commands (status, scan-bridges, health-report, bridge-detail, anomaly-scan, dashboard-export, obsidian-export) with BHM- request IDs. 6 health categories across structural integrity, safety compliance, export capability, template completeness, config consistency, and bridge connectivity. Aggregates per-bridge health scores into unified dashboard exports. No auto-fix, no external API calls, no direct Obsidian write, human approval required.
-- **Phase 22J: (Staged)**
+- **Week 1: Sign off Episode 1 Batch 1 in the render intake tracker** (the first open item of the roadmap in NEXT_ACTIONS.md), then Batch 2 approved (3 stills, 6 sound effects) and the IcyOS launch steps 1 to 7 in LAUNCH.md.
+- Week 2: P.J.K. used daily with real data; the move clean-up PR; the Batch 3 runbook for the 8 videos. Week 3: Batch 4 (covers, captions, edit), export Episode 1, cross the finish line in sentinel-os docs/FINISH_LINE.md.
 
 ## Obsidian Intelligence Snapshot
 
