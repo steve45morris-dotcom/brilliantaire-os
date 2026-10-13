@@ -384,7 +384,7 @@
       "requires_identity": false,
       "dependencies": [
         "AUD-01",
-        "IMG-06"
+        "IMG-08"
       ]
     },
     {

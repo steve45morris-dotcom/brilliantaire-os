@@ -1,7 +1,7 @@
 // Human sign-off for Episode 1 render intake v2.
 //
 // The pipeline carries an asset as far as TECHNICALLY_VERIFIED and no further:
-// whether a face matches icyflamze_reference_MASTER.jpeg, and whether a frame
+// whether a face matches icyflamze_reference_MASTER.png, and whether a frame
 // fits the IP bible's visual language, are human judgements. This module decides
 // what one recorded judgement does to an asset. It is pure so every rule can be
 // tested; the v2 script does the file I/O.

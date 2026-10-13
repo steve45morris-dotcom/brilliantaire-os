@@ -10,6 +10,8 @@ Generation stays manual, as the production boundaries require. Every command her
 
 ---
 
+> **Correction, 2026-10-13: the reference photo is the `.png`, not the `.jpeg`.** The IP bible's 2026-09-15 entry (in the repo since 9 October) found that `icyflamze_reference_MASTER.jpeg`, sha256 `7594b332…`, is the "Who Is Icyflamze" MP3 with the wrong extension. The real anchor is `~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png` (PNG 1030×2081), sha256 `d5c17f08c4963e5c7ab2528a6d7d9831be1a47a5a982cbc1921e55c2db7379d2`. Wherever this runbook says to attach or compare against the `.jpeg`, use the `.png`. `config/icyflamze-identity-manifest.json` now names the `.png`, so `signoff-pending` prints the right file. Any character frame generated with the `.jpeg` attached had no face reference: review its likeness against the `.png` with extra care before passing its identity review, as the bible asks.
+
 ## What is in this batch, and what is not
 
 | Slot | Asset | Shape | Final file | Folder |

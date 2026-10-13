@@ -1,7 +1,7 @@
 {
   "character_id": "icyflamze",
-  "reference_asset": "~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.jpeg",
-  "reference_sha256": "7594b33211f8754724e2a211474de9157824bac63f100bbf0506e03600646abb",
+  "reference_asset": "~/TreeGrooveProjects/Icyflamze_3D_Avatar_Pipeline/01_reference/photos/icyflamze_reference_MASTER.png",
+  "reference_sha256": "d5c17f08c4963e5c7ab2528a6d7d9831be1a47a5a982cbc1921e55c2db7379d2",
   "canonical_source": "outputs/icyflamze_core/ip_bible/documents/icyflamze_core_season_1_ip_bible_2026-07-02.md",
   "identity_lock": "strict",
   "immutable": {

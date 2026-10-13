@@ -105,6 +105,10 @@ outputs/narrator/tts_queue/models/
 outputs/narrator/tts_queue/rendered_audio/
 outputs/narrator/tts_queue/bin/
 *.wav
+# Episode 1 video renders live in the intake folder, not in git (GIT_ASSET_POLICY.md)
+outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.mp4
+outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.mov
+outputs/icyflamze_core/episode_1/render_intake/incoming/videos/*.webm
 *.mp3
 *.tar.gz
 test.wav

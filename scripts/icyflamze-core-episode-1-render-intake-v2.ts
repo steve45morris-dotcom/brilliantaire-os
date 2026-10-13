@@ -374,7 +374,7 @@ function performSemanticValidation(
   }
 
   // 3. Identity Verification — NOT automatable. Comparing a rendered face against
-  // icyflamze_reference_MASTER.jpeg requires human judgement; the previous "does the file
+  // icyflamze_reference_MASTER.png requires human judgement; the previous "does the file
   // contain the string 'drift: true'" test passed everything a real generator could produce.
   const requiresIdentity = spec.requires_identity === true;
   const identityPassed = structuralPassed && technicalPassed;
