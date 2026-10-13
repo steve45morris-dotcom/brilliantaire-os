@@ -400,6 +400,59 @@ Every entry in `config/commands.ts` also carries a `category`, one of `audio`, `
 | `voice-ops-training-simulation` | `training simulation`, `operator training` | Workflow Auditor | Medium | Yes | Compile the Voice Ops operator training simulation pack: scenarios, drills and scoring sheets (Phase N5V). |
 | `voice-ops-certification-ledger-help` | `certification ledger help` | Workflow Auditor | Low | No | Print help menu for the Voice Ops Operator Certification Ledger CLI. |
 | `voice-ops-certification-ledger` | `certification ledger`, `operator certification` | Workflow Auditor | Medium | Yes | Record operator certification results and drill rotations in the Voice Ops certification ledger (Phase N5W). |
+| `ops-cli` | `live ops`, `operations cli` | OS Architect | Low | Yes | Query the kernel's live operations store: status, sessions, events, tasks, errors, blocked, stream. |
+| `pilot-cli` | `pilots`, `pilot registry` | OS Architect | Medium | Yes | Manage study pilots in the pilot registry: pilots:list, create, advance, log and decide. |
+| `study-cli` | `study`, `study registry` | OS Architect | Medium | Yes | Systematic study and engineering-skill catalog: study:create, approve and archive; skills:discover-engineering, maturity, source-audit and duplication-audit. |
+| `provider-cli` | `providers`, `model router` | OS Architect | Medium | Yes | Inspect and configure the model provider router: status, list, health, list-models, set-default, verify-credentials, test-routing, secret-scan. |
+| `openai-cli` | `openai integration` | OS Architect | Medium | Yes | OpenAI integration through the kernel boot: status, tool registry and contract checks. |
+| `github-cli` | `github integration` | OS Architect | Medium | Yes | GitHub integration through the kernel boot: status, health, issues and prs for brilliantaire-os (read-only unless configured otherwise). |
+| `skills-cli` | `skill discovery` | OS Architect | Medium | Yes | Kernel skill discovery and registration through the service registry (discover, list). |
+| `intelligence-cli` | `intelligence scan` | OS Architect | Low | Yes | Kernel intelligence engine: scan, alerts and briefing through the service registry. |
+| `integration-cli` | `integrations` | OS Architect | Low | Yes | List and inspect kernel integrations and their health. |
+| `agy-orchestrator` | `agy`, `production orchestrator` | Creative Architect | Medium | Yes | AGY production orchestrator v1 for an episode: init, status, brief, planning, generation, assembly, publishing, lock-mission and more; state in outputs/icyflamze_core/orchestrator. |
+| `agy-planner` | `creative planner` | Creative Architect | Medium | Yes | AGY creative planner: plan <creativeMissionJsonPath> writes the brief, scene architecture, checklists and reports under outputs/icyflamze_core/<episode>. |
+| `music-toolkit` | `music rollout` | Creative Architect | Medium | Yes | Music toolkit: rollout <track> bootstraps the Sporty campaign schedule through the campaign scheduler. |
+| `stage-mock-render-assets` | `mock render assets` | Creative Architect | High | Yes | Write placeholder PNG and ffmpeg-generated video assets into the Episode 1 render intake incoming folder for pipeline tests; never run while real renders are staged. |
+| `compile-workspace-reports` | `workspace reports` | Creative Architect | Medium | Yes | Compile the Icyflamze OS workspace markdown reports (ICYFLAMZE_OS.md and siblings) from the workspace modules. |
+| `tree-groove-automated-release-pipeline-help` | `release pipeline help` | Creative Revenue Strategist | Low | No | Print help for the Tree Groove Records automated release pipeline. |
+| `tree-groove-automated-release-pipeline` | `release pipeline`, `tree groove pipeline` | Creative Revenue Strategist | Medium | Yes | Run the Tree Groove Records automated release pipeline: platform packages, release proposal, checklist, runbook and telemetry under outputs/manual_release/pipeline, behind manual safety gates. |
+| `campaign-check` | `campaign routine` | Workflow Auditor | Low | Yes | Scheduler routine: read recent repo signals from the local mesh database (SUPERNOVA_DB_PATH) and report campaign status; mocks the signals when there is no database. |
+| `grinders-keep-google-ultra-opportunity-scanner-deepener-help` | `google ultra scanner help` | Creative Revenue Strategist | Low | No | Print help for the Grinders Keep Google Ultra opportunity scanner deepener. |
+| `grinders-keep-google-ultra-opportunity-scanner-deepener` | `google ultra scanner`, `opportunity scanner` | Creative Revenue Strategist | Medium | Yes | Grinders Keep Google Ultra opportunity scanner deepener (Phase 12G): map project needs from local telemetry to Google tool categories and write the scan under outputs/grinders_keep/google_ultra. |
+| `grinders-keep-verification-rerun-planner-help` | `verification rerun planner help` | Workflow Auditor | Low | No | Print help for the Grinders Keep verification rerun planner bridge. |
+| `grinders-keep-verification-rerun-planner` | `verification rerun planner`, `rerun planner bridge` | Workflow Auditor | Medium | Yes | Grinders Keep verification rerun planner bridge: status, verification-status, compile-plan, command-sheet, schedule and obsidian-export under outputs/grinders_keep_verification_rerun. |
+| `reposcout-agent` | `repo scout` | Creative Revenue Strategist | Medium | Yes | RepoScout agent: search GitHub for new repositories and packages by keyword and write a daily report (needs the gh CLI and network). |
+| `pjk-icyos-bridge` | `icyos bridge`, `pjk bridge` | Knowledge Librarian | Medium | Yes | P.J.K. to IcyOS bridge: status, sync and complete push NEXT_ACTIONS.md and SYSTEM_STATUS.md items to the hosted IcyOS through its personal access token (ICYOS_TOKEN, set with pjkkey). |
+| `ingest-skill` | `skill ingest` | Knowledge Librarian | Medium | Yes | Ingest a skill file into .agents/skills/<id>/SKILL.md (--file, --jsonfix). |
+| `claude-project-scanner` | `project scanner`, `claude context` | Knowledge Librarian | Medium | Yes | Scan every project under the home folder and write claude-project-context.md, a session briefing to paste into Claude. |
+| `claude-session-bootstrap` | `session bootstrap` | Knowledge Librarian | Low | Yes | Interactive intake that writes claude-session-bootstrap.md with IcyOS project context for a Claude session. |
+| `audit-skill-index` | `skill index audit` | Workflow Auditor | Low | Yes | Audit SKILL.md frontmatter (name and description lengths) across ~/.claude/skills and the repository skill folders. |
+| `disable-unused-skills` | `prune skills` | Build Operator | High | Yes | Rewrite SKILL.md frontmatter to suppress every skill not on its keep list; edits skill files in place, including this repository's .claude/skills. |
+| `approved-quarantine-help` | `quarantine executor help` | Workflow Auditor | Low | No | Print help for the Approved Quarantine Executor. |
+| `approved-quarantine` | `quarantine executor`, `execute quarantine` | Workflow Auditor | High | Yes | Approved Quarantine Executor (Phase 12C): status, manifest, dry-run and rollback-plan; execute --confirm moves the files on the approved cleanup list into quarantine. |
+| `orchestrator-phase0` | `phase 0 manifest` | Build Operator | Low | Yes | Write the orchestrator Phase 0 audit manifest for a repository root (default: the current folder) and print the run directory. |
+| `verify-seed-once` | `seed check` | Workflow Auditor | Low | Yes | Developer check that the lyric, song and goal stores seed once across two process starts. |
+| `verify-restart-persistence` | `persistence check` | Workflow Auditor | Medium | Yes | Developer check that writes test records through the production singletons and verifies they survive a restart; fails when persona fidelity scores below 8.0. |
+| `microsaas-launcher` | `microsaas` | Build Operator | High | Yes | Scaffold a Next.js micro-SaaS panel with Stripe metering into a project (name, --price, --describe, --verify); writes source files. |
+| `security-hash-auditor` | `hash audit` | Workflow Auditor | Medium | Yes | Hash system config files and databases against outputs/security_audits/hash_baseline.json and log drift to the Obsidian vault (--update-baseline, --json, --describe). |
+| `project-report` | `project tree report` | Workflow Auditor | Low | Yes | Write an HTML report of the project tree (--root, --max-depth, --output, --browser-base-url). |
+| `inject-dashboard-data` | `dashboard inject` | Build Operator | Low | Yes | Inject dashboard/public/dashboard-data.json into dashboard/dist/index.html as window.DASHBOARD_DATA after a dashboard build. |
+| `system-duplicate-check` | `duplicate check` | Workflow Auditor | Low | Yes | Hash every file in the workspace and write ~/reports/duplicate_audit_report.md listing byte-identical duplicates. |
+| `ledger-tamper-sentinel` | `ledger sentinel` | Workflow Auditor | Medium | Yes | Daemon: re-audit the Merkle chain root of the local ledger every 5 seconds and report tampering; runs until stopped. |
+| `aura-runner` | `aura audit` | Workflow Auditor | Medium | Yes | AURA closed-loop UI audit: build the dashboard, capture it with visual_eye.py (playwright) and score it with aura_critic.py. |
+| `visual-sentinel` | `visual check` | Workflow Auditor | Low | Yes | Open a dashboard URL in headless Chromium (playwright) and print its final rendered report. |
+| `verify-logs-fix` | `logs view check` | Workflow Auditor | Low | Yes | Open the dashboard Logs view in headless Chromium (playwright) and verify it renders. |
+| `autonomous-pr-pipeline` | `pr pipeline benchmark` | Workflow Auditor | Low | Yes | Benchmark experiment comparing the original and optimized implementations with numpy and multiprocessing. |
+| `serve-preview` | `preview server` | Build Operator | Low | Yes | Serve the workspace over HTTP on port 8888 so file:// previews are not blocked by CORS. |
+| `start-infra` | `infra up` | Build Operator | Medium | Yes | Start or recover the local PostgreSQL and Redis servers for the supernova database (Mac: brew or docker). |
+| `memory-guardian` | `memory guard` | Build Operator | High | Yes | Mac launchd routine: when free memory is low, stop the Docker VM, idle PM2 services and Ollama (never Chrome) and announce it over the voice bus. |
+| `voice-check` | `voice routine` | Build Operator | Low | Yes | Scheduler routine: check the voice daemon lock file, its PID and the recent voice logs. |
+| `voice-chunker` | `chunk narration` | Build Operator | Low | Yes | Split narration text into speech-safe chunks of up to 350 characters, one per line. |
+| `voice-dispatcher` | `voice dispatch` | Build Operator | Medium | Yes | Daemon: run the voice queue parser every 2 seconds and log to ~/sentinel-os/logs/voice_dispatcher.log; runs until stopped. |
+| `vv-speak` | `vibevoice speak` | Build Operator | Medium | Yes | Speak text through the VibeVoice worker (Mac: needs the Backend Services VibeVoice modules and soundfile). |
+| `vibevoice-worker` | `vibevoice` | Build Operator | Medium | Yes | Persistent local VibeVoice worker with mute-safe playback and telemetry (Mac: needs the Backend Services VibeVoice modules); runs until stopped. |
+| `oracle-background` | `oracle listener` | Build Operator | Medium | Yes | Background Oracle voice listener on the microphone (Mac: needs sounddevice, numpy and the Backend Services VibeVoice modules); runs until stopped. |
+| `scaffold-finetune` | `finetune scaffold` | Build Operator | Low | Yes | Build a fine-tuning metadata file from an audio folder and a transcript (--audio_dir, --transcript, --output). |
 
 
 ---

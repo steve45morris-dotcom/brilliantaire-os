@@ -1723,3 +1723,268 @@ tasks:
     desc: "Record operator certification results in the Voice Ops certification ledger"
     cmds:
       - npm run voice-ops-certification-ledger -- {{.CLI_ARGS}}
+
+  ops-cli:
+    desc: "Query the kernel's live operations store"
+    cmds:
+      - npm run ops-cli -- {{.CLI_ARGS}}
+
+  pilot-cli:
+    desc: "Manage study pilots in the pilot registry"
+    cmds:
+      - npm run pilot-cli -- {{.CLI_ARGS}}
+
+  study-cli:
+    desc: "Systematic study and engineering-skill catalog"
+    cmds:
+      - npm run study-cli -- {{.CLI_ARGS}}
+
+  provider-cli:
+    desc: "Inspect and configure the model provider router"
+    cmds:
+      - npm run provider-cli -- {{.CLI_ARGS}}
+
+  openai-cli:
+    desc: "OpenAI integration through the kernel boot"
+    cmds:
+      - npm run openai-cli -- {{.CLI_ARGS}}
+
+  github-cli:
+    desc: "GitHub integration through the kernel boot"
+    cmds:
+      - npm run github-cli -- {{.CLI_ARGS}}
+
+  skills-cli:
+    desc: "Kernel skill discovery and registration through the service registry"
+    cmds:
+      - npm run skills-cli -- {{.CLI_ARGS}}
+
+  intelligence-cli:
+    desc: "Kernel intelligence engine"
+    cmds:
+      - npm run intelligence-cli -- {{.CLI_ARGS}}
+
+  integration-cli:
+    desc: "List and inspect kernel integrations and their health"
+    cmds:
+      - npm run integration-cli -- {{.CLI_ARGS}}
+
+  agy-orchestrator:
+    desc: "AGY production orchestrator v1 for an episode"
+    cmds:
+      - npm run agy-orchestrator -- {{.CLI_ARGS}}
+
+  agy-planner:
+    desc: "AGY creative planner"
+    cmds:
+      - npm run agy-planner -- {{.CLI_ARGS}}
+
+  music-toolkit:
+    desc: "Music toolkit"
+    cmds:
+      - npm run music-toolkit -- {{.CLI_ARGS}}
+
+  stage-mock-render-assets:
+    desc: "Write placeholder PNG and ffmpeg-generated video assets into the Episode 1 render..."
+    cmds:
+      - npm run stage-mock-render-assets -- {{.CLI_ARGS}}
+
+  compile-workspace-reports:
+    desc: "Compile the Icyflamze OS workspace markdown reports"
+    cmds:
+      - npm run compile-workspace-reports -- {{.CLI_ARGS}}
+
+  tree-groove-automated-release-pipeline-help:
+    desc: "Print help for the Tree Groove Records automated release pipeline"
+    cmds:
+      - npm run tree-groove-automated-release-pipeline-help
+
+  tree-groove-automated-release-pipeline:
+    desc: "Run the Tree Groove Records automated release pipeline"
+    cmds:
+      - npm run tree-groove-automated-release-pipeline -- {{.CLI_ARGS}}
+
+  campaign-check:
+    desc: "Scheduler routine"
+    cmds:
+      - npm run campaign-check -- {{.CLI_ARGS}}
+
+  grinders-keep-google-ultra-opportunity-scanner-deepener-help:
+    desc: "Print help for the Grinders Keep Google Ultra opportunity scanner deepener"
+    cmds:
+      - npm run grinders-keep-google-ultra-opportunity-scanner-deepener-help
+
+  grinders-keep-google-ultra-opportunity-scanner-deepener:
+    desc: "Grinders Keep Google Ultra opportunity scanner deepener"
+    cmds:
+      - npm run grinders-keep-google-ultra-opportunity-scanner-deepener -- {{.CLI_ARGS}}
+
+  grinders-keep-verification-rerun-planner-help:
+    desc: "Print help for the Grinders Keep verification rerun planner bridge"
+    cmds:
+      - npm run grinders-keep-verification-rerun-planner-help
+
+  grinders-keep-verification-rerun-planner:
+    desc: "Grinders Keep verification rerun planner bridge"
+    cmds:
+      - npm run grinders-keep-verification-rerun-planner -- {{.CLI_ARGS}}
+
+  reposcout-agent:
+    desc: "RepoScout agent"
+    cmds:
+      - npm run reposcout-agent -- {{.CLI_ARGS}}
+
+  pjk-icyos-bridge:
+    desc: "P.J.K. to IcyOS bridge"
+    cmds:
+      - npm run pjk-icyos-bridge -- {{.CLI_ARGS}}
+
+  ingest-skill:
+    desc: "Ingest a skill file into .agents/skills/<id>/SKILL.md"
+    cmds:
+      - npm run ingest-skill -- {{.CLI_ARGS}}
+
+  claude-project-scanner:
+    desc: "Scan every project under the home folder and write claude-project-context.md, a..."
+    cmds:
+      - npm run claude-project-scanner -- {{.CLI_ARGS}}
+
+  claude-session-bootstrap:
+    desc: "Interactive intake that writes claude-session-bootstrap.md with IcyOS project context..."
+    cmds:
+      - npm run claude-session-bootstrap -- {{.CLI_ARGS}}
+
+  audit-skill-index:
+    desc: "Audit SKILL.md frontmatter"
+    cmds:
+      - npm run audit-skill-index -- {{.CLI_ARGS}}
+
+  disable-unused-skills:
+    desc: "Rewrite SKILL.md frontmatter to suppress every skill not on its keep list"
+    cmds:
+      - npm run disable-unused-skills -- {{.CLI_ARGS}}
+
+  approved-quarantine-help:
+    desc: "Print help for the Approved Quarantine Executor"
+    cmds:
+      - npm run approved-quarantine-help
+
+  approved-quarantine:
+    desc: "Approved Quarantine Executor"
+    cmds:
+      - npm run approved-quarantine -- {{.CLI_ARGS}}
+
+  orchestrator-phase0:
+    desc: "Write the orchestrator Phase 0 audit manifest for a repository root"
+    cmds:
+      - npm run orchestrator-phase0 -- {{.CLI_ARGS}}
+
+  verify-seed-once:
+    desc: "Developer check that the lyric, song and goal stores seed once across two process starts"
+    cmds:
+      - npm run verify-seed-once -- {{.CLI_ARGS}}
+
+  verify-restart-persistence:
+    desc: "Developer check that writes test records through the production singletons and..."
+    cmds:
+      - npm run verify-restart-persistence -- {{.CLI_ARGS}}
+
+  microsaas-launcher:
+    desc: "Scaffold a Next.js micro-SaaS panel with Stripe metering into a project"
+    cmds:
+      - npm run microsaas-launcher -- {{.CLI_ARGS}}
+
+  security-hash-auditor:
+    desc: "Hash system config files and databases against..."
+    cmds:
+      - npm run security-hash-auditor -- {{.CLI_ARGS}}
+
+  project-report:
+    desc: "Write an HTML report of the project tree"
+    cmds:
+      - npm run project-report -- {{.CLI_ARGS}}
+
+  inject-dashboard-data:
+    desc: "Inject dashboard/public/dashboard-data.json into dashboard/dist/index.html as..."
+    cmds:
+      - npm run inject-dashboard-data -- {{.CLI_ARGS}}
+
+  system-duplicate-check:
+    desc: "Hash every file in the workspace and write ~/reports/duplicate_audit_report.md listing..."
+    cmds:
+      - npm run system-duplicate-check -- {{.CLI_ARGS}}
+
+  ledger-tamper-sentinel:
+    desc: "Daemon"
+    cmds:
+      - npm run ledger-tamper-sentinel -- {{.CLI_ARGS}}
+
+  aura-runner:
+    desc: "AURA closed-loop UI audit"
+    cmds:
+      - npm run aura-runner -- {{.CLI_ARGS}}
+
+  visual-sentinel:
+    desc: "Open a dashboard URL in headless Chromium"
+    cmds:
+      - npm run visual-sentinel -- {{.CLI_ARGS}}
+
+  verify-logs-fix:
+    desc: "Open the dashboard Logs view in headless Chromium"
+    cmds:
+      - npm run verify-logs-fix -- {{.CLI_ARGS}}
+
+  autonomous-pr-pipeline:
+    desc: "Benchmark experiment comparing the original and optimized implementations with numpy..."
+    cmds:
+      - npm run autonomous-pr-pipeline -- {{.CLI_ARGS}}
+
+  serve-preview:
+    desc: "Serve the workspace over HTTP on port 8888 so file"
+    cmds:
+      - npm run serve-preview -- {{.CLI_ARGS}}
+
+  start-infra:
+    desc: "Start or recover the local PostgreSQL and Redis servers for the supernova database"
+    cmds:
+      - npm run start-infra -- {{.CLI_ARGS}}
+
+  memory-guardian:
+    desc: "Mac launchd routine"
+    cmds:
+      - npm run memory-guardian -- {{.CLI_ARGS}}
+
+  voice-check:
+    desc: "Scheduler routine"
+    cmds:
+      - npm run voice-check -- {{.CLI_ARGS}}
+
+  voice-chunker:
+    desc: "Split narration text into speech-safe chunks of up to 350 characters, one per line"
+    cmds:
+      - npm run voice-chunker -- {{.CLI_ARGS}}
+
+  voice-dispatcher:
+    desc: "Daemon"
+    cmds:
+      - npm run voice-dispatcher -- {{.CLI_ARGS}}
+
+  vv-speak:
+    desc: "Speak text through the VibeVoice worker"
+    cmds:
+      - npm run vv-speak -- {{.CLI_ARGS}}
+
+  vibevoice-worker:
+    desc: "Persistent local VibeVoice worker with mute-safe playback and telemetry"
+    cmds:
+      - npm run vibevoice-worker -- {{.CLI_ARGS}}
+
+  oracle-background:
+    desc: "Background Oracle voice listener on the microphone"
+    cmds:
+      - npm run oracle-background -- {{.CLI_ARGS}}
+
+  scaffold-finetune:
+    desc: "Build a fine-tuning metadata file from an audio folder and a transcript"
+    cmds:
+      - npm run scaffold-finetune -- {{.CLI_ARGS}}
