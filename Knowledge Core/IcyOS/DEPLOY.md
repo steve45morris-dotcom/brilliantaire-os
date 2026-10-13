@@ -94,33 +94,34 @@ See `apps/web/BILLING.md` for the full Stripe integration reference.
 
 ### First-time setup
 
-1. Install the Vercel CLI: `pnpm add -g vercel`
-2. From the `Knowledge Core/IcyOS` directory:
-   ```bash
-   vercel link
-   ```
-   Select your Vercel team/account and create a new project. The project's Root Directory is the IcyOS monorepo root: `.` when linking from this folder, or `Knowledge Core/IcyOS` when importing the GitHub repo in the Vercel dashboard. `vercel.json` there sets the install, build and output paths.
+1. In the Vercel dashboard, import the GitHub repo as a new project, and set:
+   - **Root Directory:** `Knowledge Core/IcyOS/apps/web`, the Next.js app
+   - **Include files outside the root directory:** on (the app uses `packages/` and the pnpm workspace above it)
+   - **Framework:** Next.js. **Node.js:** 22.x
 
-3. Add environment variables in Vercel Dashboard → Project → Settings → Environment Variables:
-   - All required variables from the tables above (Supabase, legal pages), plus any optional ones you use
+   Leave the install and build commands empty. `apps/web/vercel.json` sets them: it installs and builds from the monorepo root (`cd ../.. && pnpm install --frozen-lockfile`, then `pnpm turbo run build --filter=web-app`).
+
+2. Add environment variables in Vercel Dashboard → Project → Settings → Environment Variables, for Production:
+   - All required variables from the tables above (Supabase, legal pages), plus any optional ones you use. The build itself needs `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`: without them it stops at "Your project's URL and API key are required".
    - Either the Stripe variables, or `BILLING_ENFORCEMENT=off`
 
-4. Deploy:
-   ```bash
-   vercel --prod
-   ```
+3. Add the three GitHub secrets below. The deploy workflow then deploys.
+
+Deploy through the workflow, not with `vercel --prod` by hand. The Root Directory is relative to the repository root, so a hand deploy has to be run from there, and it uploads everything in that folder, untracked files included. "Redeploy" in the Vercel dashboard reuses the files of an earlier deployment, so it can't repair a deployment whose files were wrong.
 
 ### Automatic deployments (CI/CD)
 
-The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files. Until the three secrets below are set, it doesn't deploy. The run passes with a warning ("IcyOS wasn't deployed"), and its summary page names the missing secrets and where to find each one. A missing setting no longer turns `main` red. Once the secrets are set, a deploy that fails still fails the run. Meanwhile, deploy by hand with `vercel --prod`.
+The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files, and on demand from Actions → IcyOS Deploy → Run workflow. It runs the Vercel CLI from the repository root, because the Root Directory above is relative to it: run from `Knowledge Core/IcyOS`, the CLI looks for `Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web` and fails.
+
+Until the three secrets below are set, it doesn't deploy. The run passes with a warning ("IcyOS wasn't deployed"), and its summary page names the missing secrets and where to find each one. A missing setting doesn't turn `main` red. Once the secrets are set, a deploy that fails still fails the run.
 
 Add these secrets in GitHub → Settings → Secrets and variables → Actions:
 
 | Secret | Where to find it |
 |---|---|
 | `VERCEL_TOKEN` | Vercel → Settings → Tokens → Create |
-| `VERCEL_ORG_ID` | `.vercel/project.json` after `vercel link` (or Vercel → Settings → General → ID) |
-| `VERCEL_PROJECT_ID` | `.vercel/project.json` after `vercel link` |
+| `VERCEL_ORG_ID` | Vercel → team Settings → General → Team ID |
+| `VERCEL_PROJECT_ID` | Vercel → the project → Settings → General → Project ID |
 
 ### Custom domain
 

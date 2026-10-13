@@ -6,6 +6,7 @@ on:
     paths:
       - 'Knowledge Core/IcyOS/**'
       - '.github/workflows/icyos-deploy.yml'
+  workflow_dispatch:
 
 concurrency:
   group: icyos-deploy
@@ -58,10 +59,10 @@ jobs:
             echo "| Secret | Where to find it |"
             echo "|---|---|"
             echo "| \`VERCEL_TOKEN\` | Vercel → Settings → Tokens → Create |"
-            echo "| \`VERCEL_ORG_ID\` | \`.vercel/project.json\` after \`vercel link\` in \`Knowledge Core/IcyOS\` (or Vercel → Settings → General → ID) |"
-            echo "| \`VERCEL_PROJECT_ID\` | \`.vercel/project.json\` after \`vercel link\` |"
+            echo "| \`VERCEL_ORG_ID\` | Vercel → team Settings → General → Team ID |"
+            echo "| \`VERCEL_PROJECT_ID\` | Vercel → the project → Settings → General → Project ID |"
             echo
-            echo "The next IcyOS change merged to main deploys. Until then, \`vercel --prod\` from \`Knowledge Core/IcyOS\` deploys by hand."
+            echo "Once they're set, the next IcyOS change merged to main deploys, or run this workflow by hand: Actions → IcyOS Deploy → Run workflow."
           } >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/checkout@v7
@@ -83,16 +84,23 @@ jobs:
         if: steps.vercel.outputs.ready == 'true'
         run: pnpm add -g vercel@latest
 
+      # The Vercel project's Root Directory is Knowledge Core/IcyOS/apps/web,
+      # set from the repository root, so the Vercel CLI runs from the root too.
+      # Run from Knowledge Core/IcyOS it joins the two and looks for
+      # Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web, which fails.
       - name: Pull Vercel environment
         if: steps.vercel.outputs.ready == 'true'
+        working-directory: ${{ github.workspace }}
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build
         if: steps.vercel.outputs.ready == 'true'
+        working-directory: ${{ github.workspace }}
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy
         if: steps.vercel.outputs.ready == 'true'
+        working-directory: ${{ github.workspace }}
         id: deploy
         run: |
           URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
