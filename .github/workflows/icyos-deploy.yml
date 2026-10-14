@@ -80,30 +80,40 @@ jobs:
           cache: pnpm
           cache-dependency-path: Knowledge Core/IcyOS/pnpm-lock.yaml
 
+      # Pinned so a deploy doesn't change with whatever CLI was published that
+      # day. 63.1.2 is the version the Root Directory setup below was checked with.
       - name: Install Vercel CLI
         if: steps.vercel.outputs.ready == 'true'
-        run: pnpm add -g vercel@latest
+        run: pnpm add -g vercel@63.1.2
 
       # The Vercel project's Root Directory is Knowledge Core/IcyOS/apps/web,
       # set from the repository root, so the Vercel CLI runs from the root too.
       # Run from Knowledge Core/IcyOS it joins the two and looks for
       # Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web, which fails.
+      # The CLI reads the token from VERCEL_TOKEN, given only to the three steps
+      # that call it, never as --token, which would put it on the command line.
       - name: Pull Vercel environment
         if: steps.vercel.outputs.ready == 'true'
         working-directory: ${{ github.workspace }}
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production
 
       - name: Build
         if: steps.vercel.outputs.ready == 'true'
         working-directory: ${{ github.workspace }}
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod
 
       - name: Deploy
         if: steps.vercel.outputs.ready == 'true'
         working-directory: ${{ github.workspace }}
         id: deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          URL=$(vercel deploy --prebuilt --prod)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "### Deployed to production" >> "$GITHUB_STEP_SUMMARY"
           echo "[$URL]($URL)" >> "$GITHUB_STEP_SUMMARY"
