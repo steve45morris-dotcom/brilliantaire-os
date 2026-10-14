@@ -6,7 +6,7 @@ Never paste a key into a chat. Keys go into Supabase, your hosting dashboard or 
 
 ## 1. Database (Supabase)
 
-Run the files in `supabase/migrations/`, oldest first, ending with `28_fix_account_lifecycle.sql`.
+Run the files in `supabase/migrations/`, oldest first, ending with `29_security_tidy.sql`.
 
 - **SQL editor:** open the Supabase dashboard → SQL Editor. Paste one file, run it, then do the next.
 - **Supabase CLI**, if this folder is linked to your project: run `supabase db push`.
@@ -25,6 +25,7 @@ Run the files in `supabase/migrations/`, oldest first, ending with `28_fix_accou
 | 26 | Knowledge notes |
 | 27 | Account export and deletion (its functions fail; 28 fixes them) |
 | 28 | Working account export and deletion |
+| 29 | Security tidy-up: closes the signup function to the API and moves `pg_trgm` out of `public`. No data changes |
 
 If you already ran 27, run 28 too: it replaces 27's two functions and changes no data.
 

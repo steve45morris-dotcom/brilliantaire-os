@@ -66,7 +66,7 @@ Charging is on unless `BILLING_ENFORCEMENT=off`. Without Stripe configured, a ne
 ## Supabase Setup
 
 1. Create a new Supabase project at [supabase.com](https://supabase.com).
-2. Run all migrations in order from `supabase/migrations/`, `01` through `28_fix_account_lifecycle.sql`:
+2. Run all migrations in order from `supabase/migrations/`, `01` through `29_security_tidy.sql`:
    ```bash
    # Using the Supabase CLI:
    supabase db push
@@ -209,7 +209,7 @@ Every `/api/*` request is limited to 300 per minute per IP address. On top of th
 
 ## Production Checklist
 
-- [ ] Supabase project created and migrations 01–28 applied (`supabase db push`)
+- [ ] Supabase project created and migrations 01–29 applied (`supabase db push`)
 - [ ] All required env vars set, including `SUPABASE_JWT_SECRET` and the two legal-page variables (Vercel Dashboard or `apps/web/.env` for Docker)
 - [ ] Billing decided: either `BILLING_ENFORCEMENT=off` (no charging yet), or all of the following:
   - [ ] Stripe products created (Starter, Pro, Team) with price IDs configured
