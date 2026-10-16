@@ -94,8 +94,20 @@ See `apps/web/BILLING.md` for the full Stripe integration reference.
 
 ### First-time setup
 
-1. In the Vercel dashboard, import the GitHub repo as a new project, and set:
-   - **Root Directory:** `apps/web`, the Next.js app. Not the full `Knowledge Core/IcyOS/apps/web`: that path reaches the generated serverless function name, and the space in "Knowledge Core" is illegal there, so the deploy fails.
+**Do not connect the project to Git.** A Vercel Git integration resolves Root
+Directory against the repository root, so it would need the full
+`Knowledge Core/IcyOS/apps/web` — and that path reaches the generated
+serverless function name, where the space in "Knowledge Core" is illegal. With
+this repository layout a Git import cannot deploy IcyOS at any setting. The
+workflow in `.github/workflows/icyos-deploy.yml` deploys with the CLI instead,
+and the project is intentionally left unlinked.
+
+1. In the Vercel dashboard, create a new project **without importing a Git
+   repository**, and set:
+   - **Root Directory:** `apps/web`, the Next.js app. This is relative to where
+     the CLI runs, which the workflow sets to `Knowledge Core/IcyOS`. Not the
+     full `Knowledge Core/IcyOS/apps/web`: that puts a space in the function
+     name and every deploy fails.
    - **Include files outside the root directory:** on (the app uses `packages/` and the pnpm workspace above it)
    - **Framework:** Next.js. **Node.js:** 22.x
 
