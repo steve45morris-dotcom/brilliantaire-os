@@ -65,7 +65,7 @@ Set these as environment variables on the IcyOS server.
 
 The app is `apps/web`, a Next.js app in a pnpm monorepo. It needs Node 20 or newer (CI uses 22).
 
-- **On Vercel:** set Root Directory to `Knowledge Core/IcyOS/apps/web`, with "Include files outside the root directory" on, framework Next.js and Node 22.x. Leave the install and build commands empty: `apps/web/vercel.json` sets them. Add the settings from step 3 in Vercel → Project → Settings → Environment Variables (the build needs the two `NEXT_PUBLIC_SUPABASE_*` ones).
+- **On Vercel:** set Root Directory to `apps/web` — **not** the full `Knowledge Core/IcyOS/apps/web`. It is relative to wherever the CLI runs, and the deploy workflow runs from `Knowledge Core/IcyOS`, so the two compose correctly. The full path puts a space into the generated serverless function name and every deploy fails with "A Serverless Function has an invalid name ... must not contain any space". Turn "Include files outside the root directory" on, framework Next.js, Node 22.x. Leave the install and build commands empty: `apps/web/vercel.json` sets them. Add the settings from step 3 in Vercel → Project → Settings → Environment Variables (the build needs the two `NEXT_PUBLIC_SUPABASE_*` ones).
 - **Deploys:** `.github/workflows/icyos-deploy.yml` deploys every IcyOS change merged to `main`, and runs by hand from Actions → IcyOS Deploy → Run workflow, once three GitHub secrets are set (repository Settings → Secrets and variables → Actions):
   - `VERCEL_TOKEN`: Vercel → Settings → Tokens;
   - `VERCEL_ORG_ID`: Vercel → team Settings → General → Team ID;
@@ -119,6 +119,12 @@ It uses the token and address you just saved, only reads, and never prints the t
 Each problem comes with what to do, such as "apply 26_knowledge_notes.sql" or "set SUPABASE_JWT_SECRET". Fix it, then run the check again until it says **Ready**.
 
 ## 8. Connect P.J.K. (your Mac)
+
+> **Suspended.** P.J.K.'s daemon is deliberately stopped under a security gate: its
+> WebSocket accepted any Origin unauthenticated, and `gate_response` was reachable, so
+> a visited web page could approve a governance gate. The Origin check is fixed and
+> committed, but authenticating privileged messages is still open. Do not restart
+> P.J.K. as part of the IcyOS launch — that is a separate decision.
 
 ```bash
 cd ~/sentinel-os
