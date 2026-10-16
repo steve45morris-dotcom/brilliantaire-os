@@ -86,28 +86,33 @@ jobs:
         if: steps.vercel.outputs.ready == 'true'
         run: pnpm add -g vercel@63.1.2
 
-      # The Vercel project's Root Directory is Knowledge Core/IcyOS/apps/web,
-      # set from the repository root, so the Vercel CLI runs from the root too.
-      # Run from Knowledge Core/IcyOS it joins the two and looks for
-      # Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web, which fails.
+      # The Vercel project's Root Directory is apps/web, relative to wherever
+      # the CLI runs, so these steps use the job default of Knowledge Core/IcyOS
+      # — the pnpm workspace root. The two compose to Knowledge Core/IcyOS/apps/web.
+      #
+      # It must NOT be the full "Knowledge Core/IcyOS/apps/web" run from the repo
+      # root. That path reaches the generated serverless function name, and a
+      # space is illegal there:
+      #   A Serverless Function has an invalid name:
+      #   'Knowledge Core/IcyOS/apps/web/___next_launcher.cjs'
+      #   ... must not contain any space
+      # Measured: that combination fails, apps/web + this cwd deploys READY.
+      #
       # The CLI reads the token from VERCEL_TOKEN, given only to the two steps
       # that call it, never as --token, which would put it on the command line.
       - name: Pull Vercel environment
         if: steps.vercel.outputs.ready == 'true'
-        working-directory: ${{ github.workspace }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: vercel pull --yes --environment=production
 
-      # Build on Vercel, not here. `vercel build` writes the function under the
-      # Root Directory path, and "Knowledge Core" contains a space, which
-      # `vercel deploy --prebuilt` rejects:
-      #   A Serverless Function has an invalid name ... must not contain any space
-      # A server-side build does not carry that path into the function name.
+      # Build on Vercel rather than here, so there is one build, not two.
+      # (An earlier comment claimed a server-side build avoids the function-name
+      # error. It does not — run 38844192539 failed identically. The Root
+      # Directory above is what fixes it.)
 
       - name: Deploy
         if: steps.vercel.outputs.ready == 'true'
-        working-directory: ${{ github.workspace }}
         id: deploy
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -116,5 +121,6 @@ jobs:
           # Promote with `vercel promote <url>` after acceptance.
           URL=$(vercel deploy --prod --skip-domain)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
-          echo "### Deployed to production" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Staged a production deployment (not promoted)" >> "$GITHUB_STEP_SUMMARY"
+          echo "--skip-domain means the public alias still points at the previous deployment." >> "$GITHUB_STEP_SUMMARY"
           echo "[$URL]($URL)" >> "$GITHUB_STEP_SUMMARY"
