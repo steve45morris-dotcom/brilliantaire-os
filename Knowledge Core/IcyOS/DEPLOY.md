@@ -95,7 +95,7 @@ See `apps/web/BILLING.md` for the full Stripe integration reference.
 ### First-time setup
 
 1. In the Vercel dashboard, import the GitHub repo as a new project, and set:
-   - **Root Directory:** `Knowledge Core/IcyOS/apps/web`, the Next.js app
+   - **Root Directory:** `apps/web`, the Next.js app. Not the full `Knowledge Core/IcyOS/apps/web`: that path reaches the generated serverless function name, and the space in "Knowledge Core" is illegal there, so the deploy fails.
    - **Include files outside the root directory:** on (the app uses `packages/` and the pnpm workspace above it)
    - **Framework:** Next.js. **Node.js:** 22.x
 
@@ -107,11 +107,13 @@ See `apps/web/BILLING.md` for the full Stripe integration reference.
 
 3. Add the three GitHub secrets below. The deploy workflow then deploys.
 
-Deploy through the workflow, not with `vercel --prod` by hand. The Root Directory is relative to the repository root, so a hand deploy has to be run from there, and it uploads everything in that folder, untracked files included. "Redeploy" in the Vercel dashboard reuses the files of an earlier deployment, so it can't repair a deployment whose files were wrong.
+Deploy through the workflow, not with `vercel --prod` by hand. The Root Directory is relative to wherever the CLI runs, so a hand deploy has to be run from `Knowledge Core/IcyOS`, and it uploads everything in that folder, untracked files included. "Redeploy" in the Vercel dashboard reuses the files of an earlier deployment, so it can't repair a deployment whose files were wrong.
 
 ### Automatic deployments (CI/CD)
 
-The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files, and on demand from Actions → IcyOS Deploy → Run workflow. It runs the Vercel CLI from the repository root, because the Root Directory above is relative to it: run from `Knowledge Core/IcyOS`, the CLI looks for `Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web` and fails.
+The `.github/workflows/icyos-deploy.yml` workflow deploys to Vercel on every push to `main` that touches IcyOS files, and on demand from Actions → IcyOS Deploy → Run workflow. It runs the Vercel CLI from `Knowledge Core/IcyOS`, the pnpm workspace root, because the Root Directory above is relative to it. Run from the repository root with the full path as Root Directory and the deploy fails on the function name; run from `Knowledge Core/IcyOS` with the full path and the CLI looks for `Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web`. The pair above is the combination that works — measured, after four failures.
+
+The workflow deploys with `--skip-domain`, which **stages** a production deployment without moving the public domain. Promote it with `vercel promote <url>` once it has been checked.
 
 Until the three secrets below are set, it doesn't deploy. The run passes with a warning ("IcyOS wasn't deployed"), and its summary page names the missing secrets and where to find each one. A missing setting doesn't turn `main` red. Once the secrets are set, a deploy that fails still fails the run.
 
