@@ -90,7 +90,7 @@ jobs:
       # set from the repository root, so the Vercel CLI runs from the root too.
       # Run from Knowledge Core/IcyOS it joins the two and looks for
       # Knowledge Core/IcyOS/Knowledge Core/IcyOS/apps/web, which fails.
-      # The CLI reads the token from VERCEL_TOKEN, given only to the three steps
+      # The CLI reads the token from VERCEL_TOKEN, given only to the two steps
       # that call it, never as --token, which would put it on the command line.
       - name: Pull Vercel environment
         if: steps.vercel.outputs.ready == 'true'
@@ -99,12 +99,11 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: vercel pull --yes --environment=production
 
-      - name: Build
-        if: steps.vercel.outputs.ready == 'true'
-        working-directory: ${{ github.workspace }}
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: vercel build --prod
+      # Build on Vercel, not here. `vercel build` writes the function under the
+      # Root Directory path, and "Knowledge Core" contains a space, which
+      # `vercel deploy --prebuilt` rejects:
+      #   A Serverless Function has an invalid name ... must not contain any space
+      # A server-side build does not carry that path into the function name.
 
       - name: Deploy
         if: steps.vercel.outputs.ready == 'true'
@@ -113,7 +112,9 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          URL=$(vercel deploy --prebuilt --prod)
+          # --skip-domain: stage production without taking the public alias.
+          # Promote with `vercel promote <url>` after acceptance.
+          URL=$(vercel deploy --prod --skip-domain)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "### Deployed to production" >> "$GITHUB_STEP_SUMMARY"
           echo "[$URL]($URL)" >> "$GITHUB_STEP_SUMMARY"
