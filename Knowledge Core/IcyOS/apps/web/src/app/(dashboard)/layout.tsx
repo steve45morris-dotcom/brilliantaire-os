@@ -4,8 +4,22 @@ import { Sidebar } from '../../components/layout/sidebar';
 import { TopNav } from '../../components/layout/top-nav';
 import { BottomNav } from '../../components/layout/bottom-nav';
 import { CommandPalette } from '../../components/layout/command-palette';
+import { usePathname } from 'next/navigation';
+
+// The dashboard carries its own light Daylight frame (top tabs, phone bottom bar);
+// every other page keeps the existing sidebar shell until it is redesigned.
+const OWN_FRAME = new Set(['/dashboard']);
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (OWN_FRAME.has(pathname)) {
+    return (
+      <>
+        <CommandPalette tone="daylight" />
+        {children}
+      </>
+    );
+  }
   return (
     <div className="flex h-screen bg-[#08090e] text-[#d0ccc4]" style={{ height: '100dvh' }}>
       <CommandPalette />
