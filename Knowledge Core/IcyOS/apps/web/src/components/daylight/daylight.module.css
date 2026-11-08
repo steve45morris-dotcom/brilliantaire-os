@@ -2744,3 +2744,311 @@
     display: none;
   }
 }
+
+/* ── Knowledge ────────────────────────────────────────────────────────────
+   Wider than .page: the note index on the left, the editor as a sheet of
+   paper on the right. The chosen note and the idle panel are black. */
+.kbPage {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.kbGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.kbIndex {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 84px;
+}
+.kbSearch {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.kbSearch svg {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.kbSearch .field {
+  width: 100%;
+  padding-left: 40px;
+  border-radius: 999px;
+}
+.kbList {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+.kbNote {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.kbNote:hover {
+  transform: translateX(3px);
+  border-color: var(--line-2);
+  box-shadow: 0 10px 22px -16px rgba(23, 17, 15, 0.45);
+}
+.kbNote[data-on] {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.96), rgba(11, 11, 13, 0.98));
+  border-color: var(--gold);
+  color: #f7f2e8;
+  box-shadow: 0 14px 28px -16px rgba(179, 18, 43, 0.7), inset 3px 0 0 var(--ox);
+}
+.kbNoteTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kbPin {
+  flex: none;
+  color: var(--ox);
+}
+.kbNote[data-on] .kbPin {
+  color: #f1d77a;
+}
+.kbNoteTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 15px;
+}
+.kbWhen {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.kbExcerpt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+.kbProject {
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: var(--brass-soft);
+  color: var(--gold-deep);
+}
+.kbNote[data-on] .kbWhen,
+.kbNote[data-on] .kbExcerpt {
+  color: rgba(247, 242, 232, 0.6);
+}
+.kbNote[data-on] .kbProject {
+  background: rgba(201, 162, 39, 0.2);
+  color: #f1d77a;
+}
+.kbEmpty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  color: var(--muted);
+  border-style: dashed;
+  box-shadow: none;
+}
+.kbEditorWrap {
+  min-width: 0;
+  scroll-margin-top: 80px;
+}
+.kbEditor {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 28px 20px;
+  /* Paper: near-opaque, faint ruled lines behind the text. */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(253, 251, 247, 0.92));
+}
+.kbHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 36px;
+}
+.kbState {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.kbState[data-dirty] {
+  color: var(--ox);
+}
+.kbState[data-dirty]::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--ox);
+  vertical-align: 1px;
+}
+.kbIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.kbIcon:hover,
+.kbIcon[data-on] {
+  border-color: var(--gold);
+  background: var(--brass-soft);
+  color: var(--gold-deep);
+}
+.kbDanger:hover {
+  border-color: var(--ox);
+  background: rgba(179, 18, 43, 0.08);
+  color: var(--ox);
+}
+.kbTitle {
+  width: 100%;
+  margin: 4px 0 10px;
+  border: 0;
+  background: transparent;
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.6vw, 46px);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.kbTitle:focus {
+  outline: none;
+}
+.kbTitle::placeholder,
+.kbBody::placeholder {
+  color: rgba(98, 85, 78, 0.5);
+}
+.kbBody {
+  width: 100%;
+  min-height: 360px;
+  padding: 4px 0;
+  border: 0;
+  resize: vertical;
+  font: inherit;
+  font-size: 16px;
+  line-height: 30px;
+  color: var(--ink-2);
+  background: repeating-linear-gradient(180deg, transparent 0 29px, rgba(179, 18, 43, 0.08) 29px 30px);
+  background-attachment: local;
+}
+.kbBody:focus {
+  outline: none;
+}
+.kbFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.kbField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kbLabel {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.kbField .selectField {
+  min-width: 180px;
+}
+.kbCount {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 4px;
+}
+.kbIdle {
+  margin-top: 0;
+  width: auto;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  color: #f1d77a;
+}
+.kbIdle p {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  color: #fff;
+}
+@media (max-width: 1023px) {
+  .kbGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kbIndex {
+    position: static;
+  }
+  .kbList {
+    max-height: none;
+  }
+  .kbIdle {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .kbPage {
+    padding: 0 14px 24px;
+  }
+  .kbEditor {
+    padding: 16px 18px 18px;
+  }
+  .kbFoot .kbd {
+    display: none;
+  }
+}
