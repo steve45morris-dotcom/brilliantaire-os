@@ -1,8 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Sparkles, ArrowLeft, Plus, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowLeft, Plus, CheckCircle2, ArrowUp, Layers, List } from 'lucide-react';
 import { ProposalCard, type Draft, type ProjectOption } from '../../../components/inbox/proposal-card';
+import { SwipeDeck } from '../../../components/inbox/swipe-deck';
 import { Words } from '../../../components/daylight/command-hero';
 import { tiltHandlers } from '../../../components/daylight/daylight-fx';
 import { DaylightFrame } from '../../../components/daylight/daylight-nav';
@@ -30,6 +31,10 @@ export default function InboxPage() {
   const [added, setAdded] = useState<number | null>(null);
   const [newProject, setNewProject] = useState('');
   const [restored, setRestored] = useState(false);
+  // Review one card at a time (swipe) or all at once (list). Decided keys leave the deck.
+  const [mode, setMode] = useState<'deck' | 'list'>('deck');
+  const [decided, setDecided] = useState<Set<string>>(new Set());
+  const [capture, setCapture] = useState('');
   const loadedDraft = useRef(false);
 
   const loadProjects = useCallback(async () => {
@@ -81,6 +86,8 @@ export default function InboxPage() {
       return;
     }
     setSource(res.data.source);
+    setDecided(new Set());
+    setMode(res.data.missions.length > 1 ? 'deck' : 'list');
     setDrafts(
       res.data.missions.map((m, i) => ({
         key: `${Date.now()}-${i}`,
@@ -120,7 +127,8 @@ export default function InboxPage() {
   const planned = plannedMinutes(kept.map((d) => d.estimate));
 
   async function add() {
-    if (!canAdd) return;
+    // Adding waits until the deck is done, so nothing undecided is saved by accident.
+    if (!canAdd || (mode === 'deck' && drafts?.some((d) => !decided.has(d.key)))) return;
     setBusy('add');
     setError(null);
     const missions = kept.map((d) => ({
@@ -158,12 +166,34 @@ export default function InboxPage() {
   }, [drafts]);
 
   const setAll = (include: boolean) => setDrafts((ds) => ds?.map((d) => ({ ...d, include })) ?? ds);
+  const updateDraft = (next: Draft) => setDrafts((ds) => ds?.map((x) => (x.key === next.key ? next : x)) ?? ds);
+  const queue = drafts?.filter((d) => !decided.has(d.key)) ?? [];
+  const showDeck = mode === 'deck' && queue.length > 0;
+
+  function decide(key: string, keep: boolean) {
+    setDrafts((ds) => ds?.map((d) => (d.key === key ? { ...d, include: keep } : d)) ?? ds);
+    setDecided((prev) => {
+      const next = new Set(prev).add(key);
+      // Every card decided: show the kept ones as a list to finish and add.
+      if (drafts && next.size >= drafts.length) setMode('list');
+      return next;
+    });
+  }
+
+  // The orb dock adds one thought to the brain dump as a new line.
+  function captureThought(e: React.FormEvent) {
+    e.preventDefault();
+    const thought = capture.trim();
+    if (!thought) return;
+    setText((t) => `${t}${t && !t.endsWith('\n') ? '\n' : ''}- ${thought}`.slice(0, MAX_DUMP_CHARS));
+    setCapture('');
+  }
   const fill = Math.min(1, text.length / MAX_DUMP_CHARS);
   const items = itemCount(text);
 
   if (!hasWorkspace) {
     return (
-      <DaylightFrame>
+      <DaylightFrame theme="glass">
         <section className={s.hero}>
           <span className={s.floor} aria-hidden />
           <h1 className={s.h1}>
@@ -179,7 +209,7 @@ export default function InboxPage() {
   }
 
   return (
-    <DaylightFrame>
+    <DaylightFrame theme="glass">
       <section className={s.hero} aria-label="Inbox">
         <span className={s.floor} aria-hidden />
         <p className={s.meta}>
@@ -259,6 +289,23 @@ export default function InboxPage() {
           </form>
         )}
 
+        {!drafts && (
+          <form onSubmit={captureThought} className={`${s.card} ${s.dock}`} aria-label="Capture a thought">
+            <span className={`${s.orb} ${busy === 'sort' ? s.orbLive : ''}`} aria-hidden />
+            <input
+              aria-label="Add a thought to the brain dump"
+              placeholder="Capture a thought and press Enter…"
+              maxLength={500}
+              value={capture}
+              onChange={(e) => setCapture(e.target.value)}
+              className={s.dockInput}
+            />
+            <button type="submit" className={`${s.go}`} aria-label="Add to brain dump" disabled={!capture.trim()} data-snd="high" style={{ border: 0 }}>
+              <ArrowUp size={18} aria-hidden />
+            </button>
+          </form>
+        )}
+
         {/* ── Review state ── */}
         {drafts && (
           <>
@@ -279,6 +326,21 @@ export default function InboxPage() {
               </div>
               <div className={s.btnRow}>
                 {drafts.length > 1 && (
+                  <button
+                    type="button"
+                    className={s.btn}
+                    onClick={() => {
+                      if (showDeck) setMode('list');
+                      else {
+                        setDecided(new Set());
+                        setMode('deck');
+                      }
+                    }}
+                  >
+                    {showDeck ? <List size={15} aria-hidden /> : <Layers size={15} aria-hidden />} {showDeck ? 'All cards' : 'One by one'}
+                  </button>
+                )}
+                {!showDeck && drafts.length > 1 && (
                   <button type="button" className={s.btn} onClick={() => setAll(kept.length !== drafts.length)} data-snd="low">
                     {kept.length === drafts.length ? 'Select none' : 'Select all'}
                   </button>
@@ -299,17 +361,13 @@ export default function InboxPage() {
               <p className={s.nothing}>Sorted by simple rules — no AI key set — so check the names.</p>
             )}
 
-            {drafts.map((d, i) => (
-              <ProposalCard
-                key={d.key}
-                draft={d}
-                index={i}
-                projects={projects ?? []}
-                onChange={(next) => setDrafts((ds) => ds?.map((x) => (x.key === d.key ? next : x)) ?? ds)}
-              />
-            ))}
+            {showDeck ? (
+              <SwipeDeck queue={queue} decided={decided.size} total={drafts.length} projects={projects ?? []} onDecide={decide} />
+            ) : (
+              drafts.map((d, i) => <ProposalCard key={d.key} draft={d} index={i} projects={projects ?? []} onChange={updateDraft} />)
+            )}
 
-            {missingProject > 0 && (
+            {!showDeck && missingProject > 0 && (
               <div className={`${s.notice} ${s.noticeWarn} ${s.rise}`}>
                 <span>{missingProject === 1 ? '1 mission needs' : `${missingProject} missions need`} a project.</span>
                 {projects && projects.length > 0 && (
@@ -343,7 +401,7 @@ export default function InboxPage() {
               </div>
             )}
 
-            {drafts.length > 0 && (
+            {!showDeck && drafts.length > 0 && (
               <div className={s.form} style={{ justifyContent: 'flex-end' }}>
                 {badEstimate && <span className={s.formError} style={{ width: 'auto' }}>Estimates are whole minutes, 1–1440.</span>}
                 {badName && <span className={s.formError} style={{ width: 'auto' }}>Every mission needs a name.</span>}
