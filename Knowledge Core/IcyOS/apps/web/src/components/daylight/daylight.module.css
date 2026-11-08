@@ -1434,7 +1434,8 @@
 }
 .glassTheme .h1 {
   font-weight: 400;
-  font-size: clamp(64px, 8vw, 112px);
+  font-size: clamp(56px, 6.4vw, 96px);
+  max-width: 1200px;
   line-height: 0.92;
   letter-spacing: -0.025em;
   color: var(--night);
@@ -1749,4 +1750,63 @@
   background: var(--ox);
   border-color: var(--ox);
   box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px rgba(201, 162, 39, 0.45);
+}
+
+/* ── Dashboard in the glass theme ── */
+/* The command bar is a black glass command surface, like the dock and the deck. */
+.glassTheme .cmd {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.94), rgba(11, 11, 13, 0.97));
+  border: 1px solid rgba(201, 162, 39, 0.5);
+  border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 30px 60px -22px rgba(11, 11, 13, 0.6),
+    0 12px 30px -14px rgba(179, 18, 43, 0.35);
+}
+.glassTheme .cmdInput {
+  color: rgba(247, 242, 232, 0.62);
+}
+.glassTheme .cmd .kbd {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(247, 242, 232, 0.75);
+}
+.glassTheme .cmd .caret {
+  background: var(--gold);
+}
+.glassTheme .cmd .chip {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f7f2e8;
+  box-shadow: none;
+}
+.glassTheme .cmd .chip:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+.glassTheme .cmd .chipDark {
+  background: linear-gradient(180deg, #e3c457, var(--gold));
+  border-color: var(--gold);
+  color: var(--night);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 0 var(--gold-deep);
+}
+.glassTheme .cmd .chipDark b {
+  color: var(--ox);
+}
+.glassTheme .mission::before {
+  background: linear-gradient(var(--ox), var(--gold));
+}
+.glassTheme .count {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(201, 162, 39, 0.25);
+}
+.glassTheme .cmd .chip b {
+  color: #f1d77a;
+}
+/* After the light-chip rule above, so the gold primary chip keeps its red highlight. */
+.glassTheme .cmd .chipDark b {
+  color: var(--ox);
+}
+@media (max-width: 600px) {
+  .glassTheme .h1 {
+    font-size: 36px;
+    line-height: 0.98;
+  }
 }

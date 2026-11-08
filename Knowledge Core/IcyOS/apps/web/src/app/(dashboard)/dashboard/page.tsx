@@ -7,11 +7,9 @@ import { SELECT_PROJECT_EVENT } from '../../../components/layout/command-palette
 import { CommandHero } from '../../../components/daylight/command-hero';
 import { CurrentMission } from '../../../components/daylight/current-mission';
 import { DaylightConfirm } from '../../../components/daylight/daylight-confirm';
-import { DaylightBottomNav, DaylightTopBar } from '../../../components/daylight/daylight-nav';
-import { useSound } from '../../../components/daylight/daylight-fx';
+import { DaylightFrame } from '../../../components/daylight/daylight-nav';
 import { ProjectCards } from '../../../components/daylight/project-cards';
 import { ThisWeek, UpNext } from '../../../components/daylight/side-panels';
-import { sans, serif } from '../../../components/daylight/fonts';
 import s from '../../../components/daylight/daylight.module.css';
 import { apiFetch } from '../../../lib/api/client';
 import { ACTIVE_STATUSES, featuredMission, type UpNextFilter } from '../../../lib/workspace/daylight';
@@ -29,7 +27,6 @@ export default function DashboardPage() {
   const [upFilter, setUpFilter] = useState<UpNextFilter>('all');
   const [openMissionId, setOpenMissionId] = useState<string | null>(null);
   const [missionFor, setMissionFor] = useState<string | null>(null);
-  const sound = useSound();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
@@ -174,13 +171,9 @@ export default function DashboardPage() {
     setOpenMissionId(null);
   };
 
-  const frame = `${s.root} ${serif.variable} ${sans.variable}`;
-
   if (!overview) {
     return (
-      <div className={frame} onPointerDownCapture={sound.onPointerDown}>
-        <DaylightTopBar soundOn={sound.on} onToggleSound={sound.toggle} />
-        <main>
+      <DaylightFrame theme="glass">
           <section className={s.hero} aria-busy={!error}>
             <p className={s.meta}>IcyOS</p>
             <h1 className={s.h1}>{error ? 'Your workspace did not load' : 'Opening your workspace…'}</h1>
@@ -190,19 +183,14 @@ export default function DashboardPage() {
               </p>
             )}
           </section>
-        </main>
-        <DaylightBottomNav />
-      </div>
+      </DaylightFrame>
     );
   }
 
   const { workspace, totals } = overview;
 
   return (
-    <div className={frame} onPointerDownCapture={sound.onPointerDown}>
-      <DaylightTopBar soundOn={sound.on} onToggleSound={sound.toggle} />
-
-      <main>
+    <DaylightFrame theme="glass">
         {!workspace ? (
           <section className={s.hero}>
             <h1 className={s.h1}>Set up your workspace</h1>
@@ -271,10 +259,7 @@ export default function DashboardPage() {
             />
           </div>
         )}
-      </main>
-
-      <DaylightBottomNav />
       <DaylightConfirm pending={confirming} onClose={() => setConfirming(null)} />
-    </div>
+    </DaylightFrame>
   );
 }
