@@ -1,5 +1,6 @@
 'use client';
 
+import { tiltHandlers } from '../daylight/daylight-fx';
 import s from '../daylight/daylight.module.css';
 
 export interface ProjectOption {
@@ -34,11 +35,17 @@ export function ProposalCard({
   const id = `D-${String(index + 1).padStart(2, '0')}`;
 
   return (
-    <div className={`${s.card} ${s.panel} ${draft.include ? '' : s.draftOff} ${needsProject ? s.draftWarn : ''}`}>
+    <div
+      className={`${s.card} ${s.panel} ${s.tilt} ${s.tiltSoft} ${s.rise} ${draft.include ? '' : s.draftOff} ${needsProject ? s.draftWarn : ''}`}
+      // Cards are dealt in one after another.
+      style={{ animationDelay: `${Math.min(index, 8) * 0.08}s` }}
+      {...tiltHandlers}
+    >
       <div className={s.form}>
         <input
           type="checkbox"
           className={s.box}
+          data-snd={draft.include ? 'low' : 'high'}
           aria-label={`Keep mission ${index + 1}`}
           checked={draft.include}
           onChange={(e) => set({ include: e.target.checked })}
