@@ -1,12 +1,8 @@
 'use client';
 
-import { DaylightFrame } from '../../../components/daylight/daylight-nav';
 import { PjkChat } from '../../../components/pjk/chat';
 
+// P.J.K. has its own frame and look (components/pjk), not IcyOS's Daylight one.
 export default function PjkPage() {
-  return (
-    <DaylightFrame>
-      <PjkChat />
-    </DaylightFrame>
-  );
+  return <PjkChat />;
 }

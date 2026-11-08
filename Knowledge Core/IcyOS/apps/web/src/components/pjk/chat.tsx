@@ -1,44 +1,111 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowUp, ExternalLink, RefreshCw, WifiOff } from 'lucide-react';
-import { Words } from '../daylight/command-hero';
-import s from '../daylight/daylight.module.css';
+import Link from 'next/link';
+import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, Mic, MicOff, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
+import { PjkCore, type CoreState } from './core';
+import { display, mono, text } from './fonts';
+import p from './pjk.module.css';
+
+// P.J.K. Core: the console for P.J.K. in Sentinel OS on the Commander's Mac, reached
+// over Tailscale. Its own look (not IcyOS's): red-orange, snow white and acid yellow
+// on an ember-black field, a live 3D core, voice in and out, and real link telemetry.
 
 interface ChatMessage {
   role: 'user' | 'assistant';
   text: string;
+  at: number;
 }
 
 type ConnectionStatus = 'checking' | 'connected' | 'unreachable' | 'unconfigured';
 
 const PJK_URL_KEY = 'pjk_url';
-const STATUS_TEXT: Record<ConnectionStatus, string> = {
-  checking: 'Checking…',
-  connected: 'Live',
-  unreachable: 'Unreachable',
-  unconfigured: 'Offline',
-};
+const VOICE_KEY = 'pjk_voice';
+// The conversation lasts for this tab only: sessionStorage, so it is gone when the tab closes.
+const SESSION_KEY = 'pjk_session';
+const STATUS_TEXT: Record<ConnectionStatus, string> = { checking: 'Linking', connected: 'Linked', unreachable: 'No link', unconfigured: 'Offline' };
 const SUGGESTIONS = ['What should I focus on next?', 'Summarise my day so far', 'What is waiting for my GO?'];
 
-function storedUrl(): string {
+// The Web Speech API is not in TypeScript's DOM types yet; only what is used here.
+interface SpeechResult {
+  isFinal: boolean;
+  0: { transcript: string };
+}
+interface Recognition {
+  lang: string;
+  interimResults: boolean;
+  continuous: boolean;
+  onresult: ((e: { resultIndex: number; results: ArrayLike<SpeechResult> }) => void) | null;
+  onend: (() => void) | null;
+  onerror: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+type RecognitionCtor = new () => Recognition;
+
+function read(store: 'local' | 'session', key: string): string | null {
   try {
-    return localStorage.getItem(PJK_URL_KEY) ?? '';
+    return (store === 'local' ? localStorage : sessionStorage).getItem(key);
   } catch {
-    return '';
+    return null;
   }
 }
+function write(store: 'local' | 'session', key: string, value: string | null) {
+  try {
+    const s = store === 'local' ? localStorage : sessionStorage;
+    if (value === null) s.removeItem(key);
+    else s.setItem(key, value);
+  } catch {}
+}
 
-/** Chat with P.J.K. in Sentinel OS on the Commander's Mac, reached over Tailscale. */
+const clock = (ms: number) => new Date(ms).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+function elapsed(ms: number) {
+  const m = Math.floor(ms / 60_000);
+  return m < 1 ? '<1 min' : m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`;
+}
+
+/** Reveals a reply a few characters at a time; the full text is there for screen readers at once. */
+function Reveal({ text: full, live }: { text: string; live: boolean }) {
+  const [n, setN] = useState(live ? 0 : full.length);
+  useEffect(() => {
+    if (!live || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setN(full.length);
+      return;
+    }
+    const step = Math.max(2, Math.ceil(full.length / 90));
+    const t = setInterval(() => setN((x) => (x >= full.length ? (clearInterval(t), x) : x + step)), 16);
+    return () => clearInterval(t);
+  }, [full, live]);
+  return (
+    <>
+      <span className="sr-only">{full}</span>
+      <span aria-hidden>
+        {full.slice(0, n)}
+        {n < full.length && <span className={p.caret} />}
+      </span>
+    </>
+  );
+}
+
 export function PjkChat() {
   const [pjkUrl, setPjkUrl] = useState('');
   const [urlInput, setUrlInput] = useState('');
   const [status, setStatus] = useState<ConnectionStatus>('checking');
+  const [latency, setLatency] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const [voiceOut, setVoiceOut] = useState(false);
+  const [canListen, setCanListen] = useState(false);
+  const [canSpeak, setCanSpeak] = useState(false);
+  const [copied, setCopied] = useState<number | null>(null);
+  const [now, setNow] = useState(() => Date.now());
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const recognition = useRef<Recognition | null>(null);
+  const lastLive = useRef(-1);
 
   const scrollToBottom = useCallback(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -47,28 +114,53 @@ export function PjkChat() {
   const checkConnection = useCallback(async (url: string) => {
     if (!url) {
       setStatus('unconfigured');
+      setLatency(null);
       return;
     }
     setStatus('checking');
+    const t0 = performance.now();
     try {
       const res = await fetch(`${url}/api/pjk/echo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ping: true }), signal: AbortSignal.timeout(5000) });
+      setLatency(res.ok ? Math.round(performance.now() - t0) : null);
       setStatus(res.ok ? 'connected' : 'unreachable');
     } catch {
+      setLatency(null);
       setStatus('unreachable');
     }
   }, []);
 
   useEffect(() => {
-    const envUrl = process.env.NEXT_PUBLIC_PJK_URL ?? '';
-    const url = envUrl || storedUrl();
+    const url = process.env.NEXT_PUBLIC_PJK_URL || read('local', PJK_URL_KEY) || '';
     setPjkUrl(url);
     setUrlInput(url);
     void checkConnection(url);
+    const w = window as unknown as { SpeechRecognition?: RecognitionCtor; webkitSpeechRecognition?: RecognitionCtor };
+    setCanListen(Boolean(w.SpeechRecognition ?? w.webkitSpeechRecognition));
+    setCanSpeak('speechSynthesis' in window);
+    setVoiceOut(read('local', VOICE_KEY) === 'on');
+    try {
+      const saved = JSON.parse(read('session', SESSION_KEY) ?? '[]') as ChatMessage[];
+      if (Array.isArray(saved)) {
+        setMessages(saved);
+        lastLive.current = saved.length - 1; // already shown, so not revealed again
+      }
+    } catch {}
   }, [checkConnection]);
 
   useEffect(() => {
+    write('session', SESSION_KEY, messages.length ? JSON.stringify(messages) : null);
     scrollToBottom();
-  }, [messages, sending, scrollToBottom]);
+  }, [messages, scrollToBottom]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [sending, scrollToBottom]);
+
+  // The session clock ticks once a minute; nothing else here polls.
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 30_000);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     const vv = window.visualViewport;
@@ -84,141 +176,275 @@ export function PjkChat() {
   function saveUrl(e: React.FormEvent) {
     e.preventDefault();
     const url = urlInput.trim().replace(/\/+$/, '');
-    try {
-      localStorage.setItem(PJK_URL_KEY, url);
-    } catch {}
+    write('local', PJK_URL_KEY, url);
     setPjkUrl(url);
     void checkConnection(url);
   }
 
-  async function sendText(raw: string) {
-    const text = raw.trim();
-    if (!text || sending || !pjkUrl) return;
-    const history = [...messages, { role: 'user' as const, text }];
-    setMessages(history);
-    setInput('');
-    setSending(true);
-    try {
-      const res = await fetch(`${pjkUrl}/api/pjk/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ history }),
-        signal: AbortSignal.timeout(60000),
-      });
-      const data = await res.json();
-      const reply = data.ok !== false && data.text ? data.text : (data.reply ?? data.error ?? 'P.J.K. returned an unexpected response.');
-      setMessages([...history, { role: 'assistant', text: reply }]);
-    } catch {
-      setMessages([...history, { role: 'assistant', text: 'Could not reach P.J.K. Check your connection and try again.' }]);
-      setStatus('unreachable');
-    } finally {
-      setSending(false);
-    }
+  function say(reply: string) {
+    if (!voiceOut || !canSpeak) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(reply);
+    u.lang = 'en-GB';
+    u.onstart = () => setSpeaking(true);
+    u.onend = u.onerror = () => setSpeaking(false);
+    window.speechSynthesis.speak(u);
   }
+
+  const sendText = useCallback(
+    async (raw: string) => {
+      const textIn = raw.trim();
+      if (!textIn || sending || !pjkUrl) return;
+      const history = [...messages, { role: 'user' as const, text: textIn, at: Date.now() }];
+      setMessages(history);
+      setInput('');
+      setSending(true);
+      let reply: string;
+      try {
+        const res = await fetch(`${pjkUrl}/api/pjk/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // P.J.K. reads role and text; the timestamps stay in this tab.
+          body: JSON.stringify({ history: history.map(({ role, text: t }) => ({ role, text: t })) }),
+          signal: AbortSignal.timeout(60000),
+        });
+        const data = await res.json();
+        reply = data.ok !== false && data.text ? data.text : (data.reply ?? data.error ?? 'P.J.K. returned an unexpected response.');
+      } catch {
+        reply = 'Could not reach P.J.K. Check your connection and try again.';
+        setStatus('unreachable');
+        setLatency(null);
+      }
+      lastLive.current = history.length;
+      setMessages([...history, { role: 'assistant', text: reply, at: Date.now() }]);
+      setSending(false);
+      say(reply);
+    },
+    // say() reads voiceOut and canSpeak, which are in the list.
+    [messages, sending, pjkUrl, voiceOut, canSpeak],
+  );
 
   // Back to the box once a reply lands; it is disabled while P.J.K. thinks, so it can't keep focus.
   useEffect(() => {
     if (!sending && messages.length) inputRef.current?.focus();
   }, [sending, messages.length]);
 
-  return (
-    <>
-      <section className={s.hero} aria-label="P.J.K.">
-        <span className={s.floor} aria-hidden />
-        <p className={s.pjStatus} data-status={status} role="status">
-          <span className={s.pjDot} aria-hidden />
-          P.J.K. · {STATUS_TEXT[status]}
-          {status === 'connected' && <span className={s.pjVia}> · Sentinel OS via Tailscale</span>}
-        </p>
-        <h1 className={s.h1}>
-          <Words text="P.J.K." delay={0.05} />
-          <span className={s.h1em}>
-            <Words text="At your command." delay={0.2} />
-          </span>
-        </h1>
-        <p className={s.sub}>Talk to P.J.K. in Sentinel OS on your Mac. Anything it would do still waits for your GO there.</p>
-      </section>
+  function toggleListen() {
+    if (listening) {
+      recognition.current?.stop();
+      return;
+    }
+    const w = window as unknown as { SpeechRecognition?: RecognitionCtor; webkitSpeechRecognition?: RecognitionCtor };
+    const Ctor = w.SpeechRecognition ?? w.webkitSpeechRecognition;
+    if (!Ctor) return;
+    window.speechSynthesis?.cancel();
+    const r = new Ctor();
+    r.lang = 'en-GB';
+    r.interimResults = true;
+    r.continuous = false;
+    let finalText = '';
+    r.onresult = (e) => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const res = e.results[i];
+        if (res.isFinal) finalText += res[0].transcript;
+        else interim += res[0].transcript;
+      }
+      setInput((finalText + interim).trim());
+    };
+    r.onend = () => {
+      setListening(false);
+      recognition.current = null;
+      if (finalText.trim()) void sendText(finalText);
+    };
+    r.onerror = () => setListening(false);
+    recognition.current = r;
+    setListening(true);
+    r.start();
+  }
 
-      <div className={s.page}>
+  function toggleVoiceOut() {
+    const next = !voiceOut;
+    setVoiceOut(next);
+    write('local', VOICE_KEY, next ? 'on' : 'off');
+    if (!next) window.speechSynthesis?.cancel();
+  }
+
+  function newSession() {
+    window.speechSynthesis?.cancel();
+    setMessages([]);
+    lastLive.current = -1;
+    inputRef.current?.focus();
+  }
+
+  async function copy(i: number, value: string) {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(i);
+      setTimeout(() => setCopied((c) => (c === i ? null : c)), 1500);
+    } catch {}
+  }
+
+  // "/" jumps to the command line from anywhere on the page.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      if (e.key === '/' && !el.closest('input,textarea,select')) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const coreState: CoreState = status !== 'connected' ? 'offline' : listening ? 'listening' : sending ? 'thinking' : speaking ? 'speaking' : 'idle';
+  const coreLabel = { offline: status === 'checking' ? 'Linking to your Mac' : 'Standing by', idle: 'Ready', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking' }[coreState];
+  const started = messages[0]?.at;
+  const lastUser = [...messages].reverse().find((m) => m.role === 'user')?.text ?? '';
+
+  return (
+    <div className={`${p.root} ${display.variable} ${text.variable} ${mono.variable}`}>
+      <div className={p.field} aria-hidden />
+      <header className={p.bar}>
+        <Link href="/dashboard" className={p.back}>
+          <ArrowLeft size={16} aria-hidden /> IcyOS
+        </Link>
+        <span className={p.mark}>
+          P.J.K.<em>core</em>
+        </span>
+        <span className={p.link} data-status={status} role="status">
+          <i aria-hidden />
+          {STATUS_TEXT[status]}
+          {latency !== null && <b>{latency} ms</b>}
+        </span>
+      </header>
+
+      <main className={p.grid}>
+        {/* ── The core ── */}
+        <section className={p.stage} aria-label="P.J.K. core">
+          <div className={p.coreBox} data-state={coreState}>
+            <PjkCore state={coreState} />
+            <span className={p.coreLabel}>{coreLabel}</span>
+          </div>
+          <dl className={p.telemetry}>
+            <div>
+              <dt>Link</dt>
+              <dd data-ok={status === 'connected' || undefined}>{status === 'connected' ? 'Tailscale' : STATUS_TEXT[status]}</dd>
+            </div>
+            <div>
+              <dt>Round trip</dt>
+              <dd>{latency !== null ? `${latency} ms` : '—'}</dd>
+            </div>
+            <div>
+              <dt>Messages</dt>
+              <dd>{messages.length}</dd>
+            </div>
+            <div>
+              <dt>Session</dt>
+              <dd>{started ? elapsed(now - started) : '—'}</dd>
+            </div>
+          </dl>
+          <p className={p.gate}>P.J.K. decides; it does not act. Anything it proposes still waits for your GO in Sentinel OS.</p>
+        </section>
+
         {/* ── Setup ── */}
         {(status === 'unconfigured' || status === 'unreachable') && (
-          <form onSubmit={saveUrl} className={`${s.card} ${s.panel} ${s.rise}`} aria-label="Connect to P.J.K.">
-            <div className={s.sec} style={{ marginTop: 0 }}>
-              <span className={s.lab}>Connect to P.J.K.</span>
-            </div>
+          <form onSubmit={saveUrl} className={p.panel} aria-label="Link to P.J.K.">
+            <h1 className={p.title}>
+              Link <span>P.J.K.</span>
+            </h1>
             {status === 'unreachable' && (
-              <p className={`${s.notice} ${s.noticeBad}`} role="alert" style={{ marginBottom: 14 }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                  <WifiOff size={16} aria-hidden /> Can&apos;t reach P.J.K. Make sure Sentinel OS is running and both devices are on Tailscale.
-                </span>
+              <p className={p.alert} role="alert">
+                <WifiOff size={16} aria-hidden /> Can&apos;t reach P.J.K. Make sure Sentinel OS is running and both devices are on Tailscale.
               </p>
             )}
-            <label className={s.kbField}>
-              <span className={s.kbLabel}>P.J.K. address</span>
-              <input
-                type="url"
-                placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net"
-                value={urlInput}
-                onChange={(e) => setUrlInput(e.target.value)}
-                className={s.field}
-                style={{ width: '100%', flex: 'none' }}
-              />
+            <label className={p.label}>
+              <span>P.J.K. address</span>
+              <input type="url" placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net" value={urlInput} onChange={(e) => setUrlInput(e.target.value)} className={p.input} />
             </label>
-            <div className={s.btnRow} style={{ marginTop: 14 }}>
-              <button type="submit" className={`${s.btn} ${s.btnOx}`} data-snd="drum">
-                Save and connect
+            <div className={p.row}>
+              <button type="submit" className={p.primary}>
+                Link
               </button>
               {pjkUrl && (
-                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className={s.btn}>
+                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className={p.ghost}>
                   Command Globe <ExternalLink size={14} aria-hidden />
                 </a>
               )}
             </div>
-            <p className={s.pjHelp}>
+            <p className={p.help}>
               On your Mac, set <code>SENTINEL_REMOTE=on</code> and <code>SENTINEL_REMOTE_PASSCODE</code> in <code>.env.local</code> in your Sentinel OS folder, add your IcyOS address to{' '}
               <code>SENTINEL_REMOTE_ORIGINS</code>, then install Tailscale on both devices.
             </p>
           </form>
         )}
 
-        {status === 'checking' && <p className={s.nothing}>Looking for P.J.K. on your Mac…</p>}
+        {status === 'checking' && (
+          <div className={p.panel}>
+            <h1 className={p.title}>
+              Linking <span>…</span>
+            </h1>
+            <p className={p.help}>Looking for P.J.K. on your Mac.</p>
+          </div>
+        )}
 
         {/* ── Conversation ── */}
         {status === 'connected' && (
-          <section className={`${s.card} ${s.cmd} ${s.pjDeck} ${s.rise}`} aria-label="Conversation with P.J.K.">
-            <div ref={scrollRef} className={s.pjLog} aria-live="polite">
+          <section className={p.console} aria-label="Conversation with P.J.K.">
+            <div className={p.consoleBar}>
+              <h1 className={p.title}>
+                Command <span>line</span>
+              </h1>
+              <div className={p.row}>
+                {canSpeak && (
+                  <button type="button" className={p.chipBtn} aria-pressed={voiceOut} onClick={toggleVoiceOut} title="Read replies aloud">
+                    {voiceOut ? <Volume2 size={15} aria-hidden /> : <VolumeX size={15} aria-hidden />} Voice {voiceOut ? 'on' : 'off'}
+                  </button>
+                )}
+                <button type="button" className={p.chipBtn} onClick={newSession} disabled={!messages.length || sending}>
+                  <Plus size={15} aria-hidden /> New session
+                </button>
+              </div>
+            </div>
+
+            <div ref={scrollRef} className={p.log} aria-live="polite">
               {messages.length === 0 && (
-                <div className={s.pjEmpty}>
-                  <span className={`${s.orb} ${s.pjOrbBig}`} aria-hidden />
-                  <p>Your command, Commander.</p>
-                  <div className={s.pjSuggest}>
+                <div className={p.empty}>
+                  <p>
+                    Your command,
+                    <br />
+                    <span>Commander.</span>
+                  </p>
+                  <div className={p.suggest}>
                     {SUGGESTIONS.map((q) => (
-                      <button key={q} type="button" className={s.pjChip} onClick={() => void sendText(q)} data-snd="high">
-                        {q}
+                      <button key={q} type="button" onClick={() => void sendText(q)}>
+                        <span aria-hidden>›</span> {q}
                       </button>
                     ))}
                   </div>
                 </div>
               )}
-              {messages.map((msg, i) => (
-                <div key={i} className={s.pjRow} data-role={msg.role}>
-                  {msg.role === 'assistant' && (
-                    <span className={s.pjAvatar} aria-hidden>
-                      P
-                    </span>
+              {messages.map((m, i) => (
+                <div key={i} className={p.msg} data-role={m.role}>
+                  <span className={p.meta}>
+                    {m.role === 'user' ? 'You' : 'P.J.K.'} · {clock(m.at)}
+                  </span>
+                  <div className={p.body}>{m.role === 'assistant' ? <Reveal text={m.text} live={i === lastLive.current} /> : m.text}</div>
+                  {m.role === 'assistant' && (
+                    <button type="button" className={p.copy} onClick={() => void copy(i, m.text)} aria-label="Copy reply">
+                      {copied === i ? <Check size={13} aria-hidden /> : <Copy size={13} aria-hidden />}
+                      {copied === i ? 'Copied' : 'Copy'}
+                    </button>
                   )}
-                  <div className={s.pjBubble} data-role={msg.role}>
-                    <span className="sr-only">{msg.role === 'user' ? 'You: ' : 'P.J.K.: '}</span>
-                    {msg.text}
-                  </div>
                 </div>
               ))}
               {sending && (
-                <div className={s.pjRow} data-role="assistant">
-                  <span className={s.pjAvatar} aria-hidden>
-                    P
-                  </span>
-                  <div className={`${s.pjBubble} ${s.pjTyping}`} data-role="assistant" aria-label="P.J.K. is thinking">
+                <div className={p.msg} data-role="assistant" aria-label="P.J.K. is thinking">
+                  <span className={p.meta}>P.J.K. · thinking</span>
+                  <div className={`${p.body} ${p.scan}`}>
+                    <i />
+                    <i />
                     <i />
                     <i />
                     <i />
@@ -232,47 +458,68 @@ export function PjkChat() {
                 e.preventDefault();
                 void sendText(input);
               }}
-              className={s.pjDock}
+              className={p.cmd}
+              data-listening={listening || undefined}
             >
-              <span className={`${s.orb} ${sending ? s.orbLive : ''}`} aria-hidden />
+              <span className={p.prompt} aria-hidden>
+                ›
+              </span>
               <input
                 ref={inputRef}
                 type="text"
                 aria-label="Message P.J.K."
-                placeholder="Your command…"
+                placeholder={listening ? 'Listening…' : 'Your command'}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowUp' && !input && lastUser) {
+                    e.preventDefault();
+                    setInput(lastUser);
+                  }
+                  if (e.key === 'Escape') setInput('');
+                }}
                 disabled={sending}
                 enterKeyHint="send"
                 autoComplete="off"
                 autoCorrect="on"
-                className={s.pjInput}
+                className={p.cmdInput}
               />
-              <button type="submit" aria-label="Send" disabled={!input.trim() || sending} className={s.pjSend} data-snd="high">
+              {canListen && (
+                <button type="button" className={p.mic} aria-pressed={listening} aria-label={listening ? 'Stop listening' : 'Speak a command'} onClick={toggleListen} disabled={sending}>
+                  {listening ? <MicOff size={18} aria-hidden /> : <Mic size={18} aria-hidden />}
+                </button>
+              )}
+              <button type="submit" aria-label="Send" disabled={!input.trim() || sending} className={p.send}>
                 <ArrowUp size={18} aria-hidden />
               </button>
             </form>
 
-            <div className={s.pjFoot}>
-              <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer">
-                Command Globe <ExternalLink size={12} aria-hidden />
-              </a>
-              <button
-                type="button"
-                onClick={() => {
-                  setStatus('unconfigured');
-                  setMessages([]);
-                }}
-              >
-                Change address
-              </button>
-              <button type="button" onClick={() => void checkConnection(pjkUrl)}>
-                <RefreshCw size={12} aria-hidden /> Re-check
-              </button>
+            <div className={p.foot}>
+              <span>
+                <kbd>/</kbd> focus · <kbd>↑</kbd> last command · <kbd>Esc</kbd> clear
+              </span>
+              <span className={p.footLinks}>
+                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer">
+                  Command Globe <ExternalLink size={12} aria-hidden />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStatus('unconfigured');
+                    setLatency(null);
+                    newSession();
+                  }}
+                >
+                  Change address
+                </button>
+                <button type="button" onClick={() => void checkConnection(pjkUrl)}>
+                  <RefreshCw size={12} aria-hidden /> Re-check
+                </button>
+              </span>
             </div>
           </section>
         )}
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
