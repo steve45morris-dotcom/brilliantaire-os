@@ -1,6 +1,6 @@
 'use client';
 
-import { CornerBrackets } from '../dashboard/hud';
+import s from '../daylight/daylight.module.css';
 
 export interface ProjectOption {
   id: string;
@@ -16,9 +16,6 @@ export interface Draft {
   projectId: string;
   estimate: string;
 }
-
-const FIELD =
-  'bg-[#08090e] border border-[#1e2030] rounded-md text-[#d0ccc4] placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors disabled:opacity-50';
 
 export function ProposalCard({
   draft,
@@ -37,27 +34,16 @@ export function ProposalCard({
   const id = `D-${String(index + 1).padStart(2, '0')}`;
 
   return (
-    <div
-      className="relative rounded-lg overflow-hidden transition-all duration-300"
-      style={{
-        background: draft.include ? 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)' : '#0a0b10',
-        border: `1px solid ${needsProject ? 'rgba(245,158,11,0.4)' : draft.include ? 'rgba(201,168,76,0.25)' : '#1e2030'}`,
-        boxShadow: draft.include ? 'inset 0 1px 0 rgba(201,168,76,0.08), 0 8px 24px rgba(0,0,0,0.25)' : 'none',
-        opacity: draft.include ? 1 : 0.55,
-      }}
-    >
-      {draft.include && <CornerBrackets color={needsProject ? 'rgba(245,158,11,0.6)' : 'rgba(201,168,76,0.5)'} size={12} />}
-
-      {/* Header row */}
-      <div className="flex items-center gap-3 px-4 pt-3 pb-2.5">
+    <div className={`${s.card} ${s.panel} ${draft.include ? '' : s.draftOff} ${needsProject ? s.draftWarn : ''}`}>
+      <div className={s.form}>
         <input
           type="checkbox"
-          className="tac-check"
+          className={s.box}
           aria-label={`Keep mission ${index + 1}`}
           checked={draft.include}
           onChange={(e) => set({ include: e.target.checked })}
         />
-        <span className="font-tactical text-[10px] tracking-[0.16em] text-[#6b6e7a] shrink-0">{id}</span>
+        <span className={s.meta}>{id}</span>
         <input
           aria-label={`Mission ${index + 1} name`}
           value={draft.name}
@@ -65,33 +51,34 @@ export function ProposalCard({
           disabled={!draft.include}
           onChange={(e) => set({ name: e.target.value })}
           placeholder="Mission name"
-          className={`flex-1 min-w-0 px-3 py-1.5 min-h-[38px] text-[15px] font-semibold ${FIELD}`}
+          className={s.field}
+          style={{ fontWeight: 700 }}
         />
         {draft.include && (
-          <span className="font-tactical text-[9px] tracking-[0.14em] text-[#4a4d5a] shrink-0 hidden sm:inline">
-            {stepCount > 0 ? `${String(stepCount).padStart(2, '0')} STEPS` : 'NO STEPS'}
-          </span>
+          <span className={`${s.pill} ${s.pillPlain}`}>{stepCount > 0 ? `${stepCount} ${stepCount === 1 ? 'step' : 'steps'}` : 'No steps'}</span>
         )}
       </div>
 
       {draft.include && (
-        <div className="flex flex-col gap-3 px-4 pb-4 pl-[3.25rem] border-t border-[#1e2030]/70 pt-3">
+        <div className={`${s.form} ${s.formCol}`} style={{ marginTop: 12 }}>
           <textarea
             aria-label={`Mission ${index + 1} steps, one per line`}
             placeholder="Steps, one per line (optional)"
             rows={Math.min(6, Math.max(2, draft.stepsText.split('\n').length))}
             value={draft.stepsText}
             onChange={(e) => set({ stepsText: e.target.value })}
-            className={`px-3 py-2 text-[13.5px] leading-relaxed ${FIELD}`}
+            className={s.area}
+            style={{ minHeight: 0 }}
           />
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex flex-col gap-1">
-              <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">PROJECT</span>
+          <div className={s.form} style={{ alignItems: 'end' }}>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span className={s.lab}>Project</span>
               <select
                 aria-label={`Mission ${index + 1} project`}
                 value={draft.projectId}
                 onChange={(e) => set({ projectId: e.target.value })}
-                className={`px-3 py-1.5 min-h-[36px] text-[13px] ${FIELD} ${needsProject ? '!border-amber-500/60 !text-amber-200' : ''}`}
+                className={s.selectField}
+                style={needsProject ? { borderColor: 'var(--terra)' } : undefined}
               >
                 <option value="">Choose a project…</option>
                 {projects.map((p) => (
@@ -100,25 +87,25 @@ export function ProposalCard({
                   </option>
                 ))}
               </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">ESTIMATE</span>
-              <label className="flex items-center gap-2 font-tactical text-[11px] tracking-[0.1em] text-[#4a4d5a]">
-                <input
-                  aria-label={`Mission ${index + 1} estimate in minutes`}
-                  type="number"
-                  min={1}
-                  max={1440}
-                  placeholder="—"
-                  value={draft.estimate}
-                  onChange={(e) => set({ estimate: e.target.value })}
-                  className={`w-20 px-2 py-1.5 min-h-[36px] text-[13px] font-tactical tabular-nums ${FIELD}`}
-                />
-                MIN
-              </label>
-            </div>
+            </label>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span className={s.lab}>Estimate (min)</span>
+              <input
+                aria-label={`Mission ${index + 1} estimate in minutes`}
+                type="number"
+                min={1}
+                max={1440}
+                placeholder="—"
+                value={draft.estimate}
+                onChange={(e) => set({ estimate: e.target.value })}
+                className={s.selectField}
+                style={{ width: 110 }}
+              />
+            </label>
             {needsProject && (
-              <span className="font-tactical text-[9px] tracking-[0.14em] text-amber-300 self-end pb-2.5">PROJECT REQUIRED</span>
+              <span className={s.formError} style={{ width: 'auto', paddingBottom: 10 }}>
+                Project required
+              </span>
             )}
           </div>
         </div>
