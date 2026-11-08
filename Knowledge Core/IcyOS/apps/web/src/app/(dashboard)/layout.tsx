@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 
 // Pages redesigned in Daylight carry their own light frame (top tabs, phone bottom bar);
 // every other page keeps the existing sidebar shell until it is redesigned.
-const OWN_FRAME = new Set(['/dashboard', '/inbox', '/timeline', '/focus', '/review', '/knowledge']);
+const OWN_FRAME = new Set(['/dashboard', '/inbox', '/timeline', '/focus', '/review', '/knowledge', '/pjk']);
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

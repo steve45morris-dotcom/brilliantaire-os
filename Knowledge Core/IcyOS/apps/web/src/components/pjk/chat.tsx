@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Send, Loader2, WifiOff, ExternalLink } from 'lucide-react';
+import { ArrowUp, ExternalLink, RefreshCw, WifiOff } from 'lucide-react';
+import { Words } from '../daylight/command-hero';
+import s from '../daylight/daylight.module.css';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -11,11 +13,23 @@ interface ChatMessage {
 type ConnectionStatus = 'checking' | 'connected' | 'unreachable' | 'unconfigured';
 
 const PJK_URL_KEY = 'pjk_url';
+const STATUS_TEXT: Record<ConnectionStatus, string> = {
+  checking: 'Checking…',
+  connected: 'Live',
+  unreachable: 'Unreachable',
+  unconfigured: 'Offline',
+};
+const SUGGESTIONS = ['What should I focus on next?', 'Summarise my day so far', 'What is waiting for my GO?'];
 
 function storedUrl(): string {
-  try { return localStorage.getItem(PJK_URL_KEY) ?? ''; } catch { return ''; }
+  try {
+    return localStorage.getItem(PJK_URL_KEY) ?? '';
+  } catch {
+    return '';
+  }
 }
 
+/** Chat with P.J.K. in Sentinel OS on the Commander's Mac, reached over Tailscale. */
 export function PjkChat() {
   const [pjkUrl, setPjkUrl] = useState('');
   const [urlInput, setUrlInput] = useState('');
@@ -31,7 +45,10 @@ export function PjkChat() {
   }, []);
 
   const checkConnection = useCallback(async (url: string) => {
-    if (!url) { setStatus('unconfigured'); return; }
+    if (!url) {
+      setStatus('unconfigured');
+      return;
+    }
     setStatus('checking');
     try {
       const res = await fetch(`${url}/api/pjk/echo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ping: true }), signal: AbortSignal.timeout(5000) });
@@ -43,8 +60,7 @@ export function PjkChat() {
 
   useEffect(() => {
     const envUrl = process.env.NEXT_PUBLIC_PJK_URL ?? '';
-    const saved = storedUrl();
-    const url = envUrl || saved;
+    const url = envUrl || storedUrl();
     setPjkUrl(url);
     setUrlInput(url);
     void checkConnection(url);
@@ -52,7 +68,7 @@ export function PjkChat() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, scrollToBottom]);
+  }, [messages, sending, scrollToBottom]);
 
   useEffect(() => {
     const vv = window.visualViewport;
@@ -68,17 +84,17 @@ export function PjkChat() {
   function saveUrl(e: React.FormEvent) {
     e.preventDefault();
     const url = urlInput.trim().replace(/\/+$/, '');
-    try { localStorage.setItem(PJK_URL_KEY, url); } catch {}
+    try {
+      localStorage.setItem(PJK_URL_KEY, url);
+    } catch {}
     setPjkUrl(url);
     void checkConnection(url);
   }
 
-  async function send(e: React.FormEvent) {
-    e.preventDefault();
-    const text = input.trim();
+  async function sendText(raw: string) {
+    const text = raw.trim();
     if (!text || sending || !pjkUrl) return;
-    const userMsg: ChatMessage = { role: 'user', text };
-    const history = [...messages, userMsg];
+    const history = [...messages, { role: 'user' as const, text }];
     setMessages(history);
     setInput('');
     setSending(true);
@@ -90,13 +106,8 @@ export function PjkChat() {
         signal: AbortSignal.timeout(60000),
       });
       const data = await res.json();
-      if (data.ok !== false && data.text) {
-        setMessages([...history, { role: 'assistant', text: data.text }]);
-      } else if (data.reply) {
-        setMessages([...history, { role: 'assistant', text: data.reply }]);
-      } else {
-        setMessages([...history, { role: 'assistant', text: data.error ?? 'P.J.K. returned an unexpected response.' }]);
-      }
+      const reply = data.ok !== false && data.text ? data.text : (data.reply ?? data.error ?? 'P.J.K. returned an unexpected response.');
+      setMessages([...history, { role: 'assistant', text: reply }]);
     } catch {
       setMessages([...history, { role: 'assistant', text: 'Could not reach P.J.K. Check your connection and try again.' }]);
       setStatus('unreachable');
@@ -105,189 +116,163 @@ export function PjkChat() {
     }
   }
 
-  const statusDot: Record<ConnectionStatus, string> = {
-    checking: 'bg-[#4a4d5a]',
-    connected: 'bg-[#c9a84c] shadow-[0_0_8px_rgba(201,168,76,0.6)]',
-    unreachable: 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]',
-    unconfigured: 'bg-[#4a4d5a]',
-  };
-  const statusText: Record<ConnectionStatus, string> = {
-    checking: 'Checking…',
-    connected: 'Live',
-    unreachable: 'Unreachable',
-    unconfigured: 'Offline',
-  };
+  // Back to the box once a reply lands; it is disabled while P.J.K. thinks, so it can't keep focus.
+  useEffect(() => {
+    if (!sending && messages.length) inputRef.current?.focus();
+  }, [sending, messages.length]);
 
   return (
-    <div className="flex flex-col h-full max-w-2xl w-full" style={{ fontFamily: "'Outfit', system-ui, sans-serif" }}>
+    <>
+      <section className={s.hero} aria-label="P.J.K.">
+        <span className={s.floor} aria-hidden />
+        <p className={s.pjStatus} data-status={status} role="status">
+          <span className={s.pjDot} aria-hidden />
+          P.J.K. · {STATUS_TEXT[status]}
+          {status === 'connected' && <span className={s.pjVia}> · Sentinel OS via Tailscale</span>}
+        </p>
+        <h1 className={s.h1}>
+          <Words text="P.J.K." delay={0.05} />
+          <span className={s.h1em}>
+            <Words text="At your command." delay={0.2} />
+          </span>
+        </h1>
+        <p className={s.sub}>Talk to P.J.K. in Sentinel OS on your Mac. Anything it would do still waits for your GO there.</p>
+      </section>
 
-      {/* Header */}
-      <div className="shrink-0 pb-2 md:pb-3">
-        <div className="flex items-center justify-between">
-          <h1
-            className="text-2xl md:text-3xl font-bold tracking-[0.06em] text-[#c9a84c]"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            P.J.K.
-          </h1>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#c9a84c]/20 bg-[#c9a84c]/5">
-            <span className={`w-[6px] h-[6px] rounded-full ${statusDot[status]}`} />
-            <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#c9a84c]">
-              {statusText[status]}
-            </span>
-          </div>
-        </div>
-        {status === 'connected' && (
-          <p className="text-[11px] text-[#4a4d5a] font-light mt-0.5">Sentinel OS · via Tailscale</p>
-        )}
-      </div>
-
-      {/* Setup form */}
-      {(status === 'unconfigured' || status === 'unreachable') && (
-        <div className="shrink-0 p-5 md:p-6 bg-[#12131a] border border-[#1e2030] rounded-xl">
-          <form onSubmit={saveUrl} className="flex flex-col gap-4">
-            <label className="flex flex-col gap-1.5">
-              <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-[#4a4d5a]">
-                P.J.K. Endpoint
-              </span>
+      <div className={s.page}>
+        {/* ── Setup ── */}
+        {(status === 'unconfigured' || status === 'unreachable') && (
+          <form onSubmit={saveUrl} className={`${s.card} ${s.panel} ${s.rise}`} aria-label="Connect to P.J.K.">
+            <div className={s.sec} style={{ marginTop: 0 }}>
+              <span className={s.lab}>Connect to P.J.K.</span>
+            </div>
+            {status === 'unreachable' && (
+              <p className={`${s.notice} ${s.noticeBad}`} role="alert" style={{ marginBottom: 14 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <WifiOff size={16} aria-hidden /> Can&apos;t reach P.J.K. Make sure Sentinel OS is running and both devices are on Tailscale.
+                </span>
+              </p>
+            )}
+            <label className={s.kbField}>
+              <span className={s.kbLabel}>P.J.K. address</span>
               <input
                 type="url"
                 placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net"
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
-                className="px-4 py-3 bg-[#0e0f16] border border-[#1e2030] rounded-xl text-base text-[#d0ccc4] placeholder:text-[#3a3c4a] focus:outline-none focus:border-[#c9a84c]/40 transition-colors"
+                className={s.field}
+                style={{ width: '100%', flex: 'none' }}
               />
             </label>
-            {status === 'unreachable' && (
-              <div className="flex items-center gap-2 text-xs text-red-400/80">
-                <WifiOff size={14} />
-                <span>Can&apos;t reach P.J.K. Make sure Sentinel OS is running and both devices are on Tailscale.</span>
-              </div>
-            )}
-            <div className="flex items-center gap-3">
-              <button
-                type="submit"
-                className="px-5 py-2.5 min-h-[44px] rounded-xl font-semibold text-sm bg-[#c9a84c] text-[#080808] hover:brightness-110 transition-all disabled:opacity-50"
-              >
-                Save &amp; Connect
+            <div className={s.btnRow} style={{ marginTop: 14 }}>
+              <button type="submit" className={`${s.btn} ${s.btnOx}`} data-snd="drum">
+                Save and connect
               </button>
               {pjkUrl && (
-                <a
-                  href={`${pjkUrl}/command-globe`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#c9a84c]/60 hover:text-[#c9a84c] transition-colors inline-flex items-center gap-1 min-h-[44px] px-1"
-                >
-                  Command Globe <ExternalLink size={12} />
+                <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className={s.btn}>
+                  Command Globe <ExternalLink size={14} aria-hidden />
                 </a>
               )}
             </div>
-            <p className="text-xs text-[#4a4d5a] leading-relaxed">
-              On your Mac: set <code className="text-[#b8b4ac]">SENTINEL_REMOTE=on</code> and{' '}
-              <code className="text-[#b8b4ac]">SENTINEL_REMOTE_PASSCODE</code> in{' '}
-              <code className="text-[#b8b4ac]">~/sentinel-os/.env.local</code>, add your IcyOS URL to{' '}
-              <code className="text-[#b8b4ac]">SENTINEL_REMOTE_ORIGINS</code>, then install Tailscale on both devices.
+            <p className={s.pjHelp}>
+              On your Mac, set <code>SENTINEL_REMOTE=on</code> and <code>SENTINEL_REMOTE_PASSCODE</code> in <code>.env.local</code> in your Sentinel OS folder, add your IcyOS address to{' '}
+              <code>SENTINEL_REMOTE_ORIGINS</code>, then install Tailscale on both devices.
             </p>
           </form>
-        </div>
-      )}
+        )}
 
-      {/* Connected: chat interface */}
-      {status === 'connected' && (
-        <>
-          {/* Messages */}
-          <div
-            ref={scrollRef}
-            className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-3 -mx-1 px-1 overscroll-contain"
-          >
-            {messages.length === 0 && (
-              <div className="flex-1 flex flex-col items-center justify-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#c9a84c]/10 border border-[#c9a84c]/15 flex items-center justify-center">
-                  <span className="text-[#c9a84c] text-lg" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>
+        {status === 'checking' && <p className={s.nothing}>Looking for P.J.K. on your Mac…</p>}
+
+        {/* ── Conversation ── */}
+        {status === 'connected' && (
+          <section className={`${s.card} ${s.cmd} ${s.pjDeck} ${s.rise}`} aria-label="Conversation with P.J.K.">
+            <div ref={scrollRef} className={s.pjLog} aria-live="polite">
+              {messages.length === 0 && (
+                <div className={s.pjEmpty}>
+                  <span className={`${s.orb} ${s.pjOrbBig}`} aria-hidden />
+                  <p>Your command, Commander.</p>
+                  <div className={s.pjSuggest}>
+                    {SUGGESTIONS.map((q) => (
+                      <button key={q} type="button" className={s.pjChip} onClick={() => void sendText(q)} data-snd="high">
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {messages.map((msg, i) => (
+                <div key={i} className={s.pjRow} data-role={msg.role}>
+                  {msg.role === 'assistant' && (
+                    <span className={s.pjAvatar} aria-hidden>
+                      P
+                    </span>
+                  )}
+                  <div className={s.pjBubble} data-role={msg.role}>
+                    <span className="sr-only">{msg.role === 'user' ? 'You: ' : 'P.J.K.: '}</span>
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+              {sending && (
+                <div className={s.pjRow} data-role="assistant">
+                  <span className={s.pjAvatar} aria-hidden>
                     P
                   </span>
-                </div>
-                <p className="text-[#4a4d5a] text-sm font-light">Your command, Commander.</p>
-              </div>
-            )}
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                {msg.role === 'user' ? (
-                  <div
-                    className="max-w-[85%] md:max-w-[80%] px-4 py-3 rounded-2xl rounded-br-md text-sm leading-relaxed whitespace-pre-wrap font-medium text-[#080808]"
-                    style={{ background: 'linear-gradient(135deg, #c9a84c, #a8872e)' }}
-                  >
-                    {msg.text}
+                  <div className={`${s.pjBubble} ${s.pjTyping}`} data-role="assistant" aria-label="P.J.K. is thinking">
+                    <i />
+                    <i />
+                    <i />
                   </div>
-                ) : (
-                  <div className="max-w-[85%] md:max-w-[80%] px-4 py-3 rounded-2xl rounded-bl-md text-sm leading-relaxed whitespace-pre-wrap bg-[#12131a] border border-[#1e2030] text-[#b8b4ac]">
-                    {msg.text}
-                  </div>
-                )}
-              </div>
-            ))}
-            {sending && (
-              <div className="flex justify-start">
-                <div className="px-4 py-3 bg-[#12131a] border border-[#1e2030] rounded-2xl rounded-bl-md">
-                  <Loader2 size={16} className="animate-spin text-[#c9a84c]" />
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
-          {/* Input */}
-          <form
-            onSubmit={send}
-            className="flex gap-2 pt-3 shrink-0 pb-[env(safe-area-inset-bottom,0px)] border-t border-[#14151e]"
-          >
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Your command…"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              disabled={sending}
-              enterKeyHint="send"
-              autoComplete="off"
-              autoCorrect="on"
-              className="flex-1 min-w-0 px-4 py-3 bg-[#0e0f16] border border-[#1e2030] rounded-xl text-base text-[#d0ccc4] placeholder:text-[#3a3c4a] focus:outline-none focus:border-[#c9a84c]/40 disabled:opacity-50 transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={!input.trim() || sending}
-              className="px-3 min-w-[44px] min-h-[44px] rounded-xl bg-[#c9a84c] disabled:opacity-30 hover:brightness-110 transition-all shrink-0 flex items-center justify-center"
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                void sendText(input);
+              }}
+              className={s.pjDock}
             >
-              <Send size={18} className="text-[#080808]" />
-            </button>
-          </form>
+              <span className={`${s.orb} ${sending ? s.orbLive : ''}`} aria-hidden />
+              <input
+                ref={inputRef}
+                type="text"
+                aria-label="Message P.J.K."
+                placeholder="Your command…"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                disabled={sending}
+                enterKeyHint="send"
+                autoComplete="off"
+                autoCorrect="on"
+                className={s.pjInput}
+              />
+              <button type="submit" aria-label="Send" disabled={!input.trim() || sending} className={s.pjSend} data-snd="high">
+                <ArrowUp size={18} aria-hidden />
+              </button>
+            </form>
 
-          {/* Footer */}
-          <div className="flex items-center gap-4 text-[11px] text-[#4a4d5a] pt-2 shrink-0">
-            <a
-              href={`${pjkUrl}/command-globe`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c9a84c]/50 hover:text-[#c9a84c] transition-colors inline-flex items-center gap-1 py-1"
-            >
-              Command Globe <ExternalLink size={10} />
-            </a>
-            <button
-              type="button"
-              onClick={() => { setStatus('unconfigured'); setMessages([]); }}
-              className="hover:text-[#b8b4ac] transition-colors py-1"
-            >
-              Change URL
-            </button>
-            <button
-              type="button"
-              onClick={() => void checkConnection(pjkUrl)}
-              className="hover:text-[#b8b4ac] transition-colors py-1"
-            >
-              Re-check
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+            <div className={s.pjFoot}>
+              <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer">
+                Command Globe <ExternalLink size={12} aria-hidden />
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  setStatus('unconfigured');
+                  setMessages([]);
+                }}
+              >
+                Change address
+              </button>
+              <button type="button" onClick={() => void checkConnection(pjkUrl)}>
+                <RefreshCw size={12} aria-hidden /> Re-check
+              </button>
+            </div>
+          </section>
+        )}
+      </div>
+    </>
   );
 }
