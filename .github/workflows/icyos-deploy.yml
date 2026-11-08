@@ -1,11 +1,9 @@
 name: IcyOS Deploy
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'Knowledge Core/IcyOS/**'
-      - '.github/workflows/icyos-deploy.yml'
+  # Deliberately NO push trigger: merging to main must never deploy by itself.
+  # Deploy is always a separate, explicit decision —
+  # Actions > IcyOS Deploy > Run workflow (or `gh workflow run icyos-deploy.yml`).
   workflow_dispatch:
 
 concurrency:
