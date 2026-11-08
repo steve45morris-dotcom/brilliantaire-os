@@ -7,7 +7,7 @@ import { BarChart3, Inbox, LayoutDashboard, MoreHorizontal, Play } from 'lucide-
 import { isActive } from '../layout/bottom-nav';
 import { Aurora } from './aurora';
 import { useSound } from './daylight-fx';
-import { mono, sans, serif, text, title } from './fonts';
+import { mono, text, title } from './fonts';
 import s from './daylight.module.css';
 
 // The existing routes, grouped: seven up front, the rest under More.
@@ -119,16 +119,14 @@ export function DaylightTopBar({ soundOn, onToggleSound }: { soundOn: boolean; o
 }
 
 /**
- * The Daylight page frame: top tabs, phone bottom bar and click sounds.
- * `paper` is the dashboard's look; `glass` is white, red and gold frosted glass over an aurora.
+ * The Daylight page frame: top tabs, phone bottom bar and click sounds, in the glass
+ * theme (black, white, red and gold frosted glass over the aurora).
  */
-export function DaylightFrame({ children, theme = 'paper' }: { children: React.ReactNode; theme?: 'paper' | 'glass' }) {
+export function DaylightFrame({ children }: { children: React.ReactNode }) {
   const sound = useSound();
-  const glass = theme === 'glass';
-  const fonts = glass ? `${title.variable} ${text.variable} ${mono.variable} ${s.glassTheme}` : `${serif.variable} ${sans.variable}`;
   return (
-    <div className={`${s.root} ${fonts}`} onPointerDownCapture={sound.onPointerDown}>
-      {glass && <Aurora />}
+    <div className={`${s.root} ${title.variable} ${text.variable} ${mono.variable} ${s.glassTheme}`} onPointerDownCapture={sound.onPointerDown}>
+      <Aurora />
       <DaylightTopBar soundOn={sound.on} onToggleSound={sound.toggle} />
       <main>{children}</main>
       <DaylightBottomNav />

@@ -193,7 +193,7 @@ export default function InboxPage() {
 
   if (!hasWorkspace) {
     return (
-      <DaylightFrame theme="glass">
+      <DaylightFrame>
         <section className={s.hero}>
           <span className={s.floor} aria-hidden />
           <h1 className={s.h1}>
@@ -209,7 +209,7 @@ export default function InboxPage() {
   }
 
   return (
-    <DaylightFrame theme="glass">
+    <DaylightFrame>
       <section className={s.hero} aria-label="Inbox">
         <span className={s.floor} aria-hidden />
         <p className={s.meta}>

@@ -173,7 +173,7 @@ export default function DashboardPage() {
 
   if (!overview) {
     return (
-      <DaylightFrame theme="glass">
+      <DaylightFrame>
           <section className={s.hero} aria-busy={!error}>
             <p className={s.meta}>IcyOS</p>
             <h1 className={s.h1}>{error ? 'Your workspace did not load' : 'Opening your workspace…'}</h1>
@@ -190,7 +190,7 @@ export default function DashboardPage() {
   const { workspace, totals } = overview;
 
   return (
-    <DaylightFrame theme="glass">
+    <DaylightFrame>
         {!workspace ? (
           <section className={s.hero}>
             <h1 className={s.h1}>Set up your workspace</h1>

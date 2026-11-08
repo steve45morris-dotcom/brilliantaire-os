@@ -1374,8 +1374,8 @@
 /* ── Glass theme: white, red and gold (JARVIS Glass on the Supernova spec) ──
    A modifier on .root: it re-points the palette tokens, so every Daylight class
    above takes the new colours, then turns cards into frosted glass over a
-   drifting red-and-gold aurora (aurora.tsx). Pages opt in with
-   <DaylightFrame theme="glass">; the rest keep the paper look. */
+   drifting red-and-gold aurora (aurora.tsx). DaylightFrame always applies it.
+   */
 .glassTheme {
   --paper: #fdfcfa;
   --paper-2: #f4efe9;
