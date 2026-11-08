@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, Mic, MicOff, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
+import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, Mic, MicOff, Orbit, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
 import { PjkReactor, type CoreState } from './core';
 import { display, mono } from './fonts';
 import p from './pjk.module.css';
@@ -22,6 +22,7 @@ type ConnectionStatus = 'checking' | 'connected' | 'unreachable' | 'unconfigured
 
 const PJK_URL_KEY = 'pjk_url';
 const VOICE_KEY = 'pjk_voice';
+const SCENE_KEY = 'pjk_3d';
 // The conversation lasts for this tab only: sessionStorage, so it is gone when the tab closes.
 const SESSION_KEY = 'pjk_session';
 const STATUS_TEXT: Record<ConnectionStatus, string> = { checking: 'Linking', connected: 'Linked', unreachable: 'No link', unconfigured: 'Offline' };
@@ -99,6 +100,7 @@ export function PjkChat() {
   const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [voiceOut, setVoiceOut] = useState(false);
+  const [scene, setScene] = useState(true);
   const [canListen, setCanListen] = useState(false);
   const [canSpeak, setCanSpeak] = useState(false);
   const [copied, setCopied] = useState<number | null>(null);
@@ -139,6 +141,7 @@ export function PjkChat() {
     setCanListen(Boolean(w.SpeechRecognition ?? w.webkitSpeechRecognition));
     setCanSpeak('speechSynthesis' in window);
     setVoiceOut(read('local', VOICE_KEY) === 'on');
+    setScene(read('local', SCENE_KEY) !== 'off');
     try {
       const saved = JSON.parse(read('session', SESSION_KEY) ?? '[]') as ChatMessage[];
       if (Array.isArray(saved)) {
@@ -271,6 +274,12 @@ export function PjkChat() {
     if (!next) window.speechSynthesis?.cancel();
   }
 
+  function toggleScene() {
+    const next = !scene;
+    setScene(next);
+    write('local', SCENE_KEY, next ? 'on' : 'off');
+  }
+
   function newSession() {
     window.speechSynthesis?.cancel();
     setMessages([]);
@@ -322,7 +331,7 @@ export function PjkChat() {
 
   return (
     <div className={`${p.root} ${display.variable} ${mono.variable}`}>
-      <PjkReactor state={coreState} />
+      <PjkReactor state={coreState} live={scene} />
 
       <header className={p.bar}>
         <Link href="/dashboard" className={p.back}>
@@ -330,6 +339,9 @@ export function PjkChat() {
         </Link>
         <span className={p.mark}>P.J.K.</span>
         <span className={p.tag}>REACTOR</span>
+        <button type="button" className={p.scene} aria-pressed={scene} onClick={toggleScene} title={scene ? 'Turn the 3D reactor off' : 'Turn the 3D reactor on'}>
+          <Orbit size={15} aria-hidden /> 3D {scene ? 'on' : 'off'}
+        </button>
         <span className={p.link} data-status={status} role="status">
           <i aria-hidden />
           {STATUS_TEXT[status].toUpperCase()}

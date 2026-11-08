@@ -78,8 +78,33 @@
   font-size: 11px;
   letter-spacing: 0.24em;
 }
-.link {
+.scene {
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 250, 250, 0.22);
+  background: transparent;
+  color: var(--snow-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.scene[aria-pressed='true'] {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+.scene:hover {
+  background: var(--acid);
+  border-color: var(--acid);
+  color: var(--ember);
+}
+.link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -629,6 +654,16 @@
   }
   .tag {
     display: none;
+  }
+  .scene {
+    padding: 0 8px;
+  }
+  .link {
+    font-size: 0;
+    gap: 6px;
+  }
+  .link b {
+    font-size: 11px;
   }
   .dock {
     bottom: 12px;

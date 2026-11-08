@@ -12,10 +12,14 @@ export type CoreState = 'offline' | 'idle' | 'listening' | 'thinking' | 'speakin
 const EMBER = '14,4,2';
 const PARTICLES = 1800;
 
-export function PjkReactor({ state }: { state: CoreState }) {
+/** `live` false stops drawing and hides the scene (the 3D button); it starts again where it left off. */
+export function PjkReactor({ state, live = true }: { state: CoreState; live?: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef(state);
   stateRef.current = state;
+  const liveRef = useRef(live);
+  liveRef.current = live;
+  const kick = useRef<() => void>(() => {});
 
   useEffect(() => {
     const el = canvas.current;
@@ -51,6 +55,12 @@ export function PjkReactor({ state }: { state: CoreState }) {
     window.addEventListener('pointermove', onMove);
 
     const draw = (now: number) => {
+      // Hidden (3D off) the canvas measures 0×0; re-measure once it is shown again.
+      if (w < 2 || h < 2) resize();
+      if (w < 2 || h < 2) {
+        raf = liveRef.current ? requestAnimationFrame(draw) : 0;
+        return;
+      }
       const phase = stateRef.current;
       const offline = phase === 'offline';
       const target = { offline: 0.12, idle: 0.3, listening: 0.55, thinking: 1, speaking: 0.7 }[phase];
@@ -168,15 +178,19 @@ export function PjkReactor({ state }: { state: CoreState }) {
           ctx.stroke();
         }
       }
-      raf = requestAnimationFrame(draw);
+      raf = liveRef.current ? requestAnimationFrame(draw) : 0;
+    };
+    kick.current = () => {
+      if (!raf && liveRef.current && !document.hidden) raf = requestAnimationFrame(draw);
     };
 
     const onVisibility = () => {
       cancelAnimationFrame(raf);
-      if (!document.hidden) raf = requestAnimationFrame(draw);
+      raf = 0;
+      kick.current();
     };
     document.addEventListener('visibilitychange', onVisibility);
-    raf = requestAnimationFrame(draw);
+    kick.current();
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
@@ -185,5 +199,9 @@ export function PjkReactor({ state }: { state: CoreState }) {
     };
   }, []);
 
-  return <canvas ref={canvas} aria-hidden style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />;
+  useEffect(() => {
+    if (live) kick.current();
+  }, [live]);
+
+  return <canvas ref={canvas} aria-hidden style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: live ? 'block' : 'none' }} />;
 }
