@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, Mic, MicOff, Orbit, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
+import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, KeyRound, LogOut, Mic, MicOff, Orbit, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
 import { PjkReactor, type CoreState } from './core';
 import { display, mono } from './fonts';
 import p from './pjk.module.css';
@@ -18,14 +18,18 @@ interface ChatMessage {
   at: number;
 }
 
-type ConnectionStatus = 'checking' | 'connected' | 'unreachable' | 'unconfigured';
+type ConnectionStatus = 'checking' | 'connected' | 'unreachable' | 'unconfigured' | 'signin';
 
 const PJK_URL_KEY = 'pjk_url';
 const VOICE_KEY = 'pjk_voice';
 const SCENE_KEY = 'pjk_3d';
+// The signed P.J.K. session, from signing in with the passcode: { url, token }. Sentinel OS
+// hands it only to origins in SENTINEL_REMOTE_ORIGINS; it lasts 30 days, until the passcode
+// changes, or until Sign out here. It opens P.J.K.'s API only, not Commander authority.
+const TOKEN_KEY = 'pjk_token';
 // The conversation lasts for this tab only: sessionStorage, so it is gone when the tab closes.
 const SESSION_KEY = 'pjk_session';
-const STATUS_TEXT: Record<ConnectionStatus, string> = { checking: 'Linking', connected: 'Linked', unreachable: 'No link', unconfigured: 'Offline' };
+const STATUS_TEXT: Record<ConnectionStatus, string> = { checking: 'Linking', connected: 'Linked', unreachable: 'No link', unconfigured: 'Offline', signin: 'Sign in' };
 const SUGGESTIONS = ['What should I focus on next?', 'Summarise my day so far', 'What is waiting for my GO?'];
 
 // The Web Speech API is not in TypeScript's DOM types yet; only what is used here.
@@ -92,6 +96,10 @@ function Reveal({ text: full, live }: { text: string; live: boolean }) {
 export function PjkChat() {
   const [pjkUrl, setPjkUrl] = useState('');
   const [urlInput, setUrlInput] = useState('');
+  const [passcode, setPasscode] = useState('');
+  const [signInError, setSignInError] = useState<string | null>(null);
+  const [signingIn, setSigningIn] = useState(false);
+  const token = useRef<string | null>(null);
   const [status, setStatus] = useState<ConnectionStatus>('checking');
   const [latency, setLatency] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -114,6 +122,17 @@ export function PjkChat() {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, []);
 
+  const headers = useCallback((): Record<string, string> => {
+    const h: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (token.current) h.Authorization = `Bearer ${token.current}`;
+    return h;
+  }, []);
+
+  const forgetToken = useCallback(() => {
+    token.current = null;
+    write('local', TOKEN_KEY, null);
+  }, []);
+
   const checkConnection = useCallback(async (url: string) => {
     if (!url) {
       setStatus('unconfigured');
@@ -123,17 +142,23 @@ export function PjkChat() {
     setStatus('checking');
     const t0 = performance.now();
     try {
-      const res = await fetch(`${url}/api/pjk/echo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ping: true }), signal: AbortSignal.timeout(5000) });
+      const res = await fetch(`${url}/api/pjk/echo`, { method: 'POST', headers: headers(), body: JSON.stringify({ ping: true }), signal: AbortSignal.timeout(5000) });
       setLatency(res.ok ? Math.round(performance.now() - t0) : null);
-      setStatus(res.ok ? 'connected' : 'unreachable');
+      // 401: reachable, but this browser isn't signed in (or its session expired or the passcode changed).
+      if (res.status === 401) forgetToken();
+      setStatus(res.ok ? 'connected' : res.status === 401 ? 'signin' : 'unreachable');
     } catch {
       setLatency(null);
       setStatus('unreachable');
     }
-  }, []);
+  }, [headers, forgetToken]);
 
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_PJK_URL || read('local', PJK_URL_KEY) || '';
+    try {
+      const saved = JSON.parse(read('local', TOKEN_KEY) ?? 'null') as { url?: string; token?: string } | null;
+      if (saved?.url === url && typeof saved.token === 'string') token.current = saved.token;
+    } catch {}
     setPjkUrl(url);
     setUrlInput(url);
     void checkConnection(url);
@@ -177,12 +202,46 @@ export function PjkChat() {
     return () => vv.removeEventListener('resize', handler);
   }, [scrollToBottom]);
 
-  function saveUrl(e: React.FormEvent) {
+  async function saveUrl(e: React.FormEvent) {
     e.preventDefault();
-    const url = urlInput.trim().replace(/\/+$/, '');
+    const typed = urlInput.trim().replace(/\/+$/, '');
+    // "mac.tail1234.ts.net:3000" means http://; a relative address (the preview's ".") stays as it is.
+    const url = typed && !/^[a-z][a-z0-9+.-]*:\/\//i.test(typed) && !/^[./]/.test(typed) ? `http://${typed}` : typed;
+    setUrlInput(url);
+    setSignInError(null);
+    if (url !== pjkUrl) forgetToken();
     write('local', PJK_URL_KEY, url);
     setPjkUrl(url);
+    if (url && passcode) {
+      setSigningIn(true);
+      try {
+        const res = await fetch(`${url}/api/pjk/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ passcode }), signal: AbortSignal.timeout(8000) });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.ok === false) {
+          setSignInError(data.error ?? 'P.J.K. refused the sign-in.');
+          setSigningIn(false);
+          return;
+        }
+        if (typeof data.token === 'string') {
+          token.current = data.token;
+          write('local', TOKEN_KEY, JSON.stringify({ url, token: data.token }));
+        }
+        setPasscode('');
+      } catch {
+        setSignInError("Couldn't reach P.J.K. to sign in. Check the address and that both devices are on Tailscale.");
+        setSigningIn(false);
+        return;
+      }
+      setSigningIn(false);
+    }
     void checkConnection(url);
+  }
+
+  function signOut() {
+    forgetToken();
+    window.speechSynthesis?.cancel();
+    setStatus('signin');
+    setLatency(null);
   }
 
   function say(reply: string) {
@@ -207,13 +266,20 @@ export function PjkChat() {
       try {
         const res = await fetch(`${pjkUrl}/api/pjk/chat`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: headers(),
           // P.J.K. reads role and text; the timestamps stay in this tab.
           body: JSON.stringify({ history: history.map(({ role, text: t }) => ({ role, text: t })) }),
           signal: AbortSignal.timeout(60000),
         });
-        const data = await res.json();
-        reply = data.ok !== false && data.text ? data.text : (data.reply ?? data.error ?? 'P.J.K. returned an unexpected response.');
+        if (res.status === 401) {
+          forgetToken();
+          setStatus('signin');
+          setLatency(null);
+          reply = 'Your P.J.K. sign-in has expired. Enter your passcode to sign in again.';
+        } else {
+          const data = await res.json();
+          reply = data.ok !== false && data.text ? data.text : (data.reply ?? data.error ?? 'P.J.K. returned an unexpected response.');
+        }
       } catch {
         reply = 'Could not reach P.J.K. Check your connection and try again.';
         setStatus('unreachable');
@@ -225,7 +291,7 @@ export function PjkChat() {
       say(reply);
     },
     // say() reads voiceOut and canSpeak, which are in the list.
-    [messages, sending, pjkUrl, voiceOut, canSpeak],
+    [messages, sending, pjkUrl, voiceOut, canSpeak, headers, forgetToken],
   );
 
   // Back to the box once a reply lands; it is disabled while P.J.K. thinks, so it can't keep focus.
@@ -310,7 +376,7 @@ export function PjkChat() {
 
   const coreState: CoreState = status !== 'connected' ? 'offline' : listening ? 'listening' : sending ? 'thinking' : speaking ? 'speaking' : 'idle';
   const CORE: Record<CoreState, [string, string]> = {
-    offline: [status === 'checking' ? 'LINKING' : 'STANDBY', status === 'checking' ? 'Looking for your Mac' : 'No link to Sentinel OS'],
+    offline: [status === 'checking' ? 'LINKING' : status === 'signin' ? 'LOCKED' : 'STANDBY', status === 'checking' ? 'Looking for your Mac' : status === 'signin' ? 'Passcode needed' : 'No link to Sentinel OS'],
     idle: ['READY', 'Awaiting command'],
     listening: ['LISTENING', 'Speak your command'],
     thinking: ['THINKING', 'Routing through Sentinel OS'],
@@ -376,11 +442,22 @@ export function PjkChat() {
         </div>
 
         {/* ── Setup ── */}
-        {(status === 'unconfigured' || status === 'unreachable') && (
+        {(status === 'unconfigured' || status === 'unreachable' || status === 'signin') && (
           <form onSubmit={saveUrl} className={p.panel} aria-label="Link to P.J.K.">
             <h1 className={p.title}>
-              Link <span>P.J.K.</span>
+              {status === 'signin' ? 'Sign in to ' : 'Link '}
+              <span>P.J.K.</span>
             </h1>
+            {status === 'signin' && !signInError && (
+              <p className={p.note} role="status">
+                <KeyRound size={16} aria-hidden /> P.J.K. is reachable. Enter the passcode you set in Sentinel OS to sign this browser in for 30 days.
+              </p>
+            )}
+            {signInError && (
+              <p className={p.alert} role="alert">
+                <KeyRound size={16} aria-hidden /> {signInError}
+              </p>
+            )}
             {status === 'unreachable' && (
               <p className={p.alert} role="alert">
                 <WifiOff size={16} aria-hidden /> Can&apos;t reach P.J.K. Make sure Sentinel OS is running and both devices are on Tailscale.
@@ -388,11 +465,23 @@ export function PjkChat() {
             )}
             <label className={p.label}>
               <span>P.J.K. address</span>
-              <input type="url" placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net" value={urlInput} onChange={(e) => setUrlInput(e.target.value)} className={p.input} />
+              <input type="text" inputMode="url" autoCapitalize="off" spellCheck={false} placeholder="http://100.x.x.x:3000 or https://mac.tail1234.ts.net" value={urlInput} onChange={(e) => setUrlInput(e.target.value)} className={p.input} />
+            </label>
+            <label className={p.label}>
+              <span>Passcode{status === 'signin' ? '' : ' (if you have signed out or it is a new browser)'}</span>
+              <input
+                type="password"
+                autoComplete="current-password"
+                placeholder="SENTINEL_REMOTE_PASSCODE"
+                value={passcode}
+                onChange={(e) => setPasscode(e.target.value)}
+                required={status === 'signin'}
+                className={p.input}
+              />
             </label>
             <div className={p.row}>
-              <button type="submit" className={p.primary}>
-                Link
+              <button type="submit" className={p.primary} disabled={signingIn}>
+                {signingIn ? 'Signing in…' : status === 'signin' ? 'Sign in' : 'Link'}
               </button>
               {pjkUrl && (
                 <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer" className={p.ghost}>
@@ -402,7 +491,7 @@ export function PjkChat() {
             </div>
             <p className={p.help}>
               On your Mac, set <code>SENTINEL_REMOTE=on</code> and <code>SENTINEL_REMOTE_PASSCODE</code> in <code>.env.local</code> in your Sentinel OS folder, add your IcyOS address to{' '}
-              <code>SENTINEL_REMOTE_ORIGINS</code>, then install Tailscale on both devices.
+              <code>SENTINEL_REMOTE_ORIGINS</code>, then install Tailscale on both devices. The passcode signs this browser in; it is sent only to your Mac.
             </p>
           </form>
         )}
@@ -518,6 +607,9 @@ export function PjkChat() {
                 </button>
                 <button type="button" onClick={() => void checkConnection(pjkUrl)}>
                   <RefreshCw size={12} aria-hidden /> Re-check
+                </button>
+                <button type="button" onClick={signOut}>
+                  <LogOut size={12} aria-hidden /> Sign out
                 </button>
               </span>
             </div>
