@@ -1,14 +1,17 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pin, PinOff, Plus, Search, Trash2, AlertCircle, Save, FileText } from 'lucide-react';
-import { ConfirmDelete, type PendingDelete } from '../../../components/dashboard/confirm-delete';
-import { Backdrop, CornerBrackets, PageHeader, SectionLabel, TacButton } from '../../../components/dashboard/hud';
+import { FileText, Pin, PinOff, Plus, Save, Search, Trash2 } from 'lucide-react';
+import type { PendingDelete } from '../../../components/dashboard/confirm-delete';
+import { Words } from '../../../components/daylight/command-hero';
+import { DaylightConfirm } from '../../../components/daylight/daylight-confirm';
+import { DaylightFrame } from '../../../components/daylight/daylight-nav';
+import s from '../../../components/daylight/daylight.module.css';
 import { apiFetch } from '../../../lib/api/client';
 import { MAX_NOTE_CHARS, type Note, type NoteSummary } from '../../../lib/knowledge/types';
 import type { WorkspaceOverview } from '../../../lib/workspace/overview';
 
-const pad = (n: number) => String(n).padStart(2, '0');
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 interface Draft {
   /** Null for a note that isn't saved yet. */
@@ -27,24 +30,7 @@ function when(iso: string): string {
   const d = new Date(iso);
   return d.toDateString() === new Date().toDateString()
     ? d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
-    : d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
-}
-
-function Panel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div
-      className={`relative rounded-lg overflow-hidden ${className}`}
-      style={{
-        background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
-        border: '1px solid #1e2030',
-        boxShadow: '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.08)',
-      }}
-    >
-      <CornerBrackets color="rgba(201,168,76,0.55)" size={18} />
-      <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
-      {children}
-    </div>
-  );
+    : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
 export default function KnowledgePage() {
@@ -58,7 +44,7 @@ export default function KnowledgePage() {
   const [confirming, setConfirming] = useState<PendingDelete | null>(null);
   const searchSeq = useRef(0);
   const editorRef = useRef<HTMLDivElement>(null);
-  const editing = draft ? draft.id ?? 'new' : null;
+  const editing = draft ? (draft.id ?? 'new') : null;
 
   // On narrow screens the editor sits under the list, so bring it into view.
   useEffect(() => {
@@ -111,7 +97,7 @@ export default function KnowledgePage() {
 
   async function save(e?: React.FormEvent) {
     e?.preventDefault();
-    if (!draft || !draft.title.trim() || busy) return;
+    if (!draft || !draft.title.trim() || !dirty || busy) return;
     setBusy(true);
     setError(null);
     const body = { title: draft.title, body: draft.body, projectId: draft.projectId || null };
@@ -139,7 +125,7 @@ export default function KnowledgePage() {
     }
     const pinned = res.data.pinned;
     setDraft((d) => (d ? { ...d, pinned } : d));
-    setSaved((s) => (s ? { ...s, pinned } : s));
+    setSaved((x) => (x ? { ...x, pinned } : x));
     await load(query);
   }
 
@@ -165,179 +151,159 @@ export default function KnowledgePage() {
 
   const pinnedCount = notes?.filter((n) => n.pinned).length ?? 0;
   const fill = draft ? Math.min(1, draft.body.length / MAX_NOTE_CHARS) : 0;
+  const words = draft?.body.trim() ? draft.body.trim().split(/\s+/).length : 0;
 
   return (
-    <div className="relative flex flex-col gap-5">
-      <Backdrop />
+    <DaylightFrame>
+      <section className={s.hero} aria-label="Knowledge">
+        <span className={s.floor} aria-hidden />
+        <p className={s.meta}>
+          <span className={s.liveDot} aria-hidden />
+          {notes ? `${plural(notes.length, 'note')} · ${pinnedCount} pinned` : 'loading…'}
+        </p>
+        <h1 className={s.h1}>
+          <Words text="Knowledge" delay={0.05} />
+          <span className={s.h1em}>
+            <Words text="Remember everything." delay={0.2} />
+          </span>
+        </h1>
+        <p className={s.sub}>Notes, decisions and anything worth remembering, linked to your projects.</p>
+        <button type="button" className={`${s.btn} ${s.btnOx}`} onClick={startNew} style={{ marginTop: 18 }} data-snd="high">
+          <Plus size={15} aria-hidden /> New note
+        </button>
+      </section>
 
-      <PageHeader
-        eyebrow="ARCHIVE"
-        title="Knowledge"
-        aside={
-          <div className="flex items-center gap-4">
-            {notes && (
-              <span className="font-tactical text-[10px] tracking-[0.2em] text-[#2f3240] hidden sm:block">
-                {pad(notes.length)} NOTES · {pad(pinnedCount)} PINNED
-              </span>
+      <div className={s.kbPage}>
+        {error && (
+          <p role="alert" className={`${s.notice} ${s.noticeBad} ${s.rise}`}>
+            {error}
+          </p>
+        )}
+
+        <div className={s.kbGrid}>
+          {/* ── Index ── */}
+          <div className={`${s.kbIndex} ${s.rise}`}>
+            <label className={s.kbSearch}>
+              <Search size={16} aria-hidden />
+              <span className="sr-only">Search notes</span>
+              <input value={query} maxLength={200} onChange={(e) => setQuery(e.target.value)} placeholder="Search your notes" className={s.field} />
+            </label>
+            {notes === null ? (
+              <p className={s.nothing}>Opening your notes…</p>
+            ) : notes.length === 0 ? (
+              <div className={`${s.card} ${s.kbEmpty}`}>
+                <FileText size={20} aria-hidden />
+                <span>{query.trim() ? 'No notes match that search.' : 'No notes yet. Start one with New note.'}</span>
+              </div>
+            ) : (
+              <ul aria-label="Notes" className={s.kbList}>
+                {notes.map((n, i) => {
+                  const on = draft?.id === n.id;
+                  return (
+                    <li key={n.id} className={s.rise} style={{ animationDelay: `${0.05 + i * 0.03}s` }}>
+                      <button type="button" onClick={() => void open(n.id)} aria-current={on ? 'true' : undefined} className={s.kbNote} data-on={on || undefined} data-snd="high">
+                        <span className={s.kbNoteTop}>
+                          {n.pinned && <Pin size={12} aria-label="Pinned" className={s.kbPin} />}
+                          <span className={s.kbNoteTitle}>{n.title}</span>
+                          <span className={s.kbWhen}>{when(n.updatedAt)}</span>
+                        </span>
+                        {n.excerpt && <span className={s.kbExcerpt}>{n.excerpt}</span>}
+                        {n.projectName && <span className={s.kbProject}>{n.projectName}</span>}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
-            <TacButton onClick={startNew}>
-              <Plus size={13} /> NEW NOTE
-            </TacButton>
           </div>
-        }
-      />
-      <p className="text-sm text-[#8a8d9a] -mt-2">Notes, decisions and anything worth remembering, linked to your projects.</p>
 
-      {error && (
-        <div className="flex items-center gap-2 px-4 py-3 bg-red-500/5 border border-red-500/20 rounded-lg" style={{ boxShadow: '0 0 15px rgba(239,68,68,0.05)' }}>
-          <AlertCircle size={14} className="text-red-400 shrink-0" />
-          <p role="alert" className="text-sm text-red-300">{error}</p>
-        </div>
-      )}
-
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
-        {/* ── Index ── */}
-        <div className="flex flex-col gap-2.5 min-w-0">
-          <SectionLabel>INDEX</SectionLabel>
-          <label className="relative">
-            <span className="sr-only">Search notes</span>
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4a4d5a] pointer-events-none" />
-            <input
-              value={query}
-              maxLength={200}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search the archive"
-              className="w-full pl-9 pr-3 min-h-[40px] bg-[#08090e] border border-[#1e2030] rounded-md text-[13.5px] text-[#e0dcd2] placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors"
-            />
-          </label>
-          {notes === null ? (
-            <span className="font-tactical text-[10px] tracking-[0.3em] text-[#4a4d5a] py-4">// INDEXING</span>
-          ) : notes.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 py-10 border border-dashed border-[#1e2030] rounded-lg">
-              <FileText size={18} className="text-[#2a2d3a]" />
-              <span className="font-tactical text-[10px] tracking-[0.14em] text-[#4a4d5a] text-center px-4">
-                {query.trim() ? 'NO MATCHES' : 'ARCHIVE EMPTY'}
-              </span>
-            </div>
-          ) : (
-            <ul aria-label="Notes" className="flex flex-col gap-1.5">
-              {notes.map((n, i) => {
-                const on = draft?.id === n.id;
-                return (
-                  <li key={n.id}>
-                    <button
-                      type="button"
-                      onClick={() => void open(n.id)}
-                      aria-current={on ? 'true' : undefined}
-                      className="group relative w-full text-left px-3.5 py-3 rounded-md transition-all overflow-hidden"
-                      style={{
-                        background: on ? 'linear-gradient(160deg, #15161f 0%, #0e0f16 100%)' : 'linear-gradient(160deg, #0f1017 0%, #0a0b10 100%)',
-                        border: `1px solid ${on ? 'rgba(201,168,76,0.45)' : '#1e2030'}`,
-                        boxShadow: on ? '0 0 20px rgba(201,168,76,0.08), inset 0 1px 0 rgba(201,168,76,0.12)' : 'none',
-                      }}
-                    >
-                      {on && <CornerBrackets color="rgba(201,168,76,0.7)" size={10} />}
-                      {!on && <span aria-hidden className="pointer-events-none absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity" style={{ boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.2)' }} />}
-                      <span className="flex items-center gap-2 font-tactical text-[9px] tracking-[0.16em] text-[#4a4d5a]">
-                        <span>N-{pad(i + 1)}</span>
-                        {n.pinned && <Pin size={10} className="text-[#c9a84c]" aria-label="Pinned" />}
-                        <span className="ml-auto tabular-nums">{when(n.updatedAt)}</span>
-                      </span>
-                      <span className={`block text-[14px] font-semibold truncate mt-1 ${on ? 'text-[#ece8de]' : 'text-[#cfcbc3] group-hover:text-[#ece8de]'}`}>{n.title}</span>
-                      {n.excerpt && <span className="block text-[12px] text-[#6b6e7a] truncate mt-0.5">{n.excerpt}</span>}
-                      {n.projectName && <span className="block font-tactical text-[9px] tracking-[0.12em] text-[#4a4d5a] truncate mt-1.5">{n.projectName.toUpperCase()}</span>}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-
-        {/* ── Editor ── */}
-        <div className="flex flex-col gap-2.5 min-w-0">
-          <SectionLabel>{draft ? (draft.id ? 'RECORD' : 'NEW RECORD') : 'VIEWER'}</SectionLabel>
-          {draft ? (
-            <div ref={editorRef} className="min-w-0 scroll-mt-4">
-              <Panel>
-                <form onSubmit={save} className="flex flex-col">
-                  <div className="flex items-center gap-2 px-5 pt-4 pb-3 border-b border-[#1e2030]">
-                    <input
-                      aria-label="Title"
-                      autoFocus={!draft.id}
-                      maxLength={255}
-                      value={draft.title}
-                      onChange={(e) => setDraft({ ...draft, title: e.target.value })}
-                      placeholder="Untitled record"
-                      className="flex-1 min-w-0 bg-transparent text-xl font-semibold text-[#ece8de] placeholder:text-[#4a4d5a] focus:outline-none"
-                    />
-                    {draft.id && (
-                      <>
-                        <button type="button" onClick={togglePin} disabled={busy} aria-label={draft.pinned ? 'Unpin' : 'Pin'} className={`min-w-[36px] min-h-[36px] flex items-center justify-center rounded transition-colors ${draft.pinned ? 'text-[#c9a84c] bg-[#c9a84c]/10' : 'text-[#4a4d5a] hover:text-[#c9a84c]'}`}>
-                          {draft.pinned ? <PinOff size={15} /> : <Pin size={15} />}
-                        </button>
-                        <button type="button" onClick={remove} aria-label="Delete note" className="min-w-[36px] min-h-[36px] flex items-center justify-center text-[#4a4d5a] hover:text-red-400 transition-colors">
-                          <Trash2 size={15} />
-                        </button>
-                      </>
-                    )}
+          {/* ── Editor ── */}
+          <div ref={editorRef} className={s.kbEditorWrap}>
+            {draft ? (
+              <form
+                onSubmit={save}
+                onKeyDown={(e) => {
+                  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
+                    e.preventDefault();
+                    void save();
+                  }
+                }}
+                className={`${s.card} ${s.kbEditor} ${s.rise}`}
+                aria-label={draft.id ? 'Edit note' : 'New note'}
+              >
+                <div className={s.kbHead}>
+                  <span className={s.kbState} data-dirty={dirty || undefined}>
+                    {dirty ? 'Unsaved changes' : draft.id ? 'Saved' : 'New note'}
+                  </span>
+                  {draft.id && (
+                    <span className={s.btnRow}>
+                      <button type="button" onClick={togglePin} disabled={busy} aria-label={draft.pinned ? 'Unpin' : 'Pin'} aria-pressed={draft.pinned} className={s.kbIcon} data-on={draft.pinned || undefined}>
+                        {draft.pinned ? <PinOff size={16} aria-hidden /> : <Pin size={16} aria-hidden />}
+                      </button>
+                      <button type="button" onClick={remove} aria-label="Delete note" className={`${s.kbIcon} ${s.kbDanger}`} data-snd="low">
+                        <Trash2 size={16} aria-hidden />
+                      </button>
+                    </span>
+                  )}
+                </div>
+                <input
+                  aria-label="Title"
+                  autoFocus={!draft.id}
+                  maxLength={255}
+                  value={draft.title}
+                  onChange={(e) => setDraft({ ...draft, title: e.target.value })}
+                  placeholder="Untitled note"
+                  className={s.kbTitle}
+                />
+                <textarea
+                  aria-label="Note text"
+                  rows={14}
+                  maxLength={MAX_NOTE_CHARS}
+                  value={draft.body}
+                  onChange={(e) => setDraft({ ...draft, body: e.target.value })}
+                  placeholder="Write it down…"
+                  className={s.kbBody}
+                />
+                <div className={s.kbFoot}>
+                  <label className={s.kbField}>
+                    <span className={s.kbLabel}>Project</span>
+                    <select value={draft.projectId} onChange={(e) => setDraft({ ...draft, projectId: e.target.value })} className={s.selectField}>
+                      <option value="">Not linked</option>
+                      {projects.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <div className={s.kbCount}>
+                    <span className={s.g} style={{ display: 'block', flex: 'none' }} aria-hidden>
+                      <span className={s.fill} style={{ width: `${fill * 100}%`, background: fill > 0.9 ? 'var(--bad)' : undefined }} />
+                    </span>
+                    <span className={s.kbLabel}>
+                      {plural(words, 'word')} · {draft.body.length.toLocaleString()} / {MAX_NOTE_CHARS.toLocaleString()} characters
+                    </span>
                   </div>
-                  <div className="px-5 pt-4">
-                    <textarea
-                      aria-label="Note text"
-                      rows={14}
-                      maxLength={MAX_NOTE_CHARS}
-                      value={draft.body}
-                      onChange={(e) => setDraft({ ...draft, body: e.target.value })}
-                      placeholder="Write it down…"
-                      className="w-full px-4 py-3 bg-[#08090e] border border-[#1e2030] rounded-md text-[14.5px] text-[#e0dcd2] leading-relaxed placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors resize-y"
-                    />
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 px-5 py-4">
-                    <div className="flex flex-col gap-1">
-                      <span className="font-tactical text-[8px] tracking-[0.2em] text-[#4a4d5a]">PROJECT</span>
-                      <select
-                        value={draft.projectId}
-                        onChange={(e) => setDraft({ ...draft, projectId: e.target.value })}
-                        className="px-3 min-h-[36px] bg-[#08090e] border border-[#1e2030] rounded-md text-[13px] text-[#e0dcd2] focus:outline-none focus:border-[#c9a84c]/50 transition-colors"
-                      >
-                        <option value="">Unlinked</option>
-                        {projects.map((p) => (
-                          <option key={p.id} value={p.id}>
-                            {p.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="flex-1 min-w-[10rem] flex flex-col gap-1.5 self-end pb-1">
-                      <div className="h-[3px] w-full rounded-sm bg-[#1e2030] overflow-hidden">
-                        <div className="h-full transition-all duration-300" style={{ width: `${fill * 100}%`, background: fill > 0.9 ? '#f87171' : '#c9a84c' }} />
-                      </div>
-                      <span className="font-tactical text-[9px] tracking-[0.14em] text-[#4a4d5a] tabular-nums">
-                        <span className={dirty ? 'text-[#fbbf24]' : 'text-[#4a4d5a]'}>{dirty ? 'UNSAVED' : draft.id ? 'SYNCED' : 'DRAFT'}</span>
-                        {' · '}
-                        <span className="text-[#b8b4ac]">{draft.body.length.toLocaleString()}</span> / {MAX_NOTE_CHARS.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="self-end">
-                      <TacButton type="submit" disabled={!draft.title.trim() || !dirty || busy}>
-                        <Save size={12} /> {busy ? 'SAVING…' : draft.id ? 'SAVE' : 'ADD RECORD'}
-                      </TacButton>
-                    </div>
-                  </div>
-                </form>
-              </Panel>
-            </div>
-          ) : (
-            <div className="hidden lg:flex flex-col items-center justify-center gap-3 py-24 rounded-lg border border-dashed border-[#1e2030]" style={{ background: 'rgba(10,11,16,0.4)' }}>
-              <FileText size={22} className="text-[#2a2d3a]" />
-              <span className="font-tactical text-[10px] tracking-[0.18em] text-[#4a4d5a]">SELECT A RECORD OR START A NEW ONE</span>
-            </div>
-          )}
+                  <kbd className={s.kbd}>⌘ S</kbd>
+                  <button type="submit" className={`${s.btn} ${s.btnOx}`} disabled={!draft.title.trim() || !dirty || busy} data-snd="drum">
+                    <Save size={15} aria-hidden /> {busy ? 'Saving…' : draft.id ? 'Save' : 'Add note'}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className={`${s.card} ${s.cmd} ${s.kbIdle} ${s.rise}`}>
+                <FileText size={26} aria-hidden />
+                <p>Pick a note to read it, or start a new one.</p>
+                <button type="button" className={`${s.btn} ${s.chamberGold}`} onClick={startNew} data-snd="high">
+                  <Plus size={15} aria-hidden /> New note
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <ConfirmDelete pending={confirming} onClose={() => setConfirming(null)} />
-    </div>
+      <DaylightConfirm pending={confirming} onClose={() => setConfirming(null)} />
+    </DaylightFrame>
   );
 }
