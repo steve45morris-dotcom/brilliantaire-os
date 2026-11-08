@@ -3,13 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUp, Check, Copy, ExternalLink, Mic, MicOff, Plus, RefreshCw, Volume2, VolumeX, WifiOff } from 'lucide-react';
-import { PjkCore, type CoreState } from './core';
-import { display, mono, text } from './fonts';
+import { PjkReactor, type CoreState } from './core';
+import { display, mono } from './fonts';
 import p from './pjk.module.css';
 
-// P.J.K. Core: the console for P.J.K. in Sentinel OS on the Commander's Mac, reached
-// over Tailscale. Its own look (not IcyOS's): red-orange, snow white and acid yellow
-// on an ember-black field, a live 3D core, voice in and out, and real link telemetry.
+// P.J.K. Reactor: the console for P.J.K. in Sentinel OS on the Commander's Mac, reached
+// over Tailscale. Its own look (not IcyOS's): red-orange, snow white and acid yellow on
+// an ember-black field around a full-screen plasma reactor (core.tsx), with voice in and
+// out and real link telemetry.
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -299,54 +300,68 @@ export function PjkChat() {
   }, []);
 
   const coreState: CoreState = status !== 'connected' ? 'offline' : listening ? 'listening' : sending ? 'thinking' : speaking ? 'speaking' : 'idle';
-  const coreLabel = { offline: status === 'checking' ? 'Linking to your Mac' : 'Standing by', idle: 'Ready', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking' }[coreState];
+  const CORE: Record<CoreState, [string, string]> = {
+    offline: [status === 'checking' ? 'LINKING' : 'STANDBY', status === 'checking' ? 'Looking for your Mac' : 'No link to Sentinel OS'],
+    idle: ['READY', 'Awaiting command'],
+    listening: ['LISTENING', 'Speak your command'],
+    thinking: ['THINKING', 'Routing through Sentinel OS'],
+    speaking: ['SPEAKING', 'Reply incoming'],
+  };
+  const [coreLabel, coreHint] = CORE[coreState];
   const started = messages[0]?.at;
   const lastUser = [...messages].reverse().find((m) => m.role === 'user')?.text ?? '';
+  const voiceText = !canListen && !canSpeak ? 'Unavailable' : voiceOut ? 'Replies aloud' : canListen ? 'Mic ready' : 'Off';
+  const systems: [string, string, boolean?][] = [
+    ['Link', status === 'connected' ? 'Tailscale' : STATUS_TEXT[status], status === 'connected'],
+    ['Round trip', latency !== null ? `${latency} ms` : '—'],
+    ['GO gate', 'Sentinel OS'],
+    ['Messages', String(messages.length)],
+    ['Session', started ? elapsed(now - started) : '—'],
+    ['Voice', voiceText],
+  ];
 
   return (
-    <div className={`${p.root} ${display.variable} ${text.variable} ${mono.variable}`}>
-      <div className={p.field} aria-hidden />
+    <div className={`${p.root} ${display.variable} ${mono.variable}`}>
+      <PjkReactor state={coreState} />
+
       <header className={p.bar}>
         <Link href="/dashboard" className={p.back}>
-          <ArrowLeft size={16} aria-hidden /> IcyOS
+          <ArrowLeft size={14} aria-hidden /> IcyOS
         </Link>
-        <span className={p.mark}>
-          P.J.K.<em>core</em>
-        </span>
+        <span className={p.mark}>P.J.K.</span>
+        <span className={p.tag}>REACTOR</span>
         <span className={p.link} data-status={status} role="status">
           <i aria-hidden />
-          {STATUS_TEXT[status]}
+          {STATUS_TEXT[status].toUpperCase()}
           {latency !== null && <b>{latency} ms</b>}
         </span>
       </header>
 
-      <main className={p.grid}>
-        {/* ── The core ── */}
-        <section className={p.stage} aria-label="P.J.K. core">
-          <div className={p.coreBox} data-state={coreState}>
-            <PjkCore state={coreState} />
-            <span className={p.coreLabel}>{coreLabel}</span>
-          </div>
-          <dl className={p.telemetry}>
-            <div>
-              <dt>Link</dt>
-              <dd data-ok={status === 'connected' || undefined}>{status === 'connected' ? 'Tailscale' : STATUS_TEXT[status]}</dd>
+      <aside className={`${p.side} ${p.left}`} aria-label="Systems">
+        <h2 className={p.sideHead}>SYSTEMS</h2>
+        <dl className={p.systems}>
+          {systems.map(([k, v, ok]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd data-ok={ok || undefined}>{v}</dd>
             </div>
-            <div>
-              <dt>Round trip</dt>
-              <dd>{latency !== null ? `${latency} ms` : '—'}</dd>
-            </div>
-            <div>
-              <dt>Messages</dt>
-              <dd>{messages.length}</dd>
-            </div>
-            <div>
-              <dt>Session</dt>
-              <dd>{started ? elapsed(now - started) : '—'}</dd>
-            </div>
-          </dl>
-          <p className={p.gate}>P.J.K. decides; it does not act. Anything it proposes still waits for your GO in Sentinel OS.</p>
-        </section>
+          ))}
+        </dl>
+        <p className={p.gate}>P.J.K. decides; it never acts. Anything it proposes waits for your GO in Sentinel OS.</p>
+      </aside>
+
+      <aside className={`${p.side} ${p.right}`} aria-label="Core state">
+        <h2 className={p.sideHead}>CORE</h2>
+        <div className={p.state} data-state={coreState}>
+          {coreLabel}
+        </div>
+        <div className={p.hint}>{coreHint}</div>
+      </aside>
+
+      <div className={p.dock}>
+        <div className={p.chip} data-state={coreState} aria-hidden>
+          {coreLabel}
+        </div>
 
         {/* ── Setup ── */}
         {(status === 'unconfigured' || status === 'unreachable') && (
@@ -380,78 +395,47 @@ export function PjkChat() {
           </form>
         )}
 
-        {status === 'checking' && (
-          <div className={p.panel}>
-            <h1 className={p.title}>
-              Linking <span>…</span>
-            </h1>
-            <p className={p.help}>Looking for P.J.K. on your Mac.</p>
-          </div>
-        )}
+        {status === 'checking' && <p className={p.linking}>Linking to P.J.K. on your Mac…</p>}
 
         {/* ── Conversation ── */}
         {status === 'connected' && (
-          <section className={p.console} aria-label="Conversation with P.J.K.">
-            <div className={p.consoleBar}>
-              <h1 className={p.title}>
-                Command <span>line</span>
-              </h1>
-              <div className={p.row}>
-                {canSpeak && (
-                  <button type="button" className={p.chipBtn} aria-pressed={voiceOut} onClick={toggleVoiceOut} title="Read replies aloud">
-                    {voiceOut ? <Volume2 size={15} aria-hidden /> : <VolumeX size={15} aria-hidden />} Voice {voiceOut ? 'on' : 'off'}
-                  </button>
-                )}
-                <button type="button" className={p.chipBtn} onClick={newSession} disabled={!messages.length || sending}>
-                  <Plus size={15} aria-hidden /> New session
-                </button>
-              </div>
-            </div>
-
-            <div ref={scrollRef} className={p.log} aria-live="polite">
-              {messages.length === 0 && (
-                <div className={p.empty}>
-                  <p>
-                    Your command,
-                    <br />
-                    <span>Commander.</span>
-                  </p>
-                  <div className={p.suggest}>
-                    {SUGGESTIONS.map((q) => (
-                      <button key={q} type="button" onClick={() => void sendText(q)}>
-                        <span aria-hidden>›</span> {q}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {messages.map((m, i) => (
-                <div key={i} className={p.msg} data-role={m.role}>
-                  <span className={p.meta}>
-                    {m.role === 'user' ? 'You' : 'P.J.K.'} · {clock(m.at)}
-                  </span>
-                  <div className={p.body}>{m.role === 'assistant' ? <Reveal text={m.text} live={i === lastLive.current} /> : m.text}</div>
-                  {m.role === 'assistant' && (
-                    <button type="button" className={p.copy} onClick={() => void copy(i, m.text)} aria-label="Copy reply">
-                      {copied === i ? <Check size={13} aria-hidden /> : <Copy size={13} aria-hidden />}
-                      {copied === i ? 'Copied' : 'Copy'}
+          <section aria-label="Conversation with P.J.K." className={p.convo}>
+            {messages.length === 0 ? (
+              <div className={p.empty}>
+                <h1 className={p.greet}>
+                  Your command, <span>Commander.</span>
+                </h1>
+                <div className={p.suggest}>
+                  {SUGGESTIONS.map((q) => (
+                    <button key={q} type="button" onClick={() => void sendText(q)}>
+                      {q}
                     </button>
-                  )}
+                  ))}
                 </div>
-              ))}
-              {sending && (
-                <div className={p.msg} data-role="assistant" aria-label="P.J.K. is thinking">
-                  <span className={p.meta}>P.J.K. · thinking</span>
-                  <div className={`${p.body} ${p.scan}`}>
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                    <i />
+              </div>
+            ) : (
+              <div ref={scrollRef} className={p.log} aria-live="polite">
+                {messages.map((m, i) => (
+                  <div key={i} className={p.msg} data-role={m.role}>
+                    <div className={p.meta}>
+                      {m.role === 'user' ? 'YOU' : 'P.J.K.'} · {clock(m.at)}
+                      {m.role === 'assistant' && (
+                        <button type="button" className={p.copy} onClick={() => void copy(i, m.text)} aria-label="Copy reply">
+                          {copied === i ? <Check size={12} aria-hidden /> : <Copy size={12} aria-hidden />}
+                          {copied === i ? 'Copied' : 'Copy'}
+                        </button>
+                      )}
+                    </div>
+                    <div className={p.body}>{m.role === 'assistant' ? <Reveal text={m.text} live={i === lastLive.current} /> : m.text}</div>
                   </div>
-                </div>
-              )}
-            </div>
+                ))}
+                {sending && (
+                  <div className={`${p.msg} ${p.charging}`} data-role="assistant">
+                    P.J.K. · CHARGING<span aria-hidden>…</span>
+                  </div>
+                )}
+              </div>
+            )}
 
             <form
               onSubmit={(e) => {
@@ -462,13 +446,13 @@ export function PjkChat() {
               data-listening={listening || undefined}
             >
               <span className={p.prompt} aria-hidden>
-                ›
+                &gt;
               </span>
               <input
                 ref={inputRef}
                 type="text"
                 aria-label="Message P.J.K."
-                placeholder={listening ? 'Listening…' : 'Your command'}
+                placeholder={listening ? 'Listening…' : 'Enter a command'}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -486,19 +470,27 @@ export function PjkChat() {
               />
               {canListen && (
                 <button type="button" className={p.mic} aria-pressed={listening} aria-label={listening ? 'Stop listening' : 'Speak a command'} onClick={toggleListen} disabled={sending}>
-                  {listening ? <MicOff size={18} aria-hidden /> : <Mic size={18} aria-hidden />}
+                  {listening ? <MicOff size={19} aria-hidden /> : <Mic size={19} aria-hidden />}
                 </button>
               )}
               <button type="submit" aria-label="Send" disabled={!input.trim() || sending} className={p.send}>
-                <ArrowUp size={18} aria-hidden />
+                <ArrowUp size={19} aria-hidden />
               </button>
             </form>
 
             <div className={p.foot}>
-              <span>
+              <span className={p.keys}>
                 <kbd>/</kbd> focus · <kbd>↑</kbd> last command · <kbd>Esc</kbd> clear
               </span>
               <span className={p.footLinks}>
+                {canSpeak && (
+                  <button type="button" aria-pressed={voiceOut} onClick={toggleVoiceOut}>
+                    {voiceOut ? <Volume2 size={13} aria-hidden /> : <VolumeX size={13} aria-hidden />} Voice {voiceOut ? 'on' : 'off'}
+                  </button>
+                )}
+                <button type="button" onClick={newSession} disabled={!messages.length || sending}>
+                  <Plus size={13} aria-hidden /> New session
+                </button>
                 <a href={`${pjkUrl}/command-globe`} target="_blank" rel="noopener noreferrer">
                   Command Globe <ExternalLink size={12} aria-hidden />
                 </a>
@@ -519,7 +511,7 @@ export function PjkChat() {
             </div>
           </section>
         )}
-      </main>
+      </div>
     </div>
   );
 }
