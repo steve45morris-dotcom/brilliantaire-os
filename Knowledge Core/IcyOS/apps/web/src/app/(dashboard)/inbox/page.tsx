@@ -1,46 +1,27 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { Sparkles, ArrowLeft, Plus, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Input } from '../../../components/ui/input';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Sparkles, ArrowLeft, Plus, CheckCircle2, ArrowUp, Layers, List } from 'lucide-react';
 import { ProposalCard, type Draft, type ProjectOption } from '../../../components/inbox/proposal-card';
-import { Backdrop, CornerBrackets, PageHeader, SectionLabel, TacButton } from '../../../components/dashboard/hud';
+import { SwipeDeck } from '../../../components/inbox/swipe-deck';
+import { Words } from '../../../components/daylight/command-hero';
+import { tiltHandlers } from '../../../components/daylight/daylight-fx';
+import { DaylightFrame } from '../../../components/daylight/daylight-nav';
+import s from '../../../components/daylight/daylight.module.css';
 import { apiFetch } from '../../../lib/api/client';
+import { assignUnassigned, formatMinutes, itemCount, minutesOf, plannedMinutes, stepsOf } from '../../../lib/inbox/review';
 import { MAX_DUMP_CHARS, type SortResult } from '../../../lib/inbox/types';
 import type { WorkspaceOverview } from '../../../lib/workspace/overview';
 
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
-const pad = (n: number) => String(n).padStart(2, '0');
 
-/** Steps as typed, one per non-blank line. */
-const stepsOf = (text: string) => text.split('\n').map((s) => s.trim()).filter(Boolean);
-
-/** A whole number of minutes from 1 to 1440, null when blank, NaN when invalid. */
-function minutesOf(text: string): number | null {
-  if (!text.trim()) return null;
-  const n = Number(text);
-  return Number.isInteger(n) && n >= 1 && n <= 1440 ? n : NaN;
-}
-
-function Panel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div
-      className={`relative rounded-lg overflow-hidden ${className}`}
-      style={{
-        background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
-        border: '1px solid #1e2030',
-        boxShadow: '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.08)',
-      }}
-    >
-      <CornerBrackets color="rgba(201,168,76,0.55)" size={18} />
-      <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
-      {children}
-    </div>
-  );
-}
+// The unsent brain dump, kept in this browser only so a refresh doesn't lose it.
+const DRAFT_KEY = 'icyos:inbox-draft';
+const isSubmitKey = (e: { key: string; metaKey: boolean; ctrlKey: boolean }) => e.key === 'Enter' && (e.metaKey || e.ctrlKey);
 
 export default function InboxPage() {
   const [projects, setProjects] = useState<ProjectOption[] | null>(null);
+  const [workspaceName, setWorkspaceName] = useState<string | null>(null);
   const [hasWorkspace, setHasWorkspace] = useState(true);
   const [text, setText] = useState('');
   const [drafts, setDrafts] = useState<Draft[] | null>(null);
@@ -49,11 +30,18 @@ export default function InboxPage() {
   const [error, setError] = useState<string | null>(null);
   const [added, setAdded] = useState<number | null>(null);
   const [newProject, setNewProject] = useState('');
+  const [restored, setRestored] = useState(false);
+  // Review one card at a time (swipe) or all at once (list). Decided keys leave the deck.
+  const [mode, setMode] = useState<'deck' | 'list'>('deck');
+  const [decided, setDecided] = useState<Set<string>>(new Set());
+  const [capture, setCapture] = useState('');
+  const loadedDraft = useRef(false);
 
   const loadProjects = useCallback(async () => {
     const res = await apiFetch<WorkspaceOverview>('/api/workspace');
     if (res.success && res.data) {
       setHasWorkspace(Boolean(res.data.workspace));
+      setWorkspaceName(res.data.workspace?.name ?? null);
       setProjects(res.data.projects.map((p) => ({ id: p.id, name: p.name })));
       return res.data.projects;
     }
@@ -65,8 +53,28 @@ export default function InboxPage() {
     void loadProjects();
   }, [loadProjects]);
 
-  async function sort(e: React.FormEvent) {
-    e.preventDefault();
+  // Restore the unsent dump once, then keep it saved as it changes. Storage can be
+  // unavailable (private windows, blocked site data); the page works without it.
+  useEffect(() => {
+    if (!loadedDraft.current) {
+      loadedDraft.current = true;
+      try {
+        const saved = window.localStorage.getItem(DRAFT_KEY);
+        if (saved) {
+          setText(saved.slice(0, MAX_DUMP_CHARS));
+          setRestored(true);
+        }
+      } catch {}
+      return;
+    }
+    try {
+      if (text) window.localStorage.setItem(DRAFT_KEY, text);
+      else window.localStorage.removeItem(DRAFT_KEY);
+    } catch {}
+  }, [text]);
+
+  async function sort(e?: React.FormEvent) {
+    e?.preventDefault();
     if (!text.trim() || busy) return;
     setBusy('sort');
     setError(null);
@@ -78,6 +86,8 @@ export default function InboxPage() {
       return;
     }
     setSource(res.data.source);
+    setDecided(new Set());
+    setMode(res.data.missions.length > 1 ? 'deck' : 'list');
     setDrafts(
       res.data.missions.map((m, i) => ({
         key: `${Date.now()}-${i}`,
@@ -106,7 +116,7 @@ export default function InboxPage() {
     setNewProject('');
     await loadProjects();
     // Missions still waiting for a project go into the new one.
-    setDrafts((ds) => ds?.map((d) => (d.include && !d.projectId ? { ...d, projectId: id } : d)) ?? ds);
+    setDrafts((ds) => (ds ? assignUnassigned(ds, id) : ds));
   }
 
   const kept = drafts?.filter((d) => d.include) ?? [];
@@ -114,9 +124,11 @@ export default function InboxPage() {
   const badName = kept.some((d) => !d.name.trim());
   const badEstimate = kept.some((d) => Number.isNaN(minutesOf(d.estimate)));
   const canAdd = kept.length > 0 && !missingProject && !badName && !badEstimate && busy === null;
+  const planned = plannedMinutes(kept.map((d) => d.estimate));
 
   async function add() {
-    if (!canAdd) return;
+    // Adding waits until the deck is done, so nothing undecided is saved by accident.
+    if (!canAdd || (mode === 'deck' && drafts?.some((d) => !decided.has(d.key)))) return;
     setBusy('add');
     setError(null);
     const missions = kept.map((d) => ({
@@ -135,187 +147,275 @@ export default function InboxPage() {
     setDrafts(null);
     setSource(null);
     setText('');
+    setRestored(false);
   }
 
+  // ⌘/Ctrl+Enter adds the kept missions while reviewing.
+  const addRef = useRef(add);
+  addRef.current = add;
+  useEffect(() => {
+    if (!drafts) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (isSubmitKey(e)) {
+        e.preventDefault();
+        void addRef.current();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [drafts]);
+
+  const setAll = (include: boolean) => setDrafts((ds) => ds?.map((d) => ({ ...d, include })) ?? ds);
+  const updateDraft = (next: Draft) => setDrafts((ds) => ds?.map((x) => (x.key === next.key ? next : x)) ?? ds);
+  const queue = drafts?.filter((d) => !decided.has(d.key)) ?? [];
+  const showDeck = mode === 'deck' && queue.length > 0;
+
+  function decide(key: string, keep: boolean) {
+    setDrafts((ds) => ds?.map((d) => (d.key === key ? { ...d, include: keep } : d)) ?? ds);
+    setDecided((prev) => {
+      const next = new Set(prev).add(key);
+      // Every card decided: show the kept ones as a list to finish and add.
+      if (drafts && next.size >= drafts.length) setMode('list');
+      return next;
+    });
+  }
+
+  // The orb dock adds one thought to the brain dump as a new line.
+  function captureThought(e: React.FormEvent) {
+    e.preventDefault();
+    const thought = capture.trim();
+    if (!thought) return;
+    setText((t) => `${t}${t && !t.endsWith('\n') ? '\n' : ''}- ${thought}`.slice(0, MAX_DUMP_CHARS));
+    setCapture('');
+  }
   const fill = Math.min(1, text.length / MAX_DUMP_CHARS);
-  const lines = text ? text.split('\n').length : 0;
+  const items = itemCount(text);
 
   if (!hasWorkspace) {
     return (
-      <div className="relative flex flex-col gap-5">
-        <Backdrop />
-        <PageHeader eyebrow="INTAKE" title="Inbox" />
-        <Panel className="px-6 py-8 flex flex-col items-start gap-3">
-          <span className="font-tactical text-[11px] tracking-[0.14em] text-[#b8b4ac]">NO WORKSPACE CONFIGURED</span>
-          <a href="/onboarding" className="font-tactical text-[11px] tracking-[0.14em] text-[#c9a84c] hover:underline">INITIALIZE WORKSPACE</a>
-        </Panel>
-      </div>
+      <DaylightFrame theme="glass">
+        <section className={s.hero}>
+          <span className={s.floor} aria-hidden />
+          <h1 className={s.h1}>
+            <Words text="Inbox" delay={0.05} />
+          </h1>
+          <p className={s.sub}>IcyOS needs a workspace before it can sort anything.</p>
+          <a href="/onboarding" className={`${s.btn} ${s.btnDark}`} style={{ marginTop: 20 }}>
+            Start setup
+          </a>
+        </section>
+      </DaylightFrame>
     );
   }
 
   return (
-    <div className="relative flex flex-col gap-5 max-w-4xl">
-      <Backdrop />
-
-      <PageHeader
-        eyebrow="INTAKE"
-        title="Inbox"
-        aside={
-          <span className="font-tactical text-[10px] tracking-[0.2em] text-[#2f3240] hidden sm:block">
-            {projects ? `${pad(projects.length)} PROJECTS ONLINE` : 'LINKING…'}
+    <DaylightFrame theme="glass">
+      <section className={s.hero} aria-label="Inbox">
+        <span className={s.floor} aria-hidden />
+        <p className={s.meta}>
+          <span className={s.liveDot} aria-hidden />
+          {workspaceName ?? 'Inbox'} · {projects ? plural(projects.length, 'project') : 'loading projects…'}
+        </p>
+        <h1 className={s.h1}>
+          <Words text="Inbox" delay={0.05} />
+          <span className={s.h1em}>
+            <Words text="Empty your head." delay={0.2} />
           </span>
-        }
-      />
+        </h1>
+        <p className={s.sub}>Write it messy. IcyOS turns it into missions you review before anything is saved.</p>
+      </section>
 
-      <p className="text-sm text-[#8a8d9a] -mt-2">
-        Empty your head here. IcyOS turns it into missions you review before anything is saved.
-      </p>
+      <div className={s.page}>
+        {error && (
+          <p role="alert" className={`${s.notice} ${s.noticeBad} ${s.rise}`}>
+            {error}
+          </p>
+        )}
 
-      {error && (
-        <div className="flex items-center gap-2 px-4 py-3 bg-red-500/5 border border-red-500/20 rounded-lg" style={{ boxShadow: '0 0 15px rgba(239,68,68,0.05)' }}>
-          <AlertCircle size={14} className="text-red-400 shrink-0" />
-          <p role="alert" className="text-sm text-red-300">{error}</p>
-        </div>
-      )}
+        {added !== null && (
+          <div className={`${s.notice} ${s.noticeGood} ${s.rise}`} role="status">
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <CheckCircle2 size={16} aria-hidden /> {plural(added, 'mission')} added to your workspace
+            </span>
+            <a href="/dashboard" style={{ textDecoration: 'underline' }}>
+              View on dashboard →
+            </a>
+          </div>
+        )}
 
-      {added !== null && (
-        <div
-          className="relative flex flex-wrap items-center justify-between gap-3 px-4 py-3 rounded-lg border border-emerald-500/25 overflow-hidden"
-          style={{ background: 'linear-gradient(160deg, rgba(52,211,153,0.07), transparent)', boxShadow: '0 0 20px rgba(52,211,153,0.06)' }}
-        >
-          <CornerBrackets color="rgba(52,211,153,0.5)" size={12} />
-          <span className="inline-flex items-center gap-2 font-tactical text-[11px] tracking-[0.14em] text-emerald-300">
-            <CheckCircle2 size={14} /> {pad(added)} {added === 1 ? 'MISSION' : 'MISSIONS'} COMMITTED
-          </span>
-          <a href="/dashboard" className="font-tactical text-[11px] tracking-[0.14em] text-[#c9a84c] hover:underline">VIEW ON DASHBOARD →</a>
-        </div>
-      )}
-
-      {/* ── Dump state ── */}
-      {!drafts && (
-        <form onSubmit={sort} className="flex flex-col gap-2.5">
-          <SectionLabel>SIGNAL INPUT</SectionLabel>
-          <Panel>
-            <div className="flex items-center justify-between px-5 pt-4 pb-2 font-tactical text-[10px] tracking-[0.18em]">
-              <span className="inline-flex items-center gap-2 text-[#6b6e7a]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] hud-pulse-gold" />
-                BRAIN DUMP · RAW
-              </span>
-              <span className="text-[#4a4d5a] tabular-nums">
-                {pad(lines)} LN
+        {/* ── Dump state ── */}
+        {!drafts && (
+          <form onSubmit={sort} className={`${s.card} ${s.panel} ${s.tilt} ${s.tiltSoft} ${s.rise}`} style={{ animationDelay: '0.35s' }} {...tiltHandlers}>
+            <div className={s.sec} style={{ marginTop: 0 }}>
+              <span className={s.lab}>Brain dump</span>
+              <span className={s.meta}>
+                {restored && text ? 'Draft restored · ' : text ? 'Draft saved · ' : ''}
+                {items ? `about ${plural(items, 'item')}` : plural(0, 'item')}
               </span>
             </div>
-            <div className="px-5 pb-4">
-              <textarea
-                aria-label="Brain dump"
-                autoFocus
-                rows={10}
-                maxLength={MAX_DUMP_CHARS}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder={'Everything on your mind, as messy as you like:\n- email the printer about posters (30 min)\n- podcast: book a guest, write questions\n- gym 1h, call mum…'}
-                className="w-full px-4 py-3 bg-[#08090e] border border-[#1e2030] rounded-md text-[15px] text-[#e0dcd2] leading-relaxed placeholder:text-[#4a4d5a] focus:outline-none focus:border-[#c9a84c]/50 focus:shadow-[0_0_0_3px_rgba(201,168,76,0.08)] transition-colors resize-y"
-              />
-            </div>
-            <div className="flex items-center gap-4 px-5 pb-4">
-              <div className="flex-1 flex flex-col gap-1.5">
-                <div className="h-[3px] w-full rounded-sm bg-[#1e2030] overflow-hidden">
-                  <div
-                    className="h-full transition-all duration-300"
-                    style={{ width: `${fill * 100}%`, background: fill > 0.9 ? '#f87171' : '#c9a84c', boxShadow: fill > 0 ? '0 0 6px rgba(201,168,76,0.5)' : 'none' }}
-                  />
-                </div>
-                <span className="font-tactical text-[9px] tracking-[0.16em] text-[#4a4d5a] tabular-nums">
-                  <span className="text-[#b8b4ac]">{text.length.toLocaleString()}</span> / {MAX_DUMP_CHARS.toLocaleString()} BUFFER
+            <textarea
+              aria-label="Brain dump"
+              autoFocus
+              rows={10}
+              maxLength={MAX_DUMP_CHARS}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (isSubmitKey(e)) {
+                  e.preventDefault();
+                  void sort();
+                }
+              }}
+              placeholder={'Everything on your mind, as messy as you like:\n- email the printer about posters (30 min)\n- podcast: book a guest, write questions\n- gym 1h, call mum…'}
+              className={s.area}
+              style={{ width: '100%', resize: 'vertical', lineHeight: 1.6 }}
+            />
+            <div className={s.form} style={{ marginTop: 14 }}>
+              <div style={{ flex: 1, minWidth: 160, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <span className={s.g} style={{ display: 'block', flex: 'none' }} aria-hidden>
+                  <span className={s.fill} style={{ width: `${fill * 100}%`, background: fill > 0.9 ? 'var(--bad)' : undefined }} />
+                </span>
+                <span className={s.meta}>
+                  {text.length.toLocaleString()} / {MAX_DUMP_CHARS.toLocaleString()} characters
                 </span>
               </div>
-              <TacButton type="submit" disabled={!text.trim() || busy !== null}>
-                <Sparkles size={13} /> {busy === 'sort' ? 'SORTING…' : 'SORT IT'}
-              </TacButton>
+              <kbd className={s.kbd} style={{ marginLeft: 0 }}>
+                ⌘ Enter
+              </kbd>
+              <button type="submit" className={`${s.btn} ${s.btnOx}`} disabled={!text.trim() || busy !== null} data-snd="drum">
+                <Sparkles size={15} aria-hidden /> {busy === 'sort' ? 'Sorting…' : 'Sort it'}
+              </button>
             </div>
-          </Panel>
-        </form>
-      )}
+          </form>
+        )}
 
-      {/* ── Review state ── */}
-      {drafts && (
-        <>
-          <SectionLabel>PROPOSED MISSIONS</SectionLabel>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="font-tactical text-[10px] tracking-[0.16em] text-[#6b6e7a] flex items-center gap-2 flex-wrap">
-              {drafts.length ? (
-                <>
-                  <span className="text-[#e0dcd2]">{pad(drafts.length)}</span> {drafts.length === 1 ? 'MISSION' : 'MISSIONS'} DETECTED
-                  <span className="text-[#2a2d3a]">·</span>
-                  <span className="text-[#4a4d5a]">{pad(kept.length)} SELECTED</span>
-                  {source && (
+        {!drafts && (
+          <form onSubmit={captureThought} className={`${s.card} ${s.dock}`} aria-label="Capture a thought">
+            <span className={`${s.orb} ${busy === 'sort' ? s.orbLive : ''}`} aria-hidden />
+            <input
+              aria-label="Add a thought to the brain dump"
+              placeholder="Capture a thought and press Enter…"
+              maxLength={500}
+              value={capture}
+              onChange={(e) => setCapture(e.target.value)}
+              className={s.dockInput}
+            />
+            <button type="submit" className={`${s.go}`} aria-label="Add to brain dump" disabled={!capture.trim()} data-snd="high" style={{ border: 0 }}>
+              <ArrowUp size={18} aria-hidden />
+            </button>
+          </form>
+        )}
+
+        {/* ── Review state ── */}
+        {drafts && (
+          <>
+            <div className={s.sec}>
+              <div>
+                <span className={s.lab}>Proposed missions</span>
+                <p className={s.ctx} style={{ marginTop: 4 }}>
+                  {drafts.length ? (
                     <>
-                      <span className="text-[#2a2d3a]">·</span>
-                      <span className={source === 'claude' ? 'text-[#c9a84c]' : 'text-[#4a4d5a]'}>
-                        SOURCE {source === 'claude' ? 'CLAUDE' : 'RULES'}
-                      </span>
+                      {plural(drafts.length, 'mission')} found · {kept.length} selected
+                      {planned > 0 && <> · {formatMinutes(planned)} planned</>}
+                      {source && <> · sorted by {source === 'claude' ? 'Claude' : 'simple rules'}</>}
                     </>
+                  ) : (
+                    'Nothing actionable found.'
                   )}
-                </>
-              ) : (
-                <span>NOTHING ACTIONABLE DETECTED</span>
-              )}
+                </p>
+              </div>
+              <div className={s.btnRow}>
+                {drafts.length > 1 && (
+                  <button
+                    type="button"
+                    className={s.btn}
+                    onClick={() => {
+                      if (showDeck) setMode('list');
+                      else {
+                        setDecided(new Set());
+                        setMode('deck');
+                      }
+                    }}
+                  >
+                    {showDeck ? <List size={15} aria-hidden /> : <Layers size={15} aria-hidden />} {showDeck ? 'All cards' : 'One by one'}
+                  </button>
+                )}
+                {!showDeck && drafts.length > 1 && (
+                  <button type="button" className={s.btn} onClick={() => setAll(kept.length !== drafts.length)} data-snd="low">
+                    {kept.length === drafts.length ? 'Select none' : 'Select all'}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className={s.btn}
+                  onClick={() => {
+                    setDrafts(null);
+                    setSource(null);
+                  }}
+                >
+                  <ArrowLeft size={15} aria-hidden /> Back to text
+                </button>
+              </div>
             </div>
-            <TacButton variant="ghost" onClick={() => { setDrafts(null); setSource(null); }}>
-              <ArrowLeft size={12} /> BACK TO TEXT
-            </TacButton>
-          </div>
-          {source === 'rules' && drafts.length > 0 && (
-            <p className="text-xs text-[#6b6e7a] -mt-1">Sorted by simple rules — no AI key set — so check the names.</p>
-          )}
+            {source === 'rules' && drafts.length > 0 && (
+              <p className={s.nothing}>Sorted by simple rules — no AI key set — so check the names.</p>
+            )}
 
-          <div className="flex flex-col gap-2.5">
-            {drafts.map((d, i) => (
-              <ProposalCard
-                key={d.key}
-                draft={d}
-                index={i}
-                projects={projects ?? []}
-                onChange={(next) => setDrafts((ds) => ds?.map((x) => (x.key === d.key ? next : x)) ?? ds)}
-              />
-            ))}
-          </div>
+            {showDeck ? (
+              <SwipeDeck queue={queue} decided={decided.size} total={drafts.length} projects={projects ?? []} onDecide={decide} />
+            ) : (
+              drafts.map((d, i) => <ProposalCard key={d.key} draft={d} index={i} projects={projects ?? []} onChange={updateDraft} />)
+            )}
 
-          {missingProject > 0 && (
-            <form
-              onSubmit={createProject}
-              className="relative flex flex-wrap items-center gap-3 px-4 py-3 rounded-lg border border-amber-500/30 overflow-hidden"
-              style={{ background: 'linear-gradient(160deg, rgba(245,158,11,0.06), transparent)' }}
-            >
-              <CornerBrackets color="rgba(245,158,11,0.5)" size={12} />
-              <span className="font-tactical text-[10px] tracking-[0.14em] text-amber-200">
-                {pad(missingProject)} {missingProject === 1 ? 'MISSION NEEDS' : 'MISSIONS NEED'} A PROJECT — PICK ABOVE OR CREATE
-              </span>
-              <Input
-                aria-label="New project name"
-                placeholder="New project name"
-                maxLength={255}
-                value={newProject}
-                onChange={(e) => setNewProject(e.target.value)}
-                className="flex-1 min-w-[12rem] !min-h-[38px] !py-1.5 !rounded-md !text-sm"
-              />
-              <TacButton type="submit" variant="ghost" disabled={!newProject.trim() || busy !== null}>
-                <Plus size={12} /> {busy === 'project' ? 'CREATING…' : 'CREATE'}
-              </TacButton>
-            </form>
-          )}
+            {!showDeck && missingProject > 0 && (
+              <div className={`${s.notice} ${s.noticeWarn} ${s.rise}`}>
+                <span>{missingProject === 1 ? '1 mission needs' : `${missingProject} missions need`} a project.</span>
+                {projects && projects.length > 0 && (
+                  <select
+                    aria-label="Put all unassigned missions in"
+                    className={s.selectField}
+                    value=""
+                    onChange={(e) => e.target.value && setDrafts((ds) => (ds ? assignUnassigned(ds, e.target.value) : ds))}
+                  >
+                    <option value="">Put all unassigned in…</option>
+                    {projects.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                <form onSubmit={createProject} className={s.form} style={{ flex: 1, minWidth: '16rem' }}>
+                  <input
+                    aria-label="New project name"
+                    placeholder="Or a new project"
+                    maxLength={255}
+                    value={newProject}
+                    onChange={(e) => setNewProject(e.target.value)}
+                    className={s.field}
+                  />
+                  <button type="submit" className={s.btn} disabled={!newProject.trim() || busy !== null} data-snd="drum">
+                    <Plus size={15} aria-hidden /> {busy === 'project' ? 'Creating…' : 'Create'}
+                  </button>
+                </form>
+              </div>
+            )}
 
-          {drafts.length > 0 && (
-            <div className="flex flex-wrap items-center justify-end gap-3 pt-1">
-              {badEstimate && <span className="font-tactical text-[9px] tracking-[0.12em] text-red-400">ESTIMATES: WHOLE MINUTES 1–1440</span>}
-              {badName && <span className="font-tactical text-[9px] tracking-[0.12em] text-red-400">EVERY MISSION NEEDS A NAME</span>}
-              <TacButton disabled={!canAdd} onClick={add}>
-                <Plus size={13} /> {busy === 'add' ? 'ADDING…' : `COMMIT ${pad(kept.length)} ${kept.length === 1 ? 'MISSION' : 'MISSIONS'}`}
-              </TacButton>
-            </div>
-          )}
-        </>
-      )}
-    </div>
+            {!showDeck && drafts.length > 0 && (
+              <div className={s.form} style={{ justifyContent: 'flex-end' }}>
+                {badEstimate && <span className={s.formError} style={{ width: 'auto' }}>Estimates are whole minutes, 1–1440.</span>}
+                {badName && <span className={s.formError} style={{ width: 'auto' }}>Every mission needs a name.</span>}
+                <kbd className={s.kbd} style={{ marginLeft: 0 }}>
+                  ⌘ Enter
+                </kbd>
+                <button type="button" className={`${s.btn} ${s.btnDark}`} disabled={!canAdd} onClick={add} data-snd="high">
+                  <Plus size={15} aria-hidden /> {busy === 'add' ? 'Adding…' : `Add ${plural(kept.length, 'mission')}`}
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </DaylightFrame>
   );
 }

@@ -1327,3 +1327,426 @@
     transform: none;
   }
 }
+
+/* ── Pages (Inbox and the pages that follow it into Daylight) ── */
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.noticeGood {
+  background: var(--good-soft);
+  color: var(--good);
+}
+.noticeWarn {
+  background: var(--brass-soft);
+  color: var(--ink-2);
+}
+.noticeBad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+.draftOff {
+  opacity: 0.6;
+}
+.draftWarn {
+  border-color: var(--terra);
+}
+@media (max-width: 600px) {
+  .page {
+    padding: 0 14px 24px;
+  }
+}
+
+/* ── Glass theme: white, red and gold (JARVIS Glass on the Supernova spec) ──
+   A modifier on .root: it re-points the palette tokens, so every Daylight class
+   above takes the new colours, then turns cards into frosted glass over a
+   drifting red-and-gold aurora (aurora.tsx). Pages opt in with
+   <DaylightFrame theme="glass">; the rest keep the paper look. */
+.glassTheme {
+  --paper: #fdfcfa;
+  --paper-2: #f4efe9;
+  --card: rgba(255, 255, 255, 0.66);
+  --line: rgba(23, 17, 15, 0.1);
+  --line-2: rgba(23, 17, 15, 0.18);
+  --ink: #17110f;
+  --ink-2: #3b302c;
+  --muted: #62554e;
+  --ox: #b3122b;
+  --terra: #d6402f;
+  --gold: #c9a227;
+  --gold-deep: #8f6f12;
+  --brass-soft: #f7edd2;
+  --night: #0b0b0d;
+  --night-2: #17161a;
+  --serif: var(--dl-title), 'Instrument Serif', Georgia, serif;
+  --sans: var(--dl-text), 'Geist', system-ui, sans-serif;
+  --mono: var(--dl-mono), 'Geist Mono', ui-monospace, monospace;
+  background: #ffffff;
+  isolation: isolate;
+}
+.aurora {
+  position: fixed;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(56px) saturate(130%);
+  opacity: 0.75;
+}
+.glassTheme .top {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+.glassTheme .bnav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.glassTheme .card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.56));
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(201, 162, 39, 0.16), 0 1px 0 rgba(201, 162, 39, 0.35),
+    0 24px 50px -18px rgba(120, 14, 30, 0.22), 0 8px 18px -10px rgba(23, 17, 15, 0.12);
+}
+/* The pointer light: gold-white, following --mx/--my from tiltHandlers. */
+.glassTheme .tilt::after {
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255, 236, 190, 0.55), transparent 48%);
+  mix-blend-mode: soft-light;
+}
+.glassTheme .h1 {
+  font-weight: 400;
+  font-size: clamp(64px, 8vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--night);
+  text-shadow: 0 2px 0 #e9d48f, 0 3px 0 #c9a227, 0 18px 34px rgba(11, 11, 13, 0.22);
+}
+.glassTheme .h1em {
+  font-style: italic;
+  font-weight: 400;
+  /* Room for descenders and the italic overhang: background-clip cuts at the box. */
+  padding: 0 0.08em 0.14em 0;
+  margin-bottom: -0.1em;
+  line-height: 1.02;
+  background: linear-gradient(100deg, var(--ox) 10%, var(--terra) 45%, var(--gold) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 3px 0 rgba(179, 18, 43, 0.18)) drop-shadow(0 10px 18px rgba(179, 18, 43, 0.2));
+}
+.glassTheme .mark {
+  background: conic-gradient(from 210deg, var(--ox), var(--gold), var(--ox));
+  color: #fff;
+}
+.glassTheme .area,
+.glassTheme .field,
+.glassTheme .selectField {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(23, 17, 15, 0.14);
+  box-shadow: inset 0 1px 2px rgba(23, 17, 15, 0.06);
+}
+.glassTheme .area:focus,
+.glassTheme .field:focus,
+.glassTheme .selectField:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.18);
+}
+.glassTheme .btnOx {
+  background: linear-gradient(180deg, #c8183a, var(--ox));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 0 #6d0a19, 0 12px 22px -8px rgba(179, 18, 43, 0.55);
+}
+.glassTheme .btnDark {
+  background: linear-gradient(180deg, #2a1f1b, var(--ink));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -2px 0 var(--gold), 0 4px 0 #000;
+}
+.glassTheme .fill {
+  background: linear-gradient(90deg, var(--ox), var(--gold));
+}
+.glassTheme .liveDot {
+  background: var(--gold);
+}
+.glassTheme .noticeWarn {
+  background: rgba(247, 237, 210, 0.85);
+  backdrop-filter: blur(12px);
+}
+.glassTheme .noticeGood {
+  background: linear-gradient(100deg, rgba(247, 237, 210, 0.95), rgba(255, 255, 255, 0.85));
+  color: var(--gold-deep);
+  box-shadow: inset 0 0 0 1px rgba(201, 162, 39, 0.4);
+}
+
+/* Swipe deck: one card at a time, the next two peeking behind. */
+.deck {
+  position: relative;
+  min-height: 300px;
+}
+/* Cards waiting behind the top one are blank glass, as in the concept. */
+.deckCard:not([data-depth='0']) .card > * {
+  visibility: hidden;
+}
+.deckCard {
+  position: absolute;
+  inset: 0 0 auto 0;
+  touch-action: pan-y;
+  transition: transform 0.55s cubic-bezier(0.2, 1.3, 0.4, 1), opacity 0.4s;
+}
+.deckCard[data-depth='1'] {
+  transform: translateY(14px) scale(0.96);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.deckCard[data-depth='2'] {
+  transform: translateY(28px) scale(0.92);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.deckDrag {
+  transition: none;
+  cursor: grabbing;
+}
+.stamp {
+  position: absolute;
+  top: 18px;
+  z-index: 5;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  pointer-events: none;
+}
+.stampKeep {
+  right: 18px;
+  border: 2.5px solid var(--gold);
+  color: var(--gold-deep);
+  transform: rotate(9deg);
+}
+.stampSkip {
+  left: 18px;
+  border: 2.5px solid var(--ox);
+  color: var(--ox);
+  transform: rotate(-9deg);
+}
+.deckBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.deckHint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* The orb dock: a floating glass command bar with the red-and-gold orb. */
+.dock {
+  position: sticky;
+  bottom: 18px;
+  z-index: 15;
+  margin: 8px auto 0;
+  width: min(620px, calc(100% - 28px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 999px;
+}
+.orb {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  background: conic-gradient(var(--ox), var(--gold), #fff3d0, var(--terra), var(--ox));
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 22px rgba(201, 162, 39, 0.55), 0 0 40px rgba(179, 18, 43, 0.25);
+  animation: orbspin 6s linear infinite;
+}
+.orbLive {
+  animation-duration: 0.9s;
+  transform: scale(1.12);
+}
+.dockInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+}
+@keyframes orbspin {
+  to {
+    rotate: 360deg;
+  }
+}
+@media (max-width: 600px) {
+  .dock {
+    bottom: 76px;
+  }
+  .deck {
+    min-height: 290px;
+  }
+  .glassTheme .floor {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .orbLive {
+    animation: none;
+  }
+}
+.glassTheme .dock {
+  border-radius: 999px;
+}
+
+/* ── Black: the frame and the command surfaces ── */
+.glassTheme .top {
+  background: rgba(11, 11, 13, 0.9);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+  color: #f7f2e8;
+}
+.glassTheme .brand {
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+}
+.glassTheme .tab {
+  color: rgba(247, 242, 232, 0.72);
+  font-weight: 500;
+}
+.glassTheme .tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.glassTheme .tabOn,
+.glassTheme .tabOn:hover {
+  background: linear-gradient(180deg, #e3c457, var(--gold));
+  color: var(--night);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.glassTheme .sound {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f7f2e8;
+  box-shadow: none;
+}
+.glassTheme .soundOn .soundDot {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+.glassTheme .userName {
+  color: rgba(247, 242, 232, 0.8);
+}
+.glassTheme .avatar {
+  background: linear-gradient(140deg, var(--ox), var(--terra));
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.glassTheme .bnav {
+  background: rgba(11, 11, 13, 0.94);
+  border-top: 1px solid rgba(201, 162, 39, 0.35);
+}
+.glassTheme .bnavItem {
+  color: rgba(247, 242, 232, 0.66);
+}
+.glassTheme .bnavOn {
+  color: var(--gold);
+}
+.glassTheme .h3 {
+  font-weight: 400;
+  font-size: 38px;
+  letter-spacing: -0.01em;
+}
+.glassTheme .stamp {
+  font-family: var(--sans);
+  font-weight: 800;
+}
+.glassTheme .lab {
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+/* Decision cards: black glass with a gold edge and white serif titles. */
+.glassTheme .deckDark {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.94), rgba(11, 11, 13, 0.97));
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  color: #f7f2e8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.4), 0 30px 60px -20px rgba(11, 11, 13, 0.55),
+    0 10px 30px -12px rgba(179, 18, 43, 0.35);
+}
+.glassTheme .deckDark .meta {
+  color: var(--gold);
+}
+.glassTheme .deckDark .nothing,
+.glassTheme .deckDark ol {
+  color: rgba(247, 242, 232, 0.72) !important;
+}
+.glassTheme .deckDark .pillPlain {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f7f2e8;
+}
+.glassTheme .deckDark .tilt::after,
+.glassTheme .deckDark::after {
+  mix-blend-mode: screen;
+  background: radial-gradient(360px circle at var(--mx) var(--my), rgba(201, 162, 39, 0.22), transparent 50%);
+}
+.glassTheme .stampKeep {
+  background: rgba(11, 11, 13, 0.6);
+  color: #f1d77a;
+}
+.glassTheme .stampSkip {
+  background: rgba(11, 11, 13, 0.6);
+  color: #ff5a6e;
+  border-color: #ff5a6e;
+}
+/* The orb dock in black glass. */
+.glassTheme .dock {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.92), rgba(11, 11, 13, 0.95));
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  box-shadow: 0 20px 44px -16px rgba(11, 11, 13, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.glassTheme .dockInput {
+  color: #f7f2e8;
+}
+.glassTheme .dockInput::placeholder {
+  color: rgba(247, 242, 232, 0.5);
+}
+@media (max-width: 600px) {
+  .glassTheme .h1 {
+    font-size: 46px;
+  }
+  .glassTheme .h3 {
+    font-size: 30px;
+  }
+}
+.glassTheme .box:checked {
+  background: var(--ox);
+  border-color: var(--ox);
+  box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px rgba(201, 162, 39, 0.45);
+}

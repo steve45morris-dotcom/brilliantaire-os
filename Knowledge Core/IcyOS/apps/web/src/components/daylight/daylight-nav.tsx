@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BarChart3, Inbox, LayoutDashboard, MoreHorizontal, Play } from 'lucide-react';
 import { isActive } from '../layout/bottom-nav';
+import { Aurora } from './aurora';
+import { useSound } from './daylight-fx';
+import { mono, sans, serif, text, title } from './fonts';
 import s from './daylight.module.css';
 
 // The existing routes, grouped: seven up front, the rest under More.
@@ -112,6 +115,24 @@ export function DaylightTopBar({ soundOn, onToggleSound }: { soundOn: boolean; o
         </span>
       </div>
     </header>
+  );
+}
+
+/**
+ * The Daylight page frame: top tabs, phone bottom bar and click sounds.
+ * `paper` is the dashboard's look; `glass` is white, red and gold frosted glass over an aurora.
+ */
+export function DaylightFrame({ children, theme = 'paper' }: { children: React.ReactNode; theme?: 'paper' | 'glass' }) {
+  const sound = useSound();
+  const glass = theme === 'glass';
+  const fonts = glass ? `${title.variable} ${text.variable} ${mono.variable} ${s.glassTheme}` : `${serif.variable} ${sans.variable}`;
+  return (
+    <div className={`${s.root} ${fonts}`} onPointerDownCapture={sound.onPointerDown}>
+      {glass && <Aurora />}
+      <DaylightTopBar soundOn={sound.on} onToggleSound={sound.toggle} />
+      <main>{children}</main>
+      <DaylightBottomNav />
+    </div>
   );
 }
 

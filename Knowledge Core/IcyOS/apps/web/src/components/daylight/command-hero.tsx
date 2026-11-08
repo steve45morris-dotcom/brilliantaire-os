@@ -19,7 +19,8 @@ const STATUS_CLASS: Record<MissionStatus, string> = {
   Skipped: s.sSkipped,
 };
 
-function Words({ text, delay }: { text: string; delay: number }) {
+/** A headline whose words flip up one after another. */
+export function Words({ text, delay }: { text: string; delay: number }) {
   return (
     <>
       {text.split(' ').map((w, i) => (
