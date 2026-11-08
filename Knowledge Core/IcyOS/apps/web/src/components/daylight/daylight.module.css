@@ -1390,8 +1390,11 @@
   --gold: #c9a227;
   --gold-deep: #8f6f12;
   --brass-soft: #f7edd2;
-  --serif: var(--dl-title), 'Outfit', system-ui, sans-serif;
-  --sans: var(--dl-text), 'Inter', system-ui, sans-serif;
+  --night: #0b0b0d;
+  --night-2: #17161a;
+  --serif: var(--dl-title), 'Instrument Serif', Georgia, serif;
+  --sans: var(--dl-text), 'Geist', system-ui, sans-serif;
+  --mono: var(--dl-mono), 'Geist Mono', ui-monospace, monospace;
   background: #ffffff;
   isolation: isolate;
 }
@@ -1430,13 +1433,20 @@
   mix-blend-mode: soft-light;
 }
 .glassTheme .h1 {
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  text-shadow: 0 1px 0 #f6e7b8, 0 2px 0 #eedb9b, 0 3px 0 #e2c877, 0 4px 0 #d4b55a, 0 14px 28px rgba(143, 111, 18, 0.28);
+  font-weight: 400;
+  font-size: clamp(64px, 8vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--night);
+  text-shadow: 0 2px 0 #e9d48f, 0 3px 0 #c9a227, 0 18px 34px rgba(11, 11, 13, 0.22);
 }
 .glassTheme .h1em {
-  font-style: normal;
-  font-weight: 700;
+  font-style: italic;
+  font-weight: 400;
+  /* Room for descenders and the italic overhang: background-clip cuts at the box. */
+  padding: 0 0.08em 0.14em 0;
+  margin-bottom: -0.1em;
+  line-height: 1.02;
   background: linear-gradient(100deg, var(--ox) 10%, var(--terra) 45%, var(--gold) 85%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1614,4 +1624,129 @@
 }
 .glassTheme .dock {
   border-radius: 999px;
+}
+
+/* ── Black: the frame and the command surfaces ── */
+.glassTheme .top {
+  background: rgba(11, 11, 13, 0.9);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+  color: #f7f2e8;
+}
+.glassTheme .brand {
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+}
+.glassTheme .tab {
+  color: rgba(247, 242, 232, 0.72);
+  font-weight: 500;
+}
+.glassTheme .tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.glassTheme .tabOn,
+.glassTheme .tabOn:hover {
+  background: linear-gradient(180deg, #e3c457, var(--gold));
+  color: var(--night);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.glassTheme .sound {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f7f2e8;
+  box-shadow: none;
+}
+.glassTheme .soundOn .soundDot {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+.glassTheme .userName {
+  color: rgba(247, 242, 232, 0.8);
+}
+.glassTheme .avatar {
+  background: linear-gradient(140deg, var(--ox), var(--terra));
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.glassTheme .bnav {
+  background: rgba(11, 11, 13, 0.94);
+  border-top: 1px solid rgba(201, 162, 39, 0.35);
+}
+.glassTheme .bnavItem {
+  color: rgba(247, 242, 232, 0.66);
+}
+.glassTheme .bnavOn {
+  color: var(--gold);
+}
+.glassTheme .h3 {
+  font-weight: 400;
+  font-size: 38px;
+  letter-spacing: -0.01em;
+}
+.glassTheme .stamp {
+  font-family: var(--sans);
+  font-weight: 800;
+}
+.glassTheme .lab {
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+/* Decision cards: black glass with a gold edge and white serif titles. */
+.glassTheme .deckDark {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.94), rgba(11, 11, 13, 0.97));
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  color: #f7f2e8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.4), 0 30px 60px -20px rgba(11, 11, 13, 0.55),
+    0 10px 30px -12px rgba(179, 18, 43, 0.35);
+}
+.glassTheme .deckDark .meta {
+  color: var(--gold);
+}
+.glassTheme .deckDark .nothing,
+.glassTheme .deckDark ol {
+  color: rgba(247, 242, 232, 0.72) !important;
+}
+.glassTheme .deckDark .pillPlain {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f7f2e8;
+}
+.glassTheme .deckDark .tilt::after,
+.glassTheme .deckDark::after {
+  mix-blend-mode: screen;
+  background: radial-gradient(360px circle at var(--mx) var(--my), rgba(201, 162, 39, 0.22), transparent 50%);
+}
+.glassTheme .stampKeep {
+  background: rgba(11, 11, 13, 0.6);
+  color: #f1d77a;
+}
+.glassTheme .stampSkip {
+  background: rgba(11, 11, 13, 0.6);
+  color: #ff5a6e;
+  border-color: #ff5a6e;
+}
+/* The orb dock in black glass. */
+.glassTheme .dock {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.92), rgba(11, 11, 13, 0.95));
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  box-shadow: 0 20px 44px -16px rgba(11, 11, 13, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.glassTheme .dockInput {
+  color: #f7f2e8;
+}
+.glassTheme .dockInput::placeholder {
+  color: rgba(247, 242, 232, 0.5);
+}
+@media (max-width: 600px) {
+  .glassTheme .h1 {
+    font-size: 46px;
+  }
+  .glassTheme .h3 {
+    font-size: 30px;
+  }
+}
+.glassTheme .box:checked {
+  background: var(--ox);
+  border-color: var(--ox);
+  box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px rgba(201, 162, 39, 0.45);
 }

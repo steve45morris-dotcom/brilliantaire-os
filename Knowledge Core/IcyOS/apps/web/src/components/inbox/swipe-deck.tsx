@@ -19,7 +19,7 @@ function DecisionCard({ draft, index, projects }: { draft: Draft; index: number;
   const minutes = minutesOf(draft.estimate);
   const project = projects.find((p) => p.id === draft.projectId)?.name;
   return (
-    <div className={`${s.card} ${s.panel} ${s.tilt} ${s.tiltSoft}`} style={{ padding: '26px 28px', cursor: 'grab', userSelect: 'none' }} {...tiltHandlers}>
+    <div className={`${s.card} ${s.panel} ${s.tilt} ${s.tiltSoft} ${s.deckDark}`} style={{ padding: '26px 28px', cursor: 'grab', userSelect: 'none' }} {...tiltHandlers}>
       <span className={s.meta}>D-{String(index + 1).padStart(2, '0')}</span>
       <h3 className={s.h3} style={{ margin: '6px 0 12px', lineHeight: 1.1 }}>
         {draft.name || 'Untitled mission'}
