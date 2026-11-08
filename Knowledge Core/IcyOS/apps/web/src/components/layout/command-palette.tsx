@@ -46,6 +46,65 @@ const STATUS_COLOR: Record<string, string> = {
 const PRIORITY_COLOR: Record<string, string> = { P1: '#ef4444', P2: '#c9a84c', P3: '#6b6e7a' };
 const KIND_LABEL: Record<Kind, string> = { page: 'PAGES', project: 'PROJECTS', mission: 'MISSIONS' };
 
+export type PaletteTone = 'hud' | 'daylight';
+
+// Status and priority hues above are tuned for the dark HUD; these keep icons readable on paper.
+const DAYLIGHT_TINT: Record<string, string> = {
+  '#c9a84c': '#c4572b', '#22d3ee': '#a87d22', '#6b6e7a': '#a87d22', '#34d399': '#2c7a52', '#4a4d5a': '#8a7a6e', '#ef4444': '#b0302a',
+};
+
+const SKIN = {
+  hud: {
+    overlay: { background: 'rgba(8,9,14,0.72)', backdropFilter: 'blur(6px)' },
+    panel: {
+      background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
+      border: '1px solid rgba(201,168,76,0.35)',
+      boxShadow: '0 0 0 1px rgba(201,168,76,0.08), 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.08), inset 0 1px 0 rgba(201,168,76,0.15)',
+    },
+    glow: true,
+    rule: 'border-[#1e2030]',
+    searchIcon: 'text-[#c9a84c]',
+    input: 'text-[#e0dcd2] placeholder:text-[#4a4d5a]',
+    esc: 'text-[9px] tracking-[0.14em] text-[#4a4d5a] border-[#1e2030]',
+    empty: 'text-[10px] tracking-[0.16em] text-[#4a4d5a]',
+    group: 'text-[8px] tracking-[0.24em] text-[#4a4d5a]',
+    optOn: { background: 'rgba(201,168,76,0.09)', boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.3)' },
+    iconOn: { color: '#c9a84c', background: 'rgba(201,168,76,0.08)' },
+    iconOff: { color: '#6b6e7a', background: 'rgba(30,32,48,0.5)' },
+    titleOn: 'text-[#ece8de] font-semibold',
+    titleOff: 'text-[#c8c4bc]',
+    hint: 'text-[9px] tracking-[0.12em] text-[#4a4d5a]',
+    enter: 'text-[#c9a84c]',
+    footer: 'text-[9px] tracking-[0.14em] text-[#4a4d5a]',
+    kbd: 'text-[#8a8d9a]',
+  },
+  daylight: {
+    overlay: { background: 'rgba(28,18,13,0.42)', backdropFilter: 'blur(4px)' },
+    panel: {
+      background: '#fffaf2',
+      border: '1.5px solid #1c120d',
+      borderRadius: 18,
+      boxShadow: '0 2px 0 #1c120d, 0 4px 0 #1c120d, 0 6px 0 #1c120d, 0 28px 54px rgba(28,18,13,0.25)',
+    },
+    glow: false,
+    rule: 'border-[#dccfbd]',
+    searchIcon: 'text-[#8e1b2c]',
+    input: 'text-[#1c120d] placeholder:text-[#5f4d43]',
+    esc: 'text-[12px] text-[#4a3a31] border-[#cbb9a3]',
+    empty: 'text-[12px] text-[#5f4d43]',
+    group: 'text-[12px] font-bold tracking-[0.06em] text-[#5f4d43]',
+    optOn: { background: '#f5eee3', boxShadow: 'inset 0 0 0 1.5px #1c120d' },
+    iconOn: { color: '#8e1b2c', background: '#f3dcd8' },
+    iconOff: { color: '#5f4d43', background: '#ede3d4' },
+    titleOn: 'text-[#1c120d] font-semibold',
+    titleOff: 'text-[#1c120d]',
+    hint: 'text-[12px] text-[#5f4d43]',
+    enter: 'text-[#8e1b2c]',
+    footer: 'text-[12px] text-[#5f4d43]',
+    kbd: 'text-[#1c120d]',
+  },
+} as const;
+
 /** Every query token must appear somewhere in the haystack; earlier title hits rank higher. */
 function score(item: Item, tokens: string[]): number {
   if (tokens.length === 0) return 1;
@@ -62,8 +121,10 @@ function score(item: Item, tokens: string[]): number {
   return s;
 }
 
-export function CommandPalette() {
+export function CommandPalette({ tone = 'hud' }: { tone?: PaletteTone }) {
   const router = useRouter();
+  const k = SKIN[tone];
+  const tint = (c?: string) => (tone === 'daylight' && c ? DAYLIGHT_TINT[c] ?? c : c);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [cursor, setCursor] = useState(0);
@@ -158,21 +219,17 @@ export function CommandPalette() {
       aria-label="Command palette"
       className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[12vh]"
       onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}
-      style={{ background: 'rgba(8,9,14,0.72)', backdropFilter: 'blur(6px)' }}
+      style={k.overlay}
     >
       <div
         className="relative w-full max-w-xl rounded-lg overflow-hidden"
-        style={{
-          background: 'linear-gradient(180deg, #11121a 0%, #0b0c12 100%)',
-          border: '1px solid rgba(201,168,76,0.35)',
-          boxShadow: '0 0 0 1px rgba(201,168,76,0.08), 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.08), inset 0 1px 0 rgba(201,168,76,0.15)',
-        }}
+        style={k.panel}
       >
-        <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.7), transparent)' }} />
+        {k.glow && <span aria-hidden className="absolute top-0 left-10 right-10 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.7), transparent)' }} />}
 
         {/* Input */}
-        <div className="flex items-center gap-3 px-4 h-14 border-b border-[#1e2030]">
-          <Search size={15} className="text-[#c9a84c] shrink-0" />
+        <div className={`flex items-center gap-3 px-4 h-14 border-b ${k.rule}`}>
+          <Search size={15} className={`${k.searchIcon} shrink-0`} />
           <input
             ref={inputRef}
             value={query}
@@ -186,21 +243,21 @@ export function CommandPalette() {
             placeholder="Jump to a page, project or mission…"
             aria-label="Search commands"
             aria-activedescendant={results[cursor] ? `cmd-${results[cursor].id}` : undefined}
-            className="flex-1 min-w-0 bg-transparent text-[15px] text-[#e0dcd2] placeholder:text-[#4a4d5a] focus:outline-none"
+            className={`flex-1 min-w-0 bg-transparent text-[15px] ${k.input} focus:outline-none`}
           />
-          <span className="font-tactical text-[9px] tracking-[0.14em] text-[#4a4d5a] px-1.5 py-[2px] rounded-[3px] border border-[#1e2030]">ESC</span>
+          <span className={`font-tactical ${k.esc} px-1.5 py-[2px] rounded-[3px] border`}>ESC</span>
         </div>
 
         {/* Results */}
         <ul ref={listRef} role="listbox" className="max-h-[52vh] overflow-y-auto py-2">
           {results.length === 0 && (
-            <li className="px-4 py-8 text-center font-tactical text-[10px] tracking-[0.16em] text-[#4a4d5a]">
+            <li className={`px-4 py-8 text-center font-tactical ${k.empty}`}>
               {workspace === null && query ? '// SCANNING' : 'NO MATCHES'}
             </li>
           )}
           {grouped.map((g) => (
             <li key={`${g.kind}-${g.items[0].index}`} className="pb-1">
-              <div className="px-4 pt-2 pb-1 font-tactical text-[8px] tracking-[0.24em] text-[#4a4d5a]">{KIND_LABEL[g.kind]}</div>
+              <div className={`px-4 pt-2 pb-1 font-tactical ${k.group}`}>{KIND_LABEL[g.kind]}</div>
               <ul>
                 {g.items.map(({ item, index }) => {
                   const on = index === cursor;
@@ -216,16 +273,16 @@ export function CommandPalette() {
                       onMouseDown={(e) => e.preventDefault()}
                       onClick={() => go(item)}
                       className="mx-2 flex items-center gap-3 px-3 h-11 rounded-md cursor-pointer transition-colors"
-                      style={{ background: on ? 'rgba(201,168,76,0.09)' : 'transparent', boxShadow: on ? 'inset 0 0 0 1px rgba(201,168,76,0.3)' : 'none' }}
+                      style={on ? k.optOn : { background: 'transparent', boxShadow: 'none' }}
                     >
-                      <span className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ color: item.color ?? (on ? '#c9a84c' : '#6b6e7a'), background: on ? 'rgba(201,168,76,0.08)' : 'rgba(30,32,48,0.5)' }}>
+                      <span className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ ...(on ? k.iconOn : k.iconOff), ...(item.color ? { color: tint(item.color) } : {}) }}>
                         <Icon size={14} />
                       </span>
                       <span className="flex-1 min-w-0 flex flex-col">
-                        <span className={`text-[14px] truncate ${on ? 'text-[#ece8de] font-semibold' : 'text-[#c8c4bc]'}`}>{item.title}</span>
-                        <span className="font-tactical text-[9px] tracking-[0.12em] text-[#4a4d5a] truncate">{item.hint}</span>
+                        <span className={`text-[14px] truncate ${on ? k.titleOn : k.titleOff}`}>{item.title}</span>
+                        <span className={`font-tactical ${k.hint} truncate`}>{item.hint}</span>
                       </span>
-                      {on && <CornerDownLeft size={12} className="text-[#c9a84c] shrink-0" />}
+                      {on && <CornerDownLeft size={12} className={`${k.enter} shrink-0`} />}
                     </li>
                   );
                 })}
@@ -235,10 +292,10 @@ export function CommandPalette() {
         </ul>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-4 h-9 border-t border-[#1e2030] font-tactical text-[9px] tracking-[0.14em] text-[#4a4d5a]">
+        <div className={`flex items-center justify-between px-4 h-9 border-t ${k.rule} font-tactical ${k.footer}`}>
           <span className="flex items-center gap-3">
-            <span><kbd className="text-[#8a8d9a]">↑↓</kbd> NAVIGATE</span>
-            <span><kbd className="text-[#8a8d9a]">↵</kbd> OPEN</span>
+            <span><kbd className={k.kbd}>↑↓</kbd> NAVIGATE</span>
+            <span><kbd className={k.kbd}>↵</kbd> OPEN</span>
           </span>
           <span>{workspace ? `${String(results.length).padStart(2, '0')} RESULTS` : 'LINKING WORKSPACE…'}</span>
         </div>
