@@ -1810,3 +1810,390 @@
     line-height: 0.98;
   }
 }
+
+/* ── Timeline ─────────────────────────────────────────────────────────────
+   The day ribbon is a black deck (shares .cmd): blocks drawn to scale across
+   the window, a gold now marker. Below it, the rail: time, dot, glass block. */
+.tlDeck {
+  margin-top: 0;
+  width: auto;
+  padding: 22px 26px 18px;
+  color: #f7f2e8;
+}
+.tlStats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 242, 232, 0.6);
+}
+.tlStats b {
+  text-transform: none;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #fff;
+  margin-right: 4px;
+}
+.tlStats .tlGold {
+  color: #f1d77a;
+}
+.tlStatus {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.55);
+  color: #f1d77a;
+}
+.tlNowLine {
+  margin: 14px 0 12px;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.15;
+  color: rgba(247, 242, 232, 0.85);
+}
+.tlNowLine b {
+  font-style: italic;
+  font-weight: 400;
+  color: #fff;
+}
+.ribbon {
+  position: relative;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.ribbonSeg {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 6px;
+  border-right: 2px solid #121114;
+  transform-origin: left center;
+  animation: ribbonIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.ribbonSeg[data-kind='mission'] {
+  background: linear-gradient(90deg, var(--ox), #d6402f 60%, var(--gold));
+  box-shadow: 0 0 14px rgba(179, 18, 43, 0.45);
+}
+.ribbonSeg[data-kind='buffer'] {
+  top: 10px;
+  bottom: 10px;
+  background: repeating-linear-gradient(135deg, rgba(201, 162, 39, 0.75) 0 4px, rgba(201, 162, 39, 0.3) 4px 8px);
+}
+.ribbonSeg[data-kind='break'] {
+  top: 13px;
+  bottom: 13px;
+  background: rgba(247, 242, 232, 0.55);
+}
+.ribbonSeg[data-past] {
+  opacity: 0.35;
+  box-shadow: none;
+}
+.ribbonNow {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  margin-left: -1px;
+  background: #f1d77a;
+  box-shadow: 0 0 10px #f1d77a, 0 0 22px rgba(241, 215, 122, 0.6);
+}
+.ribbonScale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(247, 242, 232, 0.5);
+}
+@keyframes ribbonIn {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+.tl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tlRow {
+  display: grid;
+  grid-template-columns: 58px 22px minmax(0, 1fr);
+  align-items: stretch;
+}
+.tlTime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tlTime b {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.tlRail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.tlRail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line-2);
+}
+.tlRow:first-child .tlRail::before {
+  top: 20px;
+}
+.tlRow:last-child .tlRail::before {
+  bottom: auto;
+  height: 20px;
+}
+.tlDot {
+  position: relative;
+  margin-top: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--line-2);
+}
+.tlRow[data-kind='mission'] .tlDot {
+  border-color: var(--ox);
+}
+.tlRow[data-past] .tlRail::before,
+.tlRow[data-current] .tlRail::before {
+  background: linear-gradient(180deg, var(--ox), var(--gold));
+}
+.tlRow[data-past] .tlDot {
+  background: var(--ox);
+  border-color: var(--ox);
+}
+.tlRow[data-current] .tlDot {
+  background: var(--gold);
+  border-color: var(--ox);
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.25);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+.tlBlock {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  margin: 0 0 8px 6px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.tlRow[data-kind='mission'] .tlBlock {
+  box-shadow: inset 3px 0 0 var(--ox), 0 10px 24px -16px rgba(23, 17, 15, 0.35);
+}
+.tlRow[data-kind='mission'] .tlBlock:hover {
+  transform: translateX(3px);
+}
+.tlRow[data-kind='buffer'] .tlBlock,
+.tlRow[data-kind='break'] .tlBlock {
+  min-height: 38px;
+  padding-block: 6px;
+  background: rgba(255, 255, 255, 0.38);
+  border-style: dashed;
+}
+.tlRow[data-past] .tlBlock {
+  opacity: 0.55;
+}
+.tlRow[data-current] .tlBlock {
+  background: linear-gradient(160deg, rgba(34, 28, 30, 0.95), rgba(11, 11, 13, 0.97));
+  border: 1px solid rgba(201, 162, 39, 0.6);
+  color: #f7f2e8;
+  box-shadow: 0 16px 36px -18px rgba(179, 18, 43, 0.6);
+}
+.tlProg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ox), var(--gold));
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.7);
+}
+.tlIdx {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  width: 20px;
+  flex: none;
+}
+.tlIcon {
+  flex: none;
+  color: var(--muted);
+}
+.tlRow[data-kind='mission'] .tlIcon {
+  color: var(--ox);
+}
+.tlTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.tlRow[data-kind='mission'] .tlTitle {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.tlKind {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tlMins {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tlRow[data-current] .tlIdx,
+.tlRow[data-current] .tlMins,
+.tlRow[data-current] .tlTitle {
+  color: #f7f2e8;
+}
+.tlRow[data-current] .tlKind,
+.tlRow[data-current] .tlIcon {
+  color: #f1d77a;
+}
+.tlGo,
+.tlDrop {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 32px;
+  min-width: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(179, 18, 43, 0.35);
+  background: transparent;
+  color: var(--ox);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tlGo:hover {
+  background: var(--ox);
+  color: #fff;
+}
+.tlRow[data-current] .tlGo {
+  border-color: var(--gold);
+  color: #f1d77a;
+}
+.tlDrop {
+  padding: 0;
+  border-color: var(--line-2);
+  color: var(--muted);
+}
+.tlDrop:hover {
+  border-color: var(--ox);
+  color: var(--ox);
+}
+.tlField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tlField .field {
+  min-width: 130px;
+  font-family: var(--mono);
+  font-size: 16px;
+}
+.tlArrow {
+  align-self: flex-end;
+  padding-bottom: 10px;
+  color: var(--gold-deep);
+}
+.tlSubmit {
+  margin-left: auto;
+  align-self: flex-end;
+}
+.tlLeft {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.tlLeft li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink-2);
+}
+@media (max-width: 600px) {
+  .tlDeck {
+    padding: 18px;
+  }
+  .tlStatus {
+    margin-left: 0;
+  }
+  .tlRow {
+    grid-template-columns: 46px 18px minmax(0, 1fr);
+  }
+  .tlKind,
+  .tlIdx,
+  .tlGoText {
+    display: none;
+  }
+  .tlTitle {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+  .tlBlock {
+    gap: 8px;
+    padding-inline: 12px;
+  }
+  .tlGo {
+    padding: 0;
+  }
+  .tlSubmit {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ribbonSeg,
+  .tlRow[data-current] .tlDot {
+    animation: none;
+  }
+}
