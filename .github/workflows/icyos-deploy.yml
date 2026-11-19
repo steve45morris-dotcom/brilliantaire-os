@@ -1,9 +1,15 @@
 name: IcyOS Deploy
 
 on:
-  # Deliberately NO push trigger: merging to main must never deploy by itself.
-  # Deploy is always a separate, explicit decision —
-  # Actions > IcyOS Deploy > Run workflow (or `gh workflow run icyos-deploy.yml`).
+  # Every IcyOS change merged to main deploys (LAUNCH.md step 4), and a deploy
+  # can still be run by hand: Actions > IcyOS Deploy > Run workflow (or
+  # `gh workflow run icyos-deploy.yml`). Without the three Vercel secrets the
+  # run says so and skips, so a push never turns main red over a setting.
+  push:
+    branches: [main]
+    paths:
+      - 'Knowledge Core/IcyOS/**'
+      - '.github/workflows/icyos-deploy.yml'
   workflow_dispatch:
 
 concurrency:
